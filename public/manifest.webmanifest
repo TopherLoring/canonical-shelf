@@ -1,0 +1,10 @@
+{
+  "name":"Canonical Shelf",
+  "short_name":"Canonical Shelf",
+  "description":"Self-paced Bible literacy, Scripture study, curated Topics, and practice.",
+  "start_url":"/#/home",
+  "display":"standalone",
+  "background_color":"#f6f1e8",
+  "theme_color":"#12100d",
+  "icons":[]
+}
