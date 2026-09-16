@@ -12,10 +12,11 @@ async function text(name){
 }
 
 function evalWindow(sources){
-  const context={window:{},console};
+  const context={console};
+  context.window=context;
   vm.createContext(context);
   for(const [name,code] of sources) vm.runInContext(code,context,{filename:name});
-  return context.window;
+  return context;
 }
 
 const courseWin=evalWindow([['v4-course-map.js',await text('v4-course-map.js')]]);
@@ -29,6 +30,7 @@ if(!topicsWin.CANON_TOPICS?.articles?.length) throw new Error('legacy topics mis
 
 const foundationsWin=evalWindow([
   ['foundations-data.js',await text('foundations-data.js')],
+  ['foundations-expansion-core.js',await text('foundations-expansion-core.js')],
   ['foundations-units-02-08.js',await text('foundations-units-02-08.js')],
   ['foundations-units-09-16.js',await text('foundations-units-09-16.js')]
 ]);
