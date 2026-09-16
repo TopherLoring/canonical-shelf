@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "authority": {
+    "normativeCeiling": "Canonical Shelf Statement of Faith",
+    "rule": "The Guide may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine."
+  },
+  "doctrinalStates": ["affirmed","bounded-inference","open","descriptive-only"],
+  "evidenceStates": ["direct","strong","plausible","contested","speculative"],
+  "lgbtq": {
+    "status": "affirmed",
+    "claims": [
+      "LGBTQ people possess equal dignity and belonging.",
+      "Homosexual or bisexual orientation is not inherently sinful.",
+      "A person is not required to renounce LGBTQ orientation to receive grace or follow Christ.",
+      "Faithful same-sex relationships and marriage may embody Christian virtue.",
+      "LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.",
+      "Relational ethics center on fidelity, consent, honesty, mutuality, equality, responsibility, self-control, care, dignity, and self-giving love rather than partner gender."
+    ]
+  },
+  "interpretiveRules": [
+    "Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, and application.",
+    "Do not render contested evidence as scholarly consensus.",
+    "Do not use lexical claims alone to establish contemporary doctrine.",
+    "Represent major non-affirming Christian interpretations accurately without displacing Canonical Shelf's stated affirming position.",
+    "Personal theological assent is never a scored mastery criterion."
+  ],
+  "queerReception": {
+    "firstClass": true,
+    "ruthNaomi": {
+      "status": "documented-interpretation",
+      "allowed": "Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses.",
+      "boundary": "The biblical narrator does not explicitly identify Ruth and Naomi as sexual partners; present this as reception history or interpretation, not uncontested textual fact."
+    },
+    "otherCases": ["David and Jonathan","eunuchs and belonging","chosen family and kinship","gender nonconformity"]
+  },
+  "prohibitedOverstatements": [
+    "Romans 1 refers only to pederasty, temple prostitution, or exploitation.",
+    "arsenokoitai definitely means child abusers or economic exploiters.",
+    "malakoi is a direct ancient equivalent of modern gay identity.",
+    "para physin merely means against convention in every relevant sense.",
+    "to'evah merely means ritual impurity and has no other moral force.",
+    "The Ethiopian eunuch is simply an ancient equivalent of a modern LGBTQ identity.",
+    "Ruth and Naomi are explicitly identified by the text as a lesbian couple."
+  ]
+}
