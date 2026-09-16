@@ -4,21 +4,22 @@ const main=document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
 const guide=document.querySelector('#guide');
 const guideBody=document.querySelector('#guide-body');
-let data={units:[],topics:[],lessons:[],masteryIds:[]},corpus='';
+let data={units:[],topics:[],lessons:[],masteryIds:[]},corpus='',policy=null;
 let state=await getState();
 
-const POLICY={
-  ceiling:'Canonical Shelf Statement of Faith',
-  lgbtq:'Canonical Shelf affirms LGBTQ dignity and belonging; orientation is not inherently sinful; faithful same-sex relationships and marriage may embody Christian virtue; LGBTQ identity does not bar worship, service, teaching, leadership, or spiritual gifts.',
-  ruth:'Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses. Canonical Shelf treats this as documented reception history, not an uncontested claim that the narrator explicitly identifies them as sexual partners.',
-  caution:'The Guide distinguishes text, historical context, lexical evidence, interpretation, reception history, doctrine, and application. Contested claims are not presented as scholarly consensus.'
+const FALLBACK_POLICY={
+  authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'The Guide may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.'},
+  lgbtq:{claims:['LGBTQ people possess equal dignity and belonging.','Homosexual or bisexual orientation is not inherently sinful.','Faithful same-sex relationships and marriage may embody Christian virtue.','LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.']},
+  interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, and application.','Do not render contested evidence as scholarly consensus.'],
+  queerReception:{ruthNaomi:{allowed:'Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses.',boundary:'The biblical narrator does not explicitly identify Ruth and Naomi as sexual partners; present this as reception history or interpretation, not uncontested textual fact.'}}
 };
 
 async function load(){
   try{data=await fetch('/data/catalog.json').then(r=>{if(!r.ok)throw new Error();return r.json()})}catch{data={units:[],topics:[],lessons:[],masteryIds:[]}}
   try{corpus=await fetch('/data/corpus.txt').then(r=>r.ok?r.text():'')}catch{}
+  try{policy=await fetch('/data/theology-policy.json').then(r=>r.ok?r.json():FALLBACK_POLICY)}catch{policy=FALLBACK_POLICY}
 }
-await load();
+await load();policy||=FALLBACK_POLICY;
 
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function route(){return (location.hash.replace(/^#\//,'').split('?')[0]||'home').split('/')[0]}
@@ -41,7 +42,7 @@ function searchPage(q){const n=q.toLowerCase();const topics=data.topics.filter(t
 
 function render(){const r=route();setCurrent(r);if(r==='search'){main.innerHTML=searchPage(params().get('q')||'');return}main.innerHTML=({home,course,bible,topics,practice}[r]||home)();main.focus({preventScroll:true})}
 
-function guideAnswer(q){const n=q.toLowerCase();let lead='I can explain this using Canonical Shelf’s local evidence set. The Statement of Faith is the doctrinal ceiling; where it does not establish a position, I can describe major views without creating a new Canonical Shelf doctrine.';if(/gay|lesbian|homosexual|lgbt|queer|same[- ]sex/.test(n))lead=POLICY.lgbtq;if(/ruth|naomi/.test(n))lead=POLICY.ruth;const relTopics=data.topics.filter(t=>`${t.title} ${t.answer}`.toLowerCase().split(/\s+/).some(w=>w.length>5&&n.includes(w))).slice(0,5);const relUnits=data.units.filter(u=>`${u.title} ${u.scope}`.toLowerCase().split(/\s+/).some(w=>w.length>5&&n.includes(w))).slice(0,4);guideBody.innerHTML=`<p class="lede">${esc(lead)}</p><p>${esc(POLICY.caution)}</p>${relTopics.length?`<div class="evidence"><h3>Relevant Topics</h3>${relTopics.map(t=>`<p><strong>${esc(t.title)}</strong><br>${esc(t.answer||'').slice(0,260)}</p>`).join('')}</div>`:''}${relUnits.length?`<div class="evidence"><h3>Course connections</h3>${relUnits.map(u=>`<p>${u.sequence}. ${esc(u.title)}</p>`).join('')}</div>`:''}<div class="evidence"><span class="badge">offline evidence mode</span><span class="badge">bounded by Statement of Faith</span></div>`;guide.hidden=false;document.querySelector('#guide-close').focus()}
+function guideAnswer(q){const n=q.toLowerCase();let lead=`I can explain this using Canonical Shelf’s local evidence set. ${policy.authority.rule}`;if(/gay|lesbian|homosexual|lgbt|queer|same[- ]sex/.test(n))lead=policy.lgbtq.claims.join(' ');if(/ruth|naomi/.test(n))lead=`${policy.queerReception.ruthNaomi.allowed} ${policy.queerReception.ruthNaomi.boundary}`;const relTopics=data.topics.filter(t=>`${t.title} ${t.answer}`.toLowerCase().split(/\s+/).some(w=>w.length>5&&n.includes(w))).slice(0,5);const relUnits=data.units.filter(u=>`${u.title} ${u.scope}`.toLowerCase().split(/\s+/).some(w=>w.length>5&&n.includes(w))).slice(0,4);guideBody.innerHTML=`<p class="lede">${esc(lead)}</p><p>${esc(policy.interpretiveRules.join(' '))}</p>${relTopics.length?`<div class="evidence"><h3>Relevant Topics</h3>${relTopics.map(t=>`<p><strong>${esc(t.title)}</strong><br>${esc(t.answer||'').slice(0,260)}</p>`).join('')}</div>`:''}${relUnits.length?`<div class="evidence"><h3>Course connections</h3>${relUnits.map(u=>`<p>${u.sequence}. ${esc(u.title)}</p>`).join('')}</div>`:''}<div class="evidence"><span class="badge">offline evidence mode</span><span class="badge">bounded by ${esc(policy.authority.normativeCeiling)}</span></div>`;guide.hidden=false;document.querySelector('#guide-close').focus()}
 
 window.addEventListener('hashchange',render);document.addEventListener('click',async e=>{const b=e.target.closest('.complete');if(b){state=await toggleComplete(b.dataset.id);render()}const t=e.target.closest('[data-topic]');if(t){const x=data.topics.find(z=>z.id===t.dataset.topic);if(x)guideAnswer(`${x.title}: ${x.answer||''}`)}const a=e.target.closest('[data-ask]');if(a)guideAnswer(a.dataset.ask)});
 document.querySelector('#global-search').addEventListener('submit',e=>{e.preventDefault();const q=new FormData(e.currentTarget).get('q').trim();if(q)location.hash=`#/search?q=${encodeURIComponent(q)}`});
