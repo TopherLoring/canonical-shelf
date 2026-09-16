@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "migrate": "bun scripts/migrate-legacy.mjs",
+    "migrate": "bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
     "validate": "bun scripts/validate.mjs",
     "test": "bun scripts/validate.mjs",
     "serve": "bun scripts/serve.mjs"
