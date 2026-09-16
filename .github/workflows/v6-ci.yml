@@ -1,0 +1,19 @@
+name: v6-ci
+on:
+  push:
+    branches: [v6]
+  pull_request:
+    branches: [main]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - run: bun run migrate
+      - run: bun run validate
+      - run: bun build public/app.js --outdir=/tmp/canonical-shelf-v6 --target=browser
