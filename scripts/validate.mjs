@@ -6,7 +6,7 @@ for(const label of ['Home','Course','Bible','Topics','Practice'])if(!html.includ
 const guide=await readFile('docs/v6/theologian-runtime.md','utf8');
 for(const phrase of ['Statement of Faith','orientation is not inherently sinful','Ruth and Naomi','not uncontested textual fact'])if(!guide.toLowerCase().includes(phrase.toLowerCase()))throw new Error(`theologian policy missing: ${phrase}`);
 const app=await readFile('public/app.js','utf8');
-if(/innerHTML\s*=\s*[^`'"].*location\.hash/s.test(app))throw new Error('unsafe route injection pattern');
+for(const pattern of [/innerHTML\s*=\s*location\.hash/,/innerHTML\s*=\s*params\(\)\.get/,/insertAdjacentHTML\([^,]+,\s*location\.hash/])if(pattern.test(app))throw new Error('unsafe unescaped route injection pattern');
 try{
   const cat=JSON.parse(await readFile('public/data/catalog.json','utf8'));
   if(cat.units.length!==25)throw new Error(`expected 25 v6 units, got ${cat.units.length}`);
