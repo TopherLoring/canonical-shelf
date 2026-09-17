@@ -54,7 +54,7 @@ export async function syncProgress(){
   const remote=await response.json();
   let merged=mergeLearnerState(local,remote.state||{});
   merged=acknowledgeSync(merged,{cursor:remote.cursor,acceptedIds:remote.acceptedIds||[]});
-  await putState(merged);
+  await putState(merged,{notify:false});
   return {status:'synced' as const,state:merged,updatedAt:remote.updatedAt};
 }
 
