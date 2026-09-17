@@ -13,6 +13,8 @@ const requiredVendor=[
 ];
 for(const path of requiredVendor)await stat(path);
 
+try{await stat('public/_redirects');throw new Error('legacy Pages _redirects must not be shipped with Workers Static Assets');}catch(error){if(error.code!=='ENOENT')throw error;}
+
 const manifest=JSON.parse(await readFile('content/migration/admissibility.json','utf8'));
 if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('legacy provenance must remain pinned to an immutable SHA');
 
