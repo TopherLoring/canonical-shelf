@@ -17,9 +17,15 @@ const manifest=JSON.parse(await readFile('content/migration/admissibility.json',
 if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('legacy provenance must remain pinned to an immutable SHA');
 
 const packageJson=JSON.parse(await readFile('package.json','utf8'));
-if(!String(packageJson.scripts?.migrate||'').includes('migrate-vendored.mjs'))throw new Error('production migrate must use the local vendor snapshot');
-if(!String(packageJson.scripts?.build||'').includes('generate:auth-migration'))throw new Error('production build must generate Better Auth schema');
-if(!String(packageJson.scripts?.deploy||'').includes('generate:wrangler'))throw new Error('production deploy must generate Cloudflare config');
+const migrate=String(packageJson.scripts?.migrate||'');
+const build=String(packageJson.scripts?.build||'');
+const deploy=String(packageJson.scripts?.deploy||'');
+if(!migrate.includes('migrate-vendored.mjs'))throw new Error('production migrate must use the local vendor snapshot');
+if(!build.includes('generate:auth-migration'))throw new Error('production build must generate Better Auth schema');
+if(!build.includes('generate:wrangler'))throw new Error('production build must generate Cloudflare config before platform deployment');
+if(!deploy.includes('bun run build'))throw new Error('production deploy must execute the authoritative production build');
+if(!deploy.includes('wrangler d1 migrations apply canonical-shelf --remote'))throw new Error('production deploy must apply remote D1 migrations before Worker deployment');
+if(!deploy.includes('wrangler deploy'))throw new Error('production deploy must publish through Wrangler');
 
 for(const path of ['public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-sources.json','public/generated/account.js','worker/migrations/0000_auth.sql'])await stat(path);
 
