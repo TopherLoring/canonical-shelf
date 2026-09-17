@@ -4,6 +4,8 @@
   "type":"module",
   "scripts":{
     "migrate":"bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
+    "generate:auth-migration":"bun scripts/generate-auth-migration.mjs",
+    "generate:wrangler":"bun scripts/write-wrangler.mjs",
     "validate":"bun scripts/validate.mjs",
     "test":"bun run validate && bun run test:sync && bun run test:d1",
     "test:sync":"bun scripts/test-sync.mjs",
@@ -11,13 +13,13 @@
     "test:e2e":"playwright test",
     "build:client":"mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
     "build:worker":"bun build worker/index.ts --outdir=/tmp/canonical-shelf-worker --target=browser",
-    "build":"bun run migrate && bun run build:client && bun run validate && bun build public/bootstrap.js --outdir=/tmp/canonical-shelf-browser --target=browser && bun run build:worker",
+    "build":"bun run migrate && bun run build:client && bun run generate:auth-migration && bun run validate && bun build public/bootstrap.js --outdir=/tmp/canonical-shelf-browser --target=browser && bun run build:worker",
     "verify":"bun run build && bun run test:sync && bun run test:d1 && bun run test:e2e",
     "serve":"bun run migrate && bun run build:client && bun scripts/serve.mjs",
-    "dev":"bun run migrate && bun run build:client && wrangler dev",
-    "deploy":"bun run build && wrangler deploy",
-    "db:migrate:local":"wrangler d1 migrations apply canonical-shelf --local",
-    "db:migrate:remote":"wrangler d1 migrations apply canonical-shelf --remote"
+    "dev":"bun run migrate && bun run build:client && bun run generate:auth-migration && bun run generate:wrangler && wrangler dev",
+    "deploy":"bun run build && bun run generate:wrangler && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy",
+    "db:migrate:local":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
+    "db:migrate:remote":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote"
   },
   "dependencies":{
     "better-auth":"1.7.5",
