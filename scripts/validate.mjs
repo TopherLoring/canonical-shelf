@@ -1,5 +1,5 @@
 import {readFile,stat} from 'node:fs/promises';
-const req=['public/index.html','public/styles.css','public/learning.css','public/app.js','public/learning.js','public/db.js','public/sw.js','public/manifest.webmanifest','public/data/theology-policy.json','docs/v6/README.md','docs/v6/theologian-runtime.md','src/knowledge/model.ts','content/migration/admissibility.json'];
+const req=['public/index.html','public/tokens.css','public/styles.css','public/learning.css','public/bible.css','public/app.js','public/learning.js','public/theologian.js','public/db.js','public/sw.js','public/manifest.webmanifest','public/data/theology-policy.json','docs/v6/README.md','docs/v6/theologian-runtime.md','src/knowledge/model.ts','content/migration/admissibility.json'];
 for(const f of req)await stat(f);
 const architecture=await readFile('docs/v6/README.md','utf8');
 for(const phrase of ['greenfield product architecture','audited migration','Legacy material is a migration candidate, never a default requirement','Never inherit by default'])if(!architecture.includes(phrase))throw new Error(`migration governance missing: ${phrase}`);
@@ -7,24 +7,13 @@ if(/brownfield at the product\/content\/data layer/i.test(architecture))throw ne
 const manifest=JSON.parse(await readFile('content/migration/admissibility.json','utf8'));
 if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('migration manifest must pin an immutable commit SHA');
 if(!Array.isArray(manifest.approvedAssets)||manifest.approvedAssets.length<1)throw new Error('migration manifest has no approved assets');
-const paths=manifest.approvedAssets.map(x=>x.path);
-if(new Set(paths).size!==paths.length)throw new Error('migration manifest contains duplicate asset paths');
+const paths=manifest.approvedAssets.map(x=>x.path);if(new Set(paths).size!==paths.length)throw new Error('migration manifest contains duplicate asset paths');
 for(const a of manifest.approvedAssets)if(!a.path||!a.class||!a.disposition||!a.reason)throw new Error(`incomplete migration admission: ${a.path||'unknown'}`);
-const html=await readFile('public/index.html','utf8');
-for(const label of ['Home','Course','Bible','Topics','Practice'])if(!html.includes(label))throw new Error(`missing primary destination: ${label}`);
-const guide=await readFile('docs/v6/theologian-runtime.md','utf8');
-for(const phrase of ['Statement of Faith','orientation is not inherently sinful','Ruth and Naomi','not uncontested textual fact'])if(!guide.toLowerCase().includes(phrase.toLowerCase()))throw new Error(`theologian policy missing: ${phrase}`);
-const app=await readFile('public/app.js','utf8');
-for(const pattern of [/innerHTML\s*=\s*location\.hash/,/innerHTML\s*=\s*params\(\)\.get/,/insertAdjacentHTML\([^,]+,\s*location\.hash/])if(pattern.test(app))throw new Error('unsafe unescaped route injection pattern');
-try{
- const cat=JSON.parse(await readFile('public/data/catalog.json','utf8'));
- if(cat.sourceRepo!==`TopherLoring/the-canonical-shelf@${manifest.sourceRef}`)throw new Error('generated catalog source does not match admitted immutable snapshot');
- if(cat.migrationPolicyVersion!==manifest.policyVersion)throw new Error('generated catalog migration policy version mismatch');
- if(cat.units.length!==25)throw new Error(`expected 25 v6 units, got ${cat.units.length}`);
- if(cat.masteryIds.length!==69||new Set(cat.masteryIds).size!==69)throw new Error('mastery count/identity failed');
- if(cat.lessons.length!==70)throw new Error(`expected 70 guided lessons, got ${cat.lessons.length}`);
- if(cat.topics.length!==45)throw new Error(`expected 45 Topics, got ${cat.topics.length}`);
- if(cat.activities?.length!==139)throw new Error(`expected 139 mapped activities, got ${cat.activities?.length}`);
- const missing=cat.units.filter(u=>!(cat.byUnit?.[u.id]?.length));if(missing.length)throw new Error(`v6 units without activities: ${missing.map(x=>x.id).join(', ')}`);
-}catch(e){if(e.code==='ENOENT')throw new Error('public/data/catalog.json missing: run bun run migrate before validation');throw e}
-console.log('v6 structural/content/doctrinal/audited-migration gates passed');
+const html=await readFile('public/index.html','utf8');for(const label of ['Home','Course','Bible','Topics','Practice'])if(!html.includes(label))throw new Error(`missing primary destination: ${label}`);
+const tokenCss=await readFile('public/tokens.css','utf8');for(const tier of ['Primitive tokens','Semantic tokens','Component tokens'])if(!tokenCss.includes(tier))throw new Error(`design token tier missing: ${tier}`);
+for(const f of ['public/styles.css','public/learning.css','public/bible.css']){const css=await readFile(f,'utf8');if(/var\(--ref-/.test(css))throw new Error(`component stylesheet consumes primitive token directly: ${f}`);for(const old of ['--serif','--sans','--line','--paper','--muted','--ink','--accent-2'])if(css.includes(`var(${old})`))throw new Error(`legacy design token remains in ${f}: ${old}`)}
+const guide=await readFile('docs/v6/theologian-runtime.md','utf8');for(const phrase of ['Statement of Faith','orientation is not inherently sinful','Ruth and Naomi','not uncontested textual fact'])if(!guide.toLowerCase().includes(phrase.toLowerCase()))throw new Error(`theologian policy missing: ${phrase}`);
+const theologian=await readFile('public/theologian.js','utf8');for(const phrase of ['classifyTheologianIntent','masteryProtection','prohibitedOverstatements','Romans 1'])if(!theologian.includes(phrase))throw new Error(`theologian runtime missing: ${phrase}`);
+const app=await readFile('public/app.js','utf8');for(const pattern of [/innerHTML\s*=\s*location\.hash/,/innerHTML\s*=\s*params\(\)\.get/,/insertAdjacentHTML\([^,]+,\s*location\.hash/])if(pattern.test(app))throw new Error('unsafe unescaped route injection pattern');
+try{const cat=JSON.parse(await readFile('public/data/catalog.json','utf8'));if(cat.sourceRepo!==`TopherLoring/the-canonical-shelf@${manifest.sourceRef}`)throw new Error('generated catalog source does not match admitted immutable snapshot');if(cat.migrationPolicyVersion!==manifest.policyVersion)throw new Error('generated catalog migration policy version mismatch');if(cat.units.length!==25)throw new Error(`expected 25 v6 units, got ${cat.units.length}`);if(cat.masteryIds.length!==69||new Set(cat.masteryIds).size!==69)throw new Error('mastery count/identity failed');if(cat.lessons.length!==70)throw new Error(`expected 70 guided lessons, got ${cat.lessons.length}`);if(cat.topics.length!==45)throw new Error(`expected 45 Topics, got ${cat.topics.length}`);if(cat.activities?.length!==139)throw new Error(`expected 139 mapped activities, got ${cat.activities?.length}`);const missing=cat.units.filter(u=>!(cat.byUnit?.[u.id]?.length));if(missing.length)throw new Error(`v6 units without activities: ${missing.map(x=>x.id).join(', ')}`)}catch(e){if(e.code==='ENOENT')throw new Error('public/data/catalog.json missing: run bun run migrate before validation');throw e}
+console.log('v6 architecture/content/theology/design-system/audited-migration gates passed');
