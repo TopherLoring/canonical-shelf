@@ -30,4 +30,9 @@ jobs:
       - name: Apply D1 migrations
         run: bunx wrangler d1 migrations apply canonical-shelf --remote
       - name: Deploy Worker and static assets
-        run: bunx wrangler deploy
+        run: |
+          SECRETS_FILE="$RUNNER_TEMP/canonical-shelf-secrets.json"
+          bun -e 'await Bun.write(process.env.RUNNER_TEMP + "/canonical-shelf-secrets.json", JSON.stringify({ BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET }))'
+          chmod 600 "$SECRETS_FILE"
+          bunx wrangler deploy --secrets-file "$SECRETS_FILE"
+          rm -f "$SECRETS_FILE"
