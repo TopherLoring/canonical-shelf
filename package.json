@@ -8,7 +8,11 @@
     "test":"bun scripts/validate.mjs && bun scripts/test-sync.mjs",
     "test:sync":"bun scripts/test-sync.mjs",
     "test:e2e":"playwright test",
+    "build:worker":"bun build worker/index.ts --outdir=/tmp/canonical-shelf-worker --target=browser",
     "serve":"bun scripts/serve.mjs"
+  },
+  "dependencies":{
+    "better-auth":"1.7.5"
   },
   "devDependencies":{
     "@axe-core/playwright":"4.13.0",
