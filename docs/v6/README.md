@@ -28,13 +28,25 @@ Historical presence alone is not evidence for preservation. Compatibility may ju
 - Bible owns canonical bookshelf/browse/reader experiences.
 - Topics remain curated reference content and do not count toward course completion.
 - Practice reinforces learning but does not create a second curriculum.
-- No account, cohort, social, or required backend.
+- The core learning experience must remain usable without mandatory sign-in and must preserve offline-first operation. Optional identity/accounts, authenticated backup, and cross-device progress sync are permitted when they improve learner continuity without making network access a prerequisite for core study.
 - Core Bible, Course, Topics, Practice, progress, search, and export/import remain usable offline.
-- Learner progress is local-first and migratable from legacy state.
+- Learner progress is local-first, migratable from legacy state, and may optionally synchronize across devices when an account is used.
 - The Statement of Faith is the normative ceiling for Canonical Shelf doctrinal claims.
 - LGBTQ people are fully included under the Statement of Faith; orientation is not inherently sinful; faithful same-sex relationships and marriage may embody Christian virtue; LGBTQ identity does not bar Christian participation or leadership.
 - Competing Christian interpretations are represented accurately without allowing an external view to silently replace Canonical Shelf's stated position.
 - The product distinguishes textual evidence, historical context, interpretation, doctrine, reception history, and application.
+
+## Identity and synchronization posture
+
+Accounts are **not prohibited** and are not assumed to be mandatory. The Director should evaluate identity and synchronization as a separate architecture concern using these constraints:
+
+- guest use remains first-class;
+- offline study and local progress remain functional without authentication;
+- signing in may enable cross-device synchronization, recovery, and authenticated backup;
+- account introduction must not create unnecessary collection of learner or theological-query data;
+- synchronization must use an explicit conflict-resolution and versioning model rather than last-write-wins by accident;
+- local export/import remains available as a portable backup and migration path;
+- privacy, deletion, account recovery, and offline reconciliation become release-blocking requirements if accounts are implemented.
 
 ## Migration classes
 
@@ -75,7 +87,8 @@ Historical presence alone is not evidence for preservation. Compatibility may ju
 8. Offline/privacy/model architecture.
 9. Assurance and red-team suite.
 10. Application implementation, audited migration, and cutover readiness.
+11. Optional identity, authenticated backup, and cross-device synchronization if approved by Director architecture review.
 
 ## Acceptance gates before merge/deploy
 
-v6 is not releasable until all gates pass, including audited-migration provenance, content accounting, lossless learner-state migration, one authoritative progress domain, doctrinal traceability, accessibility, browser, offline/update, schema, migration, visual, performance, security, and release-governance checks.
+v6 is not releasable until all gates pass, including audited-migration provenance, content accounting, lossless learner-state migration, one authoritative progress domain, doctrinal traceability, accessibility, browser, offline/update, schema, migration, visual, performance, security, and release-governance checks. If accounts or synchronization are implemented, identity security, privacy/deletion, conflict resolution, offline reconciliation, recovery, and cross-device continuity are additional release-blocking gates.
