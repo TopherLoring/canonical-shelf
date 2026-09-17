@@ -21,5 +21,7 @@ window.addEventListener('online',()=>setStatus('Offline access ready','ready'));
 window.addEventListener('offline',()=>setStatus('Offline mode active','ready'));
 await import('./app.js');
 await import('./account-ui.js');
+const accountOpen=document.querySelector('#account-open');
+if(accountOpen){accountOpen.disabled=false;accountOpen.removeAttribute('aria-disabled')}
 const guideOpen=document.querySelector('#guide-open');
 if(guideOpen){guideOpen.disabled=false;guideOpen.removeAttribute('aria-disabled')}
