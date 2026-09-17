@@ -7,8 +7,9 @@ const top=(items,qs,textOf,limit=5)=>items.map(x=>({x,s:score(textOf(x),qs)})).f
 
 export function classifyTheologianIntent(question){
   const q=String(question||'').toLowerCase();
-  if(/gay|lesbian|homosexual|bisexual|lgbt|queer|same[- ]sex/.test(q))return 'lgbtq';
+  // Specific interpretive cases must win over broader identity categories.
   if(/ruth|naomi/.test(q))return 'ruth-naomi';
+  if(/gay|lesbian|homosexual|bisexual|lgbt|queer|same[- ]sex/.test(q))return 'lgbtq';
   if(/arsenokoitai|malakoi|greek|hebrew|lexic|word mean/.test(q))return 'lexical';
   if(/catholic|orthodox|luther|methodist|episcopal|baptist|denomination|tradition/.test(q))return 'tradition';
   if(parseReference(question))return 'scripture-reference';
@@ -38,8 +39,8 @@ function masteryProtection(question,context){
 }
 
 function safePosition(intent,question,policy){
-  if(intent==='lgbtq')return policy.lgbtq.claims.join(' ');
   if(intent==='ruth-naomi')return `${policy.queerReception.ruthNaomi.allowed} ${policy.queerReception.ruthNaomi.boundary}`;
+  if(intent==='lgbtq')return policy.lgbtq.claims.join(' ');
   if(intent==='lexical')return 'Original-language evidence can clarify semantic possibilities and historical usage, but lexical claims alone do not establish contemporary doctrine. Where meanings or scopes are disputed, the Guide labels that dispute rather than resolving it by assertion.';
   if(intent==='tradition')return 'The Guide may compare documented Christian traditions descriptively. A denominational position does not become Canonical Shelf doctrine unless the Statement of Faith or an explicit Canonical Shelf policy establishes it.';
   if(intent==='scripture-reference')return 'Begin with the biblical text itself, then distinguish context, interpretation, theology, reception history, and contemporary application.';
