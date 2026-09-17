@@ -1,17 +1,23 @@
 {
-  "name":"canonical-shelf-v6",
+  "name":"canonical-shelf",
   "private":true,
   "type":"module",
   "scripts":{
     "migrate":"bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
     "validate":"bun scripts/validate.mjs",
-    "test":"bun scripts/validate.mjs && bun scripts/test-sync.mjs && bun scripts/test-d1-sync.mjs",
+    "test":"bun run validate && bun run test:sync && bun run test:d1",
     "test:sync":"bun scripts/test-sync.mjs",
     "test:d1":"bun scripts/test-d1-sync.mjs",
     "test:e2e":"playwright test",
     "build:client":"mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
     "build:worker":"bun build worker/index.ts --outdir=/tmp/canonical-shelf-worker --target=browser",
-    "serve":"bun run build:client && bun scripts/serve.mjs"
+    "build":"bun run migrate && bun run build:client && bun run validate && bun build public/bootstrap.js --outdir=/tmp/canonical-shelf-browser --target=browser && bun run build:worker",
+    "verify":"bun run build && bun run test:sync && bun run test:d1 && bun run test:e2e",
+    "serve":"bun run migrate && bun run build:client && bun scripts/serve.mjs",
+    "dev":"bun run migrate && bun run build:client && wrangler dev",
+    "deploy":"bun run build && wrangler deploy",
+    "db:migrate:local":"wrangler d1 migrations apply canonical-shelf --local",
+    "db:migrate:remote":"wrangler d1 migrations apply canonical-shelf --remote"
   },
   "dependencies":{
     "better-auth":"1.7.5",
@@ -20,7 +26,8 @@
   "devDependencies":{
     "@axe-core/playwright":"4.13.0",
     "@playwright/test":"1.63.0",
-    "miniflare":"4.20260730.0"
+    "miniflare":"4.20260730.0",
+    "wrangler":"4.133.0"
   },
   "engines":{"bun":">=1.4.0"}
 }
