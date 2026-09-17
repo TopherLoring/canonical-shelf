@@ -17,6 +17,7 @@ jobs:
       - run: bun install
       - run: bun run migrate
       - run: bun run validate
+      - run: bun run test:sync
       - run: bun build public/bootstrap.js --outdir=/tmp/canonical-shelf-v6 --target=browser
       - run: bunx playwright install --with-deps chromium firefox webkit
       - run: bun run test:e2e
