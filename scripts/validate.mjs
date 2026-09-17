@@ -1,6 +1,9 @@
 import {readFile,stat} from 'node:fs/promises';
 const req=['public/index.html','public/styles.css','public/learning.css','public/app.js','public/learning.js','public/db.js','public/sw.js','public/manifest.webmanifest','public/data/theology-policy.json','docs/v6/README.md','docs/v6/theologian-runtime.md','src/knowledge/model.ts'];
 for(const f of req)await stat(f);
+const architecture=await readFile('docs/v6/README.md','utf8');
+for(const phrase of ['greenfield product architecture','audited migration','Legacy material is a migration candidate, never a default requirement','Never inherit by default'])if(!architecture.includes(phrase))throw new Error(`migration governance missing: ${phrase}`);
+if(/brownfield at the product\/content\/data layer/i.test(architecture))throw new Error('superseded brownfield architecture rule remains');
 const html=await readFile('public/index.html','utf8');
 for(const label of ['Home','Course','Bible','Topics','Practice'])if(!html.includes(label))throw new Error(`missing primary destination: ${label}`);
 const guide=await readFile('docs/v6/theologian-runtime.md','utf8');
@@ -16,4 +19,4 @@ try{
  if(cat.activities?.length!==139)throw new Error(`expected 139 mapped activities, got ${cat.activities?.length}`);
  const missing=cat.units.filter(u=>!(cat.byUnit?.[u.id]?.length));if(missing.length)throw new Error(`v6 units without activities: ${missing.map(x=>x.id).join(', ')}`);
 }catch(e){if(e.code==='ENOENT')throw new Error('public/data/catalog.json missing: run bun run migrate before validation');throw e}
-console.log('v6 structural/content/doctrinal gates passed');
+console.log('v6 structural/content/doctrinal/migration-governance gates passed');
