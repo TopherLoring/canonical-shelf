@@ -89,7 +89,7 @@ The corpus is generated into:
 public/data/corpus.txt
 ```
 
-Its audited migration source is the legacy Canonical Shelf `public/corpus.txt` asset. The v6 Bible reader, search behavior, routing, and presentation are new implementations and do not inherit the legacy runtime.
+Its audited migration source is the legacy Canonical Shelf `public/corpus.txt` asset. The approved immutable source snapshot is vendored into this repository under `content/vendor/legacy/`; normal production builds do not depend on the legacy repository being available.
 
 ---
 
@@ -119,9 +119,7 @@ The service worker maintains versioned shell and data caches. Navigation uses du
 /practice
 ```
 
-Legacy `#/...` URLs are compatibility-only and canonicalize forward to native routes.
-
-The install manifest also launches at `/home`; the old hash-route startup path is not part of the v6 architecture.
+Legacy `#/...` URLs are compatibility-only and canonicalize forward to native routes. The install manifest launches at `/home`; the old hash-route startup path is not part of the v6 architecture.
 
 ---
 
@@ -150,13 +148,9 @@ Practice uses a v6 review scheduler rather than preserving the old review implem
 
 An account is **not required** to use Canonical Shelf.
 
-The architecture supports guest-first use with optional authenticated sync for learners who want:
+The architecture supports guest-first use with optional authenticated sync for learners who want cross-device continuity, authenticated backup, or recovery on a new device.
 
-- cross-device continuity
-- authenticated backup
-- recovery on a new device
-
-The current sync architecture uses:
+The sync architecture uses:
 
 - **IndexedDB** as the authoritative local state
 - a local mutation outbox
@@ -183,9 +177,7 @@ Production account/sync remains release-held until the real D1/Auth environment,
 
 ## Ask the Guide / Theologian runtime
 
-`Ask the Guide` is a bounded interpretive and theological assistant embedded in the application.
-
-It is **not** permitted to invent doctrine or silently override Canonical Shelf's stated theology.
+`Ask the Guide` is a bounded interpretive and theological assistant embedded in the application. It is **not** permitted to invent doctrine or silently override Canonical Shelf's stated theology.
 
 Its authority hierarchy is:
 
@@ -196,18 +188,7 @@ Its authority hierarchy is:
 5. denominational/confessional sources
 6. vetted academic sources
 
-The runtime distinguishes both doctrinal and evidentiary confidence rather than collapsing them into a single certainty score.
-
-It includes specific safeguards for:
-
-- LGBTQ inclusion and dignity
-- contested biblical texts
-- lexical overstatement
-- Romans 1 claims
-- Ruth and Naomi / queer reception history
-- mastery-answer leakage
-
-The Guide may explain a mastery concept, but it must not select or reveal the scored answer for the learner.
+The runtime distinguishes both doctrinal and evidentiary confidence rather than collapsing them into a single certainty score. It includes safeguards for LGBTQ inclusion and dignity, contested biblical texts, lexical overstatement, Romans 1 claims, Ruth and Naomi / queer reception history, and mastery-answer leakage.
 
 ---
 
@@ -215,16 +196,7 @@ The Guide may explain a mastery concept, but it must not select or reveal the sc
 
 The **Statement of Faith** is the normative ceiling for Canonical Shelf doctrinal claims.
 
-The application is intentionally designed to distinguish:
-
-- textual evidence
-- historical context
-- interpretation
-- theology
-- reception history
-- application
-
-Competing Christian interpretations may be represented accurately without allowing an external position to silently replace Canonical Shelf's stated position.
+The application intentionally distinguishes textual evidence, historical context, interpretation, theology, reception history, and application. Competing Christian interpretations may be represented accurately without allowing an external position to silently replace Canonical Shelf's stated position.
 
 The current theological policy explicitly affirms the full dignity and Christian inclusion of LGBTQ people. The curriculum also treats queer reception history and contested interpretation as real areas of study while distinguishing interpretive reception from claims that exceed the wording of the biblical text.
 
@@ -243,31 +215,13 @@ docs/v6/theologian-runtime.md
 
 v6 is **not** a brownfield continuation of the legacy application.
 
-The governing rule is:
-
 > **Greenfield product architecture with audited migration of approved intellectual property, content, identifiers, and learner state.**
 
-Legacy material is treated as a migration candidate rather than a default requirement.
-
-Before inherited material enters v6, the governing test is:
-
-> Would the Director-led specialist bench choose this for a brand-new Canonical Shelf today under the v6 quality standards?
-
-If yes, it may be migrated, normalized, or refined. If no, it is redesigned, rewritten, replaced, or retired.
-
-The audited migration manifest is:
-
-```text
-content/migration/admissibility.json
-```
-
-It pins the legacy source to an immutable commit and explicitly lists the assets allowed into the v6 migration process.
+Legacy material is treated as a migration candidate rather than a default requirement. The audited migration manifest at `content/migration/admissibility.json` pins the legacy source to an immutable commit and explicitly lists the assets allowed into v6. Approved source assets are now vendored locally, so `canonical-shelf` is independently buildable.
 
 ---
 
 ## Architecture
-
-The application intentionally keeps the core learning runtime small and local-first.
 
 ### Client
 
@@ -288,35 +242,15 @@ The application intentionally keeps the core learning runtime small and local-fi
 
 ### Design-system token model
 
-The CSS system enforces:
-
-1. **Primitive tokens** — raw design values
-2. **Semantic tokens** — contextual application values
-3. **Component tokens** — component-specific decisions
-
-Components are not allowed to consume primitive reference tokens directly.
+The CSS system enforces primitive, semantic, and component token tiers. Components are not allowed to consume primitive reference tokens directly.
 
 ---
 
 ## Accessibility
 
-Automated coverage includes:
+Automated coverage includes Chromium, Firefox, and WebKit; axe WCAG-tagged serious/critical checks; keyboard/focus behavior on tested flows; reduced-motion support; forced-colors support; responsive/mobile-width checks; and semantic form/status structures.
 
-- Chromium, Firefox, and WebKit
-- axe WCAG-tagged serious/critical checks
-- keyboard/focus behavior on tested flows
-- reduced-motion support
-- forced-colors support
-- responsive/mobile-width checks
-- semantic form/status structures
-
-Automated checks do not replace human accessibility validation. The release hold still requires:
-
-- NVDA testing on Windows
-- VoiceOver testing on iOS/macOS
-- forced-colors human inspection
-- 200% and 400% zoom/reflow inspection
-- physical touch-device testing
+Automated checks do not replace human accessibility validation. The release hold still requires NVDA, VoiceOver, forced-colors inspection, 200%/400% zoom and reflow inspection, and physical touch-device testing.
 
 ---
 
@@ -324,118 +258,108 @@ Automated checks do not replace human accessibility validation. The release hold
 
 ### Requirements
 
-- **Bun 1.4.0+**
+- **Bun 1.2.15** — pinned to match the production Cloudflare build environment and committed lockfile format.
 
-Install dependencies:
+Install dependencies reproducibly:
 
 ```bash
-bun install
+bun install --frozen-lockfile
 ```
 
-Generate the audited v6 content/data set:
+Run the authoritative production build:
+
+```bash
+bun run build
+```
+
+Run the complete automated verification matrix:
+
+```bash
+bun run verify
+```
+
+Useful individual commands:
 
 ```bash
 bun run migrate
-```
-
-Run structural validation:
-
-```bash
 bun run validate
-```
-
-Run local sync-domain tests:
-
-```bash
 bun run test:sync
-```
-
-Run the local D1 isolation/replay harness:
-
-```bash
 bun run test:d1
-```
-
-Build the optional account client:
-
-```bash
 bun run build:client
-```
-
-Build the Cloudflare Worker:
-
-```bash
 bun run build:worker
-```
-
-Start the local app:
-
-```bash
 bun run serve
-```
-
-Run browser E2E tests:
-
-```bash
 bun run test:e2e
 ```
 
 ---
 
+## Production deployment
+
+Production uses **Cloudflare Workers Static Assets + a Cloudflare Worker + D1**. The build generates `wrangler.jsonc`; generated configuration and runtime artifacts are intentionally not hand-maintained.
+
+Required production environment values:
+
+```text
+D1_DATABASE_ID
+BETTER_AUTH_URL
+BETTER_AUTH_SECRET
+CLOUDFLARE_ACCOUNT_ID
+CLOUDFLARE_API_TOKEN
+```
+
+`BETTER_AUTH_SECRET`, `D1_DATABASE_ID`, `CLOUDFLARE_ACCOUNT_ID`, and `CLOUDFLARE_API_TOKEN` belong in protected GitHub/Cloudflare secrets. `BETTER_AUTH_URL` is a non-secret production environment variable.
+
+The manual `deploy-production` GitHub Actions workflow:
+
+1. installs with the frozen Bun lockfile
+2. runs the full automated release-candidate verification matrix
+3. generates Cloudflare configuration
+4. applies D1 migrations
+5. deploys the Worker and static assets
+
+The generated Cloudflare configuration declares native SPA fallback behavior, `/api/*` Worker-first routing, D1 binding, observability, and `BETTER_AUTH_SECRET` as a required deployment secret.
+
+---
+
 ## CI acceptance surface
 
-The v6 CI pipeline validates, among other things:
+Production CI validates, among other things:
 
 - immutable audited migration provenance
+- repository-local vendored source assets
+- deterministic runtime-data generation
+- Better Auth schema generation
 - curriculum/content counts and identity
 - 25 units with no empty unit
 - 70 guided lessons
 - 69 mastery activities
 - 139 scored activities
 - 45 Topics
+- embedded BSB corpus integrity
 - native routing
 - migration compatibility rules
 - design-token architecture
 - Theologian safeguards
 - local sync merge/privacy/outbox behavior
-- real local D1 isolation/replay/deletion behavior through Miniflare
-- client bundle
-- browser shell bundle
-- Worker bundle
-- Chromium E2E
-- Firefox E2E
-- WebKit E2E
+- local D1 isolation/replay/deletion behavior through Miniflare
+- client, browser shell, and Worker bundles
+- Chromium, Firefox, and WebKit E2E
 - axe accessibility checks
 - offline/PWA behavior
 - mobile-width account/header behavior
+- Cloudflare deployment-config dry run
 
 ---
 
 ## Release status
 
-The Director disposition for the merged v6 engineering implementation is:
+The Director disposition remains:
 
 **PASS WITH RELEASE HOLD**
 
-The automated implementation is green, but production release still requires human/environment validation covering:
+Engineering and automated release infrastructure can be production-complete while final release still requires human/environment validation covering screen readers, forced colors/high zoom, physical iPhone/iPad/Android devices, PWA install/launch, representative learner usability, editorial/theological sampling, and real production Better Auth/D1/passkey/account-recovery/privacy validation.
 
-- screen readers
-- forced colors and high zoom
-- physical iPhone/iPad/Android devices
-- PWA install/launch on physical devices
-- representative learner usability
-- editorial/theological review of representative migrated content
-- production Better Auth/D1 provisioning
-- passkey registration and sign-in
-- fresh-device recovery
-- authenticated unauthorized/cross-user endpoint testing
-- privacy/deletion/recovery review
-
-See:
-
-```text
-docs/v6/release-readiness.md
-```
+See `docs/v6/release-readiness.md`.
 
 ---
 
@@ -445,14 +369,15 @@ docs/v6/release-readiness.md
 public/                     Browser application and generated runtime data
 public/data/                Generated curriculum, corpus, theology/source data
 content/                    Audited source content and migration policy
+content/vendor/legacy/      Immutable admitted source snapshot retained for provenance/builds
 content/migration/          Legacy admissibility manifest
 content/statement/          Canonical Shelf Statement of Faith
 content/theology/           Curated theological/source evidence
-worker/                     Optional account/sync Cloudflare Worker
-worker/migrations/          D1 learner-sync schema
+worker/                     Account/sync Cloudflare Worker
+worker/migrations/          Generated auth + learner-sync D1 migrations
 src/client/                 Better Auth/passkey client source
 src/knowledge/              Knowledge/theology domain types
-scripts/                    Migration, validation, sync, D1, and dev tooling
+scripts/                    Build, migration, validation, sync, D1, and deployment tooling
 tests/e2e/                  Cross-browser Playwright coverage
 docs/v6/                    Architecture, theologian, sync, and release docs
 ```

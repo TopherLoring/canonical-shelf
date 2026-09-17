@@ -1,0 +1,33 @@
+name: deploy-production
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: canonical-shelf-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment: production
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+      BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.15
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium firefox webkit
+      - name: Verify release candidate
+        run: bun run verify
+      - name: Generate Cloudflare configuration
+        run: bun run generate:wrangler
+      - name: Apply D1 migrations
+        run: bunx wrangler d1 migrations apply canonical-shelf --remote
+      - name: Deploy Worker and static assets
+        run: bunx wrangler deploy
