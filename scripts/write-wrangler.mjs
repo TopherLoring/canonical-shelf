@@ -9,7 +9,13 @@ const config={
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},
-  assets:{directory:'./public',binding:'ASSETS',run_worker_first:['/api/*']},
+  assets:{
+    directory:'./public',
+    binding:'ASSETS',
+    not_found_handling:'single-page-application',
+    run_worker_first:['/api/*']
+  },
+  secrets:{required:['BETTER_AUTH_SECRET']},
   vars:{BETTER_AUTH_URL:authUrl},
   d1_databases:[{binding:'DB',database_name:'canonical-shelf',database_id:databaseId,migrations_dir:'worker/migrations'}]
 };
