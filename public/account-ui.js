@@ -1,6 +1,6 @@
 const panel=document.querySelector('#account-panel'),body=document.querySelector('#account-body'),open=document.querySelector('#account-open'),close=document.querySelector('#account-close');
 let apiPromise=null,busy=false,syncTimer=null;
-const api=()=>apiPromise||=(import('/generated/account.js'));
+const api=()=>apiPromise||=(import('./generated/account.js'));
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(message){body.innerHTML=`<p class="notice" role="status">${esc(message)}</p>`}
 async function render(){
