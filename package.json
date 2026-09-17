@@ -1,12 +1,17 @@
 {
-  "name": "canonical-shelf-v6",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "migrate": "bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
-    "validate": "bun scripts/validate.mjs",
-    "test": "bun scripts/validate.mjs",
-    "serve": "bun scripts/serve.mjs"
+  "name":"canonical-shelf-v6",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "migrate":"bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
+    "validate":"bun scripts/validate.mjs",
+    "test":"bun scripts/validate.mjs",
+    "test:e2e":"playwright test",
+    "serve":"bun scripts/serve.mjs"
   },
-  "engines": { "bun": ">=1.4.0" }
+  "devDependencies":{
+    "@axe-core/playwright":"4.13.0",
+    "@playwright/test":"1.63.0"
+  },
+  "engines":{"bun":">=1.4.0"}
 }
