@@ -20,3 +20,5 @@ if('serviceWorker'in navigator){
 window.addEventListener('online',()=>setStatus('Offline access ready','ready'));
 window.addEventListener('offline',()=>setStatus('Offline mode active','ready'));
 await import('./app.js');
+const guideOpen=document.querySelector('#guide-open');
+if(guideOpen){guideOpen.disabled=false;guideOpen.removeAttribute('aria-disabled')}
