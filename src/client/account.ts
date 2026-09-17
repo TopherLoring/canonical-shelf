@@ -65,4 +65,11 @@ export async function deleteRemoteProgress(){
   return true;
 }
 
+export async function deleteAccount(){
+  const {error}=await authClient.deleteUser();
+  if(error)throw new Error(error.message||'Account deletion failed');
+  localStorage.removeItem('canon.sync.enabled');localStorage.removeItem('canon.sync.last');
+  return true;
+}
+
 export async function signOut(){await authClient.signOut();localStorage.removeItem('canon.sync.enabled')}
