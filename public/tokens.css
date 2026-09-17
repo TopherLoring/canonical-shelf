@@ -1,0 +1,59 @@
+:root{
+  /* Primitive tokens: raw values only. Components must not consume these directly. */
+  --ref-color-ink-950:#1f1b17;
+  --ref-color-ink-650:#6c6258;
+  --ref-color-paper-50:#faf7f1;
+  --ref-color-paper-100:#f6f1e8;
+  --ref-color-paper-200:#ede4d6;
+  --ref-color-paper-300:#cfc2b1;
+  --ref-color-burgundy-700:#6b2f24;
+  --ref-color-forest-800:#243d37;
+  --ref-color-blue-700:#0b57d0;
+  --ref-color-white:#ffffff;
+  --ref-color-black:#000000;
+  --ref-space-1:.5rem;
+  --ref-space-2:.75rem;
+  --ref-space-3:1rem;
+  --ref-space-4:1.5rem;
+  --ref-space-5:2rem;
+  --ref-space-6:3rem;
+  --ref-radius-1:.25rem;
+  --ref-font-serif:Georgia,'Times New Roman',serif;
+  --ref-font-sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ref-measure-reading:72ch;
+
+  /* Semantic tokens: default interface vocabulary. */
+  --color-text-primary:var(--ref-color-ink-950);
+  --color-text-secondary:var(--ref-color-ink-650);
+  --color-surface-primary:var(--ref-color-paper-100);
+  --color-surface-raised:var(--ref-color-paper-50);
+  --color-surface-subtle:var(--ref-color-paper-200);
+  --color-border-default:var(--ref-color-paper-300);
+  --color-accent-primary:var(--ref-color-burgundy-700);
+  --color-accent-secondary:var(--ref-color-forest-800);
+  --color-focus:var(--ref-color-blue-700);
+  --space-xs:var(--ref-space-1);
+  --space-sm:var(--ref-space-2);
+  --space-md:var(--ref-space-3);
+  --space-lg:var(--ref-space-4);
+  --space-xl:var(--ref-space-5);
+  --space-2xl:var(--ref-space-6);
+  --font-body:var(--ref-font-sans);
+  --font-reading:var(--ref-font-serif);
+  --measure-reading:var(--ref-measure-reading);
+
+  /* Component tokens: component-specific contract. */
+  --button-border:var(--color-text-primary);
+  --button-bg:transparent;
+  --button-text:var(--color-text-primary);
+  --button-primary-bg:var(--color-text-primary);
+  --button-primary-text:var(--color-surface-primary);
+  --nav-active-border:var(--color-accent-primary);
+  --guide-bg:var(--color-surface-raised);
+  --guide-border:var(--color-border-default);
+  --guide-shadow:0 0 40px color-mix(in srgb,var(--ref-color-black) 14%,transparent);
+  --notice-border:var(--color-accent-primary);
+  --notice-bg:color-mix(in srgb,var(--color-surface-raised) 72%,transparent);
+  --progress-track:var(--color-surface-subtle);
+  --progress-fill:var(--color-accent-secondary);
+}

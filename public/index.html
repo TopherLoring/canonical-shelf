@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="theme-color" content="#12100d">
+  <meta name="description" content="Canonical Shelf — a self-paced Bible literacy course and study reference.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/learning.css">
+  <link rel="stylesheet" href="/bible.css">
+  <title>Canonical Shelf</title>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <a class="brand" href="/home" aria-label="Canonical Shelf home"><span aria-hidden="true">✦</span><span>Canonical Shelf</span></a>
+    <form id="global-search" class="search" role="search">
+      <label class="sr-only" for="q">Search Bible, Topics, and Course</label>
+      <input id="q" name="q" type="search" placeholder="Search Scripture, topics, or course…" autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+    <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel" disabled aria-disabled="true">Account &amp; sync</button>
+  </header>
+  <nav class="primary" aria-label="Primary">
+    <a href="/home" data-route="home">Home</a>
+    <a href="/course" data-route="course">Course</a>
+    <a href="/bible" data-route="bible">Bible</a>
+    <a href="/topics" data-route="topics">Topics</a>
+    <a href="/practice" data-route="practice">Practice</a>
+  </nav>
+  <p id="pwa-status" class="pwa-status" role="status" aria-live="polite">Preparing offline access…</p>
+  <main id="main" tabindex="-1" aria-live="polite"></main>
+  <aside id="account-panel" class="account-panel" hidden aria-labelledby="account-title">
+    <div class="guide-head"><h2 id="account-title">Account &amp; sync</h2><button id="account-close" aria-label="Close account and sync">×</button></div>
+    <div id="account-body"><p>Loading account status…</p></div>
+  </aside>
+  <aside id="guide" class="guide" hidden aria-labelledby="guide-title">
+    <div class="guide-head"><h2 id="guide-title">Ask the Guide</h2><button id="guide-close" aria-label="Close Ask the Guide">×</button></div>
+    <div id="guide-body"></div>
+  </aside>
+  <button id="guide-open" class="guide-open" type="button" disabled aria-disabled="true">Ask the Guide</button>
+  <noscript><p class="notice">Canonical Shelf requires JavaScript for navigation. Bible and course content remain static local assets after migration.</p></noscript>
+  <script type="module" src="/bootstrap.js"></script>
+</body>
+</html>

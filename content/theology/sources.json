@@ -1,0 +1,48 @@
+[
+  {
+    "id":"oup.jennings.same-sex-biblical-world",
+    "type":"academic-handbook-chapter",
+    "title":"Same-Sex Relations in the Biblical World",
+    "author":"Theodore W. Jennings",
+    "publication":"The Oxford Handbook of Theology, Sexuality, and Gender",
+    "year":2014,
+    "doi":"10.1093/oxfordhb/9780199664153.013.004",
+    "url":"https://academic.oup.com/edited-volume/34452/chapter/292322730",
+    "supports":["documented queer and same-sex-love readings in biblical scholarship","documented reading of love between women in Ruth","documented queer readings of David and other biblical relationships"],
+    "limits":"Supports the existence of a serious scholarly interpretive tradition; it does not make the Ruth/Naomi lesbian reading an uncontested textual or historical fact."
+  },
+  {
+    "id":"oup.dunning.same-sex-relations-nt",
+    "type":"academic-handbook-chapter",
+    "title":"Same-Sex Relations",
+    "author":"Benjamin H. Dunning",
+    "publication":"The Oxford Handbook of New Testament, Gender, and Sexuality",
+    "year":2019,
+    "doi":"10.1093/oxfordhb/9780190213398.013.39",
+    "url":"https://academic.oup.com/edited-volume/34457/chapter-abstract/292371306",
+    "supports":["Romans 1 must be interpreted within the history of sexuality","multiple scholarly approaches exist to Romans 1:18-32","continuity and difference between ancient and modern sexual categories require analysis"],
+    "limits":"Does not by itself establish Canonical Shelf's affirming doctrinal conclusion."
+  },
+  {
+    "id":"oup.punt.queer-bible-readings",
+    "type":"academic-handbook-chapter",
+    "title":"Queer Bible Readings in Global Hermeneutical Perspective",
+    "author":"Jeremy Punt",
+    "publication":"The Oxford Handbook of Feminist Approaches to the Hebrew Bible",
+    "year":2020,
+    "doi":"10.1093/oxfordhb/9780190462673.013.3",
+    "url":"https://academic.oup.com/edited-volume/34271/chapter-abstract/290560771",
+    "supports":["queer biblical interpretation is an established scholarly hermeneutical field","queer reception examines how sex, gender, identity and power shape interpretation"],
+    "limits":"Provides hermeneutical context rather than a verse-by-verse doctrinal ruling."
+  },
+  {
+    "id":"oup.ruth.narrative-desire",
+    "type":"academic-handbook-chapter",
+    "title":"Reading Ruth, Reading Desire",
+    "publication":"The Oxford Handbook of Biblical Narrative",
+    "year":2015,
+    "url":"https://academic.oup.com/edited-volume/34438/chapter-abstract/292232297",
+    "supports":["Ruth supports serious queer-theoretical and desire-focused literary readings","the narrative permits interpretive attention beyond a simple heteronormative plot resolution"],
+    "limits":"Does not establish that Ruth and Naomi are explicitly narrated as a sexual couple."
+  }
+]
