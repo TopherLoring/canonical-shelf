@@ -1,0 +1,37 @@
+name: vendor-legacy
+on:
+  push:
+    branches: [production-hardening]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    if: ${{ !contains(github.event.head_commit.message || '', '[vendor-snapshot]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: production-hardening
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - name: Check snapshot
+        id: snapshot
+        run: |
+          if [ -f content/vendor/legacy/corpus.txt ]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Vendor admitted immutable assets
+        if: steps.snapshot.outputs.needed == 'true'
+        run: bun scripts/vendor-legacy.mjs
+      - name: Commit snapshot
+        if: steps.snapshot.outputs.needed == 'true'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add content/vendor/legacy
+          git commit -m "migration: vendor immutable legacy source snapshot [vendor-snapshot]"
+          git push origin HEAD:production-hardening
