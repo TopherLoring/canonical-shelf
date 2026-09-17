@@ -22,6 +22,7 @@
       <input id="q" name="q" type="search" placeholder="Search Scripture, topics, or course…" autocomplete="off">
       <button type="submit">Search</button>
     </form>
+    <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel">Account &amp; sync</button>
   </header>
   <nav class="primary" aria-label="Primary">
     <a href="/home" data-route="home">Home</a>
@@ -32,6 +33,10 @@
   </nav>
   <p id="pwa-status" class="pwa-status" role="status" aria-live="polite">Preparing offline access…</p>
   <main id="main" tabindex="-1" aria-live="polite"></main>
+  <aside id="account-panel" class="account-panel" hidden aria-labelledby="account-title">
+    <div class="guide-head"><h2 id="account-title">Account &amp; sync</h2><button id="account-close" aria-label="Close account and sync">×</button></div>
+    <div id="account-body"><p>Loading account status…</p></div>
+  </aside>
   <aside id="guide" class="guide" hidden aria-labelledby="guide-title">
     <div class="guide-head"><h2 id="guide-title">Ask the Guide</h2><button id="guide-close" aria-label="Close Ask the Guide">×</button></div>
     <div id="guide-body"></div>
