@@ -3,10 +3,10 @@
   "private":true,
   "type":"module",
   "scripts":{
-    "migrate":"bun scripts/migrate-legacy.mjs && bun scripts/postprocess-v6.mjs",
+    "migrate":"bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs",
     "generate:auth-migration":"bun scripts/generate-auth-migration.mjs",
     "generate:wrangler":"bun scripts/write-wrangler.mjs",
-    "validate":"bun scripts/validate.mjs",
+    "validate":"bun scripts/validate.mjs && bun scripts/validate-production.mjs",
     "test":"bun run validate && bun run test:sync && bun run test:d1",
     "test:sync":"bun scripts/test-sync.mjs",
     "test:d1":"bun scripts/test-d1-sync.mjs",
