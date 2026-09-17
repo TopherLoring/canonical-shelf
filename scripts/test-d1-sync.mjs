@@ -6,7 +6,8 @@ const assert=(condition,message)=>{if(!condition)throw new Error(message)};
 const mf=new Miniflare({modules:true,script:`export default {fetch(){return new Response('ok')}}`,d1Databases:['DB']});
 try{
   const db=await mf.getD1Database('DB');
-  await db.exec(await readFile('worker/migrations/0001_sync.sql','utf8'));
+  const migration=(await readFile('worker/migrations/0001_sync.sql','utf8')).replace(/\s+/g,' ').trim();
+  await db.exec(migration);
   const at='2026-09-17T12:00:00.000Z';
   const event=(id,deviceId,type='complete')=>({id,deviceId,type,payload:{activityId:'lesson:test'},at});
   const aBody={deviceId:'device-a1',snapshot:{completed:['lesson:a'],attempts:{'lesson:a':1},mastery:{},reviews:{},migrations:{},updatedAt:at},events:[event('same-id','device-a1')]};
