@@ -18,6 +18,17 @@ export function createAuth(env:AuthEnv){
       anonymous(),
       passkey({rpID:publicUrl.hostname,rpName:'Canonical Shelf',origin:publicUrl.origin})
     ],
+    user:{
+      deleteUser:{
+        enabled:true,
+        beforeDelete:async user=>{
+          await env.DB.batch([
+            env.DB.prepare('DELETE FROM learner_mutation WHERE user_id=?').bind(user.id),
+            env.DB.prepare('DELETE FROM learner_state WHERE user_id=?').bind(user.id)
+          ]);
+        }
+      }
+    },
     account:{accountLinking:{enabled:true,disableImplicitLinking:true}},
     session:{cookieCache:{enabled:true,maxAge:300,strategy:'compact'}}
   });
