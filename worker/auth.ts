@@ -14,6 +14,6 @@ export function createAuth(env:AuthEnv){
     baseURL:env.BETTER_AUTH_URL,
     plugins:[anonymous()],
     account:{accountLinking:{enabled:true,disableImplicitLinking:true}},
-    session:{cookieCache:{enabled:true,strategy:'compact'}}
+    session:{cookieCache:{enabled:true,maxAge:300,strategy:'compact'}}
   });
 }
