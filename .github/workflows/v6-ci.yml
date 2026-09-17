@@ -14,7 +14,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.4.0
-      - run: bun install --frozen-lockfile=false
+      - run: bun install
       - run: bun run migrate
       - run: bun run validate
       - run: bun build public/bootstrap.js --outdir=/tmp/canonical-shelf-v6 --target=browser
