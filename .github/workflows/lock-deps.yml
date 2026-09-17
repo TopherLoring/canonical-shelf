@@ -33,7 +33,8 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add bun.lock bun.lockb 2>/dev/null || true
+          git add bun.lock
+          if [ -f bun.lockb ]; then git add bun.lockb; fi
           git commit -m "build: lock dependencies with Bun 1.2.15 [dependency-lock]"
           git pull --rebase origin production-hardening
           git push origin HEAD:production-hardening
