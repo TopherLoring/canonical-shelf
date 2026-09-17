@@ -18,6 +18,7 @@ Accounts are optional. Their purpose is cross-device continuity, recovery, and a
 - Better Auth 1.7.5 owns identity and sessions.
 - Cloudflare D1 stores Better Auth records plus user-scoped learner snapshots and mutation IDs.
 - Legacy raw migration records are local-only and must never be uploaded.
+- The Worker sync API and local D1 harness share the same storage functions so test and production semantics cannot silently diverge.
 
 ## Merge rules
 
@@ -28,6 +29,7 @@ Accounts are optional. Their purpose is cross-device continuity, recovery, and a
 5. Local device identity and local unacknowledged outbox entries survive every merge.
 6. Server snapshots never contain `legacyRaw` or a client outbox.
 7. Mutation IDs are idempotency keys; duplicate pushes must not duplicate server events.
+8. Mutation replay identity is scoped by `(user_id, id)`, so one learner's mutation namespace cannot collide with another learner's namespace.
 
 ## Account lifecycle
 
@@ -48,14 +50,16 @@ Accounts are optional. Their purpose is cross-device continuity, recovery, and a
 - Sync payloads are bounded; the current API accepts at most 500 mutations per push.
 - Authentication secrets remain Worker secrets and never enter static assets.
 - Remote sync contains only the minimum learner-state data required for continuity.
+- Deleting one user's remote progress must not alter another user's state or mutation records.
 
 ## Release gates
 
 Before account sync can ship:
 
 - deterministic two-device offline merge tests pass;
+- local D1 two-user isolation and same-ID replay tests pass;
 - duplicate/replayed mutation tests pass;
-- unauthorized cross-user access tests pass;
+- authenticated endpoint authorization and cross-user access tests pass;
 - account-link and unlink flows are tested;
 - offline changes reconcile after reconnect;
 - account deletion removes remote learner state;
