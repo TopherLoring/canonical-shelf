@@ -9,6 +9,9 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    env:
+      D1_DATABASE_ID: 00000000-0000-0000-0000-000000000000
+      BETTER_AUTH_URL: https://canonical-shelf.example
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -18,9 +21,4 @@ jobs:
       - run: bunx playwright install --with-deps chromium firefox webkit
       - run: bun run verify
       - name: Validate Cloudflare production config
-        env:
-          D1_DATABASE_ID: 00000000-0000-0000-0000-000000000000
-          BETTER_AUTH_URL: https://canonical-shelf.example
-        run: |
-          bun run generate:wrangler
-          bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
+        run: bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
