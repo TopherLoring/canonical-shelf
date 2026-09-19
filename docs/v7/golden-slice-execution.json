@@ -1,0 +1,136 @@
+{
+  "schema": "canonical-shelf.project-execution-graph/v1",
+  "objective": "Prove the v7 experience through a production-fidelity golden slice using lesson:begin and mastery:n.what before scale-out.",
+  "invariants": [
+    "25 units",
+    "70 lessons + 69 mastery = 139 scored activities",
+    "stable activity/mastery IDs",
+    "Home/Course/Bible/Topics/Practice",
+    "Bible owns shelf/browse/reader",
+    "Topics are unscored",
+    "Practice is reinforcement",
+    "local-first learner state with export/import",
+    "optional passkey sync/backup/recovery",
+    "Statement of Faith is the doctrinal ceiling",
+    "text/history/interpretation/doctrine/reception/application remain distinguishable"
+  ],
+  "nodes": [
+    {
+      "id": "C0.GOLDEN_SLICE_CONTRACT",
+      "type": "contract",
+      "status": "implemented-on-branch",
+      "dependsOn": ["A.AUDIT_HOME", "A.AUDIT_COURSE", "A.AUDIT_STATE", "A.AUDIT_PWA", "A.AUDIT_CONTENT"],
+      "outputs": ["docs/v7/golden-slice-contract.md"],
+      "acceptance": [
+        "representative journey defined",
+        "responsive composition contract defined",
+        "learning/retention semantics defined",
+        "product invariants preserved",
+        "C2 human approval gates named"
+      ]
+    },
+    {
+      "id": "L0.DESIGN_FOUNDATION",
+      "type": "design-foundation",
+      "status": "implemented-on-branch",
+      "dependsOn": ["C0.GOLDEN_SLICE_CONTRACT"],
+      "outputs": ["docs/v7/design-intent.md"],
+      "acceptance": [
+        "design thesis documented",
+        "annotated reference board documented",
+        "golden-slice responsive composition documented",
+        "motion thesis documented",
+        "anti-generic constraints documented",
+        "adaptive accessibility posture documented"
+      ]
+    },
+    {
+      "id": "C1.GOLDEN_SLICE_IMPLEMENTATION",
+      "type": "implementation",
+      "status": "ready",
+      "dependsOn": ["B.ASSESSMENT_CORRECTNESS", "C0.GOLDEN_SLICE_CONTRACT", "L0.DESIGN_FOUNDATION"],
+      "tasks": [
+        {
+          "id": "C1.1",
+          "name": "Scene model",
+          "outputs": ["generic scene model for guided lessons", "golden-slice activation for lesson:begin"]
+        },
+        {
+          "id": "C1.2",
+          "name": "Home reading-desk composition",
+          "outputs": ["dominant continuation action", "catalog-driven progress", "review-state summary"]
+        },
+        {
+          "id": "C1.3",
+          "name": "Course orientation polish",
+          "outputs": ["clear current-unit/activity state", "lesson/mastery distinction"]
+        },
+        {
+          "id": "C1.4",
+          "name": "Golden lesson interaction surfaces",
+          "outputs": ["sequence direct-manipulation surface", "match relationship surface", "argument-map surface", "keyboard/non-drag equivalents"]
+        },
+        {
+          "id": "C1.5",
+          "name": "Feedback and retention transition",
+          "outputs": ["authored why/hint feedback", "completion state", "first review state", "continue transition"]
+        },
+        {
+          "id": "C1.6",
+          "name": "Responsive/adaptive implementation",
+          "outputs": ["desktop folio", "tablet recomposition", "phone single-scene composition", "reduced-motion path", "forced-color hooks"]
+        },
+        {
+          "id": "C1.7",
+          "name": "Automated verification",
+          "outputs": ["assessment tests", "sync tests", "D1 tests", "validators", "E2E regression"]
+        }
+      ],
+      "acceptance": [
+        "lesson:begin no longer presents as one long article",
+        "one primary intellectual task per scene",
+        "all three lesson:begin authored challenges remain scored correctly",
+        "partial success does not complete the lesson",
+        "mastery:n.what remains separately scored",
+        "feedback uses authored reasoning",
+        "review scheduling begins only after full activity completion",
+        "desktop/tablet/phone visibly recompose",
+        "no regression to native routing, local-first state, offline behavior, Bible ownership, or theological safeguards"
+      ],
+      "validation": [
+        "bun run test:assessment",
+        "bun run test:sync",
+        "bun run test:d1",
+        "bun run validate",
+        "bun run test:e2e"
+      ],
+      "rollback": "Revert C1 commits on v7-golden-slice-native; B candidate remains the immutable foundation.",
+      "risks": [
+        "scene implementation accidentally mutates scored state on navigation",
+        "golden-slice-specific code becomes a one-off rather than a reusable pattern",
+        "responsive CSS collapses into long-scroll stacking",
+        "rich interactions diverge from authored evaluation semantics"
+      ]
+    },
+    {
+      "id": "C2.GOLDEN_SLICE_APPROVAL",
+      "type": "human-gate",
+      "status": "blocked",
+      "dependsOn": ["C1.GOLDEN_SLICE_IMPLEMENTATION"],
+      "gates": [
+        "GATE_GOLDEN_SLICE_UX",
+        "GATE_INDEPENDENT_VISUAL_DESIGN",
+        "GATE_ANTI_GENERIC_DESIGN",
+        "GATE_RESPONSIVE_DESKTOP_TABLET_PHONE"
+      ],
+      "rule": "Human-only. Never auto-approve."
+    }
+  ],
+  "edges": [
+    ["C0.GOLDEN_SLICE_CONTRACT", "L0.DESIGN_FOUNDATION"],
+    ["B.ASSESSMENT_CORRECTNESS", "C1.GOLDEN_SLICE_IMPLEMENTATION"],
+    ["C0.GOLDEN_SLICE_CONTRACT", "C1.GOLDEN_SLICE_IMPLEMENTATION"],
+    ["L0.DESIGN_FOUNDATION", "C1.GOLDEN_SLICE_IMPLEMENTATION"],
+    ["C1.GOLDEN_SLICE_IMPLEMENTATION", "C2.GOLDEN_SLICE_APPROVAL"]
+  ]
+}
