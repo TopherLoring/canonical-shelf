@@ -115,7 +115,7 @@ export const ORIENTATION_LESSON={
       role:'Continue',
       title:'The destination is independent study',
       paragraphs:[
-        'At the beginning, the question may be “What should I learn next?” Over time, the goal becomes “I know how to investigate this responsibly.” You should become increasingly able to locate relevant texts, distinguish evidence from interpretation, compare credible readings, identify what remains uncertain, and decide what further evidence you need.',
+        'At the beginning, the question may be “What should I learn next?” Over time, the goal becomes “I know how to investigate this responsibly.” Independent study means being increasingly able to locate relevant texts, distinguish evidence from interpretation, compare credible readings, identify what remains uncertain, and decide what further evidence you need.',
         'Unit 1 begins the scored curriculum with Christianity’s central proclamation. The tutorial remains available whenever you want to revisit how Canonical Shelf works.'
       ],
       callout:'Next: Unit 1 · Lesson 1 — Begin with the central story',
