@@ -21,4 +21,4 @@ jobs:
       - run: bunx playwright install --with-deps chromium firefox webkit
       - run: bun run verify
       - name: Validate Cloudflare production config
-        run: bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
+        run: bun run generate:wrangler && bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
