@@ -38,7 +38,9 @@ const foundationsWin=evalWindow([
   ['foundations-units-09-16.js',await text('foundations-units-09-16.js')]
 ]);
 if(!foundationsWin.FOUNDATIONS_DATA?.lessons?.length) throw new Error('legacy guided lessons missing');
-const masteryFiles=['v4-mastery-manifest.js','v4-mastery-story.js','v4-mastery-order.js','v4-mastery-groups.js','v4-mastery-chrono.js','v4-mastery-content.js','v4-mastery-content-profiles.js','v4-mastery-themes.js','v4-mastery-verses.js'];
+// v4-mastery-content.js initializes CANON_V4_MASTERY; every later mastery file extends it.
+// Keep the base initializer first or later Object.assign modules are silently discarded.
+const masteryFiles=['v4-mastery-manifest.js','v4-mastery-content.js','v4-mastery-story.js','v4-mastery-order.js','v4-mastery-groups.js','v4-mastery-chrono.js','v4-mastery-content-profiles.js','v4-mastery-themes.js','v4-mastery-verses.js'];
 const masterySources=[];for(const f of masteryFiles) masterySources.push([f,await text(f)]);const masteryWin=evalWindow(masterySources);
 const curriculumDoc=await text('docs/curriculum.md');
 const corpus=await text('corpus.txt');
@@ -75,6 +77,9 @@ const legacyMap=courseWin.CANON_V4_COURSE;
 const legacyUnits=legacyMap.units.map(u=>({...u,legacyId:u.id}));
 const masteryIds=Object.values(legacyMap.masteryPlacement).flat();
 if(masteryIds.length!==69) throw new Error(`expected 69 mastery ids; found ${masteryIds.length}`);
+const authoredMastery=masteryWin.CANON_V4_MASTERY||{};
+const missingMastery=masteryIds.filter(id=>!authoredMastery[id]?.challenge);
+if(missingMastery.length) throw new Error(`authored mastery missing challenge data: ${missingMastery.join(', ')}`);
 const payload={version:6,generatedAt:new Date().toISOString(),sourceRepo:`TopherLoring/the-canonical-shelf@${SOURCE_REF}`,migrationPolicyVersion:manifest.policyVersion,units:v6Units,legacyUnits,masteryIds,legacyMasteryPlacement:legacyMap.masteryPlacement,lessons:foundationsWin.FOUNDATIONS_DATA.lessons,topics:topicsWin.CANON_TOPICS.articles,legacyMastery:Object.fromEntries(Object.entries(masteryWin).filter(([k])=>k.startsWith('CANON_')))};
 await writeFile(`${OUT}/catalog.json`,JSON.stringify(payload,null,2));
 await writeFile(`${OUT}/curriculum.md`,curriculumDoc);
