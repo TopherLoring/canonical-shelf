@@ -7,7 +7,7 @@
     "migrate":"bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs",
     "generate:auth-migration":"bun scripts/generate-auth-migration.mjs",
     "generate:wrangler":"bun scripts/write-wrangler.mjs",
-    "validate":"bun scripts/validate.mjs && bun scripts/validate-bible.mjs && bun scripts/validate-production.mjs",
+    "validate":"bun scripts/validate.mjs && bun scripts/validate-bible.mjs && bun scripts/validate-production.mjs && bun scripts/validate-v7-polish.mjs",
     "test":"bun run validate && bun run test:assessment && bun run test:sync && bun run test:d1",
     "test:assessment":"bun scripts/test-assessment.mjs",
     "test:sync":"bun scripts/test-sync.mjs",
