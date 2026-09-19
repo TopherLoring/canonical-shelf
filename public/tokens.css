@@ -23,7 +23,7 @@
   --ref-font-sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
   --ref-measure-reading:72ch;
 
-  /* Semantic defaults = Heritage. */
+  /* Semantic tokens: Heritage defaults, overridden by complete theme packages. */
   --color-text-primary:#201a16;
   --color-text-secondary:#6d6057;
   --color-surface-primary:#f4eee4;
@@ -72,7 +72,7 @@
   --canon-general:#455a75;
   --canon-apocalypse:#26292f;
 
-  /* Component contracts. */
+  /* Component tokens: controls and reusable surface contracts. */
   --button-border:var(--color-text-primary);
   --button-bg:transparent;
   --button-text:var(--color-text-primary);
