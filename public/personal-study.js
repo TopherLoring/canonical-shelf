@@ -12,6 +12,7 @@ const tabs=[...document.querySelectorAll('[data-personal-tab]')];
 const panes=[...document.querySelectorAll('[data-personal-pane]')];
 let saveTimer=null;
 let currentKey=null;
+const dirty=new Set();
 
 function activityKey(){
   if(location.pathname!=='/course')return null;
@@ -38,25 +39,28 @@ async function loadCurrent(){
   const state=await getState();
   note.value=datedText(state.notes,currentKey);
   journal.value=datedText(state.journal,currentKey);
+  dirty.clear();
   title.textContent=contextLabel();
   status.textContent='Saved locally on this device. Account sync includes personal writing when enabled.';
 }
 
-async function saveCurrent(){
-  if(!currentKey)return;
+async function saveDirty(){
+  if(!currentKey||!dirty.size)return;
   const state=await getState();
   const at=new Date().toISOString();
-  state.notes={...(state.notes||{}),[currentKey]:{text:note.value,updatedAt:at}};
-  state.journal={...(state.journal||{}),[currentKey]:{text:journal.value,updatedAt:at}};
-  recordMutation(state,'personal-study',{id:currentKey,updatedAt:at},at);
+  if(dirty.has('notes'))state.notes={...(state.notes||{}),[currentKey]:{text:note.value,updatedAt:at}};
+  if(dirty.has('journal'))state.journal={...(state.journal||{}),[currentKey]:{text:journal.value,updatedAt:at}};
+  recordMutation(state,'personal-study',{id:currentKey,fields:[...dirty],updatedAt:at},at);
+  dirty.clear();
   await putState(state);
   status.textContent=`Saved ${new Date(at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}`;
 }
 
-function scheduleSave(){
+function scheduleSave(field){
+  dirty.add(field);
   clearTimeout(saveTimer);
   status.textContent='Saving…';
-  saveTimer=setTimeout(()=>saveCurrent().catch(()=>{status.textContent='Could not save. Your text remains in this panel.'}),650);
+  saveTimer=setTimeout(()=>saveDirty().catch(()=>{status.textContent='Could not save. Your text remains in this panel.'}),650);
 }
 
 function selectTab(name){
@@ -75,7 +79,7 @@ async function openPanel(){
 
 function closePanel(){
   clearTimeout(saveTimer);
-  if(currentKey)saveCurrent().catch(()=>{});
+  if(currentKey)saveDirty().catch(()=>{});
   panel.hidden=true;
   openButton.setAttribute('aria-expanded','false');
   openButton.focus({preventScroll:true});
@@ -83,11 +87,8 @@ function closePanel(){
 
 openButton?.addEventListener('click',()=>openPanel().catch(()=>{}));
 closeButton?.addEventListener('click',closePanel);
-note?.addEventListener('input',scheduleSave);
-journal?.addEventListener('input',scheduleSave);
+note?.addEventListener('input',()=>scheduleSave('notes'));
+journal?.addEventListener('input',()=>scheduleSave('journal'));
 tabs.forEach(button=>button.addEventListener('click',()=>selectTab(button.dataset.personalTab)));
 window.addEventListener('popstate',()=>{if(panel&&!panel.hidden)closePanel()});
-
-document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&panel&&!panel.hidden)closePanel();
-});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel&&!panel.hidden)closePanel()});
