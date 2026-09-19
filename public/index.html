@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/learning.css">
   <link rel="stylesheet" href="/bible.css">
+  <link rel="stylesheet" href="/utility-panels.css">
   <title>Canonical Shelf</title>
 </head>
 <body>
@@ -33,15 +34,43 @@
   </nav>
   <p id="pwa-status" class="pwa-status" role="status" aria-live="polite">Preparing offline access…</p>
   <main id="main" tabindex="-1" aria-live="polite"></main>
+
   <aside id="account-panel" class="account-panel" hidden aria-labelledby="account-title">
     <div class="guide-head"><h2 id="account-title">Account &amp; sync</h2><button id="account-close" aria-label="Close account and sync">×</button></div>
     <div id="account-body"><p>Loading account status…</p></div>
   </aside>
+
   <aside id="guide" class="guide" hidden aria-labelledby="guide-title">
     <div class="guide-head"><h2 id="guide-title">Ask the Guide</h2><button id="guide-close" aria-label="Close Ask the Guide">×</button></div>
     <div id="guide-body"></div>
   </aside>
   <button id="guide-open" class="guide-open" type="button" disabled aria-disabled="true">Ask the Guide</button>
+
+  <button id="feedback-open" class="utility-fab feedback-open" type="button" aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
+  <aside id="feedback-panel" class="utility-panel" hidden aria-labelledby="feedback-title">
+    <div class="utility-panel__head"><div><p class="eyebrow">Canonical Shelf</p><h2 id="feedback-title">Send feedback</h2><p>Report a problem, suggest an improvement, or flag content that needs review.</p></div><button id="feedback-close" class="utility-panel__close" type="button" aria-label="Close feedback">×</button></div>
+    <form id="feedback-form" class="utility-form">
+      <label>Category<select name="category" required><option value="product">Product or experience</option><option value="content">Content or source</option><option value="theology">Theology or interpretation</option><option value="bug">Bug</option><option value="accessibility">Accessibility</option><option value="other">Other</option></select></label>
+      <label>Feedback<textarea name="message" maxlength="4000" required placeholder="What happened, what were you trying to do, or what should change?"></textarea></label>
+      <label>Contact information <span class="meta">optional</span><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email or another way to reach you"></label>
+      <p class="privacy-note">The current Canonical Shelf route is attached automatically so the feedback can be understood in context. No browser fingerprint is collected by this form.</p>
+      <div class="utility-form__actions"><button class="button" type="submit">Send feedback</button><span id="feedback-status" class="utility-status" role="status" aria-live="polite"></span></div>
+    </form>
+  </aside>
+
+  <button id="personal-study-open" class="utility-fab personal-study-open" type="button" aria-haspopup="dialog" aria-controls="personal-study-panel" aria-expanded="false">Notes &amp; journal</button>
+  <aside id="personal-study-panel" class="utility-panel" hidden aria-labelledby="personal-study-title">
+    <div class="utility-panel__head"><div><p class="eyebrow">Personal study</p><h2 id="personal-study-title">Notes &amp; journal</h2><p id="personal-study-context">Current study activity</p></div><button id="personal-study-close" class="utility-panel__close" type="button" aria-label="Close notes and journal">×</button></div>
+    <div class="personal-study-tabs" role="tablist" aria-label="Personal writing">
+      <button type="button" role="tab" data-personal-tab="notes" aria-selected="true">Notes</button>
+      <button type="button" role="tab" data-personal-tab="journal" aria-selected="false">Journal</button>
+    </div>
+    <section class="personal-study-pane" data-personal-pane="notes" role="tabpanel"><label class="utility-form">Lesson notes<textarea id="personal-note" rows="12" maxlength="12000" placeholder="Capture observations, questions, connections, references, or anything you want to revisit."></textarea></label></section>
+    <section class="personal-study-pane" data-personal-pane="journal" role="tabpanel" hidden><label class="utility-form">Journal reflection<textarea id="personal-journal" rows="12" maxlength="12000" placeholder="Reflect privately. Journal writing is never scored or used to determine theological agreement."></textarea></label></section>
+    <p id="personal-study-status" class="utility-status" role="status" aria-live="polite"></p>
+    <p class="privacy-note">Personal writing is local-first and unscored. If you enable account sync, it can travel with your learner state.</p>
+  </aside>
+
   <noscript><p class="notice">Canonical Shelf requires JavaScript for navigation. Bible and course content remain static local assets after migration.</p></noscript>
   <script type="module" src="/bootstrap.js"></script>
 </body>
