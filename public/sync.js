@@ -4,6 +4,19 @@ const latest=(a,b,field='lastAttempt')=>asTime(a?.[field])>=asTime(b?.[field])?a
 const union=(a=[],b=[])=>[...new Set([...a,...b])];
 const mapMax=(a={},b={})=>{const out={...a};for(const [key,value] of Object.entries(b))out[key]=Math.max(Number(out[key]||0),Number(value||0));return out};
 const clockOf=(state,key)=>Date.parse(state?.sync?.clocks?.[key]||0);
+const mergeDatedMap=(a={},b={})=>{
+  const out={};
+  for(const key of new Set([...Object.keys(a||{}),...Object.keys(b||{})])){
+    const left=a?.[key],right=b?.[key];
+    if(left===undefined)out[key]=clone(right);
+    else if(right===undefined)out[key]=clone(left);
+    else if(typeof left==='string'&&typeof right==='string')out[key]=right;
+    else if(typeof left==='string')out[key]=clone(right);
+    else if(typeof right==='string')out[key]=clone(left);
+    else out[key]=clone(asTime(left?.updatedAt)>=asTime(right?.updatedAt)?left:right);
+  }
+  return out;
+};
 
 function progressSatisfied(id,progress){
   const total=Math.max(0,Number(progress?.total||0));
@@ -90,6 +103,8 @@ export function mergeLearnerState(local,remote){
   out.completed=union(a.completed,b.completed);
   out.attempts=mapMax(a.attempts,b.attempts);
   out.reviews=mapMax(a.reviews,b.reviews);
+  out.notes=mergeDatedMap(a.notes,b.notes);
+  out.journal=mergeDatedMap(a.journal,b.journal);
 
   out.challengeProgress={};
   const progressIds=new Set([...Object.keys(a.challengeProgress||{}),...Object.keys(b.challengeProgress||{})]);
