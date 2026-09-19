@@ -12,6 +12,7 @@ function ensureStudyGuideControl(){
 
 const schedule=()=>requestAnimationFrame(ensureStudyGuideControl);
 
+document.addEventListener('canonical-app-ready',schedule);
 document.addEventListener('click',event=>{
   const link=event.target.closest('a[href]');
   if(link||event.target.closest('[data-exit-lesson]'))schedule();
