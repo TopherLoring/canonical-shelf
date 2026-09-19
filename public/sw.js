@@ -1,6 +1,6 @@
-const RELEASE='v6-2026-09-17-a';
+const RELEASE='v7-golden-slice-2026-09-19-a';
 const SHELL=`cs-${RELEASE}-shell`,DATA=`cs-${RELEASE}-data`;
-const ESSENTIAL=['/','/index.html','/tokens.css','/styles.css','/learning.css','/bible.css','/bootstrap.js','/app.js','/account-ui.js','/db.js','/sync.js','/generated/account.js','/learning.js','/bible.js','/theologian.js','/manifest.webmanifest','/icon.svg','/data/theology-policy.json'];
+const ESSENTIAL=['/','/index.html','/tokens.css','/styles.css','/learning.css','/golden-slice.css','/bible.css','/bootstrap.js','/app.js','/account-ui.js','/db.js','/sync.js','/generated/account.js','/learning.js','/golden-slice.js','/bible.js','/theologian.js','/manifest.webmanifest','/icon.svg','/data/theology-policy.json'];
 const DATA_ASSETS=['/data/catalog.json','/data/corpus.txt','/data/curriculum.md','/data/statement-of-faith.md','/data/theology-sources.json'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(SHELL).then(c=>c.addAll(ESSENTIAL)))});
 self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim())});
