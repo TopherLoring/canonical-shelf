@@ -1,5 +1,6 @@
 import {migrateLegacy} from './db.js';
 import {initTheme} from './theme.js';
+import './study-controls.js';
 
 const status=document.querySelector('#pwa-status');
 const setStatus=(text,state)=>{if(!status)return;status.textContent=text;status.dataset.state=state||''};
