@@ -29,6 +29,7 @@ window.addEventListener('online',()=>setStatus('Offline access ready','ready'));
 window.addEventListener('offline',()=>setStatus('Offline mode active','ready'));
 
 await import('./app.js');
+document.dispatchEvent(new Event('canonical-app-ready'));
 await import('./account-ui.js');
 
 const accountOpen=document.querySelector('#account-open');
