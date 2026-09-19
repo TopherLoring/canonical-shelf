@@ -6,13 +6,14 @@ import {buildTheologianResponse} from './theologian.js';
 const main=document.querySelector('#main'),nav=[...document.querySelectorAll('[data-route]')],guide=document.querySelector('#guide'),guideBody=document.querySelector('#guide-body');
 let data={units:[],topics:[],lessons:[],masteryIds:[],activities:[],byUnit:{}},corpus='',policy=null,statement='',theologySources=[],state=await getState();
 const reviewSession=new Map();
+const STUDY_RETURN_KEY='canonical-shelf-study-return-v1';
 const FALLBACK={authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'The Guide may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.'},lgbtq:{claims:['LGBTQ people possess equal dignity and belonging.','Homosexual or bisexual orientation is not inherently sinful.','Faithful same-sex relationships and marriage may embody Christian virtue.','LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.']},interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, and application.','Do not render contested evidence as scholarly consensus.'],queerReception:{ruthNaomi:{allowed:'Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses.',boundary:'The biblical narrator does not explicitly identify Ruth and Naomi as sexual partners; present this as reception history or interpretation, not uncontested textual fact.'}},prohibitedOverstatements:[]};
 
 async function load(){try{data=await fetch('/data/catalog.json').then(r=>r.ok?r.json():Promise.reject())}catch{}try{corpus=await fetch('/data/corpus.txt').then(r=>r.ok?r.text():'')}catch{}try{policy=await fetch('/data/theology-policy.json').then(r=>r.ok?r.json():FALLBACK)}catch{policy=FALLBACK}try{statement=await fetch('/data/statement-of-faith.md').then(r=>r.ok?r.text():'')}catch{}try{theologySources=await fetch('/data/theology-sources.json').then(r=>r.ok?r.json():[])}catch{}}
 await load();
 policy||=FALLBACK;
 
-const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const roots=new Set(['home','course','bible','topics','practice','search']);
 const route=()=>{const r=location.pathname.replace(/^\/+|\/+$/g,'').split('/')[0]||'home';return roots.has(r)?r:'home'};
 const params=()=>new URLSearchParams(location.search);
@@ -34,18 +35,91 @@ function practice(){const s=progress(),due=dueReviews(state);return shell('Pract
 
 function scriptureResults(q){const ref=parseReference(q);if(ref)return[{label:`${BOOKS[ref.bn-1]} ${ref.chapter}${ref.start?`:${ref.start}${ref.end!==ref.start?`-${ref.end}`:''}`:''}`,href:`/bible?book=${ref.bn}&chapter=${ref.chapter}`}];const n=q.toLowerCase();return parseCorpus(corpus).filter(r=>r.text.toLowerCase().includes(n)).slice(0,12).map(r=>({label:`${BOOKS[r.bn-1]} ${r.chapter}:${r.verse} — ${r.text}`,href:`/bible?book=${r.bn}&chapter=${r.chapter}`}))}
 function searchPage(q){const n=q.toLowerCase(),topics=data.topics.filter(t=>`${t.title} ${t.answer||''} ${(t.tags||[]).join(' ')}`.toLowerCase().includes(n)).slice(0,12),units=data.units.filter(u=>`${u.title} ${u.scope}`.toLowerCase().includes(n)),bible=scriptureResults(q);return shell(`Search: “${q}”`,'Across Canonical Shelf',`<div class="results"><section><h2>Bible</h2>${bible.map(x=>`<a class="result" href="${x.href}">${esc(x.label)}</a>`).join('')||'<p>No Scripture matches.</p>'}</section><section><h2>Topics</h2>${topics.map(t=>`<div class="result"><a href="/topics?topic=${encodeURIComponent(t.id)}"><strong>${esc(t.title)}</strong></a><p>${esc(t.answer||'').slice(0,220)}</p></div>`).join('')||'<p>No Topic matches.</p>'}</section><section><h2>Course</h2>${units.map(u=>`<div class="result"><a href="/course?unit=${encodeURIComponent(u.id)}"><strong>${esc(u.title)}</strong></a><p>${esc(u.scope)}</p></div>`).join('')||'<p>No course matches.</p>'}</section><button class="button" data-ask="${esc(q)}">Ask the Guide about this</button></div>`)}
-function render(){const r=route();setCurrent(r);if(r==='search')main.innerHTML=searchPage(params().get('q')||'');else if(r==='course')main.innerHTML=data.units.length?courseView(data,state,params(),esc):shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');else if(r==='bible')main.innerHTML=bibleView(corpus,params(),esc);else main.innerHTML=({home,topics,practice}[r]||home)();canonicalizeLinks(main);main.focus({preventScroll:true})}
+
+function render(){
+  const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
+  document.body.classList.toggle('study-focus-active',focus);
+  if(focus)guide.hidden=true;
+  setCurrent(r);
+  if(r==='search')main.innerHTML=searchPage(p.get('q')||'');
+  else if(r==='course')main.innerHTML=data.units.length?courseView(data,state,p,esc,corpus):shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
+  else if(r==='bible')main.innerHTML=bibleView(corpus,p,esc);
+  else main.innerHTML=({home,topics,practice}[r]||home)();
+  canonicalizeLinks(main);
+  main.focus({preventScroll:true});
+}
 
 function evidenceMarkup(e){const link=e.type==='topic'&&e.id?`/topics?topic=${encodeURIComponent(e.id)}`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${link}">${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
 function guideAnswer(q){let result;try{result=buildTheologianResponse({question:q,data,policy,statement,sources:theologySources,corpus,context:{scored:route()==='course'&&!!params().get('mastery')}})}catch{result={intent:'study',position:policy.authority.rule,method:policy.interpretiveRules||[],evidence:[],warnings:['The Guide withheld a response because its theological validation failed.'],masteryProtected:false}}guideBody.innerHTML=`<form id="guide-form"><label for="guide-q">Ask a study question</label><textarea id="guide-q" name="question" rows="3">${esc(q)}</textarea><button class="button">Ask</button></form><div class="evidence"><span class="badge">${esc(result.intent)}</span>${result.masteryProtected?'<span class="badge">mastery protected</span>':''}<span class="badge">bounded by ${esc(policy.authority.normativeCeiling)}</span><p class="lede">${esc(result.position)}</p></div>${result.warnings.length?`<div class="evidence"><h3>Evidence cautions</h3>${result.warnings.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${result.evidence.length?`<section class="evidence"><h3>Evidence and connections</h3>${result.evidence.map(evidenceMarkup).join('')}</section>`:''}<div class="evidence"><h3>How the Guide is reasoning</h3><ul>${result.method.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="evidence"><span class="badge">offline evidence mode</span></div>`;canonicalizeLinks(guideBody);guide.hidden=false}
 
+function rememberStudyReturn(link,url){
+  if(document.body.classList.contains('study-focus-active'))return;
+  if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;
+  try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}
+}
+
+function exitStudy(button){
+  let saved=null;
+  try{saved=JSON.parse(sessionStorage.getItem(STUDY_RETURN_KEY)||'null')}catch{}
+  const target=saved?.path||button.dataset.fallback||'/course';
+  try{sessionStorage.removeItem(STUDY_RETURN_KEY)}catch{}
+  navigate(target);
+  requestAnimationFrame(()=>{
+    if(Number.isFinite(saved?.scrollY))window.scrollTo({top:saved.scrollY,left:0,behavior:'auto'});
+    if(saved?.activity){
+      const match=[...document.querySelectorAll('[data-activity-link]')].find(link=>link.dataset.activityLink===saved.activity);
+      match?.focus({preventScroll:true});
+    }
+  });
+}
+
+function syncSequence(board){
+  const cards=[...board.querySelectorAll('[data-seq-value]')];
+  cards.forEach((card,index)=>{
+    const input=card.querySelector('input[type="hidden"]');
+    if(input){input.name=`p${index}`;input.value=card.dataset.seqValue}
+    const position=card.querySelector('.sequence-card__index');
+    if(position)position.textContent=String(index+1).padStart(2,'0');
+    const buttons=card.querySelectorAll('[data-seq-move]');
+    buttons.forEach(button=>{button.disabled=(button.dataset.seqMove==='up'&&index===0)||(button.dataset.seqMove==='down'&&index===cards.length-1)});
+  });
+}
+
+function moveSequence(button){
+  const card=button.closest('[data-seq-value]'),board=button.closest('[data-sequence-board]');
+  if(!card||!board)return;
+  if(button.dataset.seqMove==='up'&&card.previousElementSibling)board.insertBefore(card,card.previousElementSibling);
+  if(button.dataset.seqMove==='down'&&card.nextElementSibling)board.insertBefore(card.nextElementSibling,card);
+  syncSequence(board);
+  card.focus?.();
+}
+
+function toggleApparatus(open){
+  const panel=document.querySelector('#study-apparatus');
+  if(!panel)return;
+  const next=open??!panel.classList.contains('is-open');
+  panel.classList.toggle('is-open',next);
+  document.querySelectorAll('[data-toggle-apparatus]').forEach(button=>button.setAttribute('aria-expanded',String(next)));
+  if(next)panel.querySelector('summary,button,a')?.focus({preventScroll:true});
+}
+
 window.addEventListener('popstate',render);
 
 document.addEventListener('click',async e=>{
+  const exitButton=e.target.closest('[data-exit-lesson]');
+  if(exitButton){e.preventDefault();exitStudy(exitButton);return}
+
+  const seqMove=e.target.closest('[data-seq-move]');
+  if(seqMove){e.preventDefault();moveSequence(seqMove);return}
+
+  if(e.target.closest('[data-toggle-apparatus]')){e.preventDefault();toggleApparatus();return}
+  if(e.target.closest('[data-close-apparatus]')){e.preventDefault();toggleApparatus(false);return}
+
   const link=e.target.closest('a[href]');
   if(link&&!e.defaultPrevented&&e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'&&!link.hasAttribute('download')){
     const u=new URL(link.href,location.href);
     if(u.origin===location.origin&&roots.has(u.pathname.replace(/^\/+|\/+$/g,'').split('/')[0]||'home')){
+      rememberStudyReturn(link,u);
       e.preventDefault();
       navigate(u.pathname+u.search);
       return;
@@ -118,6 +192,7 @@ document.addEventListener('submit',async e=>{
       passed:evaluation.correct===true,
       submitted:evaluation.submitted===true
     });
+    document.dispatchEvent(new CustomEvent('canonical-state-changed',{detail:{activityId:id,state}}));
 
     let reviewAdvanced=false;
 
@@ -138,6 +213,7 @@ document.addEventListener('submit',async e=>{
         state=await recordReview(id,true);
         reviewSession.delete(id);
         reviewAdvanced=true;
+        document.dispatchEvent(new CustomEvent('canonical-state-changed',{detail:{activityId:id,state}}));
       }
     }
 
