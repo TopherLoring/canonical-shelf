@@ -64,7 +64,7 @@ test('theme packages change the complete aesthetic and persist locally',async({p
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme','oxblood');
 
-  await page.getByRole('button',{name:'Appearance'}).first().click();
+  await page.locator('.study-focus__utilities [data-open-appearance]').click();
   await expect(page.getByRole('heading',{name:'Appearance',exact:true})).toBeVisible();
   await page.locator('[data-theme-option="canonical-original"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme','canonical-original');
