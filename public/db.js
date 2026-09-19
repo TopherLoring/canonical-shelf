@@ -13,6 +13,8 @@ const fresh=()=>({
   mastery:{},
   reviews:{},
   reviewSchedule:{},
+  notes:{},
+  journal:{},
   migrations:{},
   legacyRaw:{},
   sync:createSyncMeta(),
@@ -40,6 +42,8 @@ export function normalizeLearnerState(state={}){
   out.mastery={...record(input.mastery)};
   out.reviews={...record(input.reviews)};
   out.reviewSchedule={...record(input.reviewSchedule)};
+  out.notes={...record(input.notes)};
+  out.journal={...record(input.journal)};
   out.migrations={...record(input.migrations)};
   out.legacyRaw={...record(input.legacyRaw)};
   out.challengeProgress={};
