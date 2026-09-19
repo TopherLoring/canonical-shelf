@@ -29,15 +29,18 @@ if(!deploy.includes('bun run build'))throw new Error('production deploy must exe
 if(!deploy.includes('wrangler d1 migrations apply canonical-shelf --remote'))throw new Error('production deploy must apply remote D1 migrations before Worker deployment');
 if(!deploy.includes('wrangler deploy'))throw new Error('production deploy must publish through Wrangler');
 
-for(const path of ['public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-sources.json','public/generated/account.js','worker/migrations/0000_auth.sql'])await stat(path);
+for(const path of [
+  'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-sources.json','public/generated/account.js','worker/migrations/0000_auth.sql',
+  'public/feedback.js','public/personal-study.js','public/utility-panels.css','worker/feedback-store.ts','worker/migrations/0002_feedback.sql'
+])await stat(path);
 
 const corpus=await stat('public/data/corpus.txt');
 if(corpus.size<3_000_000)throw new Error(`embedded BSB corpus unexpectedly small: ${corpus.size}`);
 
 const sw=await readFile('public/sw.js','utf8');
-for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
+for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
 
 const readme=await readFile('README.md','utf8');
 if(!/Berean Standard Bible \(BSB\)/.test(readme))throw new Error('README must identify the embedded BSB corpus');
 
-console.log('production standalone/build/offline/BSB gates passed');
+console.log('production standalone/build/offline/feedback/personal-study/BSB gates passed');
