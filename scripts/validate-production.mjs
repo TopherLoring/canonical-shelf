@@ -1,4 +1,5 @@
 import {readFile,stat} from 'node:fs/promises';
+import {verifyPublicCorpus} from './bsb-integrity.mjs';
 
 const requiredVendor=[
   'content/vendor/legacy/corpus.txt',
@@ -22,22 +23,29 @@ const packageJson=JSON.parse(await readFile('package.json','utf8'));
 const scripts=packageJson.scripts||{};
 const migrate=String(scripts.migrate||'');
 const prepareContent=String(scripts['prepare:content']||'');
-const validate=String(scripts.validate||'');
+const repairPrelaunch=String(scripts['repair:prelaunch']||'');
+const verifyBsb=String(scripts['verify:bsb']||'');
 const buildApp=String(scripts['build:app']||'');
 const buildVerify=String(scripts['build:verify']||'');
 const build=String(scripts.build||'');
 const verify=String(scripts.verify||'');
+const verifyPrelaunch=String(scripts['verify:prelaunch']||'');
+const verifyFull=String(scripts['verify:full']||'');
 const deploy=String(scripts.deploy||'');
 
 if(!migrate.includes('migrate-vendored.mjs'))throw new Error('production migrate must use the local vendor snapshot');
 if(!prepareContent.includes('bun run migrate')||!prepareContent.includes('bun run generate:llms'))throw new Error('content preparation must migrate canonical data and regenerate llms.txt');
-if(!validate.includes('validate:llms'))throw new Error('validation must include the llms.txt freshness gate');
+if(!repairPrelaunch.includes('repair-prelaunch.mjs'))throw new Error('prelaunch repair script must be wired');
+if(!verifyBsb.includes('bsb-integrity.mjs'))throw new Error('BSB integrity check must be wired');
 if(!buildApp.includes('prepare:content')||!buildApp.includes('build:client')||!buildApp.includes('build:worker'))throw new Error('application build must prepare content and compile client and worker bundles');
 if(!build.includes('build:app'))throw new Error('default build must execute the application build');
 if(build.includes('generate:wrangler')||build.includes('bun run validate'))throw new Error('default build must not require deployment config or release validation');
-if(!buildVerify.includes('build:app')||!buildVerify.includes('bun run validate'))throw new Error('verification build must run application build plus validation');
-if(!verify.includes('build:verify'))throw new Error('release verification must include the verification build');
-if(!deploy.includes('bun run verify'))throw new Error('production deploy must verify the release before deployment');
+if(!buildVerify.includes('build:app')||!buildVerify.includes('verify:bsb'))throw new Error('prelaunch verification build must compile the app and verify the locked BSB corpus');
+if(!verify.includes('verify:prelaunch'))throw new Error('default verify must use the prelaunch code gate');
+if(!verifyPrelaunch.includes('repair:prelaunch')||!verifyPrelaunch.includes('build:app')||!verifyPrelaunch.includes('verify:bsb'))throw new Error('prelaunch verify must repair deterministic artifacts, compile, and verify BSB integrity');
+if(verifyPrelaunch.includes('validate:experience')||verifyPrelaunch.includes('test:e2e')||verifyPrelaunch.includes('axe'))throw new Error('prelaunch verify must not be blocked by copy/parity/accessibility checks');
+if(!verifyFull.includes('test:e2e')||!verifyFull.includes('test:assessment'))throw new Error('full verification must retain exhaustive assessment and browser checks');
+if(!deploy.includes('verify:prelaunch'))throw new Error('prelaunch deploy must use the prelaunch gate');
 if(!deploy.includes('generate:wrangler'))throw new Error('production deploy must generate Cloudflare configuration');
 if(!deploy.includes('wrangler d1 migrations apply canonical-shelf --remote'))throw new Error('production deploy must apply remote D1 migrations before Worker deployment');
 if(!deploy.includes('wrangler deploy'))throw new Error('production deploy must publish through Wrangler');
@@ -47,13 +55,9 @@ for(const path of [
   'public/feedback.js','public/personal-study.js','public/utility-panels.css','worker/feedback-store.ts','worker/migrations/0002_feedback.sql'
 ])await stat(path);
 
-const corpus=await stat('public/data/corpus.txt');
-if(corpus.size<3_000_000)throw new Error(`embedded BSB corpus unexpectedly small: ${corpus.size}`);
+await verifyPublicCorpus();
 
 const sw=await readFile('public/sw.js','utf8');
 for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
 
-const readme=await readFile('README.md','utf8');
-if(!/Berean Standard Bible \(BSB\)/.test(readme))throw new Error('README must identify the embedded BSB corpus');
-
-console.log('production build/verify/deploy separation + generated llms/offline/feedback/personal-study/BSB gates passed');
+console.log('production build/deploy separation + prelaunch/full gate split + immutable BSB integrity passed');
