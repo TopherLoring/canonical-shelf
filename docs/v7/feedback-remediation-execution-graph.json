@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "graphType": "project-execution-graph",
+  "objective": "Remediate production learner feedback without learner-state or curriculum identity regressions.",
+  "nodes": [
+    {
+      "id": "F0.PLAN",
+      "type": "governance",
+      "status": "complete",
+      "dependsOn": [],
+      "outputs": [
+        "plan",
+        "WBS",
+        "typed DAG"
+      ]
+    },
+    {
+      "id": "F1.STATE_NAV",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "F0.PLAN"
+      ],
+      "outputs": [
+        "open activity states",
+        "next-activity continuation",
+        "completion acknowledgement"
+      ]
+    },
+    {
+      "id": "F2.SCENES",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "F0.PLAN"
+      ],
+      "outputs": [
+        "pre-reading context",
+        "combined explanatory scenes",
+        "supporting Scripture disclosure"
+      ]
+    },
+    {
+      "id": "F3.ASSESSMENT",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "F0.PLAN"
+      ],
+      "outputs": [
+        "per-item correctness evidence",
+        "green-only correct indicators",
+        "remediation copy"
+      ]
+    },
+    {
+      "id": "F4.PERSONAL_STUDY",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "F0.PLAN"
+      ],
+      "outputs": [
+        "inline lesson notes",
+        "Journal-only utility",
+        "unchanged persistence schema"
+      ]
+    },
+    {
+      "id": "F5.RESPONSIVE",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "F2.SCENES",
+        "F4.PERSONAL_STUDY"
+      ],
+      "outputs": [
+        "reserved feedback control",
+        "adaptive rail/apparatus",
+        "safe viewport overflow"
+      ]
+    },
+    {
+      "id": "F6.CONTENT",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "F2.SCENES"
+      ],
+      "outputs": [
+        "Jennings attribution",
+        "subject-linked feedback verses"
+      ]
+    },
+    {
+      "id": "F7.TESTS",
+      "type": "verification",
+      "status": "complete",
+      "dependsOn": [
+        "F1.STATE_NAV",
+        "F2.SCENES",
+        "F3.ASSESSMENT",
+        "F4.PERSONAL_STUDY",
+        "F5.RESPONSIVE",
+        "F6.CONTENT"
+      ],
+      "outputs": [
+        "assessment tests",
+        "E2E feedback-remediation tests",
+        "CI evidence"
+      ],
+      "evidence": {
+        "workflow": "production-ci",
+        "runId": 35528202443,
+        "runNumber": 382,
+        "conclusion": "success",
+        "checks": [
+          "bun install --frozen-lockfile",
+          "prelaunch code/runtime/state integrity",
+          "Cloudflare production config"
+        ]
+      }
+    },
+    {
+      "id": "F8.RELEASE",
+      "type": "release",
+      "status": "complete_for_review",
+      "dependsOn": [
+        "F7.TESTS"
+      ],
+      "outputs": [
+        "reviewable PR"
+      ],
+      "humanGates": [
+        "responsive visual review",
+        "novice comprehension",
+        "assistive-technology review",
+        "editorial review"
+      ],
+      "evidence": {
+        "pullRequest": 14,
+        "url": "https://github.com/TopherLoring/canonical-shelf/pull/14"
+      }
+    }
+  ],
+  "invariants": [
+    "stable activity IDs",
+    "unchanged learner-state schema",
+    "completion distinct from mastery",
+    "BSB corpus unchanged",
+    "local-first guest use"
+  ],
+  "rollback": "Revert the feedback-remediation commit set; no data migration required.",
+  "evidence": {
+    "implementationBranch": "fix/learner-feedback-remediation",
+    "syntaxCheck": "passed for changed JavaScript and Playwright specifications",
+    "browserContracts": [
+      "tests/e2e/feedback-remediation.spec.js",
+      "tests/e2e/release-utilities.spec.js"
+    ],
+    "ci": {
+      "workflow": "production-ci",
+      "runId": 35528202443,
+      "runNumber": 382,
+      "conclusion": "success"
+    }
+  }
+}

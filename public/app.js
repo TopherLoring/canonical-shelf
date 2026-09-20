@@ -81,7 +81,7 @@ function render(){
   if(r==='course')enhanceLearningVisuals(main);
   if(r==='bible')enhanceBibleState(main,p);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
-  main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);
+  main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
 }
 
 function evidenceMarkup(e){const fallback=e.type==='topic'&&e.id?`/topics?topic=${encodeURIComponent(e.id)}`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null,link=e.href||fallback;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${esc(link)}"${/^https?:/i.test(link)?' target="_blank" rel="noreferrer"':''}>${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
@@ -100,6 +100,35 @@ function exitStudy(button){
 function syncSequence(board){const cards=[...board.querySelectorAll('[data-seq-value]')];cards.forEach((card,index)=>{const input=card.querySelector('input[type="hidden"]');if(input&&!input.name.includes('-')){input.name=`p${index}`;input.value=card.dataset.seqValue}const position=card.querySelector('.sequence-card__index');if(position)position.textContent=String(index+1).padStart(2,'0');card.querySelectorAll('[data-seq-move]').forEach(button=>{button.disabled=(button.dataset.seqMove==='up'&&index===0)||(button.dataset.seqMove==='down'&&index===cards.length-1)})})}
 function moveSequence(button){const card=button.closest('[data-seq-value]'),board=button.closest('[data-sequence-board]');if(!card||!board)return;if(button.dataset.seqMove==='up'&&card.previousElementSibling)board.insertBefore(card,card.previousElementSibling);if(button.dataset.seqMove==='down'&&card.nextElementSibling)board.insertBefore(card.nextElementSibling,card);syncSequence(board);card.focus?.()}
 function toggleApparatus(open){const panel=document.querySelector('#study-apparatus');if(!panel)return;const next=open??!panel.classList.contains('is-open');panel.classList.toggle('is-open',next);document.querySelectorAll('[data-toggle-apparatus]').forEach(button=>button.setAttribute('aria-expanded',String(next)));if(next)panel.querySelector('summary,button,a')?.focus({preventScroll:true})}
+
+function markCorrectResponses(form,evaluation){
+  form.querySelectorAll('.response-is-correct').forEach(node=>{node.classList.remove('response-is-correct');node.querySelector('[data-response-status]')?.remove()});
+  if(evaluation.mode!=='scored')return;
+  const mark=node=>{if(!node)return;node.classList.add('response-is-correct');const status=document.createElement('span');status.dataset.responseStatus='';status.className='response-status';status.innerHTML='<span aria-hidden="true">✓</span> Correct';node.append(status)};
+  evaluation.correctItems.forEach((isCorrect,index)=>{
+    if(!isCorrect)return;
+    let node=null;
+    if(evaluation.shape==='sequence')node=form.querySelectorAll('[data-seq-value]')[index];
+    else if(evaluation.shape==='evidence-select')node=form.querySelector(`input[name="pick"][value="${index}"]:checked`)?.closest('.evidence-card');
+    else if(evaluation.shape==='scenario')node=form.querySelector(`input[name="s${index}"]:checked`)?.closest('.answer-tile');
+    else if(evaluation.shape==='single-choice')node=form.querySelector('input[name="choice"]:checked')?.closest('.answer-tile');
+    else node=form.querySelector(`input[name="p${index}"]:checked`)?.closest('.answer-tile');
+    mark(node);
+  });
+}
+
+function nextActivity(id){
+  const current=data.activities?.find(activity=>activity.id===id);if(!current)return null;
+  const ordered=(data.byCourse?.[current.courseId]||[]).flatMap(unitId=>data.byUnit?.[unitId]||[]);
+  return data.activities?.find(activity=>activity.id===ordered[ordered.indexOf(id)+1])||null;
+}
+function activityVerse(id,success){
+  if(!id.startsWith('lesson:'))return null;
+  const lesson=data.lessons?.find(item=>item.id===id.slice(7)),ref=lesson?.ref;if(!Array.isArray(ref))return null;
+  const [bn,chapter,start=1,end=start]=ref.map(Number),verses=parseCorpus(corpus).filter(row=>row.bn===bn&&row.chapter===chapter&&row.verse>=start&&row.verse<=end);
+  const verse=success?verses.at(-1):verses[0];return verse?{reference:`${BOOKS[bn-1]} ${chapter}:${verse.verse}`,text:verse.text}:null;
+}
+function activityContinuation(id){const next=nextActivity(id);return next?`<a class="button response-next" href="${activityHref(next.id)}">Continue to ${esc(next.title)} →</a>`:''}
 
 window.addEventListener('popstate',render);
 document.addEventListener('click',async e=>{
@@ -126,6 +155,7 @@ document.addEventListener('submit',async e=>{
   if(!e.target.matches('.challenge'))return;
   e.preventDefault();
   const id=e.target.dataset.activity,index=Number(e.target.dataset.index),challenge=challengeFor(data,id,index),evaluation=checkChallenge(e.target,challenge),feedback=e.target.querySelector('.feedback');
+  markCorrectResponses(e.target,evaluation);
   if(evaluation.mode==='reflection'&&!evaluation.submitted){feedback.innerHTML='<p class="notice"><strong>Add a reflection before saving.</strong></p>';return}
   const dueEntry=dueReviews(state).find(entry=>entry.id===id);
   state=await recordResult(id,{challengeIndex:index,totalChallenges:challengeCountFor(data,id),mode:evaluation.mode,passed:evaluation.correct===true,submitted:evaluation.submitted===true});
@@ -137,10 +167,13 @@ document.addEventListener('submit',async e=>{
     const required=Array.from({length:challengeCountFor(data,id)},(_,challengeIndex)=>challengeIndex).filter(challengeIndex=>challengeEvaluationMode(challengeFor(data,id,challengeIndex))==='scored');
     if(required.length>0&&required.every(challengeIndex=>session.passed.has(challengeIndex))){state=await recordReview(id,true);reviewSession.delete(id);reviewAdvanced=true;document.dispatchEvent(new CustomEvent('canonical-state-changed',{detail:{activityId:id,state}}))}
   }
+  const completed=state.completed?.includes(id),verse=activityVerse(id,evaluation.correct===true);
+  const verseMarkup=verse?`<blockquote class="response-scripture"><p>“${esc(verse.text)}”</p><cite>${esc(verse.reference)} · BSB</cite></blockquote>`:'';
   if(evaluation.mode==='reflection')feedback.innerHTML='<p class="notice"><strong>Reflection saved.</strong> This response is not scored for correctness.</p>';
-  else if(evaluation.correct===true)feedback.innerHTML=`<p class="notice"><strong>Correct.</strong> ${esc(challenge?.why||'Your response is supported by the activity.')}${reviewAdvanced?' Review interval advanced.':''}</p>`;
-  else feedback.innerHTML=`<p class="notice"><strong>Not yet.</strong> ${esc(challenge?.hint||challenge?.hints?.[0]||'Return to the evidence and try again.')}</p>`;
-  refreshProgressPanel();
+  else if(evaluation.correct===true&&completed)feedback.innerHTML=`<div class="notice response-complete"><strong>✓ Lesson complete.</strong><p>${esc(challenge?.why||'Your response is supported by the activity.')}${reviewAdvanced?' Review interval advanced.':''}</p>${verseMarkup}${activityContinuation(id)}</div>`;
+  else if(evaluation.correct===true)feedback.innerHTML=`<div class="notice"><strong>✓ Correct.</strong><p>${esc(challenge?.why||'Your response is supported by the activity.')}${reviewAdvanced?' Review interval advanced.':''}</p>${verseMarkup}</div>`;
+  else feedback.innerHTML=`<div class="notice"><strong>Keep working.</strong><p>${esc(challenge?.hint||challenge?.hints?.[0]||'Return to the evidence and try again.')}</p>${verseMarkup}</div>`;
+  canonicalizeLinks(feedback);refreshProgressPanel();
 });
 
 document.addEventListener('change',e=>{if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`);if(e.target.id==='translation-select'&&e.target.value!=='bsb')e.target.value='bsb'});

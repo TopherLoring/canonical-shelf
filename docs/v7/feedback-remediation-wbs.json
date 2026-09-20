@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "plan": "docs/v7/PLAN_DELTA_FEEDBACK_REMEDIATION.md",
+  "graph": "docs/v7/feedback-remediation-execution-graph.json",
+  "work": [
+    {
+      "id": "F1.STATE_NAV",
+      "tasks": [
+        "Expose available/completed/mastered/review-due labels",
+        "Resolve next activity across unit/course boundaries",
+        "Render completion acknowledgement and continuation"
+      ]
+    },
+    {
+      "id": "F2.SCENES",
+      "tasks": [
+        "Place preparatory context before the primary reading",
+        "Combine adjacent explanatory paragraphs where useful",
+        "Expose supporting Scripture text beside citations",
+        "Add current-scene apparatus context"
+      ]
+    },
+    {
+      "id": "F3.ASSESSMENT",
+      "tasks": [
+        "Return per-item correctness from deterministic evaluator",
+        "Mark only correct selected responses",
+        "Keep incorrect responses neutral with targeted explanation"
+      ]
+    },
+    {
+      "id": "F4.PERSONAL_STUDY",
+      "tasks": [
+        "Render lesson notes within Reflection",
+        "Retain notes map persistence and sync",
+        "Convert floating personal panel to Journal-only"
+      ]
+    },
+    {
+      "id": "F5.RESPONSIVE",
+      "tasks": [
+        "Move feedback into reserved Study Focus chrome",
+        "Redesign scene rail state",
+        "Use container/viewport-relative type and spacing",
+        "Permit safe overflow without defaulting to flat scroll"
+      ]
+    },
+    {
+      "id": "F6.CONTENT",
+      "tasks": [
+        "Introduce Theodore W. Jennings before attribution",
+        "Use activity-specific primary Scripture for encouragement/affirmation"
+      ]
+    },
+    {
+      "id": "F7.TESTS",
+      "tasks": [
+        "Extend assessment evaluator tests",
+        "Add browser flow/state/viewport tests",
+        "Run production CI"
+      ]
+    }
+  ]
+}

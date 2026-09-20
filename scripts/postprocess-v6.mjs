@@ -42,6 +42,11 @@ const legacyLessons=cat.lessons.map((lesson,order)=>{
   const unitId=mapLesson({...lesson,v4Unit:legacy});
   return {...lesson,challenges:(lesson.challenges||[]).map(adaptChallenge),reviewChallenges:(lesson.reviewChallenges||[]).map(adaptChallenge),v4Unit:legacy,v6Unit:unitId,unitId,courseId:courseForUnit(unitId),legacyGuided:true,legacyOrder:order};
 });
+const beginningLesson=legacyLessons.find(lesson=>lesson.id==='begin');
+if(beginningLesson?.deeper)beginningLesson.deeper=beginningLesson.deeper.replace(
+  'Jennings studies patronage especially in 2 Corinthians 8–9;',
+  'New Testament scholar Theodore W. Jennings examines patronage—resource relationships shaped by loyalty, honor, and reciprocal obligation—especially in 2 Corinthians 8–9;'
+);
 for(const m of Object.values(cat.legacyMastery?.CANON_V4_MASTERY||{}))if(m?.challenge)m.challenge=adaptChallenge(m.challenge);
 const addedLessons=newLessons.map((lesson,order)=>({...lesson,challenges:(lesson.challenges||[]).map(adaptChallenge),reviewChallenges:(lesson.reviewChallenges||[]).map(adaptChallenge),v6Unit:lesson.unitId,courseId:courseForUnit(lesson.unitId),curriculumOrder:order}));
 

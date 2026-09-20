@@ -4,21 +4,24 @@ const closeButton=document.querySelector('#feedback-close');
 const form=document.querySelector('#feedback-form');
 const status=document.querySelector('#feedback-status');
 const QUEUE_KEY='canonical-shelf-feedback-queue-v1';
+let lastTrigger=openButton;
 
 const readQueue=()=>{try{const value=JSON.parse(localStorage.getItem(QUEUE_KEY)||'[]');return Array.isArray(value)?value:[]}catch{return[]}};
 const writeQueue=items=>localStorage.setItem(QUEUE_KEY,JSON.stringify(items));
 const routeContext=()=>`${location.pathname}${location.search}`.slice(0,512);
 
-function openPanel(){
+function feedbackTriggers(){return [openButton,...document.querySelectorAll('[data-feedback-open]')].filter(Boolean)}
+function openPanel(trigger=openButton){
+  lastTrigger=trigger||openButton;
   panel.hidden=false;
-  openButton.setAttribute('aria-expanded','true');
+  feedbackTriggers().forEach(button=>button.setAttribute('aria-expanded','true'));
   form.querySelector('select,textarea,input')?.focus({preventScroll:true});
 }
 
 function closePanel(){
   panel.hidden=true;
-  openButton.setAttribute('aria-expanded','false');
-  openButton.focus({preventScroll:true});
+  feedbackTriggers().forEach(button=>button.setAttribute('aria-expanded','false'));
+  (lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true});
 }
 
 async function send(payload){
@@ -67,7 +70,8 @@ form?.addEventListener('submit',async event=>{
   }
 });
 
-openButton?.addEventListener('click',openPanel);
+openButton?.addEventListener('click',()=>openPanel(openButton));
+document.addEventListener('click',event=>{const trigger=event.target.closest('[data-feedback-open]');if(trigger)openPanel(trigger)});
 closeButton?.addEventListener('click',closePanel);
 window.addEventListener('online',()=>flushQueue().catch(()=>{}));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel&&!panel.hidden)closePanel()});
