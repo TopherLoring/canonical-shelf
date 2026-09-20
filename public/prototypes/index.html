@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Canonical Shelf — v7 Interactive Prototype Lab</title>
+<link rel="stylesheet" href="./prototype.css">
+</head>
+<body class="dir-a">
+<div class="labbar">
+  <strong>Canonical Shelf — Interactive Prototype Lab</strong>
+  <span>Real HTML/CSS/JS · no production UI mutation</span>
+  <div class="lab-switch" aria-label="Prototype direction">
+    <button data-dir="a">A · Living Library</button>
+    <button data-dir="b">B · Scholarly Folio</button>
+    <button data-dir="c">C · Scripture Atlas</button>
+  </div>
+</div>
+<header class="topbar">
+  <button class="brand" data-page="home"><span>✦</span> Canonical Shelf</button>
+  <nav class="nav" aria-label="Prototype pages">
+    <button data-page="home">Home</button>
+    <button data-page="course">Learn</button>
+    <button data-page="lesson">Lesson</button>
+    <button data-page="bible">Bible</button>
+    <button data-page="practice">Practice</button>
+    <button data-page="topics">Topics</button>
+    <button data-page="theologian">Theologian</button>
+  </nav>
+  <div class="tools"><button>Appearance</button><button>Account</button></div>
+</header>
+<main id="app"></main>
+<div id="prototype-tag" class="prototype-tag"></div>
+<script src="./prototype.js"></script>
+</body>
+</html>
