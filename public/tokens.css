@@ -1,14 +1,15 @@
 :root{
-  /* Primitive tokens: raw values only. Components must not consume these directly. */
+  /* Primitive tokens: raw values only. */
   --ref-color-ink-950:#1f1b17;
   --ref-color-ink-650:#6c6258;
-  --ref-color-paper-50:#faf7f1;
+  --ref-color-paper-50:#fffdf8;
   --ref-color-paper-100:#f6f1e8;
   --ref-color-paper-200:#ede4d6;
   --ref-color-paper-300:#cfc2b1;
   --ref-color-burgundy-700:#6b2f24;
   --ref-color-forest-800:#243d37;
   --ref-color-blue-700:#0b57d0;
+  --ref-color-gilt-500:#b58a34;
   --ref-color-white:#ffffff;
   --ref-color-black:#000000;
   --ref-space-1:.5rem;
@@ -22,16 +23,17 @@
   --ref-font-sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
   --ref-measure-reading:72ch;
 
-  /* Semantic tokens: default interface vocabulary. */
-  --color-text-primary:var(--ref-color-ink-950);
-  --color-text-secondary:var(--ref-color-ink-650);
-  --color-surface-primary:var(--ref-color-paper-100);
-  --color-surface-raised:var(--ref-color-paper-50);
-  --color-surface-subtle:var(--ref-color-paper-200);
-  --color-border-default:var(--ref-color-paper-300);
-  --color-accent-primary:var(--ref-color-burgundy-700);
-  --color-accent-secondary:var(--ref-color-forest-800);
-  --color-focus:var(--ref-color-blue-700);
+  /* Semantic tokens: Heritage defaults, overridden by complete theme packages. */
+  --color-text-primary:#201a16;
+  --color-text-secondary:#6d6057;
+  --color-surface-primary:#f4eee4;
+  --color-surface-raised:#fffaf1;
+  --color-surface-subtle:#e9dfd0;
+  --color-border-default:#cdbca9;
+  --color-accent-primary:#79392d;
+  --color-accent-secondary:#314a42;
+  --color-focus:#215ca8;
+  --color-gilt:#b58a34;
   --space-xs:var(--ref-space-1);
   --space-sm:var(--ref-space-2);
   --space-md:var(--ref-space-3);
@@ -39,10 +41,38 @@
   --space-xl:var(--ref-space-5);
   --space-2xl:var(--ref-space-6);
   --font-body:var(--ref-font-sans);
-  --font-reading:var(--ref-font-serif);
+  --font-reading:Georgia,'Times New Roman',serif;
+  --font-display:Georgia,'Times New Roman',serif;
   --measure-reading:var(--ref-measure-reading);
+  --theme-shadow:0 18px 55px color-mix(in srgb,#2a211b 18%,transparent);
+  --theme-soft-shadow:0 8px 24px color-mix(in srgb,#2a211b 10%,transparent);
+  --theme-rule-width:1px;
+  --theme-radius:16px;
 
-  /* Component tokens: component-specific contract. */
+  /* Study Focus belongs to the same theme, intensified rather than replaced. */
+  --study-chrome:#211a16;
+  --study-chrome-2:#171311;
+  --study-chrome-text:#f5eee4;
+  --study-chrome-muted:#cbbfb1;
+  --study-folio:#fffaf1;
+  --study-folio-2:#f5ecdf;
+  --study-rule:#cbb9a5;
+  --study-accent:#79392d;
+  --study-nav-bg:color-mix(in srgb,var(--study-folio) 94%,white);
+
+  /* Original Canonical Shelf category colors are semantic and theme-independent. */
+  --canon-law:#274c8e;
+  --canon-history-ot:#8b5e34;
+  --canon-wisdom:#2c7a6b;
+  --canon-major-prophets:#6a3475;
+  --canon-minor-prophets:#bc8a1c;
+  --canon-gospel:#b7362c;
+  --canon-history-nt:#4f7c2a;
+  --canon-paul:#a8476b;
+  --canon-general:#455a75;
+  --canon-apocalypse:#26292f;
+
+  /* Component tokens: controls and reusable surface contracts. */
   --button-border:var(--color-text-primary);
   --button-bg:transparent;
   --button-text:var(--color-text-primary);
@@ -56,4 +86,124 @@
   --notice-bg:color-mix(in srgb,var(--color-surface-raised) 72%,transparent);
   --progress-track:var(--color-surface-subtle);
   --progress-fill:var(--color-accent-secondary);
+}
+
+html[data-theme="canonical-original"]{
+  --color-text-primary:#1b1d22;
+  --color-text-secondary:#59606a;
+  --color-surface-primary:#e6e7e2;
+  --color-surface-raised:#fafaf8;
+  --color-surface-subtle:#dcddd6;
+  --color-border-default:#b9bab4;
+  --color-accent-primary:#274c8e;
+  --color-accent-secondary:#8b5e34;
+  --color-gilt:#c9a227;
+  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-reading:Georgia,'Times New Roman',serif;
+  --font-display:Georgia,'Times New Roman',serif;
+  --theme-shadow:0 18px 48px color-mix(in srgb,#26292f 16%,transparent);
+  --study-chrome:#232830;
+  --study-chrome-2:#171a1f;
+  --study-chrome-text:#f2f2ec;
+  --study-chrome-muted:#bcc0c3;
+  --study-folio:#fafaf8;
+  --study-folio-2:#e6e7e2;
+  --study-rule:#bbbdb7;
+  --study-accent:#274c8e;
+}
+
+html[data-theme="oxblood"]{
+  --color-text-primary:#281a1b;
+  --color-text-secondary:#735d5b;
+  --color-surface-primary:#f1e7df;
+  --color-surface-raised:#fff7ef;
+  --color-surface-subtle:#e6d5ca;
+  --color-border-default:#c9afa3;
+  --color-accent-primary:#7a2730;
+  --color-accent-secondary:#3d4a3b;
+  --color-gilt:#b68a42;
+  --font-body:'Trebuchet MS','Segoe UI',sans-serif;
+  --font-reading:'Palatino Linotype',Palatino,Georgia,serif;
+  --font-display:'Palatino Linotype',Palatino,Georgia,serif;
+  --theme-shadow:0 22px 58px color-mix(in srgb,#4d1f22 20%,transparent);
+  --study-chrome:#32181c;
+  --study-chrome-2:#211014;
+  --study-chrome-text:#f7ece6;
+  --study-chrome-muted:#d3b8b3;
+  --study-folio:#fff7ef;
+  --study-folio-2:#efe0d5;
+  --study-rule:#c9aea3;
+  --study-accent:#7a2730;
+}
+
+html[data-theme="slate-linen"]{
+  --color-text-primary:#263137;
+  --color-text-secondary:#657078;
+  --color-surface-primary:#eeede8;
+  --color-surface-raised:#fbfaf6;
+  --color-surface-subtle:#dededa;
+  --color-border-default:#bdc0bf;
+  --color-accent-primary:#425d6d;
+  --color-accent-secondary:#6d5b4f;
+  --color-gilt:#a58655;
+  --font-body:system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-reading:Cambria,Georgia,serif;
+  --font-display:Cambria,Georgia,serif;
+  --theme-shadow:0 18px 48px color-mix(in srgb,#34424a 14%,transparent);
+  --study-chrome:#2a353b;
+  --study-chrome-2:#1d262b;
+  --study-chrome-text:#f4f2ec;
+  --study-chrome-muted:#c7cdce;
+  --study-folio:#fbfaf6;
+  --study-folio-2:#e8e7e1;
+  --study-rule:#bdc0bf;
+  --study-accent:#425d6d;
+}
+
+html[data-theme="illuminated-jewel"]{
+  --color-text-primary:#221d29;
+  --color-text-secondary:#655c6d;
+  --color-surface-primary:#f3ecdf;
+  --color-surface-raised:#fff9ec;
+  --color-surface-subtle:#e7dcca;
+  --color-border-default:#c9bda9;
+  --color-accent-primary:#5c3f79;
+  --color-accent-secondary:#1f6b62;
+  --color-gilt:#b48a2e;
+  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-reading:Baskerville,'Baskerville Old Face',Georgia,serif;
+  --font-display:Baskerville,'Baskerville Old Face',Georgia,serif;
+  --theme-shadow:0 22px 58px color-mix(in srgb,#392b52 18%,transparent);
+  --study-chrome:#2b2239;
+  --study-chrome-2:#1d1727;
+  --study-chrome-text:#f8f0df;
+  --study-chrome-muted:#cec2d6;
+  --study-folio:#fff9ec;
+  --study-folio-2:#eee2ce;
+  --study-rule:#c9bda9;
+  --study-accent:#5c3f79;
+}
+
+html[data-theme="bookshelf-spectrum"]{
+  --color-text-primary:#20262b;
+  --color-text-secondary:#626a70;
+  --color-surface-primary:#efe9de;
+  --color-surface-raised:#fffaf1;
+  --color-surface-subtle:#e2dacd;
+  --color-border-default:#c1b6a5;
+  --color-accent-primary:#455a75;
+  --color-accent-secondary:#8b5e34;
+  --color-gilt:#bc8a1c;
+  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-reading:Cambria,Georgia,serif;
+  --font-display:Cambria,Georgia,serif;
+  --theme-shadow:0 20px 54px color-mix(in srgb,#26313c 16%,transparent);
+  --study-chrome:#26313c;
+  --study-chrome-2:#192129;
+  --study-chrome-text:#f4efe6;
+  --study-chrome-muted:#c2c9ce;
+  --study-folio:#fffaf1;
+  --study-folio-2:#e9e1d5;
+  --study-rule:#c1b6a5;
+  --study-accent:#455a75;
 }

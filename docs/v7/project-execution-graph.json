@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf v7 — v5 polish",
+  "branch": "v7-v5-polish",
+  "rollbackAnchor": "267016f7f483f3de3f22e17ed8bea2868ea35b0d",
+  "objective": "Polish the v5 learner-facing product experience on the validated v7 state/assessment foundation, using v4 as the scholarly writing quality bar without importing v5 runtime debt.",
+  "invariants": {
+    "units": 25,
+    "guidedLessons": 70,
+    "masteryActivities": 69,
+    "scoredActivities": 139,
+    "stableExistingActivityIds": true,
+    "stableExistingMasteryIds": true,
+    "primaryDestinations": ["Home", "Course", "Bible", "Topics", "Practice"],
+    "bibleOwnsShelfReader": true,
+    "topicsScored": false,
+    "practiceIsReinforcement": true,
+    "localFirstLearnerState": true,
+    "unit0Scored": false
+  },
+  "nodeTypes": [
+    "audit",
+    "contract",
+    "design",
+    "implementation",
+    "content",
+    "validation",
+    "human_gate",
+    "release"
+  ],
+  "nodes": [
+    {
+      "id": "P0.V5_REFERENCE_AUDIT",
+      "type": "audit",
+      "title": "Audit v5 learner-facing reference",
+      "dependsOn": [],
+      "outputs": ["v5 surface behavior inventory", "native-reimplementation decisions"],
+      "acceptance": ["Home/Course/Bible/Topics/Practice behaviors inventoried", "no v5 bridge debt designated for direct port"]
+    },
+    {
+      "id": "P0.V7_FOUNDATION_AUDIT",
+      "type": "audit",
+      "title": "Audit current v7 foundation integration points",
+      "dependsOn": [],
+      "outputs": ["route/state/style/test integration map"],
+      "acceptance": ["state ownership identified", "lesson renderer and curriculum data path identified"]
+    },
+    {
+      "id": "P0.CURRICULUM_ID_AUDIT",
+      "type": "audit",
+      "title": "Verify curriculum IDs and Unit 0 insertion boundary",
+      "dependsOn": ["P0.V7_FOUNDATION_AUDIT"],
+      "outputs": ["ID/count baseline", "Unit 0 non-scored contract"],
+      "acceptance": ["25/70/69/139 confirmed", "Unit 1 Lesson 1 identity confirmed", "Unit 0 can remain outside scored denominator"]
+    },
+    {
+      "id": "P0.V4_EDITORIAL_AUDIT",
+      "type": "audit",
+      "title": "Extract v4 scholarly editorial quality criteria",
+      "dependsOn": [],
+      "outputs": ["editorial rubric"],
+      "acceptance": ["adult reading level", "evidence/context/interpretation distinctions", "source/deeper-layer expectations captured"]
+    },
+    {
+      "id": "P1.DESIGN_SYSTEM_CONTRACT",
+      "type": "contract",
+      "title": "Define shared theme and Study Focus token contract",
+      "dependsOn": ["P0.V5_REFERENCE_AUDIT", "P0.V7_FOUNDATION_AUDIT"],
+      "outputs": ["theme token schema", "semantic-color separation", "focus-mode token mapping"],
+      "acceptance": ["themes cannot change semantic meaning", "Study Focus is same design system intensified", "responsive type scales by container width"]
+    },
+    {
+      "id": "P1.THEME_ENGINE",
+      "type": "implementation",
+      "title": "Implement curated aesthetic/theme packages",
+      "dependsOn": ["P1.DESIGN_SYSTEM_CONTRACT"],
+      "outputs": ["theme selector", "local persistence", "six theme packages"],
+      "acceptance": ["theme persists locally", "theme changes are presentation-only", "semantic category/status colors remain meaningful"]
+    },
+    {
+      "id": "P2.UNIT0_CONTENT_CONTRACT",
+      "type": "content",
+      "title": "Author Unit 0 Lesson 1 orientation contract",
+      "dependsOn": ["P0.CURRICULUM_ID_AUDIT", "P0.V4_EDITORIAL_AUDIT"],
+      "outputs": ["Unit 0 scene/content spec"],
+      "acceptance": ["covers canon/library/category-vs-chronology", "covers Course/Bible/Topics/Practice", "covers lesson/site/translation/external-source help", "covers independent-study transition", "remains non-scored"]
+    },
+    {
+      "id": "P2.UNIT0_IMPLEMENTATION",
+      "type": "implementation",
+      "title": "Implement Unit 0 tutorial using real product surfaces",
+      "dependsOn": ["P1.THEME_ENGINE", "P2.UNIT0_CONTENT_CONTRACT"],
+      "outputs": ["replayable Unit 0", "skip/continue behavior"],
+      "acceptance": ["no scored-state mutation", "replay works", "uses actual product affordances rather than detached mock tutorial"]
+    },
+    {
+      "id": "P3.STUDY_FOCUS_CONTRACT",
+      "type": "design",
+      "title": "Lock Study Focus viewport and overflow behavior",
+      "dependsOn": ["P1.DESIGN_SYSTEM_CONTRACT", "P0.V5_REFERENCE_AUDIT"],
+      "outputs": ["responsive composition contract"],
+      "acceptance": ["folio fits viewport", "accordions/drawers precede scroll", "nav reserved and always reachable", "desktop/tablet/mobile recomposition defined"]
+    },
+    {
+      "id": "P3.STUDY_FOCUS_IMPLEMENTATION",
+      "type": "implementation",
+      "title": "Implement Study Focus shell and route restoration",
+      "dependsOn": ["P3.STUDY_FOCUS_CONTRACT", "P1.THEME_ENGINE"],
+      "outputs": ["focus-mode shell", "enter/exit transition", "persistent lesson nav", "responsive scholarly apparatus shell"],
+      "acceptance": ["exit restores Course state", "no content overlap", "typography narrows gracefully", "secondary material relocates before primary scroll"]
+    },
+    {
+      "id": "P3.SCHOLARLY_APPARATUS",
+      "type": "implementation",
+      "title": "Implement scholarly passage apparatus",
+      "dependsOn": ["P3.STUDY_FOCUS_IMPLEMENTATION", "P0.V4_EDITORIAL_AUDIT"],
+      "outputs": ["apparatus modules", "accordion/drawer behavior"],
+      "acceptance": ["text/evidence/interpretation/reception/doctrine/application remain distinguishable", "translation/original-language/context/source modules available", "mobile sheet behavior works"]
+    },
+    {
+      "id": "P4.UNIT1L1_POLISH",
+      "type": "content",
+      "title": "Polish Unit 1 Lesson 1 to v4 scholarly bar",
+      "dependsOn": ["P0.V4_EDITORIAL_AUDIT", "P0.CURRICULUM_ID_AUDIT"],
+      "outputs": ["polished existing lesson copy"],
+      "acceptance": ["lesson identity and ID unchanged", "substantive meaning preserved", "evidence/context boundaries strengthened only where needed"]
+    },
+    {
+      "id": "P4.GOLDEN_LESSON_INTEGRATION",
+      "type": "implementation",
+      "title": "Integrate Unit 1 Lesson 1 with Study Focus",
+      "dependsOn": ["P3.SCHOLARLY_APPARATUS", "P4.UNIT1L1_POLISH"],
+      "outputs": ["golden lesson slice"],
+      "acceptance": ["lesson renders in Study Focus", "nav always accessible", "apparatus available", "existing assessment semantics preserved"]
+    },
+    {
+      "id": "P4.RICH_CHALLENGE_PROOF",
+      "type": "implementation",
+      "title": "Prove rich v5-style challenge presentation natively",
+      "dependsOn": ["P4.GOLDEN_LESSON_INTEGRATION"],
+      "outputs": ["at least one rich interaction path"],
+      "acceptance": ["no downgrade to generic radio/select where richer task exists", "keyboard/non-drag equivalent preserved", "feedback remains instructional"]
+    },
+    {
+      "id": "P5.SCALEOUT",
+      "type": "implementation",
+      "title": "Scale design/content shell across product",
+      "dependsOn": ["P2.UNIT0_IMPLEMENTATION", "P4.RICH_CHALLENGE_PROOF"],
+      "outputs": ["Course scaleout", "Home/Bible/Topics/Practice polish", "v5 desirable game reimplementations"],
+      "acceptance": ["v5 IA preserved", "visual system coherent across destinations", "no architecture-driven experiential regression"]
+    },
+    {
+      "id": "V.AUTOMATED_ASSURANCE",
+      "type": "validation",
+      "title": "Run automated regression and experience checks",
+      "dependsOn": ["P5.SCALEOUT"],
+      "outputs": ["test evidence"],
+      "acceptance": ["25/70/69/139 unchanged", "stable IDs unchanged", "Unit 0 excluded from denominator", "assessment suite green", "sync/D1 green", "offline/PWA green", "theme persistence green", "Study Focus restoration green", "responsive nav non-overlap green"]
+    },
+    {
+      "id": "G.GOLDEN_SLICE_UX",
+      "type": "human_gate",
+      "title": "Human golden-slice UX approval",
+      "dependsOn": ["P4.RICH_CHALLENGE_PROOF"],
+      "outputs": ["human approval/revision"],
+      "acceptance": ["explicit human approval"]
+    },
+    {
+      "id": "G.EDITORIAL_THEOLOGICAL",
+      "type": "human_gate",
+      "title": "Editorial and theological review",
+      "dependsOn": ["P4.UNIT1L1_POLISH", "P3.SCHOLARLY_APPARATUS"],
+      "outputs": ["human approval/revision"],
+      "acceptance": ["explicit editorial approval", "explicit theological approval"]
+    },
+    {
+      "id": "G.RESPONSIVE_ADAPTIVE",
+      "type": "human_gate",
+      "title": "Responsive and adaptive-access review",
+      "dependsOn": ["P5.SCALEOUT", "V.AUTOMATED_ASSURANCE"],
+      "outputs": ["device/access review evidence"],
+      "acceptance": ["desktop/tablet/phone", "keyboard/touch", "reduced motion", "screen readers", "zoom", "forced colors"]
+    },
+    {
+      "id": "G.OFFLINE_ACCOUNT_PRIVACY",
+      "type": "human_gate",
+      "title": "Offline, account sync, privacy and recovery review",
+      "dependsOn": ["V.AUTOMATED_ASSURANCE"],
+      "outputs": ["human approval/revision"],
+      "acceptance": ["offline PWA", "passkey/sync", "privacy/recovery"]
+    },
+    {
+      "id": "R.RELEASE",
+      "type": "release",
+      "title": "Production release",
+      "dependsOn": ["V.AUTOMATED_ASSURANCE", "G.GOLDEN_SLICE_UX", "G.EDITORIAL_THEOLOGICAL", "G.RESPONSIVE_ADAPTIVE", "G.OFFLINE_ACCOUNT_PRIVACY"],
+      "outputs": ["release candidate", "production release"],
+      "acceptance": ["GATE_PRODUCTION_RELEASE explicit human approval"]
+    }
+  ]
+}

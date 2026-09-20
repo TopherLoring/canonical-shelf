@@ -1,5 +1,6 @@
 import {createAuth, type AuthEnv} from './auth';
 import {deleteSync as deleteStoredSync,mergeAndWriteSync,readSync,validSyncBody} from './sync-store';
+import {validateFeedbackBody,writeFeedback} from './feedback-store';
 
 interface Env extends AuthEnv {
   ASSETS?: {fetch(request:Request):Promise<Response>};
@@ -10,8 +11,7 @@ const json=(value:unknown,status=200)=>new Response(JSON.stringify(value),{statu
 const bad=(message:string,status=400)=>json({error:message},status);
 
 async function sessionUser(request:Request,auth:ReturnType<typeof createAuth>){
-  const session=await auth.api.getSession({headers:request.headers});
-  return session?.user||null;
+  try{const session=await auth.api.getSession({headers:request.headers});return session?.user||null}catch{return null}
 }
 
 async function getSync(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
@@ -33,6 +33,14 @@ async function deleteSync(request:Request,env:Env,auth:ReturnType<typeof createA
   return new Response(null,{status:204});
 }
 
+async function postFeedback(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
+  let body:unknown;try{body=await request.json()}catch{return bad('Invalid JSON')}
+  if(!validateFeedbackBody(body))return bad('Invalid feedback payload');
+  const user=await sessionUser(request,auth);
+  const result=await writeFeedback(env.DB,body,user?.id||null);
+  return json({ok:true,...result},201);
+}
+
 export default {
   async fetch(request:Request,env:Env):Promise<Response>{
     const url=new URL(request.url),auth=createAuth(env);
@@ -41,6 +49,10 @@ export default {
       if(request.method==='GET')return getSync(request,env,auth);
       if(request.method==='POST')return postSync(request,env,auth);
       if(request.method==='DELETE')return deleteSync(request,env,auth);
+      return bad('Method not allowed',405);
+    }
+    if(url.pathname==='/api/feedback'){
+      if(request.method==='POST')return postFeedback(request,env,auth);
       return bad('Method not allowed',405);
     }
     if(env.ASSETS)return env.ASSETS.fetch(request);
