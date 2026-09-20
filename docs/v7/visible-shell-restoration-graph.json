@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf v7 visible shell restoration",
+  "objective": "Replace v6-visible shell regressions with native v7 implementations of the approved v5 experience while preserving current state/runtime contracts.",
+  "nodes": [
+    {"id":"VSR.1","type":"audit","dependsOn":[],"status":"complete","acceptance":["current main Home source matches reported screenshot","PR #4 confirmed Home template was left materially unchanged"]},
+    {"id":"VSR.2","type":"implementation","dependsOn":["VSR.1"],"status":"pending","affected":["public/app.js","public/styles.css"],"acceptance":["v5 dashboard Home restored natively","v7 progress and next-activity data used"]},
+    {"id":"VSR.3","type":"implementation","dependsOn":["VSR.1"],"status":"pending","affected":["public/index.html","public/styles.css"],"acceptance":["global chrome reflects v5 hierarchy","all current utilities preserved"]},
+    {"id":"VSR.4","type":"implementation","dependsOn":["VSR.1"],"status":"pending","affected":["public/learning.js","public/styles.css"],"acceptance":["Course root and unit overview use rich responsive composition","Study Focus routes and IDs unchanged"]},
+    {"id":"VSR.5","type":"offline","dependsOn":["VSR.2","VSR.3","VSR.4"],"status":"pending","affected":["public/sw.js"],"acceptance":["service-worker cache namespace bumped","old shell assets cannot remain pinned after update"]},
+    {"id":"VSR.6","type":"test","dependsOn":["VSR.2","VSR.3","VSR.4","VSR.5"],"status":"pending","affected":["tests/e2e/app.spec.js"],"acceptance":["Home regression assertion updated","five-destination shell preserved","Course and Study Focus remain navigable"]},
+    {"id":"VSR.7","type":"validation","dependsOn":["VSR.6"],"status":"pending","acceptance":["build succeeds","automated verification succeeds","desktop/tablet/phone visual review passes"]},
+    {"id":"VSR.8","type":"merge","dependsOn":["VSR.7"],"status":"pending","acceptance":["repair merged to main","Cloudflare deploy reports repair commit/version"]}
+  ],
+  "invariants": ["25 scored units","70 lessons","69 mastery activities","139 scored activities","stable IDs","Topics unscored","Practice reinforcement only","local-first learner state","Study Focus preserved","no v5 bridge architecture"],
+  "rollback": "Do not merge repair branch if visual or functional gates fail."
+}
