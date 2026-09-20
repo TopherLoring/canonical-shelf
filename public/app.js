@@ -7,6 +7,7 @@ import {practiceView,checkPracticeGame} from './practice-experience.js';
 import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
 import {homeView,progressPanelView} from './progress-experience.js';
 import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
+import {enhanceLearningVisuals} from './learning-visuals.js';
 
 const main=document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -75,6 +76,7 @@ function render(){
   else if(r==='practice')main.innerHTML=practiceView({data,state,params:p,esc,dueReviews,activityHref});
   else main.innerHTML=homeView({data,state,esc});
   canonicalizeLinks(main);
+  if(r==='course')enhanceLearningVisuals(main);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);
 }
