@@ -17,9 +17,11 @@ try{
 
 // Core navigation and controls must never wait for service-worker activation.
 await import('./app.js');
-document.dispatchEvent(new Event('canonical-app-ready'));
+const progressOpen=document.querySelector('#progress-open');
+if(progressOpen){progressOpen.disabled=false;progressOpen.removeAttribute('aria-disabled')}
 const guideOpen=document.querySelector('#guide-open');
 if(guideOpen){guideOpen.disabled=false;guideOpen.removeAttribute('aria-disabled')}
+document.dispatchEvent(new Event('canonical-app-ready'));
 
 try{
   await import('./account-ui.js');
