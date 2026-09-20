@@ -56,4 +56,14 @@ The same precedence rule applies to product structure, navigation, themes, Study
 
 Automated CI evidence and human review evidence are distinct. For the merged v7 release, the project owner's explicit merge instruction superseded the earlier rule that all named human gates had to be completed before merge. That supersession does **not** mean those human gates passed; unless separately evidenced, they remain continuing quality-assurance activities.
 
-For the multi-course curriculum redesign, learner-state migration, stable-ID preservation, editorial/theological review, novice usability, rich-interaction validation, responsive/accessibility review, and offline/release integrity remain explicit gates unless the project owner separately supersedes them.
+For the multi-course curriculum redesign, learner-state migration, stable-ID preservation, schema/content integrity, browser/offline behavior, and other automated development-safety checks remain required before pre-launch integration.
+
+On September 20, 2026, the project owner explicitly **waived the named human review gates as blockers for pre-launch development**. Editorial/theological review, novice usability review, responsive/manual-accessibility review, and learning-quality review are therefore deferred rather than passed. They remain required quality work before a public launch unless the owner explicitly changes that requirement later.
+
+Accordingly:
+
+- a pre-launch development merge may proceed after authoritative automated validation passes and rollback/state compatibility remain intact;
+- human gates must be recorded as `waived_for_prelaunch_dev` or equivalent, never falsely marked `passed`;
+- unresolved human-review findings remain visible in future work and release documentation;
+- this waiver does not relax stable-ID, learner-state, security/privacy, data-integrity, or deterministic migration safeguards;
+- public-launch readiness is a separate decision and must not be inferred from a pre-launch merge.
