@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "project": "canonical-shelf",
+  "change": "full-experience-restoration",
+  "objective": "Restore the strongest v3/v4/v5 learner experience natively in current v7 without regressing the current six-course curriculum or learner-state architecture.",
+  "authorities": {
+    "current": "TopherLoring/canonical-shelf main",
+    "historical": "TopherLoring/the-canonical-shelf historical branches and main",
+    "recoverableBranch": "TopherLoring/canonical-shelf experience/restore-v5-parity"
+  },
+  "invariants": [
+    "current six-course curriculum remains canonical",
+    "current activity IDs and placement remain stable",
+    "no wholesale overwrite of content/curriculum/** from historical versions",
+    "Home/Course/Bible/Topics/Practice remain primary destinations",
+    "Bible owns shelf/reader/profiles",
+    "Topics remain unscored reference",
+    "Practice remains reinforcement",
+    "local-first and offline remain first-class",
+    "optional passkey sync remains additive",
+    "Statement of Faith remains doctrinal ceiling",
+    "no MutationObserver repair or stacked legacy runtime"
+  ],
+  "nodes": [
+    {"id":"F0_REPO_AUDIT","type":"audit","title":"Audit both repositories and historical branches","status":"in_progress"},
+    {"id":"F0_PARITY_MATRIX","type":"design_analysis","title":"Build product-wide feature/content/interaction parity matrix","dependsOn":["F0_REPO_AUDIT"]},
+    {"id":"F0_CURRICULUM_GUARD","type":"validation","title":"Freeze current curriculum source/ID/count guardrails","dependsOn":["F0_REPO_AUDIT"]},
+    {"id":"F1_RECOVER_BRANCH","type":"implementation","title":"Port safe experience/restore-v5-parity work to current main","dependsOn":["F0_CURRICULUM_GUARD"]},
+    {"id":"F2_BIBLE","type":"implementation","title":"Restore shelf, profiles, reader, search, chronology and Bible study identity","dependsOn":["F1_RECOVER_BRANCH"]},
+    {"id":"F3_HOME","type":"implementation","title":"Restore learner dashboard, next action, recent state and library entry points","dependsOn":["F1_RECOVER_BRANCH"]},
+    {"id":"F3_TOPICS","type":"implementation","title":"Restore reference-desk depth, discovery, relationships and evidence trails","dependsOn":["F1_RECOVER_BRANCH"]},
+    {"id":"F3_PRACTICE","type":"implementation","title":"Restore historical game breadth and reinforcement state","dependsOn":["F1_RECOVER_BRANCH"]},
+    {"id":"F4_COURSE_AUDIT","type":"content_design","title":"Audit current six-course lessons against v3/v4/v5 depth and organization","dependsOn":["F0_PARITY_MATRIX","F0_CURRICULUM_GUARD"]},
+    {"id":"F4_COURSE_EXPERIENCE","type":"implementation","title":"Restore scene organization, scholarly depth presentation and interaction richness without ID changes","dependsOn":["F4_COURSE_AUDIT","F1_RECOVER_BRANCH"]},
+    {"id":"F5_GUIDE_SEARCH","type":"implementation","title":"Restore Guide/search/progress/orientation continuity","dependsOn":["F2_BIBLE","F3_TOPICS","F4_COURSE_EXPERIENCE"]},
+    {"id":"F5_VISUAL_SYSTEM","type":"design","title":"Unify tactile library identity, semantic color, motion and responsive recomposition","dependsOn":["F2_BIBLE","F3_HOME","F3_TOPICS","F3_PRACTICE","F4_COURSE_EXPERIENCE"]},
+    {"id":"V_CURRICULUM","type":"validation","title":"Prove curriculum sources/IDs/placement remain unchanged","dependsOn":["F5_VISUAL_SYSTEM"]},
+    {"id":"V_FUNCTION","type":"validation","title":"Validate routes, state, games, reader, search and Guide behavior","dependsOn":["F5_GUIDE_SEARCH"]},
+    {"id":"V_EXPERIENCE","type":"validation","title":"Validate desktop/tablet/phone, motion, keyboard, touch, zoom, forced colors and novice usability","dependsOn":["F5_VISUAL_SYSTEM"]},
+    {"id":"V_OFFLINE","type":"validation","title":"Validate offline/PWA and account-sync compatibility","dependsOn":["F5_GUIDE_SEARCH"]},
+    {"id":"GATE_EDITORIAL","type":"human_review","title":"Editorial/theological representative review","dependsOn":["V_CURRICULUM","V_FUNCTION"]},
+    {"id":"GATE_VISUAL","type":"human_review","title":"Independent visual/device review","dependsOn":["V_EXPERIENCE","V_OFFLINE"]}
+  ],
+  "rollback": "Revert experience-specific modules/styles/routes. No curriculum or learner-state migration should be required for rollback."
+}

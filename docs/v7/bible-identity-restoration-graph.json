@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "project": "canonical-shelf",
+  "change": "native-bible-identity-restoration",
+  "objective": "Restore v5 Bible visual identity and book-study capability natively in v7 while preserving the current curriculum and learner-state contracts.",
+  "invariants": [
+    "no changes under content/curriculum/**",
+    "no scored activity ID or ordering changes",
+    "no learner progress schema changes",
+    "nine-group Bible taxonomy remains canonical",
+    "Bible owns shelf, profiles, chapters, reader, and study affordances",
+    "no v5 bridge architecture or MutationObserver repair"
+  ],
+  "nodes": [
+    {"id":"B1","type":"gate","title":"Record plan and isolation invariant","status":"complete"},
+    {"id":"B2","type":"data","title":"Restore Bible-owned book-study metadata","dependsOn":["B1"]},
+    {"id":"B3","type":"ui","title":"Implement native semantic bookshelf","dependsOn":["B2"]},
+    {"id":"B4","type":"ui","title":"Implement native book profiles and reader continuity","dependsOn":["B2","B3"]},
+    {"id":"B5","type":"design","title":"Restore tactile nine-color shelf identity and responsive recomposition","dependsOn":["B3","B4"]},
+    {"id":"B6","type":"validation","title":"Extend Bible structural and coverage gates","dependsOn":["B2","B4"]},
+    {"id":"B7","type":"validation","title":"Verify curriculum-source diff is empty","dependsOn":["B5","B6"]},
+    {"id":"B8","type":"human_review","title":"Visual and editorial Bible review","dependsOn":["B7"]}
+  ],
+  "affectedSystems": ["public/bible.js","public/bible.css","public/bible-study.js","scripts/validate-bible.mjs"],
+  "excludedSystems": ["content/curriculum/**","public/learning.js","public/db.js","src/client/account.ts","migrations/**"],
+  "rollback": "Revert Bible-specific files and validator changes; no curriculum or learner-state migration required."
+}
