@@ -1,8 +1,8 @@
 import {readFile} from 'node:fs/promises';
 
 const read=path=>readFile(path,'utf8');
-const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,practiceExperience,practiceEngine,practiceData,practiceState,course,sw]=await Promise.all([
-  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/sw.js')
+const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,practiceExperience,practiceEngine,practiceEngineRestored,practiceData,practiceState,course,sw,verseData,...verseParts]=await Promise.all([
+  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-engine-restored.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/sw.js'),read('public/verse-data.js'),...Array.from({length:8},(_,i)=>read(`public/verse-data-${String(i+1).padStart(2,'0')}.js`))
 ]);
 
 const requireText=(source,text,message)=>{if(!source.includes(text))throw new Error(message||`missing required parity marker: ${text}`)};
@@ -19,7 +19,7 @@ const swRegister=bootstrap.indexOf("navigator.serviceWorker.register('/sw.js'");
 if(appImport<0||swRegister<0||appImport>swRegister)throw new Error('core app controls must initialize before service-worker registration/readiness');
 forbid(bootstrap,"await navigator.serviceWorker.ready;\n\nwindow.addEventListener",'service-worker readiness must not block core application initialization');
 
-for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible'])requireText(home,marker,`Home parity surface missing: ${marker}`);
+for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible','Practice rank','campaign stars'])requireText(home,marker,`Home parity surface missing: ${marker}`);
 for(const marker of ['courseLandingView','courseDetailView','unitExperienceView','review','mastery'])requireText(course,marker,`Course parity contract missing: ${marker}`);
 for(const marker of ['Bookshelf','Books & groups','Bible reader','Canon & timeline','book-profile-page','library-search','shelf-spine','STORY_ARC'])requireText(bible+libraryData,marker,`Bible parity surface missing: ${marker}`);
 const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/\{n:\d+,name:/g)||[]).length;
@@ -28,18 +28,25 @@ for(const marker of ['The Patriarchs','Exodus & Wilderness','Divided Kingdom','R
 for(const marker of ['A world made good, and quickly broken','Return, then the Second Temple bridge','Jesus','The movement, and an ending that is a beginning'])requireText(libraryData,marker,`Bible story arc missing: ${marker}`);
 
 for(const marker of ['Ask / search','Theology & doctrine','Christian life','Biblical concepts','Difficult questions','Glossary','Related exploration'])requireText(experience,marker,`Topics entry mode missing: ${marker}`);
-for(const marker of ['Recommended review','Practice Campaign','Arcade','Games & mastery','Ranks & achievements','Context & interpretation','Themes','Verse library'])requireText(practiceExperience,marker,`Practice surface missing: ${marker}`);
-for(const marker of ['The Order','The Groups','The Substance','The Verses','Full Gilt','Archivist'])requireText(practiceData,marker,`legacy Practice progression missing: ${marker}`);
+for(const marker of ['Recommended review','Practice Campaign','Arcade','Games & mastery','Ranks & achievements','Context & interpretation','Themes','Verse library','Restored v2/v3 passage library','Start Verse Drill'])requireText(practiceExperience,marker,`Practice surface missing: ${marker}`);
+for(const marker of ['The Order','The Groups','The Substance','The Verses','Full Gilt','Archivist','VERSE_COUNT'])requireText(practiceData,marker,`legacy Practice progression missing: ${marker}`);
 const campaignLevels=(practiceData.match(/\{id:'[ogsv]\d+'/g)||[]).length;
 if(campaignLevels!==40)throw new Error(`expected 40 restored Practice campaign levels, found ${campaignLevels}`);
-for(const marker of ['sequenceQuestion','shelfQuestion','binsQuestion','pairsQuestion','finishPracticeRun','practiceCampaignView','practiceArcadeView'])requireText(practiceEngine,marker,`Practice engine missing: ${marker}`);
+requireText(practiceEngine,"export * from './practice-engine-restored.js'",'Practice compatibility module must route through restored engine');
+for(const marker of ['sequenceQuestion','shelfQuestion','binsQuestion','pairsQuestion','questionVerseBook','questionVerseTheme','questionVerseFill','questionVerseJumble','questionVerseDrill','finishPracticeRun','practiceCampaignView','practiceArcadeView','Unsupported Practice engine'])requireText(practiceEngineRestored,marker,`restored Practice engine missing: ${marker}`);
+for(const engine of ['jumble','jumble-hard','guess-book','verse-book','verse-theme','verse-fill','verse-drill'])requireText(practiceEngineRestored,`engine==='${engine}'`,`advertised Practice engine is not implemented: ${engine}`);
 requireText(practiceState,"canonical-shelf-practice-v3",'Practice state must remain separately namespaced from Course learner state');
 
-for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/progress-experience.js','/course-experience.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-state.js','/practice-data.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
+for(const marker of ['VERSES=[','VERSE_COUNT=VERSES.length','Berean Standard Bible','King James Version','Your translation','parseCustomTranslation','filterVerses'])requireText(verseData,marker,`restored verse library contract missing: ${marker}`);
+const restoredVerseCount=verseParts.reduce((sum,part)=>sum+(part.match(/\{ref:/g)||[]).length,0);
+if(restoredVerseCount!==232)throw new Error(`expected 232 passages recovered from the actual v3 VERSES array, found ${restoredVerseCount}`);
+for(const ref of ['Genesis 1:1','John 3:16','Galatians 5:22-23','Revelation 21:5'])requireText(verseParts.join('\n'),`ref:"${ref}"`,`restored verse corpus missing boundary/anchor passage: ${ref}`);
+
+for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/progress-experience.js','/course-experience.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-engine-restored.js','/practice-state.js','/practice-data.js','/verse-data.js','/verse-data-01.js','/verse-data-08.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
 for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
 forbid(app,'MutationObserver','v7 experience must not restore v5 DOM-repair architecture');
 forbid(app,'v5-pages','v7 experience must not restore v5 bridge runtime');
 forbid(app,'v5-shell','v7 experience must not restore v5 bridge runtime');
 forbid(practiceState,'canonical-shelf-v6','Practice progression must not reuse Course IndexedDB state');
 
-console.log('cross-tab v2-v4 non-course restoration parity contract passed');
+console.log(`cross-tab v2-v4 non-course restoration parity contract passed (${restoredVerseCount} restored curated passages)`);
