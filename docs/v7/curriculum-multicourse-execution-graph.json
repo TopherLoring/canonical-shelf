@@ -6,9 +6,9 @@
   "decisionProtocol": "docs/v7/DECISION_PRECEDENCE.md",
   "plan": "docs/v7/CURRICULUM_MULTI_COURSE_PLAN.md",
   "validationEvidence": {
-    "productionCiRun": 35491896884,
-    "validatedHead": "dd4b66e82da15b14743239f74f93cd0dd998ad53",
-    "productionCi": "passed",
+    "productionCiRun": 35492272169,
+    "validatedHead": "b2fe236e9532748a8e3903f715618b6786d8b229",
+    "productionCi": "passed_final_prelaunch",
     "branchConvergenceAtValidation": "main merge base; 0 commits behind",
     "catalog": {
       "courses": 6,
@@ -36,7 +36,13 @@
     ]
   },
   "invariants": {
-    "primaryDestinations": ["Home", "Course", "Bible", "Topics", "Practice"],
+    "primaryDestinations": [
+      "Home",
+      "Course",
+      "Bible",
+      "Topics",
+      "Practice"
+    ],
     "topicsScored": false,
     "practiceIsReinforcement": true,
     "bibleOwnsShelfReader": true,
@@ -56,43 +62,482 @@
     "scoredActivities": 139,
     "reason": "owner-approved six-course redesign; old counts remain migration baseline only"
   },
-  "nodeTypes": ["governance", "audit", "schema", "content", "assessment", "implementation", "migration", "validation", "human_gate", "release"],
+  "nodeTypes": [
+    "governance",
+    "audit",
+    "schema",
+    "content",
+    "assessment",
+    "implementation",
+    "migration",
+    "validation",
+    "human_gate",
+    "release"
+  ],
   "nodes": [
-    {"id":"C0.GOVERNANCE","type":"governance","status":"complete","dependsOn":[],"outputs":["decision delta","implementation plan","execution plan","WBS"]},
-    {"id":"C0.GRAPH","type":"schema","status":"complete","dependsOn":["C0.GOVERNANCE"],"outputs":["typed execution DAG"]},
-    {"id":"C1.CONTENT_AUDIT","type":"audit","status":"complete","dependsOn":["C0.GRAPH"],"outputs":["lesson body inventory","duplicate/gap matrix","prerequisite map"],"evidence":"70 inherited lesson IDs preserved and mapped; missing historical-bridge content authored rather than duplicating known strong lessons"},
-    {"id":"C1.ASSESSMENT_AUDIT","type":"audit","status":"complete","dependsOn":["C0.GRAPH"],"outputs":["challenge inventory","mastery reuse map","interaction coverage"],"evidence":"legacy mastery preserved; new lesson checks, unit mastery, and course capstones generated and validated"},
-    {"id":"C1.ID_MIGRATION_MAP","type":"migration","status":"complete","dependsOn":["C1.CONTENT_AUDIT","C1.ASSESSMENT_AUDIT"],"outputs":["stable legacy placement map","new ID namespace"],"evidence":"70 inherited lesson IDs and 69 inherited mastery IDs remain stable; legacy unit bookmarks resolve through aliases"},
-    {"id":"C2.CURRICULUM_SCHEMA","type":"schema","status":"complete","dependsOn":["C1.ID_MIGRATION_MAP"],"outputs":["course/unit/lesson/scene/drawer/glossary/mastery/capstone schema"]},
-    {"id":"C2.PROGRAM_MAP","type":"content","status":"complete","dependsOn":["C1.CONTENT_AUDIT","C2.CURRICULUM_SCHEMA"],"outputs":["six courses","ordered units","legacy lesson placements"]},
-    {"id":"C2.GLOSSARY_MODEL","type":"schema","status":"complete","dependsOn":["C2.CURRICULUM_SCHEMA"],"outputs":["inline/lesson/course/global glossary model"],"evidence":"268 generated glossary terms plus lesson drawers and course/global glossary surfaces"},
-    {"id":"C2.RETENTION_MODEL","type":"schema","status":"complete","dependsOn":["C2.CURRICULUM_SCHEMA","C1.ASSESSMENT_AUDIT"],"outputs":["1/3/7/14/30/60 schedule","transfer metadata"]},
-    {"id":"C3.CATALOG_RUNTIME","type":"implementation","status":"complete","dependsOn":["C2.PROGRAM_MAP","C2.GLOSSARY_MODEL","C2.RETENTION_MODEL"],"outputs":["generated six-course catalog","compatibility mapping"],"evidence":"production CI generated and validated 6 courses / 44 units / 235 scored activities"},
-    {"id":"C3.STATE_MIGRATION","type":"migration","status":"complete","dependsOn":["C1.ID_MIGRATION_MAP","C3.CATALOG_RUNTIME"],"outputs":["deterministic learner-state compatibility","stable export/import behavior"],"evidence":"identity-preserving activity IDs and legacy-unit aliases avoid destructive progress rewrites; state/sync tests pass"},
-    {"id":"C4.COURSE1","type":"content","status":"complete","dependsOn":["C2.PROGRAM_MAP"],"outputs":["adult-beginner survey","cross-course previews","foundations capstone"]},
-    {"id":"C4.COURSE2","type":"content","status":"complete","dependsOn":["C2.PROGRAM_MAP"],"outputs":["Exodus","Sinai","tabernacle/Ark","sacrifice/priesthood","temple","prophets/exile/hope"]},
-    {"id":"C4.COURSE3","type":"content","status":"complete","dependsOn":["C2.PROGRAM_MAP"],"outputs":["Persian/Hellenistic/Hasmonean/Roman bridge","Jewish diversity","messianic/apocalyptic context"]},
-    {"id":"C4.COURSE4","type":"content","status":"complete","dependsOn":["C4.COURSE2","C4.COURSE3"],"outputs":["Gospels","Jesus teaching","passion/resurrection","Ascension/Pentecost","Acts/Paul"]},
-    {"id":"C4.COURSE5","type":"content","status":"complete","dependsOn":["C2.PROGRAM_MAP"],"outputs":["advanced textual/translation/genre/intertextual interpretation"]},
-    {"id":"C4.COURSE6","type":"content","status":"complete","dependsOn":["C2.PROGRAM_MAP"],"outputs":["advanced theology","traditions","difficult questions","final hope"]},
-    {"id":"C5.LESSON_CHECKS","type":"assessment","status":"complete","dependsOn":["C4.COURSE1","C4.COURSE2","C4.COURSE3","C4.COURSE4","C4.COURSE5","C4.COURSE6"],"outputs":["active checks for each scored lesson"],"evidence":"new lessons require multiple checks; assessment validation and E2E interaction tests pass"},
-    {"id":"C5.UNIT_MASTERY","type":"assessment","status":"complete","dependsOn":["C5.LESSON_CHECKS"],"outputs":["authored mastery for each scored unit"],"evidence":"44 unit-mastery activities generated and validated"},
-    {"id":"C5.COURSE_CAPSTONES","type":"assessment","status":"complete","dependsOn":["C5.UNIT_MASTERY"],"outputs":["six course synthesis experiences"],"evidence":"six course capstones generated and validated"},
-    {"id":"C5.RETENTION_TRANSFER","type":"assessment","status":"partial","dependsOn":["C5.COURSE_CAPSTONES","C2.RETENTION_MODEL"],"outputs":["spaced variants","cross-course transfer challenges"],"evidence":"1/3/7/14/30/60 scheduling and cross-course prerequisite reuse are present","remaining":"systematic changed-form review variants and richer transfer chains should be expanded during learning-quality review rather than inferred from schedule metadata alone"},
-    {"id":"C6.COURSE_UI","type":"implementation","status":"complete","dependsOn":["C3.CATALOG_RUNTIME","C4.COURSE1"],"outputs":["six-course roadmap","course/unit progress states"]},
-    {"id":"C6.LESSON_SCENES","type":"implementation","status":"complete","dependsOn":["C3.CATALOG_RUNTIME","C5.LESSON_CHECKS"],"outputs":["multi-scene lesson renderer","semantic progression"]},
-    {"id":"C6.DRAWERS_GLOSSARY","type":"implementation","status":"complete","dependsOn":["C2.GLOSSARY_MODEL","C6.LESSON_SCENES"],"outputs":["progressive drawers","lesson/course/global glossary"]},
-    {"id":"C6.MASTERY_RETENTION_UI","type":"implementation","status":"implemented","dependsOn":["C5.RETENTION_TRANSFER","C6.COURSE_UI"],"outputs":["mastery/retention/review-due visualization","Practice integration"],"note":"runtime support is present; learning-quality review may deepen transfer/review presentation"},
-    {"id":"V.SCHEMA_CONTENT","type":"validation","status":"passed","dependsOn":["C3.CATALOG_RUNTIME","C4.COURSE1","C4.COURSE2","C4.COURSE3","C4.COURSE4","C4.COURSE5","C4.COURSE6"],"outputs":["schema/content/reference gates"],"evidence":"production-ci run 35491896884"},
-    {"id":"V.STATE","type":"validation","status":"passed","dependsOn":["C3.STATE_MIGRATION"],"outputs":["migration/export/import regression evidence"],"evidence":"production-ci run 35491896884"},
-    {"id":"V.INTERACTION","type":"validation","status":"passed_automated","dependsOn":["C6.LESSON_SCENES","C6.DRAWERS_GLOSSARY","C6.MASTERY_RETENTION_UI"],"outputs":["E2E interaction and automated accessibility evidence"],"evidence":"production-ci run 35491896884; multi-browser Playwright + axe coverage"},
-    {"id":"V.OFFLINE_PERF","type":"validation","status":"passed_automated","dependsOn":["C6.COURSE_UI","C6.LESSON_SCENES"],"outputs":["offline/update/performance evidence"],"evidence":"production-ci run 35491896884 includes offline service-worker regression coverage; manual performance/device review remains part of deferred human assurance"},
-    {"id":"G.EDITORIAL_THEOLOGICAL","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.SCHEMA_CONTENT"],"requiredBeforePublicLaunch":true},
-    {"id":"G.NOVICE_USABILITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.INTERACTION"],"requiredBeforePublicLaunch":true},
-    {"id":"G.RESPONSIVE_ACCESSIBILITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.INTERACTION","V.OFFLINE_PERF"],"requiredBeforePublicLaunch":true},
-    {"id":"G.LEARNING_QUALITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["C5.UNIT_MASTERY","C5.COURSE_CAPSTONES","C5.RETENTION_TRANSFER"],"requiredBeforePublicLaunch":true,"note":"review whether individual unit masteries are sufficiently rich and whether changed-form retention/transfer is deep enough; compact does not mean shallow"},
-    {"id":"R.PRELAUNCH_DEV","type":"release","status":"ready_after_current_head_ci","dependsOn":["V.SCHEMA_CONTENT","V.STATE","V.INTERACTION","V.OFFLINE_PERF"],"note":"human gates are explicitly waived as blockers for pre-launch development only; they remain required before public launch"},
-    {"id":"R.PUBLIC_LAUNCH","type":"release","status":"blocked_pending_human_gates","dependsOn":["R.PRELAUNCH_DEV","G.EDITORIAL_THEOLOGICAL","G.NOVICE_USABILITY","G.RESPONSIVE_ACCESSIBILITY","G.LEARNING_QUALITY"]}
+    {
+      "id": "C0.GOVERNANCE",
+      "type": "governance",
+      "status": "complete",
+      "dependsOn": [],
+      "outputs": [
+        "decision delta",
+        "implementation plan",
+        "execution plan",
+        "WBS"
+      ]
+    },
+    {
+      "id": "C0.GRAPH",
+      "type": "schema",
+      "status": "complete",
+      "dependsOn": [
+        "C0.GOVERNANCE"
+      ],
+      "outputs": [
+        "typed execution DAG"
+      ]
+    },
+    {
+      "id": "C1.CONTENT_AUDIT",
+      "type": "audit",
+      "status": "complete",
+      "dependsOn": [
+        "C0.GRAPH"
+      ],
+      "outputs": [
+        "lesson body inventory",
+        "duplicate/gap matrix",
+        "prerequisite map"
+      ],
+      "evidence": "70 inherited lesson IDs preserved and mapped; missing historical-bridge content authored rather than duplicating known strong lessons"
+    },
+    {
+      "id": "C1.ASSESSMENT_AUDIT",
+      "type": "audit",
+      "status": "complete",
+      "dependsOn": [
+        "C0.GRAPH"
+      ],
+      "outputs": [
+        "challenge inventory",
+        "mastery reuse map",
+        "interaction coverage"
+      ],
+      "evidence": "legacy mastery preserved; new lesson checks, unit mastery, and course capstones generated and validated"
+    },
+    {
+      "id": "C1.ID_MIGRATION_MAP",
+      "type": "migration",
+      "status": "complete",
+      "dependsOn": [
+        "C1.CONTENT_AUDIT",
+        "C1.ASSESSMENT_AUDIT"
+      ],
+      "outputs": [
+        "stable legacy placement map",
+        "new ID namespace"
+      ],
+      "evidence": "70 inherited lesson IDs and 69 inherited mastery IDs remain stable; legacy unit bookmarks resolve through aliases"
+    },
+    {
+      "id": "C2.CURRICULUM_SCHEMA",
+      "type": "schema",
+      "status": "complete",
+      "dependsOn": [
+        "C1.ID_MIGRATION_MAP"
+      ],
+      "outputs": [
+        "course/unit/lesson/scene/drawer/glossary/mastery/capstone schema"
+      ]
+    },
+    {
+      "id": "C2.PROGRAM_MAP",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C1.CONTENT_AUDIT",
+        "C2.CURRICULUM_SCHEMA"
+      ],
+      "outputs": [
+        "six courses",
+        "ordered units",
+        "legacy lesson placements"
+      ]
+    },
+    {
+      "id": "C2.GLOSSARY_MODEL",
+      "type": "schema",
+      "status": "complete",
+      "dependsOn": [
+        "C2.CURRICULUM_SCHEMA"
+      ],
+      "outputs": [
+        "inline/lesson/course/global glossary model"
+      ],
+      "evidence": "268 generated glossary terms plus lesson drawers and course/global glossary surfaces"
+    },
+    {
+      "id": "C2.RETENTION_MODEL",
+      "type": "schema",
+      "status": "complete",
+      "dependsOn": [
+        "C2.CURRICULUM_SCHEMA",
+        "C1.ASSESSMENT_AUDIT"
+      ],
+      "outputs": [
+        "1/3/7/14/30/60 schedule",
+        "transfer metadata"
+      ]
+    },
+    {
+      "id": "C3.CATALOG_RUNTIME",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP",
+        "C2.GLOSSARY_MODEL",
+        "C2.RETENTION_MODEL"
+      ],
+      "outputs": [
+        "generated six-course catalog",
+        "compatibility mapping"
+      ],
+      "evidence": "production CI generated and validated 6 courses / 44 units / 235 scored activities"
+    },
+    {
+      "id": "C3.STATE_MIGRATION",
+      "type": "migration",
+      "status": "complete",
+      "dependsOn": [
+        "C1.ID_MIGRATION_MAP",
+        "C3.CATALOG_RUNTIME"
+      ],
+      "outputs": [
+        "deterministic learner-state compatibility",
+        "stable export/import behavior"
+      ],
+      "evidence": "identity-preserving activity IDs and legacy-unit aliases avoid destructive progress rewrites; state/sync tests pass"
+    },
+    {
+      "id": "C4.COURSE1",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP"
+      ],
+      "outputs": [
+        "adult-beginner survey",
+        "cross-course previews",
+        "foundations capstone"
+      ]
+    },
+    {
+      "id": "C4.COURSE2",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP"
+      ],
+      "outputs": [
+        "Exodus",
+        "Sinai",
+        "tabernacle/Ark",
+        "sacrifice/priesthood",
+        "temple",
+        "prophets/exile/hope"
+      ]
+    },
+    {
+      "id": "C4.COURSE3",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP"
+      ],
+      "outputs": [
+        "Persian/Hellenistic/Hasmonean/Roman bridge",
+        "Jewish diversity",
+        "messianic/apocalyptic context"
+      ]
+    },
+    {
+      "id": "C4.COURSE4",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C4.COURSE2",
+        "C4.COURSE3"
+      ],
+      "outputs": [
+        "Gospels",
+        "Jesus teaching",
+        "passion/resurrection",
+        "Ascension/Pentecost",
+        "Acts/Paul"
+      ]
+    },
+    {
+      "id": "C4.COURSE5",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP"
+      ],
+      "outputs": [
+        "advanced textual/translation/genre/intertextual interpretation"
+      ]
+    },
+    {
+      "id": "C4.COURSE6",
+      "type": "content",
+      "status": "complete",
+      "dependsOn": [
+        "C2.PROGRAM_MAP"
+      ],
+      "outputs": [
+        "advanced theology",
+        "traditions",
+        "difficult questions",
+        "final hope"
+      ]
+    },
+    {
+      "id": "C5.LESSON_CHECKS",
+      "type": "assessment",
+      "status": "complete",
+      "dependsOn": [
+        "C4.COURSE1",
+        "C4.COURSE2",
+        "C4.COURSE3",
+        "C4.COURSE4",
+        "C4.COURSE5",
+        "C4.COURSE6"
+      ],
+      "outputs": [
+        "active checks for each scored lesson"
+      ],
+      "evidence": "new lessons require multiple checks; assessment validation and E2E interaction tests pass"
+    },
+    {
+      "id": "C5.UNIT_MASTERY",
+      "type": "assessment",
+      "status": "complete",
+      "dependsOn": [
+        "C5.LESSON_CHECKS"
+      ],
+      "outputs": [
+        "authored mastery for each scored unit"
+      ],
+      "evidence": "44 unit-mastery activities generated and validated"
+    },
+    {
+      "id": "C5.COURSE_CAPSTONES",
+      "type": "assessment",
+      "status": "complete",
+      "dependsOn": [
+        "C5.UNIT_MASTERY"
+      ],
+      "outputs": [
+        "six course synthesis experiences"
+      ],
+      "evidence": "six course capstones generated and validated"
+    },
+    {
+      "id": "C5.RETENTION_TRANSFER",
+      "type": "assessment",
+      "status": "partial",
+      "dependsOn": [
+        "C5.COURSE_CAPSTONES",
+        "C2.RETENTION_MODEL"
+      ],
+      "outputs": [
+        "spaced variants",
+        "cross-course transfer challenges"
+      ],
+      "evidence": "1/3/7/14/30/60 scheduling and cross-course prerequisite reuse are present",
+      "remaining": "systematic changed-form review variants and richer transfer chains should be expanded during learning-quality review rather than inferred from schedule metadata alone"
+    },
+    {
+      "id": "C6.COURSE_UI",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "C3.CATALOG_RUNTIME",
+        "C4.COURSE1"
+      ],
+      "outputs": [
+        "six-course roadmap",
+        "course/unit progress states"
+      ]
+    },
+    {
+      "id": "C6.LESSON_SCENES",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "C3.CATALOG_RUNTIME",
+        "C5.LESSON_CHECKS"
+      ],
+      "outputs": [
+        "multi-scene lesson renderer",
+        "semantic progression"
+      ]
+    },
+    {
+      "id": "C6.DRAWERS_GLOSSARY",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "C2.GLOSSARY_MODEL",
+        "C6.LESSON_SCENES"
+      ],
+      "outputs": [
+        "progressive drawers",
+        "lesson/course/global glossary"
+      ]
+    },
+    {
+      "id": "C6.MASTERY_RETENTION_UI",
+      "type": "implementation",
+      "status": "implemented",
+      "dependsOn": [
+        "C5.RETENTION_TRANSFER",
+        "C6.COURSE_UI"
+      ],
+      "outputs": [
+        "mastery/retention/review-due visualization",
+        "Practice integration"
+      ],
+      "note": "runtime support is present; learning-quality review may deepen transfer/review presentation"
+    },
+    {
+      "id": "V.SCHEMA_CONTENT",
+      "type": "validation",
+      "status": "passed",
+      "dependsOn": [
+        "C3.CATALOG_RUNTIME",
+        "C4.COURSE1",
+        "C4.COURSE2",
+        "C4.COURSE3",
+        "C4.COURSE4",
+        "C4.COURSE5",
+        "C4.COURSE6"
+      ],
+      "outputs": [
+        "schema/content/reference gates"
+      ],
+      "evidence": "production-ci run 35492272169"
+    },
+    {
+      "id": "V.STATE",
+      "type": "validation",
+      "status": "passed",
+      "dependsOn": [
+        "C3.STATE_MIGRATION"
+      ],
+      "outputs": [
+        "migration/export/import regression evidence"
+      ],
+      "evidence": "production-ci run 35492272169"
+    },
+    {
+      "id": "V.INTERACTION",
+      "type": "validation",
+      "status": "passed_automated",
+      "dependsOn": [
+        "C6.LESSON_SCENES",
+        "C6.DRAWERS_GLOSSARY",
+        "C6.MASTERY_RETENTION_UI"
+      ],
+      "outputs": [
+        "E2E interaction and automated accessibility evidence"
+      ],
+      "evidence": "production-ci run 35492272169; multi-browser Playwright + axe coverage"
+    },
+    {
+      "id": "V.OFFLINE_PERF",
+      "type": "validation",
+      "status": "passed_automated",
+      "dependsOn": [
+        "C6.COURSE_UI",
+        "C6.LESSON_SCENES"
+      ],
+      "outputs": [
+        "offline/update/performance evidence"
+      ],
+      "evidence": "production-ci run 35492272169 includes offline service-worker regression coverage; manual performance/device review remains part of deferred human assurance"
+    },
+    {
+      "id": "G.EDITORIAL_THEOLOGICAL",
+      "type": "human_gate",
+      "status": "waived_for_prelaunch_dev",
+      "dependsOn": [
+        "V.SCHEMA_CONTENT"
+      ],
+      "requiredBeforePublicLaunch": true
+    },
+    {
+      "id": "G.NOVICE_USABILITY",
+      "type": "human_gate",
+      "status": "waived_for_prelaunch_dev",
+      "dependsOn": [
+        "V.INTERACTION"
+      ],
+      "requiredBeforePublicLaunch": true
+    },
+    {
+      "id": "G.RESPONSIVE_ACCESSIBILITY",
+      "type": "human_gate",
+      "status": "waived_for_prelaunch_dev",
+      "dependsOn": [
+        "V.INTERACTION",
+        "V.OFFLINE_PERF"
+      ],
+      "requiredBeforePublicLaunch": true
+    },
+    {
+      "id": "G.LEARNING_QUALITY",
+      "type": "human_gate",
+      "status": "waived_for_prelaunch_dev",
+      "dependsOn": [
+        "C5.UNIT_MASTERY",
+        "C5.COURSE_CAPSTONES",
+        "C5.RETENTION_TRANSFER"
+      ],
+      "requiredBeforePublicLaunch": true,
+      "note": "review whether individual unit masteries are sufficiently rich and whether changed-form retention/transfer is deep enough; compact does not mean shallow"
+    },
+    {
+      "id": "R.PRELAUNCH_DEV",
+      "type": "release",
+      "status": "merged_to_main",
+      "dependsOn": [
+        "V.SCHEMA_CONTENT",
+        "V.STATE",
+        "V.INTERACTION",
+        "V.OFFLINE_PERF"
+      ],
+      "note": "human gates are explicitly waived as blockers for pre-launch development only; they remain required before public launch",
+      "evidence": {
+        "pr": 10,
+        "mergeCommit": "7f289d949aede49da7e962be5b514a5cfe30931d",
+        "productionCiRun": 35492272169,
+        "ownerAuthorization": "human gates waived for pre-launch development"
+      }
+    },
+    {
+      "id": "R.PUBLIC_LAUNCH",
+      "type": "release",
+      "status": "blocked_pending_human_gates",
+      "dependsOn": [
+        "R.PRELAUNCH_DEV",
+        "G.EDITORIAL_THEOLOGICAL",
+        "G.NOVICE_USABILITY",
+        "G.RESPONSIVE_ACCESSIBILITY",
+        "G.LEARNING_QUALITY"
+      ]
+    }
   ],
   "futureWork": [
     "complete editorial/theological review of representative and contested new lessons before public launch",
