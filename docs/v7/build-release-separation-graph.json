@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf build/release validation separation",
+  "type": "maintenance",
+  "nodes": [
+    {"id":"B0.AUDIT_LOGS","type":"audit","dependsOn":[],"status":"complete"},
+    {"id":"B1.SEPARATE_BUILD","type":"implementation","dependsOn":["B0.AUDIT_LOGS"],"status":"in_progress"},
+    {"id":"B2.VERIFY_CI","type":"validation","dependsOn":["B1.SEPARATE_BUILD"],"status":"pending"},
+    {"id":"B3.RELEASE_READY","type":"gate","dependsOn":["B2.VERIFY_CI"],"status":"pending"}
+  ],
+  "acceptance": {
+    "build": "bun run build succeeds without Cloudflare deployment-only environment variables",
+    "verify": "existing release validation and test coverage remains intact",
+    "deployment": "production configuration remains required only at deployment time"
+  }
+}
