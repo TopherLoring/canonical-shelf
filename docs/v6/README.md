@@ -100,3 +100,26 @@ For the active v7 state, use:
 - `docs/v7/PLAN_DELTA_V7_V5_POLISH.md`
 - `docs/v7/DESIGN_INTENT_DELTA_V5_POLISH.md`
 - `docs/v7/project-execution-graph.json`
+
+## Migration Governance
+
+The Canonical Shelf v6 is a greenfield product architecture. It does not
+extend, wrap, or preserve any prior version's data model, routing, or UI
+contracts. Every artifact that crosses into v6 does so through an audited
+migration with a recorded content hash and unit/lesson/mastery counts.
+
+Governing rules:
+
+- **Never inherit by default.** No legacy table, asset, route, or content
+  file enters v6 because it existed before. Inclusion requires an explicit
+  migration entry in `content/migration/admissibility.json`.
+- Legacy material is a migration candidate, never a default requirement.
+  Candidacy is evaluated against v6's knowledge model in
+  `src/knowledge/model.ts`; anything that fails admissibility is dropped,
+  not adapted.
+- Every migration run is reproducible: `scripts/migrate-vendored.mjs`
+  emits the audited migration hash, and `scripts/postprocess-v6.mjs`
+  reconciles activity counts against that hash. A count drift fails the
+  build.
+- Removal is the default disposition. The burden of proof sits on keeping
+  a legacy artifact, not on deleting it.
