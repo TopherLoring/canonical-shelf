@@ -1,5 +1,9 @@
 # Canonical Shelf v7 — Documentation Closeout Plan
 
+## Status
+
+**Documentation updates complete; closeout ready to merge.** This branch is documentation-only. Product/runtime behavior remains unchanged.
+
 ## Objective
 Bring the repository documentation into exact alignment with the v7 release merged to `main` at `801a9706d7cec9574ceadca7647a9f63a2b554fc`, without changing product behavior or source code.
 
@@ -12,7 +16,7 @@ Bring the repository documentation into exact alignment with the v7 release merg
 - Current baseline decisions are described as baselines subject to the owner-precedence protocol, not immutable constraints.
 
 ## Acceptance criteria
-1. No current document states that v6 is the active/current product.
+1. No active/current document states that v6 is the active product.
 2. No current v7 document states that the merged release is still isolated on `v7-v5-polish`, awaiting merge, or merely a release candidate.
 3. Automated verification is recorded as passed for the release candidate that became merge commit `801a9706...`.
 4. Human review items that were not independently evidenced are not falsely marked as passed; they are recorded as continuing quality-assurance work rather than retroactively claimed complete.
@@ -20,23 +24,24 @@ Bring the repository documentation into exact alignment with the v7 release merg
 6. The merged v7 direction remains v5-led for learner-facing product structure, with v4 used selectively as a scholarly editorial/content-depth reference.
 7. Documentation changes do not alter code, learner state, curriculum IDs/counts, theology policy, deployment configuration, or runtime behavior.
 
-## Implementation plan
-- Update the root README to the current v7 product/release state.
-- Update the v7 V5 Polish plan from pre-merge language to implementation/merge disposition and preserve remaining quality work explicitly.
-- Update the v7 Design Intent artifact so its human-review section reflects post-merge assurance rather than a pre-release blocker.
-- Update the Personal Study/Feedback delta with implementation and verification disposition.
-- Update the Open-source Assembly delta to describe the actual release choice: native primitives used for this release; candidates remain available for future use when they materially improve experience.
-- Update the typed v7 execution graph with release metadata and node dispositions.
-- Mark v6 README/release-readiness documents as historical snapshots superseded by v7.
-- Re-read all changed documents from the branch, inspect the diff/PR, then merge documentation-only changes back to `main`.
+## Implementation plan — disposition
+- Root README updated to current v7 product/release state — **complete**.
+- v7 V5 Polish plan updated from pre-merge language to implementation/merge disposition — **complete**.
+- v7 Design Intent artifact updated to post-merge assurance posture — **complete**.
+- Personal Study/Feedback delta updated with implementation and verification disposition — **complete**.
+- Open-source Assembly delta updated to reflect the actual release choice and future candidate policy — **complete**.
+- Typed v7 execution graph updated with release metadata and node dispositions — **complete**.
+- v6 README/release-readiness documents marked historical — **complete**.
+- Changed documents re-read from the branch and documentation-only scope confirmed — **complete**.
+- Documentation-only PR merge back to `main` — **next/final step**.
 
 ## Execution plan / WBS
-1. **D0 — Inventory**: inspect root README, all `docs/v7/*`, and current v6 release-governance docs for stale release-state language.
-2. **D1 — Current-state docs**: update README and v7 decision/design/plan documentation.
-3. **D2 — Historical labeling**: mark superseded v6 release documentation as historical without rewriting its historical record.
-4. **D3 — Typed graph**: update `docs/v7/project-execution-graph.json` and the documentation-closeout graph with implemented/merged/continuing dispositions.
-5. **D4 — Verification**: fetch every changed document from the branch, confirm there are no stale active-v6/pre-merge claims, and open a documentation-only PR.
-6. **D5 — Closeout**: merge after document review; verify `main` points to the documentation-closeout merge.
+1. **D0 — Inventory — COMPLETE**
+2. **D1 — Current-state docs — COMPLETE**
+3. **D2 — Historical labeling — COMPLETE**
+4. **D3 — Typed graph — COMPLETE**
+5. **D4 — Verification — COMPLETE**
+6. **D5 — Closeout — READY**
 
 ## Dependencies
 `D0 -> D1 -> D3 -> D4 -> D5`
