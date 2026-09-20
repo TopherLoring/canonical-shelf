@@ -1,5 +1,5 @@
 import {readFile} from 'node:fs/promises';
-import {normalizeLearnerState,applyActivityResult} from '../public/db.js';
+import {normalizeLearnerState,applyActivityResult,REVIEW_DAYS} from '../public/db.js';
 import {createSyncMeta,mergeLearnerState,remoteSnapshot} from '../public/sync.js';
 import {challengeShape,challengeEvaluationMode} from '../public/learning.js';
 
@@ -26,6 +26,7 @@ assert(!lesson.completed.includes('lesson:three'),'two passed challenges complet
 lesson=applyActivityResult(lesson,'lesson:three',{challengeIndex:2,totalChallenges:3,mode:'scored',passed:true},'2026-09-19T01:02:00.000Z').state;
 assert(lesson.completed.includes('lesson:three'),'lesson did not complete after all three challenges passed');
 assert(lesson.reviewSchedule['lesson:three']?.stage===0,'review did not begin after full lesson completion');
+assert(lesson.reviewSchedule['lesson:three']?.intervalDays===1,'first review interval is not one day');
 
 lesson=applyActivityResult(lesson,'lesson:three',{challengeIndex:0,totalChallenges:3,mode:'scored',passed:false},'2026-09-19T01:03:00.000Z').state;
 assert(lesson.challengeProgress['lesson:three'].challenges['0'].passed===true,'failed retry erased previously demonstrated challenge success');
@@ -52,9 +53,9 @@ assert(!masteryReflection.completed.includes('mastery:reflection'),'reflection c
 
 const legacy=normalizeLearnerState({
   version:2,
-  completed:['lesson:legacy'],
+  completed:['lesson:legacy','mastery:legacy'],
   attempts:{'lesson:legacy':3},
-  mastery:{},
+  mastery:{'mastery:legacy':{passed:true}},
   reviews:{},
   reviewSchedule:{'lesson:legacy':{stage:1,dueAt:'2026-09-20T00:00:00.000Z',intervalDays:3}},
   migrations:{},
@@ -63,6 +64,7 @@ const legacy=normalizeLearnerState({
 });
 assert(legacy.version===3,'legacy learner state did not normalize to schema v3');
 assert(legacy.completed.includes('lesson:legacy'),'legacy completion was lost');
+assert(legacy.completed.includes('mastery:legacy'),'legacy mastery completion was lost');
 assert(legacy.migrations.assessmentV3?.fromVersion===2,'assessment-v3 migration marker missing');
 
 const roundTrip=normalizeLearnerState(JSON.parse(JSON.stringify(lesson)));
@@ -80,21 +82,42 @@ assert(!('legacyRaw' in remote),'legacy raw migration data leaked into remote sn
 assert(!('outbox' in (remote.sync||{})),'local sync outbox leaked into remote snapshot');
 
 const catalog=JSON.parse(await readFile('public/data/catalog.json','utf8'));
-assert(catalog.units.length===25,'expected 25 units');
-assert(catalog.lessons.length===70,'expected 70 lessons');
-assert(catalog.masteryIds.length===69,'expected 69 mastery IDs');
-assert(catalog.activities.length===139,'expected 139 activities');
+assert(catalog.courses.length===6,'expected six courses');
+assert(catalog.legacyLessonIds.length===70,'expected all 70 legacy guided lesson IDs to survive');
+assert(catalog.legacyMasteryIds.length===69,'expected all 69 legacy mastery IDs to survive');
+assert(catalog.lessons.length>70,'expected added guided lessons');
+assert(catalog.masteryIds.length>69,'expected added mastery/capstone IDs');
+assert(catalog.activities.length===catalog.lessons.length+catalog.masteryIds.length,'activity catalog is not lesson + mastery total');
+assert(JSON.stringify(REVIEW_DAYS)===JSON.stringify([1,3,7,14,30,60]),'spaced retention intervals changed');
 
+const masteryRecord=id=>catalog.mastery?.[id]||catalog.legacyMastery?.CANON_V4_MASTERY?.[id]||null;
 const shapeCounts={};
 const unsupported=[];
 for(const id of catalog.masteryIds){
-  const challenge=catalog.legacyMastery?.CANON_V4_MASTERY?.[id]?.challenge;
+  const challenge=masteryRecord(id)?.challenge;
   assert(challenge,`mastery challenge missing: ${id}`);
   const shape=challengeShape(challenge);
   shapeCounts[shape]=(shapeCounts[shape]||0)+1;
   if(challengeEvaluationMode(challenge)!=='scored')unsupported.push({id,kind:challenge.kind,shape,keys:Object.keys(challenge)});
 }
 if(unsupported.length)throw new Error(`mastery challenges without deterministic authored scoring:\n${JSON.stringify(unsupported,null,2)}`);
+
+for(const unit of catalog.units){
+  const ids=catalog.byUnit[unit.id]||[];
+  assert(ids.some(activityId=>{
+    const activity=catalog.activities.find(item=>item.id===activityId);
+    return activity?.masteryType==='unit-mastery';
+  }),`${unit.id} has no unit mastery activity`);
+}
+for(const course of catalog.courses){
+  assert(catalog.activities.some(activity=>activity.courseId===course.id&&activity.masteryType==='course-capstone'),`${course.id} has no course capstone`);
+}
+
+for(const lessonItem of catalog.lessons){
+  const challenges=lessonItem.challenges||[];
+  assert(challenges.length>=1,`${lessonItem.id} has no lesson game/check`);
+  if(lessonItem.newCurriculum)assert(challenges.length>=2,`${lessonItem.id} new curriculum lesson needs at least two active checks`);
+}
 
 const nWhat=catalog.legacyMastery?.CANON_V4_MASTERY?.['n.what']?.challenge;
 assert(nWhat?.kind==='book-detective','n.what book-detective contract missing');
@@ -103,6 +126,8 @@ assert(challengeShape(nWhat)==='single-choice','n.what scalar answer was not rec
 const learningSource=await readFile('public/learning.js','utf8');
 assert(!learningSource.includes("trim().length>=20"),'legacy 20-character correctness fallback remains');
 assert(!learningSource.includes('minlength="20"'),'legacy minimum-length pseudo-assessment remains');
+assert(learningSource.includes('lesson-drawers'),'lesson progressive-disclosure drawers missing');
+assert(learningSource.includes('glossaryView'),'course/global glossary surface missing');
 
 console.log('mastery challenge shapes:',shapeCounts);
-console.log('v7 assessment completion/state/migration/sync regression gates passed');
+console.log(`multi-course assessment gates passed: ${catalog.lessons.length} lessons / ${catalog.masteryIds.length} mastery+capstone / ${catalog.activities.length} total`);
