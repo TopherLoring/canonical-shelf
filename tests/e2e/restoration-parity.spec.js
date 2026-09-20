@@ -16,12 +16,12 @@ test('Bible restores the 66-book tactile shelf and book-profile continuity',asyn
   await expect(page.getByRole('heading',{name:'Genesis',exact:true}).first()).toBeVisible();
   await expect(page.locator('.book-state-chip')).toContainText('Current');
 
-  const readLink=page.getByRole('link',{name:/Read Genesis/i}).first();
+  const readLink=page.getByRole('link',{name:'Read chapter 1',exact:true});
   await expect(readLink).toBeVisible();
   await readLink.click();
   await expect(page).toHaveURL(/book=1.*chapter=1|chapter=1.*book=1/);
   await expect(page.locator('.reader.scripture')).toBeVisible();
-  await expect(page.getByRole('link',{name:/Book profile/i}).first()).toBeVisible();
+  await expect(page.getByRole('link',{name:/Genesis profile|Book details/i}).first()).toBeVisible();
 });
 
 test('Topics exposes authored sections, Scripture references, and related traversal',async({page})=>{
@@ -31,7 +31,7 @@ test('Topics exposes authored sections, Scripture references, and related traver
   await expect(page.getByText('Why Christians say this',{exact:true})).toBeVisible();
   await expect(page.getByText(/Matthew 28:19/).first()).toBeVisible();
   await expect(page.locator('.related-topics, .topic-course-links').first()).toBeVisible();
-  await expect(page.getByRole('button',{name:/Ask the Guide/i})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Ask the Theologian about this',exact:true})).toBeVisible();
 });
 
 test('Search reaches deep content across Topics, Course, books, passages, and glossary',async({page})=>{
@@ -41,7 +41,7 @@ test('Search reaches deep content across Topics, Course, books, passages, and gl
     await expect(page.getByRole('heading',{name:domain,exact:true})).toBeVisible();
   }
   await expect(page.locator('.search-hit').first()).toBeVisible();
-  await expect(page.getByRole('button',{name:/Ask the Guide/i})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Ask the Theologian about this',exact:true})).toBeVisible();
 });
 
 test('Course renders authored visuals as semantic learning objects without changing curriculum',async({page})=>{
@@ -68,7 +68,7 @@ test('Practice exposes the full recovered curated passage library and translatio
 
 test('Guide retrieves evidence from restored cross-product study graph',async({page})=>{
   await page.goto('/search?q=trinity');
-  await page.getByRole('button',{name:/Ask the Guide/i}).click();
+  await page.getByRole('button',{name:'Ask the Theologian about this',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Ask the Guide',exact:true})).toBeVisible();
   await expect(page.getByText('Evidence and connections',{exact:true})).toBeVisible();
   await expect(page.locator('#guide-body .result').first()).toBeVisible();
