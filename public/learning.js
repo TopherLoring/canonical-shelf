@@ -84,7 +84,7 @@ function parseCorpus(text){
   return parsedCorpusRows;
 }
 
-const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${()}|[\]\\]/g,'\\function scriptureMarkup(lesson,corpus,esc){'));
+const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,'\\const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${()}|[\]\\]/g,'\\function scriptureMarkup(lesson,corpus,esc){'));'));
 const supportingReferencePattern=new RegExp(`\\b(${referenceNames.join('|')})\\s+\\d+:\\d+(?:[-–]\\d+)?`,'gi');
 
 function supportingReferencesMarkup(text,corpus,esc){
@@ -211,7 +211,7 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
   const finalScene=sceneIndex===scenes.length-1;
   const next=finalScene?(continuation?.href||exitFallback):focusHref(baseHref,sceneIndex+1);
   const nextLabel=!finalScene?'Continue →':continuation?completed?`Continue to ${continuation.label} →`:`Explore ${continuation.label} →`:'Return to unit →';
-  const completion=${'finalScene&&completed'}?'<aside class="lesson-complete" role="status"><span aria-hidden="true">✓</span><div><strong>Lesson complete</strong><p>You finished every required check. Review remains available whenever you want a refresher.</p></div></aside>':'';
+  const completion=finalScene&&completed?'<aside class="lesson-complete" role="status"><span aria-hidden="true">✓</span><div><strong>Lesson complete</strong><p>You finished every required check. Review remains available whenever you want a refresher.</p></div></aside>':'';
   const progress=Math.round(((sceneIndex+1)/Math.max(scenes.length,1))*100);
   const courseLabel=courseSequence?`Course ${courseSequence} · ${courseTitle} · `:'';
   return `<section class="study-focus" data-study-focus>
