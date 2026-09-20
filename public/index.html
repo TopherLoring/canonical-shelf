@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/learning.css">
   <link rel="stylesheet" href="/bible.css">
   <link rel="stylesheet" href="/utility-panels.css">
+  <link rel="stylesheet" href="/experience.css">
   <title>Canonical Shelf</title>
 </head>
 <body>
@@ -21,10 +22,18 @@
     <a class="brand" href="/home" aria-label="Canonical Shelf home"><span aria-hidden="true">✦</span><span>Canonical Shelf</span></a>
     <form id="global-search" class="search" role="search">
       <label class="sr-only" for="q">Search Bible, Topics, and Course</label>
-      <input id="q" name="q" type="search" placeholder="Search Scripture, topics, or course…" autocomplete="off">
+      <input id="q" name="q" type="search" placeholder="Search Scripture, topics, glossary, or course…" autocomplete="off">
       <button type="submit">Search</button>
     </form>
-    <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel" disabled aria-disabled="true">Account &amp; sync</button>
+    <div class="shell-tools" aria-label="Study utilities">
+      <label class="translation-control">Translation
+        <select id="translation-select" aria-label="Bible translation">
+          <option value="bsb" selected>BSB</option>
+        </select>
+      </label>
+      <button id="progress-open" class="progress-open" type="button" aria-haspopup="dialog" aria-controls="progress-panel">Progress</button>
+      <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel" disabled aria-disabled="true">Account &amp; sync</button>
+    </div>
   </header>
   <nav class="primary" aria-label="Primary">
     <a href="/home" data-route="home">Home</a>
@@ -35,6 +44,11 @@
   </nav>
   <p id="pwa-status" class="pwa-status" role="status" aria-live="polite">Preparing offline access…</p>
   <main id="main" tabindex="-1" aria-live="polite"></main>
+
+  <aside id="progress-panel" class="progress-panel" hidden aria-labelledby="progress-title">
+    <div class="guide-head"><h2 id="progress-title">Your Canonical Shelf</h2><button id="progress-close" aria-label="Close progress">×</button></div>
+    <div id="progress-body"><p>Loading progress…</p></div>
+  </aside>
 
   <aside id="account-panel" class="account-panel" hidden aria-labelledby="account-title">
     <div class="guide-head"><h2 id="account-title">Account &amp; sync</h2><button id="account-close" aria-label="Close account and sync">×</button></div>
