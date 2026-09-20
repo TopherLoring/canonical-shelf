@@ -95,7 +95,7 @@
     {
       "id": "F7.TESTS",
       "type": "verification",
-      "status": "in_progress",
+      "status": "complete",
       "dependsOn": [
         "F1.STATE_NAV",
         "F2.SCENES",
@@ -108,12 +108,23 @@
         "assessment tests",
         "E2E feedback-remediation tests",
         "CI evidence"
-      ]
+      ],
+      "evidence": {
+        "workflow": "production-ci",
+        "runId": 35528202443,
+        "runNumber": 382,
+        "conclusion": "success",
+        "checks": [
+          "bun install --frozen-lockfile",
+          "prelaunch code/runtime/state integrity",
+          "Cloudflare production config"
+        ]
+      }
     },
     {
       "id": "F8.RELEASE",
       "type": "release",
-      "status": "pending",
+      "status": "complete_for_review",
       "dependsOn": [
         "F7.TESTS"
       ],
@@ -125,7 +136,11 @@
         "novice comprehension",
         "assistive-technology review",
         "editorial review"
-      ]
+      ],
+      "evidence": {
+        "pullRequest": 14,
+        "url": "https://github.com/TopherLoring/canonical-shelf/pull/14"
+      }
     }
   ],
   "invariants": [
@@ -143,6 +158,11 @@
       "tests/e2e/feedback-remediation.spec.js",
       "tests/e2e/release-utilities.spec.js"
     ],
-    "ci": "pending"
+    "ci": {
+      "workflow": "production-ci",
+      "runId": 35528202443,
+      "runNumber": 382,
+      "conclusion": "success"
+    }
   }
 }
