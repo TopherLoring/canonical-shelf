@@ -1,0 +1,1 @@
+Implementation work must prioritize real learner-facing capability and content accessibility over structural marker parity. Historical data that exists but is not rendered, searchable, interactive, or reachable does not count as restored.
