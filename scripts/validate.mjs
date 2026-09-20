@@ -1,0 +1,38 @@
+import {readFile,stat} from 'node:fs/promises';
+const req=['public/index.html','public/tokens.css','public/styles.css','public/learning.css','public/bible.css','public/bootstrap.js','public/app.js','public/account-ui.js','public/sync.js','public/learning.js','public/theologian.js','public/db.js','public/sw.js','public/manifest.webmanifest','public/icon.svg','public/data/theology-policy.json','docs/v6/README.md','docs/v6/governance.json','docs/v6/theologian-runtime.md','docs/v6/account-sync.md','worker/index.ts','worker/auth.ts','worker/sync-store.ts','worker/migrations/0001_sync.sql','scripts/test-d1-sync.mjs','src/client/account.ts','src/knowledge/model.ts','content/migration/admissibility.json'];
+for(const f of req)await stat(f);
+
+const architecture=await readFile('docs/v6/README.md','utf8');
+const governance=JSON.parse(await readFile('docs/v6/governance.json','utf8'));
+for(const key of ['greenfield-architecture','audited-migration','migration-candidate-not-requirement','no-default-inheritance']){
+  if(governance[key]!==true)throw new Error(`migration governance missing: ${key}`);
+}
+if(/brownfield at the product\/content\/data layer/i.test(architecture))throw new Error('superseded brownfield architecture rule remains');
+if(/No account, cohort, social, or required backend/i.test(architecture))throw new Error('superseded no-account rule remains');
+
+const syncDoc=await readFile('docs/v6/account-sync.md','utf8');
+for(const phrase of ['guest-first and local-first','Accounts are optional','IndexedDB remains the authoritative local learner state','Legacy raw migration records are local-only','Signing out never deletes local learner progress'])if(!syncDoc.includes(phrase))throw new Error(`account/sync governance missing: ${phrase}`);
+
+const manifest=JSON.parse(await readFile('content/migration/admissibility.json','utf8'));
+if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('migration manifest must pin an immutable commit SHA');
+if(!Array.isArray(manifest.approvedAssets)||manifest.approvedAssets.length<1)throw new Error('migration manifest has no approved assets');
+const paths=manifest.approvedAssets.map(x=>x.path);if(new Set(paths).size!==paths.length)throw new Error('migration manifest contains duplicate asset paths');
+for(const a of manifest.approvedAssets)if(!a.path||!a.class||!a.disposition||!a.reason)throw new Error(`incomplete migration admission: ${a.path||'unknown'}`);
+
+const html=await readFile('public/index.html','utf8');for(const label of ['Home','Course','Bible','Topics','Practice'])if(!html.includes(label))throw new Error(`missing primary destination: ${label}`);if(/href=["']#\/(home|course|bible|topics|practice)/.test(html))throw new Error('primary navigation must use durable native paths');if(!html.includes('Account &amp; sync'))throw new Error('optional account/sync surface missing');
+const pwa=JSON.parse(await readFile('public/manifest.webmanifest','utf8'));if(pwa.start_url!=='/home'||String(pwa.start_url).includes('#/'))throw new Error('PWA start_url must use canonical native /home route');if(!Array.isArray(pwa.icons)||pwa.icons.length<1)throw new Error('PWA install identity requires at least one icon');
+const bootstrap=await readFile('public/bootstrap.js','utf8');for(const phrase of ['location.hash.startsWith','#/','Legacy progress migration'])if(!bootstrap.includes(phrase))throw new Error(`legacy route/bootstrap compatibility missing: ${phrase}`);
+const tokenCss=await readFile('public/tokens.css','utf8');for(const tier of ['Primitive tokens','Semantic tokens','Component tokens'])if(!tokenCss.includes(tier))throw new Error(`design token tier missing: ${tier}`);
+for(const f of ['public/styles.css','public/learning.css','public/bible.css']){const css=await readFile(f,'utf8');if(/var\(--ref-/.test(css))throw new Error(`component stylesheet consumes primitive token directly: ${f}`);for(const old of ['--serif','--sans','--line','--paper','--muted','--ink','--accent-2'])if(css.includes(`var(${old})`))throw new Error(`legacy design token remains in ${f}: ${old}`)}
+
+const guide=await readFile('docs/v6/theologian-runtime.md','utf8');for(const phrase of ['Statement of Faith','orientation is not inherently sinful','Ruth and Naomi','not uncontested textual fact'])if(!guide.toLowerCase().includes(phrase.toLowerCase()))throw new Error(`theologian policy missing: ${phrase}`);
+const theologian=await readFile('public/theologian.js','utf8');for(const phrase of ['classifyTheologianIntent','masteryProtection','prohibitedOverstatements','Romans 1'])if(!theologian.includes(phrase))throw new Error(`theologian runtime missing: ${phrase}`);
+const app=await readFile('public/app.js','utf8');for(const phrase of ['location.pathname','location.search','pushState','popstate'])if(!app.includes(phrase))throw new Error(`native app routing missing: ${phrase}`);if(/location\.hash/.test(app))throw new Error('app runtime must not depend on hash routing');for(const pattern of [/innerHTML\s*=\s*location\.hash/,/innerHTML\s*=\s*params\(\)\.get/,/insertAdjacentHTML\([^,]+,\s*location\.hash/])if(pattern.test(app))throw new Error('unsafe unescaped route injection pattern');
+const sync=await readFile('public/sync.js','utf8');for(const phrase of ['mergeLearnerState','remoteSnapshot','legacyRaw','outbox','deviceId'])if(!sync.includes(phrase))throw new Error(`sync domain missing: ${phrase}`);
+const worker=await readFile('worker/index.ts','utf8');for(const phrase of ['auth.api.getSession','/api/sync','cache-control','mergeAndWriteSync','readSync'])if(!worker.includes(phrase))throw new Error(`sync worker missing: ${phrase}`);if(/body\.userId|body\[['"]userId['"]\]/.test(worker))throw new Error('sync worker must never trust a client-supplied user id');
+const store=await readFile('worker/sync-store.ts','utf8');for(const phrase of ['INSERT OR IGNORE','db.batch','Legacy raw data cannot be synchronized'])if(!store.includes(phrase))throw new Error(`sync store missing: ${phrase}`);
+const migration=await readFile('worker/migrations/0001_sync.sql','utf8');if(!/PRIMARY KEY\s*\(user_id,\s*id\)/i.test(migration))throw new Error('learner mutation replay identity must be scoped by user_id + id');
+const account=await readFile('src/client/account.ts','utf8');for(const phrase of ['signInWithPasskey','enableCrossDeviceSync','syncProgress','deleteAccount','notify:false'])if(!account.includes(phrase))throw new Error(`account client missing: ${phrase}`);
+
+try{const cat=JSON.parse(await readFile('public/data/catalog.json','utf8'));if(cat.sourceRepo!==`TopherLoring/the-canonical-shelf@${manifest.sourceRef}`)throw new Error('generated catalog source does not match admitted immutable snapshot');if(cat.migrationPolicyVersion!==manifest.policyVersion)throw new Error('generated catalog migration policy version mismatch');if(cat.units.length!==25)throw new Error(`expected 25 v6 units, got ${cat.units.length}`);if(cat.masteryIds.length!==69||new Set(cat.masteryIds).size!==69)throw new Error('mastery count/identity failed');if(cat.lessons.length!==70)throw new Error(`expected 70 guided lessons, got ${cat.lessons.length}`);if(cat.topics.length!==45)throw new Error(`expected 45 Topics, got ${cat.topics.length}`);if(cat.activities?.length!==139)throw new Error(`expected 139 mapped activities, got ${cat.activities?.length}`);const missing=cat.units.filter(u=>!(cat.byUnit?.[u.id]?.length));if(missing.length)throw new Error(`v6 units without activities: ${missing.map(x=>x.id).join(', ')}`)}catch(e){if(e.code==='ENOENT')throw new Error('public/data/catalog.json missing: run bun run migrate before validation');throw e}
+console.log('v6 architecture/content/theology/design-system/native-routing/PWA/account-sync/audited-migration gates passed');
