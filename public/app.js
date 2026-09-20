@@ -2,7 +2,9 @@ import {getState,recordResult,recordReview,dueReviews,exportState,importState} f
 import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './learning.js';
 import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
 import {buildTheologianResponse} from './theologian.js';
-import {topicsView,practiceView,checkPracticeGame,recentEntryForRoute,recordRecent} from './experience.js';
+import {topicsView,recentEntryForRoute,recordRecent} from './experience.js';
+import {practiceView,checkPracticeGame} from './practice-experience.js';
+import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
 import {homeView,progressPanelView} from './progress-experience.js';
 import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
 
@@ -74,7 +76,7 @@ function render(){
   else main.innerHTML=homeView({data,state,esc});
   canonicalizeLinks(main);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
-  main.focus({preventScroll:true});refreshProgressPanel();
+  main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);
 }
 
 function evidenceMarkup(e){const link=e.type==='topic'&&e.id?`/topics?topic=${encodeURIComponent(e.id)}`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${link}">${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
@@ -90,7 +92,7 @@ function exitStudy(button){
   const target=saved?.path||button.dataset.fallback||'/course';try{sessionStorage.removeItem(STUDY_RETURN_KEY)}catch{}navigate(target);
   requestAnimationFrame(()=>{if(Number.isFinite(saved?.scrollY))window.scrollTo({top:saved.scrollY,left:0,behavior:'auto'});if(saved?.activity)[...document.querySelectorAll('[data-activity-link]')].find(link=>link.dataset.activityLink===saved.activity)?.focus({preventScroll:true})});
 }
-function syncSequence(board){const cards=[...board.querySelectorAll('[data-seq-value]')];cards.forEach((card,index)=>{const input=card.querySelector('input[type="hidden"]');if(input){input.name=`p${index}`;input.value=card.dataset.seqValue}const position=card.querySelector('.sequence-card__index');if(position)position.textContent=String(index+1).padStart(2,'0');card.querySelectorAll('[data-seq-move]').forEach(button=>{button.disabled=(button.dataset.seqMove==='up'&&index===0)||(button.dataset.seqMove==='down'&&index===cards.length-1)})})}
+function syncSequence(board){const cards=[...board.querySelectorAll('[data-seq-value]')];cards.forEach((card,index)=>{const input=card.querySelector('input[type="hidden"]');if(input&&!input.name.includes('-')){input.name=`p${index}`;input.value=card.dataset.seqValue}const position=card.querySelector('.sequence-card__index');if(position)position.textContent=String(index+1).padStart(2,'0');card.querySelectorAll('[data-seq-move]').forEach(button=>{button.disabled=(button.dataset.seqMove==='up'&&index===0)||(button.dataset.seqMove==='down'&&index===cards.length-1)})})}
 function moveSequence(button){const card=button.closest('[data-seq-value]'),board=button.closest('[data-sequence-board]');if(!card||!board)return;if(button.dataset.seqMove==='up'&&card.previousElementSibling)board.insertBefore(card,card.previousElementSibling);if(button.dataset.seqMove==='down'&&card.nextElementSibling)board.insertBefore(card.nextElementSibling,card);syncSequence(board);card.focus?.()}
 function toggleApparatus(open){const panel=document.querySelector('#study-apparatus');if(!panel)return;const next=open??!panel.classList.contains('is-open');panel.classList.toggle('is-open',next);document.querySelectorAll('[data-toggle-apparatus]').forEach(button=>button.setAttribute('aria-expanded',String(next)));if(next)panel.querySelector('summary,button,a')?.focus({preventScroll:true})}
 
@@ -110,8 +112,11 @@ document.addEventListener('click',async e=>{
 document.addEventListener('submit',async e=>{
   if(e.target.id==='global-search'){e.preventDefault();const q=String(new FormData(e.target).get('q')||'').trim();if(q)navigate(`/search?q=${encodeURIComponent(q)}`);return}
   if(e.target.id==='bible-search'){e.preventDefault();navigate(`/bible?q=${encodeURIComponent(new FormData(e.target).get('bq')||'')}`);return}
+  if(e.target.id==='library-search'){e.preventDefault();const fd=new FormData(e.target),q=String(fd.get('libraryq')||'').trim(),p=params(),view=p.get('view')||'shelf',group=p.get('group')||'';navigate(`/bible?view=${encodeURIComponent(view)}${group?`&group=${encodeURIComponent(group)}`:''}${q?`&libraryq=${encodeURIComponent(q)}`:''}`);return}
   if(e.target.id==='topic-search'){e.preventDefault();const fd=new FormData(e.target),q=String(fd.get('topic-q')||'').trim(),mode=String(fd.get('topic-mode')||'ask');navigate(`/topics?mode=${encodeURIComponent(mode)}${q?`&q=${encodeURIComponent(q)}`:''}`);return}
+  if(e.target.matches('.arcade-config')){e.preventDefault();const fd=new FormData(e.target);navigate(`/practice?mode=arcade&game=${encodeURIComponent(fd.get('game')||'sequence')}&scope=${encodeURIComponent(fd.get('scope')||'all')}`);return}
   if(e.target.id==='guide-form'){e.preventDefault();guideAnswer(new FormData(e.target).get('question')||'');return}
+  if(e.target.matches('[data-practice-run]')){e.preventDefault();const result=finishPracticeRun(e.target),feedback=e.target.querySelector('.feedback');feedback.innerHTML=result.html;canonicalizeLinks(feedback);return}
   if(e.target.matches('[data-practice-game]')){e.preventDefault();const result=checkPracticeGame(e.target),feedback=e.target.querySelector('.feedback');feedback.innerHTML=`<p class="notice"><strong>${result.ok?'Correct.':'Keep working.'}</strong> ${esc(result.message)}</p>`;return}
   if(!e.target.matches('.challenge'))return;
   e.preventDefault();
