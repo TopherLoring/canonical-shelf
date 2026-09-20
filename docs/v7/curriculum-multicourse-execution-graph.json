@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "project": "Canonical Shelf multi-course curriculum redesign",
   "branch": "curriculum/multicourse-foundations",
   "objective": "Deliver a six-course, adult-beginner-first curriculum with rigorous multi-scene lessons, integral game-style checks, unit mastery, spaced retention, progressive drawers, glossaries, and a complete Exodus-to-early-Church historical-biblical bridge while preserving stable legacy activity IDs and learner state.",
@@ -18,6 +18,22 @@
       "scoredActivities": 235,
       "glossaryTerms": 268
     }
+  },
+  "prelaunchGatePolicy": {
+    "ownerDecisionDate": "2026-09-20",
+    "mode": "prelaunch_development",
+    "humanGatesBlockPrelaunchMerge": false,
+    "humanGatesRequiredBeforePublicLaunch": true,
+    "waivedDoesNotMeanPassed": true,
+    "nonWaivableDevelopmentGates": [
+      "stable activity IDs",
+      "learner-state compatibility",
+      "schema/content integrity",
+      "automated browser/accessibility checks",
+      "offline/service-worker regression",
+      "security/privacy/data integrity",
+      "rollback safety"
+    ]
   },
   "invariants": {
     "primaryDestinations": ["Home", "Course", "Bible", "Topics", "Practice"],
@@ -70,21 +86,22 @@
     {"id":"V.SCHEMA_CONTENT","type":"validation","status":"passed","dependsOn":["C3.CATALOG_RUNTIME","C4.COURSE1","C4.COURSE2","C4.COURSE3","C4.COURSE4","C4.COURSE5","C4.COURSE6"],"outputs":["schema/content/reference gates"],"evidence":"production-ci run 35491896884"},
     {"id":"V.STATE","type":"validation","status":"passed","dependsOn":["C3.STATE_MIGRATION"],"outputs":["migration/export/import regression evidence"],"evidence":"production-ci run 35491896884"},
     {"id":"V.INTERACTION","type":"validation","status":"passed_automated","dependsOn":["C6.LESSON_SCENES","C6.DRAWERS_GLOSSARY","C6.MASTERY_RETENTION_UI"],"outputs":["E2E interaction and automated accessibility evidence"],"evidence":"production-ci run 35491896884; multi-browser Playwright + axe coverage"},
-    {"id":"V.OFFLINE_PERF","type":"validation","status":"passed_automated","dependsOn":["C6.COURSE_UI","C6.LESSON_SCENES"],"outputs":["offline/update/performance evidence"],"evidence":"production-ci run 35491896884 includes offline service-worker regression coverage; manual performance/device review remains part of human assurance"},
-    {"id":"G.EDITORIAL_THEOLOGICAL","type":"human_gate","status":"pending","dependsOn":["V.SCHEMA_CONTENT"]},
-    {"id":"G.NOVICE_USABILITY","type":"human_gate","status":"pending","dependsOn":["V.INTERACTION"]},
-    {"id":"G.RESPONSIVE_ACCESSIBILITY","type":"human_gate","status":"pending","dependsOn":["V.INTERACTION","V.OFFLINE_PERF"]},
-    {"id":"G.LEARNING_QUALITY","type":"human_gate","status":"pending","dependsOn":["C5.UNIT_MASTERY","C5.COURSE_CAPSTONES","C5.RETENTION_TRANSFER"],"note":"review whether individual unit masteries are sufficiently rich and whether changed-form retention/transfer is deep enough; compact does not mean shallow"},
-    {"id":"R.RELEASE","type":"release","status":"blocked_on_human_gates","dependsOn":["V.SCHEMA_CONTENT","V.STATE","V.INTERACTION","V.OFFLINE_PERF","G.EDITORIAL_THEOLOGICAL","G.NOVICE_USABILITY","G.RESPONSIVE_ACCESSIBILITY","G.LEARNING_QUALITY"]}
+    {"id":"V.OFFLINE_PERF","type":"validation","status":"passed_automated","dependsOn":["C6.COURSE_UI","C6.LESSON_SCENES"],"outputs":["offline/update/performance evidence"],"evidence":"production-ci run 35491896884 includes offline service-worker regression coverage; manual performance/device review remains part of deferred human assurance"},
+    {"id":"G.EDITORIAL_THEOLOGICAL","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.SCHEMA_CONTENT"],"requiredBeforePublicLaunch":true},
+    {"id":"G.NOVICE_USABILITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.INTERACTION"],"requiredBeforePublicLaunch":true},
+    {"id":"G.RESPONSIVE_ACCESSIBILITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["V.INTERACTION","V.OFFLINE_PERF"],"requiredBeforePublicLaunch":true},
+    {"id":"G.LEARNING_QUALITY","type":"human_gate","status":"waived_for_prelaunch_dev","dependsOn":["C5.UNIT_MASTERY","C5.COURSE_CAPSTONES","C5.RETENTION_TRANSFER"],"requiredBeforePublicLaunch":true,"note":"review whether individual unit masteries are sufficiently rich and whether changed-form retention/transfer is deep enough; compact does not mean shallow"},
+    {"id":"R.PRELAUNCH_DEV","type":"release","status":"ready_after_current_head_ci","dependsOn":["V.SCHEMA_CONTENT","V.STATE","V.INTERACTION","V.OFFLINE_PERF"],"note":"human gates are explicitly waived as blockers for pre-launch development only; they remain required before public launch"},
+    {"id":"R.PUBLIC_LAUNCH","type":"release","status":"blocked_pending_human_gates","dependsOn":["R.PRELAUNCH_DEV","G.EDITORIAL_THEOLOGICAL","G.NOVICE_USABILITY","G.RESPONSIVE_ACCESSIBILITY","G.LEARNING_QUALITY"]}
   ],
   "futureWork": [
-    "complete editorial/theological review of representative and contested new lessons",
-    "complete novice usability and responsive/accessibility review on real devices",
+    "complete editorial/theological review of representative and contested new lessons before public launch",
+    "complete novice usability and responsive/accessibility review on real devices before public launch",
     "deepen unit mastery where a single compact interaction does not demonstrate synthesis",
     "expand changed-form spaced retrieval and cross-course transfer variants beyond schedule metadata"
   ],
   "rollback": {
     "anchor": "3e477184c7ad1e50ad3bfee771dfcc5d27143f11",
-    "strategy": "retain existing progress records and old main release; the six-course schema remains additive and activity IDs are preserved until release approval"
+    "strategy": "retain existing progress records and old main release; the six-course schema remains additive and activity IDs are preserved until public-launch approval"
   }
 }
