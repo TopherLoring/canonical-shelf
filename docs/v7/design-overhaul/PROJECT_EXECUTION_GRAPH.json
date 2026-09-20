@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf v7 visual overhaul",
+  "branch": "v7-design-overhaul-prototypes",
+  "nodes": [
+    {"id":"V0","type":"audit","title":"Inventory current and reference experiences","dependsOn":[],"status":"complete"},
+    {"id":"V1","type":"design-intent","title":"Establish design thesis and prototype criteria","dependsOn":["V0"],"status":"complete"},
+    {"id":"V2","type":"prototype","title":"Produce minimum three materially distinct prototypes","dependsOn":["V1"],"status":"in_progress","productionCodeAllowed":false},
+    {"id":"V3","type":"comparison","title":"Compare prototype choices","dependsOn":["V2"],"status":"pending","productionCodeAllowed":false},
+    {"id":"V4","type":"human-gate","title":"Human selects direction or explicit hybrid","dependsOn":["V3"],"status":"pending","productionCodeAllowed":false},
+    {"id":"V5","type":"implementation","title":"Global shell and design-system foundation","dependsOn":["V4"],"status":"blocked"},
+    {"id":"V6","type":"implementation","title":"Home Course and learning surfaces","dependsOn":["V5"],"status":"blocked"},
+    {"id":"V7","type":"implementation","title":"Bible and reference surfaces","dependsOn":["V5"],"status":"blocked"},
+    {"id":"V8","type":"implementation","title":"Practice Guide and system utilities","dependsOn":["V6","V7"],"status":"blocked"},
+    {"id":"V9","type":"validation","title":"Responsive adaptive and motion validation","dependsOn":["V8"],"status":"blocked"},
+    {"id":"V10","type":"verification","title":"Integrated functional visual learning and content verification","dependsOn":["V9"],"status":"blocked"},
+    {"id":"V11","type":"release","title":"Merge and deploy selected overhaul","dependsOn":["V10"],"status":"blocked"}
+  ],
+  "invariants": [
+    "25 scored units",
+    "70 lessons and 69 mastery activities",
+    "139 scored activities",
+    "stable activity and mastery IDs",
+    "Unit 0 remains non-scored",
+    "Bible owns shelf browse and reader",
+    "Topics remain unscored",
+    "Practice remains reinforcement",
+    "learner state remains local-first",
+    "Statement of Faith remains doctrinal ceiling",
+    "no production UI code before V4 human selection"
+  ],
+  "reopenRule": "If implementation evidence materially changes the selected design direction, return to V2 and produce at least three materially distinct options for the affected decision before further production coding."
+}
