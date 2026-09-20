@@ -1,3 +1,5 @@
+import {VERSE_COUNT} from './verse-data.js';
+
 export const PRACTICE_RANKS=[
   {xp:0,name:'Visitor'},
   {xp:400,name:'Reader'},
@@ -65,7 +67,7 @@ export const PRACTICE_STAGES=[
     {id:'s5',name:'Substance Rush',sub:'60 seconds, as many as you can',game:'clock',format:'clock',seconds:60,engines:['hook','people','synopsis'],scope:{all:true}},
     {id:'s6',name:'All Sixty-Six',sub:'Capstone · mixed, all 66',game:'mix',engines:['hook','people','synopsis'],count:14,scope:{all:true},boss:true}
   ]},
-  {id:'verses',tag:'Stage 4',name:'The Verses',description:'Ninety-seven standout passages tied back to their books, themes, speakers, recipients, and contexts.',levels:[
+  {id:'verses',tag:'Stage 4',name:'The Verses',description:`${VERSE_COUNT} curated passages tied back to their books, themes, speakers, recipients, and contexts.`,levels:[
     {id:'v1',name:'Prophecy',sub:'',game:'quiz',engines:['verse-book','verse-theme'],count:10,verseScope:['prophecy']},
     {id:'v2',name:'Love',sub:'',game:'quiz',engines:['verse-book','verse-theme'],count:10,verseScope:['love']},
     {id:'v3',name:'Strength',sub:'',game:'quiz',engines:['verse-book','verse-theme'],count:10,verseScope:['strength']},
