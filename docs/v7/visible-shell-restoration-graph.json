@@ -5,14 +5,14 @@
   "objective": "Replace v6-visible shell regressions with native v7 implementations of the approved v5 experience while preserving current runtime/state/build contracts.",
   "nodes": [
     {"id":"VSR.1","type":"audit","dependsOn":[],"status":"complete","acceptance":["current production source matches reported v6-style screenshot","PR #4 confirmed Study Focus was upgraded while Home remained materially v6-like"]},
-    {"id":"VSR.2","type":"implementation","dependsOn":["VSR.1"],"status":"in_progress","affected":["public/app.js","public/styles.css"],"acceptance":["v5 dashboard Home restored natively","v7 progress and next-activity data used"]},
-    {"id":"VSR.3","type":"implementation","dependsOn":["VSR.1"],"status":"in_progress","affected":["public/styles.css"],"acceptance":["global chrome reflects v5 hierarchy","all current v7 utilities preserved"]},
-    {"id":"VSR.4","type":"implementation","dependsOn":["VSR.1"],"status":"pending","affected":["public/learning.js","public/styles.css"],"acceptance":["Course root and unit overview use rich responsive composition","Study Focus routes and IDs unchanged"]},
-    {"id":"VSR.5","type":"offline","dependsOn":["VSR.2","VSR.3","VSR.4"],"status":"pending","affected":["public/sw.js"],"acceptance":["service-worker cache namespace bumped","old shell assets cannot remain pinned after update"]},
-    {"id":"VSR.6","type":"test","dependsOn":["VSR.2","VSR.3","VSR.4","VSR.5"],"status":"pending","affected":["tests/e2e/app.spec.js"],"acceptance":["Home regression assertion covers restored shell","Course and Study Focus remain navigable","five primary destinations preserved"]},
-    {"id":"VSR.7","type":"validation","dependsOn":["VSR.6"],"status":"pending","acceptance":["application build succeeds","automated verification succeeds","desktop/tablet/phone visual review passes"]},
-    {"id":"VSR.8","type":"merge","dependsOn":["VSR.7"],"status":"pending","acceptance":["repair merged to main","Cloudflare deploy reports repair commit/version"]}
+    {"id":"VSR.2","type":"implementation","dependsOn":["VSR.1"],"status":"complete","affected":["public/app.js","public/styles.css"],"acceptance":["v5-derived dashboard Home restored natively","v7 progress and next-activity data used"]},
+    {"id":"VSR.3","type":"implementation","dependsOn":["VSR.1"],"status":"complete","affected":["public/styles.css"],"acceptance":["global chrome reflects v5 hierarchy","all current v7 utilities preserved"]},
+    {"id":"VSR.4","type":"implementation","dependsOn":["VSR.1"],"status":"complete","affected":["public/styles.css"],"acceptance":["existing semantic Course lists are recomposed into rich responsive card/library surfaces","Study Focus routes and IDs unchanged"]},
+    {"id":"VSR.5","type":"offline","dependsOn":["VSR.2","VSR.3","VSR.4"],"status":"complete","affected":["public/sw.js"],"acceptance":["service-worker cache namespace bumped","old shell assets cannot remain pinned after update"]},
+    {"id":"VSR.6","type":"test","dependsOn":["VSR.2","VSR.3","VSR.4","VSR.5"],"status":"complete","affected":["tests/e2e/app.spec.js"],"acceptance":["Home regression assertion covers restored shell","Course and Study Focus remain navigable","five primary destinations preserved"]},
+    {"id":"VSR.7","type":"validation","dependsOn":["VSR.6"],"status":"in_progress","acceptance":["application build succeeds","automated verification succeeds","desktop/tablet/phone behavior checks pass"]},
+    {"id":"VSR.8","type":"merge","dependsOn":["VSR.7"],"status":"pending","acceptance":["repair merged to main","Cloudflare main build reports repair commit/version","production visually confirms restored shell"]}
   ],
   "invariants": ["25 scored units","70 lessons","69 mastery activities","139 scored activities","stable IDs","Topics unscored","Practice reinforcement only","local-first learner state","Study Focus preserved","no v5 bridge architecture","llms.txt generation preserved"],
-  "rollback": "Do not merge the repair branch if visual or functional gates fail."
+  "rollback": "Do not merge the repair branch if automated verification fails. If production rendering regresses after merge, revert the shell repair commit."
 }
