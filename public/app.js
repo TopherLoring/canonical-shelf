@@ -27,7 +27,34 @@ function shell(title,eye,body){return `<header class="section"><p class="eyebrow
 function nextUnit(){return data.units.find(u=>(data.byUnit?.[u.id]||[]).some(id=>!state.completed.includes(id)))}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
 
-function home(){const s=progress(),next=nextUnit();return `<section class="hero"><div><p class="eyebrow">Bible literacy for thoughtful adults</p><h1>Read with context.<br>Think with care.</h1><p class="lede">A self-paced course, complete Bible, curated reference library, and evidence-aware study guide. Progress measures understanding, not theological assent.</p><p><a class="button" href="${next?`/course?unit=${encodeURIComponent(next.id)}`:'/course'}">${next?'Continue the course':'Review the course'}</a></p></div><div><div class="stat"><strong>${s.pct}%</strong><span>${s.done}/${s.total} activities complete</span></div><div class="stat"><strong>25</strong><span>integrated units</span></div><div class="stat"><strong>${data.topics.length||45}</strong><span>curated Topics</span></div></div></section><section class="section"><h2>Your study shelf</h2><div class="grid"><article class="card"><p class="eyebrow">Course</p><h3>${esc(next?.title||'Independent review')}</h3><p>${esc(next?.scope||'Return to any unit and strengthen recall.')}</p><a href="/course">Open Course</a></article><article class="card"><p class="eyebrow">Bible</p><h3>Read the text itself</h3><p>Browse all 66 books or open a reference directly.</p><a href="/bible">Open Bible</a></article><article class="card"><p class="eyebrow">Topics</p><h3>Follow a question</h3><p>Doctrine, ethics, history, practice, and contested interpretations.</p><a href="/topics">Browse Topics</a></article></div></section>`}
+function home(){
+  const s=progress();
+  const nextActivity=data.activities?.find(activity=>!state.completed?.includes(activity.id));
+  const orientationHref='/course?unit=unit.orientation&lesson=orientation';
+  const nextHref=s.done===0?orientationHref:nextActivity?activityHref(nextActivity.id):'/course';
+  const nextTitle=s.done===0?'Welcome to Canonical Shelf':nextActivity?.title||'Independent review';
+  const nextMeta=s.done===0?'Start with the non-scored orientation, then enter Unit 1.':nextActivity?`${s.done}/${s.total} scored activities complete · ${s.pct}%`:'Course complete · use Practice to strengthen retention.';
+  const featured=data.topics.find(topic=>/read(ing)? the bible|interpret/i.test(topic.title||''))||data.topics[0];
+  const featuredHref=featured?`/topics?topic=${encodeURIComponent(featured.id)}`:'/topics';
+  const featuredTitle=featured?.title||'How should Christians read the Bible?';
+  return `<section class="v5-home v5-page">
+    <section class="v5-home__hero">
+      <div><p class="v5-kicker">Canonical Shelf · Scripture in context</p><h1>Know the Bible.<br>Understand what you’re reading.</h1><p class="v5-home__intro">A serious beginner’s guide to Scripture, Christian belief, and biblical interpretation—designed to connect reading, understanding, practice, and reflection.</p></div>
+      <div class="v5-home__actions">
+        <a class="v5-action" href="${nextHref}"><span class="v5-action__eyebrow">Continue learning</span><b>${esc(nextTitle)}</b><span>${esc(nextMeta)}</span></a>
+        <a class="v5-action" href="/bible"><span class="v5-action__eyebrow">Explore Scripture</span><b>Open the Bible</b><span>Reader, bookshelf, book profiles, chapters, canon, and study context</span></a>
+        <a class="v5-action" href="/topics"><span class="v5-action__eyebrow">Ask a question</span><b>Explore Topics</b><span>Theology, doctrine, Christian life, difficult questions, and glossary</span></a>
+      </div>
+    </section>
+    <section class="v5-dashboard" aria-label="Your learning dashboard">
+      <article class="v5-dashboard__progress"><div><p class="v5-kicker">Current progress</p><h2>${s.pct}% through the scored learning path</h2><p>Lessons and mastery stay together in one course. Practice remains a separate retention layer when material needs another pass.</p></div><div class="v5-progress-ring" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${s.pct}" style="--p:${s.pct}"><strong>${s.pct}%</strong><span>${s.done}/${s.total}</span></div></article>
+      <article class="v5-dashboard__card"><p class="v5-kicker">Suggested next activity</p><h3>${esc(nextTitle)}</h3><p>${esc(nextMeta)}</p><a href="${nextHref}">Continue course →</a></article>
+      <article class="v5-dashboard__card"><p class="v5-kicker">Featured topic</p><h3>${esc(featuredTitle)}</h3><p>Follow the question through Scripture, context, interpretation, doctrine, and source trails.</p><a href="${featuredHref}">Explore the question →</a></article>
+      <article class="v5-dashboard__card"><p class="v5-kicker">Practice</p><h3>Review what is getting rusty</h3><p>Use focused retrieval and spaced review without turning Practice into a second curriculum.</p><a href="/practice">Open Practice →</a></article>
+    </section>
+    <section class="v5-recent"><div><p class="v5-kicker">Your study shelf</p><h2>Pick up without hunting for your place.</h2></div><p class="v5-muted">Course progress, private notes, journal writing, review scheduling, Bible reading, and study tools stay connected while remaining local-first.</p></section>
+  </section>`;
+}
 
 function topics(){const id=params().get('topic');if(id){const t=data.topics.find(x=>x.id===id);if(!t)return shell('Topic not found','Topics','');return `<article class="reader"><p><a href="/topics">← All Topics</a></p><p class="eyebrow">Reference · not scored</p><h1>${esc(t.title)}</h1><p class="lede">${esc(t.answer||t.summary||'')}</p>${(Array.isArray(t.body)?t.body:[]).map(x=>`<p>${esc(x)}</p>`).join('')}<p><button class="button" data-ask="${esc(t.title)}">Ask the Guide about this</button></p></article>`}return shell('Topics','Curated reference · not scored',`<p class="lede">Direct answers, distinctions, Scripture connections, competing interpretations, and source trails.</p><div class="topic-list">${data.topics.map(t=>`<article class="topic-item"><h3><a href="/topics?topic=${encodeURIComponent(t.id)}">${esc(t.title)}</a></h3><p>${esc(t.answer||t.summary||'').slice(0,180)}</p></article>`).join('')||'<p class="notice">Run migration to populate Topics.</p>'}</div>`)}
 
