@@ -19,7 +19,7 @@ const swRegister=bootstrap.indexOf("navigator.serviceWorker.register('/sw.js'");
 if(appImport<0||swRegister<0||appImport>swRegister)throw new Error('core app controls must initialize before service-worker registration/readiness');
 forbid(bootstrap,"await navigator.serviceWorker.ready;\n\nwindow.addEventListener",'service-worker readiness must not block core application initialization');
 
-for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible','Practice rank','campaign stars'])requireText(home,marker,`Home parity surface missing: ${marker}`);
+for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible','practiceStateSummary','practice-mini-stats','XP','achievements'])requireText(home,marker,`Home parity surface missing: ${marker}`);
 for(const marker of ['courseLandingView','courseDetailView','unitExperienceView','review','mastery'])requireText(course,marker,`Course parity contract missing: ${marker}`);
 for(const visualType of ['shelf','timeline','story-arc','relationship','compare','flow','theme-thread','map-lite','book-profile','verse-context','spectrum','stack'])requireText(learningVisuals,`'${visualType}'`,`Course semantic visual renderer missing: ${visualType}`);
 for(const marker of ['semanticVisualType','renderSemanticVisual','enhanceLearningVisuals','Text equivalent','Schematic orientation · not to scale'])requireText(learningVisuals,marker,`Course visual accessibility/semantic contract missing: ${marker}`);
