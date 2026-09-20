@@ -11,11 +11,11 @@ export const course2Lessons=[
       'The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Course 4 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events.'
     ],
     simple:'Passover remembers Israel’s deliverance from Egypt through a shared meal tied to the night of departure.',
-    vocab:{Passover:'The biblical festival remembering Israel’s deliverance from Egypt.',Unleavened bread:'Bread made without leaven; Exodus connects it with the urgency of departure.',Memorial:'A practice that keeps a formative event present in communal identity.'},
+    vocab:{Passover:'The biblical festival remembering Israel’s deliverance from Egypt.','Unleavened bread':'Bread made without leaven; Exodus connects it with the urgency of departure.',Memorial:'A practice that keeps a formative event present in communal identity.'},
     deeper:'Biblical Passover practice develops across texts and periods. Exodus 12, Deuteronomy 16, later reform narratives, Second Temple practice, and later Jewish tradition should not be flattened into one timeless ritual description.',
     drawers:[
       drawer('Why eat in readiness?','Exodus depicts the meal in the setting of imminent departure. The posture reinforces that this is a liberation narrative, not simply a festival recipe.'),
-      drawer('Passover and Christianity','Course 4 will distinguish Exodus itself, Gospel Passover settings, the Last Supper traditions, and later Christian interpretation rather than treating them as identical.')
+      drawer('Passover and Christianity','Course 4 will distinguish Exodus itself, Gospel Passover settings, the Last Supper traditions and later Christian interpretation rather than treating them as identical.')
     ],
     visual:{title:'Passover in the Exodus story',text:'Oppression → plagues → Passover night → departure → sea crossing → wilderness'},
     challenges:[
