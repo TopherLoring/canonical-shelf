@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#17130f">
+  <title>Canonical Shelf — v7 Interactive Design Prototypes</title>
+  <meta name="description" content="Interactive Canonical Shelf v7 design prototypes for Living Library, Scholarly Folio, and Scripture Atlas.">
+  <link rel="stylesheet" href="./prototype.css">
+</head>
+<body data-direction="A">
+  <a class="skip-link" href="#prototype-main">Skip to prototype content</a>
+
+  <div class="prototype-notice" role="note">
+    <strong>Prototype gate:</strong>
+    <span>Interactive evaluation only — no production learner state, account data, feedback, or model API is used.</span>
+  </div>
+
+  <header class="prototype-shell">
+    <div class="prototype-brand-row">
+      <button class="brand-button" type="button" data-page="home" aria-label="Open prototype home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-copy"><strong>Canonical Shelf</strong><small>v7 design prototypes</small></span>
+      </button>
+
+      <div class="direction-switcher" aria-label="Prototype direction">
+        <span class="switcher-label">Direction</span>
+        <button type="button" data-direction-choice="A" aria-pressed="true"><b>A</b><span>Living Library</span></button>
+        <button type="button" data-direction-choice="B" aria-pressed="false"><b>B</b><span>Scholarly Folio</span></button>
+        <button type="button" data-direction-choice="C" aria-pressed="false"><b>C</b><span>Scripture Atlas</span></button>
+      </div>
+    </div>
+
+    <nav class="prototype-nav" aria-label="Prototype pages">
+      <button type="button" data-page="home">Home</button>
+      <button type="button" data-page="learn">Learn</button>
+      <button type="button" data-page="lesson">Lesson</button>
+      <button type="button" data-page="practice">Practice</button>
+      <button type="button" data-page="bible">Bible</button>
+      <button type="button" data-page="topics">Topics</button>
+      <button type="button" data-page="theologian">Theologian</button>
+    </nav>
+  </header>
+
+  <main id="prototype-main" tabindex="-1"></main>
+
+  <footer class="prototype-footer">
+    <div>
+      <strong>Same learner state. Three materially different systems.</strong>
+      <span>Use every page before choosing or combining a direction.</span>
+    </div>
+    <button type="button" id="reset-demo">Reset demo state</button>
+  </footer>
+
+  <script type="module" src="./prototype.js"></script>
+</body>
+</html>
