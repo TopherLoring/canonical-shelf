@@ -1,0 +1,1 @@
+Next implementation work: wire full Topics renderer, then migrate complete verse corpus and missing Practice engines, then restore Course semantic visual renderers. Do not merge before functional parity gates pass.
