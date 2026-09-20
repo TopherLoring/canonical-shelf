@@ -1,14 +1,16 @@
 # Canonical Shelf v7 — Visual Overhaul WBS
 
-- **V0 — Discovery:** inspect current v7 shell, v5 experiential reference, v4 scholarly/content reference, and current capability/state contracts.
-- **V1 — Design thesis:** define product-specific visual/interaction principles, non-goals, materiality, responsive behavior, learning-expression goals, and signature shelf role.
-- **V2 — Prototype set:** create at least three materially distinct design directions using representative Canonical Shelf content and states.
-- **V3 — Comparative review:** compare prototypes across UX, learning effectiveness, scholarly credibility, distinctiveness, responsiveness, implementation risk, performance/offline fit, and adaptive access.
-- **V4 — Human selection:** obtain explicit selection of one direction or an approved hybrid; record rationale and rejected tradeoffs.
-- **V5 — Design system foundation:** implement selected tokens, typography, materials, spacing, motion primitives, layout contracts, and global shell.
-- **V6 — Learning surfaces:** implement Home, Course, lesson scenes, Study Focus, mastery and retention visualization.
-- **V7 — Bible/reference surfaces:** implement shelf, browse, reader, Topics, and scholarly apparatus.
-- **V8 — Practice/Guide/system surfaces:** implement Practice, Guide/Theologian presentation, search, notes/journal, feedback, account/sync, offline state.
-- **V9 — Responsive/adaptive pass:** validate desktop, tablet, phone, touch, keyboard, reduced-motion/adaptive paths, zoom/reflow where applicable.
-- **V10 — Integrated verification:** functional, visual, learning, content/theology, learner-state, offline, performance, and regression review.
-- **V11 — Release:** merge/deploy only after the selected experience is coherent across the full product.
+- **V0 — Discovery:** inspect current runtime/surfaces, earlier Canonical Shelf experiential strengths, scholarly/content references, and current capability/state contracts. **Complete.**
+- **V1 — Design thesis:** define product-specific visual/interaction principles, non-goals, materiality, responsive behavior, learning-expression goals, and signature shelf role. **Complete.**
+- **V2 — Global visual prototype set:** create materially distinct global directions and compare them. **Complete.**
+- **V3 — Global visual selection:** record human selection of the Living Folio visual language as the site-wide baseline. **Complete.**
+- **V4 — Composition Lab:** within that fixed visual language, create three materially different interactive choices for each major surface: Home, Learn, Lesson refinement, Bible, Practice, Topics, and Theologian. **In progress.**
+- **V5 — Surface comparison:** compare each surface's three choices across UX, learning effectiveness, scholarly credibility, responsiveness, implementation risk, performance/offline fit, and adaptive access. **Pending.**
+- **V6 — Human surface selections:** obtain explicit per-surface selections or explicitly approved hybrids; record rationale and rejected tradeoffs. **Pending.**
+- **V7 — Design system foundation:** implement selected tokens, typography, materials, spacing, motion primitives, layout contracts, and global shell. **Blocked by V6.**
+- **V8 — Learning surfaces:** implement selected Home, Learn, lesson scenes, Study Focus, mastery, and retention composition. **Blocked.**
+- **V9 — Bible/reference surfaces:** implement selected shelf, browse, reader, Topics, and scholarly apparatus composition. **Blocked.**
+- **V10 — Practice/Theologian/system surfaces:** implement selected Practice and Theologian composition plus search, notes/journal, feedback, account/sync, and offline state. **Blocked.**
+- **V11 — Responsive/adaptive pass:** validate desktop, tablet, phone, touch, keyboard, reduced-motion/adaptive paths, zoom/reflow where applicable. **Blocked.**
+- **V12 — Integrated verification:** functional, visual, learning, content/theology, learner-state, offline, performance, and regression review. **Blocked.**
+- **V13 — Release:** merge/deploy only after the selected hybrid experience is coherent across the full product. **Blocked.**
