@@ -1,8 +1,8 @@
 import {readFile} from 'node:fs/promises';
 
 const read=path=>readFile(path,'utf8');
-const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,topicsExperience,topicsCss,practiceExperience,practiceEngine,practiceEngineRestored,practiceData,practiceState,course,sw,verseData,...verseParts]=await Promise.all([
-  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/topics-experience.js'),read('public/topics-experience.css'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-engine-restored.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/sw.js'),read('public/verse-data.js'),...Array.from({length:8},(_,i)=>read(`public/verse-data-${String(i+1).padStart(2,'0')}.js`))
+const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,topicsExperience,topicsCss,practiceExperience,practiceEngine,practiceEngineRestored,practiceData,practiceState,course,learningVisuals,learningVisualsCss,sw,verseData,...verseParts]=await Promise.all([
+  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/topics-experience.js'),read('public/topics-experience.css'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-engine-restored.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/learning-visuals.js'),read('public/learning-visuals.css'),read('public/sw.js'),read('public/verse-data.js'),...Array.from({length:8},(_,i)=>read(`public/verse-data-${String(i+1).padStart(2,'0')}.js`))
 ]);
 
 const requireText=(source,text,message)=>{if(!source.includes(text))throw new Error(message||`missing required parity marker: ${text}`)};
@@ -21,6 +21,13 @@ forbid(bootstrap,"await navigator.serviceWorker.ready;\n\nwindow.addEventListene
 
 for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible','Practice rank','campaign stars'])requireText(home,marker,`Home parity surface missing: ${marker}`);
 for(const marker of ['courseLandingView','courseDetailView','unitExperienceView','review','mastery'])requireText(course,marker,`Course parity contract missing: ${marker}`);
+for(const visualType of ['shelf','timeline','story-arc','relationship','compare','flow','theme-thread','map-lite','book-profile','verse-context','spectrum','stack'])requireText(learningVisuals,`'${visualType}'`,`Course semantic visual renderer missing: ${visualType}`);
+for(const marker of ['semanticVisualType','renderSemanticVisual','enhanceLearningVisuals','Text equivalent','Schematic orientation · not to scale'])requireText(learningVisuals,marker,`Course visual accessibility/semantic contract missing: ${marker}`);
+for(const marker of ['semantic-flow','semantic-timeline','semantic-story-arc','semantic-relationship','semantic-compare','semantic-shelf','semantic-thread','semantic-route','semantic-profile','semantic-verse-context','semantic-spectrum','semantic-stack','prefers-reduced-motion','forced-colors'])requireText(learningVisualsCss,marker,`Course visual CSS grammar missing: ${marker}`);
+requireText(app,"from './learning-visuals.js'",'Course renderer must import semantic visuals explicitly');
+requireText(app,"if(r==='course')enhanceLearningVisuals(main)",'Course semantic visuals must run in the normal Course render path');
+forbid(learningVisuals,'MutationObserver','Course visual restoration must not use DOM-repair observers');
+
 for(const marker of ['Bookshelf','Books & groups','Bible reader','Canon & timeline','book-profile-page','library-search','shelf-spine','STORY_ARC'])requireText(bible+libraryData,marker,`Bible parity surface missing: ${marker}`);
 const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/\{n:\d+,name:/g)||[]).length;
 if(profileCount!==66)throw new Error(`expected 66 restored Bible book profiles, found ${profileCount}`);
@@ -47,11 +54,11 @@ const restoredVerseCount=verseParts.reduce((sum,part)=>sum+(part.match(/\{ref:/g
 if(restoredVerseCount!==232)throw new Error(`expected 232 passages recovered from the actual v3 VERSES array, found ${restoredVerseCount}`);
 for(const ref of ['Genesis 1:1','John 3:16','Galatians 5:22-23','Revelation 21:5'])requireText(verseParts.join('\n'),`ref:"${ref}"`,`restored verse corpus missing boundary/anchor passage: ${ref}`);
 
-for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/topics-experience.js','/topics-experience.css','/progress-experience.js','/course-experience.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-engine-restored.js','/practice-state.js','/practice-data.js','/verse-data.js','/verse-data-01.js','/verse-data-08.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
-for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
+for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/topics-experience.js','/topics-experience.css','/progress-experience.js','/course-experience.js','/learning-visuals.js','/learning-visuals.css','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-engine-restored.js','/practice-state.js','/practice-data.js','/verse-data.js','/verse-data-01.js','/verse-data-08.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
+for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js','./learning-visuals.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
 forbid(app,'MutationObserver','v7 experience must not restore v5 DOM-repair architecture');
 forbid(app,'v5-pages','v7 experience must not restore v5 bridge runtime');
 forbid(app,'v5-shell','v7 experience must not restore v5 bridge runtime');
 forbid(practiceState,'canonical-shelf-v6','Practice progression must not reuse Course IndexedDB state');
 
-console.log(`cross-tab v2-v5 restoration contract passed: 66 book profiles, full Topics depth, ${restoredVerseCount} restored curated passages, and native Practice engines`);
+console.log(`cross-tab v2-v5 restoration contract passed: 66 book profiles, full Topics depth, ${restoredVerseCount} restored curated passages, native Practice engines, and 12 semantic Course visual families`);
