@@ -9,6 +9,7 @@ const journal=document.querySelector('#personal-journal');
 const status=document.querySelector('#personal-study-status');
 let journalTimer=null;
 let currentKey=null;
+let lastTrigger=openButton;
 const inlineTimers=new WeakMap();
 
 function activityKey(){
@@ -73,8 +74,9 @@ async function bindInlineNotes(){
   }
 }
 
-async function openPanel(){
+async function openPanel(trigger=openButton){
   if(!activityKey())return;
+  lastTrigger=trigger||openButton;
   await loadJournal();
   panel.hidden=false;
   openButton.setAttribute('aria-expanded','true');
@@ -86,11 +88,11 @@ function closePanel(){
   if(currentKey)saveField('journal',currentKey,journal.value,status).catch(()=>{});
   panel.hidden=true;
   openButton.setAttribute('aria-expanded','false');
-  openButton.focus({preventScroll:true});
+  (lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true});
 }
 
-openButton?.addEventListener('click',()=>openPanel().catch(()=>{}));
-document.addEventListener('click',event=>{if(event.target.closest('[data-journal-open]'))openPanel().catch(()=>{})});
+openButton?.addEventListener('click',()=>openPanel(openButton).catch(()=>{}));
+document.addEventListener('click',event=>{const trigger=event.target.closest('[data-journal-open]');if(trigger)openPanel(trigger).catch(()=>{})});
 closeButton?.addEventListener('click',closePanel);
 journal?.addEventListener('input',scheduleJournalSave);
 document.addEventListener('canonical-route-rendered',()=>bindInlineNotes().catch(()=>{}));
