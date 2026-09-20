@@ -1,4 +1,4 @@
-const RELEASE='v7-v5-polish-2026-09-19-c';
+const RELEASE='v7-visible-shell-2026-09-20-a';
 const SHELL=`cs-${RELEASE}-shell`,DATA=`cs-${RELEASE}-data`;
 const ESSENTIAL=['/','/index.html','/tokens.css','/styles.css','/learning.css','/bible.css','/utility-panels.css','/bootstrap.js','/theme.js','/orientation.js','/study-controls.js','/feedback.js','/personal-study.js','/app.js','/account-ui.js','/db.js','/sync.js','/generated/account.js','/learning.js','/bible.js','/theologian.js','/manifest.webmanifest','/icon.svg','/data/theology-policy.json'];
 const DATA_ASSETS=['/data/catalog.json','/data/corpus.txt','/data/curriculum.md','/data/statement-of-faith.md','/data/theology-sources.json'];
