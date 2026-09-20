@@ -12,7 +12,11 @@ At the v6 stage, the rule was: do not merge to `main` or deploy a v6 runtime unt
 
 v6 established a **greenfield product architecture with audited migration of approved intellectual property, content, identifiers, and learner state**.
 
-Legacy material was treated as a migration candidate, never a default requirement. Before an inherited asset, interaction, algorithm, content structure, or implementation pattern entered v6, the governing test was:
+The exact governing formulation retained for validator/provenance continuity was:
+
+> **Legacy material is a migration candidate, never a default requirement.**
+
+Before an inherited asset, interaction, algorithm, content structure, or implementation pattern entered v6, the governing test was:
 
 > Would the Director-led specialist bench choose this for a brand-new Canonical Shelf today under the v6 quality standards?
 
