@@ -1,0 +1,3 @@
+# Scripture corpus bytes are published and hash-locked. Keep them LF on every platform.
+content/vendor/legacy/corpus.txt text eol=lf
+public/data/corpus.txt text eol=lf

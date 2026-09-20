@@ -1,0 +1,45 @@
+const ORIENTATION_UNIT_ID='unit.orientation';
+const ORIENTATION_LESSON_ID='orientation';
+
+const progressFor=(ids,state)=>{const completed=new Set(state?.completed||[]),done=(ids||[]).filter(id=>completed.has(id)).length;return{done,total:(ids||[]).length,pct:(ids||[]).length?Math.round(done/(ids||[]).length*100):0}};
+const dueSet=state=>new Set(Object.entries(state?.reviewSchedule||{}).filter(([,v])=>Date.parse(v?.dueAt)<=Date.now()).map(([id])=>id));
+const activityHref=a=>a?.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:a?`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`:'/course';
+
+function unitStats(data,state,unit){
+  const ids=data.byUnit?.[unit.id]||[],progress=progressFor(ids,state),due=dueSet(state),activities=ids.map(id=>(data.activities||[]).find(a=>a.id===id)).filter(Boolean);
+  const reviewDue=ids.filter(id=>due.has(id)).length;
+  const mastery=activities.filter(a=>a.type==='mastery');
+  const masteryDone=mastery.filter(a=>state.completed?.includes(a.id)).length;
+  const next=activities.find(a=>!state.completed?.includes(a.id))||activities.find(a=>due.has(a.id))||null;
+  const status=progress.done===progress.total&&progress.total?'complete':progress.done?'in-progress':'not-started';
+  return {...progress,reviewDue,masteryTotal:mastery.length,masteryDone,next,status};
+}
+
+function statusLabel(stats){
+  if(stats.reviewDue)return `${stats.reviewDue} review${stats.reviewDue===1?'':'s'} due`;
+  if(stats.status==='complete')return 'Complete';
+  if(stats.status==='in-progress')return 'In progress';
+  return 'Not started';
+}
+
+function courseCard(data,state,course,esc){
+  const units=(data.byCourse?.[course.id]||[]).map(id=>(data.units||[]).find(u=>u.id===id)).filter(Boolean),ids=units.flatMap(u=>data.byUnit?.[u.id]||[]),p=progressFor(ids,state),due=dueSet(state),reviewDue=ids.filter(id=>due.has(id)).length;
+  const next=(data.activities||[]).find(a=>a.courseId===course.id&&!state.completed?.includes(a.id));
+  return `<article class="course-journey-card course-entry" data-course-state="${p.done===p.total&&p.total?'complete':p.done?'in-progress':'not-started'}"><header><span>Course ${course.sequence}</span><span>${esc(course.level==='advanced'?'Deeper study':'Biblical Literacy Core')}</span></header><h2><a href="/course?course=${encodeURIComponent(course.id)}">${esc(course.title)}</a></h2><p>${esc(course.scope)}</p><div class="course-journey-card__meta"><span>${units.length} units</span><span>${ids.length} activities</span>${reviewDue?`<span class="state-due">${reviewDue} review${reviewDue===1?'':'s'} due</span>`:''}</div><div class="progress" aria-hidden="true"><span style="width:${p.pct}%"></span></div><footer><span>${p.done}/${p.total} · ${p.pct}%</span><a href="${next?activityHref(next):`/course?course=${encodeURIComponent(course.id)}`}">${next?'Continue':'Review course'} →</a></footer></article>`;
+}
+
+export function courseLandingView({data,state,esc}){
+  const all=data.activities||[],p=progressFor(all.map(a=>a.id),state),due=dueSet(state),dueCount=all.filter(a=>due.has(a.id)).length,next=all.find(a=>!state.completed?.includes(a.id));
+  return `<header class="course-journey-hero"><div><p class="eyebrow">Six-course learning path</p><h1>Course</h1><p class="lede">Start with the complete beginner map, then move through Israel, the Second Temple world, Jesus and the early Church before deeper interpretation and theology.</p><div class="hero-actions"><a class="button button--primary" href="${next?activityHref(next):'/course'}">${next?'Continue learning':'Review completed learning'}</a><a class="button" href="/course?unit=${encodeURIComponent(ORIENTATION_UNIT_ID)}&lesson=${encodeURIComponent(ORIENTATION_LESSON_ID)}">Replay orientation</a></div></div><aside class="course-total-state"><strong>${p.pct}%</strong><span>${p.done}/${p.total} scored activities</span><small>${dueCount?`${dueCount} review${dueCount===1?'':'s'} due now`:'No reviews due now'}</small></aside></header><section class="course-journey-intro"><div><p class="eyebrow">Your path</p><h2>Core first. Depth when you’re ready.</h2><p>Courses 1–4 build substantial biblical literacy. Courses 5–6 deepen textual, interpretive, theological, and contested-question work. The sequence is progressive, but completed material remains open for review.</p></div><a href="/topics?mode=glossary">Open global glossary →</a></section><ol class="unit-list course-orientation-list"><li class="unit unit--orientation"><span class="unit-num">00</span><div><p class="eyebrow">Orientation · not scored</p><h3><a data-activity-link="orientation" href="/course?unit=${encodeURIComponent(ORIENTATION_UNIT_ID)}&lesson=${encodeURIComponent(ORIENTATION_LESSON_ID)}">Welcome to Canonical Shelf</a></h3><p>Learn the study environment, deeper layers, Practice, themes, source discipline, and independent-study tools.</p></div><span>Replay anytime</span></li></ol><div class="course-journey-grid">${(data.courses||[]).map(c=>courseCard(data,state,c,esc)).join('')}</div>`;
+}
+
+export function courseDetailView({data,state,course,esc}){
+  const units=(data.byCourse?.[course.id]||[]).map(id=>(data.units||[]).find(u=>u.id===id)).filter(Boolean),allIds=units.flatMap(u=>data.byUnit?.[u.id]||[]),p=progressFor(allIds,state),due=dueSet(state),dueCount=allIds.filter(id=>due.has(id)).length;
+  const firstNext=(data.activities||[]).find(a=>a.courseId===course.id&&!state.completed?.includes(a.id));
+  return `<header class="course-detail-hero"><p><a href="/course">← All courses</a></p><div class="course-detail-hero__grid"><div><p class="eyebrow">Course ${course.sequence} · ${esc(course.level==='advanced'?'Deeper study':'Biblical Literacy Core')}</p><h1>${esc(course.title)}</h1><p class="lede">${esc(course.scope)}</p><p>${esc(course.outcome||'')}</p><div class="hero-actions"><a class="button button--primary" href="${firstNext?activityHref(firstNext):`/course?course=${encodeURIComponent(course.id)}`}">${firstNext?'Continue course':'Review course'}</a><a class="button" href="/course?course=${encodeURIComponent(course.id)}&glossary=1">Course glossary</a></div></div><aside class="course-total-state"><strong>${p.pct}%</strong><span>${p.done}/${p.total} activities</span><small>${dueCount?`${dueCount} review${dueCount===1?'':'s'} due`:'Retention up to date'}</small></aside></div></header><section class="unit-card-grid">${units.map(unit=>{const stats=unitStats(data,state,unit);return `<article class="journey-unit-card" data-unit-state="${stats.status}"><header><span>Unit ${String(unit.sequence).padStart(2,'0')}</span><span class="unit-state ${stats.reviewDue?'state-due':''}">${statusLabel(stats)}</span></header><h2><a href="/course?unit=${encodeURIComponent(unit.id)}">${esc(unit.title)}</a></h2><p>${esc(unit.scope)}</p><div class="progress"><span style="width:${stats.pct}%"></span></div><div class="journey-unit-card__stats"><span>${stats.done}/${stats.total} activities</span><span>${stats.masteryDone}/${stats.masteryTotal} mastery</span></div><footer><a href="${stats.next?activityHref(stats.next):`/course?unit=${encodeURIComponent(unit.id)}`}">${stats.status==='complete'?'Review unit':stats.status==='in-progress'?'Continue':'Start unit'} →</a></footer></article>`}).join('')}</section>`;
+}
+
+export function unitExperienceView({data,state,unit,course,esc}){
+  const ids=data.byUnit?.[unit.id]||[],activities=ids.map(id=>(data.activities||[]).find(a=>a.id===id)).filter(Boolean),stats=unitStats(data,state,unit),due=dueSet(state),nextIndex=activities.findIndex(x=>!state.completed?.includes(x.id));
+  return `<header class="unit-experience-hero"><p><a href="/course?course=${encodeURIComponent(unit.courseId)}">← ${esc(course?.shortTitle||course?.title||'Course')}</a></p><div class="unit-experience-hero__grid"><div><p class="eyebrow">Course ${course?.sequence||'—'} · Unit ${unit.sequence}</p><h1>${esc(unit.title)}</h1><p class="lede">${esc(unit.scope)}</p></div><aside><strong>${stats.pct}%</strong><span>${stats.done}/${stats.total} activities</span>${stats.reviewDue?`<small>${stats.reviewDue} review${stats.reviewDue===1?'':'s'} due</small>`:''}</aside></div></header><ol class="activity-journey unit-list">${activities.map((a,index)=>{const done=state.completed?.includes(a.id),review=due.has(a.id),label=a.type==='lesson'?'Guided lesson':a.masteryType==='course-capstone'?'Course capstone':a.masteryType==='unit-mastery'?'Unit mastery':'Integrated mastery';return `<li class="activity-step unit" data-complete="${done?'true':'false'}" data-review-due="${review?'true':'false'}"><span class="activity-step__num unit-num">${String(index+1).padStart(2,'0')}</span><div><p class="eyebrow">${label}</p><h3><a data-activity-link="${esc(a.id)}" href="${activityHref(a)}">${esc(a.title)}</a></h3><p class="activity-state">${review?'Review due':done?'Complete':index===nextIndex?'Next up':'Available'}</p></div><span class="activity-step__mark" aria-hidden="true">${done?'✓':a.type==='mastery'?'◆':'○'}</span></li>`}).join('')}</ol>`;
+}
