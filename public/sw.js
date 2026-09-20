@@ -1,4 +1,4 @@
-const RELEASE='v7-shell-controls-2026-09-20-a';
+const RELEASE='v7-shell-controls-2026-09-20-b';
 const SHELL=`cs-${RELEASE}-shell`,DATA=`cs-${RELEASE}-data`;
 const ESSENTIAL=['/','/index.html','/about.html','/tokens.css','/styles.css','/learning.css','/bible.css','/library.css','/practice.css','/utility-panels.css','/experience.css','/course-experience.css','/footer.css','/bootstrap.js','/about-page.js','/theme.js','/orientation.js','/study-controls.js','/feedback.js','/personal-study.js','/app.js','/experience.js','/progress-experience.js','/course-experience.js','/practice-experience.js','/practice-engine.js','/practice-state.js','/practice-data.js','/account-ui.js','/db.js','/sync.js','/generated/account.js','/learning.js','/bible.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/theologian.js','/manifest.webmanifest','/icon.svg','/data/theology-policy.json'];
 const DATA_ASSETS=['/data/catalog.json','/data/corpus.txt','/data/curriculum.md','/data/statement-of-faith.md','/data/theology-sources.json'];
