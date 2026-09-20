@@ -5,14 +5,11 @@ const openButton=document.querySelector('#personal-study-open');
 const panel=document.querySelector('#personal-study-panel');
 const closeButton=document.querySelector('#personal-study-close');
 const title=document.querySelector('#personal-study-context');
-const note=document.querySelector('#personal-note');
 const journal=document.querySelector('#personal-journal');
 const status=document.querySelector('#personal-study-status');
-const tabs=[...document.querySelectorAll('[data-personal-tab]')];
-const panes=[...document.querySelectorAll('[data-personal-pane]')];
-let saveTimer=null;
+let journalTimer=null;
 let currentKey=null;
-const dirty=new Set();
+const inlineTimers=new WeakMap();
 
 function activityKey(){
   if(location.pathname!=='/course')return null;
@@ -33,53 +30,60 @@ function datedText(map,key){
   return value&&typeof value==='object'?String(value.text||''):'';
 }
 
-async function loadCurrent(){
+async function saveField(field,key,text,statusNode){
+  if(!key)return;
+  const state=await getState(),at=new Date().toISOString();
+  state[field]={...(state[field]||{}),[key]:{text,updatedAt:at}};
+  recordMutation(state,'personal-study',{id:key,fields:[field],updatedAt:at},at);
+  await putState(state);
+  if(statusNode)statusNode.textContent=`Saved ${new Date(at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}`;
+}
+
+async function loadJournal(){
   currentKey=activityKey();
   if(!currentKey)return;
   const state=await getState();
-  note.value=datedText(state.notes,currentKey);
   journal.value=datedText(state.journal,currentKey);
-  dirty.clear();
   title.textContent=contextLabel();
-  status.textContent='Saved locally on this device. Account sync includes personal writing when enabled.';
+  status.textContent='Saved locally on this device. Account sync includes journal writing when enabled.';
 }
 
-async function saveDirty(){
-  if(!currentKey||!dirty.size)return;
-  const state=await getState();
-  const at=new Date().toISOString();
-  if(dirty.has('notes'))state.notes={...(state.notes||{}),[currentKey]:{text:note.value,updatedAt:at}};
-  if(dirty.has('journal'))state.journal={...(state.journal||{}),[currentKey]:{text:journal.value,updatedAt:at}};
-  recordMutation(state,'personal-study',{id:currentKey,fields:[...dirty],updatedAt:at},at);
-  dirty.clear();
-  await putState(state);
-  status.textContent=`Saved ${new Date(at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}`;
-}
-
-function scheduleSave(field){
-  dirty.add(field);
-  clearTimeout(saveTimer);
+function scheduleJournalSave(){
+  if(!currentKey)return;
+  clearTimeout(journalTimer);
   status.textContent='Saving…';
-  saveTimer=setTimeout(()=>saveDirty().catch(()=>{status.textContent='Could not save. Your text remains in this panel.'}),650);
+  journalTimer=setTimeout(()=>saveField('journal',currentKey,journal.value,status).catch(()=>{status.textContent='Could not save. Your writing remains in this panel.'}),650);
 }
 
-function selectTab(name){
-  tabs.forEach(button=>button.setAttribute('aria-selected',String(button.dataset.personalTab===name)));
-  panes.forEach(pane=>pane.hidden=pane.dataset.personalPane!==name);
-  (name==='journal'?journal:note)?.focus({preventScroll:true});
+async function bindInlineNotes(){
+  const notes=[...document.querySelectorAll('[data-inline-lesson-note]')];
+  if(!notes.length)return;
+  const state=await getState();
+  for(const note of notes){
+    if(note.dataset.bound==='true')continue;
+    note.dataset.bound='true';
+    const key=note.dataset.activity||activityKey(),statusNode=note.parentElement?.querySelector('[data-inline-note-status]');
+    note.value=datedText(state.notes,key);
+    note.addEventListener('input',()=>{
+      clearTimeout(inlineTimers.get(note));
+      if(statusNode)statusNode.textContent='Saving…';
+      const timer=setTimeout(()=>saveField('notes',key,note.value,statusNode).catch(()=>{if(statusNode)statusNode.textContent='Could not save. Your note remains here.'}),650);
+      inlineTimers.set(note,timer);
+    });
+  }
 }
 
 async function openPanel(){
   if(!activityKey())return;
-  await loadCurrent();
+  await loadJournal();
   panel.hidden=false;
   openButton.setAttribute('aria-expanded','true');
-  panel.querySelector('[data-personal-tab][aria-selected="true"]')?.focus({preventScroll:true});
+  journal?.focus({preventScroll:true});
 }
 
 function closePanel(){
-  clearTimeout(saveTimer);
-  if(currentKey)saveDirty().catch(()=>{});
+  clearTimeout(journalTimer);
+  if(currentKey)saveField('journal',currentKey,journal.value,status).catch(()=>{});
   panel.hidden=true;
   openButton.setAttribute('aria-expanded','false');
   openButton.focus({preventScroll:true});
@@ -87,8 +91,7 @@ function closePanel(){
 
 openButton?.addEventListener('click',()=>openPanel().catch(()=>{}));
 closeButton?.addEventListener('click',closePanel);
-note?.addEventListener('input',()=>scheduleSave('notes'));
-journal?.addEventListener('input',()=>scheduleSave('journal'));
-tabs.forEach(button=>button.addEventListener('click',()=>selectTab(button.dataset.personalTab)));
+journal?.addEventListener('input',scheduleJournalSave);
+document.addEventListener('canonical-route-rendered',()=>bindInlineNotes().catch(()=>{}));
 window.addEventListener('popstate',()=>{if(panel&&!panel.hidden)closePanel()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel&&!panel.hidden)closePanel()});
