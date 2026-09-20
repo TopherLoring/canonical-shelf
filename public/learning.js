@@ -217,7 +217,7 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
   return `<section class="study-focus" data-study-focus>
     <header class="study-focus__chrome">
       <div class="study-focus__identity"><span>${esc(courseLabel)}Unit ${unitSequence} · ${esc(unitTitle)}</span><strong>Lesson ${lessonSequence} · ${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button><button type="button" data-toggle-apparatus>Notes &amp; sources</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
+      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal</button><button type="button" data-toggle-apparatus>Notes &amp; sources</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
     </header>
     <article class="study-folio" aria-labelledby="study-scene-title">
       <header class="study-folio__head"><div><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div><div class="study-folio__count"><strong>${sceneIndex+1}</strong><span>of ${scenes.length}</span></div></header>
