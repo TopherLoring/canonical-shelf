@@ -17,9 +17,4 @@ console.log('pre-launch repair: restore locked public BSB copy if needed');
 await repairPublicCorpus();
 await verifyPublicCorpus();
 
-console.log('pre-launch repair: regenerate build/deploy artifacts');
-run(['bun','run','build:client'],'client bundle generation');
-run(['bun','scripts/generate-auth-migration.mjs'],'auth migration generation');
-run(['bun','scripts/write-wrangler.mjs'],'Wrangler config generation');
-
 console.log('pre-launch repair complete');
