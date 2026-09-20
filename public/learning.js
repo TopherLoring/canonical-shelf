@@ -84,7 +84,7 @@ function parseCorpus(text){
   return parsedCorpusRows;
 }
 
-const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,'\\const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${()}|[\]\\]/g,'\\function scriptureMarkup(lesson,corpus,esc){'));'));
+const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
 const supportingReferencePattern=new RegExp(`\\b(${referenceNames.join('|')})\\s+\\d+:\\d+(?:[-–]\\d+)?`,'gi');
 
 function supportingReferencesMarkup(text,corpus,esc){
