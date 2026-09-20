@@ -19,13 +19,22 @@ const manifest=JSON.parse(await readFile('content/migration/admissibility.json',
 if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('legacy provenance must remain pinned to an immutable SHA');
 
 const packageJson=JSON.parse(await readFile('package.json','utf8'));
-const migrate=String(packageJson.scripts?.migrate||'');
-const build=String(packageJson.scripts?.build||'');
-const deploy=String(packageJson.scripts?.deploy||'');
+const scripts=packageJson.scripts||{};
+const migrate=String(scripts.migrate||'');
+const buildApp=String(scripts['build:app']||'');
+const buildVerify=String(scripts['build:verify']||'');
+const build=String(scripts.build||'');
+const verify=String(scripts.verify||'');
+const deploy=String(scripts.deploy||'');
+
 if(!migrate.includes('migrate-vendored.mjs'))throw new Error('production migrate must use the local vendor snapshot');
-if(!build.includes('generate:auth-migration'))throw new Error('production build must generate Better Auth schema');
-if(!build.includes('generate:wrangler'))throw new Error('production build must generate Cloudflare config before platform deployment');
-if(!deploy.includes('bun run build'))throw new Error('production deploy must execute the authoritative production build');
+if(!buildApp.includes('build:client')||!buildApp.includes('build:worker'))throw new Error('application build must compile client and worker bundles');
+if(!build.includes('build:app'))throw new Error('default build must execute the application build');
+if(build.includes('generate:wrangler')||build.includes('bun run validate'))throw new Error('default build must not require deployment config or release validation');
+if(!buildVerify.includes('build:app')||!buildVerify.includes('bun run validate'))throw new Error('verification build must run application build plus validation');
+if(!verify.includes('build:verify'))throw new Error('release verification must include the verification build');
+if(!deploy.includes('bun run verify'))throw new Error('production deploy must verify the release before deployment');
+if(!deploy.includes('generate:wrangler'))throw new Error('production deploy must generate Cloudflare configuration');
 if(!deploy.includes('wrangler d1 migrations apply canonical-shelf --remote'))throw new Error('production deploy must apply remote D1 migrations before Worker deployment');
 if(!deploy.includes('wrangler deploy'))throw new Error('production deploy must publish through Wrangler');
 
@@ -43,4 +52,4 @@ for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.
 const readme=await readFile('README.md','utf8');
 if(!/Berean Standard Bible \(BSB\)/.test(readme))throw new Error('README must identify the embedded BSB corpus');
 
-console.log('production standalone/build/offline/feedback/personal-study/BSB gates passed');
+console.log('production build/verify/deploy separation + offline/feedback/personal-study/BSB gates passed');
