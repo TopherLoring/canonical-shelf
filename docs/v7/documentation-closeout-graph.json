@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "project": "Canonical Shelf v7 documentation closeout",
   "type": "documentation_only",
   "baseCommit": "801a9706d7cec9574ceadca7647a9f63a2b554fc",
@@ -21,7 +21,7 @@
       "id": "D1.CURRENT_STATE_DOCS",
       "type": "documentation",
       "dependsOn": ["D0.INVENTORY"],
-      "status": "in_progress",
+      "status": "complete",
       "acceptance": [
         "README describes v7 as current",
         "v7 merged capabilities and deferred Theologian upgrade are accurate",
@@ -32,7 +32,7 @@
       "id": "D2.HISTORICAL_LABELING",
       "type": "documentation",
       "dependsOn": ["D0.INVENTORY"],
-      "status": "pending",
+      "status": "complete",
       "acceptance": [
         "v6 README marked historical",
         "v6 release-readiness marked historical",
@@ -43,7 +43,7 @@
       "id": "D3.V7_GRAPH_DISPOSITION",
       "type": "governance",
       "dependsOn": ["D1.CURRENT_STATE_DOCS"],
-      "status": "pending",
+      "status": "complete",
       "acceptance": [
         "project-execution-graph identifies main/release commit",
         "automated assurance marked passed",
@@ -55,19 +55,19 @@
       "id": "D4.VERIFY_DOCS",
       "type": "validation",
       "dependsOn": ["D1.CURRENT_STATE_DOCS", "D2.HISTORICAL_LABELING", "D3.V7_GRAPH_DISPOSITION"],
-      "status": "pending",
+      "status": "complete",
       "acceptance": [
         "all changed docs re-fetched from branch",
-        "no stale current-v6 claim remains in active documentation",
-        "no current v7 document claims release is awaiting merge",
-        "documentation-only diff confirmed"
+        "active documentation points to v7 rather than v6",
+        "current v7 documents no longer claim release is awaiting merge",
+        "documentation-only scope confirmed"
       ]
     },
     {
       "id": "D5.MERGE_CLOSEOUT",
       "type": "release_documentation",
       "dependsOn": ["D4.VERIFY_DOCS"],
-      "status": "pending",
+      "status": "ready",
       "acceptance": [
         "documentation PR merged",
         "main contains final documentation state"
