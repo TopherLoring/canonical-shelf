@@ -1,47 +1,59 @@
 # Canonical Shelf v6 — Director Release Readiness
 
-Status: **PASS WITH RELEASE HOLD**
+> **Historical snapshot.** This document records the v6 release-readiness position before v7 superseded it. It is retained for provenance and must not be read as the current release-governance state. Current status is documented in the root `README.md` and `docs/v7/`.
 
-Branch: `v6`
-Latest automated-gate head: `1bc3a48a06e4beae6df9c0855a184cde0129ac23`
-Latest full CI run: `35223143073`
+Historical status: **PASS WITH RELEASE HOLD**
 
-## Director disposition
+Branch at the time: `v6`  
+Latest automated-gate head at the time: `1bc3a48a06e4beae6df9c0855a184cde0129ac23`  
+Latest full CI run at the time: `35223143073`
 
-The v6 engineering implementation has passed the automated acceptance surface currently available in CI. This does **not** authorize merge to `main` or deployment. Release remains held on human/device validation and final production identity/sync provisioning.
+## Historical Director disposition
 
-## Automated gates — PASS
+The v6 engineering implementation had passed the automated acceptance surface available in CI at that stage. The v6 policy did **not** authorize merge to `main` or deployment and held release on human/device validation plus final production identity/sync provisioning.
 
-- audited migration provenance is pinned to an immutable legacy commit and explicit admissibility manifest;
-- 25 units, 70 guided lessons, 69 mastery activities, 139 scored activities, and 45 Topics validate exactly;
-- no empty v6 curriculum unit;
-- native durable routes and static-host fallback validate;
-- legacy hash URLs are compatibility-only and canonicalize forward;
-- three-tier design tokens are enforced and primitive-token leakage is blocked;
-- bounded Theologian runtime, LGBTQ doctrine safeguards, Ruth/Naomi boundary, Romans/lexical caution, and mastery-answer protection are tested;
-- local-first learner state, spaced review, sync outbox, merge rules, and `legacyRaw` privacy boundaries are tested;
-- optional account/passkey client compiles;
-- Better Auth + Cloudflare D1 Worker compiles;
-- local D1 harness passes two-user isolation, same mutation ID across users, duplicate replay deduplication, deletion isolation, and `legacyRaw` rejection;
-- mutation replay identity is scoped by `(user_id, id)`;
-- PWA start URL uses `/home`, install identity is present, shell/data cache boundaries validate, and offline shell behavior is tested;
-- Chromium, Firefox, and WebKit E2E suites pass;
-- axe serious/critical WCAG-tagged checks pass on covered surfaces;
-- mobile-width account/header surface passes automated browser checks.
+That v6 merge/deploy rule was later superseded by explicit project-owner decisions during v7. Under `docs/v7/DECISION_PRECEDENCE.md`, newer explicit owner decisions govern after conflict notification/confirmation where material.
 
-## Release holds — HUMAN / ENVIRONMENT
+## Automated gates recorded as PASS in v6
 
-These remain release-blocking and must not be represented as completed by automated CI:
+- audited migration provenance pinned to an immutable legacy commit and explicit admissibility manifest;
+- 25 units, 70 guided lessons, 69 mastery activities, 139 scored activities, and 45 Topics validated;
+- no empty curriculum unit;
+- native durable routes and static-host fallback;
+- legacy hash compatibility canonicalizing forward;
+- three-tier design-token enforcement;
+- bounded Theologian safeguards and mastery-answer protection;
+- local-first learner state, spaced review, sync outbox, merge rules, and `legacyRaw` privacy boundaries;
+- optional account/passkey client compilation;
+- Better Auth + Cloudflare D1 Worker compilation;
+- local D1 user isolation/replay/deletion/privacy checks;
+- PWA shell/data cache behavior;
+- Chromium, Firefox, and WebKit E2E;
+- axe serious/critical checks on covered surfaces;
+- mobile-width account/header checks.
 
-1. **Screen reader validation:** NVDA on Windows and VoiceOver on iOS/macOS for primary navigation, lessons, mastery forms, Bible reader, Guide, Account & sync, and error/status announcements.
-2. **Forced-colors / zoom:** human inspection in forced-colors plus 200% and 400% zoom/reflow.
-3. **Physical mobile devices:** representative iPhone/iPad and Android testing for touch targets, viewport behavior, PWA install/launch, offline work, reconnect, and passkey ceremonies.
-4. **Representative learner usability:** low/no-biblical-knowledge learner testing for orientation, lesson comprehension, practice/review flow, search, and Guide expectations.
-5. **Editorial/theological review:** representative migrated lessons and Topics in the new sequence, with special attention to Unit 4, Unit 18, contested-text material, LGBTQ spiral integration, and source/evidence labeling.
-6. **Production account environment:** provision D1, Worker secrets, Better Auth schema generated from the pinned config, RP/origin configuration, passkey registration/sign-in, account deletion, and fresh-device restoration against the production-like environment.
-7. **Authenticated endpoint tests:** explicit unauthorized-request and cross-user endpoint tests using real Better Auth sessions, not only storage-layer user isolation.
-8. **Privacy/recovery review:** verify learner-visible disclosure of remotely stored fields, deletion behavior, export/import continuity, and recovery limitations.
+## Human/environment holds recorded at the v6 stage
 
-## Merge / deploy rule
+The following were explicitly not considered satisfied by automated CI:
 
-No merge to `main` and no production deployment until the release holds above are dispositioned. A release candidate may be created only after the production-like account environment exists and physical/human validation has been recorded.
+1. NVDA and VoiceOver validation.
+2. Forced-colors and 200%/400% zoom/reflow inspection.
+3. Physical iPhone/iPad/Android testing, including PWA and passkey behavior.
+4. Representative learner usability testing.
+5. Editorial/theological review of representative migrated content.
+6. Production D1/Auth/passkey/recovery/deletion environment validation.
+7. Authenticated endpoint isolation using real sessions.
+8. Privacy/recovery review.
+
+These categories informed the later v7 assurance model. Unless separate evidence records completion, current documentation continues to treat comparable human/device/editorial checks as continuing QA rather than silently marking them complete.
+
+## Supersession
+
+The v7 V5-polish release was later merged to `main` as `801a9706d7cec9574ceadca7647a9f63a2b554fc` after its authoritative automated production CI passed and the project owner explicitly authorized merge. This historical v6 release hold therefore no longer controls `main`.
+
+For current state, see:
+
+- `README.md`
+- `docs/v7/DECISION_PRECEDENCE.md`
+- `docs/v7/PLAN_DELTA_V7_V5_POLISH.md`
+- `docs/v7/project-execution-graph.json`
