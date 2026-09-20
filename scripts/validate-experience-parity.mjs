@@ -33,7 +33,7 @@ const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/
 if(profileCount!==66)throw new Error(`expected 66 restored Bible book profiles, found ${profileCount}`);
 for(const marker of ['The Patriarchs','Exodus & Wilderness','Divided Kingdom','Return & Persia','Life of Christ','The Early Church'])requireText(libraryData,marker,`historical orientation missing: ${marker}`);
 for(const marker of ['A world made good, and quickly broken','Return, then the Second Temple bridge','Jesus','The movement, and an ending that is a beginning'])requireText(libraryData,marker,`Bible story arc missing: ${marker}`);
-for(const marker of ['canonical-shelf-bible-state-v1','getPracticeState','learnedBooks','rememberBibleBook','enhanceBibleState','data.current','data.learned'])requireText(bibleState,marker,`Bible learner-state identity missing: ${marker}`);
+for(const marker of ['canonical-shelf-bible-state-v1','getPracticeState','learnedBooks','rememberBibleBook','enhanceBibleState','dataset.current','dataset.learned'])requireText(bibleState,marker,`Bible learner-state identity missing: ${marker}`);
 for(const marker of ['data-learned="true"','data-current="true"','book-state-chip','prefers-reduced-motion','forced-colors'])requireText(bibleStateCss,marker,`Bible state visual/accessibility contract missing: ${marker}`);
 requireText(app,"from './bible-state.js'",'Bible route must import learner-state identity explicitly');
 requireText(app,"if(r==='bible')enhanceBibleState(main,p)",'Bible learner state must run in the normal Bible render path');
