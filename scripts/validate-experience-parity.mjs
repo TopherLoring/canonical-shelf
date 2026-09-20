@@ -1,16 +1,23 @@
 import {readFile} from 'node:fs/promises';
 
 const read=path=>readFile(path,'utf8');
-const [index,app,home,bible,libraryData,otBooks,ntBooks,experience,practiceExperience,practiceEngine,practiceData,practiceState,course,sw]=await Promise.all([
-  read('public/index.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/sw.js')
+const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,practiceExperience,practiceEngine,practiceData,practiceState,course,sw]=await Promise.all([
+  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/sw.js')
 ]);
 
 const requireText=(source,text,message)=>{if(!source.includes(text))throw new Error(message||`missing required parity marker: ${text}`)};
 const forbid=(source,text,message)=>{if(source.includes(text))throw new Error(message||`forbidden legacy implementation marker: ${text}`)};
 
 for(const route of ['home','course','bible','topics','practice'])requireText(index,`data-route="${route}"`,`primary destination missing: ${route}`);
-for(const asset of ['/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(index,asset,`restored experience stylesheet not loaded: ${asset}`);
+for(const asset of ['/experience.css','/course-experience.css','/library.css','/practice.css','/footer.css'])requireText(index,asset,`restored experience stylesheet not loaded: ${asset}`);
 for(const utility of ['translation-select','progress-open','account-open','guide-open','feedback-open','personal-study-open'])requireText(index,utility,`shared utility missing: ${utility}`);
+for(const footer of ['site-footer','Statement of Faith','About Canonical Shelf','How this guide approaches Scripture','Sources &amp; methodology','Translation information','Accessibility','Privacy'])requireText(index,footer,`footer/about missing: ${footer}`);
+for(const disclosure of ['Statement of Faith','How this guide approaches Scripture','Sources &amp; methodology','Translation information','Accessibility','Privacy'])requireText(about,disclosure,`About surface missing disclosure: ${disclosure}`);
+
+const appImport=bootstrap.indexOf("await import('./app.js')");
+const swRegister=bootstrap.indexOf("navigator.serviceWorker.register('/sw.js'");
+if(appImport<0||swRegister<0||appImport>swRegister)throw new Error('core app controls must initialize before service-worker registration/readiness');
+forbid(bootstrap,"await navigator.serviceWorker.ready;\n\nwindow.addEventListener",'service-worker readiness must not block core application initialization');
 
 for(const marker of ['Suggested next activity','Featured topic','Six-course path','Recent activity','Open Practice','Open Bible'])requireText(home,marker,`Home parity surface missing: ${marker}`);
 for(const marker of ['courseLandingView','courseDetailView','unitExperienceView','review','mastery'])requireText(course,marker,`Course parity contract missing: ${marker}`);
@@ -18,7 +25,7 @@ for(const marker of ['Bookshelf','Books & groups','Bible reader','Canon & timeli
 const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/\{n:\d+,name:/g)||[]).length;
 if(profileCount!==66)throw new Error(`expected 66 restored Bible book profiles, found ${profileCount}`);
 for(const marker of ['The Patriarchs','Exodus & Wilderness','Divided Kingdom','Return & Persia','Life of Christ','The Early Church'])requireText(libraryData,marker,`historical orientation missing: ${marker}`);
-for(const marker of ['A world made good, and quickly broken','Return, then a long silence','Jesus','The movement, and an ending that is a beginning'])requireText(libraryData,marker,`legacy Bible story arc missing: ${marker}`);
+for(const marker of ['A world made good, and quickly broken','Return, then the Second Temple bridge','Jesus','The movement, and an ending that is a beginning'])requireText(libraryData,marker,`Bible story arc missing: ${marker}`);
 
 for(const marker of ['Ask / search','Theology & doctrine','Christian life','Biblical concepts','Difficult questions','Glossary','Related exploration'])requireText(experience,marker,`Topics entry mode missing: ${marker}`);
 for(const marker of ['Recommended review','Practice Campaign','Arcade','Games & mastery','Ranks & achievements','Context & interpretation','Themes','Verse library'])requireText(practiceExperience,marker,`Practice surface missing: ${marker}`);
@@ -28,7 +35,7 @@ if(campaignLevels!==40)throw new Error(`expected 40 restored Practice campaign l
 for(const marker of ['sequenceQuestion','shelfQuestion','binsQuestion','pairsQuestion','finishPracticeRun','practiceCampaignView','practiceArcadeView'])requireText(practiceEngine,marker,`Practice engine missing: ${marker}`);
 requireText(practiceState,"canonical-shelf-practice-v3",'Practice state must remain separately namespaced from Course learner state');
 
-for(const asset of ['/experience.js','/progress-experience.js','/course-experience.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-state.js','/practice-data.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
+for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/progress-experience.js','/course-experience.js','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-state.js','/practice-data.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
 for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
 forbid(app,'MutationObserver','v7 experience must not restore v5 DOM-repair architecture');
 forbid(app,'v5-pages','v7 experience must not restore v5 bridge runtime');
