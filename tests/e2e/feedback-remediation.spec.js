@@ -10,7 +10,8 @@ async function answerCurrentChallenge(page){
   expect(contract).toBeTruthy();
   await page.evaluate(challenge=>{
     const form=document.querySelector('.challenge'),shape=form.dataset.shape;
-    if(['sequence','match','fields'].includes(shape))challenge.answer.forEach((answer,index)=>{const input=form.querySelector(`[name="p${index}"][value="${answer}"]`)||form.querySelector(`[name="p${index}"]`);if(input){input.value=String(answer);input.checked=true}});
+    if(shape==='sequence')challenge.answer.forEach((answer,index)=>{const input=form.querySelector(`[name="p${index}"]`);if(input)input.value=String(answer)});
+    else if(['match','fields'].includes(shape))challenge.answer.forEach((answer,index)=>{const input=form.querySelector(`[name="p${index}"][value="${answer}"]`);if(input)input.checked=true});
     else if(shape==='evidence-select')challenge.answer.forEach(answer=>{const input=form.querySelector(`[name="pick"][value="${answer}"]`);if(input)input.checked=true});
     else if(shape==='scenario')challenge.stages.forEach((stage,index)=>{const input=form.querySelector(`[name="s${index}"][value="${stage.correct}"]`);if(input)input.checked=true});
     else if(shape==='lanes')challenge.answer.forEach((answer,index)=>{const expected=Array.isArray(answer)?answer[1]:answer;const input=form.querySelector(`[name="p${index}"][value="${expected}"]`);if(input)input.checked=true});
@@ -30,7 +31,7 @@ test('unit journey is open and distinguishes learning states without access gate
 });
 
 test('lesson prepares the learner before Scripture and combines explanatory scenes',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin');
+  await page.goto('/course?unit=unit.start&lesson=begin');
   const roles=await page.locator('.scene-rail a small').allTextContents();
   expect(roles.indexOf('Prepare')).toBeGreaterThan(-1);
   expect(roles.indexOf('Read')).toBeGreaterThan(roles.indexOf('Prepare'));
@@ -42,7 +43,7 @@ test('lesson prepares the learner before Scripture and combines explanatory scen
 });
 
 test('correct selections receive the sole positive indicator',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin');
+  await page.goto('/course?unit=unit.start&lesson=begin');
   await page.locator('.scene-rail a').filter({hasText:'Practice'}).first().click();
   await answerCurrentChallenge(page);
   await expect(page.locator('.response-is-correct').first()).toBeVisible();
@@ -52,7 +53,7 @@ test('correct selections receive the sole positive indicator',async({page})=>{
 
 test('Study Focus reserves Feedback and Journal controls and fits a phone viewport',async({page})=>{
   await page.setViewportSize({width:375,height:667});
-  await page.goto('/course?unit=c1.christianity&lesson=begin');
+  await page.goto('/course?unit=unit.start&lesson=begin');
   await expect(page.locator('body > #feedback-open')).toBeHidden();
   await expect(page.locator('body > #personal-study-open')).toBeHidden();
   await expect(page.locator('.study-focus__chrome').getByRole('button',{name:'Feedback',exact:true})).toBeVisible();
