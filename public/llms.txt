@@ -1,0 +1,27 @@
+# Canonical Shelf
+
+> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining guided curriculum, Scripture study, curated Topics, Practice, and an evidence-aware study Guide.
+
+This file is generated from the application’s primary navigation and runtime catalog. It is a discovery contract, not an independent authority for curriculum or theology. Canonical Shelf distinguishes biblical text, historical context and evidence, interpretation, reception, doctrine, Canonical Shelf position, and application.
+
+Current scored curriculum: 25 units, 70 guided lessons, 69 mastery activities, and 139 scored activities. Current reference library: 45 Topics.
+
+## Primary destinations
+
+- [Home](/home): Orientation and continuation surface for the learner.
+- [Course](/course): Guided curriculum and scored learning activities.
+- [Bible](/bible): Browse and read the biblical text, books, and study context.
+- [Topics](/topics): Curated reference material; Topics do not count toward course completion.
+- [Practice](/practice): Retrieval and spaced reinforcement without creating a second curriculum.
+
+## Canonical learning and editorial resources
+
+- [Curriculum reference](/data/curriculum.md): Generated curriculum reference for the current guided course.
+- [Runtime catalog](/data/catalog.json): Machine-readable units, lessons, mastery activities, Topics, and stable activity identifiers.
+- [Statement of Faith](/data/statement-of-faith.md): Canonical Shelf doctrinal ceiling and authoritative statement of faith.
+- [Theology policy](/data/theology-policy.json): Machine-readable evidence and interpretation boundaries used by the study Guide.
+- [Theology sources](/data/theology-sources.json): Public source metadata used by the bounded theology/evidence layer.
+
+## Optional
+
+- [Bible corpus](/data/corpus.txt): Embedded Scripture corpus used by Bible reading and search; large file, fetch only when needed.
