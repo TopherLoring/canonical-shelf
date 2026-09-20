@@ -1,0 +1,6 @@
+{
+  "greenfield-architecture": true,
+  "audited-migration": true,
+  "migration-candidate-not-requirement": true,
+  "no-default-inheritance": true
+}
