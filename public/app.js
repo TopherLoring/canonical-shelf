@@ -8,6 +8,7 @@ import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
 import {homeView,progressPanelView} from './progress-experience.js';
 import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
 import {enhanceLearningVisuals} from './learning-visuals.js';
+import {enhanceBibleState} from './bible-state.js';
 
 const main=document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -77,6 +78,7 @@ function render(){
   else main.innerHTML=homeView({data,state,esc});
   canonicalizeLinks(main);
   if(r==='course')enhanceLearningVisuals(main);
+  if(r==='bible')enhanceBibleState(main,p);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);
 }
