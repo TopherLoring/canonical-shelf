@@ -1,72 +1,104 @@
 # The Canonical Shelf
 
-**The Canonical Shelf** is a self-paced Bible-literacy and Scripture-study web application designed to help adult learners understand the Bible as a library, read it in context, develop sound interpretive habits, understand how Christian doctrine develops, and engage difficult or contested questions with intellectual and theological care.
+**The Canonical Shelf** is a self-paced Bible-literacy and Scripture-study web application for adult learners. It is designed to help learners understand the Bible as a library, read it in context, develop sound interpretive habits, understand how Christian doctrine develops, and engage difficult or contested questions with intellectual and theological care.
 
-The current application is the **v6 greenfield replatform**. It replaces the legacy runtime while selectively migrating audited curriculum content, stable learning identities, Scripture data, Topics, theological policy, and learner state.
+The current application is **Canonical Shelf v7**, merged to `main` at `801a9706d7cec9574ceadca7647a9f63a2b554fc`. v7 keeps the stronger learner-facing structure and interaction model established in v5, uses v4 selectively as a scholarly writing/content-depth reference, and runs on the cleaner v7 architecture without restoring v5 bridge/runtime debt.
 
-> **Current status:** Engineering and automated acceptance gates are passing. The application remains under a documented release hold for final physical-device, assistive-technology, learner-usability, editorial/theological, and production account/sync validation.
+> **Current status:** the merged v7 release passed the authoritative automated production CI before merge. Remaining human/device/editorial/theological review items are continuing quality-assurance work and must not be represented as independently completed unless evidence is recorded.
 
 ---
 
 ## Product model
 
-Canonical Shelf is built around one linear, self-paced curriculum:
+Canonical Shelf currently uses one linear self-paced curriculum:
 
-- **25 units**
+- **25 scored curriculum units**
 - **70 guided lessons**
 - **69 mastery activities**
 - **139 scored activities total**
 - **45 curated Topics** used as reference material rather than course completion requirements
+- **Unit 0 · Lesson 1 — Welcome to Canonical Shelf**, a replayable non-scored orientation/tutorial outside the 25-unit scored curriculum
 
-The primary application destinations are:
+These counts and identities are the current baseline. They are governed by `docs/v7/DECISION_PRECEDENCE.md`: an explicit later project-owner decision may change them, with conflict notification and confirmation for material state/ID/migration/deployment consequences.
+
+The five primary destinations are:
 
 1. **Home** — progress, continuation, and orientation
-2. **Course** — the 25-unit learning path
-3. **Bible** — canonical bookshelf, chapter reader, reference lookup, and Scripture search
+2. **Course** — the 25-unit learning journey plus Unit 0 orientation
+3. **Bible** — canonical bookshelf, reader, reference lookup, Scripture search, and study affordances
 4. **Topics** — curated reference material
 5. **Practice** — spaced reinforcement and review
 
-`Account & sync` and `Ask the Guide` are secondary capabilities rather than primary navigation destinations.
+`Account & sync`, `Appearance`, `Feedback`, personal study tools, and `Ask the Guide` are supporting capabilities rather than primary destinations.
 
 ---
 
-## Curriculum progression
+## v7 experience direction
 
-The v6 curriculum is organized as:
+The current design intent is:
 
-1. Start Here
-2. How to Read a Bible
-3. Bible as Library
-4. How Interpretation Works
-5. Story in One View
-6. Beginnings
-7. Abraham to Exodus
-8. Torah and Wilderness
-9. Land, Judges, and Ruth
-10. Kings and Temple
-11. Kingdoms and the Prophetic Library
-12. Exile, Return, and the World Before Jesus
-13. Poetry and Wisdom
-14. Jesus and Gospels
-15. Cross, Resurrection, Salvation
-16. Acts and Early Church
-17. Paul and Other Letters
-18. How Christian Doctrine Develops
-19. God and Christian Doctrine
-20. Christian Practice
-21. Christian Traditions
-22. Difficult Questions and Contested Interpretations
-23. Resurrection, Judgment, New Creation
-24. Themes Across Scripture
-25. Independent Mastery
+> **v5 product structure and learning flow × v4 scholarly depth × luxury editorial study environment × tactile interactive library**
 
-The broad learning progression is:
+v7 preserves the v5 product model while reimplementing it natively. It does not restore the legacy bridge architecture, stacked runtimes, DOM-repair hacks, or parallel CSS debt.
 
-**orientation → biblical literacy → interpretive method → biblical story → complex interpretation → doctrine formation → traditions and disagreement → contested questions → synthesis → independent interpretation**
+### Study Focus
 
-A core interpretive model introduced early in the curriculum is:
+Guided lessons and mastery activities transition into **Study Focus**: a concentrated, theme-aware learning environment with dark outer chrome and an elevated light folio.
 
-**TEXT → CONTEXT → INTERPRETATION → THEOLOGY → APPLICATION**
+Study Focus includes:
+
+- lesson/unit identity and scene/progress state;
+- viewport-aware composition;
+- persistent reserved-space navigation that does not cover content;
+- responsive recomposition across desktop, tablet, phone, and short landscape viewports;
+- accordion/drawer-first handling of secondary material before additional primary scrolling;
+- scholarly apparatus for textual, historical, literary, translation, lexical, interpretive, reception, doctrinal, application, and source material where relevant;
+- rich challenge rendering for sequence, matching, evidence selection, scenarios, argument mapping, classification, single-choice tasks, and reflection.
+
+The governing scholarly sequence remains:
+
+**Text → evidence/history → interpretation → reception → doctrine → application**
+
+### Aesthetic packages
+
+Users can choose among six persisted theme packages:
+
+1. Heritage
+2. Canonical Original
+3. Oxblood
+4. Slate & Linen
+5. Illuminated Jewel
+6. Bookshelf Spectrum
+
+Themes are full presentation systems rather than palette swaps. Bible category colors remain semantic and are not arbitrarily remapped.
+
+---
+
+## Personal Notes & Journal
+
+Personal writing is restored inside Study Focus.
+
+Learners can keep:
+
+- **Notes** tied to the current lesson/mastery activity;
+- **Journal** reflections tied to the current lesson/mastery activity.
+
+Both are explicitly **unscored** and do not affect completion, mastery, review schedules, or challenge results. They are local-first, included in learner export/import, and participate in optional account sync through deterministic per-activity merge rules.
+
+---
+
+## Feedback
+
+A compact **Feedback** control is available from every primary screen and from Study Focus.
+
+Feedback supports:
+
+- category;
+- message;
+- optional contact information;
+- automatic route context.
+
+The implementation does not intentionally collect a browser fingerprint or hidden learner content. Online feedback persists through a bounded `/api/feedback` endpoint; failed/offline submissions queue locally and retry when connectivity returns.
 
 ---
 
@@ -74,42 +106,43 @@ A core interpretive model introduced early in the curriculum is:
 
 Canonical Shelf includes an **embedded local copy of the Berean Standard Bible (BSB)** as its primary Scripture corpus.
 
-The Bible text is not fetched from a third-party Bible API during normal use. The application parses the bundled corpus locally for:
+The application parses the bundled corpus locally for:
 
-- 66-book canonical navigation
-- chapter reading
-- verse/reference lookup
-- direct references such as `John 3:16`
-- local word and phrase search
-- offline Scripture access
+- 66-book canonical navigation;
+- chapter reading;
+- verse/reference lookup;
+- direct references such as `John 3:16`;
+- local word and phrase search;
+- offline Scripture access.
 
-The corpus is generated into:
+Generated runtime corpus:
 
 ```text
 public/data/corpus.txt
 ```
 
-Its audited migration source is the legacy Canonical Shelf `public/corpus.txt` asset. The approved immutable source snapshot is vendored into this repository under `content/vendor/legacy/`; normal production builds do not depend on the legacy repository being available.
+The approved migration source is vendored under `content/vendor/legacy/`, so normal production builds do not depend on the legacy repository being available.
 
 ---
 
 ## Offline-first PWA
 
-Canonical Shelf is designed as an offline-first Progressive Web App.
+Core study remains usable without a mandatory account or continuous network connection:
 
-Core functionality remains available without an account and without continuous network access:
+- Bible;
+- Course and Unit 0;
+- Topics;
+- Practice;
+- learner progress and spaced review;
+- Notes & Journal;
+- search;
+- progress export/import;
+- theme preferences;
+- bounded Guide/Theologian evidence already packaged with the application.
 
-- Bible
-- Course
-- Topics
-- Practice
-- learner progress
-- spaced review
-- search
-- progress export/import
-- bounded Guide evidence already packaged with the application
+The service worker maintains versioned shell/data caches and includes the v7 Study Focus, theme, orientation, personal-study, and feedback client assets.
 
-The service worker maintains versioned shell and data caches. Navigation uses durable native routes such as:
+Primary native routes include:
 
 ```text
 /home
@@ -119,65 +152,62 @@ The service worker maintains versioned shell and data caches. Navigation uses du
 /practice
 ```
 
-Legacy `#/...` URLs are compatibility-only and canonicalize forward to native routes. The install manifest launches at `/home`; the old hash-route startup path is not part of the v6 architecture.
+Legacy hash URLs are compatibility-only and canonicalize forward.
 
 ---
 
 ## Learner state
 
-Learner progress is **local-first**.
+Learner state is **local-first** and stored in IndexedDB.
 
-Structured state is stored in IndexedDB and includes separate concepts for:
+Current structured state includes separate concepts for:
 
-- completed activities
-- attempts
-- mastery
-- review scheduling
-- migration state
-- synchronization metadata
+- completed activities;
+- attempts;
+- per-challenge progress;
+- mastery;
+- review scheduling;
+- Notes;
+- Journal;
+- migration state;
+- synchronization metadata.
 
-Legacy progress can be migrated into v6, while raw legacy migration records remain local-only.
+Practice uses the current spaced-review schedule:
 
-### Spaced review
+**1 → 3 → 7 → 14 → 30 → 60 days**
 
-Practice uses a v6 review scheduler rather than preserving the old review implementation. Review state is separate from simple completion state so an activity can be complete while still becoming due for reinforcement later.
+Review state remains separate from simple activity completion.
 
 ---
 
 ## Optional accounts and cross-device sync
 
-An account is **not required** to use Canonical Shelf.
+An account is **not required** for core use.
 
-The architecture supports guest-first use with optional authenticated sync for learners who want cross-device continuity, authenticated backup, or recovery on a new device.
+Optional sync supports cross-device continuity, backup, and recovery while retaining local-first ownership. The architecture uses:
 
-The sync architecture uses:
+- IndexedDB as authoritative local state;
+- a local mutation outbox;
+- deterministic merge rules;
+- Better Auth;
+- passkeys;
+- Cloudflare D1 for user-scoped remote state and mutation identities.
 
-- **IndexedDB** as the authoritative local state
-- a local mutation outbox
-- deterministic merge rules
-- **Better Auth 1.7.5** for identity/session handling
-- **passkeys** as the primary recoverable credential path
-- **Cloudflare D1** for user-scoped remote learner snapshots and mutation identities
+Important boundaries:
 
-Important sync invariants:
+- local study does not depend on the network;
+- signing out does not erase local progress;
+- `legacyRaw` migration records are not uploaded;
+- clients do not choose the authenticated remote user identity;
+- account deletion removes remote sync records while leaving local device progress intact unless separately cleared.
 
-- local study never depends on the network
-- completion merges monotonically
-- review schedules reconcile using activity-specific freshness
-- signing out does not erase local progress
-- `legacyRaw` migration data is never uploaded
-- the sync API derives user identity from the authenticated server session
-- clients cannot submit or override a remote `userId`
-- replay identity is scoped by `(user_id, mutation_id)`
-- account deletion removes remote learner sync records while leaving local device progress intact unless the learner separately clears it
-
-Production account/sync remains release-held until the real D1/Auth environment, passkey flows, account recovery/deletion, and authenticated cross-user endpoint isolation have been validated.
+Human/environment validation of production passkey, recovery, deletion, authenticated endpoint isolation, and privacy behavior remains continuing QA unless explicitly recorded as completed.
 
 ---
 
-## Ask the Guide / Theologian runtime
+## Ask the Guide / Theologian
 
-`Ask the Guide` is a bounded interpretive and theological assistant embedded in the application. It is **not** permitted to invent doctrine or silently override Canonical Shelf's stated theology.
+`Ask the Guide` is currently a **bounded deterministic/evidence-aware interpretive and theological assistant**. It functions inside the application and remains available in Study Focus and offline where packaged evidence is sufficient.
 
 Its authority hierarchy is:
 
@@ -188,17 +218,9 @@ Its authority hierarchy is:
 5. denominational/confessional sources
 6. vetted academic sources
 
-The runtime distinguishes both doctrinal and evidentiary confidence rather than collapsing them into a single certainty score. It includes safeguards for LGBTQ inclusion and dignity, contested biblical texts, lexical overstatement, Romans 1 claims, Ruth and Naomi / queer reception history, and mastery-answer leakage.
+The current runtime includes safeguards for contested biblical texts, lexical overstatement, LGBTQ inclusion and dignity, Romans 1 claims, Ruth/Naomi reception boundaries, and mastery-answer leakage.
 
----
-
-## Theology and interpretive posture
-
-The **Statement of Faith** is the normative ceiling for Canonical Shelf doctrinal claims.
-
-The application intentionally distinguishes textual evidence, historical context, interpretation, theology, reception history, and application. Competing Christian interpretations may be represented accurately without allowing an external position to silently replace Canonical Shelf's stated position.
-
-The current theological policy explicitly affirms the full dignity and Christian inclusion of LGBTQ people. The curriculum also treats queer reception history and contested interpretation as real areas of study while distinguishing interpretive reception from claims that exceed the wording of the biblical text.
+**Not yet implemented:** the planned richer conversational-model Theologian with true multi-turn generation, streaming model responses, retrieval orchestration, saved conversations, and expanded Advanced Study behavior. That upgrade is intentionally deferred to the next release; the current bounded runtime is retained as the evidence/policy layer rather than discarded.
 
 See:
 
@@ -211,13 +233,11 @@ docs/v6/theologian-runtime.md
 
 ---
 
-## Greenfield migration rule
+## Theology and interpretive posture
 
-v6 is **not** a brownfield continuation of the legacy application.
+The **Statement of Faith** is the normative ceiling for Canonical Shelf doctrinal claims.
 
-> **Greenfield product architecture with audited migration of approved intellectual property, content, identifiers, and learner state.**
-
-Legacy material is treated as a migration candidate rather than a default requirement. The audited migration manifest at `content/migration/admissibility.json` pins the legacy source to an immutable commit and explicitly lists the assets allowed into v6. Approved source assets are now vendored locally, so `canonical-shelf` is independently buildable.
+The product distinguishes textual evidence, historical context, interpretation, reception history, doctrine, and application. Competing Christian interpretations may be represented accurately without allowing an external position to silently replace Canonical Shelf's stated position.
 
 ---
 
@@ -225,32 +245,32 @@ Legacy material is treated as a migration candidate rather than a default requir
 
 ### Client
 
-- semantic HTML
-- modular vanilla JavaScript
-- CSS custom properties with a three-tier token system
-- IndexedDB learner state
-- native History API routing
-- service-worker PWA shell/data caching
+- semantic HTML;
+- modular vanilla JavaScript;
+- CSS custom properties with primitive, semantic, and component token tiers;
+- IndexedDB learner state;
+- native History API routing;
+- service-worker PWA shell/data caching;
+- native platform primitives first, with permissively licensed low-level/headless open-source primitives allowed when they materially improve the experience.
 
-### Optional sync Worker
+### Worker / optional sync
 
-- Cloudflare Worker
-- Better Auth
-- passkeys
-- Cloudflare D1
-- user-scoped sync snapshots and mutation log
-
-### Design-system token model
-
-The CSS system enforces primitive, semantic, and component token tiers. Components are not allowed to consume primitive reference tokens directly.
+- Cloudflare Worker;
+- Better Auth;
+- passkeys;
+- Cloudflare D1;
+- user-scoped sync state and mutation log;
+- bounded feedback persistence endpoint.
 
 ---
 
-## Accessibility
+## Accessibility and adaptive access
 
-Automated coverage includes Chromium, Firefox, and WebKit; axe WCAG-tagged serious/critical checks; keyboard/focus behavior on tested flows; reduced-motion support; forced-colors support; responsive/mobile-width checks; and semantic form/status structures.
+Accessibility remains a product floor without flattening the default visual experience.
 
-Automated checks do not replace human accessibility validation. The release hold still requires NVDA, VoiceOver, forced-colors inspection, 200%/400% zoom and reflow inspection, and physical touch-device testing.
+Automated coverage includes Chromium, Firefox, and WebKit; axe serious/critical WCAG-tagged checks; tested keyboard/focus behavior; reduced-motion support; forced-colors support; responsive/mobile-width checks; and semantic form/status structures.
+
+Adaptive presentation paths activate through user/system settings where applicable. Human screen-reader, forced-colors, high-zoom/reflow, physical touch-device, and representative-learner review remain separate evidence gates rather than being inferred from automation.
 
 ---
 
@@ -258,15 +278,15 @@ Automated checks do not replace human accessibility validation. The release hold
 
 ### Requirements
 
-- **Bun 1.2.15** — pinned to match the production Cloudflare build environment and committed lockfile format.
+- **Bun 1.2.15** for the pinned production/CI environment.
 
-Install dependencies reproducibly:
+Install reproducibly:
 
 ```bash
 bun install --frozen-lockfile
 ```
 
-Run the authoritative production build:
+Build:
 
 ```bash
 bun run build
@@ -278,13 +298,15 @@ Run the complete automated verification matrix:
 bun run verify
 ```
 
-Useful individual commands:
+Useful commands:
 
 ```bash
 bun run migrate
 bun run validate
+bun run test:assessment
 bun run test:sync
 bun run test:d1
+bun run test:feedback
 bun run build:client
 bun run build:worker
 bun run serve
@@ -295,9 +317,9 @@ bun run test:e2e
 
 ## Production deployment
 
-Production uses **Cloudflare Workers Static Assets + a Cloudflare Worker + D1**. The build generates `wrangler.jsonc`; generated configuration and runtime artifacts are intentionally not hand-maintained.
+Production uses **Cloudflare Workers Static Assets + a Cloudflare Worker + D1**. The build generates `wrangler.jsonc`; generated configuration/runtime artifacts are not intended for manual maintenance.
 
-Required production environment values:
+Required environment values include:
 
 ```text
 D1_DATABASE_ID
@@ -307,59 +329,55 @@ CLOUDFLARE_ACCOUNT_ID
 CLOUDFLARE_API_TOKEN
 ```
 
-`BETTER_AUTH_SECRET`, `D1_DATABASE_ID`, `CLOUDFLARE_ACCOUNT_ID`, and `CLOUDFLARE_API_TOKEN` belong in protected GitHub/Cloudflare secrets. `BETTER_AUTH_URL` is a non-secret production environment variable.
-
-The manual `deploy-production` GitHub Actions workflow:
-
-1. installs with the frozen Bun lockfile
-2. runs the full automated release-candidate verification matrix
-3. generates Cloudflare configuration
-4. applies D1 migrations
-5. deploys the Worker and static assets
-
-The generated Cloudflare configuration declares native SPA fallback behavior, `/api/*` Worker-first routing, D1 binding, observability, and `BETTER_AUTH_SECRET` as a required deployment secret.
+The guarded production workflow installs from the frozen Bun lockfile, runs the complete verification suite, generates Cloudflare configuration, applies D1 migrations, and deploys the Worker/static assets.
 
 ---
 
 ## CI acceptance surface
 
-Production CI validates, among other things:
+The merged v7 candidate passed the authoritative production CI before merge. The automated surface covers, among other things:
 
-- immutable audited migration provenance
-- repository-local vendored source assets
-- deterministic runtime-data generation
-- Better Auth schema generation
-- curriculum/content counts and identity
-- 25 units with no empty unit
-- 70 guided lessons
-- 69 mastery activities
-- 139 scored activities
-- 45 Topics
-- embedded BSB corpus integrity
-- native routing
-- migration compatibility rules
-- design-token architecture
-- Theologian safeguards
-- local sync merge/privacy/outbox behavior
-- local D1 isolation/replay/deletion behavior through Miniflare
-- client, browser shell, and Worker bundles
-- Chromium, Firefox, and WebKit E2E
-- axe accessibility checks
-- offline/PWA behavior
-- mobile-width account/header behavior
-- Cloudflare deployment-config dry run
+- audited migration provenance and repository-local vendored inputs;
+- deterministic runtime generation;
+- Better Auth schema generation;
+- 25/70/69/139 curriculum/activity baseline and 45 Topics;
+- Unit 0 exclusion from scored denominators;
+- assessment completion/state/migration regression behavior;
+- embedded BSB corpus integrity;
+- native routing;
+- design-token architecture;
+- theme persistence;
+- Study Focus enter/exit and responsive composition;
+- Notes & Journal persistence and sync merge behavior;
+- Feedback validation/persistence/privacy behavior;
+- Guide/Theologian safeguards;
+- local sync merge/privacy/outbox behavior;
+- D1 user isolation/replay/deletion behavior;
+- browser/client/Worker bundles;
+- Chromium, Firefox, and WebKit E2E;
+- axe checks on covered surfaces;
+- offline/PWA behavior;
+- Cloudflare production-config dry run.
 
 ---
 
-## Release status
+## Release and documentation state
 
-The Director disposition remains:
+- v7 release PR #4 was squash-merged to `main` as `801a9706d7cec9574ceadca7647a9f63a2b554fc` after the authoritative production CI passed.
+- stale draft PR #3 was closed without merge.
+- `docs/v7/` contains the active v7 decision, design, plan, and execution documentation.
+- `docs/v6/` is retained as historical architecture/release documentation for the v6 foundation; it is not the current product-governance source.
 
-**PASS WITH RELEASE HOLD**
+Current v7 governance and status:
 
-Engineering and automated release infrastructure can be production-complete while final release still requires human/environment validation covering screen readers, forced colors/high zoom, physical iPhone/iPad/Android devices, PWA install/launch, representative learner usability, editorial/theological sampling, and real production Better Auth/D1/passkey/account-recovery/privacy validation.
-
-See `docs/v6/release-readiness.md`.
+```text
+docs/v7/DECISION_PRECEDENCE.md
+docs/v7/PLAN_DELTA_V7_V5_POLISH.md
+docs/v7/PLAN_DELTA_V7_PERSONAL_STUDY_FEEDBACK.md
+docs/v7/PLAN_DELTA_V7_OPEN_SOURCE_ASSEMBLY.md
+docs/v7/DESIGN_INTENT_DELTA_V5_POLISH.md
+docs/v7/project-execution-graph.json
+```
 
 ---
 
@@ -369,17 +387,18 @@ See `docs/v6/release-readiness.md`.
 public/                     Browser application and generated runtime data
 public/data/                Generated curriculum, corpus, theology/source data
 content/                    Audited source content and migration policy
-content/vendor/legacy/      Immutable admitted source snapshot retained for provenance/builds
+content/vendor/legacy/      Admitted legacy source snapshot retained for provenance/builds
 content/migration/          Legacy admissibility manifest
 content/statement/          Canonical Shelf Statement of Faith
 content/theology/           Curated theological/source evidence
-worker/                     Account/sync Cloudflare Worker
-worker/migrations/          Generated auth + learner-sync D1 migrations
+worker/                     Account/sync/feedback Cloudflare Worker
+worker/migrations/          Generated auth + learner-state/feedback D1 migrations
 src/client/                 Better Auth/passkey client source
 src/knowledge/              Knowledge/theology domain types
-scripts/                    Build, migration, validation, sync, D1, and deployment tooling
+scripts/                    Build, migration, validation, sync, feedback, D1, deployment tooling
 tests/e2e/                  Cross-browser Playwright coverage
-docs/v6/                    Architecture, theologian, sync, and release docs
+docs/v7/                    Current v7 decisions, plans, design intent, execution state
+docs/v6/                    Historical v6 foundation documentation
 ```
 
 ---

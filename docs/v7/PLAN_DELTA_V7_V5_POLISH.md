@@ -1,71 +1,69 @@
 # Canonical Shelf v7 — V5 Polish Plan Delta
 
+## Status
+
+**Implemented and merged.** The v7 V5-polish release was squash-merged to `main` as `801a9706d7cec9574ceadca7647a9f63a2b554fc` after the authoritative automated production CI passed.
+
+This plan remains the historical implementation record and current product-direction baseline. Human/device/editorial/theological review items that were not independently evidenced remain continuing assurance work; they are not retroactively marked complete by CI or by merge.
+
 ## Objective
 
-Re-center v7 on the v5 learner-facing product experience while preserving the validated v7 state/assessment foundation. v5 remains the structural and experiential reference; v4 supplies the scholarly writing quality bar. The result should feel like a polished, premium evolution of v5 rather than an architecture-led redesign.
+Re-center v7 on the v5 learner-facing product experience while preserving the validated v7 state/assessment foundation. v5 remains the structural and experiential reference; v4 supplies a selective scholarly writing/content-depth quality bar. The result is intended to feel like a polished, premium evolution of v5 rather than an architecture-led redesign.
 
-## Locked product direction
+## Current product baseline
 
-- Preserve the five primary destinations: Home / Course / Bible / Topics / Practice.
-- Preserve the 25-unit curriculum, 70 guided lessons, 69 mastery activities, 139 scored activities, and stable existing activity/mastery IDs.
-- Keep Bible as the canonical home of the bookshelf, reader, book profiles, chapters, maps/timelines, and study affordances.
+Under `DECISION_PRECEDENCE.md`, these are current decisions rather than immutable constraints against a later explicit owner change:
+
+- Home / Course / Bible / Topics / Practice remain the five primary destinations.
+- Current scored baseline remains 25 units, 70 guided lessons, 69 mastery activities, 139 scored activities, with existing activity/mastery IDs preserved.
+- Bible owns the bookshelf, reader, book profiles, chapters, maps/timelines, and study affordances.
 - Topics remains curated reference and does not count toward curriculum completion.
 - Practice remains reinforcement, not a parallel curriculum.
 - v5 is the principal layout/product-flow reference.
-- v4 is the scholarly-content quality bar: adult reading level, substantive explanation, historical/literary context, evidence boundaries, credible competing readings, vocabulary, deeper layers, and sources where useful.
-- Unit 1 Lesson 1 remains the existing first curriculum lesson, "Begin with the central story."
-- Add Unit 0 Lesson 1, "Welcome to Canonical Shelf," as a non-scored onboarding/tutorial experience outside the 25-unit/139-scored-activity curriculum.
-- Unit 0 teaches how to use Canonical Shelf, what the biblical canon is, library/category-vs-chronology orientation, Course/Bible/Topics/Practice, help/deeper-study surfaces, translation comparison, site tools, external sources, Practice/retention, exploration/skip-around behavior, and the transition toward independent study.
-- Add first-class curated aesthetic/theme packages. Theme changes affect presentation only, never curriculum semantics, progress, assessment, or theological interpretation.
-- Lesson mode uses the same design system as the main site in a more focused state: dark Study Focus chrome + elevated light folio surface.
-- Lesson card must fit comfortably inside the available viewport. Resize/recompose/relocate before scrolling. Accordion/drawer behavior is preferred before scroll. Persistent lesson navigation must remain accessible without covering content.
-- Typography scales with the actual lesson surface width.
-- Scholarly apparatus supports textual notes, translation differences, original-language notes when useful, historical/literary context, sources, evidence strength, competing interpretations, reception, doctrine, and application while keeping those categories distinct.
-- Bookshelf/category colors remain semantic to the Bible/library experience and are not used as arbitrary lesson-card decoration.
-- Accessibility-driven presentation changes do not alter the universal default visual experience; adaptive paths activate through user/system settings while baseline semantic compatibility remains.
+- v4 is a scholarly-content reference for adult reading level, substantive explanation, historical/literary context, evidence boundaries, responsible competing readings, vocabulary, deeper layers, and sources where useful.
+- Unit 1 Lesson 1 remains the first scored curriculum lesson, **Begin with the central story**.
+- Unit 0 Lesson 1, **Welcome to Canonical Shelf**, is a replayable non-scored onboarding/tutorial outside the 25-unit/139-scored-activity curriculum.
+- Six first-class aesthetic/theme packages are available and persist locally.
+- Lesson mode uses dark, theme-aware **Study Focus** chrome with an elevated light folio.
+- Lesson composition follows resize/recompose/relocate before scrolling; accordion/drawer treatment precedes additional scroll surfaces where possible.
+- Scholarly apparatus keeps text, evidence/history, interpretation, reception, doctrine, and application distinguishable.
+- Bible/category colors remain semantic and are not arbitrary lesson decoration.
+- Accessibility-driven presentation alternatives activate through user/system settings where applicable while baseline semantic compatibility remains.
 
-## Experience outcomes
+## Implemented experience outcomes
 
-1. A learner opening Canonical Shelf recognizes the v5 product model immediately, but with substantially higher visual polish and more coherent responsive behavior.
-2. Unit 0 teaches the product by using real product surfaces rather than a detached slideshow or fake UI.
-3. Starting a guided lesson transitions from Course into Study Focus without losing context; exiting returns to the previous Course visual/scroll state.
-4. Primary lesson content remains the priority under viewport pressure. Secondary material collapses into accordions, then relocates to drawers/sheets, before primary scrolling is introduced.
-5. Previous/Continue/navigation/progress controls remain reachable at all times and occupy reserved layout space rather than overlaying lesson content.
-6. Scholarly content reads at the stronger v4 standard without flattening disputed interpretation or rewriting the curriculum into generic onboarding copy.
-7. Theme packages are coherent design-system variants, persist locally, and can later sync as an optional account preference.
+1. v7 preserves the recognizable v5 product model while using the cleaner v7 architecture.
+2. Unit 0 teaches how Canonical Shelf works without affecting scored progress.
+3. Guided lessons enter Study Focus and restore Course route/scroll context on exit.
+4. Secondary scholarly material collapses/relocates before primary reading is forced into extra scroll surfaces.
+5. Navigation/progress controls use reserved space rather than covering lesson content.
+6. Unit 1 Lesson 1 and the scholarly apparatus demonstrate the stronger scholarly-content standard without replacing the v5 product model.
+7. Theme packages are coherent design-system variants, not simple recolors.
+8. Rich challenge rendering supports sequence, matching, evidence, scenario, argument, classification, single-choice, and reflection patterns.
+9. Personal Notes & Journal and global Feedback were restored/added before release closeout.
 
-## Acceptance criteria
+## Acceptance criteria — automated disposition
 
 ### Product and curriculum
-
-- Home / Course / Bible / Topics / Practice remain the only primary learner destinations.
-- Unit 0 is clearly separated from the scored curriculum and does not alter the 25/70/69/139 counts.
-- Existing stable curriculum/mastery IDs remain unchanged.
-- Unit 1 Lesson 1 remains the current first scored curriculum lesson.
-- Unit 0 can be replayed without affecting completion/mastery denominators.
+- five primary destinations preserved — **pass**
+- Unit 0 excluded from scored counts — **pass**
+- 25/70/69/139 baseline preserved — **pass**
+- existing stable curriculum/mastery IDs preserved — **pass**
+- Unit 1 Lesson 1 preserved as first scored lesson — **pass**
 
 ### Study Focus
-
-- Entering a lesson darkens/intensifies the same theme and expands the lesson folio into focus.
-- Exiting restores the originating Course route, scroll position, and normal site visual state.
-- Desktop folio fits within the available viewport with comfortable outer chrome visible.
-- Tablet recomposes scholarly apparatus without simply shrinking desktop.
-- Mobile retains Study Focus framing and moves scholarly apparatus to an on-demand sheet/drawer.
-- Accordions/drawers are used before introducing additional scroll surfaces.
-- Persistent lesson nav never obscures reading/challenge content.
-- Typography and spacing scale down gracefully as card/container width narrows.
+- enter/exit behavior and Course restoration — **automated pass**
+- viewport-fit/reserved navigation contracts on covered viewports — **automated pass**
+- mobile apparatus relocation — **automated pass**
+- responsive/container-aware typography and composition — **automated structural/E2E pass on covered cases**
 
 ### Scholarly apparatus/content
-
-- Lesson prose uses v4-level scholarly standards while preserving v5 curriculum intent and sequence.
-- Notes visibly distinguish text, historical evidence/context, interpretation, reception, doctrine, and application.
-- Translation differences can be explained/compared without implying every wording difference is doctrinally significant.
-- External sources and further reading can be surfaced from lessons/site where relevant.
-- Competing readings are represented with evidence and limits rather than collapsed into false consensus.
+- required scholarly layers present — **implemented**
+- source trail and evidence/context distinctions demonstrated — **automated content checks passed on covered material**
+- independent human editorial/theological review — **continuing assurance unless separately evidenced**
 
 ### Themes
-
-Initial curated theme contract:
+Current package contract:
 - Heritage
 - Canonical Original
 - Oxblood
@@ -73,102 +71,78 @@ Initial curated theme contract:
 - Illuminated Jewel
 - Bookshelf Spectrum
 
-Each package may vary palette, typography pairing, surfaces, rules, elevation, focus chrome, controls, diagrams, and motion character, but must preserve semantic status colors and content meaning. Selected theme persists locally.
+Theme selection/persistence and Study Focus integration — **automated pass**.
 
-## Implementation plan
+## Implementation plan — final disposition
 
-### Phase P0 — Reference lock and content inventory
+### P0 — Reference/content inventory — COMPLETE
+v5 learner-facing behavior, v7 integration points, curriculum IDs, and v4 editorial criteria were audited.
 
-- Audit v5 Home/Course/Bible/Topics/Practice structure and identify concrete learner-facing behaviors to reproduce natively.
-- Audit current v7 foundation routes/components/state ownership.
-- Inventory current Unit 1 Lesson 1 ID/content and verify Unit 0 can be introduced without touching scored identifiers.
-- Identify v4 lesson-content patterns to use as editorial quality criteria rather than as a replacement curriculum.
+### P1 — Design-system/theme foundation — COMPLETE
+Theme tokens, six packages, persistence, semantic-color separation, and focus-mode tokens were implemented.
 
-### Phase P1 — Design-system/theme foundation
+### P2 — Unit 0 orientation — COMPLETE
+Non-scored Unit 0 content and replayable tutorial behavior were implemented.
 
-- Introduce theme-token contract independent of semantic Bible/category colors.
-- Implement theme selector and local persistence.
-- Establish shared normal-site and Study-Focus tokens so lesson mode is an intensified state of the same theme.
-- Add responsive/container typography primitives.
+### P3 — Study Focus lesson shell — COMPLETE
+Study Focus, route restoration, responsive composition, navigation, and scholarly apparatus were implemented.
 
-### Phase P2 — Unit 0 orientation
+### P4 — Golden lesson integration — COMPLETE
+Unit 1 Lesson 1 was integrated without changing curriculum identity; richer challenge presentation was proven natively.
 
-- Create non-scored Unit 0 content/data contract.
-- Build tutorial scenes using actual product affordances and scholarly orientation content.
-- Add replay/skip/continue behavior with no scored-progress side effects.
+### P5 — Release-scale integration — COMPLETE FOR THIS RELEASE
+The shared v7 shell/behavior was integrated across the current release surfaces. Future experience work may continue to deepen v5-quality game/visual behavior without restoring v5 runtime debt.
 
-### Phase P3 — Study Focus lesson shell
-
-- Implement enter/exit transition, viewport-fit folio, persistent navigation region, responsive recomposition, accordion/drawer-first overflow strategy, and scholarly apparatus shell.
-- Restore Course route/scroll/focus state on exit.
-- Keep default lesson card free of bookshelf-color decoration.
-
-### Phase P4 — Golden lesson integration
-
-- Integrate Unit 1 Lesson 1 into Study Focus without changing its curriculum identity.
-- Polish its prose where needed to the v4 scholarly bar while preserving substantive meaning.
-- Prove at least one sequence/matching/argument-style challenge through the new presentation without reducing interaction richness.
-
-### Phase P5 — Scale-out
-
-- Apply shell, themes, scholarly apparatus, and responsive rules across remaining Course lessons/mastery activities.
-- Polish Home/Bible/Topics/Practice to the same system while preserving v5 IA.
-- Reimplement desirable v5 games natively where current v7 rendering is poorer.
-
-### Phase P6 — Independent assurance and release
-
-- Run automated validation, migration/state tests, curriculum-count tests, offline/PWA tests, sync/account tests, and end-to-end route/lesson tests.
-- Human visual, editorial, theological, novice, device, keyboard/touch, adaptive-access, offline, passkey/sync, privacy/recovery, and release gates remain human-only.
+### P6 — Assurance/release — AUTOMATED COMPLETE; HUMAN ASSURANCE CONTINUES
+Assessment, migration/state, curriculum-count, offline/PWA, sync/D1, feedback, browser, accessibility-automation, and Cloudflare production-config checks passed in authoritative CI before merge. Human/device/editorial/theological review remains separately evidenced work.
 
 ## Execution plan / WBS
 
-See `docs/v7/project-execution-graph.json` for the typed dependency graph and machine-readable WBS. `dependsOn` is authoritative; no node may be treated as complete before its acceptance evidence exists.
+See `docs/v7/project-execution-graph.json` for the typed project graph and release disposition. `dependsOn` remains the dependency model; status now distinguishes merged implementation from continuing human assurance.
 
-## Affected systems
+## Validation evidence
 
-- `public/index.html`
-- global design tokens / primary CSS
-- Course/learning renderer and lesson routing
-- learner-state integration for non-scored Unit 0
-- theme preference persistence
-- challenge presentation layer
-- scholarly/reference data hooks
-- service worker/offline asset list
-- E2E and regression tests
-- content/editorial documentation
+The authoritative pre-merge production CI passed:
 
-## Validation
+- 25 / 70 / 69 / 139 and 45 Topics validation
+- Unit 0 exclusion from scored denominator
+- assessment-correctness regression suite
+- sync/privacy/outbox and personal-writing merge tests
+- D1 user-isolation/replay/deletion tests
+- feedback validation/persistence/privacy tests
+- theme persistence
+- Study Focus route/history/viewport behavior on covered cases
+- rich challenge rendering
+- Notes & Journal persistence without scored-progress mutation
+- global Feedback reachability
+- Chromium / Firefox / WebKit E2E
+- axe serious/critical checks on covered surfaces
+- offline/PWA behavior
+- Cloudflare production-config validation
 
-Required automated checks before human approval:
+## Risks carried forward
 
-- 25 units / 70 lessons / 69 mastery / 139 scored activities unchanged
-- stable existing activity/mastery IDs unchanged
-- Unit 0 excluded from scored completion denominator
-- current assessment-correctness suite green
-- sync/D1 tests green
-- theme persistence test
-- Study Focus enter/exit restoration test
-- persistent lesson-nav non-overlap test at representative viewport sizes
-- responsive typography/container tests
-- drawer/accordion behavior tests
-- offline navigation + Unit 0 + lesson shell test
-- no accidental generic radio/select downgrade for richer challenge kinds
+- preserving v5 experience quality without restoring its bridge/runtime debt;
+- preventing theme customization from remapping semantic meaning;
+- keeping Study Focus spacious and legible on small/short viewports;
+- preventing scholarly apparatus from becoming clutter;
+- ensuring content polish does not silently change theological/historical claims;
+- continuing to improve rich games where the current native rendering is still less capable than the strongest v5 interaction.
 
-## Risks
+## Rollback / lineage
 
-- Recreating v5 visually without importing its old bridge/runtime debt.
-- Accidentally treating Unit 0 as a scored curriculum unit.
-- Theme customization remapping semantic status/category colors.
-- Excessive Study Focus chrome reducing usable reading area on small screens.
-- Multiple nested scroll surfaces degrading usability.
-- Scholarly apparatus becoming clutter rather than progressive disclosure.
-- Content polish silently changing theological or historical claims.
+The release is no longer isolated on `v7-v5-polish`; it is merged to `main` at `801a9706d7cec9574ceadca7647a9f63a2b554fc`.
 
-## Rollback
+Historical anchors remain useful for diagnosis:
+- validated assessment foundation: `267016f7f483f3de3f22e17ed8bea2868ea35b0d`
+- pre-v7 main foundation: `579e64b8c189eab608c50c10a94f8190b59269d6`
+- merged v7 release: `801a9706d7cec9574ceadca7647a9f63a2b554fc`
 
-All work remains isolated on `v7-v5-polish` until automated verification and human gates pass. The validated assessment foundation at `267016f7f483f3de3f22e17ed8bea2868ea35b0d` is the rollback anchor. Do not merge stale `v7-golden-slice-native` presentation work wholesale; reuse only individually reviewed ideas.
+Stale `v7-golden-slice-native` presentation work must not be merged wholesale; any future reuse should be individually reviewed against the current v7 direction.
 
-## Human-review gates
+## Continuing human-review gates
+
+These remain quality-assurance categories unless separate evidence records them as completed:
 
 - GATE_GOLDEN_SLICE_UX
 - GATE_INDEPENDENT_VISUAL_DESIGN
@@ -188,4 +162,5 @@ All work remains isolated on `v7-v5-polish` until automated verification and hum
 - GATE_OFFLINE_PWA
 - GATE_ACCOUNT_PASSKEY_SYNC
 - GATE_PRIVACY_RECOVERY
-- GATE_PRODUCTION_RELEASE
+
+`GATE_PRODUCTION_RELEASE` was superseded for this specific merge by the project owner's explicit instruction to merge after CI readiness; this does not imply the independent human gates above were completed. Future consequential releases should again follow the then-current owner-approved gate policy.

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.1",
+  "project": "Canonical Shelf v7 documentation closeout",
+  "type": "documentation_only",
+  "baseCommit": "801a9706d7cec9574ceadca7647a9f63a2b554fc",
+  "branch": "docs-v7-release-closeout",
+  "objective": "Align repository documentation with the merged v7 release without changing runtime behavior.",
+  "nodes": [
+    {
+      "id": "D0.INVENTORY",
+      "type": "audit",
+      "dependsOn": [],
+      "status": "complete",
+      "acceptance": [
+        "root README inspected",
+        "all docs/v7 artifacts inspected",
+        "v6 active/release-governance documents inspected for superseded language"
+      ]
+    },
+    {
+      "id": "D1.CURRENT_STATE_DOCS",
+      "type": "documentation",
+      "dependsOn": ["D0.INVENTORY"],
+      "status": "complete",
+      "acceptance": [
+        "README describes v7 as current",
+        "v7 merged capabilities and deferred Theologian upgrade are accurate",
+        "pre-merge branch/release-candidate language removed from current-state docs"
+      ]
+    },
+    {
+      "id": "D2.HISTORICAL_LABELING",
+      "type": "documentation",
+      "dependsOn": ["D0.INVENTORY"],
+      "status": "complete",
+      "acceptance": [
+        "v6 README marked historical",
+        "v6 release-readiness marked historical",
+        "historical content preserved rather than rewritten as current"
+      ]
+    },
+    {
+      "id": "D3.V7_GRAPH_DISPOSITION",
+      "type": "governance",
+      "dependsOn": ["D1.CURRENT_STATE_DOCS"],
+      "status": "complete",
+      "acceptance": [
+        "project-execution-graph identifies main/release commit",
+        "automated assurance marked passed",
+        "owner-authorized merge recorded",
+        "human review not falsely represented as independently completed"
+      ]
+    },
+    {
+      "id": "D4.VERIFY_DOCS",
+      "type": "validation",
+      "dependsOn": ["D1.CURRENT_STATE_DOCS", "D2.HISTORICAL_LABELING", "D3.V7_GRAPH_DISPOSITION"],
+      "status": "complete",
+      "acceptance": [
+        "all changed docs re-fetched from branch",
+        "active documentation points to v7 rather than v6",
+        "current v7 documents no longer claim release is awaiting merge",
+        "documentation-only scope confirmed"
+      ]
+    },
+    {
+      "id": "D5.MERGE_CLOSEOUT",
+      "type": "release_documentation",
+      "dependsOn": ["D4.VERIFY_DOCS"],
+      "status": "ready",
+      "acceptance": [
+        "documentation PR merged",
+        "main contains final documentation state"
+      ]
+    }
+  ]
+}
