@@ -1,0 +1,12 @@
+{
+  "graphVersion": 1,
+  "objective": "Make pre-launch validation self-healing and code-focused while hard-locking the published BSB corpus.",
+  "nodes": [
+    {"id":"P0.PLAN","type":"governance","status":"complete","dependsOn":[],"outputs":["docs/v7/PLAN_DELTA_PRELAUNCH_SELF_HEALING_GATE.md","docs/v7/prelaunch-self-healing-gate-graph.json"]},
+    {"id":"P1.BSB_LOCK","type":"integrity","status":"pending","dependsOn":["P0.PLAN"],"outputs":["scripts/verify-bsb-integrity.mjs"]},
+    {"id":"P2.REPAIR","type":"implementation","status":"pending","dependsOn":["P1.BSB_LOCK"],"outputs":["scripts/repair-prelaunch.mjs"]},
+    {"id":"P3.PRELAUNCH_GATE","type":"implementation","status":"pending","dependsOn":["P2.REPAIR"],"outputs":["package.json"]},
+    {"id":"P4.CI_DEPLOY","type":"implementation","status":"pending","dependsOn":["P3.PRELAUNCH_GATE"],"outputs":[".github/workflows/v6-ci.yml"]},
+    {"id":"V1.VALIDATE","type":"validation","status":"pending","dependsOn":["P4.CI_DEPLOY"],"acceptance":["prelaunch gate excludes copy-sensitive parity/E2E","full gate remains available","BSB vendor mutation hard-fails","public corpus self-repairs vendor->public","build/runtime/state checks remain blocking"]}
+  ]
+}
