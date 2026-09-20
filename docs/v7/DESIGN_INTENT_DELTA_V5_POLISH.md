@@ -1,5 +1,11 @@
 # Canonical Shelf v7 — Design Intent Delta
 
+## Status
+
+**Implemented baseline on `main`.** The v7 V5-polish release was merged as `801a9706d7cec9574ceadca7647a9f63a2b554fc` after the authoritative automated production CI passed. This artifact remains the active design-intent reference for the merged experience.
+
+Independent human visual, novice-learner, device, editorial, theological, and adaptive-access review remain continuing assurance activities unless separate evidence records them as completed. Their absence must not be retroactively represented as automated approval.
+
 ## Direction
 
 Canonical Shelf v7 is a **premium visual and interaction polish of the v5 product model**, rebuilt on the cleaner v7 architecture. It is not a separate visual product and it is not an architecture-led simplification of v5.
@@ -86,7 +92,7 @@ Not every passage needs every layer. Density follows the material.
 
 Themes are complete design-system packages rather than palette swaps. They may vary palette, font pairing, surface treatment, rules, elevation, focus chrome, control styling, diagram treatment, and restrained motion character.
 
-Initial packages:
+Current packages:
 
 1. Heritage
 2. Canonical Original
@@ -126,6 +132,6 @@ A design choice fails if it could be dropped unchanged into an unrelated SaaS da
 
 Repeated visual treatments must map to Canonical Shelf concepts: folio, shelf, marginalia, source apparatus, canonical grouping, study state, mastery/retention, textual evidence, or navigation.
 
-## Human design gate
+## Assurance posture after merge
 
-This artifact defines intent; it does not constitute visual approval. The golden slice must still pass independent visual-design, anti-generic, responsive, motion, novice-learner, editorial, and theological human review before scale-out or release.
+The design intent above is implemented in the current v7 baseline. Automated tests verify structural and interaction contracts but do not substitute for independent visual judgment or human usability review. Future design changes should continue to be evaluated against this artifact, the current owner decisions, and `DECISION_PRECEDENCE.md`; if the owner changes the direction, the newer decision governs after the conflict protocol is applied.
