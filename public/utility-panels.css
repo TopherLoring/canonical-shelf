@@ -13,3 +13,6 @@ body:not(.study-focus-active)>.feedback-open{display:block}
 .personal-study-pane[hidden]{display:none}.privacy-note{border-left:3px solid var(--color-accent-primary);padding:.8rem 1rem;background:var(--color-surface-subtle);font-size:.9rem}
 @media(max-width:520px){.utility-panel{width:100%}.feedback-open{left:.65rem;bottom:.65rem}.personal-study-open{right:.65rem;bottom:4.2rem}.utility-fab{padding:.55rem .72rem;font-size:.9rem}}
 @media(forced-colors:active){.utility-fab{background:ButtonFace;color:ButtonText}.personal-study-tabs button[aria-selected="true"]{box-shadow:none;border-bottom:3px solid Highlight}}
+
+/* Study Focus owns reserved Feedback and Journal controls; fixed controls never cover a lesson. */
+body.study-focus-active>.feedback-open,body.study-focus-active>.personal-study-open{display:none}
