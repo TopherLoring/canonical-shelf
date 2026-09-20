@@ -3,6 +3,7 @@ import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkC
 import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
 import {buildTheologianResponse} from './theologian.js';
 import {homeView,topicsView,practiceView,checkPracticeGame,progressPanelView,recentEntryForRoute,recordRecent} from './experience.js';
+import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
 
 const main=document.querySelector('#main'),nav=[...document.querySelectorAll('[data-route]')],guide=document.querySelector('#guide'),guideBody=document.querySelector('#guide-body');
 const progressPanel=document.querySelector('#progress-panel'),progressBody=document.querySelector('#progress-body');
@@ -33,13 +34,29 @@ function searchPage(q){
   const n=q.toLowerCase(),topics=data.topics.filter(t=>`${t.title} ${t.answer||''} ${(t.tags||[]).join(' ')}`.toLowerCase().includes(n)).slice(0,12),units=data.units.filter(u=>`${u.title} ${u.scope}`.toLowerCase().includes(n)).slice(0,12),terms=(data.glossary||[]).filter(term=>`${term.term} ${term.quick} ${(term.definitions||[]).join(' ')}`.toLowerCase().includes(n)).slice(0,12),bible=scriptureResults(q);
   return shell(`Search: “${q}”`,'Across Canonical Shelf',`<div class="results"><section><h2>Bible</h2>${bible.map(x=>`<a class="result" href="${x.href}">${esc(x.label)}</a>`).join('')||'<p>No Scripture matches.</p>'}</section><section><h2>Topics</h2>${topics.map(t=>`<div class="result"><a href="/topics?topic=${encodeURIComponent(t.id)}"><strong>${esc(t.title)}</strong></a><p>${esc(t.answer||'').slice(0,220)}</p></div>`).join('')||'<p>No Topic matches.</p>'}</section><section><h2>Glossary</h2>${terms.map(term=>`<div class="result"><a href="/topics?mode=glossary&q=${encodeURIComponent(term.term)}"><strong>${esc(term.term)}</strong></a><p>${esc(term.quick)}</p></div>`).join('')||'<p>No glossary matches.</p>'}</section><section><h2>Course</h2>${units.map(u=>`<div class="result"><a href="/course?unit=${encodeURIComponent(u.id)}"><strong>${esc(u.title)}</strong></a><p>${esc(u.scope)}</p></div>`).join('')||'<p>No course matches.</p>'}</section><button class="button" data-ask="${esc(q)}">Ask the Guide about this</button></div>`)}
 
+function courseRouteView(p){
+  if(!data.units.length)return shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
+  if(p.has('lesson')||p.has('mastery')||p.has('glossary'))return courseView(data,state,p,esc,corpus);
+  const rawUnit=p.get('unit');
+  if(rawUnit){
+    if(rawUnit==='unit.orientation')return courseView(data,state,p,esc,corpus);
+    const unitId=data.units.some(u=>u.id===rawUnit)?rawUnit:(data.legacyUnitAliases?.[rawUnit]||rawUnit),unit=data.units.find(u=>u.id===unitId);
+    if(!unit)return courseView(data,state,p,esc,corpus);
+    const course=data.courses.find(c=>c.id===unit.courseId);
+    return unitExperienceView({data,state,unit,course,esc});
+  }
+  const courseId=p.get('course');
+  if(courseId){const course=data.courses.find(c=>c.id===courseId);return course?courseDetailView({data,state,course,esc}):'<p class="notice">Course not found.</p>'}
+  return courseLandingView({data,state,esc});
+}
+
 function render(){
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
   document.body.classList.toggle('study-focus-active',focus);
   if(focus)guide.hidden=true;
   setCurrent(r);
   if(r==='search')main.innerHTML=searchPage(p.get('q')||'');
-  else if(r==='course')main.innerHTML=data.units.length?courseView(data,state,p,esc,corpus):shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
+  else if(r==='course')main.innerHTML=courseRouteView(p);
   else if(r==='bible')main.innerHTML=bibleView(corpus,p,esc);
   else if(r==='topics')main.innerHTML=topicsView({data,params:p,esc});
   else if(r==='practice')main.innerHTML=practiceView({data,state,params:p,esc,dueReviews,activityHref});
