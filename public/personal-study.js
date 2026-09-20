@@ -90,6 +90,7 @@ function closePanel(){
 }
 
 openButton?.addEventListener('click',()=>openPanel().catch(()=>{}));
+document.addEventListener('click',event=>{if(event.target.closest('[data-journal-open]'))openPanel().catch(()=>{})});
 closeButton?.addEventListener('click',closePanel);
 journal?.addEventListener('input',scheduleJournalSave);
 document.addEventListener('canonical-route-rendered',()=>bindInlineNotes().catch(()=>{}));
