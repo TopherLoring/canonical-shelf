@@ -15,22 +15,25 @@ test('Feedback is reachable from normal pages and Study Focus',async({page})=>{
   await expect(page.getByRole('heading',{name:'Send feedback'})).toBeVisible();
 });
 
-test('Lesson notes and journal persist without changing scored progress',async({page})=>{
-  await page.goto('/course?unit=unit.start&lesson=begin');
+test('Reflection owns lesson notes while Journal remains separately persistent and unscored',async({page})=>{
+  await page.goto('/course?unit=c1.christianity&lesson=begin');
   const before=await page.evaluate(async()=>{const db=await import('/db.js');return db.getState()});
-  const open=page.getByRole('button',{name:'Notes & journal',exact:true});
+  await page.locator('.scene-rail a').filter({hasText:'Reflect'}).click();
+  const note=page.locator('[data-inline-lesson-note]');
+  await expect(note).toBeVisible();
+  await note.fill('Observe the sequence in 1 Corinthians 15 and revisit the context note.');
+  await page.waitForTimeout(900);
+  await page.reload();
+  await expect(note).toHaveValue(/Observe the sequence/);
+
+  const open=page.getByRole('button',{name:'Journal',exact:true});
   await expect(open).toBeVisible();
   await open.click();
-  await expect(page.getByRole('heading',{name:'Notes & journal'})).toBeVisible();
-  await page.locator('#personal-note').fill('Observe the sequence in 1 Corinthians 15 and revisit the context note.');
-  await page.waitForTimeout(900);
-  await page.getByRole('tab',{name:'Journal'}).click();
+  await expect(page.getByRole('heading',{name:'Journal',exact:true})).toBeVisible();
   await page.locator('#personal-journal').fill('I want to distinguish the text from later doctrinal explanations.');
   await page.waitForTimeout(900);
-  await page.getByRole('button',{name:'Close notes and journal'}).click();
+  await page.getByRole('button',{name:'Close journal'}).click();
   await open.click();
-  await expect(page.locator('#personal-note')).toHaveValue(/Observe the sequence/);
-  await page.getByRole('tab',{name:'Journal'}).click();
   await expect(page.locator('#personal-journal')).toHaveValue(/distinguish the text/);
   const after=await page.evaluate(async()=>{const db=await import('/db.js');return db.getState()});
   expect(after.completed).toEqual(before.completed);
