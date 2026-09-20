@@ -1,37 +1,126 @@
-export const units=[
-['unit.start','Start Here','Christianity, Jesus, responsible inquiry and learning'],
-['unit.read','How to Read a Bible','References, context, translation, manuscripts, authorship, audience and canon'],
-['unit.library','The Bible as a Library','Shelf, canon, genres, navigation and chronology versus canonical order'],
-['unit.interpretation','How Interpretation Works','Text, context, interpretation, doctrine, application and evidence levels'],
-['unit.story','The Story in One View','Whole biblical arc, eras, hinge events and recurring themes'],
-['unit.beginnings','Beginnings','Creation, humanity, rupture, mortality and Genesis'],
-['unit.abraham-exodus','Abraham to Exodus','Patriarchs, covenant, Egypt, Moses and liberation'],
-['unit.torah','Torah and Wilderness','Law, holiness, covenant life, wilderness and Christian use of Old Testament law'],
-['unit.land-ruth','Land, Judges, and Ruth','Conquest, violence, Judges, Ruth, covenant loyalty and interpretation'],
-['unit.kings','Kings and Temple','Samuel, Saul, David, Solomon, monarchy, temple and power'],
-['unit.kingdoms-prophets','Kingdoms and the Prophetic Library','Divided monarchy, prophets, justice, prophetic genres and organization'],
-['unit.exile','Exile, Return, and the World Before Jesus','Babylon, Persia, restoration and Second Temple context'],
-['unit.wisdom','Poetry and Wisdom','Psalms, Job, Proverbs, Ecclesiastes and Song of Songs'],
-['unit.jesus','Jesus and the Gospels','Jewish context, four Gospels, kingdom, parables, welcome and discipleship'],
-['unit.cross','Cross, Resurrection, and Salvation','Cross, resurrection, grace, repentance, reconciliation and atonement models'],
-['unit.acts','Acts and the Early Church','Spirit, mission, Gentile inclusion, conflict, discernment and belonging'],
-['unit.letters','Paul and the Other Letters','Paul, Hebrews, James, Peter, John, Jude, communities, ethics and interpretation'],
-['unit.doctrine-develops','How Christian Doctrine Develops','Scripture, interpretation, councils, creeds and doctrinal reasoning'],
-['unit.doctrine','God and Christian Doctrine','Trinity, incarnation, Spirit, providence, freedom and grace'],
-['unit.practice','Christian Practice','Baptism, Communion, prayer, ethics, formation and neighbor-love'],
-['unit.traditions','Christian Traditions','Catholic, Orthodox, Protestant and denominational differences'],
-['unit.difficult','Difficult Questions and Contested Interpretations','Suffering, violence, LGBTQ interpretation, religions, miracles, evil and uncertainty'],
-['unit.hope','Resurrection, Judgment, and New Creation','Apocalypse, Revelation, judgment, final destiny and renewed creation'],
-['unit.themes','Themes Across Scripture','Cross-canon synthesis without flattening local context'],
-['unit.mastery','Independent Mastery','Whole-book contextual interpretation and synthesis']
-].map(([id,title,scope],i)=>({id,sequence:i+1,title,scope}));
+import {courses,units,unitById,courseById} from '../content/curriculum/structure.mjs';
 
-const base={1:'unit.start',2:'unit.read',3:'unit.library',4:'unit.story',5:'unit.beginnings',6:'unit.abraham-exodus',7:'unit.torah',8:'unit.land-ruth',9:'unit.kings',10:'unit.kingdoms-prophets',11:'unit.exile',12:'unit.wisdom',13:'unit.kingdoms-prophets',14:'unit.jesus',15:'unit.cross',16:'unit.acts',17:'unit.letters',18:'unit.letters',19:'unit.doctrine',20:'unit.practice',21:'unit.traditions',22:'unit.difficult',23:'unit.hope',24:'unit.themes',25:'unit.mastery'};
-export function mapLegacyUnit(n){return base[Number(n)]||'unit.start'}
-export function mapLesson(l){
- const text=`${l.id||''} ${l.title||''} ${l.objective||''}`.toLowerCase();
- const u=Number(l.v4Unit||l.unit)||1;
- if(u===2&&/(context|interpret|application|evidence|observation)/.test(text))return 'unit.interpretation';
- if((u===19||u===21)&&/(creed|council|doctrine develop|historic formulation|authority.*tradition)/.test(text))return 'unit.doctrine-develops';
- return mapLegacyUnit(u);
+export {courses,units,unitById,courseById};
+
+// Preserve the legacy v4/v7 activity IDs while changing only their curriculum placement.
+// This broad placement keeps every one of the 69 existing mastery IDs routable.
+const legacyUnitMap={
+  1:'c1.christianity',
+  2:'c1.reading',
+  3:'c1.story',
+  4:'c2.exodus',
+  5:'c2.land-kings',
+  6:'c5.genre',
+  7:'c2.prophets-exile',
+  8:'c4.gospels',
+  9:'c6.sin-salvation',
+  10:'c4.pentecost',
+  11:'c6.god-christ',
+  12:'c6.church-practice',
+  13:'c6.traditions',
+  14:'c6.difficult',
+  15:'c6.final-hope',
+  16:'c5.interpretation',
+  17:'c4.expansion',
+  18:'c4.expansion',
+  19:'c6.god-christ',
+  20:'c6.church-practice',
+  21:'c6.traditions',
+  22:'c6.difficult',
+  23:'c6.final-hope',
+  24:'c5.intertext',
+  25:'c5.interpretation'
+};
+
+export function mapLegacyUnit(n){return legacyUnitMap[Number(n)]||'c1.christianity'}
+
+const text=lesson=>`${lesson.id||''} ${lesson.title||''} ${lesson.objective||''} ${(lesson.body||[]).join(' ')}`.toLowerCase();
+const has=(lesson,re)=>re.test(text(lesson));
+
+/**
+ * Map the 70 existing authored guided lessons into the new program.
+ * Placement is semantic rather than count-driven; IDs remain unchanged.
+ */
+export function mapLesson(lesson){
+  const old=Number(lesson.v4Unit||lesson.unit)||1;
+
+  if(old===1){
+    if(lesson.id==='begin'||has(lesson,/central story|gospel|christian proclamation/))return'c1.christianity';
+    if(lesson.id==='library'||has(lesson,/library|canon|reference|book.*chapter|chapter.*verse/))return'c1.bible';
+    if(lesson.id==='story'||has(lesson,/larger story|story map|biblical arc/))return'c1.story';
+    if(lesson.id==='context'||has(lesson,/context detective|observation|interpretation|application/))return'c1.reading';
+    return'c1.christianity';
+  }
+
+  if(old===2){
+    if(lesson.id==='translation'||has(lesson,/translation difference|manuscript witness|textual variant|textual apparatus/))return'c1.transmission';
+    if(has(lesson,/shelf|seven bible skills|book order|group|library|canon/))return'c1.bible';
+    if(has(lesson,/genre|context|interpret|application|evidence|observation/))return'c1.reading';
+    return'c1.reading';
+  }
+
+  if(old===3)return'c1.story';
+
+  if(old===4){
+    if(has(lesson,/abraham|promise|patriarch/))return'c1.story';
+    if(has(lesson,/exodus|moses|egypt|liberat/))return'c2.exodus';
+    if(has(lesson,/torah|law|holiness|sinai|neighbor|glean/))return'c2.sinai';
+    return'c2.exodus';
+  }
+
+  if(old===5){
+    if(has(lesson,/exile|lament|babylon|return|rebuild/))return has(lesson,/return|rebuild|restor/)?'c2.restoration-hope':'c2.prophets-exile';
+    if(has(lesson,/temple|solomon|divided kingdom|monarch|saul|david/))return has(lesson,/temple|solomon|divided kingdom/)?'c2.temple-kingdom':'c2.land-kings';
+    return'c2.land-kings';
+  }
+
+  if(old===6)return'c5.genre';
+
+  if(old===7){
+    if(has(lesson,/hope|restor|new covenant|messian|future/))return'c2.restoration-hope';
+    return'c2.prophets-exile';
+  }
+
+  if(old===8){
+    if(lesson.id==='gospel-comparison'||has(lesson,/four gospels|compare.*gospel|luke.*mark/))return'c4.gospels';
+    if(has(lesson,/sermon|beatitude|lord.s prayer|enemy|prayer/))return'c4.teaching';
+    if(has(lesson,/scripture|fulfill|messiah|son of man|temple|sabbath|passover/))return'c4.israel-story';
+    return'c4.kingdom';
+  }
+
+  if(old===9){
+    if(has(lesson,/resurrection|crucifix|cross|passion/)&&!has(lesson,/atonement|grace|reconcil|salvation/))return'c4.passion';
+    return'c6.sin-salvation';
+  }
+
+  if(old===10){
+    if(has(lesson,/acts 15|gentile|paul|mission|jerusalem council/))return'c4.paul-gentiles';
+    if(has(lesson,/pentecost|spirit|stephen|philip|jerusalem church|early church/))return'c4.pentecost';
+    if(has(lesson,/james|letter|epistle|body|belong|community/))return'c4.expansion';
+    return'c4.pentecost';
+  }
+
+  if(old===11){
+    if(has(lesson,/providence|foreknowledge|predestin|freedom|suffering/))return'c6.providence-life';
+    return'c6.god-christ';
+  }
+
+  if(old===12){
+    if(lesson.id==='prayer-practice'||has(lesson,/lord.s prayer|matthew 6/))return'c4.teaching';
+    if(lesson.id==='communion-table'||has(lesson,/communion|lord.s supper|eucharist/))return'c4.passion';
+    return'c6.church-practice';
+  }
+
+  if(old===13)return'c6.traditions';
+  if(old===14)return'c6.difficult';
+  if(old===15)return'c6.final-hope';
+
+  if(old===16){
+    if(has(lesson,/theme|cross-book|argument|allusion|comparison/))return'c5.intertext';
+    return'c5.interpretation';
+  }
+
+  return mapLegacyUnit(old);
 }
+
+export function courseForUnit(unitId){return unitById[unitId]?.courseId||'course.foundations'}
