@@ -9,6 +9,7 @@ import {homeView,progressPanelView} from './progress-experience.js';
 import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
 import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
+import {searchExperienceView} from './search-experience.js';
 
 const main=document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -70,7 +71,7 @@ function courseRouteView(p){
 function render(){
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
   document.body.classList.toggle('study-focus-active',focus);if(focus)guide.hidden=true;setCurrent(r);
-  if(r==='search')main.innerHTML=searchPage(p.get('q')||'');
+  if(r==='search')main.innerHTML=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
   else if(r==='course')main.innerHTML=courseRouteView(p);
   else if(r==='bible')main.innerHTML=bibleView(corpus,p,esc);
   else if(r==='topics')main.innerHTML=topicsView({data,params:p,esc});
