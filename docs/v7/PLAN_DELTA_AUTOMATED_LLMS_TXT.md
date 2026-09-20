@@ -14,7 +14,7 @@ Publish a root-level `/llms.txt` that remains synchronized with Canonical Shelf 
 ## Acceptance criteria
 
 1. `bun run migrate` followed by `bun run generate:llms` deterministically creates `public/llms.txt`.
-2. Generated counts match `public/data/catalog.json` for units, guided lessons, mastery activities, scored activities, and Topics.
+2. Generated counts match `public/data/catalog.json` for courses, units, guided lessons, mastery/capstone activities, scored activities, Topics, and glossary terms.
 3. Primary destination links are derived from the actual primary navigation in `public/index.html`; unknown future destinations still receive a safe generic description.
 4. `public/index.html` advertises `/llms.txt` with `<link rel="describedby" href="/llms.txt">`.
 5. `bun run validate:llms` rejects stale output, malformed structure, missing canonical resources, duplicate/invalid route entries, or discovery-link drift.
@@ -23,7 +23,7 @@ Publish a root-level `/llms.txt` that remains synchronized with Canonical Shelf 
 
 ## Invariants
 
-- Preserve 25 units, 70 guided lessons, 69 mastery activities, and 139 scored activities unless changed through the canonical curriculum itself.
+- Curriculum counts are derived from the canonical generated catalog rather than hard-coded into `llms.txt`. The historical 25-unit / 70-lesson / 69-mastery / 139-activity values remain migration baselines, not ceilings, after the owner-approved six-course curriculum redesign.
 - Home / Course / Bible / Topics / Practice remain the current primary destinations.
 - Bible owns shelf/browse/reader; Topics are reference content and do not count toward completion; Practice is reinforcement.
 - The Statement of Faith remains the doctrinal ceiling.
