@@ -2,8 +2,10 @@ import {getState,recordResult,recordReview,dueReviews,exportState,importState} f
 import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './learning.js';
 import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
 import {buildTheologianResponse} from './theologian.js';
+import {homeView,topicsView,practiceView,checkPracticeGame,progressPanelView,recentEntryForRoute,recordRecent} from './experience.js';
 
 const main=document.querySelector('#main'),nav=[...document.querySelectorAll('[data-route]')],guide=document.querySelector('#guide'),guideBody=document.querySelector('#guide-body');
+const progressPanel=document.querySelector('#progress-panel'),progressBody=document.querySelector('#progress-body');
 let data={courses:[],units:[],topics:[],lessons:[],masteryIds:[],activities:[],byUnit:{},byCourse:{},glossary:[]},corpus='',policy=null,statement='',theologySources=[],state=await getState();
 const reviewSession=new Map();
 const STUDY_RETURN_KEY='canonical-shelf-study-return-v1';
@@ -22,24 +24,14 @@ const nativeHref=h=>h?.startsWith('#/')?h.slice(1):h;
 function canonicalizeLinks(root=document){for(const a of root.querySelectorAll('a[href^="#/"]'))a.href=nativeHref(a.getAttribute('href'))}
 function navigate(path,{replace=false}={}){const target=nativeHref(path)||'/home';history[replace?'replaceState':'pushState']({},'',target);render()}
 function setCurrent(r){nav.forEach(a=>a.toggleAttribute('aria-current',a.dataset.route===r))}
-function progress(){const total=data.activities?.length||0,done=state.completed?.filter(id=>/^(lesson|mastery):/.test(id)).length||0;return{done,total,pct:Math.round(done/Math.max(total,1)*100)}}
 function shell(title,eye,body){return `<header class="section"><p class="eyebrow">${esc(eye)}</p><h1>${esc(title)}</h1></header>${body}`}
-function nextUnit(){return data.units.find(u=>(data.byUnit?.[u.id]||[]).some(id=>!state.completed.includes(id)))}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
-
-function home(){
-  const s=progress(),next=nextUnit(),course=data.courses?.find(item=>item.id===next?.courseId);
-  return `<section class="hero"><div><p class="eyebrow">Bible literacy for thoughtful adults</p><h1>Read with context.<br>Think with care.</h1><p class="lede">A self-paced six-course curriculum, complete Bible, curated reference library, evidence-aware study guide, and game-based retention system. Progress measures understanding, not theological assent.</p><p><a class="button" href="${next?`/course?unit=${encodeURIComponent(next.id)}`:'/course'}">${next?'Continue learning':'Review the curriculum'}</a></p></div><div><div class="stat"><strong>${s.pct}%</strong><span>${s.done}/${s.total} scored activities complete</span></div><div class="stat"><strong>${data.courses.length||6}</strong><span>progressive courses</span></div><div class="stat"><strong>${data.units.length}</strong><span>learning units</span></div><div class="stat"><strong>${data.topics.length||45}</strong><span>curated Topics</span></div></div></section><section class="section"><h2>Your study shelf</h2><div class="grid"><article class="card"><p class="eyebrow">Course${course?` ${course.sequence}`:''}</p><h3>${esc(next?.title||'Independent review')}</h3><p>${esc(next?.scope||'Return to any course and strengthen understanding and retention.')}</p><a href="/course">Open Course</a></article><article class="card"><p class="eyebrow">Bible</p><h3>Read the text itself</h3><p>Browse all 66 books or open a reference directly.</p><a href="/bible">Open Bible</a></article><article class="card"><p class="eyebrow">Topics</p><h3>Follow a question</h3><p>Doctrine, ethics, history, practice, contested interpretations, and deeper background.</p><a href="/topics">Browse Topics</a></article></div></section>`;
-}
-
-function topics(){const id=params().get('topic');if(id){const t=data.topics.find(x=>x.id===id);if(!t)return shell('Topic not found','Topics','');return `<article class="reader"><p><a href="/topics">← All Topics</a></p><p class="eyebrow">Reference · not scored</p><h1>${esc(t.title)}</h1><p class="lede">${esc(t.answer||t.summary||'')}</p>${(Array.isArray(t.body)?t.body:[]).map(x=>`<p>${esc(x)}</p>`).join('')}<p><button class="button" data-ask="${esc(t.title)}">Ask the Guide about this</button></p></article>`}return shell('Topics','Curated reference · not scored',`<p class="lede">Direct answers, distinctions, Scripture connections, competing interpretations, and source trails.</p><div class="topic-list">${data.topics.map(t=>`<article class="topic-item"><h3><a href="/topics?topic=${encodeURIComponent(t.id)}">${esc(t.title)}</a></h3><p>${esc(t.answer||t.summary||'').slice(0,180)}</p></article>`).join('')||'<p class="notice">Run migration to populate Topics.</p>'}</div>`)}
-
-function practice(){const s=progress(),due=dueReviews(state);return shell('Practice','Retrieval and transfer',`<p class="lede">Practice reinforces the courses without becoming a second curriculum. Lesson completion, unit mastery, course synthesis, retention, and review need remain separate.</p><div class="grid"><article class="card"><h3>Retrieval and transfer</h3><p>Practice context, chronology, vocabulary, interpretation, evidence, relationships, and cross-course connections.</p></article><article class="card"><h3>Review queue</h3><p>${due.length?`${due.length} spaced review ${due.length===1?'activity is':'activities are'} due.`:'No scheduled reviews are due.'}</p>${due.length?`<ol>${due.slice(0,8).map(x=>{const a=data.activities?.find(v=>v.id===x.id);return `<li><a href="${activityHref(x.id)}">${esc(a?.title||x.id)}</a></li>`}).join('')}</ol>`:''}</article><article class="card"><h3>Your progress</h3><p>${s.done}/${s.total} scored activities complete.</p><button class="button" id="export">Export progress</button> <button class="button" id="import">Import progress</button></article></div>`)}
+function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)progressBody.innerHTML=progressPanelView({data,state,esc})}
 
 function scriptureResults(q){const ref=parseReference(q);if(ref)return[{label:`${BOOKS[ref.bn-1]} ${ref.chapter}${ref.start?`:${ref.start}${ref.end!==ref.start?`-${ref.end}`:''}`:''}`,href:`/bible?book=${ref.bn}&chapter=${ref.chapter}`}];const n=q.toLowerCase();return parseCorpus(corpus).filter(r=>r.text.toLowerCase().includes(n)).slice(0,12).map(r=>({label:`${BOOKS[r.bn-1]} ${r.chapter}:${r.verse} — ${r.text}`,href:`/bible?book=${r.bn}&chapter=${r.chapter}`}))}
 function searchPage(q){
   const n=q.toLowerCase(),topics=data.topics.filter(t=>`${t.title} ${t.answer||''} ${(t.tags||[]).join(' ')}`.toLowerCase().includes(n)).slice(0,12),units=data.units.filter(u=>`${u.title} ${u.scope}`.toLowerCase().includes(n)).slice(0,12),terms=(data.glossary||[]).filter(term=>`${term.term} ${term.quick} ${(term.definitions||[]).join(' ')}`.toLowerCase().includes(n)).slice(0,12),bible=scriptureResults(q);
-  return shell(`Search: “${q}”`,'Across Canonical Shelf',`<div class="results"><section><h2>Bible</h2>${bible.map(x=>`<a class="result" href="${x.href}">${esc(x.label)}</a>`).join('')||'<p>No Scripture matches.</p>'}</section><section><h2>Topics</h2>${topics.map(t=>`<div class="result"><a href="/topics?topic=${encodeURIComponent(t.id)}"><strong>${esc(t.title)}</strong></a><p>${esc(t.answer||'').slice(0,220)}</p></div>`).join('')||'<p>No Topic matches.</p>'}</section><section><h2>Glossary</h2>${terms.map(term=>`<div class="result"><a href="/course?glossary=1#${encodeURIComponent(term.id)}"><strong>${esc(term.term)}</strong></a><p>${esc(term.quick)}</p></div>`).join('')||'<p>No glossary matches.</p>'}</section><section><h2>Course</h2>${units.map(u=>`<div class="result"><a href="/course?unit=${encodeURIComponent(u.id)}"><strong>${esc(u.title)}</strong></a><p>${esc(u.scope)}</p></div>`).join('')||'<p>No course matches.</p>'}</section><button class="button" data-ask="${esc(q)}">Ask the Guide about this</button></div>`)}
+  return shell(`Search: “${q}”`,'Across Canonical Shelf',`<div class="results"><section><h2>Bible</h2>${bible.map(x=>`<a class="result" href="${x.href}">${esc(x.label)}</a>`).join('')||'<p>No Scripture matches.</p>'}</section><section><h2>Topics</h2>${topics.map(t=>`<div class="result"><a href="/topics?topic=${encodeURIComponent(t.id)}"><strong>${esc(t.title)}</strong></a><p>${esc(t.answer||'').slice(0,220)}</p></div>`).join('')||'<p>No Topic matches.</p>'}</section><section><h2>Glossary</h2>${terms.map(term=>`<div class="result"><a href="/topics?mode=glossary&q=${encodeURIComponent(term.term)}"><strong>${esc(term.term)}</strong></a><p>${esc(term.quick)}</p></div>`).join('')||'<p>No glossary matches.</p>'}</section><section><h2>Course</h2>${units.map(u=>`<div class="result"><a href="/course?unit=${encodeURIComponent(u.id)}"><strong>${esc(u.title)}</strong></a><p>${esc(u.scope)}</p></div>`).join('')||'<p>No course matches.</p>'}</section><button class="button" data-ask="${esc(q)}">Ask the Guide about this</button></div>`)}
 
 function render(){
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
@@ -49,9 +41,13 @@ function render(){
   if(r==='search')main.innerHTML=searchPage(p.get('q')||'');
   else if(r==='course')main.innerHTML=data.units.length?courseView(data,state,p,esc,corpus):shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
   else if(r==='bible')main.innerHTML=bibleView(corpus,p,esc);
-  else main.innerHTML=({home,topics,practice}[r]||home)();
+  else if(r==='topics')main.innerHTML=topicsView({data,params:p,esc});
+  else if(r==='practice')main.innerHTML=practiceView({data,state,params:p,esc,dueReviews,activityHref});
+  else main.innerHTML=homeView({data,state,esc});
   canonicalizeLinks(main);
+  const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   main.focus({preventScroll:true});
+  refreshProgressPanel();
 }
 
 function evidenceMarkup(e){const link=e.type==='topic'&&e.id?`/topics?topic=${encodeURIComponent(e.id)}`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${link}">${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
@@ -163,9 +159,17 @@ document.addEventListener('submit',async e=>{
     e.preventDefault();
     navigate(`/bible?q=${encodeURIComponent(new FormData(e.target).get('bq')||'')}`);
   }
+  if(e.target.id==='topic-search'){
+    e.preventDefault();const fd=new FormData(e.target),q=String(fd.get('topic-q')||'').trim(),mode=String(fd.get('topic-mode')||'ask');
+    navigate(`/topics?mode=${encodeURIComponent(mode)}${q?`&q=${encodeURIComponent(q)}`:''}`);
+  }
   if(e.target.id==='guide-form'){
     e.preventDefault();
     guideAnswer(new FormData(e.target).get('question')||'');
+  }
+  if(e.target.matches('[data-practice-game]')){
+    e.preventDefault();const result=checkPracticeGame(e.target),feedback=e.target.querySelector('.feedback');
+    feedback.innerHTML=`<p class="notice"><strong>${result.ok?'Correct.':'Keep working.'}</strong> ${esc(result.message)}</p>`;return;
   }
   if(e.target.matches('.challenge')){
     e.preventDefault();
@@ -185,11 +189,17 @@ document.addEventListener('submit',async e=>{
     if(evaluation.mode==='reflection')feedback.innerHTML='<p class="notice"><strong>Reflection saved.</strong> This response is not scored for correctness.</p>';
     else if(evaluation.correct===true)feedback.innerHTML=`<p class="notice"><strong>Correct.</strong> ${esc(challenge?.why||'Your response is supported by the activity.')}${reviewAdvanced?' Review interval advanced.':''}</p>`;
     else feedback.innerHTML=`<p class="notice"><strong>Not yet.</strong> ${esc(challenge?.hint||challenge?.hints?.[0]||'Return to the evidence and try again.')}</p>`;
+    refreshProgressPanel();
   }
 });
 
-document.addEventListener('change',e=>{if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`)});
+document.addEventListener('change',e=>{
+  if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`);
+  if(e.target.id==='translation-select'&&e.target.value!=='bsb')e.target.value='bsb';
+});
 document.querySelector('#guide-open').addEventListener('click',()=>{guideAnswer('What can you help me study?');document.querySelector('#guide-q')?.focus()});
 document.querySelector('#guide-close').addEventListener('click',()=>{guide.hidden=true;document.querySelector('#guide-open').focus()});
+document.querySelector('#progress-open').addEventListener('click',()=>{progressBody.innerHTML=progressPanelView({data,state,esc});progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
+document.querySelector('#progress-close').addEventListener('click',()=>{progressPanel.hidden=true;document.querySelector('#progress-open').focus()});
 
 render();
