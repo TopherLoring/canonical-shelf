@@ -16,7 +16,9 @@ async function openStudyGuide(page){
 
 test('five-destination shell preserves 25 scored units plus non-scored Unit 0',async({page})=>{
   await page.goto('/home');
-  await expect(page.getByRole('heading',{name:/Read with context/i})).toBeVisible();
+  await expect(page.getByRole('heading',{name:/Know the Bible/i})).toBeVisible();
+  await expect(page.locator('.v5-home__hero')).toBeVisible();
+  await expect(page.locator('.v5-dashboard')).toBeVisible();
   await expect(page).toHaveURL(/\/home$/);
   for(const name of ['Home','Course','Bible','Topics','Practice'])await expect(page.getByRole('link',{name,exact:true})).toBeVisible();
 
