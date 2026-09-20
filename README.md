@@ -5,7 +5,7 @@
 The current application is **Canonical Shelf v7**, merged to `main` at `801a9706d7cec9574ceadca7647a9f63a2b554fc`. v7 keeps the stronger learner-facing structure and interaction model established in v5, uses v4 selectively as a scholarly writing/content-depth reference, and runs on the cleaner v7 architecture without restoring v5 bridge/runtime debt.
 
 > **Current status:** the merged v7 release passed the authoritative automated production CI before merge. Remaining human/device/editorial/theological review items are continuing quality-assurance work and must not be represented as independently completed unless evidence is recorded.
-
+ 
 ---
 
 ## Product model
