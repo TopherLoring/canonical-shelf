@@ -229,7 +229,7 @@ test('account sync stays secondary optional and mobile-safe',async({page})=>{
 
 test('Bible owns a 66-book shelf and native reference routes',async({page})=>{
   await page.goto('/bible');
-  await expect(page.locator('.book')).toHaveCount(66);
+  await expect(page.locator('.shelf-spine')).toHaveCount(66);
   await page.goto('/bible?q=John%203%3A16');
   await expect(page.getByRole('heading',{name:/John 3:16/})).toBeVisible();
   await expect(page.locator('#v16')).toBeVisible();
@@ -241,15 +241,16 @@ test('Bible owns a 66-book shelf and native reference routes',async({page})=>{
 
 test('legacy hash bookmarks canonicalize to native paths',async({page})=>{
   await page.goto('/#/topics');
-  await expect(page.locator('.topic-item')).toHaveCount(45);
+  await expect(page.locator('.topic-card-grid--results > .topic-card')).toHaveCount(45);
   await expect(page).toHaveURL(/\/topics$/);
 });
 
 test('Topics preserve the 45-entry reference library outside course completion',async({page})=>{
   await page.goto('/topics');
-  await expect(page.locator('.topic-item')).toHaveCount(45);
-  await page.locator('.topic-item h3 a').first().click();
-  await expect(page.locator('article.reader h1')).toBeVisible();
+  const topics=page.locator('.topic-card-grid--results > .topic-card');
+  await expect(topics).toHaveCount(45);
+  await topics.first().click();
+  await expect(page.locator('article.topic-reader h1')).toBeVisible();
   await expect(page).toHaveURL(/\/topics\?topic=/);
   await noSeriousA11y(page);
 });
