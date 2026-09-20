@@ -66,7 +66,7 @@ Course is designed as a guided, progressive, visual, interactive, mastery-orient
 
 Typical lesson scenes can include:
 
-**Orient → Read → Explain → Visualize → Compare → Context → Practice → Retention → Reflect → Continue**
+**Orient → Prepare → Read → Explain → Visualize → Compare → Context → Practice → Retention → Reflect → Continue**
 
 The exact sequence is task-dependent. Lessons preserve scholarly depth through progressive disclosure rather than forcing every note, definition, source, or interpretive qualification into the primary reading flow.
 
@@ -149,14 +149,12 @@ Themes are full presentation systems rather than palette swaps. Bible category c
 
 ---
 
-## Personal Notes & Journal
+## Personal study writing
 
-Personal writing is available inside Study Focus.
+Personal writing is available inside Study Focus with two distinct owners:
 
-Learners can keep:
-
-- **Notes** tied to the current lesson/mastery activity;
-- **Journal** reflections tied to the current lesson/mastery activity.
+- **Lesson notes** live inline in a lesson's Reflect scene so they stay attached to the material being studied;
+- **Journal** is a separate global reflection surface, available from Study Focus without covering lesson content.
 
 Both are explicitly **unscored** and do not affect completion, mastery, review schedules, or challenge results. They are local-first, included in learner export/import, and participate in optional account sync through deterministic per-activity merge rules.
 
@@ -210,7 +208,7 @@ Core study remains usable without a mandatory account or continuous network conn
 - Practice;
 - learner progress, mastery, and spaced review;
 - lesson/course/global glossary data;
-- Notes & Journal;
+- inline lesson notes and Journal;
 - search;
 - progress export/import;
 - theme preferences;
@@ -457,7 +455,7 @@ The automated release surface covers, among other things:
 - native routing and legacy-link compatibility;
 - design-token architecture and theme persistence;
 - Study Focus enter/exit, browser-history, viewport, mobile-apparatus, and rich-challenge behavior;
-- Notes & Journal persistence and sync merge behavior;
+- inline lesson-note and separate Journal persistence and sync merge behavior;
 - Feedback validation/persistence/privacy behavior;
 - Guide/Theologian safeguards and mastery-answer protection;
 - local sync merge/privacy/outbox behavior;
