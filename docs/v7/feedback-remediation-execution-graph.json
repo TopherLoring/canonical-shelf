@@ -17,7 +17,7 @@
     {
       "id": "F1.STATE_NAV",
       "type": "implementation",
-      "status": "in_progress",
+      "status": "complete",
       "dependsOn": [
         "F0.PLAN"
       ],
@@ -30,7 +30,7 @@
     {
       "id": "F2.SCENES",
       "type": "implementation",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "F0.PLAN"
       ],
@@ -43,7 +43,7 @@
     {
       "id": "F3.ASSESSMENT",
       "type": "implementation",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "F0.PLAN"
       ],
@@ -56,7 +56,7 @@
     {
       "id": "F4.PERSONAL_STUDY",
       "type": "implementation",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "F0.PLAN"
       ],
@@ -69,7 +69,7 @@
     {
       "id": "F5.RESPONSIVE",
       "type": "implementation",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "F2.SCENES",
         "F4.PERSONAL_STUDY"
@@ -83,7 +83,7 @@
     {
       "id": "F6.CONTENT",
       "type": "content",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "F2.SCENES"
       ],
@@ -95,7 +95,7 @@
     {
       "id": "F7.TESTS",
       "type": "verification",
-      "status": "pending",
+      "status": "in_progress",
       "dependsOn": [
         "F1.STATE_NAV",
         "F2.SCENES",
@@ -135,5 +135,14 @@
     "BSB corpus unchanged",
     "local-first guest use"
   ],
-  "rollback": "Revert the feedback-remediation commit set; no data migration required."
+  "rollback": "Revert the feedback-remediation commit set; no data migration required.",
+  "evidence": {
+    "implementationBranch": "fix/learner-feedback-remediation",
+    "syntaxCheck": "passed for changed JavaScript and Playwright specifications",
+    "browserContracts": [
+      "tests/e2e/feedback-remediation.spec.js",
+      "tests/e2e/release-utilities.spec.js"
+    ],
+    "ci": "pending"
+  }
 }
