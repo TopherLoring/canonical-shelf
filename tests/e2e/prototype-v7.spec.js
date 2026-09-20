@@ -20,9 +20,9 @@ test.describe('v7 interactive prototype gate',()=>{
 
   test('lesson scenes, practice, Bible, Topics, and Theologian are interactive',async({page})=>{
     await page.getByRole('navigation',{name:'Prototype pages'}).getByRole('button',{name:'Lesson',exact:true}).click();
-    await expect(page.getByText('Every text has a setting')).toBeVisible();
+    await expect(page.getByRole('heading',{name:'Every text has a setting',exact:true})).toBeVisible();
     await page.getByRole('button',{name:/Next/}).click();
-    await expect(page.getByText('A claim made inside history')).toBeVisible();
+    await expect(page.getByRole('heading',{name:'A claim made inside history',exact:true})).toBeVisible();
 
     await page.getByRole('navigation',{name:'Prototype pages'}).getByRole('button',{name:'Practice',exact:true}).click();
     await page.getByRole('button',{name:/Move Exodus from Egypt down/}).click();
