@@ -1,8 +1,8 @@
 import {readFile} from 'node:fs/promises';
 
 const read=path=>readFile(path,'utf8');
-const [index,bootstrap,about,app,home,bible,libraryData,otBooks,ntBooks,experience,topicsExperience,topicsCss,practiceExperience,practiceEngine,practiceEngineRestored,practiceData,practiceState,course,learningVisuals,learningVisualsCss,sw,verseData,...verseParts]=await Promise.all([
-  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/topics-experience.js'),read('public/topics-experience.css'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-engine-restored.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/learning-visuals.js'),read('public/learning-visuals.css'),read('public/sw.js'),read('public/verse-data.js'),...Array.from({length:8},(_,i)=>read(`public/verse-data-${String(i+1).padStart(2,'0')}.js`))
+const [index,bootstrap,about,app,home,bible,bibleState,bibleStateCss,libraryData,otBooks,ntBooks,experience,topicsExperience,topicsCss,searchExperience,searchCss,practiceExperience,practiceEngine,practiceEngineRestored,practiceData,practiceState,course,learningVisuals,learningVisualsCss,sw,verseData,...verseParts]=await Promise.all([
+  read('public/index.html'),read('public/bootstrap.js'),read('public/about.html'),read('public/app.js'),read('public/progress-experience.js'),read('public/bible.js'),read('public/bible-state.js'),read('public/bible-state.css'),read('public/library-data.js'),read('public/library-books-ot.js'),read('public/library-books-nt.js'),read('public/experience.js'),read('public/topics-experience.js'),read('public/topics-experience.css'),read('public/search-experience.js'),read('public/search-experience.css'),read('public/practice-experience.js'),read('public/practice-engine.js'),read('public/practice-engine-restored.js'),read('public/practice-data.js'),read('public/practice-state.js'),read('public/course-experience.js'),read('public/learning-visuals.js'),read('public/learning-visuals.css'),read('public/sw.js'),read('public/verse-data.js'),...Array.from({length:8},(_,i)=>read(`public/verse-data-${String(i+1).padStart(2,'0')}.js`))
 ]);
 
 const requireText=(source,text,message)=>{if(!source.includes(text))throw new Error(message||`missing required parity marker: ${text}`)};
@@ -33,12 +33,22 @@ const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/
 if(profileCount!==66)throw new Error(`expected 66 restored Bible book profiles, found ${profileCount}`);
 for(const marker of ['The Patriarchs','Exodus & Wilderness','Divided Kingdom','Return & Persia','Life of Christ','The Early Church'])requireText(libraryData,marker,`historical orientation missing: ${marker}`);
 for(const marker of ['A world made good, and quickly broken','Return, then the Second Temple bridge','Jesus','The movement, and an ending that is a beginning'])requireText(libraryData,marker,`Bible story arc missing: ${marker}`);
+for(const marker of ['canonical-shelf-bible-state-v1','getPracticeState','learnedBooks','rememberBibleBook','enhanceBibleState','data.current','data.learned'])requireText(bibleState,marker,`Bible learner-state identity missing: ${marker}`);
+for(const marker of ['data-learned="true"','data-current="true"','book-state-chip','prefers-reduced-motion','forced-colors'])requireText(bibleStateCss,marker,`Bible state visual/accessibility contract missing: ${marker}`);
+requireText(app,"from './bible-state.js'",'Bible route must import learner-state identity explicitly');
+requireText(app,"if(r==='bible')enhanceBibleState(main,p)",'Bible learner state must run in the normal Bible render path');
+forbid(bibleState,'canonical-shelf-v6','Bible state must not duplicate Course learner state');
 
 requireText(experience,"from './topics-experience.js'",'shared experience module must delegate Topics to the full-depth renderer');
 requireText(experience,'export {topicsView}','shared experience module must re-export the full-depth Topics renderer');
 requireText(experience,"href='/topics-experience.css'",'Topics reference styling must be loaded without inline CSS');
 for(const marker of ['Ask / search','Theology & doctrine','Christian life','Biblical concepts','Difficult questions','Glossary','Related exploration','topicSearchText','courseConnections','Scripture connections','Course connections','Related search language','t.sections','t.refs','t.aliases'])requireText(topicsExperience,marker,`Topics depth contract missing: ${marker}`);
 for(const marker of ['topic-reference-heading','topic-sections','topic-section','topic-reference-list','topic-course-links'])requireText(topicsCss,marker,`Topics visual reference grammar missing: ${marker}`);
+
+for(const marker of ['searchCanonicalShelf','searchExperienceView','topic.sections','topic.aliases','topic.refs','lesson.body','lesson.vocab','lesson.drawers','LIBRARY_BOOKS','VERSES','Scripture','Topics','Course','Book profiles','Curated passages','Glossary','Ask the Guide with the evidence in view'])requireText(searchExperience,marker,`Unified Search corpus/access contract missing: ${marker}`);
+for(const marker of ['search-domain-grid','search-domain','search-hit','search-guide-handoff','forced-colors'])requireText(searchCss,marker,`Unified Search visual grammar missing: ${marker}`);
+requireText(app,"from './search-experience.js'",'router must import the unified study Search');
+requireText(app,"searchExperienceView({query:p.get('q')||'',data,corpus,esc})",'Search route must use the full study index');
 
 for(const marker of ['Recommended review','Practice Campaign','Arcade','Games & mastery','Ranks & achievements','Context & interpretation','Themes','Verse library','Restored v2/v3 passage library','Start Verse Drill'])requireText(practiceExperience,marker,`Practice surface missing: ${marker}`);
 for(const marker of ['The Order','The Groups','The Substance','The Verses','Full Gilt','Archivist','VERSE_COUNT'])requireText(practiceData,marker,`legacy Practice progression missing: ${marker}`);
@@ -54,11 +64,11 @@ const restoredVerseCount=verseParts.reduce((sum,part)=>sum+(part.match(/\{ref:/g
 if(restoredVerseCount!==232)throw new Error(`expected 232 passages recovered from the actual v3 VERSES array, found ${restoredVerseCount}`);
 for(const ref of ['Genesis 1:1','John 3:16','Galatians 5:22-23','Revelation 21:5'])requireText(verseParts.join('\n'),`ref:"${ref}"`,`restored verse corpus missing boundary/anchor passage: ${ref}`);
 
-for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/topics-experience.js','/topics-experience.css','/progress-experience.js','/course-experience.js','/learning-visuals.js','/learning-visuals.css','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-engine-restored.js','/practice-state.js','/practice-data.js','/verse-data.js','/verse-data-01.js','/verse-data-08.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
-for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js','./learning-visuals.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
+for(const asset of ['/about.html','/footer.css','/about-page.js','/experience.js','/topics-experience.js','/topics-experience.css','/search-experience.js','/search-experience.css','/progress-experience.js','/course-experience.js','/learning-visuals.js','/learning-visuals.css','/bible-state.js','/bible-state.css','/library-data.js','/library-books-ot.js','/library-books-nt.js','/practice-experience.js','/practice-engine.js','/practice-engine-restored.js','/practice-state.js','/practice-data.js','/verse-data.js','/verse-data-01.js','/verse-data-08.js','/experience.css','/course-experience.css','/library.css','/practice.css'])requireText(sw,asset,`offline shell missing restored asset: ${asset}`);
+for(const module of ['./experience.js','./progress-experience.js','./course-experience.js','./practice-experience.js','./practice-engine.js','./learning-visuals.js','./bible-state.js','./search-experience.js'])requireText(app,module,`router is not wired to restored module: ${module}`);
 forbid(app,'MutationObserver','v7 experience must not restore v5 DOM-repair architecture');
 forbid(app,'v5-pages','v7 experience must not restore v5 bridge runtime');
 forbid(app,'v5-shell','v7 experience must not restore v5 bridge runtime');
 forbid(practiceState,'canonical-shelf-v6','Practice progression must not reuse Course IndexedDB state');
 
-console.log(`cross-tab v2-v5 restoration contract passed: 66 book profiles, full Topics depth, ${restoredVerseCount} restored curated passages, native Practice engines, and 12 semantic Course visual families`);
+console.log(`cross-tab v2-v5 restoration contract passed: 66 book profiles with learned/current state, full Topics depth, unified study Search, ${restoredVerseCount} restored curated passages, native Practice engines, and 12 semantic Course visual families`);
