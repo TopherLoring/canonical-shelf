@@ -120,7 +120,7 @@ test('orientation is replayable and does not mutate scored progress',async({page
 
 test('legacy lesson and unit bookmarks continue into the new hierarchy',async({page})=>{
   await page.goto('/course?unit=unit.start');
-  await expect(page.getByRole('heading',{name:'Christianity in One View'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Christianity in One View',exact:true})).toBeVisible();
   await page.goto('/course?unit=unit.start&lesson=begin');
   await expect(page.locator('.study-focus')).toBeVisible();
   await expect(page.locator('.study-focus__identity')).toContainText(/Begin with the central story/i);
@@ -135,7 +135,7 @@ test('native Course history and Exit lesson restore the originating unit surface
   await expect(page.locator('.study-focus')).toBeVisible();
   const lessonUrl=page.url();
   await page.goBack();
-  await expect(page.getByRole('heading',{name:'Christianity in One View'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Christianity in One View',exact:true})).toBeVisible();
   await page.goForward();
   await expect(page).toHaveURL(lessonUrl);
   await expect(page.locator('.study-focus')).toBeVisible();
