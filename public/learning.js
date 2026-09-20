@@ -1,5 +1,6 @@
 import {ORIENTATION_LESSON,ORIENTATION_LESSON_ID,ORIENTATION_UNIT_ID} from './orientation.js';
 import {THEMES} from './theme.js';
+import {BOOKS,parseReference} from './bible.js';
 
 const sequenceKinds=new Set(['sequence','sequence-path','timeline-sort','shelf-build','verse-rebuild','theme-trace']);
 const matchKinds=new Set(['match','match-board']);
@@ -83,6 +84,27 @@ function parseCorpus(text){
   return parsedCorpusRows;
 }
 
+const referenceNames=[...BOOKS,'Psalm'].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${()}|[\]\\]/g,'\\function scriptureMarkup(lesson,corpus,esc){'));
+const supportingReferencePattern=new RegExp(`\\b(${referenceNames.join('|')})\\s+\\d+:\\d+(?:[-–]\\d+)?`,'gi');
+
+function supportingReferencesMarkup(text,corpus,esc){
+  const seen=new Set(),references=[...String(text||'').matchAll(supportingReferencePattern)].map(match=>match[0]).filter(ref=>{const key=ref.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
+  const rows=parseCorpus(corpus);
+  const cards=references.map(reference=>{
+    const parsed=parseReference(reference);
+    if(!parsed?.start)return'';
+    const selected=rows.filter(row=>row.bn===parsed.bn&&row.chapter===parsed.chapter&&row.verse>=parsed.start&&row.verse<=(parsed.end||parsed.start));
+    if(!selected.length)return'';
+    const href=`/bible?book=${parsed.bn}&chapter=${parsed.chapter}#v${parsed.start}`;
+    return `<details class="supporting-scripture"><summary>Read ${esc(reference)} in context</summary><blockquote>${selected.map(row=>`<p><sup>${row.verse}</sup> ${esc(row.text)}</p>`).join('')}</blockquote><a href="${href}">Open chapter →</a></details>`;
+  }).filter(Boolean).join('');
+  return cards?`<div class="supporting-scriptures" aria-label="Supporting Scripture cited in this explanation">${cards}</div>`:'';
+}
+
+function proseMarkup(paragraphs,corpus,esc){
+  return paragraphs.map(paragraph=>`<p class="scene-prose">${esc(paragraph)}</p>${supportingReferencesMarkup(paragraph,corpus,esc)}`).join('');
+}
+
 function scriptureMarkup(lesson,corpus,esc){
   const ref=lesson.ref;
   if(!Array.isArray(ref)||ref.length<2)return `<p class="reading-ref">Primary reading · <strong>${esc(lesson.reading||'See lesson reference')}</strong></p>`;
@@ -119,21 +141,27 @@ const beginBodyHeadings=[
 function lessonScenes(lesson,corpus,esc){
   const aid=`lesson:${lesson.id}`;
   const support=drawerTray(lesson,esc);
-  const scenes=[{role:'Orient',title:lesson.title,html:`<p class="scene-objective">${esc(lesson.objective||'')}</p>${lesson.reading?`<p class="reading-ref">Primary reading · <strong>${esc(lesson.reading)}</strong></p>`:''}${support}`}];
+  const scenes=[{role:'Orient',title:lesson.title,html:`<p class="scene-objective">${esc(lesson.objective||'')}</p>${lesson.reading?`<p class="reading-ref">Primary reading ahead · <strong>${esc(lesson.reading)}</strong></p>`:''}${support}`}];
+  const body=[...(lesson.body||[])];
+  const defaults=[['Explain','Read closely'],['Context','Locate the claim in context'],['Explain','Follow the relationship'],['Context','Keep the setting visible'],['Interpret','Distinguish what follows from the evidence']];
 
-  if(lesson.reading)scenes.push({role:'Read',title:'Read the passage before the explanation',html:scriptureMarkup(lesson,corpus,esc)});
+  if(body.length){
+    const [role,title]=lesson.id==='begin'?['Prepare','Before you read: the central claim']:['Prepare','What to notice before reading'];
+    scenes.push({role,title,html:proseMarkup([body.shift()],corpus,esc)});
+  }
+  if(lesson.reading)scenes.push({role:'Read',title:'Read the passage with the question in view',html:scriptureMarkup(lesson,corpus,esc)});
 
-  (lesson.body||[]).forEach((paragraph,index)=>{
-    const special=lesson.id==='begin'?beginBodyHeadings[index]:null;
-    const defaults=[['Explain','Read closely'],['Context','Locate the claim in context'],['Explain','Follow the relationship'],['Context','Keep the setting visible'],['Interpret','Distinguish what follows from the evidence']];
-    const [role,title]=special||defaults[index%defaults.length];
-    scenes.push({role,title,html:`<p class="scene-prose">${esc(paragraph)}</p>`});
-  });
+  for(let offset=0;offset<body.length;offset+=2){
+    const originalIndex=offset+1;
+    const special=lesson.id==='begin'?beginBodyHeadings[originalIndex]:null;
+    const [role,title]=special||defaults[originalIndex%defaults.length];
+    scenes.push({role,title,html:proseMarkup(body.slice(offset,offset+2),corpus,esc)});
+  }
 
   if(lesson.simple)scenes.push({role:'Clarify',title:'In plain language',html:`<aside class="scene-callout"><p>${esc(lesson.simple)}</p></aside>`});
   if(lesson.visual||lesson.diagram)scenes.push({role:'Visualize',title:'See the relationship',html:visualBlock(lesson,esc)});
   (lesson.challenges||[]).forEach((challenge,index)=>scenes.push({role:'Practice',title:challenge.title||'Check understanding',html:challengeForm(challenge,aid,index,esc)}));
-  if(lesson.reflect)scenes.push({role:'Reflect',title:'Reflect without being scored for belief',html:`<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}`});
+  if(lesson.reflect)scenes.push({role:'Reflect',title:'Reflect and keep lesson notes',html:`<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}<label class="reflection-notes"><span>Lesson notes</span><textarea rows="5" maxlength="12000" data-inline-lesson-note data-activity="${esc(aid)}" placeholder="Capture observations, questions, connections, or references to revisit."></textarea><small data-inline-note-status aria-live="polite">Saved locally and never scored.</small></label>`});
   return scenes;
 }
 
@@ -150,10 +178,11 @@ function apparatusModule(title,tag,body,{open=false}={}){
   return `<details class="apparatus-module" ${open?'open':''}><summary><span>${title}</span>${tag?`<small>${tag}</small>`:''}</summary><div class="apparatus-module__body">${body}</div></details>`;
 }
 
-function lessonApparatus(lesson,esc){
+function lessonApparatus(lesson,esc,scene){
   const vocab=vocabEntries(lesson);
   const sources=(lesson.sources||[]).map((source,index)=>`<li><a href="${esc(source)}" target="_blank" rel="noreferrer">Source ${index+1}</a></li>`).join('');
   let modules='';
+  if(scene)modules+=apparatusModule(`This scene · ${esc(scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use this panel for the evidence, vocabulary, and interpretive boundaries most relevant while this scene is open.</p>`,{open:true});
   modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`,{open:true});
   if(lesson.id==='begin'){
     modules+=apparatusModule('Transmission','evidence',`<p>Paul says he “received” and “passed on” the proclamation. This supports discussion of transmitted tradition; it does not by itself reconstruct the exact date or wording of every earlier form.</p>`);
@@ -176,23 +205,25 @@ function orientationApparatus(){
 
 function focusHref(base,index){return `${base}${base.includes('?')?'&':'?'}scene=${index+1}`}
 
-function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,lessonSequence,title,sceneIndex,scenes,baseHref,exitFallback,apparatus,esc,scored=true}){
+function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,lessonSequence,title,sceneIndex,scenes,baseHref,exitFallback,apparatus,esc,scored=true,completed=false,continuation=null}){
   const scene=scenes[sceneIndex]||scenes[0];
   const previous=sceneIndex>0?focusHref(baseHref,sceneIndex-1):null;
-  const next=sceneIndex<scenes.length-1?focusHref(baseHref,sceneIndex+1):exitFallback;
-  const nextLabel=sceneIndex<scenes.length-1?'Continue →':'Return to unit →';
+  const finalScene=sceneIndex===scenes.length-1;
+  const next=finalScene?(continuation?.href||exitFallback):focusHref(baseHref,sceneIndex+1);
+  const nextLabel=!finalScene?'Continue →':continuation?completed?`Continue to ${continuation.label} →`:`Explore ${continuation.label} →`:'Return to unit →';
+  const completion=${'finalScene&&completed'}?'<aside class="lesson-complete" role="status"><span aria-hidden="true">✓</span><div><strong>Lesson complete</strong><p>You finished every required check. Review remains available whenever you want a refresher.</p></div></aside>':'';
   const progress=Math.round(((sceneIndex+1)/Math.max(scenes.length,1))*100);
   const courseLabel=courseSequence?`Course ${courseSequence} · ${courseTitle} · `:'';
   return `<section class="study-focus" data-study-focus>
     <header class="study-focus__chrome">
       <div class="study-focus__identity"><span>${esc(courseLabel)}Unit ${unitSequence} · ${esc(unitTitle)}</span><strong>Lesson ${lessonSequence} · ${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-toggle-apparatus>Notes &amp; sources</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
+      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button><button type="button" data-toggle-apparatus>Notes &amp; sources</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
     </header>
     <article class="study-folio" aria-labelledby="study-scene-title">
       <header class="study-folio__head"><div><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div><div class="study-folio__count"><strong>${sceneIndex+1}</strong><span>of ${scenes.length}</span></div></header>
       <div class="study-layout">
         <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Scene ${index+1}: ${esc(item.role)}" ${index===sceneIndex?'aria-current="step"':''}><span>${index+1}</span><small>${esc(item.role)}</small></a>`).join('')}</nav>
-        <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${scene.html}</div></div>
+        <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
         <aside id="study-apparatus" class="study-apparatus" aria-label="Scholarly notes"><div class="study-apparatus__head"><div><p class="eyebrow">Study apparatus</p><h2>Notes &amp; sources</h2></div><button type="button" data-close-apparatus aria-label="Close notes and sources">×</button></div>${apparatus}</aside>
       </div>
       <footer class="study-nav" aria-label="Lesson navigation">
@@ -212,7 +243,17 @@ function orientationView(params,esc){
   return studyFocusShell({unitSequence:0,unitTitle:ORIENTATION_LESSON.unitTitle,lessonSequence:1,title:ORIENTATION_LESSON.title,sceneIndex,scenes,baseHref,exitFallback:'/course',apparatus:orientationApparatus(),esc,scored:false});
 }
 
-function lessonView(data,lesson,params,esc,corpus){
+function activityRoute(activity){return activity?.type==='lesson'?`/course?unit=${encodeURIComponent(activity.unitId)}&lesson=${encodeURIComponent(activity.sourceId)}`:activity?`/course?unit=${encodeURIComponent(activity.unitId)}&mastery=${encodeURIComponent(activity.sourceId)}`:'/course'}
+function nextActivityFor(data,currentId){
+  const current=activityFor(data,currentId);if(!current)return null;
+  const unitIds=data.byCourse?.[current.courseId]||[];
+  const ordered=unitIds.flatMap(unitId=>data.byUnit?.[unitId]||[]);
+  const nextId=ordered[ordered.indexOf(currentId)+1];
+  return nextId?activityFor(data,nextId):null;
+}
+function continuationFor(data,currentId){const next=nextActivityFor(data,currentId);return next?{href:activityRoute(next),label:next.title}:null}
+
+function lessonView(data,state,lesson,params,esc,corpus){
   const unit=data.units?.find(item=>item.id===lesson.unitId||item.id===lesson.v6Unit)||{sequence:1,title:'Course',courseId:'course.foundations'};
   const course=data.courses?.find(item=>item.id===unit.courseId)||null;
   const ids=data.byUnit?.[unit.id]||[];
@@ -220,10 +261,11 @@ function lessonView(data,lesson,params,esc,corpus){
   const scenes=lessonScenes(lesson,corpus,esc);
   const sceneIndex=Math.max(0,Math.min(scenes.length-1,(Number(params.get('scene'))||1)-1));
   const baseHref=`/course?unit=${encodeURIComponent(unit.id)}&lesson=${encodeURIComponent(lesson.id)}`;
-  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:lessonPosition+1,title:lesson.title,sceneIndex,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(unit.id)}`,apparatus:lessonApparatus(lesson,esc),esc,scored:true});
+  const activityId=`lesson:${lesson.id}`;
+  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:lessonPosition+1,title:lesson.title,sceneIndex,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(unit.id)}`,apparatus:lessonApparatus(lesson,esc,scenes[sceneIndex]),esc,scored:true,completed:state.completed?.includes(activityId),continuation:continuationFor(data,activityId)});
 }
 
-function masteryView(data,id,params,esc){
+function masteryView(data,state,id,params,esc){
   const mastery=masteryFor(data,id);
   if(!mastery)return `<p class="notice">Mastery source ${esc(id)} was not found.</p>`;
   const activity=activityFor(data,`mastery:${id}`);
@@ -234,7 +276,8 @@ function masteryView(data,id,params,esc){
   const scenes=[scene];
   const baseHref=`/course?unit=${encodeURIComponent(activity?.unitId||'')}&mastery=${encodeURIComponent(id)}`;
   const apparatus=apparatusModule(kind,'scored skill','<p>This activity evaluates understanding or reasoning, not whether you personally assent to a theological claim.</p>',{open:true});
-  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:'M',title:mastery.title||id,sceneIndex:0,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(activity?.unitId||'')}`,apparatus,esc,scored:true});
+  const activityId=`mastery:${id}`;
+  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:'M',title:mastery.title||id,sceneIndex:0,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(activity?.unitId||'')}`,apparatus,esc,scored:true,completed:state.completed?.includes(activityId),continuation:continuationFor(data,activityId)});
 }
 
 function orientationUnitView(){
@@ -265,8 +308,8 @@ export function courseView(data,state,params,esc,corpus=''){
   let unitId=params.get('unit');
   const courseId=params.get('course');
   if(lessonId===ORIENTATION_LESSON_ID&&unitId===ORIENTATION_UNIT_ID)return orientationView(params,esc);
-  if(lessonId){const lesson=lessonFor(data,lessonId);return lesson?lessonView(data,lesson,params,esc,corpus):'<p class="notice">Lesson not found.</p>'}
-  if(masteryId)return masteryView(data,masteryId,params,esc);
+  if(lessonId){const lesson=lessonFor(data,lessonId);return lesson?lessonView(data,state,lesson,params,esc,corpus):'<p class="notice">Lesson not found.</p>'}
+  if(masteryId)return masteryView(data,state,masteryId,params,esc);
   if(unitId===ORIENTATION_UNIT_ID)return orientationUnitView();
   if(params.has('glossary'))return glossaryView(data,params,esc);
 
@@ -302,24 +345,24 @@ export function checkChallenge(form,ch){
   const shape=challengeShape(ch),mode=challengeEvaluationMode(ch),formData=new FormData(form);
   if(mode==='reflection'){
     const text=String(formData.get('reasoning')||'').trim();
-    return {mode,shape,correct:null,submitted:text.length>0};
+    return {mode,shape,correct:null,correctItems:[],submitted:text.length>0};
   }
-  let correct=false;
-  if(shape==='sequence')correct=same(ints(form,'p',ch.answer.length),ch.answer.map(Number));
-  else if(shape==='match')correct=same(ints(form,'p',ch.answer.length),ch.answer.map(Number));
-  else if(shape==='evidence-select'){
-    const got=formData.getAll('pick').map(Number).sort((a,b)=>a-b),want=ch.answer.map(Number).sort((a,b)=>a-b);
-    correct=same(got,want);
-  }else if(shape==='scenario')correct=ch.stages.every((stage,index)=>{const value=formData.get(`s${index}`);return value!==null&&value!==''&&Number(value)===Number(stage.correct)});
-  else if(shape==='fields')correct=same(ints(form,'p',ch.answer.length),ch.answer.map(Number));
-  else if(shape==='lanes'){
-    const expected=ch.answer.map(entry=>Array.isArray(entry)?Number(entry[1]):Number(entry));
-    correct=same(ints(form,'p',ch.items.length),expected);
+  let correct=false,correctItems=[];
+  if(['sequence','match','fields'].includes(shape)){
+    const got=ints(form,'p',ch.answer.length),want=ch.answer.map(Number);
+    correctItems=got.map((value,index)=>Number.isFinite(value)&&value===want[index]);correct=same(got,want);
+  }else if(shape==='evidence-select'){
+    const got=formData.getAll('pick').map(Number).sort((a,b)=>a-b),want=ch.answer.map(Number).sort((a,b)=>a-b),selected=new Set(got),supported=new Set(want);
+    correctItems=(ch.items||[]).map((_,index)=>selected.has(index)&&supported.has(index));correct=same(got,want);
+  }else if(shape==='scenario'){
+    correctItems=ch.stages.map((stage,index)=>{const value=formData.get(`s${index}`);return value!==null&&value!==''&&Number(value)===Number(stage.correct)});correct=correctItems.every(Boolean);
+  }else if(shape==='lanes'){
+    const expected=ch.answer.map(entry=>Array.isArray(entry)?Number(entry[1]):Number(entry)),got=ints(form,'p',ch.items.length);
+    correctItems=got.map((value,index)=>Number.isFinite(value)&&value===expected[index]);correct=same(got,expected);
   }else if(shape==='single-choice'){
-    const value=formData.get('choice');
-    correct=value!==null&&value!==''&&Number(value)===Number(ch.answer);
+    const value=formData.get('choice');correct=value!==null&&value!==''&&Number(value)===Number(ch.answer);correctItems=[correct];
   }
-  return {mode:'scored',shape,correct:!!correct,submitted:true};
+  return {mode:'scored',shape,correct:!!correct,correctItems,submitted:true};
 }
 
 export function challengeFor(data,activityId,index){
