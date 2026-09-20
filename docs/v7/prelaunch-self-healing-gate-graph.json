@@ -3,10 +3,10 @@
   "objective": "Make pre-launch validation self-healing and code-focused while hard-locking the published BSB corpus.",
   "nodes": [
     {"id":"P0.PLAN","type":"governance","status":"complete","dependsOn":[],"outputs":["docs/v7/PLAN_DELTA_PRELAUNCH_SELF_HEALING_GATE.md","docs/v7/prelaunch-self-healing-gate-graph.json"]},
-    {"id":"P1.BSB_LOCK","type":"integrity","status":"pending","dependsOn":["P0.PLAN"],"outputs":["scripts/verify-bsb-integrity.mjs"]},
-    {"id":"P2.REPAIR","type":"implementation","status":"pending","dependsOn":["P1.BSB_LOCK"],"outputs":["scripts/repair-prelaunch.mjs"]},
-    {"id":"P3.PRELAUNCH_GATE","type":"implementation","status":"pending","dependsOn":["P2.REPAIR"],"outputs":["package.json"]},
-    {"id":"P4.CI_DEPLOY","type":"implementation","status":"pending","dependsOn":["P3.PRELAUNCH_GATE"],"outputs":[".github/workflows/v6-ci.yml"]},
-    {"id":"V1.VALIDATE","type":"validation","status":"pending","dependsOn":["P4.CI_DEPLOY"],"acceptance":["prelaunch gate excludes copy-sensitive parity/E2E","full gate remains available","BSB vendor mutation hard-fails","public corpus self-repairs vendor->public","build/runtime/state checks remain blocking"]}
+    {"id":"P1.BSB_LOCK","type":"integrity","status":"complete","dependsOn":["P0.PLAN"],"outputs":["scripts/bsb-integrity.mjs"],"evidence":"Published BSB source pinned to the-canonical-shelf@25ea6acd012fb28e1427eb4a5e69e358824e1d96, Git blob 186fb31859ad8274840aa7a4aca965d813c8f5e1; CI run 35508063825 verified exact identity."},
+    {"id":"P2.REPAIR","type":"implementation","status":"complete","dependsOn":["P1.BSB_LOCK"],"outputs":["scripts/repair-prelaunch.mjs"],"evidence":"CI run 35508063825 regenerated migration/catalog/llms and verified public BSB copy from locked vendor source."},
+    {"id":"P3.PRELAUNCH_GATE","type":"implementation","status":"complete","dependsOn":["P2.REPAIR"],"outputs":["package.json"],"evidence":"Default verify now resolves to verify:prelaunch; full parity/assessment/E2E retained under verify:full."},
+    {"id":"P4.CI_DEPLOY","type":"implementation","status":"complete","dependsOn":["P3.PRELAUNCH_GATE"],"outputs":[".github/workflows/v6-ci.yml"],"evidence":"CI run 35508063825 used the prelaunch code/runtime/state gate and passed Cloudflare dry-run without browser installation."},
+    {"id":"V1.VALIDATE","type":"validation","status":"passed","dependsOn":["P4.CI_DEPLOY"],"acceptance":["prelaunch gate excludes copy-sensitive parity/E2E","full gate remains available","BSB vendor mutation hard-fails","public corpus self-repairs vendor->public","build/runtime/state checks remain blocking"],"evidence":"production-ci run 35508063825 passed: deterministic repair, runtime compilation, immutable BSB identity, sync/D1/feedback code tests, and Wrangler dry-run."}
   ]
 }
