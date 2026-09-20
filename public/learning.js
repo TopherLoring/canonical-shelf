@@ -1,6 +1,5 @@
 import {ORIENTATION_LESSON,ORIENTATION_LESSON_ID,ORIENTATION_UNIT_ID} from './orientation.js';
 import {THEMES} from './theme.js';
-import {renderCourseVisual} from './course-visuals.js';
 
 const sequenceKinds=new Set(['sequence','sequence-path','timeline-sort','shelf-build','verse-rebuild','theme-trace']);
 const matchKinds=new Set(['match','match-board']);
@@ -63,7 +62,14 @@ function challengeForm(ch,activityId,index,esc){
   return `<form class="challenge challenge--${esc(shape)}" data-activity="${esc(activityId)}" data-index="${index}" data-kind="${esc(kind)}" data-shape="${esc(shape)}" data-mode="${esc(mode)}"><p class="eyebrow">${eyebrow}</p><h3>${esc(ch.title||'Check your understanding')}</h3><p class="challenge-prompt">${esc(ch.prompt||'Use the evidence from this activity.')}</p><div class="challenge-controls">${controls}</div><details class="challenge-hint"><summary>Need a hint?</summary><p>${esc(hint)}</p></details><div class="challenge-submit"><button class="button" type="submit">${action}</button><div class="feedback" role="status" aria-live="polite"></div></div></form>`;
 }
 
-function visualBlock(lesson,esc){return renderCourseVisual(lesson,esc)}
+function visualBlock(lesson,esc){
+  const v=lesson.visual||lesson.diagram||null;
+  if(!v)return'';
+  if(typeof v==='string')return `<div class="scene-visual"><p>${esc(v)}</p></div>`;
+  if(v.src)return `<figure class="scene-visual"><img src="${esc(v.src)}" alt="${esc(v.alt||'Lesson visual')}">${v.caption?`<figcaption>${esc(v.caption)}</figcaption>`:''}</figure>`;
+  if(v.text)return `<div class="scene-visual"><h3>${esc(v.title||'Visual map')}</h3><p>${esc(v.text)}</p></div>`;
+  return'';
+}
 
 function parseCorpus(text){
   if(text===parsedCorpusSource)return parsedCorpusRows;
