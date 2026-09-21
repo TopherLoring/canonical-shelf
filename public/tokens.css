@@ -19,8 +19,9 @@
   --ref-space-5:2rem;
   --ref-space-6:3rem;
   --ref-radius-1:.25rem;
-  --ref-font-serif:Georgia,'Times New Roman',serif;
-  --ref-font-sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ref-font-serif:'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Charter,Georgia,'Times New Roman',serif;
+  --ref-font-sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --ref-font-mono:ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
   --ref-measure-reading:72ch;
 
   /* Semantic tokens: Heritage defaults, overridden by complete theme packages. */
@@ -41,8 +42,9 @@
   --space-xl:var(--ref-space-5);
   --space-2xl:var(--ref-space-6);
   --font-body:var(--ref-font-sans);
-  --font-reading:Georgia,'Times New Roman',serif;
-  --font-display:Georgia,'Times New Roman',serif;
+  --font-reading:var(--ref-font-serif);
+  --font-display:var(--ref-font-serif);
+  --font-meta:var(--ref-font-mono);
   --measure-reading:var(--ref-measure-reading);
   --theme-shadow:0 18px 55px color-mix(in srgb,#2a211b 18%,transparent);
   --theme-soft-shadow:0 8px 24px color-mix(in srgb,#2a211b 10%,transparent);
@@ -98,9 +100,6 @@ html[data-theme="canonical-original"]{
   --color-accent-primary:#274c8e;
   --color-accent-secondary:#8b5e34;
   --color-gilt:#c9a227;
-  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
-  --font-reading:Georgia,'Times New Roman',serif;
-  --font-display:Georgia,'Times New Roman',serif;
   --theme-shadow:0 18px 48px color-mix(in srgb,#26292f 16%,transparent);
   --study-chrome:#232830;
   --study-chrome-2:#171a1f;
@@ -122,9 +121,6 @@ html[data-theme="oxblood"]{
   --color-accent-primary:#7a2730;
   --color-accent-secondary:#3d4a3b;
   --color-gilt:#b68a42;
-  --font-body:'Trebuchet MS','Segoe UI',sans-serif;
-  --font-reading:'Palatino Linotype',Palatino,Georgia,serif;
-  --font-display:'Palatino Linotype',Palatino,Georgia,serif;
   --theme-shadow:0 22px 58px color-mix(in srgb,#4d1f22 20%,transparent);
   --study-chrome:#32181c;
   --study-chrome-2:#211014;
@@ -146,9 +142,6 @@ html[data-theme="slate-linen"]{
   --color-accent-primary:#425d6d;
   --color-accent-secondary:#6d5b4f;
   --color-gilt:#a58655;
-  --font-body:system-ui,-apple-system,'Segoe UI',sans-serif;
-  --font-reading:Cambria,Georgia,serif;
-  --font-display:Cambria,Georgia,serif;
   --theme-shadow:0 18px 48px color-mix(in srgb,#34424a 14%,transparent);
   --study-chrome:#2a353b;
   --study-chrome-2:#1d262b;
@@ -170,9 +163,6 @@ html[data-theme="illuminated-jewel"]{
   --color-accent-primary:#5c3f79;
   --color-accent-secondary:#1f6b62;
   --color-gilt:#b48a2e;
-  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
-  --font-reading:Baskerville,'Baskerville Old Face',Georgia,serif;
-  --font-display:Baskerville,'Baskerville Old Face',Georgia,serif;
   --theme-shadow:0 22px 58px color-mix(in srgb,#392b52 18%,transparent);
   --study-chrome:#2b2239;
   --study-chrome-2:#1d1727;
@@ -194,9 +184,6 @@ html[data-theme="bookshelf-spectrum"]{
   --color-accent-primary:#455a75;
   --color-accent-secondary:#8b5e34;
   --color-gilt:#bc8a1c;
-  --font-body:'Segoe UI',system-ui,-apple-system,sans-serif;
-  --font-reading:Cambria,Georgia,serif;
-  --font-display:Cambria,Georgia,serif;
   --theme-shadow:0 20px 54px color-mix(in srgb,#26313c 16%,transparent);
   --study-chrome:#26313c;
   --study-chrome-2:#192129;

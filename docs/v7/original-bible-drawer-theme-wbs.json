@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "plan": "docs/v7/PLAN_DELTA_ORIGINAL_BIBLE_DRAWER_THEME.md",
+  "graph": "docs/v7/original-bible-drawer-theme-execution-graph.json",
+  "work": [
+    {
+      "id": "B0.PLAN",
+      "status": "complete",
+      "tasks": [
+        "Record screenshot evidence",
+        "Lock theme, typography, and drawer contracts"
+      ]
+    },
+    {
+      "id": "B1.THEME",
+      "status": "complete",
+      "tasks": [
+        "Set explicit Canonical Original default",
+        "Order preferred themes first",
+        "Preserve existing saved preferences"
+      ]
+    },
+    {
+      "id": "B2.TYPE",
+      "status": "complete",
+      "tasks": [
+        "Restore original serif stack",
+        "Add original metadata mono stack",
+        "Apply consistently across themes"
+      ]
+    },
+    {
+      "id": "B3.BIBLE_COMPOSITION",
+      "status": "complete",
+      "tasks": [
+        "Restore editorial Bible hero",
+        "Replace generic default mode cards with compact utilities",
+        "Keep proportional shelf primary"
+      ]
+    },
+    {
+      "id": "B4.DRAWER",
+      "status": "complete",
+      "tasks": [
+        "Compose profile drawer over originating Bible view",
+        "Preserve native routes",
+        "Add previous, next, chapter, close, and focus return"
+      ]
+    },
+    {
+      "id": "B5.ADAPTIVE_ACCESS",
+      "status": "complete",
+      "tasks": [
+        "Contain background interaction",
+        "Support Escape and modal focus",
+        "Recompose drawer for phones",
+        "Add reduced-motion and forced-colors rules"
+      ]
+    },
+    {
+      "id": "B6.VERIFY",
+      "status": "complete",
+      "tasks": [
+        "Extend structural validator",
+        "Add Playwright interaction coverage",
+        "Run production CI"
+      ]
+    },
+    {
+      "id": "B7.RELEASE",
+      "status": "in_progress",
+      "tasks": [
+        "Open reviewable PR",
+        "Merge after green CI"
+      ]
+    }
+  ]
+}

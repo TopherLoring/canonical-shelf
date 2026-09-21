@@ -39,5 +39,5 @@ test('primary destinations remain links and do not depend on utility-button scri
   }
   await page.getByRole('navigation',{name:'Primary'}).getByRole('link',{name:'Bible',exact:true}).click();
   await expect(page).toHaveURL(/\/bible$/);
-  await expect(page.getByRole('heading',{name:'Bible',exact:true}).first()).toBeVisible();
+  await expect(page.getByRole('heading',{name:'The Canonical Shelf',exact:true})).toBeVisible();
 });

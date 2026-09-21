@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "graphType": "project-execution-graph",
+  "objective": "Restore the original Canonical Shelf Bible composition, typography, and in-context book drawer.",
+  "nodes": [
+    {
+      "id": "B0.PLAN",
+      "type": "governance",
+      "status": "complete",
+      "dependsOn": [],
+      "outputs": [
+        "implementation plan",
+        "execution plan",
+        "WBS",
+        "interaction contract"
+      ]
+    },
+    {
+      "id": "B1.THEME",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "B0.PLAN"
+      ],
+      "outputs": [
+        "explicit default",
+        "preferred theme order"
+      ]
+    },
+    {
+      "id": "B2.TYPE",
+      "type": "design-system",
+      "status": "complete",
+      "dependsOn": [
+        "B0.PLAN"
+      ],
+      "outputs": [
+        "original serif stack",
+        "metadata mono stack"
+      ]
+    },
+    {
+      "id": "B3.BIBLE_COMPOSITION",
+      "type": "experience",
+      "status": "complete",
+      "dependsOn": [
+        "B1.THEME",
+        "B2.TYPE"
+      ],
+      "outputs": [
+        "editorial hero",
+        "compact Bible utilities",
+        "primary shelf"
+      ]
+    },
+    {
+      "id": "B4.DRAWER",
+      "type": "implementation",
+      "status": "complete",
+      "dependsOn": [
+        "B3.BIBLE_COMPOSITION"
+      ],
+      "outputs": [
+        "route-addressable drawer",
+        "book controls",
+        "chapter entry"
+      ]
+    },
+    {
+      "id": "B5.ADAPTIVE_ACCESS",
+      "type": "quality",
+      "status": "complete",
+      "dependsOn": [
+        "B4.DRAWER"
+      ],
+      "outputs": [
+        "inert background",
+        "focus recovery",
+        "Escape close",
+        "phone layout",
+        "forced colors"
+      ]
+    },
+    {
+      "id": "B6.VERIFY",
+      "type": "verification",
+      "status": "complete",
+      "dependsOn": [
+        "B1.THEME",
+        "B2.TYPE",
+        "B3.BIBLE_COMPOSITION",
+        "B4.DRAWER",
+        "B5.ADAPTIVE_ACCESS"
+      ],
+      "outputs": [
+        "validator",
+        "browser regression",
+        "CI evidence"
+      ]
+    },
+    {
+      "id": "B7.RELEASE",
+      "type": "release",
+      "status": "in_progress",
+      "dependsOn": [
+        "B6.VERIFY"
+      ],
+      "outputs": [
+        "merged PR"
+      ],
+      "humanGates": [
+        "screenshot visual comparison",
+        "physical touch review",
+        "screen-reader modal review",
+        "editorial review"
+      ]
+    }
+  ],
+  "invariants": [
+    "stable activity IDs",
+    "unchanged learner-state schema",
+    "unchanged BSB corpus",
+    "unchanged curriculum sources",
+    "local-first reader"
+  ],
+  "rollback": "Revert the branch commit set; no data migration required.",
+  "evidence": {
+    "screenshots": "four supplied comparisons inspected",
+    "syntax": "changed JavaScript, validators, and Playwright specifications passed Node syntax checks",
+    "css": "balanced blocks and shared typography tokens verified",
+    "ci": "production-ci run 388 passed for b5035bf"
+  }
+}

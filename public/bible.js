@@ -44,12 +44,20 @@ const range=(a,b)=>a===undefined?'Not specified':a===b?year(a):`${year(a)}–${y
 
 function bibleNav(active){
   const modes=[
-    ['shelf','01','Bookshelf','See all 66 books as one tactile library.'],
-    ['books','02','Books & groups','Browse authored profiles and canonical families.'],
-    ['reader','03','Bible reader','Open a book and move chapter by chapter.'],
-    ['timeline','04','Canon & timeline','Separate shelf order, story setting, and writing history.']
+    ['shelf','01','Bookshelf'],
+    ['books','02','Books & groups'],
+    ['reader','03','Bible reader'],
+    ['timeline','04','Canon & timeline']
   ];
-  return `<nav class="bible-mode-map" aria-label="Bible views">${modes.map(([id,n,title,copy])=>`<a href="/bible?view=${id}" ${active===id?'aria-current="page"':''}><span>${n}</span><strong>${title}</strong><small>${copy}</small></a>`).join('')}</nav>`;
+  return `<nav class="bible-mode-map" aria-label="Bible views">${modes.map(([id,n,title])=>`<a href="/bible?view=${id}" ${active===id?'aria-current="page"':''}><span>${n}</span><strong>${title}</strong></a>`).join('')}</nav>`;
+}
+
+function bibleLandingHeader(){
+  return `<header class="bible-identity"><p class="eyebrow"><strong>66 books</strong> · full Bible reader · guided learning · interactive practice</p><h1 aria-label="The Canonical Shelf"><span>The Canonical</span><em>Shelf</em></h1><p class="lede">The Bible is not one book — it is a shelf of sixty-six, collected over roughly a thousand years, in several different kinds of writing. Learn the shelf first, then the groups, then what is actually in them.</p></header>`;
+}
+
+function bibleStandardHeader(){
+  return `<header class="section compact-section bible-head"><p class="eyebrow">Scripture · library · context</p><h1>Bible</h1><p class="lede">Browse the shelf, understand each book, read the text, and keep canonical order distinct from historical sequence.</p><form class="search" id="bible-search"><label class="sr-only" for="bq">Reference, word, or phrase</label><input id="bq" name="bq" placeholder="John 3:16 or covenant"><button>Search</button></form></header>`;
 }
 
 function librarySearch(params,esc){
@@ -64,13 +72,13 @@ function shelf(params,esc){
   const visible=LIBRARY_BOOKS.filter(book=>(selected==='all'||book.cat===selected)&&matches.has(book.n));
   const byTestament=testament=>visible.filter(book=>CATEGORIES[book.cat].testament===testament);
   const legend=`<div class="shelf-legend" aria-label="Filter shelf by canonical group"><a href="/bible?view=shelf" ${selected==='all'?'aria-current="true"':''}>All 66</a>${CATEGORY_ORDER.map(key=>`<a href="/bible?view=shelf&group=${key}" data-cat="${key}" ${selected===key?'aria-current="true"':''}>${esc(CATEGORIES[key].name)}</a>`).join('')}</div>`;
-  const testament=(label,books)=>`<section class="shelf-testament"><div class="shelf-testament__label"><span>${label}</span><strong>${books.length}</strong></div><div class="shelf-board">${books.map(book=>`<a class="shelf-spine" data-cat="${book.cat}" href="/bible?book=${book.n}&profile=1" style="--chapters:${book.ch}" aria-label="${esc(book.name)}, book ${book.n}, ${book.ch} chapters"><span class="shelf-spine__num">${String(book.n).padStart(2,'0')}</span><strong>${esc(book.name)}</strong><small>${book.ch}</small></a>`).join('')||'<p class="notice">No books match this filter.</p>'}</div></section>`;
+  const testament=(label,books)=>`<section class="shelf-testament"><div class="shelf-testament__label"><span>${label}</span><strong>${books.length}</strong></div><div class="shelf-board">${books.map(book=>`<a class="shelf-spine" data-cat="${book.cat}" href="/bible?view=shelf&book=${book.n}&profile=1" data-book="${book.n}" style="--chapters:${book.ch}" aria-label="${esc(book.name)}, book ${book.n}, ${book.ch} chapters"><span class="shelf-spine__num">${String(book.n).padStart(2,'0')}</span><strong>${esc(book.name)}</strong><small>${book.ch}</small></a>`).join('')||'<p class="notice">No books match this filter.</p>'}</div></section>`;
   return `<section class="canonical-shelf" aria-labelledby="shelf-title"><div class="bible-section-head"><div><p class="eyebrow">The canonical shelf</p><h2 id="shelf-title">Sixty-six books. One library.</h2></div><p>The visual shelf restores the original Canonical Shelf orientation: group, position, relative size, and book identity are visible together.</p></div>${librarySearch(params,esc)}${legend}<div class="shelf-cabinet">${testament('Old Testament',byTestament('OT'))}${testament('New Testament',byTestament('NT'))}</div><p class="shelf-note">This product uses the 66-book Protestant canon as its primary shelf. Catholic and Orthodox collections differ. Canonical position is a navigation convention—not chronology, composition date, importance, or a claim that every tradition uses the same collection.</p></section>`;
 }
 
 function bookCard(book,esc){
   const category=CATEGORIES[book.cat];
-  return `<article class="book-profile-card" data-cat="${book.cat}"><span class="book-profile-card__num">${String(book.n).padStart(2,'0')}</span><p class="eyebrow">${esc(category.name)}</p><h3><a href="/bible?book=${book.n}&profile=1">${esc(book.name)}</a></h3><p class="book-hook">${esc(book.hook)}</p><p>${esc(book.syn)}</p><div class="book-profile-card__meta"><span>${book.ch} chapter${book.ch===1?'':'s'}</span><span>${esc(book.people.slice(0,3).join(' · '))}</span></div></article>`;
+  return `<article class="book-profile-card" data-cat="${book.cat}"><span class="book-profile-card__num">${String(book.n).padStart(2,'0')}</span><p class="eyebrow">${esc(category.name)}</p><h3><a href="/bible?view=books&book=${book.n}&profile=1">${esc(book.name)}</a></h3><p class="book-hook">${esc(book.hook)}</p><p>${esc(book.syn)}</p><div class="book-profile-card__meta"><span>${book.ch} chapter${book.ch===1?'':'s'}</span><span>${esc(book.people.slice(0,3).join(' · '))}</span></div></article>`;
 }
 
 function booksView(params,esc){
@@ -81,12 +89,24 @@ function booksView(params,esc){
 }
 
 function evidenceBadge(book){return book.dateUnsure?'<span class="badge">dating disputed</span>':'<span class="badge">broad orientation</span>'}
-function profile(text,bn,esc){
+function bibleContextHref(params,changes={}){
+  const next=new URLSearchParams(params);
+  if(!next.has('view'))next.set('view','shelf');
+  for(const [key,value] of Object.entries(changes)){
+    if(value===null||value===undefined||value==='')next.delete(key);
+    else next.set(key,String(value));
+  }
+  return `/bible?${next.toString()}`;
+}
+
+function profileDrawer(text,bn,params,esc){
   const book=bookByNumber(bn);
   if(!book)return'<p class="notice">Book not found.</p>';
-  const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era);
-  const chapterLinks=Array.from({length:chapterCount(text,bn)},(_,index)=>`<a href="/bible?book=${bn}&chapter=${index+1}">${index+1}</a>`).join('');
-  return `<article class="book-profile-page" data-cat="${book.cat}"><p><a href="/bible?view=shelf">← Bookshelf</a></p><header class="book-profile-hero"><div><p class="eyebrow">Book ${book.n} · ${esc(category.name)}</p><h1>${esc(book.name)}</h1><p class="book-profile-hook">${esc(book.hook)}</p><p class="lede">${esc(book.syn)}</p><div class="badge-row">${evidenceBadge(book)}${book.threads.map(thread=>`<span class="badge">${esc(THREADS[thread]||thread)}</span>`).join('')}</div></div><aside><strong>${book.ch}</strong><span>chapters</span><a class="button" href="/bible?book=${bn}&chapter=1">Read chapter 1</a></aside></header><section class="profile-facts"><dl><div><dt>Canonical group</dt><dd>${esc(category.name)}</dd></div><div><dt>Story setting</dt><dd>${esc(era?.name||book.era)} · ${esc(range(book.setA,book.setB))}</dd></div><div><dt>Writing / final-form orientation</dt><dd>${esc(range(book.wrA,book.wrB))}${book.dateUnsure?' · disputed':''}</dd></div><div><dt>Authorship / source note</dt><dd>${esc(book.who)}</dd></div><div><dt>Legacy date note</dt><dd>${esc(book.when)}</dd></div><div><dt>People to know</dt><dd>${esc(book.people.join(' · '))}</dd></div><div><dt>Start reading</dt><dd>${esc(book.read)}</dd></div></dl><p class="source-boundary">These profile notes are restored from the earlier Canonical Shelf experience. Traditional attributions, reconstructed dates, and disputed authorship are not the same evidence type; uncertain entries are marked and receive fuller sourcing during public-launch editorial review.</p></section><section class="chapter-picker"><div class="bible-section-head"><div><p class="eyebrow">Read the book</p><h2>Choose a chapter.</h2></div><p>The profile orients you; Scripture remains the primary source.</p></div><div>${chapterLinks}</div></section><section class="profile-actions"><a class="button" href="/search?q=${encodeURIComponent(book.name)}">Find ${esc(book.name)} across Canonical Shelf</a><a class="button" href="/bible?view=timeline&focus=${book.n}">Locate in timeline</a></section></article>`;
+  const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era),count=chapterCount(text,bn);
+  const closeHref=bibleContextHref(params,{book:null,profile:null,focus:bn});
+  const bookHref=number=>bibleContextHref(params,{book:number,profile:1,focus:null});
+  const chapterLinks=Array.from({length:count},(_,index)=>`<a href="/bible?book=${bn}&chapter=${index+1}">${index+1}</a>`).join('');
+  return `<a class="book-drawer-scrim" href="${closeHref}" tabindex="-1" aria-hidden="true"></a><aside class="book-drawer" data-book-drawer data-cat="${book.cat}" role="dialog" aria-modal="true" aria-labelledby="book-drawer-title"><header class="book-drawer__head"><p class="book-drawer__meta">Book ${String(book.n).padStart(2,'0')} of 66 · <strong>${esc(category.name)}</strong> · ${esc(category.testament==='OT'?'Old Testament':'New Testament')}</p><h2 id="book-drawer-title">${esc(book.name)}</h2><a class="book-drawer__close" data-book-drawer-close href="${closeHref}" aria-label="Close ${esc(book.name)} details">×</a></header><div class="book-drawer__body"><p class="book-profile-hook">${esc(book.hook)}</p><div class="book-drawer__length" aria-label="${book.ch} chapters"><span style="width:${Math.max(3,Math.round(book.ch/150*100))}%"></span></div><p class="book-drawer__length-copy">${book.ch} chapter${book.ch===1?'':'s'} · ${book.ch>35?'a long haul — read it in sections':book.ch>15?'a substantial book':book.ch>5?'a focused read':'a short read'}</p><p class="book-drawer__synopsis">${esc(book.syn)}</p><dl class="book-drawer__facts"><div><dt>Written by</dt><dd>${esc(book.who)}</dd></div><div><dt>Period</dt><dd>${esc(book.when)}</dd></div><div><dt>Story setting</dt><dd>${esc(era?.name||book.era)} · ${esc(range(book.setA,book.setB))}</dd></div><div><dt>Who’s in it</dt><dd>${esc(book.people.join(' · '))}</dd></div><div><dt>Where to start</dt><dd>${esc(book.read)}</dd></div><div><dt>Group</dt><dd>${esc(category.blurb)}</dd></div></dl><div class="badge-row">${evidenceBadge(book)}${book.threads.map(thread=>`<span class="badge">${esc(THREADS[thread]||thread)}</span>`).join('')}</div><section class="book-drawer__chapters" aria-labelledby="drawer-chapters"><div><p class="eyebrow">Read the book</p><h3 id="drawer-chapters">Choose a chapter.</h3></div><div>${chapterLinks}</div></section><p class="source-boundary">Traditional attributions, reconstructed dates, and disputed authorship are different evidence types. Uncertain entries are marked for fuller editorial sourcing.</p><a class="button book-drawer__read" href="/bible?book=${bn}&chapter=1">Read ${esc(book.name)} from chapter 1</a><nav class="book-drawer__stepper" aria-label="Adjacent books">${bn>1?`<a href="${bookHref(bn-1)}"><small>Previous</small><strong>${esc(bookByNumber(bn-1).name)}</strong></a>`:'<span></span>'}${bn<66?`<a href="${bookHref(bn+1)}"><small>Next</small><strong>${esc(bookByNumber(bn+1).name)}</strong></a>`:'<span></span>'}</nav></div></aside>`;
 }
 
 function reader(text,bn,chapter,start,end,esc){
@@ -102,7 +122,7 @@ function timeline(params,esc){
   const focus=Number(params.get('focus')||0),focused=bookByNumber(focus);
   const eraMarkup=ERAS.filter(era=>era.a!==null).map(era=>{
     const books=LIBRARY_BOOKS.filter(book=>book.era===era.k);
-    return `<article class="timeline-era"><div><p class="eyebrow">${esc(range(era.a,era.b))}</p><h3>${esc(era.name)}</h3></div><div class="timeline-books">${books.map(book=>`<a href="/bible?book=${book.n}&profile=1" ${focus===book.n?'aria-current="true"':''}>${esc(book.name)}</a>`).join('')}</div></article>`;
+    return `<article class="timeline-era"><div><p class="eyebrow">${esc(range(era.a,era.b))}</p><h3>${esc(era.name)}</h3></div><div class="timeline-books">${books.map(book=>`<a href="/bible?view=timeline&book=${book.n}&profile=1" ${focus===book.n?'aria-current="true"':''}>${esc(book.name)}</a>`).join('')}</div></article>`;
   }).join('');
   return `<section class="bible-timeline"><div class="bible-section-head"><div><p class="eyebrow">Canon & timeline</p><h2>Shelf order is not historical order.</h2></div><p>The original app deliberately taught this distinction. This view restores its broad story-setting eras and anchor events without pretending composition dates or historical reconstructions are uncontested.</p></div>${focused?`<p class="notice"><strong>${esc(focused.name)}</strong> is highlighted by its broad story setting: ${esc(ERAS.find(era=>era.k===focused.era)?.name||focused.era)}.</p>`:''}<section class="timeline-anchors" aria-label="Historical anchor events">${TIMELINE_ANCHORS.map(anchor=>`<article><strong>${esc(year(anchor.y))}</strong><span>${esc(anchor.t)}</span></article>`).join('')}</section><div class="timeline-era-list">${eraMarkup}</div><section class="story-arc"><p class="eyebrow">The story arc</p><h2>Ten movements that orient the whole library.</h2>${STORY_ARC.map((item,index)=>`<article><span>${String(index+1).padStart(2,'0')}</span><div><h3>${esc(item.title)}</h3><strong>${esc(item.where)}</strong><p>${esc(item.detail)}</p></div></article>`).join('')}</section></section>`;
 }
@@ -112,13 +132,15 @@ function readerLauncher(text,esc){
 }
 
 export function bibleView(text,params,esc){
-  const q=params.get('q')||'',ref=q?parseReference(q):null,bn=Number(params.get('book')||(ref?.bn||0)),chapter=Number(params.get('chapter')||(ref?.chapter||0)),profileMode=params.has('profile');
-  if(bn&&profileMode)return `${bibleNav('books')}${profile(text,bn,esc)}`;
+  const q=params.get('q')||'',ref=q?parseReference(q):null,bn=Number(params.get('book')||(ref?.bn||0)),chapter=Number(params.get('chapter')||(ref?.chapter||0)),profileMode=params.has('profile'),view=params.get('view')||'shelf';
   if(bn&&chapter)return reader(text,bn,chapter,ref?.start,ref?.end,esc);
   let matches=[];
   if(q&&!ref){const needle=q.toLowerCase();matches=parseCorpus(text).filter(row=>row.text.toLowerCase().includes(needle)).slice(0,100)}
   if(q&&ref)return reader(text,ref.bn,ref.chapter,ref.start,ref.end,esc);
   if(q&&!ref)return `<header class="section compact-section"><p class="eyebrow">Scripture search · Berean Standard Bible (BSB)</p><h1>Bible</h1><form class="search" id="bible-search"><label class="sr-only" for="bq">Reference, word, or phrase</label><input id="bq" name="bq" value="${esc(q)}" placeholder="John 3:16 or covenant"><button>Search</button></form></header><p><a href="/bible?view=shelf">← Bible overview</a></p><section class="section"><h2>${matches.length} text matches</h2><div class="results">${matches.map(row=>`<a class="result" href="/bible?book=${row.bn}&chapter=${row.chapter}#v${row.verse}"><strong>${esc(BOOKS[row.bn-1])} ${row.chapter}:${row.verse}</strong> ${esc(row.text)}</a>`).join('')||'<p>No match found.</p>'}</div></section>`;
-  const view=params.get('view')||'shelf';
-  return `<header class="section compact-section bible-head"><p class="eyebrow">Scripture · library · context</p><h1>Bible</h1><p class="lede">Browse the shelf, understand each book, read the text, and keep canonical order distinct from historical sequence.</p><form class="search" id="bible-search"><label class="sr-only" for="bq">Reference, word, or phrase</label><input id="bq" name="bq" placeholder="John 3:16 or covenant"><button>Search</button></form></header>${bibleNav(view)}${view==='books'?booksView(params,esc):view==='timeline'?timeline(params,esc):view==='reader'?readerLauncher(text,esc):shelf(params,esc)}`;
+  const content=view==='books'?booksView(params,esc):view==='timeline'?timeline(params,esc):view==='reader'?readerLauncher(text,esc):shelf(params,esc);
+  const header=view==='shelf'?bibleLandingHeader():bibleStandardHeader();
+  const background=`${header}${bibleNav(view)}${content}`;
+  if(bn&&profileMode)return `<div class="bible-drawer-background" inert aria-hidden="true">${background}</div>${profileDrawer(text,bn,params,esc)}`;
+  return background;
 }

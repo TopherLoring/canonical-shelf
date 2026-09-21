@@ -1,19 +1,20 @@
 const STORAGE_KEY='canonical-shelf-theme-v1';
+export const DEFAULT_THEME_ID='canonical-original';
 
 export const THEMES=[
-  {id:'heritage',name:'Heritage',summary:'Warm paper, ink, oxblood and restrained gilt.',themeColor:'#2a211b'},
   {id:'canonical-original',name:'Canonical Original',summary:'The original Canonical Shelf paper, blue and gilt family.',themeColor:'#274c8e'},
+  {id:'heritage',name:'Heritage',summary:'Warm paper, ink, oxblood and restrained gilt.',themeColor:'#2a211b'},
   {id:'oxblood',name:'Oxblood',summary:'Deep burgundy, parchment and editorial contrast.',themeColor:'#4d1f22'},
-  {id:'slate-linen',name:'Slate & Linen',summary:'Cool slate, linen and quiet scholarly neutrals.',themeColor:'#34424a'},
   {id:'illuminated-jewel',name:'Illuminated Jewel',summary:'Manuscript-inspired jewel accents with restrained richness.',themeColor:'#392b52'},
+  {id:'slate-linen',name:'Slate & Linen',summary:'Cool slate, linen and quiet scholarly neutrals.',themeColor:'#34424a'},
   {id:'bookshelf-spectrum',name:'Bookshelf Spectrum',summary:'A neutral folio grounded by Canonical Shelf’s original category colors.',themeColor:'#26313c'}
 ];
 
 const ids=new Set(THEMES.map(theme=>theme.id));
-const byId=id=>THEMES.find(theme=>theme.id===id)||THEMES[0];
+const byId=id=>THEMES.find(theme=>theme.id===id)||THEMES.find(theme=>theme.id===DEFAULT_THEME_ID);
 
 export function currentTheme(){
-  return ids.has(document.documentElement.dataset.theme)?document.documentElement.dataset.theme:THEMES[0].id;
+  return ids.has(document.documentElement.dataset.theme)?document.documentElement.dataset.theme:DEFAULT_THEME_ID;
 }
 
 export function applyTheme(id,{persist=true}={}){
@@ -74,9 +75,9 @@ function closePanel(){
 }
 
 export function initTheme(){
-  let saved=THEMES[0].id;
+  let saved=DEFAULT_THEME_ID;
   try{saved=localStorage.getItem(STORAGE_KEY)||saved}catch{}
-  applyTheme(ids.has(saved)?saved:THEMES[0].id,{persist:false});
+  applyTheme(ids.has(saved)?saved:DEFAULT_THEME_ID,{persist:false});
   ensureControls();
   applyTheme(currentTheme(),{persist:false});
 

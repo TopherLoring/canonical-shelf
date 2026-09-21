@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {ORIENTATION_LESSON,ORIENTATION_LESSON_ID,ORIENTATION_UNIT_ID} from '../public/orientation.js';
-import {THEMES} from '../public/theme.js';
+import {DEFAULT_THEME_ID,THEMES} from '../public/theme.js';
 import {REVIEW_DAYS} from '../public/db.js';
 
 const assert=(condition,message)=>{if(!condition)throw new Error(message)};
@@ -54,12 +54,14 @@ assert(JSON.stringify(REVIEW_DAYS)===JSON.stringify([1,3,7,14,30,60]),'learner-s
 const orientationText=JSON.stringify(ORIENTATION_LESSON).toLowerCase();
 for(const term of ['canon','chronology','translation','external','practice','independent','theme'])assert(orientationText.includes(term),`Orientation missing ${term} coverage`);
 
-const expectedThemes=['heritage','canonical-original','oxblood','slate-linen','illuminated-jewel','bookshelf-spectrum'];
+const expectedThemes=['canonical-original','heritage','oxblood','illuminated-jewel','slate-linen','bookshelf-spectrum'];
 assert(THEMES.length===expectedThemes.length,`expected ${expectedThemes.length} curated themes; found ${THEMES.length}`);
-assert(JSON.stringify(THEMES.map(theme=>theme.id))===JSON.stringify(expectedThemes),'curated theme package IDs changed');
+assert(JSON.stringify(THEMES.map(theme=>theme.id))===JSON.stringify(expectedThemes),'curated theme package IDs/order changed');
+assert(DEFAULT_THEME_ID==='canonical-original','Canonical Original must remain the new-install default');
 
 const tokens=await readFile('public/tokens.css','utf8');
-for(const id of expectedThemes.slice(1))assert(tokens.includes(`data-theme="${id}"`),`theme tokens missing ${id}`);
+for(const id of expectedThemes.filter(id=>id!=='heritage'))assert(tokens.includes(`data-theme="${id}"`),`theme tokens missing ${id}`);
+for(const marker of ["'Iowan Old Style'","'Palatino Linotype'","--font-meta:var(--ref-font-mono)"])assert(tokens.includes(marker),`original typography contract missing ${marker}`);
 for(const semantic of ['--canon-law','--canon-history-ot','--canon-wisdom','--canon-gospel','--canon-paul','--canon-apocalypse'])assert(tokens.includes(semantic),`semantic bookshelf color missing ${semantic}`);
 
 const learning=await readFile('public/learning.js','utf8');
