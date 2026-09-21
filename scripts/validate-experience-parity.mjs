@@ -28,7 +28,7 @@ requireText(app,"from './learning-visuals.js'",'Course renderer must import sema
 requireText(app,"if(r==='course')enhanceLearningVisuals(main)",'Course semantic visuals must run in the normal Course render path');
 forbid(learningVisuals,'MutationObserver','Course visual restoration must not use DOM-repair observers');
 
-for(const marker of ['Bookshelf','Books & groups','Bible reader','Canon & timeline','book-profile-page','library-search','shelf-spine','STORY_ARC'])requireText(bible+libraryData,marker,`Bible parity surface missing: ${marker}`);
+for(const marker of ['Bookshelf','Books & groups','Bible reader','Canon & timeline','data-book-drawer','library-search','shelf-spine','STORY_ARC'])requireText(bible+libraryData,marker,`Bible parity surface missing: ${marker}`);
 const profileCount=(otBooks.match(/\{n:\d+,name:/g)||[]).length+(ntBooks.match(/\{n:\d+,name:/g)||[]).length;
 if(profileCount!==66)throw new Error(`expected 66 restored Bible book profiles, found ${profileCount}`);
 for(const marker of ['The Patriarchs','Exodus & Wilderness','Divided Kingdom','Return & Persia','Life of Christ','The Early Church'])requireText(libraryData,marker,`historical orientation missing: ${marker}`);
