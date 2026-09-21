@@ -32,6 +32,8 @@ If a strong interaction needs more engineering, solve it; do not collapse useful
 ## Guided learning
 Course and Practice should not default to long scrolling documents. Prefer viewport-aware scenes, progressive disclosure, semantic motion, progress, feedback, mastery/retention, and purposeful gamification. Curriculum updates must only improve upon the existing content and never reduce the learning already offered.
 
+The curriculum uses a **questions-first spiral**. Important doctrinal and difficult questions are introduced early enough to motivate adult learners, then revisited where their biblical and historical evidence naturally appears, investigated with stronger interpretive tools, and synthesized later. Do not quarantine difficult questions or doctrine as late-course material, and do not force premature certainty before prerequisite context exists.
+
 Scene roles may include: Orient → Read → Explain → Visualize → Compare → Context → Practice → Retention → Reflect → Continue.
 
 Responsive means recomposition, not merely shrinking/stacking. Desktop, tablet, and phone may differ. Use adaptive layouts, touch-safe controls, modern viewport units, safe areas, and reduced-motion alternatives.
@@ -57,7 +59,9 @@ Use progressive disclosure to preserve Scripture, context, vocabulary, diagrams,
 * **Guide/Theologian:** distinguish text, evidence, interpretation, reception, doctrine, Canonical Shelf position, and application. If conversational, keep the bounded evidence/policy layer for validation. Be answer-first, then evidence, limits, position when relevant, and further exploration.
 
 ## Invariants
-Preserve unless explicitly changed: 6 courses; 44 units; 116 lessons; 235 scored activities; 45 Topics; stable activity/mastery IDs; Home/Course/Bible/Topics/Practice; Bible owns shelf/browse/reader; Topics do not count toward completion; Practice is reinforcement, not a second curriculum; guest/offline use is first-class; learner state is local-first with export/import; optional passkey accounts may sync/backup/recover; Statement of Faith is the doctrinal ceiling; disputed interpretations are represented accurately; text/history/interpretation/doctrine/reception/application remain distinguishable.
+Preserve unless explicitly changed: 6 courses; 44 units; 117 guided lessons; 119 mastery/capstone activities; 236 scored activities; 45 Topics; stable pre-existing activity/mastery IDs; Home/Course/Bible/Topics/Practice; Bible owns shelf/browse/reader; Topics do not count toward completion; Practice is reinforcement, not a second curriculum; questions-first spiral curriculum logic; guest/offline use is first-class; learner state is local-first with export/import; optional passkey accounts may sync/backup/recover; Statement of Faith is the doctrinal ceiling; disputed interpretations are represented accurately; text/history/interpretation/doctrine/reception/application remain distinguishable.
+
+Course completion-time ranges are planning estimates for active first-pass study only. Do not conflate them with mastery or retention; spaced review continues on the 1→3→7→14→30→60-day cycle.
 
 ## Accessibility/performance
 Accessibility is a floor, not a reason to flatten the experience. Support keyboard, focus, screen readers, touch, contrast, zoom/reflow, reduced motion, and accessible equivalents for rich manipulation.
