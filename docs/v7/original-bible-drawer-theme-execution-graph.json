@@ -18,7 +18,7 @@
     {
       "id": "B1.THEME",
       "type": "implementation",
-      "status": "in_progress",
+      "status": "complete",
       "dependsOn": [
         "B0.PLAN"
       ],
@@ -30,7 +30,7 @@
     {
       "id": "B2.TYPE",
       "type": "design-system",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "B0.PLAN"
       ],
@@ -42,7 +42,7 @@
     {
       "id": "B3.BIBLE_COMPOSITION",
       "type": "experience",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "B1.THEME",
         "B2.TYPE"
@@ -56,7 +56,7 @@
     {
       "id": "B4.DRAWER",
       "type": "implementation",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "B3.BIBLE_COMPOSITION"
       ],
@@ -69,7 +69,7 @@
     {
       "id": "B5.ADAPTIVE_ACCESS",
       "type": "quality",
-      "status": "pending",
+      "status": "complete",
       "dependsOn": [
         "B4.DRAWER"
       ],
@@ -84,7 +84,7 @@
     {
       "id": "B6.VERIFY",
       "type": "verification",
-      "status": "pending",
+      "status": "in_progress",
       "dependsOn": [
         "B1.THEME",
         "B2.TYPE",
@@ -123,5 +123,11 @@
     "unchanged curriculum sources",
     "local-first reader"
   ],
-  "rollback": "Revert the branch commit set; no data migration required."
+  "rollback": "Revert the branch commit set; no data migration required.",
+  "evidence": {
+    "screenshots": "four supplied comparisons inspected",
+    "syntax": "changed JavaScript, validators, and Playwright specifications passed Node syntax checks",
+    "css": "balanced blocks and shared typography tokens verified",
+    "ci": "pending"
+  }
 }
