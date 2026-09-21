@@ -138,14 +138,14 @@ Course 4 reconnects this foundation to Jesus, Passover, the Last Supper, scriptu
 
 Users can choose among six persisted theme packages:
 
-1. Heritage
-2. Canonical Original
+1. Canonical Original — the new-install default
+2. Heritage
 3. Oxblood
-4. Slate & Linen
-5. Illuminated Jewel
+4. Illuminated Jewel
+5. Slate & Linen
 6. Bookshelf Spectrum
 
-Themes are full presentation systems rather than palette swaps. Bible category colors remain semantic and are not arbitrarily remapped.
+Existing saved preferences remain unchanged. Themes are full color/surface packages rather than palette swaps, while the original Iowan/Palatino editorial typography remains consistent across them. Bible category colors remain semantic and are not arbitrarily remapped.
 
 ---
 
@@ -181,7 +181,8 @@ Canonical Shelf includes an **embedded local copy of the Berean Standard Bible (
 
 The application parses the bundled corpus locally for:
 
-- 66-book canonical navigation;
+- 66-book proportional bookshelf navigation;
+- in-context book-detail drawers with authorship, setting, people, themes, reading paths, and chapter entry;
 - chapter reading;
 - verse/reference lookup;
 - direct references such as `John 3:16`;
