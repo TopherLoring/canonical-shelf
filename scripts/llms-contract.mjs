@@ -2,25 +2,28 @@ import {readFile,access} from 'node:fs/promises';
 import {join} from 'node:path';
 
 const ROUTE_DESCRIPTIONS={
-  home:'Orientation and continuation surface for the learner.',
-  course:'Six-course guided curriculum and scored learning activities.',
-  bible:'Browse and read the biblical text, books, and study context.',
-  topics:'Curated reference material; Topics do not count toward course completion.',
-  practice:'Retrieval and spaced reinforcement without creating a second curriculum.'
+  home:'Personalized learner dashboard for orientation, progress, recommendations, and resuming the next relevant activity.',
+  course:'Six-course guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.',
+  bible:'Interactive 66-book Bible shelf for browsing books, reading biblical text, and accessing book-level historical, literary, and study context.',
+  topics:'Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward course completion.',
+  practice:'Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.'
 };
 
 const PUBLIC_RESOURCES=[
-  ['Curriculum reference','/data/curriculum.md','Generated curriculum reference for the current guided courses.'],
-  ['Runtime catalog','/data/catalog.json','Machine-readable courses, units, lessons, mastery activities, glossary, Topics, and stable activity identifiers.'],
-  ['Statement of Faith','/data/statement-of-faith.md','Canonical Shelf doctrinal ceiling and authoritative statement of faith.'],
-  ['Theology policy','/data/theology-policy.json','Machine-readable evidence and interpretation boundaries used by the study Guide.'],
-  ['Theology sources','/data/theology-sources.json','Public source metadata used by the bounded theology/evidence layer.']
+  {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true},
+  {label:'Runtime catalog',url:'/data/catalog.json',description:'Machine-readable canonical catalog of courses, units, lessons, mastery activities, glossary entries, Topics, stable activity identifiers, and runtime learning metadata.',embed:false},
+  {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's authoritative statement of faith and doctrinal ceiling for instructional and theological content.",embed:true},
+  {label:'Theology policy',url:'/data/theology-policy.json',description:'Machine-readable evidence, interpretation, doctrinal-boundary, and response rules used by the study Guide and theology layer.',embed:true},
+  {label:'Theology sources',url:'/data/theology-sources.json',description:'Canonical metadata for public biblical, historical, scholarly, denominational, and theological sources available to the bounded evidence layer.',embed:true}
 ];
-const OPTIONAL_RESOURCES=[['Bible corpus','/data/corpus.txt','Embedded Scripture corpus used by Bible reading and search; large file, fetch only when needed.']];
+const OPTIONAL_RESOURCES=[
+  {label:'Bible corpus',url:'/data/corpus.txt',description:'Embedded Scripture corpus used by Bible reading and search; large file, fetch only when needed.',embed:false}
+];
 
 const decodeEntities=s=>String(s).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 const cleanLabel=s=>decodeEntities(String(s).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());
 const attr=(source,name)=>source.match(new RegExp(`\\b${name}=["']([^"']+)["']`,'i'))?.[1]||'';
+const indentContent=content=>String(content).trimEnd().split('\n').map(line=>`    ${line}`).join('\n');
 
 export function parsePrimaryNavigation(html){
   const nav=String(html).match(/<nav\b[^>]*aria-label=["']Primary["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
@@ -56,26 +59,38 @@ export function summarizeCatalog(catalog){
   return {courses,units,guidedLessons,masteryActivities,scoredActivities,topics,glossaryTerms};
 }
 
-export function renderLlms({routes,counts}){
+export function renderLlms({routes,counts,embeddedResources=[]}){
   const lines=[
     '# Canonical Shelf','',
     '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware study Guide.','',
-    'This file is generated from the application’s primary navigation and runtime catalog. It is a discovery contract, not an independent authority for curriculum or theology. Canonical Shelf distinguishes biblical text, historical context and evidence, interpretation, reception, doctrine, Canonical Shelf position, and application.','',
+    'This file is generated from the application’s primary navigation, runtime catalog, and canonical published learning/editorial documents. It is a derived discovery and context contract, not an independent authority for curriculum or theology. Canonical Shelf distinguishes biblical text, historical context and evidence, interpretation, reception, doctrine, Canonical Shelf position, and application.','',
     `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
   for(const route of routes)lines.push(`- [${route.label}](${route.href}): ${route.description}`);
   lines.push('','## Canonical learning and editorial resources','');
-  for(const [label,url,description] of PUBLIC_RESOURCES)lines.push(`- [${label}](${url}): ${description}`);
+  for(const resource of PUBLIC_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
   lines.push('','## Optional','');
-  for(const [label,url,description] of OPTIONAL_RESOURCES)lines.push(`- [${label}](${url}): ${description}`);
-  return `${lines.join('\n')}\n`;
+  for(const resource of OPTIONAL_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
+  lines.push('','## Loaded canonical content','',
+    'The human-readable canonical learning and editorial resources below are loaded automatically when this file is generated, so their contents stay synchronized with the published application. The large runtime catalog and Scripture corpus remain linked above rather than being duplicated verbatim.','');
+  for(const resource of embeddedResources){
+    lines.push(`### ${resource.label}`,'',`Source: [${resource.url}](${resource.url})`,'',indentContent(resource.content),'');
+  }
+  return `${lines.join('\n').trimEnd()}\n`;
 }
 
 export async function buildLlmsContract({root=process.cwd()}={}){
   const indexPath=join(root,'public/index.html'),catalogPath=join(root,'public/data/catalog.json');
-  const [html,catalogText]=await Promise.all([readFile(indexPath,'utf8'),readFile(catalogPath,'utf8').catch(error=>{throw new Error(`cannot read ${catalogPath}; run migration before generating llms.txt (${error.message})`)})]);
+  const [html,catalogText]=await Promise.all([
+    readFile(indexPath,'utf8'),
+    readFile(catalogPath,'utf8').catch(error=>{throw new Error(`cannot read ${catalogPath}; run migration before generating llms.txt (${error.message})`)})
+  ]);
   const routes=parsePrimaryNavigation(html),catalog=JSON.parse(catalogText),counts=summarizeCatalog(catalog),resources=[...PUBLIC_RESOURCES,...OPTIONAL_RESOURCES];
-  for(const [,url] of resources)await access(join(root,'public',url.replace(/^\//,'')));
-  return {routes,counts,resources,markdown:renderLlms({routes,counts})};
+  for(const resource of resources)await access(join(root,'public',resource.url.replace(/^\//,'')));
+  const embeddedResources=await Promise.all(PUBLIC_RESOURCES.filter(resource=>resource.embed).map(async resource=>({
+    ...resource,
+    content:await readFile(join(root,'public',resource.url.replace(/^\//,'')),'utf8')
+  })));
+  return {routes,counts,resources,embeddedResources,markdown:renderLlms({routes,counts,embeddedResources})};
 }
