@@ -418,7 +418,7 @@ bun run test:e2e
 
 ## Production deployment
 
-Production uses **Cloudflare Workers Static Assets + a Cloudflare Worker + D1**. The build generates `wrangler.jsonc`; generated configuration/runtime artifacts are not intended for manual maintenance.
+Production uses **Cloudflare Workers Static Assets + a Cloudflare Worker + D1** at `https://the-canonical-shelf.christopherwonder.workers.dev`. The generated Wrangler target is `the-canonical-shelf`; the D1 database remains `canonical-shelf`. The build generates `wrangler.jsonc`; generated configuration/runtime artifacts are not intended for manual maintenance.
 
 Required environment values include:
 
