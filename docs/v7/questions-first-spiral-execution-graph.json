@@ -6,6 +6,9 @@
   "invariants": {
     "courses": 6,
     "currentUnits": 44,
+    "guidedLessons": 117,
+    "masteryAndCapstones": 119,
+    "scoredActivities": 236,
     "stableExistingActivityIds": true,
     "localFirstLearnerState": true,
     "topicsScored": false,
@@ -13,6 +16,14 @@
     "bibleOwnsShelfReader": true,
     "statementOfFaithIsDoctrinalCeiling": true,
     "theologicalAssentIsNotScored": true
+  },
+  "validationEvidence": {
+    "productionCiRun": 35656052149,
+    "validatedHead": "341b0fb37ffc6daed631f575d51b1b700b245dea",
+    "productionCi": "passed",
+    "prelaunchIntegrity": "passed",
+    "cloudflareDryRun": "passed",
+    "note": "This evidence validates the implementation immediately before this graph-only evidence update; the final head must also remain green before merge."
   },
   "nodes": [
     {
@@ -25,44 +36,51 @@
     {
       "id": "QS2.MODEL",
       "type": "schema",
-      "status": "planned",
+      "status": "complete",
       "dependsOn": ["QS1.CONTRACT"],
-      "outputs": ["course active-study time metadata", "question-thread schema"]
+      "outputs": ["course active-study time metadata", "question-thread schema"],
+      "evidence": "content/curriculum/structure.mjs"
     },
     {
       "id": "QS3.COURSE1",
       "type": "content",
-      "status": "planned",
+      "status": "complete",
       "dependsOn": ["QS2.MODEL"],
-      "outputs": ["questions-first foundational lesson", "active checks", "cross-course return framing"]
+      "outputs": ["questions-first foundational lesson", "active checks", "cross-course return framing"],
+      "evidence": "lesson:c1-questions-first plus Orientation framing"
     },
     {
       "id": "QS4.SPIRAL",
       "type": "content",
-      "status": "planned",
+      "status": "complete",
       "dependsOn": ["QS2.MODEL"],
-      "outputs": ["cross-course difficult-question threads", "unit/course touchpoints"]
+      "outputs": ["cross-course difficult-question threads", "unit/course touchpoints"],
+      "evidence": "12 validated question threads spanning foundations through investigation/synthesis"
     },
     {
       "id": "QS5.DOCS",
       "type": "implementation",
-      "status": "planned",
+      "status": "complete",
       "dependsOn": ["QS2.MODEL", "QS4.SPIRAL"],
-      "outputs": ["generated timing data", "generated question-thread reference"]
+      "outputs": ["generated timing data", "generated question-thread reference"],
+      "evidence": "generated curriculum reference and llms generation consume current runtime/canonical sources"
     },
     {
       "id": "QS6.VALIDATE",
       "type": "validation",
-      "status": "planned",
+      "status": "passed_automated",
       "dependsOn": ["QS3.COURSE1", "QS5.DOCS"],
-      "outputs": ["schema validation", "existing regression suite", "branch CI evidence"]
+      "outputs": ["schema validation", "existing regression suite", "branch CI evidence"],
+      "evidence": "production-ci run 35656052149 passed prelaunch integrity and Cloudflare dry-run"
     },
     {
       "id": "QS7.HUMAN",
       "type": "human_gate",
-      "status": "pending",
+      "status": "waived_for_prelaunch_dev",
+      "requiredBeforePublicLaunch": true,
       "dependsOn": ["QS6.VALIDATE"],
-      "outputs": ["adult-beginner clarity review", "editorial/theological review", "novice usability review"]
+      "outputs": ["adult-beginner clarity review", "editorial/theological review", "novice usability review"],
+      "note": "Not passed. Existing project governance permits prelaunch development to continue while these reviews remain required before public launch unless explicitly superseded."
     }
   ],
   "rollback": "Revert branch commits; no existing stable activity IDs or learner-state schema are changed."
