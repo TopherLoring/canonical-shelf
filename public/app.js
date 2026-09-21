@@ -80,8 +80,13 @@ function render(){
   canonicalizeLinks(main);
   if(r==='course')enhanceLearningVisuals(main);
   if(r==='bible')enhanceBibleState(main,p);
+  const bookDrawer=r==='bible'?main.querySelector('[data-book-drawer]'):null;
+  document.body.classList.toggle('book-drawer-active',!!bookDrawer);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
-  main.focus({preventScroll:true});refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
+  if(bookDrawer)bookDrawer.querySelector('[data-book-drawer-close]')?.focus({preventScroll:true});
+  else if(r==='bible'&&p.get('focus'))main.querySelector(`[data-book="${CSS.escape(p.get('focus'))}"]`)?.focus({preventScroll:true});
+  else main.focus({preventScroll:true});
+  refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
 }
 
 function evidenceMarkup(e){const fallback=e.type==='topic'&&e.id?`/topics?topic=${encodeURIComponent(e.id)}`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null,link=e.href||fallback;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${esc(link)}"${/^https?:/i.test(link)?' target="_blank" rel="noreferrer"':''}>${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
@@ -129,6 +134,22 @@ function activityVerse(id,success){
   const verse=success?verses.at(-1):verses[0];return verse?{reference:`${BOOKS[bn-1]} ${chapter}:${verse.verse}`,text:verse.text}:null;
 }
 function activityContinuation(id){const next=nextActivity(id);return next?`<a class="button response-next" href="${activityHref(next.id)}">Continue to ${esc(next.title)} →</a>`:''}
+
+document.addEventListener('keydown',event=>{
+  const drawer=document.querySelector('[data-book-drawer]');
+  if(!drawer)return;
+  if(event.key==='Escape'){
+    event.preventDefault();
+    drawer.querySelector('[data-book-drawer-close]')?.click();
+    return;
+  }
+  if(event.key!=='Tab')return;
+  const focusable=[...drawer.querySelectorAll('a[href],button:not([disabled]),select:not([disabled]),textarea:not([disabled]),input:not([disabled])')].filter(node=>!node.hidden&&node.getClientRects().length);
+  if(!focusable.length)return;
+  const first=focusable[0],last=focusable.at(-1);
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+});
 
 window.addEventListener('popstate',render);
 document.addEventListener('click',async e=>{
