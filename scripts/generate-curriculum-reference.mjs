@@ -1,11 +1,12 @@
 import {readFile,writeFile} from 'node:fs/promises';
+import {courses as sourceCourses,units as sourceUnits} from '../content/curriculum/structure.mjs';
 
 const CATALOG='public/data/catalog.json';
 const OUTPUT='public/data/curriculum.md';
 const catalog=JSON.parse(await readFile(CATALOG,'utf8'));
 
-const courses=Array.isArray(catalog.courses)?[...catalog.courses].sort((a,b)=>(a.sequence||0)-(b.sequence||0)):[];
-const units=Array.isArray(catalog.units)?catalog.units:[];
+const courses=[...sourceCourses].sort((a,b)=>(a.sequence||0)-(b.sequence||0));
+const units=[...sourceUnits].sort((a,b)=>(a.globalSequence||0)-(b.globalSequence||0));
 const lessons=Array.isArray(catalog.lessons)?catalog.lessons:[];
 const activities=Array.isArray(catalog.activities)?catalog.activities:[];
 const masteryActivities=activities.filter(activity=>activity?.type==='mastery');
@@ -13,17 +14,12 @@ const topics=Array.isArray(catalog.topics)?catalog.topics:[];
 const glossary=Array.isArray(catalog.glossary)?catalog.glossary:[];
 
 if(courses.length!==6)throw new Error(`curriculum reference expected 6 courses; found ${courses.length}`);
-if(!units.length||!lessons.length||!masteryActivities.length)throw new Error('curriculum reference requires populated units, lessons, and mastery activities');
-
-const activitiesByUnit=new Map();
-for(const activity of activities){
-  if(!activitiesByUnit.has(activity.unitId))activitiesByUnit.set(activity.unitId,[]);
-  activitiesByUnit.get(activity.unitId).push(activity);
-}
+if(catalog.courses?.length!==courses.length||catalog.units?.length!==units.length)throw new Error('runtime catalog course/unit structure does not match canonical curriculum source');
+if(!lessons.length||!masteryActivities.length)throw new Error('curriculum reference requires populated lessons and mastery activities');
 
 const lines=[
   '# Canonical Shelf Curriculum Reference','',
-  '> Generated from the current runtime catalog. Do not hand-edit this file; update the canonical curriculum sources and regenerate it.','',
+  '> Generated from the canonical six-course curriculum structure and current runtime catalog. Do not hand-edit this file; update the canonical curriculum sources and regenerate it.','',
   '## Current curriculum','',
   `- **${courses.length} courses**`,
   `- **${units.length} scored units**`,
@@ -44,20 +40,13 @@ for(const course of courses){
   for(const unit of courseUnits){
     lines.push(`#### ${unit.sequence}. ${unit.title}`,'');
     if(unit.scope)lines.push(unit.scope,'');
-    const placed=activitiesByUnit.get(unit.id)||[];
-    const guided=placed.filter(activity=>activity.type==='lesson');
-    const mastery=placed.filter(activity=>activity.type==='mastery');
-    lines.push(`- Guided lessons: ${guided.length}`);
-    for(const activity of guided)lines.push(`  - ${activity.title} \`${activity.id}\``);
-    lines.push(`- Mastery/capstone activities: ${mastery.length}`);
-    for(const activity of mastery)lines.push(`  - ${activity.title} \`${activity.id}\``);
-    lines.push('');
   }
 }
 
 lines.push(
   '## Authority and use','',
-  '- The runtime catalog is the machine-readable authority for current placement, stable activity identifiers, glossary data, Topics, and learner-state resolution.',
+  '- The runtime catalog is the machine-readable authority for current lesson/mastery placement, stable activity identifiers, glossary data, Topics, and learner-state resolution.',
+  '- The canonical curriculum source under `content/curriculum/` is authoritative for the six-course and unit structure summarized here.',
   '- The Statement of Faith is the doctrinal ceiling for Canonical Shelf teaching.',
   '- Scored activities evaluate learning, interpretation, evidence use, recall, and reasoning; they do not require personal theological assent.',
   '- Historical migration documents remain useful for provenance and parity review but do not override this current generated curriculum reference.',''
