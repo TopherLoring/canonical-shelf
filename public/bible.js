@@ -53,7 +53,7 @@ function bibleNav(active){
 }
 
 function bibleLandingHeader(){
-  return `<header class="bible-identity"><p class="eyebrow"><strong>66 books</strong> · full Bible reader · guided learning · interactive practice</p><h1><span>The Canonical</span><em>Shelf</em></h1><p class="lede">The Bible is not one book — it is a shelf of sixty-six, collected over roughly a thousand years, in several different kinds of writing. Learn the shelf first, then the groups, then what is actually in them.</p></header>`;
+  return `<header class="bible-identity"><p class="eyebrow"><strong>66 books</strong> · full Bible reader · guided learning · interactive practice</p><h1 aria-label="The Canonical Shelf"><span>The Canonical</span><em>Shelf</em></h1><p class="lede">The Bible is not one book — it is a shelf of sixty-six, collected over roughly a thousand years, in several different kinds of writing. Learn the shelf first, then the groups, then what is actually in them.</p></header>`;
 }
 
 function bibleStandardHeader(){
