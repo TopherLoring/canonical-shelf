@@ -19,6 +19,10 @@ try{await stat('public/_redirects');throw new Error('legacy Pages _redirects mus
 const manifest=JSON.parse(await readFile('content/migration/admissibility.json','utf8'));
 if(!/^[0-9a-f]{40}$/.test(manifest.sourceRef||''))throw new Error('legacy provenance must remain pinned to an immutable SHA');
 
+const wranglerGenerator=await readFile('scripts/write-wrangler.mjs','utf8');
+if(!wranglerGenerator.includes("name:'the-canonical-shelf'"))throw new Error('production deploy must target the-canonical-shelf Worker');
+if(!wranglerGenerator.includes("database_name:'canonical-shelf'"))throw new Error('production deploy must preserve the canonical-shelf D1 database');
+
 const packageJson=JSON.parse(await readFile('package.json','utf8'));
 const scripts=packageJson.scripts||{};
 const migrate=String(scripts.migrate||'');
