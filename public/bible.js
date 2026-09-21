@@ -78,7 +78,7 @@ function shelf(params,esc){
 
 function bookCard(book,esc){
   const category=CATEGORIES[book.cat];
-  return `<article class="book-profile-card" data-cat="${book.cat}"><span class="book-profile-card__num">${String(book.n).padStart(2,'0')}</span><p class="eyebrow">${esc(category.name)}</p><h3><a href="/bible?book=${book.n}&profile=1">${esc(book.name)}</a></h3><p class="book-hook">${esc(book.hook)}</p><p>${esc(book.syn)}</p><div class="book-profile-card__meta"><span>${book.ch} chapter${book.ch===1?'':'s'}</span><span>${esc(book.people.slice(0,3).join(' · '))}</span></div></article>`;
+  return `<article class="book-profile-card" data-cat="${book.cat}"><span class="book-profile-card__num">${String(book.n).padStart(2,'0')}</span><p class="eyebrow">${esc(category.name)}</p><h3><a href="/bible?view=books&book=${book.n}&profile=1">${esc(book.name)}</a></h3><p class="book-hook">${esc(book.hook)}</p><p>${esc(book.syn)}</p><div class="book-profile-card__meta"><span>${book.ch} chapter${book.ch===1?'':'s'}</span><span>${esc(book.people.slice(0,3).join(' · '))}</span></div></article>`;
 }
 
 function booksView(params,esc){
@@ -122,7 +122,7 @@ function timeline(params,esc){
   const focus=Number(params.get('focus')||0),focused=bookByNumber(focus);
   const eraMarkup=ERAS.filter(era=>era.a!==null).map(era=>{
     const books=LIBRARY_BOOKS.filter(book=>book.era===era.k);
-    return `<article class="timeline-era"><div><p class="eyebrow">${esc(range(era.a,era.b))}</p><h3>${esc(era.name)}</h3></div><div class="timeline-books">${books.map(book=>`<a href="/bible?book=${book.n}&profile=1" ${focus===book.n?'aria-current="true"':''}>${esc(book.name)}</a>`).join('')}</div></article>`;
+    return `<article class="timeline-era"><div><p class="eyebrow">${esc(range(era.a,era.b))}</p><h3>${esc(era.name)}</h3></div><div class="timeline-books">${books.map(book=>`<a href="/bible?view=timeline&book=${book.n}&profile=1" ${focus===book.n?'aria-current="true"':''}>${esc(book.name)}</a>`).join('')}</div></article>`;
   }).join('');
   return `<section class="bible-timeline"><div class="bible-section-head"><div><p class="eyebrow">Canon & timeline</p><h2>Shelf order is not historical order.</h2></div><p>The original app deliberately taught this distinction. This view restores its broad story-setting eras and anchor events without pretending composition dates or historical reconstructions are uncontested.</p></div>${focused?`<p class="notice"><strong>${esc(focused.name)}</strong> is highlighted by its broad story setting: ${esc(ERAS.find(era=>era.k===focused.era)?.name||focused.era)}.</p>`:''}<section class="timeline-anchors" aria-label="Historical anchor events">${TIMELINE_ANCHORS.map(anchor=>`<article><strong>${esc(year(anchor.y))}</strong><span>${esc(anchor.t)}</span></article>`).join('')}</section><div class="timeline-era-list">${eraMarkup}</div><section class="story-arc"><p class="eyebrow">The story arc</p><h2>Ten movements that orient the whole library.</h2>${STORY_ARC.map((item,index)=>`<article><span>${String(index+1).padStart(2,'0')}</span><div><h3>${esc(item.title)}</h3><strong>${esc(item.where)}</strong><p>${esc(item.detail)}</p></div></article>`).join('')}</section></section>`;
 }
