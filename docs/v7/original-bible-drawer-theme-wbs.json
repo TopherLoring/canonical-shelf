@@ -13,7 +13,7 @@
     },
     {
       "id": "B1.THEME",
-      "status": "pending",
+      "status": "complete",
       "tasks": [
         "Set explicit Canonical Original default",
         "Order preferred themes first",
@@ -22,7 +22,7 @@
     },
     {
       "id": "B2.TYPE",
-      "status": "pending",
+      "status": "complete",
       "tasks": [
         "Restore original serif stack",
         "Add original metadata mono stack",
@@ -31,7 +31,7 @@
     },
     {
       "id": "B3.BIBLE_COMPOSITION",
-      "status": "pending",
+      "status": "complete",
       "tasks": [
         "Restore editorial Bible hero",
         "Replace generic default mode cards with compact utilities",
@@ -40,7 +40,7 @@
     },
     {
       "id": "B4.DRAWER",
-      "status": "pending",
+      "status": "complete",
       "tasks": [
         "Compose profile drawer over originating Bible view",
         "Preserve native routes",
@@ -49,7 +49,7 @@
     },
     {
       "id": "B5.ADAPTIVE_ACCESS",
-      "status": "pending",
+      "status": "complete",
       "tasks": [
         "Contain background interaction",
         "Support Escape and modal focus",
@@ -59,7 +59,7 @@
     },
     {
       "id": "B6.VERIFY",
-      "status": "pending",
+      "status": "in_progress",
       "tasks": [
         "Extend structural validator",
         "Add Playwright interaction coverage",
