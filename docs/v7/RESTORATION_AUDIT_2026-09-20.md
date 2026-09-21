@@ -1,6 +1,6 @@
 # Canonical Shelf — Full Experience Restoration Audit
 
-Status: implementation-driving; updated after recovery of the historical Bible, Topics, Practice, verse, Search/Guide, Home-state and Course-visual systems.
+Status: merged restoration baseline on `main`; follow-through remains active for current-state visual polish, learner-feedback remediation, editorial review, and QA.
 
 ## Decision
 
@@ -8,17 +8,19 @@ The restoration target remains the strongest recoverable learner-facing experien
 
 A capability counts as restored only when its underlying data, learner-facing presentation, interaction behavior, relevant state/offline contracts, and accessibility alternative are functional. File names or feature labels alone are not completion evidence.
 
+PR #11 (`experience/restore-v5-parity`) merged into `main` on September 20, 2026. It is now historical implementation provenance, not an active delivery branch. New restoration follow-through must start from current `main`.
+
 ## Corrected historical finding
 
-The earlier audit repeated a stale historical comment describing a 97-passage verse library. Inspection of the actual v3 `VERSES` array established that the recoverable source contains **232 curated passages**. The restoration branch now contains all 232 with BSB/KJV wording, speaker, recipient, themes, life-context facets, contextual notes, filtering, pagination, reader/search links, custom curated-passage wording, and Practice integration.
+The earlier audit repeated a stale historical comment describing a 97-passage verse library. Inspection of the actual v3 `VERSES` array established that the recoverable source contains **232 curated passages**. The current runtime contains all 232 with BSB/KJV wording, speaker, recipient, themes, life-context facets, contextual notes, filtering, pagination, reader/search links, custom curated-passage wording, and Practice integration.
 
 ## Current surface status
 
 ### Course — current curriculum preserved; historical interaction depth substantially restored
 
-The current six-course curriculum remains authoritative and `content/curriculum/**` is read-only for this restoration program. Current lessons retain substantive explanation, vocabulary, deeper inquiry, drawers, sources, reflection, and task-specific checks.
+The current six-course curriculum remains authoritative and `content/curriculum/**` is read-only for restoration work unless an explicit curriculum change is approved. Current lessons retain substantive explanation, vocabulary, deeper inquiry, drawers, sources, reflection, and task-specific checks.
 
-Restored learner-facing architecture now includes viewport Study Focus scenes, scene rail/progress, scholarly apparatus, rich challenge boards, and the historical semantic visual taxonomy: shelf, timeline, story-arc, relationship, compare, flow, theme-thread, map-lite, book-profile, verse-context, spectrum, and stack. The existing `learning-visuals.js` / `learning-visuals.css` pair owns this renderer layer and provides text equivalents, reduced-motion behavior, and forced-colors support.
+Restored learner-facing architecture includes viewport Study Focus scenes, scene rail/progress, scholarly apparatus, rich challenge boards, and the historical semantic visual taxonomy: shelf, timeline, story-arc, relationship, compare, flow, theme-thread, map-lite, book-profile, verse-context, spectrum, and stack. The existing `learning-visuals.js` / `learning-visuals.css` pair owns this renderer layer and provides text equivalents, reduced-motion behavior, and forced-colors support.
 
 Remaining Course work is polish rather than lost curriculum recovery: strengthen contextual mastery presentation and course/unit identity without changing curriculum hierarchy, IDs, or authored content.
 
@@ -43,7 +45,7 @@ A complete alternate full-reader KJV mode is data-gated: the historical source p
 
 ### Topics — authored reference depth restored
 
-Topics now exposes and searches the historical authored structure rather than a shallow card projection:
+Topics exposes and searches the historical authored structure rather than a shallow card projection:
 - kind/category;
 - aliases/search language;
 - tags;
@@ -89,23 +91,23 @@ Search hands synthesis questions to the Guide without flattening the evidence ty
 
 ### Guide / Theologian — restored shared evidence graph
 
-The Guide now consumes the shared study index and can surface Scripture, full Topics, Course lessons, book profiles, curated passages, glossary entries, and scholarly source metadata. It retains mastery-answer protection, Statement-of-Faith authority boundaries, interpretive-rule labeling, and specific contested-language cautions.
+The Guide consumes the shared study index and can surface Scripture, full Topics, Course lessons, book profiles, curated passages, glossary entries, and scholarly source metadata. It retains mastery-answer protection, Statement-of-Faith authority boundaries, interpretive-rule labeling, and specific contested-language cautions.
 
 ### Home — restored state composition; dedicated identity layer fixed
 
-Home now combines current Course progress, due review, next activity, six-course progress, recent activity, Bible shelf state, current book, learned books, Practice rank/XP/stars/achievements, featured Topic, and direct study entry points.
+Home combines current Course progress, due review, next activity, six-course progress, recent activity, Bible shelf state, current book, learned books, Practice rank/XP/stars/achievements, featured Topic, and direct study entry points.
 
-A missing `/home-experience.css` asset was identified during this audit and restored. Home now has a dedicated Canonical Shelf-specific visual layer including the miniature canonical shelf/current-book state rather than relying solely on generic dashboard cards. The asset is part of the offline shell.
+A missing `/home-experience.css` asset was identified during the restoration audit and restored. Home has a dedicated Canonical Shelf-specific visual layer including the miniature canonical shelf/current-book state rather than relying solely on generic dashboard cards. The asset is part of the offline shell.
 
 ### Visual identity — substantially restored, final consistency pass remains
 
-Bible, Course Study Focus, semantic learning visuals, Practice, Topics/Search reference surfaces, and Home now each have product-specific visual grammar. The final design pass should evaluate cross-surface hierarchy and remove residual repeated generic-card treatments where they weaken the scholarly editorial × tactile library × advanced learning identity. The goal is coherence, not forcing every surface into a bookshelf metaphor.
+Bible, Course Study Focus, semantic learning visuals, Practice, Topics/Search reference surfaces, and Home each have product-specific visual grammar. The final design pass should evaluate cross-surface hierarchy and remove residual repeated generic-card treatments where they weaken the scholarly editorial × tactile library × advanced learning identity. The goal is coherence, not forcing every surface into a bookshelf metaphor.
 
 ## Validation state
 
-Structural validation now checks 66 book profiles, Bible learned/current state, full Topic fields, the shared Search/Guide graph, all 232 recovered passages, implemented Practice engine families, the 40-level campaign, and all twelve semantic Course visual types.
+Structural validation checks 66 book profiles, Bible learned/current state, full Topic fields, the shared Search/Guide graph, all 232 recovered passages, implemented Practice engine families, the 40-level campaign, and all twelve semantic Course visual types.
 
-A new Playwright restoration parity suite adds learner-visible checks for:
+The Playwright restoration parity suite includes learner-visible checks for:
 - the 66-book shelf and profile-to-reader continuity;
 - authored Topic sections and Scripture references;
 - cross-domain search;
@@ -114,15 +116,15 @@ A new Playwright restoration parity suite adds learner-visible checks for:
 - Guide evidence handoff;
 - preservation of the five primary destinations.
 
-Automated green status is necessary but not sufficient. Pre-launch still requires final cross-browser/mobile visual review, keyboard/touch/reduced-motion/forced-colors checks, offline verification, state/export/import migration checks, editorial review of disputed historical metadata, and novice usability review.
+Automated green status is necessary but not sufficient. Pre-launch still requires final cross-browser/mobile visual review, keyboard/touch/reduced-motion/forced-colors checks, offline verification, state/export/import migration checks, editorial review of disputed historical metadata, and novice usability review unless a later owner decision explicitly changes those gates.
 
 ## Remaining implementation order
 
-1. Complete product-wide visual hierarchy/recomposition review and remove residual generic/repetitive treatments where they weaken Canonical Shelf identity.
+1. Complete the product-wide visual hierarchy/recomposition review and remove residual generic/repetitive treatments where they weaken Canonical Shelf identity.
 2. Complete Bible historical-metadata confidence/source review without deleting useful profile depth.
-3. Run the full automated verification suite, including the new learner-visible restoration parity tests, and fix actual failures.
+3. Run the full automated verification suite after consequential changes, including learner-visible restoration parity tests, and fix actual failures.
 4. Verify learner-state compatibility, offline caching, desktop/tablet/mobile recomposition, keyboard/touch/reduced-motion/forced-colors behavior.
-5. Keep PR #11 draft until these gates are evidenced; merge only when restoration is functional rather than nominal.
+5. Treat PR #11 and its source branch as historical merged provenance. Do not revive or merge stale restoration branches; branch new work from current `main` and apply current owner-precedence decisions.
 
 ## Curriculum invariant
 
