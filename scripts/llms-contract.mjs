@@ -9,7 +9,17 @@ const ROUTE_DESCRIPTIONS={
   practice:'Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.'
 };
 
+const ABOUT_SECTION_LABELS={
+  about:'About Canonical Shelf',
+  approach:'How this guide approaches Scripture',
+  sources:'Sources & methodology',
+  translations:'Translation information',
+  accessibility:'Accessibility',
+  privacy:'Privacy'
+};
+
 const PUBLIC_RESOURCES=[
+  {label:'About & methodology',url:'/about.html',description:'Institutional disclosure for Canonical Shelf’s product purpose, Scripture approach, sources and methodology, translation limits, accessibility posture, and privacy model.',embed:false},
   {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true},
   {label:'Runtime catalog',url:'/data/catalog.json',description:'Machine-readable canonical catalog of courses, units, lessons, mastery activities, glossary entries, Topics, stable activity identifiers, and runtime learning metadata.',embed:false},
   {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's authoritative statement of faith and doctrinal ceiling for instructional and theological content.",embed:true},
@@ -46,6 +56,25 @@ export function parsePrimaryNavigation(html){
   return routes;
 }
 
+export function parseAboutDisclosures(html){
+  const source=String(html),sections=[];
+  for(const [id,label] of Object.entries(ABOUT_SECTION_LABELS)){
+    const body=source.match(new RegExp(`<section\\b[^>]*\\bid=["']${id}["'][^>]*>([\\s\\S]*?)<\\/section>`,'i'))?.[1];
+    if(!body)throw new Error(`llms generation requires About section #${id}`);
+    const heading=cleanLabel(body.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1]||'');
+    if(!heading)throw new Error(`About section #${id} is missing an h2`);
+    const paragraphs=[];
+    for(const match of body.matchAll(/<p\b[^>]*>[\s\S]*?<\/p>/gi)){
+      if(/\bclass=["'][^"']*\beyebrow\b[^"']*["']/i.test(match[0]))continue;
+      const text=cleanLabel(match[0]);
+      if(text)paragraphs.push(text);
+    }
+    if(!paragraphs.length)throw new Error(`About section #${id} has no disclosure copy`);
+    sections.push({id,label,heading,paragraphs});
+  }
+  return sections;
+}
+
 export function summarizeCatalog(catalog){
   const courses=Array.isArray(catalog?.courses)?catalog.courses.length:0;
   const units=Array.isArray(catalog?.units)?catalog.units.length:0;
@@ -59,21 +88,27 @@ export function summarizeCatalog(catalog){
   return {courses,units,guidedLessons,masteryActivities,scoredActivities,topics,glossaryTerms};
 }
 
-export function renderLlms({routes,counts,embeddedResources=[]}){
+export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[]}){
   const lines=[
     '# Canonical Shelf','',
     '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware study Guide.','',
-    'This file is generated from the application’s primary navigation, runtime catalog, and canonical published learning/editorial documents. It is a derived discovery and context contract, not an independent authority for curriculum or theology. Canonical Shelf distinguishes biblical text, historical context and evidence, interpretation, reception, doctrine, Canonical Shelf position, and application.','',
+    'This file is generated from the application’s primary navigation, About disclosures, runtime catalog, and canonical published learning/editorial documents. It is a derived discovery and context contract, not an independent authority for curriculum or theology. Canonical Shelf distinguishes biblical text, historical context and evidence, translation, interpretation, reception, doctrine, Canonical Shelf position, and application.','',
     `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
   for(const route of routes)lines.push(`- [${route.label}](${route.href}): ${route.description}`);
   lines.push('','## Canonical learning and editorial resources','');
   for(const resource of PUBLIC_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
-  lines.push('','## Optional','');
+  lines.push('','## Institutional disclosures','',
+    'The disclosure text below is derived automatically from the linked About page so footer-facing institutional language and machine-readable discovery stay synchronized.','');
+  for(const section of aboutSections){
+    lines.push(`### ${section.label}`,'',`**${section.heading}**`,'');
+    for(const paragraph of section.paragraphs)lines.push(paragraph,'');
+  }
+  lines.push('## Optional','');
   for(const resource of OPTIONAL_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
   lines.push('','## Loaded canonical content','',
-    'The human-readable canonical learning and editorial resources below are loaded automatically when this file is generated, so their contents stay synchronized with the published application. The large runtime catalog and Scripture corpus remain linked above rather than being duplicated verbatim.','');
+    'The About-page disclosures above and the human-readable canonical learning and editorial resources below are loaded automatically when this file is generated, so their contents stay synchronized with the published application. The large runtime catalog and Scripture corpus remain linked above rather than being duplicated verbatim.','');
   for(const resource of embeddedResources){
     lines.push(`### ${resource.label}`,'',`Source: [${resource.url}](${resource.url})`,'',indentContent(resource.content),'');
   }
@@ -81,16 +116,17 @@ export function renderLlms({routes,counts,embeddedResources=[]}){
 }
 
 export async function buildLlmsContract({root=process.cwd()}={}){
-  const indexPath=join(root,'public/index.html'),catalogPath=join(root,'public/data/catalog.json');
-  const [html,catalogText]=await Promise.all([
+  const indexPath=join(root,'public/index.html'),aboutPath=join(root,'public/about.html'),catalogPath=join(root,'public/data/catalog.json');
+  const [html,aboutHtml,catalogText]=await Promise.all([
     readFile(indexPath,'utf8'),
+    readFile(aboutPath,'utf8'),
     readFile(catalogPath,'utf8').catch(error=>{throw new Error(`cannot read ${catalogPath}; run migration before generating llms.txt (${error.message})`)})
   ]);
-  const routes=parsePrimaryNavigation(html),catalog=JSON.parse(catalogText),counts=summarizeCatalog(catalog),resources=[...PUBLIC_RESOURCES,...OPTIONAL_RESOURCES];
+  const routes=parsePrimaryNavigation(html),aboutSections=parseAboutDisclosures(aboutHtml),catalog=JSON.parse(catalogText),counts=summarizeCatalog(catalog),resources=[...PUBLIC_RESOURCES,...OPTIONAL_RESOURCES];
   for(const resource of resources)await access(join(root,'public',resource.url.replace(/^\//,'')));
   const embeddedResources=await Promise.all(PUBLIC_RESOURCES.filter(resource=>resource.embed).map(async resource=>({
     ...resource,
     content:await readFile(join(root,'public',resource.url.replace(/^\//,'')),'utf8')
   })));
-  return {routes,counts,resources,embeddedResources,markdown:renderLlms({routes,counts,embeddedResources})};
+  return {routes,counts,resources,aboutSections,embeddedResources,markdown:renderLlms({routes,counts,aboutSections,embeddedResources})};
 }
