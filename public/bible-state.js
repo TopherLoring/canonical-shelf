@@ -48,7 +48,7 @@ export function enhanceBibleState(root=document,params=new URLSearchParams(locat
   const page=root.querySelector('.book-profile-page,.book-drawer,.reader.scripture');
   if(page&&selected){
     page.dataset.current='true';page.dataset.learned=String(learned.has(selected));
-    const anchor=page.querySelector('.book-profile-hero .badge-row,.book-drawer .badge-row,.reader-utility');
+    const anchor=page.querySelector('.book-profile-hero .badge-row,.badge-row,.reader-utility');
     if(anchor&&!anchor.querySelector('.book-state-chip')){
       const chip=document.createElement('span');chip.className='badge book-state-chip';chip.textContent=learned.has(selected)?'Current book · learned in Practice':'Current book';anchor.append(chip);
     }
