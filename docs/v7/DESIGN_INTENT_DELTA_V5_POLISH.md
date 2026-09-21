@@ -2,13 +2,13 @@
 
 ## Status
 
-**Implemented baseline on `main`.** The v7 V5-polish release was merged as `801a9706d7cec9574ceadca7647a9f63a2b554fc` after the authoritative automated production CI passed. This artifact remains the active design-intent reference for the merged experience.
+**Active design-intent reference for current `main`.** The original v7 V5-polish baseline was merged as `801a9706d7cec9574ceadca7647a9f63a2b554fc`; later six-course curriculum, experience-restoration, and learner-feedback work supersedes any structural examples in this document that conflict with current `main`. The design principles remain active unless a later owner decision supersedes them.
 
 Independent human visual, novice-learner, device, editorial, theological, and adaptive-access review remain continuing assurance activities unless separate evidence records them as completed. Their absence must not be retroactively represented as automated approval.
 
 ## Direction
 
-Canonical Shelf v7 is a **premium visual and interaction polish of the v5 product model**, rebuilt on the cleaner v7 architecture. It is not a separate visual product and it is not an architecture-led simplification of v5.
+Canonical Shelf v7 is a **premium visual and interaction evolution of the strongest v5 product model**, rebuilt on the cleaner v7 architecture. It is not a separate generic visual product and it is not an architecture-led simplification of the learner experience.
 
 The target experience is:
 
@@ -17,7 +17,7 @@ The target experience is:
 ## What remains recognizable from v5
 
 - Home / Course / Bible / Topics / Practice as the five primary destinations.
-- Course as a 25-unit integrated journey rather than a collection of skill-track tabs.
+- Course as one coherent, progressive **six-course learning journey**, rather than a collection of disconnected skill-track tabs.
 - Bible as the home of the bookshelf, reader, book profiles, canonical groups, chapters, and timeline/context exploration.
 - Topics as a curated reference environment.
 - Practice as reinforcement rather than a second curriculum.
@@ -35,6 +35,18 @@ The target experience is:
 - responsive recomposition across desktop, tablet, phone, and short landscape viewports;
 - richer task-specific challenge boards instead of generic form controls;
 - coherent user-selectable aesthetic packages.
+
+## Prototype-derived reference principles
+
+The retired Living Folio composition prototype is not production code or a current implementation gate, but several of its design observations remain useful and are carried forward here:
+
+- maintain a legible distinction between **application chrome → scholarly object → contextual apparatus**;
+- protect the primary reading/study surface from utility density, placing secondary controls and evidence at the margins or in progressive disclosure when appropriate;
+- let each destination express its actual task instead of forcing the same card grammar everywhere: Home orients and resumes, Course guides progression, Bible behaves as a tactile library/reference reader, Practice is an active challenge environment, Topics is authored reference, and Guide/Theologian is evidence-oriented research;
+- use motion to communicate state, progression, relationship, or causality—not as decoration;
+- reject generic SaaS-dashboard and generic chat-product conventions when they weaken Canonical Shelf's scholarly/editorial/tactile identity.
+
+The prototype's specific whole-site palette and its requirement to block production until three composition alternatives were selected are historical exploration only. Current `main`, current owner decisions, and `DECISION_PRECEDENCE.md` govern.
 
 ## Study Focus
 
@@ -132,6 +144,6 @@ A design choice fails if it could be dropped unchanged into an unrelated SaaS da
 
 Repeated visual treatments must map to Canonical Shelf concepts: folio, shelf, marginalia, source apparatus, canonical grouping, study state, mastery/retention, textual evidence, or navigation.
 
-## Assurance posture after merge
+## Assurance posture
 
-The design intent above is implemented in the current v7 baseline. Automated tests verify structural and interaction contracts but do not substitute for independent visual judgment or human usability review. Future design changes should continue to be evaluated against this artifact, the current owner decisions, and `DECISION_PRECEDENCE.md`; if the owner changes the direction, the newer decision governs after the conflict protocol is applied.
+The design intent above applies to the current v7 product, including later six-course/restoration/feedback work. Automated tests verify structural and interaction contracts but do not substitute for independent visual judgment or human usability review. Future design changes should continue to be evaluated against this artifact, the current owner decisions, `DECISION_PRECEDENCE.md`, and current product behavior; if the owner changes the direction, the newer decision governs after the conflict protocol is applied.
