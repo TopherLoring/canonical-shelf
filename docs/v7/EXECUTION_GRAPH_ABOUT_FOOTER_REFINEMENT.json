@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "objective": "Refine About/footer disclosures and keep linked llms discovery data synchronized from source.",
+  "nodes": [
+    {"id":"A0","type":"plan","dependsOn":[],"status":"complete"},
+    {"id":"A1","type":"content","dependsOn":["A0"],"status":"pending","outputs":["public/about.html","public/index.html"]},
+    {"id":"A2","type":"derived-data","dependsOn":["A1"],"status":"pending","outputs":["scripts/llms-contract.mjs","public/llms.txt"]},
+    {"id":"A3","type":"validation","dependsOn":["A1","A2"],"status":"pending","outputs":["scripts/validate-llms.mjs","production-ci"]},
+    {"id":"A4","type":"release","dependsOn":["A3"],"status":"pending","outputs":["the-canonical-shelf"]}
+  ],
+  "invariants": [
+    "No Course/Bible/Topics/Practice behavior changes",
+    "No learner-state or database changes",
+    "Statement of Faith remains doctrinal ceiling",
+    "Guest/offline core remains first-class",
+    "Optional account sync remains optional"
+  ],
+  "rollback": "Revert the About/footer/llms refinement change set; no data migration required."
+}
