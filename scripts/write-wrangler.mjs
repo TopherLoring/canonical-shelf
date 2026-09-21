@@ -5,7 +5,7 @@ if(!databaseId) throw new Error('D1_DATABASE_ID is required');
 if(!authUrl) throw new Error('BETTER_AUTH_URL is required');
 const config={
   $schema:'./node_modules/wrangler/config-schema.json',
-  name:'canonical-shelf',
+  name:'the-canonical-shelf',
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},
