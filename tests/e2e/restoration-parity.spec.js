@@ -2,21 +2,39 @@ import {test,expect} from '@playwright/test';
 
 const primary=page=>page.getByRole('navigation',{name:'Primary'});
 
-test('Bible restores the 66-book tactile shelf and book-profile continuity',async({page})=>{
+test('Bible restores the original shelf, typography, and in-context book drawer',async({page})=>{
+  await page.addInitScript(()=>localStorage.removeItem('canonical-shelf-theme-v1'));
   await page.goto('/bible');
-  await expect(page.getByRole('heading',{name:'Bible',exact:true}).first()).toBeVisible();
+
+  await expect(page.locator('html')).toHaveAttribute('data-theme','canonical-original');
+  await expect(page.getByRole('heading',{name:'The Canonical Shelf',exact:true})).toBeVisible();
+  await expect(page.locator('.bible-mode-map .bible-mode-card')).toHaveCount(0);
+  const typography=await page.locator('.bible-identity h1').evaluate(node=>getComputedStyle(node).fontFamily);
+  expect(typography).toMatch(/Iowan Old Style|Palatino Linotype|Book Antiqua|Palatino/);
+
   const spines=page.locator('.shelf-spine');
   await expect(spines).toHaveCount(66);
+  const ezekiel=spines.filter({hasText:'Ezekiel'}).first();
+  await ezekiel.click();
 
-  const genesis=spines.filter({hasText:'Genesis'}).first();
-  await expect(genesis).toBeVisible();
-  await genesis.click();
-  await expect(page).toHaveURL(/\/bible\?.*book=1/);
-  await expect(page.locator('.book-profile-page')).toBeVisible();
-  await expect(page.getByRole('heading',{name:'Genesis',exact:true}).first()).toBeVisible();
-  await expect(page.locator('.book-state-chip')).toContainText('Current');
+  await expect(page).toHaveURL(/view=shelf.*book=26.*profile=1/);
+  const drawer=page.locator('[data-book-drawer]');
+  await expect(drawer).toBeVisible();
+  await expect(drawer).toHaveAttribute('role','dialog');
+  await expect(drawer).toHaveAttribute('aria-modal','true');
+  await expect(page.locator('.bible-drawer-background')).toHaveAttribute('inert','');
+  await expect(page.getByRole('heading',{name:'Ezekiel',exact:true})).toBeVisible();
+  await expect(drawer).toContainText('Visions from exile');
+  await expect(drawer.locator('.book-state-chip')).toContainText('Current book');
+  await expect(page.locator('[data-book-drawer-close]')).toBeFocused();
 
-  const readLink=page.getByRole('link',{name:'Read chapter 1',exact:true});
+  await page.keyboard.press('Escape');
+  await expect(drawer).toHaveCount(0);
+  await expect(page).toHaveURL(/view=shelf.*focus=26/);
+  await expect(page.locator('.shelf-spine[data-book="26"]')).toBeFocused();
+
+  await page.locator('.shelf-spine[data-book="1"]').click();
+  const readLink=page.getByRole('link',{name:/Read Genesis from chapter 1/i});
   await expect(readLink).toBeVisible();
   await readLink.click();
   await expect(page).toHaveURL(/book=1.*chapter=1|chapter=1.*book=1/);
