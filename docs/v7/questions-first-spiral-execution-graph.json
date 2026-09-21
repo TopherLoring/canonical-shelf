@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf questions-first spiral curriculum",
+  "branch": "curriculum/questions-first-spiral",
+  "objective": "Introduce doctrine and difficult questions early, build the foundations needed to address them responsibly, and revisit them across the six-course curriculum with increasing depth while preserving stable learner state.",
+  "invariants": {
+    "courses": 6,
+    "currentUnits": 44,
+    "stableExistingActivityIds": true,
+    "localFirstLearnerState": true,
+    "topicsScored": false,
+    "practiceIsReinforcement": true,
+    "bibleOwnsShelfReader": true,
+    "statementOfFaithIsDoctrinalCeiling": true,
+    "theologicalAssentIsNotScored": true
+  },
+  "nodes": [
+    {
+      "id": "QS1.CONTRACT",
+      "type": "governance",
+      "status": "complete",
+      "dependsOn": [],
+      "outputs": ["implementation plan", "execution plan", "WBS", "acceptance criteria"]
+    },
+    {
+      "id": "QS2.MODEL",
+      "type": "schema",
+      "status": "planned",
+      "dependsOn": ["QS1.CONTRACT"],
+      "outputs": ["course active-study time metadata", "question-thread schema"]
+    },
+    {
+      "id": "QS3.COURSE1",
+      "type": "content",
+      "status": "planned",
+      "dependsOn": ["QS2.MODEL"],
+      "outputs": ["questions-first foundational lesson", "active checks", "cross-course return framing"]
+    },
+    {
+      "id": "QS4.SPIRAL",
+      "type": "content",
+      "status": "planned",
+      "dependsOn": ["QS2.MODEL"],
+      "outputs": ["cross-course difficult-question threads", "unit/course touchpoints"]
+    },
+    {
+      "id": "QS5.DOCS",
+      "type": "implementation",
+      "status": "planned",
+      "dependsOn": ["QS2.MODEL", "QS4.SPIRAL"],
+      "outputs": ["generated timing data", "generated question-thread reference"]
+    },
+    {
+      "id": "QS6.VALIDATE",
+      "type": "validation",
+      "status": "planned",
+      "dependsOn": ["QS3.COURSE1", "QS5.DOCS"],
+      "outputs": ["schema validation", "existing regression suite", "branch CI evidence"]
+    },
+    {
+      "id": "QS7.HUMAN",
+      "type": "human_gate",
+      "status": "pending",
+      "dependsOn": ["QS6.VALIDATE"],
+      "outputs": ["adult-beginner clarity review", "editorial/theological review", "novice usability review"]
+    }
+  ],
+  "rollback": "Revert branch commits; no existing stable activity IDs or learner-state schema are changed."
+}
