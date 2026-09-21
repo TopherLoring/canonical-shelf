@@ -41,6 +41,9 @@
   --space-lg:var(--ref-space-4);
   --space-xl:var(--ref-space-5);
   --space-2xl:var(--ref-space-6);
+  --font-body:var(--ref-font-sans);
+  --font-reading:var(--ref-font-serif);
+  --font-display:var(--ref-font-serif);
   --font-meta:var(--ref-font-mono);
   --measure-reading:var(--ref-measure-reading);
   --theme-shadow:0 18px 55px color-mix(in srgb,#2a211b 18%,transparent);
