@@ -14,11 +14,11 @@ button{color:inherit}
 .button:hover,.account-open:hover,.appearance-open:hover,.search button:hover{background:var(--color-surface-subtle)}
 
 .primary{display:flex;gap:clamp(.75rem,3vw,2rem);padding:.8rem clamp(1rem,4vw,4rem);border-bottom:1px solid var(--color-border-default);overflow:auto;white-space:nowrap;background:var(--color-surface-primary)}
-.primary a{text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent}.primary a[aria-current="page"]{border-color:var(--nav-active-border);font-weight:700}
+.primary a{text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent;font-family:var(--font-meta);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}.primary a[aria-current="page"]{border-color:var(--nav-active-border);font-weight:700}
 
 main{max-width:1200px;margin:auto;padding:clamp(1.25rem,4vw,4rem)}
 .hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(16rem,.75fr);gap:clamp(2rem,6vw,6rem);padding:clamp(2rem,7vw,6rem) 0;border-bottom:1px solid var(--color-border-default)}
-.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;color:var(--color-accent-primary);font-weight:700}
+.eyebrow{font-family:var(--font-meta);text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;color:var(--color-accent-primary);font-weight:700}
 h1,h2,h3,h4{font-family:var(--font-display);line-height:1.08;margin:.25em 0 .55em}h1{font-size:clamp(2.6rem,7vw,6.3rem);font-weight:500}h2{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:500}h3{font-size:1.28rem}
 .lede{font-family:var(--font-reading);font-size:clamp(1.15rem,2vw,1.45rem);max-width:55ch}
 .stat{padding:1rem 0;border-top:1px solid var(--color-border-default)}.stat strong{display:block;font-family:var(--font-reading);font-size:2rem}
