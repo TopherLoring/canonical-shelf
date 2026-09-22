@@ -1,17 +1,10 @@
 const topicText=t=>t?.answer||t?.summary||'';
 const topicSearchText=t=>[
-  t?.title,
-  t?.kind,
-  topicText(t),
-  ...(t?.aliases||[]),
-  ...(t?.tags||[]),
-  ...(t?.refs||[]),
-  ...(t?.sections||[]).flatMap(section=>Array.isArray(section)?section:[]),
-  ...(t?.body||[])
+  t?.title,t?.kind,topicText(t),...(t?.aliases||[]),...(t?.tags||[]),...(t?.refs||[]),...(t?.sections||[]).flatMap(section=>Array.isArray(section)?section:[]),...(t?.body||[])
 ].filter(Boolean).join(' ');
 
 const TOPIC_GROUPS=[
-  ['ask','Ask / search',()=>true,'Search the reference library or ask the Guide.'],
+  ['ask','Ask / search',()=>true,'Search the reference library or ask the Theologian.'],
   ['theology','Theology & doctrine',t=>/doctrine|theolog|trinity|salvation|atonement|spirit|church|grace/i.test(`${t.title} ${t.kind||''} ${(t.tags||[]).join(' ')}`),'Belief, doctrine, salvation, Church, Spirit, and theological frameworks.'],
   ['life','Christian life',t=>/life|practice|prayer|ethic|forgive|relationship|vocation|worship/i.test(`${t.title} ${t.kind||''} ${(t.tags||[]).join(' ')}`),'Prayer, ethics, worship, relationships, vocation, and discipleship.'],
   ['concepts','Biblical concepts',t=>/scripture|bible|canon|covenant|kingdom|gospel|prophe|wisdom|temple|sacrifice/i.test(`${t.title} ${t.kind||''} ${(t.tags||[]).join(' ')}`),'Major biblical ideas and how they connect across Scripture.'],
@@ -20,37 +13,23 @@ const TOPIC_GROUPS=[
   ['related','Related exploration',t=>Array.isArray(t.related)&&t.related.length>0,'Follow relationships between questions, passages, concepts, and courses.']
 ];
 
-function filterTopics(data,mode,q){
-  const topics=data.topics||[],needle=String(q||'').trim().toLowerCase();
-  if(needle)return topics.filter(t=>topicSearchText(t).toLowerCase().includes(needle));
-  const group=TOPIC_GROUPS.find(([id])=>id===mode);
-  return group&&mode!=='ask'?topics.filter(group[2]):topics;
-}
-
-function topicModeNav(data,active,esc){
-  const topics=data.topics||[];
-  return `<nav class="mode-map topic-mode-map" aria-label="Topic entry modes">${TOPIC_GROUPS.map(([id,label,test,description])=>{const count=id==='glossary'?(data.glossary||[]).length:id==='ask'?topics.length:topics.filter(test).length;return `<a class="mode-card" href="/topics?mode=${id}" ${active===id?'aria-current="page"':''}><strong>${esc(label)}</strong><span>${count}${id==='glossary'?' terms':' guides'}</span><small>${esc(description)}</small></a>`}).join('')}</nav>`;
-}
-
-const courseConnections=(data,t)=>{
-  const terms=[...(t.tags||[]),...(t.aliases||[]),t.title].filter(Boolean).map(x=>String(x).toLowerCase());
-  return (data.units||[]).map(unit=>({unit,score:terms.reduce((score,term)=>score+(`${unit.title} ${unit.scope||''}`.toLowerCase().includes(term)?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,5).map(x=>x.unit);
-};
-
-const referenceLinks=(refs,esc)=>refs?.length?`<section class="topic-evidence"><p class="eyebrow">Scripture connections</p><div class="topic-reference-list">${refs.map(ref=>`<a href="/search?q=${encodeURIComponent(ref)}"><strong>${esc(ref)}</strong><span>Open passage/search context →</span></a>`).join('')}</div></section>`:'';
-
+function filterTopics(data,mode,q){const topics=data.topics||[],needle=String(q||'').trim().toLowerCase();if(needle)return topics.filter(t=>topicSearchText(t).toLowerCase().includes(needle));const group=TOPIC_GROUPS.find(([id])=>id===mode);return group&&mode!=='ask'?topics.filter(group[2]):topics}
+function topicModeNav(data,active,esc){const topics=data.topics||[];return `<nav class="mode-map topic-mode-map" aria-label="Topic entry modes">${TOPIC_GROUPS.map(([id,label,test,description])=>{const count=id==='glossary'?(data.glossary||[]).length:id==='ask'?topics.length:topics.filter(test).length;return `<a class="mode-card" href="/topics?mode=${id}" ${active===id?'aria-current="page"':''}><strong>${esc(label)}</strong><span>${count}${id==='glossary'?' terms':' guides'}</span><small>${esc(description)}</small></a>`}).join('')}</nav>`}
+const courseConnections=(data,t)=>{const terms=[...(t.tags||[]),...(t.aliases||[]),t.title].filter(Boolean).map(x=>String(x).toLowerCase());return (data.units||[]).map(unit=>({unit,score:terms.reduce((score,term)=>score+(`${unit.title} ${unit.scope||''}`.toLowerCase().includes(term)?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,5).map(x=>x.unit)};
 const sectionMarkup=(sections,esc)=>sections?.length?`<section class="topic-sections" aria-label="Topic explanation">${sections.map((section,index)=>{const [title,body]=Array.isArray(section)?section:[`Section ${index+1}`,String(section||'')];return `<article class="topic-section"><p class="eyebrow">Explanation</p><h2>${esc(title||`Section ${index+1}`)}</h2><p>${esc(body||'')}</p></article>`}).join('')}</section>`:'';
 
-const aliasMarkup=(aliases,esc)=>aliases?.length?`<details class="topic-aliases"><summary>Related search language</summary><div class="badge-row">${aliases.map(alias=>`<span>${esc(alias)}</span>`).join('')}</div></details>`:'';
+function contextPanel({data,t,related,tagRelated,units,esc}){
+  const uniqueRelated=[...related,...tagRelated].filter((x,i,a)=>a.findIndex(y=>y.id===x.id)===i).slice(0,10);
+  const module=(title,body,open=false)=>`<details ${open?'open':''}><summary>${esc(title)}</summary><div>${body}</div></details>`;
+  return `<aside class="topic-context-panel" aria-label="Topic Notes"><header><p class="eyebrow">Reference context</p><h2>Topic Notes</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div><p class="session-context-note">Your journal and feedback are tied to the current Topic; technical route data stays internal.</p></header>${module('At a glance',`<p>${esc(topicText(t))}</p>`,true)}${module('Scripture connections',(t.refs||[]).length?`<div class="topic-reference-list">${t.refs.map(ref=>`<a href="/search?q=${encodeURIComponent(ref)}"><strong>${esc(ref)}</strong><span>Open passage/search context →</span></a>`).join('')}</div>`:'<p>No authored Scripture connections are attached yet.</p>')}${module('Course connections',units.length?`<div class="topic-course-links">${units.map(unit=>`<a href="/course?unit=${encodeURIComponent(unit.id)}"><strong>${esc(unit.title)}</strong><span>${esc(unit.scope||'Open related unit')}</span></a>`).join('')}</div>`:'<p>No direct course connection was found.</p>')}${module('Related search language',(t.aliases||[]).length?`<div class="badge-row">${t.aliases.map(alias=>`<span>${esc(alias)}</span>`).join('')}</div>`:'<p>No alternate search terms are authored.</p>')}${module('Related exploration',uniqueRelated.length?`<ul>${uniqueRelated.map(item=>`<li><a href="/topics?topic=${encodeURIComponent(item.id)}">${esc(item.title)}</a></li>`).join('')}</ul>`:'<p>No related Topics are authored.</p>')}<p><button class="button" type="button" data-ask="${esc(t.title)}">Ask the Theologian</button></p></aside>`;
+}
 
 export function topicsView({data,params,esc}){
   const id=params.get('topic');
   if(id){
     const t=(data.topics||[]).find(x=>x.id===id);if(!t)return `<header class="section"><p class="eyebrow">Topics</p><h1>Topic not found</h1></header>`;
-    const related=(t.related||[]).map(rid=>(data.topics||[]).find(x=>x.id===rid)).filter(Boolean);
-    const tagRelated=(data.topics||[]).filter(x=>x.id!==t.id&&(x.tags||[]).some(tag=>(t.tags||[]).includes(tag))).slice(0,8);
-    const units=courseConnections(data,t);
-    return `<article class="topic-reader topic-reference-page"><p><a href="/topics">← All Topics</a></p><div class="topic-reference-heading"><div><p class="eyebrow">${esc(t.kind||'Reference')} · not scored</p><h1>${esc(t.title)}</h1><p class="lede">${esc(topicText(t))}</p></div><aside class="topic-reference-meta"><span>${(t.refs||[]).length} Scripture connection${(t.refs||[]).length===1?'':'s'}</span><span>${(t.related||[]).length} authored relationship${(t.related||[]).length===1?'':'s'}</span><span>${(t.tags||[]).length} topic tag${(t.tags||[]).length===1?'':'s'}</span></aside></div>${aliasMarkup(t.aliases,esc)}${sectionMarkup(t.sections,esc)}${(Array.isArray(t.body)?t.body:[]).map(x=>`<p class="topic-body-extra">${esc(x)}</p>`).join('')}${referenceLinks(t.refs,esc)}${units.length?`<section class="topic-evidence"><p class="eyebrow">Course connections</p><div class="topic-course-links">${units.map(unit=>`<a href="/course?unit=${encodeURIComponent(unit.id)}"><strong>${esc(unit.title)}</strong><span>${esc(unit.scope||'Open related unit')}</span></a>`).join('')}</div></section>`:''}<div class="topic-actions"><button class="button" data-ask="${esc(t.title)}">Ask the Guide about this</button><a class="button" href="/search?q=${encodeURIComponent(t.title)}">Search all connections</a></div>${(related.length||tagRelated.length)?`<section class="related-topics"><p class="eyebrow">Related exploration</p><div class="topic-card-grid">${[...related,...tagRelated].filter((x,i,a)=>a.findIndex(y=>y.id===x.id)===i).slice(0,10).map(x=>`<a class="topic-card" href="/topics?topic=${encodeURIComponent(x.id)}"><span>${esc(x.kind||(x.tags||[])[0]||'Reference')}</span><strong>${esc(x.title)}</strong><small>${esc(topicText(x)).slice(0,150)}</small></a>`).join('')}</div></section>`:''}</article>`;
+    const related=(t.related||[]).map(rid=>(data.topics||[]).find(x=>x.id===rid)).filter(Boolean),tagRelated=(data.topics||[]).filter(x=>x.id!==t.id&&(x.tags||[]).some(tag=>(t.tags||[]).includes(tag))).slice(0,8),units=courseConnections(data,t);
+    return `<section class="topic-reference-layout"><article class="topic-reader topic-reference-page"><p><a href="/topics">← All Topics</a></p><div class="topic-reference-heading"><div><p class="eyebrow">${esc(t.kind||'Reference')} · not scored</p><h1>${esc(t.title)}</h1><p class="lede">${esc(topicText(t))}</p></div><aside class="topic-reference-meta"><span>${(t.refs||[]).length} Scripture connection${(t.refs||[]).length===1?'':'s'}</span><span>${(t.related||[]).length} authored relationship${(t.related||[]).length===1?'':'s'}</span><span>${(t.tags||[]).length} topic tag${(t.tags||[]).length===1?'':'s'}</span></aside></div>${sectionMarkup(t.sections,esc)}${(Array.isArray(t.body)?t.body:[]).map(x=>`<p class="topic-body-extra">${esc(x)}</p>`).join('')}<div class="topic-actions"><button class="button" data-ask="${esc(t.title)}">Ask the Theologian about this</button><a class="button" href="/search?q=${encodeURIComponent(t.title)}">Search all connections</a></div></article>${contextPanel({data,t,related,tagRelated,units,esc})}</section>`;
   }
   const mode=params.get('mode')||'ask',q=params.get('q')||'';
   if(mode==='glossary'){
