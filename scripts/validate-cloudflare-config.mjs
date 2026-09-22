@@ -14,6 +14,7 @@ if(config.name!==WORKER_NAME)fail(`Worker name must be ${WORKER_NAME}; found ${c
 if(config.main!=='worker/index.ts')fail(`Worker entry must be worker/index.ts; found ${config.main||'(missing)'}`);
 if(config.assets?.directory!=='./public')fail('static assets directory must be ./public');
 if(config.assets?.binding!=='ASSETS')fail('static assets binding must be ASSETS');
+if(config.assets?.html_handling!=='auto-trailing-slash')fail('static route documents must use auto-trailing-slash HTML handling for clean /home, /course, /bible, /topics, /practice, and /search URLs');
 if(config.assets?.not_found_handling!=='single-page-application')fail('static assets must use single-page-application fallback');
 if(!Array.isArray(config.assets?.run_worker_first)||!config.assets.run_worker_first.includes('/api/*'))fail('API routes must run Worker code before static assets');
 if(config.ai?.binding!=='AI')fail('Workers AI binding must be AI');
@@ -29,4 +30,4 @@ if(db.database_name!=='canonical-shelf')fail('D1 database name must remain canon
 if(db.database_id!==expectedDatabaseId)fail('generated D1 database_id does not match D1_DATABASE_ID');
 if(db.migrations_dir!=='worker/migrations')fail('D1 migrations directory must be worker/migrations');
 
-console.log(`Cloudflare config gate passed: ${WORKER_NAME} → ${CANONICAL_ORIGIN}, D1/ASSETS/AI bindings present, release ${expectedRelease}`);
+console.log(`Cloudflare config gate passed: ${WORKER_NAME} → ${CANONICAL_ORIGIN}, clean route documents + D1/ASSETS/AI bindings present, release ${expectedRelease}`);
