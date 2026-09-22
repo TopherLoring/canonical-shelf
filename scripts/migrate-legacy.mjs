@@ -1,5 +1,6 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import vm from 'node:vm';
+import {canonicalBsbBytes} from './bsb-integrity.mjs';
 
 const manifest=JSON.parse(await readFile('content/migration/admissibility.json','utf8'));
 const SOURCE_REF=manifest.sourceRef;
@@ -83,5 +84,5 @@ if(missingMastery.length) throw new Error(`authored mastery missing challenge da
 const payload={version:6,generatedAt:new Date().toISOString(),sourceRepo:`TopherLoring/the-canonical-shelf@${SOURCE_REF}`,migrationPolicyVersion:manifest.policyVersion,units:v6Units,legacyUnits,masteryIds,legacyMasteryPlacement:legacyMap.masteryPlacement,lessons:foundationsWin.FOUNDATIONS_DATA.lessons,topics:topicsWin.CANON_TOPICS.articles,legacyMastery:Object.fromEntries(Object.entries(masteryWin).filter(([k])=>k.startsWith('CANON_')))};
 await writeFile(`${OUT}/catalog.json`,JSON.stringify(payload,null,2));
 await writeFile(`${OUT}/curriculum.md`,curriculumDoc);
-await writeFile(`${OUT}/corpus.txt`,corpus);
+await writeFile(`${OUT}/corpus.txt`,canonicalBsbBytes(Buffer.from(corpus,'utf8')));
 console.log(`v6 audited migration @ ${SOURCE_REF.slice(0,12)}: ${payload.units.length} units, ${payload.lessons.length} lessons, ${payload.masteryIds.length} mastery IDs, ${payload.topics.length} topics`);
