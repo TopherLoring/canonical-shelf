@@ -22,6 +22,10 @@ let sending=false,lastTrigger=openButton,assetCache=null;
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clip=(value,max)=>String(value||'').trim().slice(0,max);
 const now=()=>new Date().toISOString();
+const evidenceStatus=item=>clip(item?.evidenceStatus||item?.status||((item?.evidence||'').includes('direct')?'direct':''),40);
+const claimDomain=item=>clip(item?.claimDomain||(
+  item?.type==='scripture'?'biblical-text':item?.type==='glossary'?'language':item?.type==='source'?'interpretation':''
+),40);
 
 function normalizeMessage(value){
   if(!value||!['user','assistant'].includes(value.role))return null;
@@ -31,9 +35,22 @@ function normalizeMessage(value){
     at:value.at||now(),
     mode:value.role==='assistant'?clip(value.mode||'',32):'',
     evidence:value.role==='assistant'&&Array.isArray(value.evidence)?value.evidence.slice(0,MAX_VISIBLE_EVIDENCE).map(item=>({
-      type:clip(item?.type,40),label:clip(item?.label,220),href:clip(item?.href,700),evidence:clip(item?.evidence,180),limits:clip(item?.limits,700)
+      type:clip(item?.type,40),
+      label:clip(item?.label,220),
+      href:clip(item?.href,700),
+      evidence:clip(item?.evidence,180),
+      limits:clip(item?.limits,700),
+      evidenceStatus:evidenceStatus(item),
+      claimDomain:claimDomain(item),
+      doctrinalStatus:clip(item?.doctrinalStatus||'',40),
+      interpretationType:clip(item?.interpretationType||'',60)
     })):[],
     guardrails:value.role==='assistant'&&Array.isArray(value.guardrails)?value.guardrails.slice(0,8).map(item=>clip(item,160)):[],
+    validation:value.role==='assistant'&&value.validation&&typeof value.validation==='object'?{
+      status:clip(value.validation.status,30),
+      doctrinalCeiling:clip(value.validation.doctrinalCeiling,180),
+      masteryProtected:Boolean(value.validation.masteryProtected)
+    }:null,
     lgbtqResearchApplied:Boolean(value?.lgbtqResearchApplied),
     fallback:Boolean(value?.fallback)
   };
@@ -41,8 +58,8 @@ function normalizeMessage(value){
 function loadMessages(){
   try{const value=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(value)?value.map(normalizeMessage).filter(Boolean).slice(-MAX_STORED_MESSAGES):[]}catch{return[]}
 }
-function saveMessages(messages){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(messages.slice(-MAX_STORED_MESSAGES)))}catch{}
+function saveMessages(items){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(items.slice(-MAX_STORED_MESSAGES)))}catch{}
 }
 let messages=loadMessages();
 
@@ -50,13 +67,18 @@ function answerMarkup(text){return clip(text,9000).split(/\n\s*\n/).filter(Boole
 function timeLabel(value){try{return new Date(value).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}catch{return''}}
 function evidenceMarkup(items=[]){
   if(!items.length)return'';
-  return `<details class="chat-message__evidence"><summary>Evidence &amp; limits · ${items.length}</summary><div class="chat-message__evidence-body">${items.map(item=>`<div class="chat-evidence"><strong>${item.href?`<a href="${esc(item.href)}"${/^https?:/i.test(item.href)?' target="_blank" rel="noreferrer"':''}>${esc(item.label||item.type||'Evidence')}</a>`:esc(item.label||item.type||'Evidence')}</strong>${item.evidence?`<small>${esc(item.evidence)}</small>`:''}${item.limits?`<small class="chat-evidence__limit">Limit: ${esc(item.limits)}</small>`:''}</div>`).join('')}</div></details>`
+  return `<details class="chat-message__evidence"><summary>Evidence &amp; limits · ${items.length}</summary><div class="chat-message__evidence-body">${items.map(item=>{
+    const status=[item.evidenceStatus,item.claimDomain,item.doctrinalStatus].filter(Boolean).join(' · ');
+    return `<div class="chat-evidence"><strong>${item.href?`<a href="${esc(item.href)}"${/^https?:/i.test(item.href)?' target="_blank" rel="noreferrer"':''}>${esc(item.label||item.type||'Evidence')}</a>`:esc(item.label||item.type||'Evidence')}</strong>${status?`<small class="chat-evidence__status">${esc(status)}</small>`:''}${item.evidence?`<small>${esc(item.evidence)}</small>`:''}${item.limits?`<small class="chat-evidence__limit">Limit: ${esc(item.limits)}</small>`:''}</div>`
+  }).join('')}</div></details>`
 }
 function badgesMarkup(message){
   if(message.role!=='assistant')return'';
   const badges=[];
   if(message.mode==='cloud')badges.push('cloud synthesis');
   if(message.fallback)badges.push('offline evidence mode');
+  if(message.validation?.status==='passed')badges.push('guardrails validated');
+  if(message.validation?.masteryProtected)badges.push('mastery protected');
   if(message.lgbtqResearchApplied)badges.push('LGBTQ research applied');
   badges.push('faith ceiling enforced');
   return `<div class="chat-message__badges">${badges.map(item=>`<span>${esc(item)}</span>`).join('')}</div>`
@@ -66,10 +88,10 @@ function messageMarkup(message){
   return `<article class="chat-message chat-message--${message.role}"><div class="chat-message__label">${assistant?'Theologian':'You'}</div><div class="chat-message__bubble">${answerMarkup(message.text)}</div>${assistant?badgesMarkup(message):''}${assistant?evidenceMarkup(message.evidence):''}<div class="chat-message__meta">${esc(timeLabel(message.at))}</div></article>`
 }
 function suggestionsMarkup(){return `<div class="theologian-chat__suggestions"><button type="button" data-theologian-suggest="What is the Decalogue, and how does it relate to the rest of Mosaic law?">Decalogue &amp; Mosaic law</button><button type="button" data-theologian-suggest="How should I distinguish what a passage says from later interpretation?">Text vs. interpretation</button><button type="button" data-theologian-suggest="What can you help me understand on this page?">Use this page</button></div>`}
-function emptyMarkup(){return `<div class="theologian-chat__empty"><p class="eyebrow">Study conversation</p><h3>Ask, follow up, and inspect the evidence.</h3><p>Theologian uses the BSB, Canonical Shelf content, the compact Statement of Faith, and vetted sources. It can see limited study-state context, but not your Journal, lesson notes, reflection writing, profile, or account data.</p>${suggestionsMarkup()}</div>`}
-function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask about Scripture, context, interpretation, doctrine, evidence, or what you are studying…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">Chat is stored only in this browser until you start a new chat. Only a bounded recent excerpt is sent for a response. Private study writing and account/profile data are excluded.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
+function emptyMarkup(){return `<div class="theologian-chat__empty"><p class="eyebrow">Study conversation</p><h3>Ask, follow up, and inspect the evidence.</h3><p>Theologian uses the BSB, Canonical Shelf content, the compact Statement of Faith, theology policy, and vetted sources. It can see limited study-state context, but not your Journal, lesson notes, optional reflection writing, profile, account data, or feedback.</p>${suggestionsMarkup()}</div>`}
+function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask about Scripture, context, interpretation, doctrine, evidence, or what you are studying…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">Chat is stored only in this browser until you start a new chat. Only a bounded recent excerpt and an allowlisted study-state summary are sent for a response. Private study writing, feedback, and account/profile data are excluded.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
 function render({thinking=false,status=''}={}){
-  body.innerHTML=`<section class="theologian-chat" aria-label="Theologian conversation"><div class="theologian-chat__toolbar"><p>Grounded study assistant · evidence and interpretive limits stay inspectable.</p><button class="theologian-chat__new" type="button" data-theologian-new-chat>New chat</button></div><div class="theologian-chat__messages" data-theologian-messages aria-live="polite">${messages.length?messages.map(messageMarkup).join(''):emptyMarkup()}${thinking?'<div class="theologian-chat__thinking" aria-label="Theologian is composing a response"><i></i><i></i><i></i></div>':''}</div>${composerMarkup()}</section>`;
+  body.innerHTML=`<section class="theologian-chat" aria-label="Theologian conversation"><div class="theologian-chat__toolbar"><p>Grounded study assistant · evidence status and interpretive limits stay inspectable.</p><button class="theologian-chat__new" type="button" data-theologian-new-chat>New chat</button></div><div class="theologian-chat__messages" data-theologian-messages aria-live="polite">${messages.length?messages.map(messageMarkup).join(''):emptyMarkup()}${thinking?'<div class="theologian-chat__thinking" aria-label="Theologian is composing a response"><i></i><i></i><i></i></div>':''}</div>${composerMarkup()}</section>`;
   const statusNode=body.querySelector('#theologian-chat-status');if(statusNode)statusNode.textContent=status;
   const stream=body.querySelector('[data-theologian-messages]');if(stream)requestAnimationFrame(()=>{stream.scrollTop=stream.scrollHeight});
 }
@@ -115,7 +137,7 @@ async function learnerContext(){
 function deterministicAnswer(question,resources){
   const result=buildTheologianResponse({question,data:resources.data,policy:resources.policy,statement:resources.statement,sources:resources.sources,corpus:resources.corpus,context:{scored:location.pathname==='/course'&&new URLSearchParams(location.search).has('mastery')}});
   const text=[result.position,...(result.warnings||[])].filter(Boolean).join('\n\n');
-  return {mode:'local',answer:text,evidence:result.evidence||[],guardrails:['Berean Standard Bible','Canonical Shelf published content','Compact Canonical Shelf Statement of Faith','Canonical Shelf theology policy and vetted research'],fallback:true};
+  return {mode:'local',answer:text,evidence:result.evidence||[],guardrails:['Berean Standard Bible quotation integrity','Compact Canonical Shelf Statement of Faith doctrinal ceiling','Canonical Shelf theology/evidence policy','Published Canonical Shelf content','Attributed vetted sources'],validation:{status:'passed',doctrinalCeiling:resources.policy?.authority?.normativeCeiling||'Canonical Shelf Statement of Faith',masteryProtected:Boolean(result.masteryProtected)},fallback:true};
 }
 async function ask(question){
   const text=clip(question,1400);if(!text||sending)return;
@@ -125,12 +147,12 @@ async function ask(question){
   try{
     const context=await learnerContext();
     const result=await requestCloudTheologian(text,{path:`${location.pathname}${location.search}`,history,learnerContext:context});
-    messages.push(normalizeMessage({role:'assistant',text:result.answer,at:now(),mode:result.mode||'cloud',evidence:result.evidence||[],guardrails:result.guardrails||[],lgbtqResearchApplied:result.lgbtqResearchApplied}));
+    messages.push(normalizeMessage({role:'assistant',text:result.answer,at:now(),mode:result.mode||'cloud',evidence:result.evidence||[],guardrails:result.guardrails||[],validation:result.validation||null,lgbtqResearchApplied:result.lgbtqResearchApplied}));
   }catch(error){
     if(error?.name==='AbortError'){sending=false;render();return}
     try{
       const resources=await assets(),fallback=deterministicAnswer(text,resources);
-      messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',evidence:fallback.evidence,guardrails:fallback.guardrails,fallback:true}));
+      messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
     }catch{
       messages.push(normalizeMessage({role:'assistant',text:'Theologian could not produce a response that passed its evidence and theological safeguards. Try rephrasing the question or open the relevant Bible, Course, or Topic material and ask again.',at:now(),mode:'local',fallback:true}));
     }
