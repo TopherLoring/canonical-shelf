@@ -62,10 +62,17 @@
   </aside>
 
   <aside id="guide" class="guide" hidden aria-labelledby="guide-title">
-    <div class="guide-head"><h2 id="guide-title">Ask the Guide</h2><button id="guide-close" aria-label="Close Ask the Guide">×</button></div>
-    <div id="guide-body"></div>
+    <div class="guide-head"><h2 id="guide-title">Theologian</h2><button id="guide-close" aria-label="Close Theologian">×</button></div>
+    <div id="guide-body">
+      <form id="guide-form">
+        <label for="guide-q">Ask the Theologian a study question</label>
+        <textarea id="guide-q" name="question" rows="3" placeholder="Ask about Scripture, context, interpretation, doctrine, or evidence."></textarea>
+        <button class="button" type="submit">Ask</button>
+      </form>
+      <p class="meta">Answers are grounded in the BSB, Canonical Shelf content, the Statement of Faith, and vetted research. Cloud synthesis falls back to Canonical Shelf’s local evidence mode when unavailable.</p>
+    </div>
   </aside>
-  <button id="guide-open" class="guide-open" type="button" disabled aria-disabled="true">Ask the Guide</button>
+  <button id="guide-open" class="guide-open" type="button" disabled aria-disabled="true" aria-label="Open Theologian">Theologian</button>
 
   <button id="feedback-open" class="utility-fab feedback-open" type="button" aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
   <aside id="feedback-panel" class="utility-panel" hidden aria-labelledby="feedback-title">
@@ -84,7 +91,7 @@
     <div class="utility-panel__head"><div><p class="eyebrow">Personal study</p><h2 id="personal-study-title">Journal</h2><p id="personal-study-context">Current study activity</p></div><button id="personal-study-close" class="utility-panel__close" type="button" aria-label="Close journal">×</button></div>
     <label class="utility-form">Private journal reflection<textarea id="personal-journal" rows="14" maxlength="12000" placeholder="Reflect privately. Journal writing is never scored or used to determine theological agreement."></textarea></label>
     <p id="personal-study-status" class="utility-status" role="status" aria-live="polite"></p>
-    <p class="privacy-note">Lesson notes now live in each lesson’s Reflection scene. Journal writing remains local-first and unscored; optional account sync can carry it with your learner state.</p>
+    <p class="privacy-note">Journal writing is tied to the current learner-facing session or activity, remains local-first and unscored, and can be carried with learner state when optional account sync is enabled.</p>
   </aside>
 
   <footer class="site-footer">
@@ -93,7 +100,7 @@
       <nav class="site-footer__links" aria-label="About Canonical Shelf">
         <a href="/about.html#faith">Statement of Faith</a>
         <a href="/about.html#about">About Canonical Shelf</a>
-        <a href="/about.html#approach">How this guide approaches Scripture</a>
+        <a href="/about.html#approach">How Canonical Shelf approaches Scripture</a>
         <a href="/about.html#sources">Sources &amp; methodology</a>
         <a href="/about.html#translations">Translation information</a>
         <a href="/about.html#accessibility">Accessibility</a>
@@ -102,7 +109,7 @@
     </div>
   </footer>
 
-  <noscript><p class="notice">Canonical Shelf requires JavaScript for navigation. Bible and course content remain static local assets after migration.</p></noscript>
+  <noscript><p class="notice">Canonical Shelf requires JavaScript for interactive study tools. The published Bible, curriculum, Topics, and reference content remain local site assets.</p></noscript>
   <script type="module" src="/bootstrap.js"></script>
 </body>
 </html>
