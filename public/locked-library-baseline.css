@@ -1,0 +1,152 @@
+/* Production correction: approved editable Library First baseline.
+   This file is intentionally a final rendering layer, not an immutable lock. */
+
+html[data-theme="canonical-original"]{
+  --color-text-primary:#22211f;
+  --color-text-secondary:#6e7072;
+  --color-surface-primary:#f2efe7;
+  --color-surface-raised:#fffdf7;
+  --color-surface-subtle:#e3e4e5;
+  --color-border-default:#cec9bf;
+  --color-accent-primary:#596d79;
+  --color-accent-secondary:#687269;
+  --color-gilt:#c7a253;
+  --study-folio:#fffdf7;
+  --study-folio-2:#f2efe7;
+  --study-rule:#cec9bf;
+}
+
+html,body{background:var(--color-surface-primary)}
+main{max-width:1240px;padding:clamp(20px,3vw,38px)}
+
+/* The approved system never uses the generic 6rem page heading treatment. */
+main>.section,
+main>.compact-section{padding:clamp(22px,3vw,38px) 0}
+main>.section h1,
+main>.compact-section h1,
+.course-catalog-heading h1,
+.bible-head h1,
+.topic-library-head h1{
+  font-size:clamp(2.2rem,4.6vw,3.85rem);
+  line-height:1.02;
+  max-width:18ch;
+  overflow-wrap:anywhere;
+}
+.course-catalog-heading{padding-bottom:18px!important}
+.course-catalog-heading h1{font-size:clamp(2rem,4vw,3.25rem);max-width:760px}
+.course-catalog-heading .lede{font-size:clamp(1rem,1.55vw,1.22rem);max-width:68ch}
+
+/* Bible landing keeps its identity, but at library scale rather than billboard scale. */
+.bible-identity{padding:clamp(28px,5vw,62px) 0 clamp(20px,4vw,42px)}
+.bible-identity h1{font-size:clamp(2.9rem,7vw,5.35rem);max-width:11ch;margin:.12em 0 .28em}
+.bible-identity h1 span,.bible-identity h1 em{display:block}
+.bible-identity .lede{font-size:clamp(1rem,1.8vw,1.3rem);max-width:68ch}
+
+/* ------------------------------------------------------------------ */
+/* Library First home                                                   */
+/* ------------------------------------------------------------------ */
+.library-first-home{display:grid;gap:22px;padding-bottom:42px}
+.library-first-hero{
+  display:grid;grid-template-columns:minmax(0,.78fr) minmax(420px,1.22fr);
+  gap:clamp(28px,5vw,70px);align-items:center;padding:clamp(28px,5vw,64px) 0 24px;
+  border-bottom:1px solid var(--color-border-default)
+}
+.library-first-copy h1{font-size:clamp(3rem,6vw,5.2rem);line-height:.92;letter-spacing:-.035em;margin:.12em 0 .28em;max-width:8ch}
+.library-first-copy h1 em{font-weight:400;color:#596d79}
+.library-first-copy .lede{font-size:clamp(1.03rem,1.65vw,1.28rem);max-width:42ch;color:#4f5356}
+.library-first-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.library-first-actions .button:first-child{background:#24272d;color:#fff;border-color:#24272d}
+.library-first-shelf-wrap{min-width:0}
+.library-first-shelf-label{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:8px;color:#62676c}
+.library-first-shelf-label strong{font:600 1rem var(--font-reading);color:#24272d}
+.library-first-shelf{
+  min-height:310px;display:flex;align-items:end;gap:2px;padding:20px 14px 16px;
+  background:#31353c;border:1px solid #202329;border-bottom:15px solid #4b5056;overflow:hidden
+}
+.library-first-book{
+  --book:#596a7f;position:relative;display:block;flex:1 1 0;min-width:4px;max-width:18px;
+  height:calc(76px + (var(--chapters) * 1.25px));max-height:260px;background:var(--book);
+  border:1px solid #ffffff20;text-decoration:none;transition:transform .12s ease,filter .12s ease
+}
+.library-first-book:hover,.library-first-book:focus-visible{transform:translateY(-8px);filter:brightness(1.13);z-index:2}
+.library-first-book[data-cat="law"]{--book:#556978}
+.library-first-book[data-cat="othist"]{--book:#687269}
+.library-first-book[data-cat="wisdom"]{--book:#6d7880}
+.library-first-book[data-cat="major"]{--book:#666a80}
+.library-first-book[data-cat="minor"]{--book:#596a7f}
+.library-first-book[data-cat="gospel"]{--book:#526f78}
+.library-first-book[data-cat="nthist"]{--book:#66766b}
+.library-first-book[data-cat="paul"]{--book:#5f677a}
+.library-first-book[data-cat="general"]{--book:#66766b}
+.library-first-book[data-cat="apoc"]{--book:#4b5056}
+.library-first-book span{
+  position:absolute;left:50%;bottom:calc(100% + 10px);translate:-50% 5px;opacity:0;pointer-events:none;
+  background:#24272d;color:#fff;border:1px solid #555b61;padding:5px 7px;white-space:nowrap;
+  font:700 .66rem var(--font-body);box-shadow:0 6px 18px #0004
+}
+.library-first-book:hover span,.library-first-book:focus-visible span{opacity:1;translate:-50% 0}
+.library-first-shelf-note{margin:8px 0 0;font-size:.72rem;color:#6e7072}
+
+.library-entry-map{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--color-border-default);background:var(--color-border-default);gap:1px}
+.library-entry-map a,.library-entry-map button{
+  min-height:112px;padding:16px;text-align:left;border:0;border-radius:0;background:#fffdf7;color:#24272d;text-decoration:none;cursor:pointer
+}
+.library-entry-map a:hover,.library-entry-map button:hover{background:#f5f3ed}
+.library-entry-map small{display:block;font:700 .62rem var(--font-meta);letter-spacing:.1em;text-transform:uppercase;color:#596d79;margin-bottom:7px}
+.library-entry-map strong{display:block;font:600 1.15rem var(--font-reading);margin-bottom:5px}
+.library-entry-map span{display:block;font-size:.78rem;color:#6e7072;line-height:1.45}
+.library-entry-map button strong,.library-entry-map button span{font-family:inherit}
+
+.library-first-cards{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.library-first-card{background:#fffdf7;border:1px solid var(--color-border-default);padding:20px}
+.library-first-card h2{font-size:clamp(1.55rem,2.8vw,2.25rem);margin:.12em 0 .32em}
+.library-first-card p{color:#62676c;max-width:62ch}
+.library-first-card--context{background:#31353c;color:#fff;border-color:#31353c}
+.library-first-card--context .eyebrow{color:#c7a253}
+.library-first-card--context h2,.library-first-card--context p,.library-first-card--context a{color:#fff}
+.library-first-progress{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;font-size:.76rem;color:#6e7072}
+.library-first-progress span{border-top:1px solid var(--color-border-default);padding-top:8px;min-width:120px}
+.library-first-recent{border-top:1px solid var(--color-border-default);padding-top:18px}
+.library-first-recent__items{display:flex;gap:8px;flex-wrap:wrap}
+.library-first-recent__items a{background:#fffdf7;border:1px solid var(--color-border-default);padding:8px 10px;text-decoration:none;font-size:.78rem}
+
+/* ------------------------------------------------------------------ */
+/* Theologian                                                          */
+/* ------------------------------------------------------------------ */
+.guide{background:#31353c;color:#fff;border-left-color:#202329;box-shadow:-16px 0 40px #0003}
+.guide .guide-head{border-bottom-color:#ffffff20}
+.guide .guide-head h2,.guide .guide-head button{color:#fff}
+.guide #guide-form{display:grid;gap:8px;padding:14px 0}
+.guide #guide-form label{font:600 .9rem var(--font-reading);color:#fff}
+.guide #guide-form textarea{width:100%;background:#fffdf7;color:#22211f;border:1px solid #bec2c5;padding:10px;resize:vertical}
+.guide #guide-form .button{justify-self:start;background:#fffdf7;color:#24272d;border-color:#fffdf7}
+.guide .evidence{border-top-color:#ffffff20}
+.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}
+.guide .meta{color:#c8ccd0}
+.guide .badge{border-color:#737a81;color:#e7e8e9}
+.guide .result{border-top-color:#ffffff20}
+.cloud-theologian-status{margin:.1rem 0 .7rem;padding:.7rem .8rem;border-left:3px solid #c7a253;background:#24272d;color:#f4f4f1;font-size:.8rem}
+.cloud-theologian-answer{font-family:var(--font-reading);font-size:1rem;line-height:1.62}
+.guide-open{background:#24272d;color:#fff;border-color:#24272d}
+
+/* Keep attached reading/reference panels narrow and clearly secondary. */
+.library-reader-panel,.topic-context-panel{width:min(286px,32vw);background:#31353c;color:#fff}
+.library-reader-panel details,.topic-context-panel details{border-color:#ffffff18}
+.library-reader-panel summary,.topic-context-panel summary{color:#fff}
+.library-reader-panel details>div,.topic-context-panel details>div{color:#d0d2d4}
+
+@media(max-width:900px){
+  main{padding:18px}
+  .library-first-hero{grid-template-columns:1fr;gap:24px}
+  .library-first-copy h1{font-size:clamp(2.8rem,12vw,4.6rem);max-width:9ch}
+  .library-entry-map{grid-template-columns:1fr 1fr}
+  .library-first-cards{grid-template-columns:1fr}
+  .library-reader-panel,.topic-context-panel{width:auto}
+}
+@media(max-width:560px){
+  main>.section h1,main>.compact-section h1,.course-catalog-heading h1,.bible-head h1,.topic-library-head h1{font-size:clamp(2rem,9vw,2.55rem);max-width:100%}
+  .bible-identity h1{font-size:clamp(2.65rem,14vw,4rem)}
+  .library-entry-map{grid-template-columns:1fr}
+  .library-first-shelf{min-height:230px;padding-inline:8px}
+  .library-first-book{max-width:12px;height:calc(58px + (var(--chapters) * .9px))}
+}
