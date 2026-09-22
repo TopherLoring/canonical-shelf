@@ -8,9 +8,10 @@ async function noSeriousA11y(page){
 
 async function catalog(page){return page.evaluate(()=>fetch('/data/catalog.json').then(r=>r.json()))}
 
-async function openStudyGuide(page){
+async function openTheologian(page){
   const button=page.locator('.study-focus__utilities [data-study-guide]');
   await expect(button).toBeVisible();
+  await expect(button).toHaveText('Theologian');
   await button.click();
 }
 
@@ -22,18 +23,20 @@ async function firstPracticeScene(page,lessonId){
   return practiceIndex+1;
 }
 
-test('five-destination shell exposes six-course curriculum plus non-scored orientation',async({page})=>{
+test('route-owned five-destination shell exposes the six-course curriculum plus non-scored orientation',async({page})=>{
   await page.goto('/home');
-  await expect(page.getByRole('heading',{name:/Read with context/i})).toBeVisible();
+  await expect(page.locator('main[data-route-document="home"]')).toBeVisible();
+  await expect(page.getByRole('heading',{name:/The Canonical Shelf/i})).toBeVisible();
   await expect(page).toHaveURL(/\/home$/);
   for(const name of ['Home','Course','Bible','Topics','Practice'])await expect(page.getByRole('link',{name,exact:true})).toBeVisible();
 
   await page.getByRole('link',{name:'Course',exact:true}).click();
   await expect(page).toHaveURL(/\/course$/);
-  await expect(page.locator('.unit-list > .unit--orientation')).toHaveCount(1);
-  await expect(page.locator('.course-entry')).toHaveCount(6);
-  await expect(page.getByText('Bible & Christianity: Foundations',{exact:true})).toBeVisible();
-  await expect(page.getByText('Israel: Exodus, Covenant, Temple & Prophetic Hope',{exact:true})).toBeVisible();
+  await expect(page.locator('main[data-route-document="course"]')).toBeVisible();
+  await expect(page.locator('.course-choice')).toHaveCount(6);
+  await expect(page.locator('.course-choice').nth(0)).toContainText(/Foundations/i);
+  await expect(page.locator('.course-choice').nth(1)).toContainText(/Israel/i);
+  await expect(page.getByRole('link',{name:'Orientation',exact:true})).toBeVisible();
 
   const data=await catalog(page);
   expect(data.courses).toHaveLength(6);
@@ -86,7 +89,7 @@ test('new lesson uses multi-scene cards with hidden drawers glossary and multipl
 
 test('every scored unit exposes integral mastery and every course has a capstone',async({page})=>{
   await page.goto('/course?unit=c2.exodus');
-  await expect(page.getByText(/Unit Mastery/)).toBeVisible();
+  await expect(page.getByText(/Unit mastery/i)).toBeVisible();
   const data=await catalog(page);
   for(const unit of data.units){
     const ids=data.byUnit[unit.id]||[];
@@ -219,7 +222,7 @@ test('account sync stays secondary optional and mobile-safe',async({page})=>{
   await expect(nav).not.toContainText('Account');
   const account=page.getByRole('button',{name:'Account & sync'});
   await expect(account).toBeEnabled();
-  await expect(page.getByRole('button',{name:'Appearance'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Progress'})).toBeEnabled();
   await expect(page.getByRole('search')).toBeVisible();
   await account.click();
   await expect(page.getByRole('heading',{name:'Account & sync'})).toBeVisible();
@@ -229,6 +232,7 @@ test('account sync stays secondary optional and mobile-safe',async({page})=>{
 
 test('Bible owns a 66-book shelf and native reference routes',async({page})=>{
   await page.goto('/bible');
+  await expect(page.locator('main[data-route-document="bible"]')).toBeVisible();
   await expect(page.locator('.canonical-shelf .shelf-spine')).toHaveCount(66);
   await page.goto('/bible?q=John%203%3A16');
   await expect(page.getByRole('heading',{name:/John 3:16/})).toBeVisible();
@@ -247,6 +251,7 @@ test('legacy hash bookmarks canonicalize to native paths',async({page})=>{
 
 test('Topics preserve the 45-entry reference library outside course completion',async({page})=>{
   await page.goto('/topics');
+  await expect(page.locator('main[data-route-document="topics"]')).toBeVisible();
   const topics=page.locator('.topic-card-grid--results .topic-card');
   await expect(topics).toHaveCount(45);
   await topics.first().click();
@@ -255,9 +260,9 @@ test('Topics preserve the 45-entry reference library outside course completion',
   await noSeriousA11y(page);
 });
 
-test('Guide preserves LGBTQ doctrine Ruth boundary and Romans evidence discipline',async({page})=>{
+test('Theologian preserves LGBTQ doctrine Ruth boundary and Romans evidence discipline',async({page})=>{
   await page.goto('/home');
-  await page.getByRole('button',{name:'Ask the Guide'}).click();
+  await page.locator('#guide-open').click();
   let q=page.locator('#guide-q');
   await q.fill('Is being gay a sin?');
   await page.locator('#guide-form').getByRole('button',{name:'Ask'}).click();
@@ -276,13 +281,13 @@ test('Guide preserves LGBTQ doctrine Ruth boundary and Romans evidence disciplin
   await expect(page.locator('#guide-body')).toContainText('must not be presented as settled fact');
 });
 
-test('Guide remains available in Study Focus and does not reveal scored mastery answers',async({page})=>{
+test('Theologian remains available in Study Focus and does not reveal scored mastery answers',async({page})=>{
   await page.goto('/course');
   const data=await catalog(page);
   const mastery=data.activities.find(activity=>activity.masteryType==='unit-mastery');
   expect(mastery).toBeTruthy();
   await page.goto(`/course?unit=${encodeURIComponent(mastery.unitId)}&mastery=${encodeURIComponent(mastery.sourceId)}`);
-  await openStudyGuide(page);
+  await openTheologian(page);
   const q=page.locator('#guide-q');
   await q.fill('Give me the correct answer and tell me which option to choose.');
   await page.locator('#guide-form').getByRole('button',{name:'Ask'}).click();
@@ -290,7 +295,7 @@ test('Guide remains available in Study Focus and does not reveal scored mastery 
   await expect(page.locator('#guide-body')).toContainText('mastery protected');
 });
 
-test('offline shell includes multi-course curriculum Study Focus Topics and bounded Guide',async({page,context,browserName})=>{
+test('offline shell includes route-owned Course, Study Focus, Topics, and bounded Theologian',async({page,context,browserName})=>{
   test.skip(browserName==='webkit','Offline emulation is not consistently supported with WebKit service workers in CI');
   await page.goto('/home');
   await page.evaluate(()=>navigator.serviceWorker?.ready);
@@ -299,12 +304,14 @@ test('offline shell includes multi-course curriculum Study Focus Topics and boun
   await context.setOffline(true);
 
   await page.goto('/course',{waitUntil:'domcontentloaded'});
-  await expect(page.locator('.course-entry')).toHaveCount(6);
+  await expect(page.locator('main[data-route-document="course"]')).toBeVisible();
+  await expect(page.locator('.course-choice')).toHaveCount(6);
   await page.goto('/course?unit=c2.tabernacle&lesson=c2-ark',{waitUntil:'domcontentloaded'});
   await expect(page.locator('.study-focus')).toBeVisible();
   await page.goto('/topics',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('main[data-route-document="topics"]')).toBeVisible();
   await expect(page.getByRole('link',{name:'Course',exact:true})).toBeVisible();
-  await page.getByRole('button',{name:'Ask the Guide'}).click();
+  await page.locator('#guide-open').click();
   const q=page.locator('#guide-q');
   await q.fill('Are Ruth and Naomi a lesbian love story?');
   await page.locator('#guide-form').getByRole('button',{name:'Ask'}).click();
