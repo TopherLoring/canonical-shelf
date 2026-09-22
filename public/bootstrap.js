@@ -17,6 +17,7 @@ try{
 
 // Core navigation and controls must never wait for service-worker activation.
 await import('./app.js');
+await import('./theologian-chat.js');
 document.dispatchEvent(new Event('canonical-app-ready'));
 for(const id of ['guide-open','progress-open']){
   const control=document.querySelector(`#${id}`);
