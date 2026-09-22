@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Canonical Shelf">
-  <rect width="512" height="512" rx="96" fill="#12100d"/>
-  <path d="M112 126c48-18 96-12 144 18v244c-48-30-96-36-144-18V126Z" fill="#f6f1e8"/>
-  <path d="M400 126c-48-18-96-12-144 18v244c48-30 96-36 144-18V126Z" fill="#f6f1e8"/>
-  <path d="M256 144v244" stroke="#12100d" stroke-width="12"/>
-  <path d="m256 86 12 30 30 12-30 12-12 30-12-30-30-12 30-12 12-30Z" fill="#c8ff35"/>
+  <rect width="512" height="512" rx="96" fill="#24272d"/>
+  <path d="M112 126c48-18 96-12 144 18v244c-48-30-96-36-144-18V126Z" fill="#fffefb"/>
+  <path d="M400 126c-48-18-96-12-144 18v244c48-30 96-36 144-18V126Z" fill="#fffefb"/>
+  <path d="M256 144v244" stroke="#31353c" stroke-width="12"/>
+  <path d="m256 86 12 30 30 12-30 12-12 30-12-30-30-12 30-12 12-30Z" fill="#c7a253"/>
 </svg>
