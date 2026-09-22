@@ -14,22 +14,23 @@ const QUEUE_KEY='canonical-shelf-feedback-queue-v1';
 const ANON_KEY='canonical-shelf-feedback-browser-id-v1';
 let lastTrigger=openButton,pendingContext=null;
 
-const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const readQueue=()=>{try{const value=JSON.parse(localStorage.getItem(QUEUE_KEY)||'[]');return Array.isArray(value)?value:[]}catch{return[]}};
 const writeQueue=items=>{try{localStorage.setItem(QUEUE_KEY,JSON.stringify(items))}catch{}};
 const routeContext=()=>`${location.pathname}${location.search}`.slice(0,512);
 const clip=(value,max)=>String(value??'').trim().slice(0,max);
-function feedbackId(){
+function existingFeedbackId(){try{return localStorage.getItem(ANON_KEY)||''}catch{return''}}
+function ensureFeedbackId(){
+  const existing=existingFeedbackId();if(existing)return existing;
   try{
-    let id=localStorage.getItem(ANON_KEY)||'';
-    if(!id){
-      const random=crypto.randomUUID?.()||`${Date.now().toString(36)}_${Array.from(crypto.getRandomValues(new Uint32Array(4))).map(n=>n.toString(36)).join('_')}`;
-      id=`cfb_${random}`;localStorage.setItem(ANON_KEY,id);
-    }
-    return id;
+    const random=crypto.randomUUID?.()||`${Date.now().toString(36)}_${Array.from(crypto.getRandomValues(new Uint32Array(4))).map(n=>n.toString(36)).join('_')}`;
+    const id=`cfb_${random}`;localStorage.setItem(ANON_KEY,id);return id;
   }catch{return''}
 }
-const feedbackHeaders=(json=false)=>({...(json?{'content-type':'application/json'}:{}),...(feedbackId()?{'x-canonical-feedback-id':feedbackId()}:{})});
+const feedbackHeaders=(json=false,{create=false}={})=>{
+  const id=create?ensureFeedbackId():existingFeedbackId();
+  return {...(json?{'content-type':'application/json'}:{}),...(id?{'x-canonical-feedback-id':id}:{})};
+};
 
 function feedbackTriggers(){return [openButton,...document.querySelectorAll('[data-feedback-open]')].filter(Boolean)}
 function resetReviewContext(){
@@ -72,6 +73,8 @@ function inboxMarkup(items){
 }
 async function loadInbox(){
   if(!inbox)return;
+  const id=existingFeedbackId();
+  if(!id){inbox.innerHTML='<p class="meta">No feedback or review threads are linked to this browser yet.</p>';if(inboxStatus)inboxStatus.textContent='';return}
   if(inboxStatus)inboxStatus.textContent='Checking for replies…';
   try{
     const response=await fetch('/api/feedback',{headers:feedbackHeaders()});
@@ -91,15 +94,13 @@ function openPanel(trigger=openButton,reviewContext=null){
   void loadInbox();
   (pendingContext?reasonSelect:form?.querySelector('select,textarea,input'))?.focus({preventScroll:true});
 }
-
 function closePanel(){
   panel.hidden=true;
   feedbackTriggers().forEach(button=>button.setAttribute('aria-expanded','false'));
   (lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true});
 }
-
 async function send(payload){
-  const response=await fetch('/api/feedback',{method:'POST',headers:feedbackHeaders(true),body:JSON.stringify(payload)});
+  const response=await fetch('/api/feedback',{method:'POST',headers:feedbackHeaders(true,{create:true}),body:JSON.stringify(payload)});
   if(!response.ok){
     let message='Feedback could not be sent.';
     try{const body=await response.json();if(body?.error)message=body.error}catch{}
@@ -107,42 +108,32 @@ async function send(payload){
   }
   return response.json().catch(()=>({ok:true}));
 }
-
 async function flushQueue(){
   if(!navigator.onLine)return;
-  const queue=readQueue();
-  if(!queue.length)return;
+  const queue=readQueue();if(!queue.length)return;
   const remaining=[];
-  for(const item of queue){
-    try{await send(item)}catch{remaining.push(item)}
-  }
+  for(const item of queue){try{await send(item)}catch{remaining.push(item)}}
   writeQueue(remaining);
   if(remaining.length!==queue.length)void loadInbox();
 }
 
 form?.addEventListener('submit',async event=>{
   event.preventDefault();
-  const data=new FormData(form);
-  const wasReview=Boolean(pendingContext);
+  const data=new FormData(form),wasReview=Boolean(pendingContext);
   const payload={
     category:pendingContext?'theology':String(data.get('category')||'other'),
     message:String(data.get('message')||'').trim(),
     contact:String(data.get('contact')||'').trim(),
-    route:routeContext(),
-    clientCreatedAt:new Date().toISOString(),
+    route:routeContext(),clientCreatedAt:new Date().toISOString(),
     ...(pendingContext?{reviewReason:String(data.get('reviewReason')||'').trim(),context:pendingContext}:{})
   };
   status.textContent='Sending…';
   try{
-    await send(payload);
-    form.reset();resetReviewContext();
+    await send(payload);form.reset();resetReviewContext();
     status.textContent=wasReview?'Thank you. Your review request was sent. A response can return here without identifying you.':'Thank you. Your feedback was sent. A response can return here without identifying you.';
     void loadInbox();
   }catch{
-    const queue=readQueue();
-    queue.push(payload);
-    writeQueue(queue.slice(-50));
-    form.reset();resetReviewContext();
+    const queue=readQueue();queue.push(payload);writeQueue(queue.slice(-50));form.reset();resetReviewContext();
     status.textContent='The service is unavailable right now. Your feedback was saved on this device and will retry automatically.';
   }
 });
@@ -155,7 +146,7 @@ document.addEventListener('click',event=>{
     event.preventDefault();
     try{localStorage.removeItem(ANON_KEY)}catch{}
     if(inbox)inbox.innerHTML='<p class="meta">This browser is no longer linked to previous anonymous feedback threads.</p>';
-    if(inboxStatus)inboxStatus.textContent='A new private browser identifier will be created if you submit feedback again.';
+    if(inboxStatus)inboxStatus.textContent='A new private browser identifier will be created only if you submit feedback again.';
   }
 });
 document.addEventListener('canonical-theologian-review',event=>openPanel(event.detail?.trigger||openButton,event.detail));
