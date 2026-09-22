@@ -1,12 +1,12 @@
 import {readFile} from 'node:fs/promises';
 import {Miniflare} from 'miniflare';
-import {normalizeFeedbackBody,validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
+import {anonymousFeedbackKey,normalizeFeedbackBody,readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
 
 const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 const mf=new Miniflare({modules:true,script:`export default {fetch(){return new Response('ok')}}`,d1Databases:['DB']});
 try{
   const db=await mf.getD1Database('DB');
-  for(const path of ['worker/migrations/0002_feedback.sql','worker/migrations/0003_theologian_feedback_context.sql']){
+  for(const path of ['worker/migrations/0002_feedback.sql','worker/migrations/0003_theologian_feedback_context.sql','worker/migrations/0004_feedback_reply_routing.sql']){
     const migration=(await readFile(path,'utf8')).replace(/\s+/g,' ').trim();
     await db.exec(migration);
   }
@@ -20,13 +20,18 @@ try{
   assert(normalized?.category==='something-new','custom category was not preserved');
   assert(normalized?.route==='/','unsafe route was not normalized');
 
-  const saved=await writeFeedback(db,valid,null,'2026-09-19T12:01:00.000Z');
-  assert(saved.id&&saved.createdAt,'feedback persistence did not return identity');
-  const row=await db.prepare('SELECT category,message,contact,route,user_id,review_reason,context_json FROM feedback WHERE id=?').bind(saved.id).first();
+  const anonymousId='cfb_test_browser_identifier_1234567890';
+  const anonymousKey=await anonymousFeedbackKey(anonymousId);
+  assert(anonymousKey&&anonymousKey!==anonymousId&&anonymousKey.length===64,'anonymous browser identifier was not one-way hashed');
+  const saved=await writeFeedback(db,valid,null,anonymousId,'2026-09-19T12:01:00.000Z');
+  assert(saved.id&&saved.createdAt&&saved.status==='new','feedback persistence did not return identity/status');
+  const row=await db.prepare('SELECT category,message,contact,route,user_id,review_reason,context_json,anonymous_key,status FROM feedback WHERE id=?').bind(saved.id).first();
   assert(row?.category==='product','feedback category not persisted');
   assert(row?.message===valid.message,'feedback message not persisted');
   assert(row?.route===valid.route,'feedback route not persisted');
   assert(row?.user_id===null,'anonymous feedback unexpectedly gained user identity');
+  assert(row?.anonymous_key===anonymousKey,'hashed anonymous routing key not persisted');
+  assert(row?.anonymous_key!==anonymousId,'raw anonymous browser identifier was persisted');
   assert(row?.review_reason===null&&row?.context_json===null,'ordinary feedback unexpectedly gained Theologian context');
 
   const review={
@@ -55,12 +60,24 @@ try{
   assert(oversized?.context?.answer.length===9000,'oversized response context was not safely clipped');
   assert(!('history' in (oversized?.context||{})),'unexpected private history survived normalization');
 
-  const reviewSaved=await writeFeedback(db,review,null,'2026-09-22T21:01:00.000Z');
+  const reviewSaved=await writeFeedback(db,review,null,anonymousId,'2026-09-22T21:01:00.000Z');
   const reviewRow=await db.prepare('SELECT category,message,route,review_reason,context_json FROM feedback WHERE id=?').bind(reviewSaved.id).first();
   assert(reviewRow?.review_reason==='too-certain','review reason not persisted');
   const parsed=JSON.parse(String(reviewRow?.context_json||'{}'));
   assert(parsed.kind==='theologian-response'&&parsed.action==='flag','review context identity not persisted');
   assert(parsed.question===review.context.question&&parsed.answer===review.context.answer,'question/answer review context not persisted');
   assert(!('history' in parsed),'unrelated conversation history was persisted');
-  console.log('v7 feedback accept-and-normalize + persistence/privacy + bounded Theologian response review gates passed');
+
+  const initialInbox=await readFeedbackInbox(db,null,anonymousId);
+  assert(initialInbox.some(item=>item.id===reviewSaved.id&&item.status==='new'),'anonymous learner could not retrieve own review');
+  assert((await readFeedbackInbox(db,null,'cfb_different_browser_identifier_123456')).length===0,'another browser could read anonymous feedback');
+  const response=await respondToFeedback(db,reviewSaved.id,'Thank you. We reviewed the response and updated the interpretation guidance.','responded','2026-09-22T22:00:00.000Z');
+  assert(response.ok,'reviewer response could not be stored');
+  const repliedInbox=await readFeedbackInbox(db,null,anonymousId);
+  const replied=repliedInbox.find(item=>item.id===reviewSaved.id);
+  assert(replied?.status==='responded','review status was not routed to learner');
+  assert(replied?.reviewerResponse?.includes('updated the interpretation'),'reviewer response was not routed to learner');
+  assert(replied?.respondedAt==='2026-09-22T22:00:00.000Z','response timestamp missing');
+
+  console.log('v7 feedback accept-and-normalize + privacy + bounded Theologian review + pseudonymous reply routing gates passed');
 }finally{await mf.dispose()}
