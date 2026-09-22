@@ -33,12 +33,12 @@ jobs:
         run: bun run validate:llms
       - name: Commit generated llms artifact
         run: |
-          if git diff --quiet -- public/llms.txt public/data/curriculum.md public/data/catalog.json public/data/statement-of-faith.md public/data/theology-policy.json public/data/theology-sources.json; then
-            echo "Generated content already current."
+          if git diff --quiet -- public/llms.txt; then
+            echo "Generated llms.txt already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/llms.txt public/data/curriculum.md public/data/catalog.json public/data/statement-of-faith.md public/data/theology-policy.json public/data/theology-sources.json
+          git add public/llms.txt
           git commit -m "Regenerate complete llms learner corpus"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
