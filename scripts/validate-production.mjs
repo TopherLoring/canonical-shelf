@@ -28,6 +28,7 @@ const verifyBsb=String(scripts['verify:bsb']||'');
 const generateRoutes=String(scripts['generate:routes']||'');
 const generateWrangler=String(scripts['generate:wrangler']||'');
 const validateCloudflare=String(scripts['validate:cloudflare']||'');
+const validateNative=String(scripts['validate:native-rendering']||'');
 const verifyDeployment=String(scripts['verify:deployment']||'');
 const buildRuntime=String(scripts['build:runtime']||'');
 const buildApp=String(scripts['build:app']||'');
@@ -46,21 +47,22 @@ if(!verifyBsb.includes('bsb-integrity.mjs'))throw new Error('BSB integrity check
 if(!generateRoutes.includes('generate-route-documents.mjs'))throw new Error('route-owned document generation must use the canonical route document generator');
 if(!generateWrangler.includes('write-wrangler.mjs'))throw new Error('Cloudflare config generation must use the canonical generator');
 if(!validateCloudflare.includes('validate-cloudflare-config.mjs'))throw new Error('Cloudflare config validation gate must be wired');
+if(!validateNative.includes('validate-native-rendering.mjs'))throw new Error('native route-document validation gate must be wired');
 if(!verifyDeployment.includes('verify-deployment.mjs'))throw new Error('post-deploy smoke gate must be wired');
 if(!buildRuntime.includes('generate:routes')||!buildRuntime.includes('build:client')||!buildRuntime.includes('generate:auth-migration')||!buildRuntime.includes('bootstrap.js')||!buildRuntime.includes('build:worker'))throw new Error('runtime build must generate route documents, compile generated client, auth migration, browser bootstrap, and worker');
 if(!buildApp.includes('prepare:content')||!buildApp.includes('build:runtime'))throw new Error('application build must prepare content then compile the runtime');
 if(!build.includes('build:app'))throw new Error('default build must execute the application build');
 if(build.includes('generate:wrangler')||build.includes('bun run validate'))throw new Error('default build must not require deployment config or release validation');
-if(!buildVerify.includes('repair:prelaunch')||!buildVerify.includes('build:runtime')||!buildVerify.includes('verify:bsb')||!buildVerify.includes('validate:curriculum-spiral')||!buildVerify.includes('validate:llms'))throw new Error('prelaunch verification build must repair deterministic content, compile runtime, verify BSB integrity, validate curriculum spiral, and validate llms.txt');
+for(const required of ['repair:prelaunch','build:runtime','verify:bsb','validate:curriculum-spiral','validate:native-rendering','validate:llms'])if(!buildVerify.includes(required))throw new Error(`prelaunch verification build must include ${required}`);
 if(!verify.includes('verify:prelaunch'))throw new Error('default verify must use the prelaunch code gate');
 for(const required of ['build:verify','test:sync','test:d1','test:feedback','test:theologian'])if(!verifyPrelaunch.includes(required))throw new Error(`prelaunch verify must include ${required}`);
 if(verifyPrelaunch.includes('validate:experience')||verifyPrelaunch.includes('test:e2e')||verifyPrelaunch.includes('test:assessment')||verifyPrelaunch.includes('axe'))throw new Error('prelaunch verify must not be blocked by browser/content-depth gates reserved for full release verification');
 if(!verifyFull.includes('test:e2e')||!verifyFull.includes('test:assessment')||!verifyFull.includes('test:theologian'))throw new Error('full verification must retain exhaustive assessment, cloud-Theologian, and browser checks');
-if(!validateFull.includes('validate:curriculum-spiral'))throw new Error('full validation must include questions-first curriculum gates');
+for(const required of ['validate:curriculum-spiral','validate:experience','validate:native-rendering','validate:llms'])if(!validateFull.includes(required))throw new Error(`full validation must include ${required}`);
 for(const required of ['verify:prelaunch','generate:wrangler','validate:cloudflare','wrangler d1 migrations apply canonical-shelf --remote','wrangler deploy','verify:deployment'])if(!deploy.includes(required))throw new Error(`production deploy must include ${required}`);
 
 for(const path of [
-  'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
+  'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/validate-native-rendering.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
   'content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-v3.md',
   'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
   'public/home.html','public/course.html','public/bible.html','public/topics.html','public/practice.html','public/search.html',
@@ -79,13 +81,23 @@ for(const [source,target] of [
 
 await verifyPublicCorpus();
 
+const routeGenerator=await readFile('scripts/generate-route-documents.mjs','utf8');
+for(const route of ['home','course','bible','topics','practice','search']){
+  if(!routeGenerator.includes(`${route}:`))throw new Error(`route document generator missing ${route}`);
+  const document=await readFile(`public/${route}.html`,'utf8');
+  for(const marker of [`data-route-document="${route}"`,`data-route-content="${route}"`])if(!document.includes(marker))throw new Error(`${route} route artifact missing ${marker}`);
+}
+
 const sw=await readFile('public/sw.js','utf8');
 for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css','/home.html','/course.html','/bible.html','/topics.html','/practice.html','/search.html'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
 
 const wranglerWriter=await readFile('scripts/write-wrangler.mjs','utf8');
-for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","ai:{binding:'AI'}","CANONICAL_ORIGIN","RELEASE_SHA"])if(!wranglerWriter.includes(invariant))throw new Error(`canonical Wrangler generator missing ${invariant}`);
+for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","html_handling:'auto-trailing-slash'","not_found_handling:'single-page-application'","ai:{binding:'AI'}","CANONICAL_ORIGIN","RELEASE_SHA"])if(!wranglerWriter.includes(invariant))throw new Error(`canonical Wrangler generator missing ${invariant}`);
+
+const deploymentVerifier=await readFile('scripts/verify-deployment.mjs','utf8');
+for(const invariant of ['data-route-document','data-route-content',"'/api/theologian'","mode!=='cloud'",'Berean Standard Bible'])if(!deploymentVerifier.includes(invariant))throw new Error(`post-deploy proof missing ${invariant}`);
 
 const deployWorkflow=await readFile('.github/workflows/deploy-production.yml','utf8');
-for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
+for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment','live Theologian'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
 
-console.log('production route-document build/deploy separation + exact Worker target + post-deploy smoke + canonical theology/curriculum/AI/content integrity gates passed');
+console.log('production route-document build/deploy separation + exact Worker target + route ownership/live Theologian smoke + canonical theology/curriculum/AI/content integrity gates passed');
