@@ -1,3 +1,4 @@
+# Temporary branch-only regeneration helper. Remove before merge.
 name: temporary-generate-llms-corpus
 
 on:
