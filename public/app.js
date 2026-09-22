@@ -31,11 +31,21 @@ await load();policy||=FALLBACK;
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const roots=new Set(['home','course','bible','topics','practice','search']);
-const route=()=>{const r=location.pathname.replace(/^\/+|\/+$/g,'').split('/')[0]||'home';return roots.has(r)?r:'home'};
+const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/')[0].replace(/\.html$/,'')||'home';
+const appRouteFromPath=pathname=>{const r=pathRoot(pathname);return roots.has(r)?r:null};
+const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
+const route=()=>routeFromPath(location.pathname);
 const params=()=>new URLSearchParams(location.search);
 const nativeHref=h=>h?.startsWith('#/')?h.slice(1):h;
 function canonicalizeLinks(root=document){for(const a of root.querySelectorAll('a[href^="#/"]'))a.href=nativeHref(a.getAttribute('href'))}
-function navigate(path,{replace=false}={}){history[replace?'replaceState':'pushState']({},'',nativeHref(path)||'/home');render()}
+function navigate(path,{replace=false}={}){
+  const target=new URL(nativeHref(path)||'/home',location.href),targetPath=`${target.pathname}${target.search}${target.hash}`;
+  if(routeFromPath(target.pathname)!==route()){
+    if(replace)location.replace(targetPath);else location.assign(targetPath);
+    return;
+  }
+  history[replace?'replaceState':'pushState']({},'',targetPath);render();
+}
 function setCurrent(r){nav.forEach(a=>a.toggleAttribute('aria-current',a.dataset.route===r))}
 function shell(title,eye,body){return `<header class="section"><p class="eyebrow">${esc(eye)}</p><h1>${esc(title)}</h1></header>${body}`}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
@@ -182,7 +192,13 @@ document.addEventListener('click',async e=>{
   if(e.target.closest('[data-toggle-apparatus]')){e.preventDefault();toggleApparatus();return}
   if(e.target.closest('[data-close-apparatus]')){e.preventDefault();toggleApparatus(false);return}
   const link=e.target.closest('a[href]');
-  if(link&&!e.defaultPrevented&&e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'&&!link.hasAttribute('download')){const u=new URL(link.href,location.href);if(u.origin===location.origin&&roots.has(u.pathname.replace(/^\/+|\/+$/g,'').split('/')[0]||'home')){rememberStudyReturn(link,u);e.preventDefault();navigate(u.pathname+u.search+u.hash);return}}
+  if(link&&!e.defaultPrevented&&e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'&&!link.hasAttribute('download')){
+    const u=new URL(link.href,location.href),targetRoute=u.origin===location.origin?appRouteFromPath(u.pathname):null;
+    if(targetRoute){
+      rememberStudyReturn(link,u);
+      if(targetRoute===route()){e.preventDefault();navigate(u.pathname+u.search+u.hash);return}
+    }
+  }
   const ask=e.target.closest('[data-ask]');if(ask)void theologianAnswer(ask.dataset.ask);
   if(e.target.id==='export'){const blob=new Blob([await exportState()],{type:'application/json'}),x=document.createElement('a');x.href=URL.createObjectURL(blob);x.download='canonical-shelf-progress.json';x.click();URL.revokeObjectURL(x.href)}
   if(e.target.id==='import'){const input=document.createElement('input');input.type='file';input.accept='application/json';input.onchange=async()=>{try{await importState(await input.files[0].text());state=await getState();render()}catch(err){alert(err.message)}};input.click()}
