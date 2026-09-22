@@ -1,21 +1,22 @@
 {
   "id": "pr24-content-reachability-faith-chat-2026-09-22",
-  "objective": "Preserve complete learner content reachability, separate compact public faith from supplemental belief context, restore original Theologian guardrail parity, retain reflection text, and deliver a traditional state-aware locally persistent chatbot.",
+  "objective": "Preserve learner content reachability, separate compact public faith from supplemental belief context, restore original Theologian guardrail parity, eliminate completion-bearing fallback reflection challenges, and deliver a traditional state-aware locally persistent chatbot.",
   "nodes": [
-    {"id":"R0","type":"audit","label":"Audit current learner content, reflection storage, and faith/Theologian wiring","status":"complete"},
+    {"id":"R0","type":"audit","label":"Audit current learner content, assessment shapes, and faith/Theologian wiring","status":"complete"},
     {"id":"R1","type":"content","label":"Create compact canonical Statement of Faith","dependsOn":["R0"],"status":"complete"},
     {"id":"R2","type":"content","label":"Publish long-form belief context separately","dependsOn":["R0"],"status":"complete"},
     {"id":"R3","type":"governance","label":"Define learner-content reachability manifest","dependsOn":["R0"],"status":"complete"},
     {"id":"R4","type":"runtime","label":"Load compact ceiling plus supplemental belief context in Worker","dependsOn":["R1","R2"],"status":"complete"},
     {"id":"R5","type":"audit","label":"Compare original Guide/Theologian safeguards against current PR #24 runtime","dependsOn":["R0"],"status":"complete"},
-    {"id":"R6","type":"runtime","label":"Implement visible locally persistent multi-turn chatbot with New chat/Clear chat","dependsOn":["R4","R5"]},
-    {"id":"R7","type":"runtime","label":"Add allowlisted learner-state awareness without private writing/account data","dependsOn":["R6"]},
-    {"id":"R8","type":"state","label":"Persist unscored reflection text separately from completion/scoring","dependsOn":["R0"]},
+    {"id":"R6","type":"runtime","label":"Implement visible locally persistent multi-turn chatbot with New chat/Clear chat","dependsOn":["R4","R5"],"status":"implemented"},
+    {"id":"R7","type":"runtime","label":"Add allowlisted learner-state awareness without private writing/account data","dependsOn":["R6"],"status":"implemented"},
+    {"id":"R8","type":"assessment","label":"Require objective scoreable interaction shapes for every completion-bearing challenge; keep reflection optional/private only","dependsOn":["R0"]},
     {"id":"R9","type":"runtime","label":"Restore Theologian naming, typed evidence/status use, evidence→synthesis→validation, mastery and interpretation safeguards","dependsOn":["R5"]},
-    {"id":"R10","type":"validation","label":"Validate reachability, reflection persistence, transcript privacy, learner-context allowlist, typed guardrails, and chat behavior","dependsOn":["R3","R6","R7","R8","R9"]},
-    {"id":"R11","type":"docs","label":"Align README, AI instructions, and Theologian authority/privacy documentation","dependsOn":["R6","R7","R8","R9"]},
-    {"id":"R12","type":"verification","label":"Run current-head prelaunch/full CI and live cloud smoke","dependsOn":["R10","R11"],"humanGate":true}
+    {"id":"R10","type":"experience","label":"Use quiet monochrome Feedback affordance in learning views while preserving global availability","dependsOn":["R0"],"status":"implemented"},
+    {"id":"R11","type":"validation","label":"Validate reachability, assessment shapes, transcript privacy, learner-context allowlist, typed guardrails, chat behavior, and feedback reachability","dependsOn":["R3","R6","R7","R8","R9","R10"]},
+    {"id":"R12","type":"docs","label":"Align README, AI instructions, assessment contract, and Theologian authority/privacy documentation","dependsOn":["R6","R7","R8","R9","R10"]},
+    {"id":"R13","type":"verification","label":"Run current-head prelaunch/full CI and live cloud smoke","dependsOn":["R11","R12"],"humanGate":true}
   ],
-  "rollback": "Revert the PR #24 delta. Reflection-text state is additive and older states remain valid when the field is absent.",
-  "humanReview": ["theological/editorial nuance","conversational quality","novice usability","physical-device visual review","manual accessibility"]
+  "rollback": "Revert the PR #24 delta. No destructive learner-state migration is introduced.",
+  "humanReview": ["theological/editorial nuance","conversational quality","assessment validity","novice usability","physical-device visual review","manual accessibility"]
 }
