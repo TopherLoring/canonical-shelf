@@ -44,14 +44,20 @@ function masteryProtection(question,context){
   return null;
 }
 
+function agencyNote(policy){
+  return policy?.learnerAgency?.rule||'The learner remains responsible for their own considered conclusions; the Theologian informs and compares without compelling doctrinal agreement.';
+}
+
 function safePosition(intent,question,policy){
-  if(intent==='ruth-naomi')return `${policy.queerReception.ruthNaomi.allowed} ${policy.queerReception.ruthNaomi.boundary}`;
-  if(intent==='lgbtq')return policy.lgbtq.claims.join(' ');
-  if(intent==='lexical')return 'Original-language evidence can clarify semantic possibilities and historical usage, but lexical claims alone do not establish contemporary doctrine. Where meanings or scopes are disputed, the Theologian labels that dispute rather than resolving it by assertion.';
-  if(intent==='tradition')return 'The Theologian may compare documented Christian traditions descriptively. A denominational position does not become Canonical Shelf doctrine unless the compact Statement of Faith or explicit Canonical Shelf policy establishes it.';
-  if(intent==='scripture-reference')return 'Begin with the biblical text itself, then distinguish historical context, lexical evidence, interpretation, theology, reception history, Canonical Shelf position, and contemporary application.';
-  if(intent==='doctrine')return policy.authority.rule;
-  return 'The Theologian helps separate what the text says, what historical or linguistic evidence supports, how interpreters reason, and what Canonical Shelf itself affirms.';
+  let core='';
+  if(intent==='ruth-naomi')core=`${policy.queerReception.ruthNaomi.allowed} ${policy.queerReception.ruthNaomi.boundary}`;
+  else if(intent==='lgbtq')core=policy.lgbtq.claims.join(' ');
+  else if(intent==='lexical')core='Original-language evidence can clarify semantic possibilities and historical usage, but lexical claims alone do not establish contemporary doctrine. Where meanings or scopes are disputed, the Theologian labels that dispute rather than resolving it by assertion.';
+  else if(intent==='tradition')core='The Theologian may compare documented Christian traditions descriptively. A denominational position does not become Canonical Shelf doctrine unless the compact Statement of Faith or explicit Canonical Shelf policy establishes it.';
+  else if(intent==='scripture-reference')core='Begin with the biblical text itself, then distinguish historical context, lexical evidence, interpretation, theology, reception history, Canonical Shelf position, and contemporary application.';
+  else if(intent==='doctrine')core=`${policy.authority.rule} ${policy.interpretiveFoundation?.principle||''}`.trim();
+  else core='The Theologian helps separate what the text says, what historical or linguistic evidence supports, how interpreters reason, and what Canonical Shelf itself affirms.';
+  return `${core} ${agencyNote(policy)}`.trim();
 }
 
 export function buildTheologianResponse({question,data,policy,statement='',sources=[],corpus='',context={}}){
@@ -65,5 +71,5 @@ export function buildTheologianResponse({question,data,policy,statement='',sourc
   if(/malakoi/i.test(question))warnings.push('malakoi has a broader semantic and cultural history than the modern category “homosexual.”');
   if(intent==='ruth-naomi'&&!position.includes(policy.queerReception.ruthNaomi.boundary))position+=` ${policy.queerReception.ruthNaomi.boundary}`;
   for(const banned of policy.prohibitedOverstatements||[])if(position.toLowerCase().includes(String(banned).toLowerCase()))throw new Error('Theologian post-validation rejected a prohibited overstatement.');
-  return {intent,position,canonicalPosition:intent==='lgbtq'||intent==='doctrine'||intent==='tradition'||intent==='ruth-naomi'?position:null,method:policy.interpretiveRules||[],evidence,warnings,masteryProtected:!!protectedMessage};
+  return {intent,position,canonicalPosition:intent==='lgbtq'||intent==='doctrine'||intent==='tradition'||intent==='ruth-naomi'?position:null,method:policy.interpretiveRules||[],evidence,warnings,masteryProtected:!!protectedMessage,learnerAgency:agencyNote(policy)};
 }
