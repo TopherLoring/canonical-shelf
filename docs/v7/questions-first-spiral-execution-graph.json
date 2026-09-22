@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.1",
+  "project": "Canonical Shelf questions-first spiral curriculum",
+  "integrationBranch": "design/library-system-baseline-2026-09-21",
+  "objective": "Introduce doctrine and difficult questions early, build the foundations needed to address them responsibly, and revisit them across the six-course curriculum with increasing depth while preserving stable learner state.",
+  "invariants": {
+    "courses": 6,
+    "currentUnits": 44,
+    "guidedLessons": 117,
+    "masteryAndCapstones": 119,
+    "scoredActivities": 236,
+    "questionThreads": 12,
+    "stableExistingActivityIds": true,
+    "localFirstLearnerState": true,
+    "topicsScored": false,
+    "practiceIsReinforcement": true,
+    "bibleOwnsShelfReader": true,
+    "statementOfFaithIsDoctrinalCeiling": true,
+    "theologicalAssentIsNotScored": true
+  },
+  "nodes": [
+    {"id":"QS1.CONTRACT","type":"governance","status":"complete","dependsOn":[],"outputs":["plan","acceptance criteria","invariants"]},
+    {"id":"QS2.MODEL","type":"schema","status":"complete","dependsOn":["QS1.CONTRACT"],"outputs":["active-study metadata","question-thread schema"],"evidence":"content/curriculum/structure.mjs"},
+    {"id":"QS3.COURSE1","type":"content","status":"complete","dependsOn":["QS2.MODEL"],"outputs":["c1-questions-first","active checks","orientation framing"],"evidence":"content/curriculum/course1-lessons.mjs + public/orientation.js"},
+    {"id":"QS4.SPIRAL","type":"content","status":"complete","dependsOn":["QS2.MODEL"],"outputs":["12 recurring question threads","course/unit touchpoints"],"evidence":"content/curriculum/structure.mjs"},
+    {"id":"QS5.DOCS","type":"implementation","status":"complete","dependsOn":["QS2.MODEL","QS4.SPIRAL"],"outputs":["runtime metadata","generated curriculum reference","llms discovery context"],"evidence":"scripts/apply-curriculum-metadata.mjs + scripts/generate-curriculum-reference.mjs"},
+    {"id":"QS6.VALIDATE","type":"validation","status":"pending_final_integrated_ci","dependsOn":["QS3.COURSE1","QS5.DOCS"],"outputs":["curriculum contract validation","integrated regression suite","Cloudflare dry run"],"evidence":"scripts/validate-curriculum-spiral.mjs + PR #21 production-ci"},
+    {"id":"QS7.HUMAN","type":"human_gate","status":"waived_for_prelaunch_dev","requiredBeforePublicLaunch":true,"dependsOn":["QS6.VALIDATE"],"outputs":["adult-beginner clarity review","editorial/theological review","novice usability review"],"note":"Not passed. Prelaunch development may proceed under current governance; public-launch readiness remains separate."}
+  ],
+  "rollback": "Revert the questions-first integration commits; inherited stable activity IDs and learner-state schema remain unchanged."
+}
