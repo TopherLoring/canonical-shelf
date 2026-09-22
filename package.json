@@ -18,7 +18,7 @@
     "validate:cloudflare":"bun scripts/validate-cloudflare-config.mjs",
     "validate:llms":"bun scripts/validate-llms.mjs",
     "validate:experience":"bun scripts/validate-experience-parity.mjs",
-    "validate:native-rendering":"bun scripts/validate-native-rendering.mjs",
+    "validate:native-rendering":"bun run generate:routes && bun scripts/validate-native-rendering.mjs",
     "validate:full":"bun scripts/validate.mjs && bun scripts/validate-bible.mjs && bun scripts/validate-production.mjs && bun scripts/validate-v7-polish.mjs && bun run validate:curriculum-spiral && bun run validate:experience && bun run validate:native-rendering && bun run validate:llms",
     "validate":"bun run verify:bsb",
     "test":"bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian",
