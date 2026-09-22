@@ -1,0 +1,38 @@
+{
+  "graphVersion": 1,
+  "objective": "Generate llms.txt from the complete learner-facing Canonical Shelf corpus while excluding the full BSB corpus.",
+  "status": "active",
+  "nodes": [
+    {"id":"LLMS.C1","type":"plan","dependsOn":[],"status":"complete","outputs":["docs/v7/PLAN_DELTA_AUTOMATED_LLMS_TXT.md"]},
+    {"id":"LLMS.C2","type":"governance","dependsOn":["LLMS.C1"],"status":"complete","outputs":["docs/v7/EXECUTION_GRAPH_LLMS_COMPLETE_CORPUS.json"]},
+    {"id":"LLMS.C3","type":"implementation","dependsOn":["LLMS.C1"],"status":"pending","outputs":["scripts/llms-contract.mjs"]},
+    {"id":"LLMS.C4","type":"validation","dependsOn":["LLMS.C3"],"status":"pending","outputs":["scripts/validate-llms.mjs"]},
+    {"id":"LLMS.C5","type":"generated-artifact","dependsOn":["LLMS.C3"],"status":"pending","outputs":["public/llms.txt"]},
+    {"id":"LLMS.C6","type":"verification","dependsOn":["LLMS.C4","LLMS.C5"],"status":"pending","outputs":["validation evidence"]}
+  ],
+  "acceptanceCriteria": [
+    "Complete current runtime catalog is embedded.",
+    "Orientation, Bible-library metadata, Practice data, curated passage data, theme metadata, About disclosures, curriculum reference, Statement of Faith, theology policy, and theology sources are embedded.",
+    "Exactly 66 Bible book profiles are represented.",
+    "Curated BSB excerpts remain available where they are part of learner-facing content.",
+    "The full public/data/corpus.txt BSB corpus is linked but never embedded.",
+    "No private learner/account/feedback data or private API surface is emitted.",
+    "Generated output is deterministic and validation rejects stale output."
+  ],
+  "invariants": [
+    "Statement of Faith remains the doctrinal ceiling.",
+    "llms.txt remains derived output.",
+    "Stable learning IDs are preserved.",
+    "Bible owns shelf/browse/reader; Topics are reference; Practice is reinforcement."
+  ],
+  "risks": [
+    {"id":"R1","risk":"Generated file becomes large.","mitigation":"Accept size as required for completeness; exclude only the multi-megabyte full Bible corpus."},
+    {"id":"R2","risk":"Structured public modules drift from llms output.","mitigation":"Import authoritative ESM exports during generation and validate counts/content."},
+    {"id":"R3","risk":"Full BSB is accidentally embedded.","mitigation":"Keep corpus.txt outside embedded registry and enforce an explicit validation gate."},
+    {"id":"R4","risk":"Private state leaks into output.","mitigation":"Only read deterministic public content sources; retain API/privacy validation."}
+  ],
+  "rollback": "Revert the llms generator, validator, graph, plan, and regenerated public/llms.txt. No learner state or authored content migration is required.",
+  "humanReviewGates": [
+    {"id":"HG1","scope":"theology/editorial source changes","required":false,"reason":"This change republishes existing approved learner-facing content without changing claims."}
+  ]
+}
