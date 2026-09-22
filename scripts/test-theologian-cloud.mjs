@@ -25,7 +25,15 @@ const assetBinding={fetch:async request=>{
 }};
 
 let captured=null;
-const goodEnv={ASSETS:assetBinding,AI:{run:async(model,input)=>{captured={model,input};return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently.'}}};
+const goodEnv={
+  ASSETS:assetBinding,
+  AI:{
+    run:async(model,input)=>{
+      captured={model,input};
+      return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently.'};
+    }
+  }
+};
 const request=new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'How should Canonical Shelf understand same-sex relationships in Romans 1?',context:{path:'/bible?book=45&chapter=1'}})});
 const response=await postTheologian(request,goodEnv);
 assert.equal(response.status,200);
