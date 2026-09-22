@@ -38,10 +38,21 @@ const publisher=await readFile('scripts/publish-theology.mjs','utf8');
 for(const mapping of ['statement-of-faith-compact.md','public/data/statement-of-faith.md','statement-of-faith-v3.md','public/data/theologian-belief-context.md'])if(!publisher.includes(mapping))throw new Error(`theology publisher missing ${mapping}`);
 
 const worker=await readFile('worker/theologian-ai.ts','utf8');
-for(const invariant of ['/data/statement-of-faith.md','/data/theologian-belief-context.md','doctrinal ceiling','supplemental only'])if(!worker.toLowerCase().includes(invariant.toLowerCase()))throw new Error(`Theologian authority wiring missing ${invariant}`);
+for(const invariant of ['/data/statement-of-faith.md','/data/theologian-belief-context.md','doctrinal ceiling','supplemental only','Prior dialogue'])if(!worker.toLowerCase().includes(invariant.toLowerCase()))throw new Error(`Theologian authority wiring missing ${invariant}`);
 
 const cloudClient=await readFile('public/theologian-cloud.js','utf8');
-for(const invariant of ['const conversation=[]','Current question:','conversationMode'])if(!cloudClient.includes(invariant))throw new Error(`session-only Theologian conversation wiring missing ${invariant}`);
-for(const forbidden of ['localStorage','sessionStorage','indexedDB'])if(cloudClient.includes(forbidden))throw new Error(`Theologian conversation must not persist through ${forbidden}`);
+for(const invariant of ['Current question:','conversationMode','LEARNER CONTEXT','masteryActive'])if(!cloudClient.includes(invariant))throw new Error(`bounded Theologian request context missing ${invariant}`);
+for(const forbidden of ['localStorage','sessionStorage','indexedDB','journal','notes','profile','account'])if(cloudClient.toLowerCase().includes(forbidden.toLowerCase()))throw new Error(`cloud transport must not directly read or serialize private learner field ${forbidden}`);
 
-console.log(`learner content reachability + compact faith ceiling + supplemental belief context + session-only Theologian conversation gates passed (${manifest.entries.length} content families)`);
+const chat=await readFile('public/theologian-chat.js','utf8');
+for(const invariant of ['canonical-shelf-theologian-chat-v1','localStorage','New chat','getState','dueReviews','recentActivity','masteryActive','deterministicAnswer'])if(!chat.includes(invariant))throw new Error(`traditional Theologian chat missing ${invariant}`);
+for(const forbidden of ['state.journal','state.notes','state.profile','state.account','personal-journal'])if(chat.includes(forbidden))throw new Error(`Theologian learner context must not include private field ${forbidden}`);
+
+const bootstrap=await readFile('public/bootstrap.js','utf8');
+if(!bootstrap.includes("import('./theologian-chat.js')"))throw new Error('traditional Theologian chat must initialize with the application shell');
+await stat('public/theologian-chat.css');
+
+const utilities=await readFile('public/utility-panels.css','utf8');
+if(!utilities.includes('body.study-focus-active>.feedback-open')||!utilities.includes('background:transparent'))throw new Error('learning-view Feedback must remain a quiet text-style control rather than a floating primary button');
+
+console.log(`learner content reachability + compact faith ceiling + supplemental belief context + locally persistent private-safe Theologian chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
