@@ -38,7 +38,7 @@ for(const [route,document] of routeNames.map((route,index)=>[route,routeDocument
   requireText(sw,`/${route}.html`,`${route} route document must be available offline`);
 }
 
-for(const marker of ['const routeFromPath=','location.assign(targetPath)','targetRoute===route()'])requireText(app,marker,`top-level native document navigation contract missing: ${marker}`);
+for(const marker of ['const routeFromPath=','const documentRoute=','const sameRouteNavigation=','location.assign(targetPath)','sameRouteNavigation(targetRoute)'])requireText(app,marker,`top-level native document navigation contract missing: ${marker}`);
 forbid(app,"e.preventDefault();navigate(u.pathname+u.search+u.hash);return}}","cross-destination links must not be unconditionally converted to SPA navigation");
 
 for(const [source,label] of [[home,'Home'],[course,'Course'],[learning,'Study Focus'],[bible,'Bible'],[topics,'Topics'],[search,'Search'],[app,'App'],[cloud,'Cloud Theologian'],[studyControls,'Study controls']])forbid(source,'MutationObserver',`${label} must not use MutationObserver rendering/repair`);
