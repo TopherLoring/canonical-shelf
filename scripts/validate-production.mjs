@@ -38,7 +38,7 @@ const verifyFull=String(scripts['verify:full']||'');
 const validateFull=String(scripts['validate:full']||'');
 const deploy=String(scripts.deploy||'');
 
-if(!migrate.includes('migrate-vendored.mjs')||!migrate.includes('postprocess-v6.mjs')||!migrate.includes('apply-curriculum-metadata.mjs'))throw new Error('production migrate must rebuild vendor content, v7 curriculum, and questions-first metadata deterministically');
+for(const required of ['migrate-vendored.mjs','postprocess-v6.mjs','publish-theology.mjs','apply-curriculum-metadata.mjs'])if(!migrate.includes(required))throw new Error(`production migrate must include ${required}`);
 if(!prepareContent.includes('bun run migrate')||!prepareContent.includes('bun run generate:curriculum-reference')||!prepareContent.includes('bun run generate:llms'))throw new Error('content preparation must migrate canonical data, generate the current curriculum reference, and regenerate llms.txt');
 if(!repairPrelaunch.includes('repair-prelaunch.mjs'))throw new Error('prelaunch repair script must be wired');
 if(!verifyBsb.includes('bsb-integrity.mjs'))throw new Error('BSB integrity check must be wired');
@@ -58,10 +58,21 @@ if(!validateFull.includes('validate:curriculum-spiral'))throw new Error('full va
 for(const required of ['verify:prelaunch','generate:wrangler','validate:cloudflare','wrangler d1 migrations apply canonical-shelf --remote','wrangler deploy','verify:deployment'])if(!deploy.includes(required))throw new Error(`production deploy must include ${required}`);
 
 for(const path of [
-  'scripts/generate-curriculum-reference.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
+  'scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
+  'content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-v3.md',
   'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
   'public/feedback.js','public/personal-study.js','public/utility-panels.css','worker/feedback-store.ts','worker/theologian-ai.ts','worker/migrations/0002_feedback.sql'
 ])await stat(path);
+
+for(const [source,target] of [
+  ['content/statement/statement-of-faith-v3.md','public/data/statement-of-faith.md'],
+  ['content/theology/policy.json','public/data/theology-policy.json'],
+  ['content/theology/sources.json','public/data/theology-sources.json']
+]){
+  const canonical=(await readFile(source,'utf8')).trim();
+  const published=(await readFile(target,'utf8')).trim();
+  if(canonical!==published)throw new Error(`${target} drifted from canonical source ${source}`);
+}
 
 await verifyPublicCorpus();
 
@@ -74,4 +85,4 @@ for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","ai:{binding:
 const deployWorkflow=await readFile('.github/workflows/deploy-production.yml','utf8');
 for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
 
-console.log('production build/deploy separation + exact Worker target + post-deploy smoke + curriculum/AI/content integrity gates passed');
+console.log('production build/deploy separation + exact Worker target + post-deploy smoke + canonical theology/curriculum/AI/content integrity gates passed');
