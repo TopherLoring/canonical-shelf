@@ -11,8 +11,16 @@ body:not(.study-focus-active)>.feedback-open{display:block}
 .utility-form textarea{resize:vertical;min-height:8rem}.utility-form small,.utility-panel__meta{color:var(--color-text-secondary);font-size:.84rem}.utility-form__actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.utility-status{min-height:1.4em;color:var(--color-text-secondary)}
 .personal-study-tabs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-border-default);border:1px solid var(--color-border-default);margin-bottom:1rem}.personal-study-tabs button{border:0;background:var(--color-surface-primary);padding:.65rem;cursor:pointer}.personal-study-tabs button[aria-selected="true"]{background:var(--color-surface-raised);font-weight:800;box-shadow:inset 0 -3px 0 var(--color-accent-primary)}
 .personal-study-pane[hidden]{display:none}.privacy-note{border-left:3px solid var(--color-accent-primary);padding:.8rem 1rem;background:var(--color-surface-subtle);font-size:.9rem}
+
+/* Theologian is a native shared utility, not an upgraded Guide surface. */
+.guide{background:#31353c;color:#fff;border-left-color:#202329;box-shadow:-16px 0 40px #0003}
+.guide .guide-head{border-bottom-color:#ffffff20}.guide .guide-head h2,.guide .guide-head button{color:#fff}
+.guide #guide-form{display:grid;gap:8px;padding:14px 0}.guide #guide-form label{font:600 .9rem var(--font-reading);color:#fff}.guide #guide-form textarea{width:100%;background:#fffdf7;color:#22211f;border:1px solid #bec2c5;padding:10px;resize:vertical}.guide #guide-form .button{justify-self:start;background:#fffdf7;color:#24272d;border-color:#fffdf7}
+.guide .evidence{border-top-color:#ffffff20}.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}.guide .meta{color:#c8ccd0}.guide .badge{border-color:#737a81;color:#e7e8e9}.guide .result{border-top-color:#ffffff20}
+.cloud-theologian-status{margin:.1rem 0 .7rem;padding:.7rem .8rem;border-left:3px solid #c7a253;background:#24272d;color:#f4f4f1;font-size:.8rem}.cloud-theologian-answer{font-family:var(--font-reading);font-size:1rem;line-height:1.62}.guide-open{background:#24272d;color:#fff;border-color:#24272d}
+
 @media(max-width:520px){.utility-panel{width:100%}.feedback-open{left:.65rem;bottom:.65rem}.personal-study-open{right:.65rem;bottom:4.2rem}.utility-fab{padding:.55rem .72rem;font-size:.9rem}}
-@media(forced-colors:active){.utility-fab{background:ButtonFace;color:ButtonText}.personal-study-tabs button[aria-selected="true"]{box-shadow:none;border-bottom:3px solid Highlight}}
+@media(forced-colors:active){.utility-fab{background:ButtonFace;color:ButtonText}.personal-study-tabs button[aria-selected="true"]{box-shadow:none;border-bottom:3px solid Highlight}.guide{border-left:1px solid CanvasText}.guide #guide-form textarea{border-color:CanvasText}}
 
 /* Study Focus owns reserved Feedback and Journal controls; fixed controls never cover a lesson. */
 body.study-focus-active>.feedback-open,body.study-focus-active>.personal-study-open{display:none}
