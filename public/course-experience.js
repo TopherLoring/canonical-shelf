@@ -14,20 +14,10 @@ function unitStats(data,state,unit){
   const status=progress.done===progress.total&&progress.total?'complete':progress.done?'in-progress':'not-started';
   return {...progress,reviewDue,masteryTotal:mastery.length,masteryDone,next,status};
 }
-
-function statusLabel(stats){
-  if(stats.reviewDue)return `${stats.reviewDue} review${stats.reviewDue===1?'':'s'} due`;
-  if(stats.status==='complete')return 'Complete';
-  if(stats.status==='in-progress')return 'In progress';
-  return 'Not started';
-}
-
+function statusLabel(stats){if(stats.reviewDue)return `${stats.reviewDue} review${stats.reviewDue===1?'':'s'} due`;if(stats.status==='complete')return'Complete';if(stats.status==='in-progress')return'In progress';return'Not started'}
 function courseUnits(data,course){return (data.byCourse?.[course.id]||[]).map(id=>(data.units||[]).find(unit=>unit.id===id)).filter(Boolean)}
 function courseIds(data,course){return courseUnits(data,course).flatMap(unit=>data.byUnit?.[unit.id]||[])}
-function courseProgress(data,state,course){
-  const units=courseUnits(data,course),ids=courseIds(data,course),completed=new Set(state?.completed||[]),done=ids.filter(id=>completed.has(id)).length;
-  return {units,ids,done,total:ids.length,pct:Math.round(done/Math.max(ids.length,1)*100),complete:ids.length>0&&done===ids.length,started:done>0};
-}
+function courseProgress(data,state,course){const units=courseUnits(data,course),ids=courseIds(data,course),completed=new Set(state?.completed||[]),done=ids.filter(id=>completed.has(id)).length;return{units,ids,done,total:ids.length,pct:Math.round(done/Math.max(ids.length,1)*100),complete:ids.length>0&&done===ids.length,started:done>0}}
 
 function chooserPreview(data,course,esc){
   const units=courseUnits(data,course);
@@ -36,20 +26,17 @@ function chooserPreview(data,course,esc){
 
 function chooserView({data,esc}){
   const courses=data.courses||[],first=courses[0];
-  return `<header class="section compact-section course-catalog-heading"><p class="eyebrow">Course Catalog</p><h1>Choose where to begin.</h1><p class="lede">Browse the six-course collection, inspect what each course establishes, and open the volume you want to study.</p></header><section class="course-catalog-chooser" aria-label="Canonical learning course catalog"><div class="course-selector"><header class="course-selector__head"><h2>Canonical learning</h2><p>6 courses · select one to inspect</p></header><div data-course-choices>${courses.map((course,index)=>`<button class="course-choice" type="button" data-course-choice="${esc(course.id)}" aria-selected="${index===0?'true':'false'}"><span class="course-choice__roman">${esc(course.sequence||index+1)}</span><span><strong>${esc(course.shortTitle||course.title)}</strong><small>${esc(course.scope||'')}</small></span><span class="course-choice__arrow" aria-hidden="true">›</span></button>`).join('')}</div></div><article class="course-preview" data-course-preview aria-live="polite">${first?chooserPreview(data,first,esc):''}</article></section>`;
+  const templates=courses.map(course=>`<template data-course-preview-template="${esc(course.id)}">${chooserPreview(data,course,esc)}</template>`).join('');
+  return `<header class="section compact-section course-catalog-heading"><p class="eyebrow">Course Catalog</p><h1>Choose where to begin.</h1><p class="lede">Browse the six-course collection, inspect what each course establishes, and open the volume you want to study.</p></header><section class="course-catalog-chooser" aria-label="Canonical learning course catalog"><div class="course-selector"><header class="course-selector__head"><h2>Canonical learning</h2><p>6 courses · select one to inspect</p></header><div data-course-choices>${courses.map((course,index)=>`<button class="course-choice" type="button" data-course-choice="${esc(course.id)}" aria-selected="${index===0?'true':'false'}"><span class="course-choice__roman">${esc(course.sequence||index+1)}</span><span><strong>${esc(course.shortTitle||course.title)}</strong><small>${esc(course.scope||'')}</small></span><span class="course-choice__arrow" aria-hidden="true">›</span></button>`).join('')}</div>${templates}</div><article class="course-preview" data-course-preview aria-live="polite">${first?chooserPreview(data,first,esc):''}</article></section>`;
 }
 
-export function activateCourseCatalog(root,{data,esc}){
-  const choices=root?.querySelector('[data-course-choices]'),preview=root?.querySelector('[data-course-preview]');
-  if(!choices||!preview||choices.dataset.bound==='true')return;
-  choices.dataset.bound='true';
-  choices.addEventListener('click',event=>{
-    const button=event.target.closest('[data-course-choice]');if(!button)return;
-    const course=(data.courses||[]).find(item=>item.id===button.dataset.courseChoice);if(!course)return;
-    choices.querySelectorAll('[data-course-choice]').forEach(item=>item.setAttribute('aria-selected',String(item===button)));
-    preview.innerHTML=chooserPreview(data,course,esc);
-  });
-}
+document.addEventListener('click',event=>{
+  const button=event.target.closest?.('[data-course-choice]');if(!button)return;
+  const chooser=button.closest('.course-catalog-chooser'),choices=chooser?.querySelector('[data-course-choices]'),preview=chooser?.querySelector('[data-course-preview]'),template=chooser?.querySelector(`template[data-course-preview-template="${CSS.escape(button.dataset.courseChoice||'')}"]`);
+  if(!choices||!preview||!template)return;
+  choices.querySelectorAll('[data-course-choice]').forEach(item=>item.setAttribute('aria-selected',String(item===button)));
+  preview.replaceChildren(template.content.cloneNode(true));
+});
 
 export function courseLandingView({data,state,esc}){
   const activityIds=new Set((data.activities||[]).map(activity=>activity.id));
