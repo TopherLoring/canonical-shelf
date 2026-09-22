@@ -4,7 +4,6 @@ import './study-controls.js';
 import './feedback.js';
 import './personal-study.js';
 import './library-system.js';
-import './theologian-cloud.js';
 
 const status=document.querySelector('#pwa-status');
 const setStatus=(text,state)=>{if(!status)return;status.textContent=text;status.dataset.state=state||''};
