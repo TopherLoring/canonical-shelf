@@ -67,6 +67,15 @@ This document records the learner-facing decisions approved during the September
 - Scripture connections, course connections, related search language, metadata, and related exploration may be organized as collapsible headings in the contextual pane.
 - Explanatory topic content remains on the light primary reading surface.
 
+## Theologian
+
+- The Theologian uses the existing deterministic evidence-aware implementation as a fallback and Cloudflare Workers AI as an optional conversational synthesis layer.
+- No language-model weights are downloaded to the learner's device.
+- The cloud model is not an independent authority. Its guardrails are the bundled **Berean Standard Bible**, approved Canonical Shelf site content, the **Statement of Faith**, and Canonical Shelf theology policy/vetted research, including the repository's LGBTQ research corpus.
+- The browser sends only the question and current user-facing route to the Theologian endpoint; Journal content, profile data, progress history, and account data are not supplied as model context.
+- Canonical Shelf does not persist Theologian conversation content server-side. Cloud failure or post-generation guardrail failure retains the deterministic evidence response.
+- See `docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md` for the runtime and privacy contract.
+
 ## Practice, Search, Home, Profile, and shared surfaces
 
 - Carry the same flat charcoal / light-surface / cool-neutral / gilt visual grammar across these destinations without forcing the Course or Lesson layout onto them.
