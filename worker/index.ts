@@ -5,6 +5,8 @@ import {postTheologian,type TheologianAiEnv} from './theologian-ai';
 
 interface Env extends AuthEnv,TheologianAiEnv {
   ASSETS?: {fetch(request:Request):Promise<Response>};
+  RELEASE_SHA?: string;
+  CANONICAL_ORIGIN?: string;
 }
 
 const headers={'content-type':'application/json; charset=utf-8','cache-control':'no-store'};
@@ -42,9 +44,23 @@ async function postFeedback(request:Request,env:Env,auth:ReturnType<typeof creat
   return json({ok:true,...result},201);
 }
 
+function health(env:Env){
+  return json({
+    ok:true,
+    service:'the-canonical-shelf',
+    release:env.RELEASE_SHA||null,
+    origin:env.CANONICAL_ORIGIN||null,
+    bindings:{assets:!!env.ASSETS,db:!!env.DB,ai:!!env.AI}
+  });
+}
+
 export default {
   async fetch(request:Request,env:Env):Promise<Response>{
     const url=new URL(request.url),auth=createAuth(env);
+    if(url.pathname==='/api/health'){
+      if(request.method!=='GET')return bad('Method not allowed',405);
+      return health(env);
+    }
     if(url.pathname.startsWith('/api/auth/'))return auth.handler(request);
     if(url.pathname==='/api/sync'){
       if(request.method==='GET')return getSync(request,env,auth);
