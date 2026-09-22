@@ -1,5 +1,5 @@
-import {readFile,access} from 'node:fs/promises';
-import {join} from 'node:path';
+import {readFile,access,readdir} from 'node:fs/promises';
+import {join,extname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 const ROUTE_DESCRIPTIONS={
@@ -23,13 +23,20 @@ const ABOUT_SECTION_LABELS={
 const PUBLIC_RESOURCES=[
   {label:'About & methodology',url:'/about.html',description:'Institutional disclosure for Canonical Shelf’s product purpose, Scripture approach, sources and methodology, translation limits, accessibility posture, and privacy model.',embed:false},
   {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true},
-  {label:'Runtime catalog',url:'/data/catalog.json',description:'Canonical learner-facing curriculum, lesson, mastery, Topic, glossary, question-thread, and learning metadata. Its substantive user-facing content is embedded below.',embed:false},
+  {label:'Runtime catalog',url:'/data/catalog.json',description:'Canonical curriculum, lesson, mastery, Topic, glossary, question-thread, and learning metadata. Its substantive content is embedded below.',embed:false},
   {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's authoritative statement of faith and doctrinal ceiling for instructional and theological content.",embed:true},
   {label:'Theology policy',url:'/data/theology-policy.json',description:'Machine-readable evidence, interpretation, doctrinal-boundary, and response rules used by the study Guide and theology layer.',embed:true},
   {label:'Theology sources',url:'/data/theology-sources.json',description:'Canonical metadata for public biblical, historical, scholarly, denominational, and theological sources available to the bounded evidence layer.',embed:true}
 ];
 const OPTIONAL_RESOURCES=[
   {label:'Full BSB Bible corpus',url:'/data/corpus.txt',description:'Complete Berean Standard Bible corpus used by Bible reading and search. It is intentionally linked but not embedded in llms.txt.'}
+];
+
+const REPO_CONTEXT_ROOT_EXTENSIONS=new Set(['.md']);
+const REPO_CONTEXT_DIRS=['docs'];
+const REPO_CONTEXT_EXTENSIONS=new Set(['.md']);
+const REPO_CONTEXT_EXCLUDES=[
+  /^docs\/(?:archive|historical)\//i
 ];
 
 const decodeEntities=s=>String(s).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
@@ -78,7 +85,6 @@ export function parseAboutDisclosures(html){
     const paragraphs=[];
     for(const match of body.matchAll(/<p\b[^>]*>[\s\S]*?<\/p>/gi)){
       if(/\bclass=["'][^"']*\beyebrow\b[^"']*["']/i.test(match[0]))continue;
-      if(/\bclass=["'][^"']*\bstatement-content\b[^"']*["']/i.test(match[0]))continue;
       const text=cleanLabel(match[0]);
       if(text&&!/^Loading the current Statement of Faith/i.test(text))paragraphs.push(text);
     }
@@ -101,7 +107,7 @@ export function summarizeCatalog(catalog){
   return {courses,units,guidedLessons,masteryActivities,scoredActivities,topics,glossaryTerms};
 }
 
-export function learnerFacingCatalog(catalog){
+export function substantiveCatalog(catalog){
   return {
     curriculumVersion:catalog.curriculumVersion??catalog.version??null,
     courses:catalog.courses||[],
@@ -124,7 +130,7 @@ async function importPublicModule(root,name){
   return import(pathToFileURL(join(root,'public',name)).href);
 }
 
-export async function loadUserFacingDatasets({root,catalog}){
+export async function loadSubstantiveRuntimeDatasets({root,catalog}){
   const [orientation,library,practice,verses]=await Promise.all([
     importPublicModule(root,'orientation.js'),
     importPublicModule(root,'library-data.js'),
@@ -132,20 +138,10 @@ export async function loadUserFacingDatasets({root,catalog}){
     importPublicModule(root,'verse-data.js')
   ]);
   const datasets=[
+    {label:'Runtime learning catalog',url:'/data/catalog.json',data:substantiveCatalog(catalog)},
+    {label:'Orientation lesson',url:'/orientation.js',data:orientation.ORIENTATION_LESSON},
     {
-      label:'Runtime learning catalog',
-      url:'/data/catalog.json',
-      data:learnerFacingCatalog(catalog)
-    },
-    {
-      label:'Orientation lesson',
-      url:'/orientation.js',
-      data:orientation.ORIENTATION_LESSON
-    },
-    {
-      label:'Bible library reference',
-      url:'/library-data.js',
-      data:{
+      label:'Bible library reference',url:'/library-data.js',data:{
         categories:library.CATEGORIES,
         categoryOrder:library.CATEGORY_ORDER,
         books:library.LIBRARY_BOOKS,
@@ -156,9 +152,7 @@ export async function loadUserFacingDatasets({root,catalog}){
       }
     },
     {
-      label:'Practice content',
-      url:'/practice-data.js',
-      data:{
+      label:'Practice content',url:'/practice-data.js',data:{
         ranks:practice.PRACTICE_RANKS,
         achievements:practice.PRACTICE_ACHIEVEMENTS,
         stages:practice.PRACTICE_STAGES,
@@ -167,9 +161,7 @@ export async function loadUserFacingDatasets({root,catalog}){
       }
     },
     {
-      label:'Curated passage library',
-      url:'/verse-data.js',
-      data:{
+      label:'Curated passage library',url:'/verse-data.js',data:{
         count:verses.VERSE_COUNT,
         translations:verses.VERSE_TRANSLATIONS,
         themes:verses.VERSE_THEMES,
@@ -191,11 +183,42 @@ export async function loadUserFacingDatasets({root,catalog}){
   return {datasets,summary};
 }
 
-export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],userFacingDatasets=[]}){
+async function collectMarkdownTree(root,relativeDir){
+  const absolute=join(root,relativeDir);
+  const entries=await readdir(absolute,{withFileTypes:true}).catch(()=>[]);
+  const files=[];
+  for(const entry of entries.sort((a,b)=>a.name.localeCompare(b.name))){
+    if(entry.name.startsWith('.'))continue;
+    const rel=`${relativeDir}/${entry.name}`.replace(/\\/g,'/');
+    if(REPO_CONTEXT_EXCLUDES.some(pattern=>pattern.test(rel)))continue;
+    if(entry.isDirectory())files.push(...await collectMarkdownTree(root,rel));
+    else if(entry.isFile()&&REPO_CONTEXT_EXTENSIONS.has(extname(entry.name).toLowerCase()))files.push(rel);
+  }
+  return files;
+}
+
+export async function loadRepositoryContext(root){
+  const rootEntries=await readdir(root,{withFileTypes:true});
+  const rootFiles=rootEntries
+    .filter(entry=>entry.isFile()&&!entry.name.startsWith('.')&&REPO_CONTEXT_ROOT_EXTENSIONS.has(extname(entry.name).toLowerCase()))
+    .map(entry=>entry.name);
+  const nested=[];
+  for(const dir of REPO_CONTEXT_DIRS)nested.push(...await collectMarkdownTree(root,dir));
+  const paths=[...new Set([...rootFiles,...nested])].sort((a,b)=>a.localeCompare(b));
+  const files=[];
+  for(const path of paths){
+    const content=await readFile(join(root,path),'utf8');
+    if(content.trim())files.push({path,content});
+  }
+  return files;
+}
+
+export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],runtimeDatasets=[],repositoryContext=[]}){
   const lines=[
     '# Canonical Shelf','',
     '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware study Guide.','',
-    'This file is generated from Canonical Shelf’s published learner-facing educational, editorial, reference, orientation, Practice, and Bible-library content. It intentionally excludes the complete Berean Standard Bible corpus and private learner/account/feedback state. UI implementation code and repeated interface chrome are not treated as content.','',
+    'This file is generated from Canonical Shelf’s substantive published content plus repository documentation that materially explains the product, curriculum, theology, design, governance, architecture, and current decisions. It intentionally excludes the complete Berean Standard Bible corpus, secrets, private learner/account/feedback data, build artifacts, dependencies, and implementation-only code.','',
+    'Repository documentation may contain historical plans, audits, or superseded decisions. When documents conflict, use explicit decision-precedence/current-baseline documents and the generated runtime artifacts as the current authority; historical material remains context rather than an instruction to regress the product.','',
     `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
@@ -203,20 +226,25 @@ export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],
   lines.push('','## Canonical learning and editorial resources','');
   for(const resource of PUBLIC_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
   lines.push('','## Institutional disclosures','',
-    'The disclosure text below is derived automatically from the linked About page so footer-facing institutional language and machine-readable discovery stay synchronized.','');
+    'The disclosure text below is derived automatically from the linked About page so public institutional language and machine-readable context stay synchronized.','');
   for(const section of aboutSections){
     lines.push(`### ${section.label}`,'',`**${section.heading}**`,'');
     for(const paragraph of section.paragraphs)lines.push(paragraph,'');
   }
   lines.push('## Excluded full-text resource','');
   for(const resource of OPTIONAL_RESOURCES)lines.push(`- [${resource.label}](${resource.url}): ${resource.description}`);
-  lines.push('','## Complete user-facing content','',
-    'The substantive learner-facing content below is loaded automatically from the current published runtime/content modules. The complete BSB corpus at /data/corpus.txt is the sole intentionally omitted public content corpus; curated passage entries used by Canonical Shelf remain included.','');
+  lines.push('','## Complete substantive runtime content','',
+    'The learner-facing educational/reference data below is loaded automatically from the current generated runtime and authoritative public content modules. The complete BSB corpus at /data/corpus.txt is intentionally omitted; curated passages used by Canonical Shelf remain included.','');
   for(const resource of embeddedResources){
     lines.push(`### ${resource.label}`,'',`Source: [${resource.url}](${resource.url})`,'',indentContent(resource.content),'');
   }
-  for(const dataset of userFacingDatasets){
+  for(const dataset of runtimeDatasets){
     lines.push(`### ${dataset.label}`,'',`Source: [${dataset.url}](${dataset.url})`,'',indentContent(jsonContent(dataset.data)),'');
+  }
+  lines.push('## Repository context','',
+    'The following repository documentation is included because it provides material context an LLM may need even when the text is not directly rendered to an end user. Source paths are preserved so current baselines, audits, plans, and historical context can be distinguished.','');
+  for(const file of repositoryContext){
+    lines.push(`### ${file.path}`,'',indentContent(file.content),'');
   }
   return `${lines.join('\n').trimEnd()}\n`;
 }
@@ -234,9 +262,12 @@ export async function buildLlmsContract({root=process.cwd()}={}){
     ...resource,
     content:await readFile(join(root,'public',resource.url.replace(/^\//,'')),'utf8')
   })));
-  const {datasets:userFacingDatasets,summary:userFacingSummary}=await loadUserFacingDatasets({root,catalog});
+  const [{datasets:runtimeDatasets,summary:runtimeSummary},repositoryContext]=await Promise.all([
+    loadSubstantiveRuntimeDatasets({root,catalog}),
+    loadRepositoryContext(root)
+  ]);
   return {
-    routes,counts,resources,aboutSections,embeddedResources,userFacingDatasets,userFacingSummary,
-    markdown:renderLlms({routes,counts,aboutSections,embeddedResources,userFacingDatasets})
+    routes,counts,resources,aboutSections,embeddedResources,runtimeDatasets,runtimeSummary,repositoryContext,
+    markdown:renderLlms({routes,counts,aboutSections,embeddedResources,runtimeDatasets,repositoryContext})
   };
 }
