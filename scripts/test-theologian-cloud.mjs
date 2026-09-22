@@ -11,13 +11,20 @@ const assets={
   '/data/statement-of-faith.md':'# Statement of Faith\nYou are not asked to agree with this Statement of Faith to use Canonical Shelf. It is the doctrinal ceiling. Canonical Shelf affirms grace, dignity, and faithful Christian discipleship while treating disputed interpretation with care.\n',
   '/data/theologian-belief-context.md':'# Supplemental belief context\n## Sexuality, relationships, and inclusion\nCanonical Shelf’s longer belief context explains its affirming position in greater detail while remaining subordinate to the compact Statement of Faith.\n',
   '/data/theology-policy.json':JSON.stringify({
-    authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'Do not establish doctrine beyond the Statement of Faith.'},
+    version:3,
+    authority:{normativeCeiling:'Canonical Shelf compact Statement of Faith',rule:'The Theologian may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.',domains:{scriptureText:'BSB quotation authority',canonicalDoctrine:'compact faith ceiling',interpretivePolicy:'policy boundaries'}},
+    doctrinalStates:['affirmed','bounded-inference','open','descriptive-only','outside-scope'],
+    evidenceStates:['direct','strong','plausible','contested','speculative'],
+    claimDomains:['biblical-text','history','language','doctrine','interpretation','ethics','reception-history','application'],
+    responseContract:['Answer first.','State Canonical Shelf position separately when relevant.'],
+    learnerContext:{allowed:['current route','review-due count'],forbidden:['Journal text','profile data'],rule:'Study context is not theological evidence.'},
+    masteryProtection:{rule:'Do not reveal assessed answers.',theologicalAssent:'Personal theological assent is never scored.'},
     lgbtq:{status:'affirmed',claims:['LGBTQ people possess equal dignity and belonging.','Faithful same-sex relationships and marriage may embody Christian virtue.']},
-    interpretiveRules:['Distinguish text, context, interpretation, doctrine, and application.'],
+    interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application.'],
     queerReception:{firstClass:true},
     prohibitedOverstatements:['Romans 1 refers only to pederasty, temple prostitution, or exploitation.']
   }),
-  '/data/theology-sources.json':JSON.stringify([{id:'oup.jennings.same-sex-biblical-world',title:'Same-Sex Relations in the Biblical World',author:'Theodore W. Jennings',publication:'The Oxford Handbook of Theology, Sexuality, and Gender',year:2014,url:'https://example.test/jennings',supports:['documented queer and same-sex-love readings in biblical scholarship'],limits:'Does not make every queer reading uncontested textual fact.'}])
+  '/data/theology-sources.json':JSON.stringify([{id:'oup.jennings.same-sex-biblical-world',type:'academic-handbook-chapter',title:'Same-Sex Relations in the Biblical World',author:'Theodore W. Jennings',publication:'The Oxford Handbook of Theology, Sexuality, and Gender',year:2014,url:'https://example.test/jennings',supports:['documented queer and same-sex-love readings in biblical scholarship'],limits:'Does not make every queer reading uncontested textual fact.'}])
 };
 
 const assetBinding={fetch:async request=>{
@@ -28,32 +35,45 @@ const assetBinding={fetch:async request=>{
 let captured=null;
 const goodEnv={
   ASSETS:assetBinding,
-  AI:{
-    run:async(model,input)=>{
-      captured={model,input};
-      return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently.'};
-    }
-  }
+  AI:{run:async(model,input)=>{
+    captured={model,input};
+    return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently.'};
+  }}
 };
-const request=new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'Previous user: What is Romans 1 about?\nPrevious Theologian: It belongs to a larger Pauline argument.\n\nCurrent question: How should Canonical Shelf understand same-sex relationships in Romans 1?',context:{path:'/bible?book=45&chapter=1',conversationMode:'session-memory'}})});
+const longPrior=`Previous user: ${'context '.repeat(180)}\nPrevious Theologian: Earlier answer retained only for follow-up resolution.`;
+const current='How should Canonical Shelf understand same-sex relationships in Romans 1?';
+const request=new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:`LEARNER CONTEXT (study-state summary only; not theological evidence or authority):\nCurrent route: /bible?book=45&chapter=1\nReviews due: 2\n\n${longPrior}\n\nCurrent question: ${current}`,context:{path:'/bible?book=45&chapter=1',conversationMode:'local-persistent-bounded',learnerContextPresent:true}})});
 const response=await postTheologian(request,goodEnv);
 assert.equal(response.status,200);
 const body=await response.json();
 assert.equal(body.mode,'cloud');
 assert.equal(body.model,THEOLOGIAN_MODEL);
 assert.equal(body.lgbtqResearchApplied,true);
-assert.ok(body.guardrails.includes('Berean Standard Bible'));
-assert.ok(body.guardrails.includes('Compact Canonical Shelf Statement of Faith'));
-assert.ok(body.guardrails.includes('Supplemental long-form belief context'));
+assert.equal(body.validation.status,'passed');
+assert.equal(body.validation.masteryProtected,false);
+assert.ok(body.guardrails.some(item=>item.includes('Berean Standard Bible')));
+assert.ok(body.guardrails.some(item=>item.includes('Statement of Faith doctrinal ceiling')));
+assert.ok(body.guardrails.some(item=>item.includes('Supplemental long-form belief context')));
 assert.ok(body.evidence.some(item=>item.evidence==='vetted Canonical Shelf LGBTQ research'));
+assert.ok(body.evidence.every(item=>item.evidenceStatus&&item.claimDomain&&item.doctrinalStatus));
+assert.ok(body.evidenceModel.evidenceStates.includes('contested'));
+assert.ok(body.evidenceModel.claimDomains.includes('application'));
 assert.equal(captured.model,THEOLOGIAN_MODEL);
 const prompt=JSON.stringify(captured.input);
-for(const required of ['Berean Standard Bible','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','lower authority','Same-Sex Relations in the Biblical World','Theodore W. Jennings','Current question'])assert.ok(prompt.toLowerCase().includes(required.toLowerCase()),`prompt missing ${required}`);
+for(const required of ['AUTHORITY BY DOMAIN','Berean Standard Bible','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','lower authority','Same-Sex Relations in the Biblical World','Theodore W. Jennings',current,'LEARNER CONTEXT','never theological authority'])assert.ok(prompt.toLowerCase().includes(required.toLowerCase()),`prompt missing ${required}`);
+
+let masteryPrompt='';
+const masteryEnv={ASSETS:assetBinding,AI:{run:async(_model,input)=>{masteryPrompt=JSON.stringify(input);return{response:'I can help you compare the evidence and test your reasoning without selecting the assessed answer.'}}}};
+const mastery=await postTheologian(new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'LEARNER CONTEXT (study-state summary only; not theological evidence or authority):\nCurrent activity is scored/mastery work: scaffold reasoning but never reveal or select the assessed answer.\n\nCurrent question: Which option should I choose?',context:{path:'/course?mastery=test'}})}),masteryEnv);
+assert.equal(mastery.status,200);
+const masteryBody=await mastery.json();
+assert.equal(masteryBody.validation.masteryProtected,true);
+assert.ok(masteryPrompt.includes('MASTERY MODE IS ACTIVE'));
 
 const badEnv={ASSETS:assetBinding,AI:{run:async()=>({response:'Romans 1 refers only to pederasty, temple prostitution, or exploitation.'})}};
-const rejected=await postTheologian(new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'What does Romans 1 mean?'})}),badEnv);
+const rejected=await postTheologian(new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'Current question: What does Romans 1 mean?'})}),badEnv);
 assert.equal(rejected.status,422);
 const rejectedBody=await rejected.json();
 assert.equal(rejectedBody.fallback,true);
 
-console.log('cloud theologian guardrail + compact faith ceiling + supplemental belief context + conversational question + BSB/site/LGBTQ grounding passed');
+console.log('cloud Theologian authority-domain + typed evidence + compact faith ceiling + supplemental belief context + bounded conversation/state context + mastery protection + prohibited-overstatement gates passed');
