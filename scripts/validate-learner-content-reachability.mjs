@@ -1,13 +1,17 @@
 import {readFile,stat} from 'node:fs/promises';
 
 const manifest=JSON.parse(await readFile('content/learner-content-reachability.json','utf8'));
-if(manifest.version!==1||!Array.isArray(manifest.entries)||!manifest.entries.length)throw new Error('learner content reachability manifest is missing or invalid');
+if(Number(manifest.version)<2||!Array.isArray(manifest.entries)||!manifest.entries.length)throw new Error('learner content reachability manifest v2+ is missing or invalid');
+const llmsDispositions=new Set(manifest.llmsContract?.allowedDispositions||[]);
+for(const required of ['embed','link','exclude'])if(!llmsDispositions.has(required))throw new Error(`learner content reachability llms contract missing ${required}`);
 
 const ids=new Set();
 for(const entry of manifest.entries){
   if(!entry.id||ids.has(entry.id))throw new Error(`invalid or duplicate reachability id: ${entry.id||'(missing)'}`);
   ids.add(entry.id);
   for(const required of ['source','mode','surface','entry','host'])if(!entry[required])throw new Error(`${entry.id} is missing ${required}`);
+  if(!llmsDispositions.has(entry.llms?.disposition))throw new Error(`${entry.id} is missing a valid llms disposition`);
+  if(!entry.llms?.reason)throw new Error(`${entry.id} is missing an llms disposition reason`);
   await stat(entry.source);await stat(entry.host);if(entry.published)await stat(entry.published);
   if(entry.mode==='direct'&&entry.entry.startsWith('/')){
     const root=entry.entry.split(/[?#]/)[0].replace(/^\//,'');
@@ -16,6 +20,10 @@ for(const entry of manifest.entries){
   }
 }
 for(const required of ['orientation','curriculum','scripture','bible-library','topics','glossary','practice','curated-passages','appearance-themes','about-disclosures','statement-of-faith','theology-policy','theology-sources','supplemental-belief-context'])if(!ids.has(required))throw new Error(`learner content reachability contract missing ${required}`);
+const entryById=new Map(manifest.entries.map(entry=>[entry.id,entry]));
+if(entryById.get('scripture')?.llms?.disposition!=='link')throw new Error('complete BSB Scripture corpus must be linked rather than embedded in llms.txt');
+if(entryById.get('supplemental-belief-context')?.llms?.disposition!=='exclude')throw new Error('supplemental long-form belief context must be excluded from llms.txt');
+for(const entry of manifest.entries)if(!['scripture','supplemental-belief-context'].includes(entry.id)&&entry.llms.disposition!=='embed')throw new Error(`${entry.id} is learner-facing content and must remain embedded in llms.txt`);
 
 const compact=(await readFile('content/statement/statement-of-faith-compact.md','utf8')).trim();
 const longForm=(await readFile('content/statement/statement-of-faith-v3.md','utf8')).trim();
@@ -80,4 +88,4 @@ await stat('public/theologian-chat.css');
 const utilities=await readFile('public/utility-panels.css','utf8');
 if(!utilities.includes('body.study-focus-active>.feedback-open')||!utilities.includes('background:transparent'))throw new Error('learning-view Feedback must remain a quiet text-style control rather than a floating primary button');
 
-console.log(`learner content reachability + published policy parity + compact faith ceiling + approved grace/love interpretive foundation + free-inquiry learner agency + supplemental belief context + typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
+console.log(`learner content reachability v2 + llms disposition authority + published policy parity + compact faith ceiling + approved grace/love interpretive foundation + free-inquiry learner agency + supplemental belief context + typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
