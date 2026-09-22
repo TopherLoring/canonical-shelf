@@ -33,13 +33,22 @@ const publisher=await readFile('scripts/publish-theology.mjs','utf8');
 for(const mapping of ['statement-of-faith-compact.md','public/data/statement-of-faith.md','statement-of-faith-v3.md','public/data/theologian-belief-context.md'])if(!publisher.includes(mapping))throw new Error(`theology publisher missing ${mapping}`);
 
 const policy=JSON.parse(await readFile('content/theology/policy.json','utf8'));
-if(Number(policy.version)<3)throw new Error('theology policy must use the restored v3 authority/privacy contract');
+if(Number(policy.version)<4)throw new Error('theology policy must use the learner-agency v4 authority contract');
 for(const key of ['scriptureText','canonicalDoctrine','interpretivePolicy','publishedTeaching','supplementalBeliefContext','scholarshipAndTraditions'])if(!policy.authority?.domains?.[key])throw new Error(`theology policy authority domain missing ${key}`);
 for(const state of ['affirmed','bounded-inference','open','descriptive-only','outside-scope'])if(!policy.doctrinalStates?.includes(state))throw new Error(`theology policy doctrinal state missing ${state}`);
 for(const state of ['direct','strong','plausible','contested','speculative'])if(!policy.evidenceStates?.includes(state))throw new Error(`theology policy evidence state missing ${state}`);
 for(const domain of ['biblical-text','history','language','doctrine','interpretation','ethics','reception-history','application'])if(!policy.claimDomains?.includes(domain))throw new Error(`theology policy claim domain missing ${domain}`);
+if(policy.interpretiveFoundation?.status!=='approved')throw new Error('approved Theologian interpretive foundation is missing');
+const foundation=String(policy.interpretiveFoundation?.principle||'');
+for(const required of [/God is love/i,/grace rather than human merit/i,/love of God and love of neighbor/i,/conditions, scope, or mechanics of salvation/i,/presented distinctly rather than treated as settled/i])if(!required.test(foundation))throw new Error(`interpretive foundation missing ${required}`);
+if(!Array.isArray(policy.interpretiveFoundation?.boundaries)||policy.interpretiveFoundation.boundaries.length<4)throw new Error('interpretive foundation boundaries are incomplete');
+if(!/learner is the decision-maker/i.test(policy.learnerAgency?.rule||''))throw new Error('Theologian learner-agency decision-maker rule is missing');
+const agency=(policy.learnerAgency?.requirements||[]).join('\n');
+for(const required of [/viewpoints/i,/translation differences/i,/Canonical Shelf's position/i,/Never make agreement/i,/challenge Canonical Shelf/i,/tradition's requirement/i,/false balance/i])if(!required.test(agency))throw new Error(`Theologian learner-agency requirements missing ${required}`);
 if(!policy.responseContract?.some(item=>/answer.*first/i.test(item)))throw new Error('Theologian response contract must remain answer-first');
 if(!policy.responseContract?.some(item=>/Canonical Shelf.*position.*separately/i.test(item)))throw new Error('Theologian response contract must separate Canonical Shelf position from competing readings');
+if(!policy.responseContract?.some(item=>/beliefs, interpretations, or translations materially differ/i.test(item)))throw new Error('Theologian response contract must surface material belief/interpretation/translation differences');
+if(!policy.responseContract?.some(item=>/learner as the decision-maker/i.test(item)))throw new Error('Theologian response contract must preserve learner decision-making');
 for(const forbidden of ['Journal text','lesson notes','profile data','account identifiers','feedback content','inferred theological beliefs'])if(!policy.learnerContext?.forbidden?.includes(forbidden))throw new Error(`Theologian learner-context policy missing forbidden field ${forbidden}`);
 if(!/must not reveal|must not.*select|do not reveal/i.test(policy.masteryProtection?.rule||''))throw new Error('Theologian mastery protection rule missing');
 if(!/never a scored mastery criterion/i.test(policy.masteryProtection?.theologicalAssent||''))throw new Error('theological assent must remain outside mastery scoring');
@@ -48,11 +57,11 @@ const model=await readFile('src/knowledge/model.ts','utf8');
 for(const invariant of ['outside-scope','application','LearnerContextSummary','EvidenceStatus','InterpretationType'])if(!model.includes(invariant))throw new Error(`typed theology model missing ${invariant}`);
 
 const worker=await readFile('worker/theologian-ai.ts','utf8');
-for(const invariant of ['/data/statement-of-faith.md','/data/theologian-belief-context.md','AUTHORITY BY DOMAIN','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','Prior dialogue','LEARNER CONTEXT','evidenceStatus','claimDomain','doctrinalStatus','MASTERY MODE IS ACTIVE'])if(!worker.includes(invariant))throw new Error(`cloud Theologian guardrail wiring missing ${invariant}`);
+for(const invariant of ['/data/statement-of-faith.md','/data/theologian-belief-context.md','AUTHORITY BY DOMAIN','THEOLOGY POLICY','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','Prior dialogue','LEARNER CONTEXT','evidenceStatus','claimDomain','doctrinalStatus','MASTERY MODE IS ACTIVE','JSON.stringify(resources.policy'])if(!worker.includes(invariant))throw new Error(`cloud Theologian guardrail wiring missing ${invariant}`);
 
 const deterministic=await readFile('public/theologian.js','utf8');
 if(/\bGuide\b/.test(deterministic))throw new Error('learner-facing deterministic Theologian runtime must not retain Guide naming');
-for(const invariant of ['evidenceStatus','claimDomain','doctrinalStatus','masteryProtected','prohibitedOverstatements'])if(!deterministic.includes(invariant))throw new Error(`deterministic Theologian guardrail wiring missing ${invariant}`);
+for(const invariant of ['evidenceStatus','claimDomain','doctrinalStatus','masteryProtected','prohibitedOverstatements','interpretiveRules'])if(!deterministic.includes(invariant))throw new Error(`deterministic Theologian guardrail wiring missing ${invariant}`);
 
 const cloudClient=await readFile('public/theologian-cloud.js','utf8');
 for(const invariant of ['Current question:','conversationMode','LEARNER CONTEXT','masteryActive'])if(!cloudClient.includes(invariant))throw new Error(`bounded Theologian request context missing ${invariant}`);
@@ -69,4 +78,4 @@ await stat('public/theologian-chat.css');
 const utilities=await readFile('public/utility-panels.css','utf8');
 if(!utilities.includes('body.study-focus-active>.feedback-open')||!utilities.includes('background:transparent'))throw new Error('learning-view Feedback must remain a quiet text-style control rather than a floating primary button');
 
-console.log(`learner content reachability + compact faith ceiling + supplemental belief context + original typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
+console.log(`learner content reachability + compact faith ceiling + approved grace/love interpretive foundation + free-inquiry learner agency + supplemental belief context + typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
