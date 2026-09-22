@@ -4,7 +4,7 @@
   "type":"module",
   "packageManager":"bun@1.2.15",
   "scripts":{
-    "migrate":"bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs && bun scripts/apply-curriculum-metadata.mjs",
+    "migrate":"bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs && bun scripts/publish-theology.mjs && bun scripts/apply-curriculum-metadata.mjs",
     "generate:auth-migration":"bun scripts/generate-auth-migration.mjs",
     "generate:wrangler":"bun scripts/write-wrangler.mjs",
     "generate:curriculum-reference":"bun scripts/generate-curriculum-reference.mjs",
