@@ -34,6 +34,8 @@ function normalizeMessage(value){
     text:clip(value.text,9000),
     at:value.at||now(),
     mode:value.role==='assistant'?clip(value.mode||'',32):'',
+    model:value.role==='assistant'?clip(value.model||'',160):'',
+    policyVersion:value.role==='assistant'?(typeof value.policyVersion==='number'?value.policyVersion:clip(value.policyVersion||'',32)):'',
     evidence:value.role==='assistant'&&Array.isArray(value.evidence)?value.evidence.slice(0,MAX_VISIBLE_EVIDENCE).map(item=>({
       type:clip(item?.type,40),
       label:clip(item?.label,220),
@@ -83,13 +85,16 @@ function badgesMarkup(message){
   badges.push('faith ceiling enforced');
   return `<div class="chat-message__badges">${badges.map(item=>`<span>${esc(item)}</span>`).join('')}</div>`
 }
-function messageMarkup(message){
+function reviewActionsMarkup(index){
+  return `<div class="chat-message__actions" aria-label="Review this Theologian response"><button type="button" data-theologian-review="flag" data-message-index="${index}">Flag for review</button><button type="button" data-theologian-review="disagree" data-message-index="${index}">Disagree / another interpretation</button></div>`;
+}
+function messageMarkup(message,index){
   const assistant=message.role==='assistant';
-  return `<article class="chat-message chat-message--${message.role}"><div class="chat-message__label">${assistant?'Theologian':'You'}</div><div class="chat-message__bubble">${answerMarkup(message.text)}</div>${assistant?badgesMarkup(message):''}${assistant?evidenceMarkup(message.evidence):''}<div class="chat-message__meta">${esc(timeLabel(message.at))}</div></article>`
+  return `<article class="chat-message chat-message--${message.role}"><div class="chat-message__label">${assistant?'Theologian':'You'}</div><div class="chat-message__bubble">${answerMarkup(message.text)}</div>${assistant?badgesMarkup(message):''}${assistant?evidenceMarkup(message.evidence):''}${assistant?reviewActionsMarkup(index):''}<div class="chat-message__meta">${esc(timeLabel(message.at))}</div></article>`
 }
 function suggestionsMarkup(){return `<div class="theologian-chat__suggestions"><button type="button" data-theologian-suggest="What is the Decalogue, and how does it relate to the rest of Mosaic law?">Decalogue &amp; Mosaic law</button><button type="button" data-theologian-suggest="How should I distinguish what a passage says from later interpretation?">Text vs. interpretation</button><button type="button" data-theologian-suggest="What can you help me understand on this page?">Use this page</button></div>`}
 function emptyMarkup(){return `<div class="theologian-chat__empty"><p class="eyebrow">Study conversation</p><h3>Ask, follow up, and inspect the evidence.</h3><p>Theologian uses the BSB, Canonical Shelf content, the compact Statement of Faith, theology policy, and vetted sources. It can see limited study-state context, but not your Journal, lesson notes, optional reflection writing, profile, account data, or feedback.</p>${suggestionsMarkup()}</div>`}
-function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask about Scripture, context, interpretation, doctrine, evidence, or what you are studying…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">Chat is stored only in this browser until you start a new chat. Only a bounded recent excerpt and an allowlisted study-state summary are sent for a response. Private study writing, feedback, and account/profile data are excluded.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
+function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask about Scripture, context, interpretation, doctrine, evidence, or what you are studying…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">Chat is stored only in this browser until you start a new chat. Only a bounded recent excerpt and an allowlisted study-state summary are sent for a response. Private study writing, feedback, and account/profile data are excluded. You may flag or disagree with any answer for review.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
 function render({thinking=false,status=''}={}){
   body.innerHTML=`<section class="theologian-chat" aria-label="Theologian conversation"><div class="theologian-chat__toolbar"><p>Grounded study assistant · evidence status and interpretive limits stay inspectable.</p><button class="theologian-chat__new" type="button" data-theologian-new-chat>New chat</button></div><div class="theologian-chat__messages" data-theologian-messages aria-live="polite">${messages.length?messages.map(messageMarkup).join(''):emptyMarkup()}${thinking?'<div class="theologian-chat__thinking" aria-label="Theologian is composing a response"><i></i><i></i><i></i></div>':''}</div>${composerMarkup()}</section>`;
   const statusNode=body.querySelector('#theologian-chat-status');if(statusNode)statusNode.textContent=status;
@@ -137,7 +142,7 @@ async function learnerContext(){
 function deterministicAnswer(question,resources){
   const result=buildTheologianResponse({question,data:resources.data,policy:resources.policy,statement:resources.statement,sources:resources.sources,corpus:resources.corpus,context:{scored:location.pathname==='/course'&&new URLSearchParams(location.search).has('mastery')}});
   const text=[result.position,...(result.warnings||[])].filter(Boolean).join('\n\n');
-  return {mode:'local',answer:text,evidence:result.evidence||[],guardrails:['Berean Standard Bible quotation integrity','Compact Canonical Shelf Statement of Faith doctrinal ceiling','Canonical Shelf theology/evidence policy','Published Canonical Shelf content','Attributed vetted sources'],validation:{status:'passed',doctrinalCeiling:resources.policy?.authority?.normativeCeiling||'Canonical Shelf Statement of Faith',masteryProtected:Boolean(result.masteryProtected)},fallback:true};
+  return {mode:'local',model:'local-deterministic',policyVersion:resources.policy?.version||'',answer:text,evidence:result.evidence||[],guardrails:['Berean Standard Bible quotation integrity','Compact Canonical Shelf Statement of Faith doctrinal ceiling','Canonical Shelf theology/evidence policy','Published Canonical Shelf content','Attributed vetted sources'],validation:{status:'passed',doctrinalCeiling:resources.policy?.authority?.normativeCeiling||'Canonical Shelf Statement of Faith',masteryProtected:Boolean(result.masteryProtected)},fallback:true};
 }
 async function ask(question){
   const text=clip(question,1400);if(!text||sending)return;
@@ -147,18 +152,30 @@ async function ask(question){
   try{
     const context=await learnerContext();
     const result=await requestCloudTheologian(text,{path:`${location.pathname}${location.search}`,history,learnerContext:context});
-    messages.push(normalizeMessage({role:'assistant',text:result.answer,at:now(),mode:result.mode||'cloud',evidence:result.evidence||[],guardrails:result.guardrails||[],validation:result.validation||null,lgbtqResearchApplied:result.lgbtqResearchApplied}));
+    const policyVersion=(await assets()).policy?.version||'';
+    messages.push(normalizeMessage({role:'assistant',text:result.answer,at:now(),mode:result.mode||'cloud',model:result.model||'',policyVersion:result.policyVersion||policyVersion,evidence:result.evidence||[],guardrails:result.guardrails||[],validation:result.validation||null,lgbtqResearchApplied:result.lgbtqResearchApplied}));
   }catch(error){
     if(error?.name==='AbortError'){sending=false;render();return}
     try{
       const resources=await assets(),fallback=deterministicAnswer(text,resources);
-      messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
+      messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',model:fallback.model,policyVersion:fallback.policyVersion,evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
     }catch{
-      messages.push(normalizeMessage({role:'assistant',text:'Theologian could not produce a response that passed its evidence and theological safeguards. Try rephrasing the question or open the relevant Bible, Course, or Topic material and ask again.',at:now(),mode:'local',fallback:true}));
+      messages.push(normalizeMessage({role:'assistant',text:'Theologian could not produce a response that passed its evidence and theological safeguards. Try rephrasing the question or open the relevant Bible, Course, or Topic material and ask again.',at:now(),mode:'local',model:'local-unavailable',fallback:true}));
     }
   }finally{
     sending=false;messages=messages.filter(Boolean).slice(-MAX_STORED_MESSAGES);saveMessages(messages);render();body.querySelector('#guide-q')?.focus({preventScroll:true});
   }
+}
+function precedingQuestion(index){
+  for(let i=index-1;i>=0;i--)if(messages[i]?.role==='user')return messages[i].text;
+  return'';
+}
+function requestResponseReview(index,action,trigger){
+  const message=messages[index];if(!message||message.role!=='assistant')return;
+  document.dispatchEvent(new CustomEvent('canonical-theologian-review',{detail:{
+    kind:'theologian-response',action:clip(action,32)||'review',question:precedingQuestion(index),answer:message.text,mode:message.mode,model:message.model,
+    policyVersion:message.policyVersion,validationStatus:message.validation?.status||'',evidence:message.evidence||[],trigger
+  }}));
 }
 function openChat(trigger=openButton,{draft=''}={}){
   lastTrigger=trigger||openButton;render();panel.hidden=false;openButton.setAttribute('aria-expanded','true');const input=body.querySelector('#guide-q');if(input){input.value=draft;input.focus({preventScroll:true})}
@@ -168,6 +185,7 @@ function newChat(){cancelCloudTheologian();messages=[];saveMessages(messages);se
 
 // Capture handlers replace the older single-answer Guide behavior without reviving DOM-repair layers.
 document.addEventListener('click',event=>{
+  const review=event.target.closest?.('[data-theologian-review]');if(review){event.preventDefault();event.stopImmediatePropagation();requestResponseReview(Number(review.dataset.messageIndex),review.dataset.theologianReview,review);return}
   const open=event.target.closest?.('#guide-open');if(open){event.preventDefault();event.stopImmediatePropagation();openChat(open);return}
   const close=event.target.closest?.('#guide-close');if(close){event.preventDefault();event.stopImmediatePropagation();closeChat();return}
   const askButton=event.target.closest?.('[data-ask]');if(askButton){event.preventDefault();event.stopImmediatePropagation();openChat(askButton,{draft:askButton.dataset.ask||''});return}
