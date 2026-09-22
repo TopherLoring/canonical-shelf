@@ -3,19 +3,57 @@ const panel=document.querySelector('#feedback-panel');
 const closeButton=document.querySelector('#feedback-close');
 const form=document.querySelector('#feedback-form');
 const status=document.querySelector('#feedback-status');
+const contextPreview=document.querySelector('#feedback-context-preview');
+const reasonRow=document.querySelector('#feedback-review-reason-row');
+const reasonSelect=form?.querySelector('[name="reviewReason"]');
+const categorySelect=form?.querySelector('[name="category"]');
+const messageInput=form?.querySelector('[name="message"]');
 const QUEUE_KEY='canonical-shelf-feedback-queue-v1';
-let lastTrigger=openButton;
+let lastTrigger=openButton,pendingContext=null;
 
 const readQueue=()=>{try{const value=JSON.parse(localStorage.getItem(QUEUE_KEY)||'[]');return Array.isArray(value)?value:[]}catch{return[]}};
 const writeQueue=items=>localStorage.setItem(QUEUE_KEY,JSON.stringify(items));
 const routeContext=()=>`${location.pathname}${location.search}`.slice(0,512);
+const clip=(value,max)=>String(value??'').trim().slice(0,max);
 
 function feedbackTriggers(){return [openButton,...document.querySelectorAll('[data-feedback-open]')].filter(Boolean)}
-function openPanel(trigger=openButton){
+function resetReviewContext(){
+  pendingContext=null;
+  if(contextPreview){contextPreview.hidden=true;contextPreview.textContent=''}
+  if(reasonRow)reasonRow.hidden=true;
+  if(reasonSelect)reasonSelect.required=false;
+  if(messageInput)messageInput.placeholder='What happened, what were you trying to do, or what should change?';
+}
+function normalizeEvidence(items){
+  return Array.isArray(items)?items.slice(0,8).map(item=>({
+    label:clip(item?.label,220),href:clip(item?.href,700),evidenceStatus:clip(item?.evidenceStatus,40),claimDomain:clip(item?.claimDomain,40),doctrinalStatus:clip(item?.doctrinalStatus,40),limits:clip(item?.limits,700)
+  })):[];
+}
+function setReviewContext(detail){
+  if(!detail||detail.kind!=='theologian-response'||!['flag','disagree'].includes(detail.action))return false;
+  pendingContext={
+    kind:'theologian-response',action:detail.action,
+    question:clip(detail.question,1600),answer:clip(detail.answer,9000),mode:clip(detail.mode,32),model:clip(detail.model,160),
+    policyVersion:typeof detail.policyVersion==='number'?detail.policyVersion:clip(detail.policyVersion,32),
+    validationStatus:clip(detail.validationStatus,32),evidence:normalizeEvidence(detail.evidence)
+  };
+  if(!pendingContext.question||!pendingContext.answer){resetReviewContext();return false}
+  if(categorySelect)categorySelect.value='theology';
+  if(reasonRow)reasonRow.hidden=false;
+  if(reasonSelect){reasonSelect.required=true;reasonSelect.value=detail.action==='disagree'?'interpretive-disagreement':'incorrect-claim'}
+  if(contextPreview){
+    contextPreview.hidden=false;
+    contextPreview.textContent=detail.action==='disagree'?'Your disagreement will include the specific Theologian question, answer, and visible evidence metadata for review.':'This report will include the specific Theologian question, answer, and visible evidence metadata for review.';
+  }
+  if(messageInput)messageInput.placeholder=detail.action==='disagree'?'What interpretation, evidence, or perspective should be considered?':'What seems incorrect, unsupported, incomplete, or too certain?';
+  return true;
+}
+function openPanel(trigger=openButton,reviewContext=null){
   lastTrigger=trigger||openButton;
+  if(reviewContext){setReviewContext(reviewContext)}else resetReviewContext();
   panel.hidden=false;
   feedbackTriggers().forEach(button=>button.setAttribute('aria-expanded','true'));
-  form.querySelector('select,textarea,input')?.focus({preventScroll:true});
+  (pendingContext?reasonSelect:form.querySelector('select,textarea,input'))?.focus({preventScroll:true});
 }
 
 function closePanel(){
@@ -49,29 +87,32 @@ form?.addEventListener('submit',async event=>{
   event.preventDefault();
   const data=new FormData(form);
   const payload={
-    category:String(data.get('category')||'other'),
+    category:pendingContext?'theology':String(data.get('category')||'other'),
     message:String(data.get('message')||'').trim(),
     contact:String(data.get('contact')||'').trim(),
     route:routeContext(),
-    clientCreatedAt:new Date().toISOString()
+    clientCreatedAt:new Date().toISOString(),
+    ...(pendingContext?{reviewReason:String(data.get('reviewReason')||''),context:pendingContext}:{})
   };
   if(payload.message.length<5){status.textContent='Please add a little more detail.';return}
+  if(pendingContext&&!payload.reviewReason){status.textContent='Choose why this response should be reviewed.';return}
   status.textContent='Sending…';
   try{
     await send(payload);
-    form.reset();
-    status.textContent='Thank you. Your feedback was sent.';
+    form.reset();resetReviewContext();
+    status.textContent='Thank you. Your feedback was sent with the response context needed for review.';
   }catch{
     const queue=readQueue();
     queue.push(payload);
     writeQueue(queue.slice(-50));
-    form.reset();
-    status.textContent='You appear to be offline or the service is unavailable. Your feedback was saved on this device and will retry automatically.';
+    form.reset();resetReviewContext();
+    status.textContent='You appear to be offline or the service is unavailable. Your feedback and review context were saved on this device and will retry automatically.';
   }
 });
 
 openButton?.addEventListener('click',()=>openPanel(openButton));
 document.addEventListener('click',event=>{const trigger=event.target.closest('[data-feedback-open]');if(trigger)openPanel(trigger)});
+document.addEventListener('canonical-theologian-review',event=>openPanel(event.detail?.trigger||openButton,event.detail));
 closeButton?.addEventListener('click',closePanel);
 window.addEventListener('online',()=>flushQueue().catch(()=>{}));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel&&!panel.hidden)closePanel()});
