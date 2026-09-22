@@ -20,22 +20,23 @@ The generated file is intended to contain the complete substantive Canonical She
 - the curated passage library and its translation/theme/context metadata;
 - Statement of Faith;
 - theology policy and theology-source metadata;
-- repository-root Markdown such as `README.md` and `AI_INSTRUCTIONS.md`; and
-- Markdown documentation under `docs/` that materially preserves product, curriculum, theology, design, governance, architecture, audit, planning, and decision context.
+- repository-root Markdown such as `README.md` and `AI_INSTRUCTIONS.md`;
+- Markdown documentation under `docs/` that materially preserves product, curriculum, theology, design, governance, architecture, audit, planning, and decision context; and
+- semantic `.md`, `.json`, and `.txt` source material under `content/`, excluding vendored legacy snapshots and migration/provenance inputs already represented by current canonical artifacts.
 
 Repository documentation may include historical or superseded material. Source paths are preserved, and explicit decision-precedence/current-baseline documents plus generated runtime artifacts govern conflicts.
 
 ## Explicit exclusions
 
-The complete BSB Bible text at `public/data/corpus.txt` is linked but not embedded. The generator also does not ingest secrets, private learner/account/feedback data, dependency trees, transient build output, binary assets, or implementation-only source code merely because those files exist in the repository.
+The complete BSB Bible text at `public/data/corpus.txt` is linked but not embedded. The generator also does not ingest secrets, private learner/account/feedback data, dependency trees, transient build output, binary assets, vendored migration snapshots, or implementation-only source code merely because those files exist in the repository.
 
 Curated Scripture passages used as Canonical Shelf learning/reference content remain included because they are substantive site content; the excluded item is the complete BSB reader corpus.
 
 ## Outcomes
 
 - Agents can discover the site contract at `/llms.txt` and from `rel="describedby"` in the app shell.
-- The document is usable as a self-contained context corpus without requiring an agent to reconstruct lessons, Topics, Practice, book profiles, Orientation, or current project decisions from scattered files.
-- Non-user-facing documentation that materially affects correct understanding is available alongside published content.
+- The document is usable as a self-contained context corpus without requiring an agent to reconstruct lessons, Topics, Practice, book profiles, Orientation, source policy, or current project decisions from scattered files.
+- Non-user-facing documentation and semantic source data that materially affect correct understanding are available alongside published content.
 - Curriculum/reference counts are read from the generated runtime catalog, so canonical content changes automatically propagate.
 - Source documents and runtime artifacts remain authoritative; `llms.txt` republishes them rather than independently authoring policy or theology.
 - The full BSB remains discoverable without being duplicated.
@@ -48,7 +49,7 @@ Curated Scripture passages used as Canonical Shelf learning/reference content re
 4. `public/index.html` advertises `/llms.txt` with `<link rel="describedby" href="/llms.txt">`.
 5. `llms.txt` embeds the generated curriculum reference, Statement of Faith, theology policy, and theology-source metadata.
 6. `llms.txt` embeds the substantive current runtime catalog, Orientation, 66-book library data, Practice data, and curated passage library.
-7. `llms.txt` embeds repository-root and `docs/` Markdown context selected by the repository-context policy.
+7. `llms.txt` embeds repository-root Markdown, `docs/` Markdown, and eligible semantic source files under `content/` according to the repository-context policy.
 8. `README.md`, `AI_INSTRUCTIONS.md`, and `docs/v7/DECISION_PRECEDENCE.md` are mandatory context when present in the repository.
 9. The complete BSB corpus is linked but never embedded as a `Source:` content section.
 10. `bun run validate:llms` rejects stale output, malformed structure, missing canonical resources/datasets, incomplete Bible/Practice/orientation data, missing required repository context, accidental full-corpus embedding, or discovery-link drift.
@@ -71,7 +72,7 @@ Curated Scripture passages used as Canonical Shelf learning/reference content re
 2. Maintain a shared generator that reads app navigation, About disclosures, generated public documents, current runtime catalog, and substantive public content modules.
 3. Normalize the runtime catalog to substantive fields instead of copying transient migration metadata.
 4. Serialize Orientation, Bible-library, Practice, and curated-passage datasets directly from authoritative exports.
-5. Recursively include repository-root Markdown and `docs/**/*.md`, preserving source paths and excluding explicitly archived/historical directories where policy marks them non-current.
+5. Recursively include repository-root Markdown, `docs/**/*.md`, and semantic `.md`/`.json`/`.txt` under `content/`, preserving source paths while excluding vendored legacy and migration/provenance directories.
 6. Link `/data/corpus.txt` while explicitly excluding it from embedded content.
 7. Maintain discovery metadata in the app shell.
 8. Wire generation into `prepare:content` and validation into the verification chain.
@@ -84,7 +85,7 @@ Curated Scripture passages used as Canonical Shelf learning/reference content re
 - Generated curriculum reference
 - Primary HTML shell metadata
 - Public learning/reference data modules
-- Repository documentation corpus
+- Repository documentation and semantic source corpus
 - Production validation/CI command graph
 - Generated runtime catalog as a normalized input
 
@@ -108,11 +109,12 @@ Curated Scripture passages used as Canonical Shelf learning/reference content re
 
 - **Generated catalog absent before migration:** generation fails with an actionable message; build runs migration first.
 - **Catalog timestamps break determinism:** only substantive catalog fields are serialized.
-- **Important content lives outside the catalog:** Orientation, library, Practice, curated-passage modules, root docs, and `docs/` Markdown are loaded explicitly.
+- **Important content lives outside the catalog:** Orientation, library, Practice, curated-passage modules, root docs, `docs/`, and semantic `content/` source files are loaded explicitly.
 - **Historical documentation creates conflicting instructions:** paths are preserved and the document explicitly tells consumers to apply current decision-precedence/baseline artifacts over historical context.
+- **Duplicate canonical/source copies:** duplication is tolerated when it preserves authoritative source context, but runtime artifacts remain the operative current representation.
 - **Large discovery artifact:** size is accepted because the purpose is comprehensive context; the multi-megabyte full BSB remains excluded.
 - **Theological drift:** theological text is loaded verbatim from canonical published/source artifacts rather than synthesized by the generator.
-- **Information leakage:** selection is constrained to substantive content/documentation roots and validation rejects sensitive repository paths.
+- **Information leakage:** selection is constrained to substantive content/documentation roots, migration/vendor trees are excluded, and validation rejects sensitive repository paths.
 
 ## Rollback
 
