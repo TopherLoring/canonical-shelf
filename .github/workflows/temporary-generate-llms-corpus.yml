@@ -1,0 +1,42 @@
+name: temporary-generate-llms-corpus
+
+on:
+  push:
+    branches:
+      - content/complete-llms-user-corpus-2026-09-22
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      D1_DATABASE_ID: 00000000-0000-0000-0000-000000000000
+      BETTER_AUTH_URL: https://the-canonical-shelf.christopherwonder.workers.dev
+      CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: content/complete-llms-user-corpus-2026-09-22
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.15
+      - run: bun install --frozen-lockfile
+      - name: Generate current content and llms corpus
+        run: bun run prepare:content
+      - name: Validate llms corpus
+        run: bun run validate:llms
+      - name: Commit generated llms artifact
+        run: |
+          if git diff --quiet -- public/llms.txt public/data/curriculum.md public/data/catalog.json public/data/statement-of-faith.md public/data/theology-policy.json public/data/theology-sources.json; then
+            echo "Generated content already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/llms.txt public/data/curriculum.md public/data/catalog.json public/data/statement-of-faith.md public/data/theology-policy.json public/data/theology-sources.json
+          git commit -m "Regenerate complete llms learner corpus"
+          git push origin HEAD:content/complete-llms-user-corpus-2026-09-22
