@@ -1,125 +1,104 @@
-# Plan Delta — Automatically Generated `llms.txt`
+# Plan Delta — Complete generated `llms.txt` user corpus
 
 ## Objective
 
-Publish a root-level `/llms.txt` that remains synchronized with Canonical Shelf without routine human or agent editing. Treat it as a deterministic derivative of the repository’s substantive content and current runtime artifacts, not as an independent source of truth.
+Publish `/llms.txt` as a deterministic, self-contained machine-readable mirror of **all Canonical Shelf content intended to inform or teach the learner**, while excluding the verbatim full Berean Standard Bible corpus.
 
-The generated file is intended to contain the complete substantive Canonical Shelf corpus an LLM should know about, including material that is not directly rendered to end users when that material explains the product, curriculum, theology, design, governance, architecture, or current decisions. The complete Berean Standard Bible corpus is the explicit content exclusion.
+`llms.txt` remains generated output, not an independent source of truth. It must automatically rebuild from canonical runtime/content sources so new curriculum, Topics, glossary entries, Bible-book metadata, Practice material, curated passage material, Orientation content, institutional disclosures, and theology/editorial material cannot silently fall out of the machine-readable corpus.
 
-## Included content
+The full `public/data/corpus.txt` BSB text is the one explicit content exclusion. Curated BSB excerpts intentionally used in lessons, challenges, Topics, Practice, or the curated passage library remain included because they are learner-facing Canonical Shelf content rather than a duplicate of the complete Bible translation.
 
-`llms.txt` automatically loads and embeds:
+## User-facing corpus contract
 
-- current primary destinations and route descriptions;
-- About-page overview and institutional disclosures, including the Statement of Faith disclosure;
-- generated curriculum reference;
-- the substantive runtime catalog: courses, units, question threads, curriculum guidance, lessons, current and preserved mastery content, activity placement, Topics, glossary, and retention metadata;
-- the unscored Orientation lesson;
-- the complete 66-book Canonical Shelf reference library, including categories, book profiles, eras, timeline anchors, themes/threads, and story arc;
-- Practice ranks, achievements, stages, levels, game families, and scopes;
-- the curated passage library and its translation/theme/context metadata;
-- Statement of Faith;
-- theology policy and theology-source metadata;
-- repository-root Markdown such as `README.md` and `AI_INSTRUCTIONS.md`;
-- Markdown documentation under `docs/` that materially preserves product, curriculum, theology, design, governance, architecture, audit, planning, and decision context; and
-- semantic `.md`, `.json`, and `.txt` source material under `content/`, excluding vendored legacy snapshots and migration/provenance inputs already represented by current canonical artifacts.
+The generated corpus includes:
 
-Repository documentation may include historical or superseded material. Source paths are preserved, and explicit decision-precedence/current-baseline documents plus generated runtime artifacts govern conflicts.
+1. primary destinations and route descriptions derived from the app shell;
+2. About/institutional disclosures;
+3. the complete current runtime catalog (`catalog.json`), including courses, units, lessons, mastery/capstones, Topics, glossary, question threads, learning metadata, feedback/challenge content, and stable IDs;
+4. generated curriculum reference;
+5. Statement of Faith;
+6. theology policy and vetted theology/source metadata;
+7. unscored Orientation lesson content;
+8. Bible-library data: all 66 book profiles plus canonical groups, eras, timeline anchors, story arc, and cross-canon threads;
+9. Practice ranks, achievements, stages, levels, scopes, and game-family labels;
+10. curated passage library and translation metadata, including intentionally selected BSB excerpts but not the complete BSB corpus;
+11. learner-selectable theme names/descriptions.
 
-## Explicit exclusions
-
-The complete BSB Bible text at `public/data/corpus.txt` is linked but not embedded. The generator also does not ingest secrets, private learner/account/feedback data, dependency trees, transient build output, binary assets, vendored migration snapshots, or implementation-only source code merely because those files exist in the repository.
-
-Curated Scripture passages used as Canonical Shelf learning/reference content remain included because they are substantive site content; the excluded item is the complete BSB reader corpus.
-
-## Outcomes
-
-- Agents can discover the site contract at `/llms.txt` and from `rel="describedby"` in the app shell.
-- The document is usable as a self-contained context corpus without requiring an agent to reconstruct lessons, Topics, Practice, book profiles, Orientation, source policy, or current project decisions from scattered files.
-- Non-user-facing documentation and semantic source data that materially affect correct understanding are available alongside published content.
-- Curriculum/reference counts are read from the generated runtime catalog, so canonical content changes automatically propagate.
-- Source documents and runtime artifacts remain authoritative; `llms.txt` republishes them rather than independently authoring policy or theology.
-- The full BSB remains discoverable without being duplicated.
+Implementation/runtime source code, tests, project plans, CI/configuration, private learner state, account data, feedback submissions, secrets, private APIs, and internal-only engineering documentation are not learner corpus content and must not be copied into `llms.txt`.
 
 ## Acceptance criteria
 
-1. `bun run migrate`, `bun run generate:curriculum-reference`, and `bun run generate:llms` deterministically create the current `public/data/curriculum.md` and `public/llms.txt`.
-2. Generated counts match `public/data/catalog.json` for courses, units, guided lessons, mastery/capstone activities, scored activities, Topics, and glossary terms.
-3. Primary destination links are derived from the actual primary navigation in `public/index.html`.
-4. `public/index.html` advertises `/llms.txt` with `<link rel="describedby" href="/llms.txt">`.
-5. `llms.txt` embeds the generated curriculum reference, Statement of Faith, theology policy, and theology-source metadata.
-6. `llms.txt` embeds the substantive current runtime catalog, Orientation, 66-book library data, Practice data, and curated passage library.
-7. `llms.txt` embeds repository-root Markdown, `docs/` Markdown, and eligible semantic source files under `content/` according to the repository-context policy.
-8. `README.md`, `AI_INSTRUCTIONS.md`, and `docs/v7/DECISION_PRECEDENCE.md` are mandatory context when present in the repository.
-9. The complete BSB corpus is linked but never embedded as a `Source:` content section.
-10. `bun run validate:llms` rejects stale output, malformed structure, missing canonical resources/datasets, incomplete Bible/Practice/orientation data, missing required repository context, accidental full-corpus embedding, or discovery-link drift.
-11. Normal build/verify/deploy paths regenerate the current curriculum reference and `llms.txt` automatically.
-12. Sensitive paths are never selected as repository context.
+1. `bun run prepare:content` deterministically regenerates `public/llms.txt` from current canonical inputs.
+2. `public/data/catalog.json` is embedded completely rather than only summarized or linked.
+3. Every current Orientation scene is present.
+4. All 66 Bible book profiles and supporting library metadata are present.
+5. Practice configuration and learner-visible progression labels are present.
+6. The curated passage library is present, including curated BSB excerpts and its translation metadata.
+7. Current theme names/descriptions are present.
+8. Curriculum reference, Statement of Faith, theology policy, theology source metadata, and About disclosures remain present.
+9. The full `public/data/corpus.txt` BSB text is linked as a resource but is never embedded.
+10. Validation fails when any configured corpus source is empty, stale, missing, or excluded accidentally.
+11. Validation explicitly fails if the complete BSB corpus becomes an embedded source.
+12. No learner/account/feedback state or private API surface is emitted.
 
 ## Invariants
 
-- Curriculum counts and the current curriculum reference are derived from the canonical generated catalog rather than hard-coded into `llms.txt`.
-- Home / Course / Bible / Topics / Practice remain the current primary destinations.
-- Bible owns shelf/browse/reader; Topics are reference content and do not count toward completion; Practice is reinforcement.
-- The Statement of Faith remains the doctrinal ceiling.
-- `llms.txt` is derived output and must not become a second authority for product, curriculum, theology, or governance.
-- Runtime-only migration timestamps and implementation provenance are omitted from the embedded catalog representation so identical substantive inputs remain deterministic.
-- Historical repository documentation is context; it does not override explicit current-baseline or precedence documents.
+- `llms.txt` is derived output and never becomes an authoring source.
+- Statement of Faith remains the doctrinal ceiling.
+- Bible owns shelf/browse/reader; Topics remain reference content; Practice remains reinforcement.
+- Stable learning IDs and generated catalog ownership are preserved.
+- The full BSB corpus remains separately available to the Bible reader/search system but is excluded from `llms.txt` duplication.
+- Curated Scripture excerpts embedded in lessons/Topics/Practice/passage data are not removed merely because their translation is BSB.
 
 ## Implementation plan
 
-1. Generate `public/data/curriculum.md` from the current runtime catalog after migration.
-2. Maintain a shared generator that reads app navigation, About disclosures, generated public documents, current runtime catalog, and substantive public content modules.
-3. Normalize the runtime catalog to substantive fields instead of copying transient migration metadata.
-4. Serialize Orientation, Bible-library, Practice, and curated-passage datasets directly from authoritative exports.
-5. Recursively include repository-root Markdown, `docs/**/*.md`, and semantic `.md`/`.json`/`.txt` under `content/`, preserving source paths while excluding vendored legacy and migration/provenance directories.
-6. Link `/data/corpus.txt` while explicitly excluding it from embedded content.
-7. Maintain discovery metadata in the app shell.
-8. Wire generation into `prepare:content` and validation into the verification chain.
-9. Keep a generated baseline `public/llms.txt` in-repo; content builds rewrite it deterministically.
+1. Extend the shared llms contract with an explicit user-corpus source registry.
+2. Keep text documents verbatim where they are already canonical published artifacts.
+3. Serialize structured learner-facing ESM exports into deterministic JSON sections for Orientation, Bible library, Practice, curated passages, and themes.
+4. Embed the complete generated runtime catalog verbatim.
+5. Keep `corpus.txt` as an explicit linked-only exclusion.
+6. Expand validation to assert source coverage, 66-book coverage, Orientation/Practice/curated-passage/theme coverage, complete catalog embedding, and full-BSB exclusion.
+7. Regenerate and commit `public/llms.txt` from the new contract.
 
-## Affected systems
+## Execution plan / WBS
 
-- Build/migration pipeline
-- Static public assets
-- Generated curriculum reference
-- Primary HTML shell metadata
-- Public learning/reference data modules
-- Repository documentation and semantic source corpus
-- Production validation/CI command graph
-- Generated runtime catalog as a normalized input
+| ID | Work | Depends on | Evidence |
+|---|---|---|---|
+| LLMS.C1 | Define complete learner-corpus scope and BSB exception | current product/content contracts | this plan |
+| LLMS.C2 | Add typed execution graph | LLMS.C1 | `EXECUTION_GRAPH_LLMS_COMPLETE_CORPUS.json` |
+| LLMS.C3 | Extend deterministic generator/source registry | LLMS.C1 | `scripts/llms-contract.mjs` |
+| LLMS.C4 | Strengthen freshness/coverage/exclusion validation | LLMS.C3 | `scripts/validate-llms.mjs` |
+| LLMS.C5 | Regenerate checked-in corpus | LLMS.C3 | `public/llms.txt` |
+| LLMS.C6 | Validate build/CI integration and deterministic regeneration | LLMS.C4, LLMS.C5 | `bun run validate:llms`, build/CI |
+
+DAG: `LLMS.C1 → LLMS.C2`; `LLMS.C1 → LLMS.C3 → {LLMS.C4, LLMS.C5} → LLMS.C6`.
 
 ## Validation
 
-- Generate twice from the same substantive inputs and require byte-identical output.
-- Compare generated output in-memory against `public/llms.txt`.
-- Assert one structural H1, summary blockquote, expected H2 sections, and route links.
-- Assert catalog counts are represented exactly.
-- Assert primary nav routes are represented exactly once.
-- Assert the About overview plus all seven disclosure sections are represented.
-- Assert every configured embedded resource is non-empty.
-- Assert runtime catalog, Orientation, Bible-library, Practice, and curated-passage sections exist.
-- Assert exactly 66 Bible book profiles are present and Orientation/Practice/curated-passage datasets are non-empty.
-- Assert repository context is non-empty and required baseline files are present.
-- Assert selected repository-context paths do not match sensitive-path patterns.
-- Assert `/data/corpus.txt` is linked but never emitted as an embedded `Source:` section.
-- Assert package scripts run migration → curriculum-reference generation → llms generation before build completion and validation during verification.
+- Generate twice from identical inputs and require byte-identical output.
+- Compare `public/llms.txt` byte-for-byte with `buildLlmsContract().markdown`.
+- Assert complete `catalog.json` text is embedded.
+- Assert Orientation contains all current scene titles.
+- Assert Bible library contains exactly 66 book profiles and all canonical-group metadata.
+- Assert Practice source counts match exported ranks/achievements/stages/levels/scopes.
+- Assert curated passage count and translation metadata match `verse-data.js` exports.
+- Assert theme count/names match `theme.js` exports.
+- Assert the configured embedded-resource registry contains no `corpus.txt` entry.
+- Assert `/data/corpus.txt` remains linked and explicitly identified as the full BSB exclusion.
+- Preserve privacy/API leakage checks.
 
 ## Risks and mitigations
 
-- **Generated catalog absent before migration:** generation fails with an actionable message; build runs migration first.
-- **Catalog timestamps break determinism:** only substantive catalog fields are serialized.
-- **Important content lives outside the catalog:** Orientation, library, Practice, curated-passage modules, root docs, `docs/`, and semantic `content/` source files are loaded explicitly.
-- **Historical documentation creates conflicting instructions:** paths are preserved and the document explicitly tells consumers to apply current decision-precedence/baseline artifacts over historical context.
-- **Duplicate canonical/source copies:** duplication is tolerated when it preserves authoritative source context, but runtime artifacts remain the operative current representation.
-- **Large discovery artifact:** size is accepted because the purpose is comprehensive context; the multi-megabyte full BSB remains excluded.
-- **Theological drift:** theological text is loaded verbatim from canonical published/source artifacts rather than synthesized by the generator.
-- **Information leakage:** selection is constrained to substantive content/documentation roots, migration/vendor trees are excluded, and validation rejects sensitive repository paths.
+- **Large `llms.txt`:** accepted intentionally; completeness is the product requirement. Only the multi-megabyte full Bible corpus remains excluded.
+- **Duplicate authored material:** acceptable where the same learner-facing content legitimately exists in canonical published artifacts and runtime catalog; the generator does not synthesize or rewrite it.
+- **Structured module drift:** load current ESM exports during generation instead of maintaining hand-copied mirrors.
+- **Accidental BSB duplication:** keep `corpus.txt` outside the embedded registry and enforce that rule in validation.
+- **Private data leakage:** only deterministic public content sources are eligible; runtime state/accounts/feedback remain outside the registry.
 
 ## Rollback
 
-Revert the `llms` generator/validator/documentation changes and regenerate the previous baseline. No learner-state schema or runtime persistence changes are involved.
+Revert the generator, validator, execution graph, plan, and generated `public/llms.txt`. No learner-state schema, persistence, account, or content-authoring data is modified.
 
 ## Human-review gate
 
-No new theological position or learner-facing interaction is introduced. Human review remains appropriate for the canonical curriculum/theological source documents themselves; the generation path republishes approved content and relevant repository context without changing their meaning.
+No theological or editorial claims are authored by this change. Human review is required only if the source content itself changes; this work republishes existing approved learner-facing content without altering its meaning.
