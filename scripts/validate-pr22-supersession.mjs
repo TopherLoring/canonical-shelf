@@ -25,11 +25,12 @@ for(const marker of ['Building a grounded answer','offline evidence mode','guard
 for(const marker of ['requestCloudTheologian','/api/theologian'])requireText(cloud,marker,`direct cloud Theologian client missing invariant: ${marker}`);
 for(const marker of ['v7-native-rendering-2026-09-22-d','/theologian-chat.js','/home.html','/data/theology-policy.json'])requireText(sw,marker,`service-worker supersession/cache invariant missing: ${marker}`);
 for(const marker of ["theologian?.mode!=='cloud'","theologian.evidence.length===0","theologian?.validation?.status!=='passed'",'learnerAgency','data-route-document'])requireText(verify,marker,`production smoke gate missing PR #22 behavioral invariant: ${marker}`);
-for(const marker of ['#24272d','#31353c','#c7a253','.library-first-home','.library-reader-layout,.topic-reference-layout'])requireText(libraryCss,marker,`consolidated Library First CSS missing approved baseline marker: ${marker}`);
+for(const marker of ['#24272d','#31353c','#c7a253','background-image:none!important'])requireText(libraryCss,marker,`consolidated Library First CSS missing approved baseline marker: ${marker}`);
 
 // PR #22's implementation strategy must remain superseded.
 await mustNotExist('public/locked-home.js');
 await mustNotExist('public/locked-library-baseline.css');
+await mustNotExist('public/library-system-refinements.css');
 for(const [source,label] of [[index,'index'],[bootstrap,'bootstrap'],[sw,'service worker'],[cloud,'cloud Theologian']]){
   for(const obsolete of ['locked-home.js','locked-library-baseline.css','library-system-refinements.css'])forbid(source,obsolete,`${label} references superseded PR #22 repair asset ${obsolete}`);
 }
