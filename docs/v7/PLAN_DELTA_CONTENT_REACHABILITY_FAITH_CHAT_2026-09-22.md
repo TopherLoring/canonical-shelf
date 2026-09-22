@@ -14,15 +14,18 @@ Complete PR #24 with an explicit learner-content reachability contract, separate
 3. The existing long-form belief document is not rendered as the public Statement of Faith; it remains supplemental Theologian context below the compact doctrinal ceiling.
 4. The Theologian behaves as a conventional chatbot: chronological user/assistant message transcript, composer at the bottom, follow-up context, loading/error state, evidence/limits attached to answers, and a New chat/Clear chat control.
 5. The transcript persists locally across reloads until the learner clears it; it is not written to D1, KV, Durable Objects, account sync, Journal, Feedback, or remote conversation storage.
-6. The Theologian is learner-state aware through a deliberately minimal context summary: current route/activity, course/activity completion counts, due-review count, and recent study labels. Journal text, lesson notes, reflection text, profile/account data, contact data, and inferred theological beliefs are excluded.
-7. Reflection challenges retain the learner's typed response privately rather than recording only a submitted flag, while remaining unscored.
+6. The Theologian is learner-state aware through a deliberately minimal context summary: current route/activity, course/activity completion counts, due-review count, and recent study labels. Journal text, lesson notes, optional reflection writing, profile/account data, contact data, and inferred theological beliefs are excluded.
+7. Completion-bearing challenges are objectively scoreable interactions. Reflection prompts remain optional private study writing and do not count as scored challenges or mastery requirements.
 8. Original Guide/Theologian safeguards remain enforceable and visible where useful without turning the interface into a compliance dashboard.
+9. Feedback remains available everywhere but is visually quiet in learning views: monochrome text-link styling rather than a floating primary button.
 
 ## Invariants
 
 - The compact Statement of Faith is the doctrinal ceiling.
 - The long-form belief context may elaborate but may not override or silently expand the compact doctrinal ceiling.
 - Understanding/reasoning, not theological assent, remains the assessment contract.
+- Every completion-bearing challenge must have a defensible authored answer/evaluation contract; no generic free-response reflection may satisfy activity completion.
+- Reflection/Journal writing is optional, private, and unscored.
 - The BSB remains the canonical Scripture quotation source.
 - Theologian answers distinguish text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application.
 - Evidence status and interpretive limits remain explicit where relevant; contested evidence must never be rendered as consensus.
@@ -45,24 +48,28 @@ Complete PR #24 with an explicit learner-content reachability contract, separate
 - Cloud and deterministic modes both retain mastery protection, evidence labels, source limits, theological boundaries, and Statement-of-Faith validation.
 - The learner-facing name is `Theologian`, not `Guide`.
 - The original typed theology/evidence model remains wired into runtime validation rather than becoming dead types.
-- Reflection challenge text is stored privately with the activity/challenge and recoverable when returning to it; it is never scored for theological agreement.
+- Generated curriculum validation proves there are zero completion-bearing fallback reflection challenges.
+- Optional lesson reflection prompts may remain available as private writing, but they cannot complete, score, or alter mastery.
 - A machine-readable learner-content reachability manifest maps every current learner-facing content family to its owning surface/entry path.
+- Learning-view Feedback uses a small monochrome text affordance, with the global feedback function still available on every route.
 - Existing production route, offline, assessment, state, theology, and live-cloud smoke gates remain required.
 
 ## Affected systems
 
 - `content/statement/`
 - `content/theology/`
+- `content/curriculum/`
 - `content/learner-content-reachability.json`
 - `src/knowledge/model.ts`
 - `scripts/publish-theology.mjs`
 - `scripts/validate-production.mjs`
-- reachability/Theologian validation
+- curriculum/reachability/Theologian validation
 - `public/app.js`
 - `public/db.js`
 - `public/learning.js`
 - `public/theologian.js`
 - `public/theologian-cloud.js`
+- `public/theologian-chat.js`
 - `public/utility-panels.css`
 - `worker/theologian-ai.ts`
 - Theologian tests and current documentation
@@ -74,11 +81,13 @@ Complete PR #24 with an explicit learner-content reachability contract, separate
 3. Validate learner-content reachability manifest.
 4. Validate original theology-policy invariants and typed status model usage.
 5. Test visible/local-persistent conversation behavior, bounded follow-up context, New chat/Clear chat, and learner-state allowlist.
-6. Test reflection text persistence separately from Journal/lesson notes.
-7. Test mastery protection in deterministic and cloud modes.
-8. Run PR #24 prelaunch verification.
-9. Obtain an executable full current-head CI run before merge.
-10. After merge, production deployment must pass the live `/api/theologian` smoke gate.
+6. Validate every completion-bearing lesson/mastery challenge resolves to an objectively scoreable interaction shape with an authored answer contract.
+7. Verify optional reflection/Journal writing remains unscored and outside mastery completion.
+8. Test mastery protection in deterministic and cloud modes.
+9. Validate feedback reachability and quiet learning-view treatment.
+10. Run PR #24 prelaunch verification.
+11. Obtain an executable full current-head CI run before merge.
+12. After merge, production deployment must pass the live `/api/theologian` smoke gate.
 
 ## Risks and rollback
 
@@ -86,11 +95,11 @@ Complete PR #24 with an explicit learner-content reachability contract, separate
 - Risk: chat/local transcript creates privacy ambiguity. Mitigation: make local persistence explicit in UI, provide one-action clearing, and exclude transcript from sync/server persistence.
 - Risk: learner-state awareness leaks private material. Mitigation: construct a hard allowlist summary; no generic learner-state serialization is permitted.
 - Risk: conversation history expands prompts excessively. Mitigation: keep full local transcript for viewing while transmitting only a bounded recent subset.
-- Risk: reflection storage accidentally becomes theological scoring. Mitigation: persist text separately from scoring semantics; assessment records only submission/completion.
+- Risk: a subjective belief prompt is made artificially scoreable. Mitigation: replace it with an evidence/text/context reasoning task rather than assigning a doctrinally preferred free-response answer.
 - Risk: rich chatbot UI hides evidence/limits. Mitigation: attach compact evidence/limits disclosure to each assistant answer.
 
-Rollback is a PR #24 revert of this delta. Reflection-text persistence is additive to learner state and must tolerate absence in older state.
+Rollback is a PR #24 revert of this delta. No destructive learner-state migration is required.
 
 ## Human review gates
 
-Before public launch, retain separate human review for theological/editorial nuance, conversational quality, novice usability, physical-device behavior, and manual accessibility. Automated validation does not represent those gates as passed.
+Before public launch, retain separate human review for theological/editorial nuance, conversational quality, novice usability, physical-device behavior, assessment validity, and manual accessibility. Automated validation does not represent those gates as passed.
