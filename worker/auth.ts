@@ -24,7 +24,8 @@ export function createAuth(env:AuthEnv){
         beforeDelete:async user=>{
           await env.DB.batch([
             env.DB.prepare('DELETE FROM learner_mutation WHERE user_id=?').bind(user.id),
-            env.DB.prepare('DELETE FROM learner_state WHERE user_id=?').bind(user.id)
+            env.DB.prepare('DELETE FROM learner_state WHERE user_id=?').bind(user.id),
+            env.DB.prepare('UPDATE feedback SET user_id=NULL WHERE user_id=?').bind(user.id)
           ]);
         }
       }
