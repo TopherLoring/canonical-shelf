@@ -51,13 +51,18 @@ test('correct selections receive the sole positive indicator',async({page})=>{
   await expect(page.locator('.response-is-incorrect,.is-wrong,[data-response-status="wrong"]')).toHaveCount(0);
 });
 
-test('Study Focus reserves Feedback and Journal controls and fits a phone viewport',async({page})=>{
+test('Study Focus keeps Journal and Feedback in Session Notes and fits a phone viewport',async({page})=>{
   await page.setViewportSize({width:375,height:667});
   await page.goto('/course?unit=unit.start&lesson=begin');
   await expect(page.locator('body > #feedback-open')).toBeHidden();
   await expect(page.locator('body > #personal-study-open')).toBeHidden();
-  await expect(page.locator('.study-focus__chrome').getByRole('button',{name:'Feedback',exact:true})).toBeVisible();
-  await expect(page.locator('.study-focus__chrome').getByRole('button',{name:'Journal',exact:true})).toBeVisible();
+  await expect(page.locator('.study-focus__chrome').getByRole('button',{name:'Feedback',exact:true})).toBeHidden();
+  await expect(page.locator('.study-focus__chrome').getByRole('button',{name:'Journal',exact:true})).toBeHidden();
+  await page.locator('.study-nav__notes').click();
+  await expect(page.locator('#study-apparatus h2')).toHaveText('Session Notes');
+  await expect(page.locator('#study-apparatus').getByRole('button',{name:'Journal Notes'})).toBeVisible();
+  await expect(page.locator('#study-apparatus').getByRole('button',{name:'Feedback'})).toBeVisible();
+  await expect(page.locator('#study-apparatus')).toContainText(/current study activity/i);
   const bounds=await page.locator('.study-folio').boundingBox();
   expect(bounds.x).toBeGreaterThanOrEqual(0);
   expect(bounds.y).toBeGreaterThanOrEqual(0);
