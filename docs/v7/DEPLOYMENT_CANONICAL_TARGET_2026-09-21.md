@@ -1,10 +1,10 @@
 # Canonical Shelf production deployment contract — 2026-09-21
 
-Status: **current release/deployment authority**
+Status: **current release/deployment authority; updated 2026-09-22 for route-owned documents**
 
 ## Objective
 
-Eliminate the recurring class of failures where a successful build or Wrangler invocation can target the wrong Worker, omit a required binding, ship a stale generated configuration, or report deployment success without proving that direct application routes actually work on the intended production host.
+Eliminate the recurring class of failures where a successful build or Wrangler invocation can target the wrong Worker, omit a required binding, ship stale generated configuration, resolve a clean destination URL to the generic fallback instead of its owned document, or report deployment success without proving that the intended production experience and Theologian actually work.
 
 ## Canonical target
 
@@ -12,6 +12,9 @@ Eliminate the recurring class of failures where a successful build or Wrangler i
 - Production origin: `https://the-canonical-shelf.christopherwonder.workers.dev`
 - Worker entry: `worker/index.ts`
 - Static assets: `./public` through binding `ASSETS`
+- Static HTML handling: `auto-trailing-slash`
+- Unknown asset fallback: `single-page-application`
+- Worker-first API routing: `/api/*`
 - D1 binding: `DB`
 - D1 database name: `canonical-shelf`
 - Workers AI binding: `AI`
@@ -25,9 +28,10 @@ There is no second production Worker name. Historical references to `canonical-s
 
 The generator owns:
 
-- Worker name;
-- Worker entry;
-- Static Assets directory/binding/SPA fallback;
+- Worker name and entry;
+- Static Assets directory/binding;
+- clean HTML route handling;
+- unknown-route fallback;
 - API worker-first routing;
 - D1 binding/name/migrations directory;
 - Workers AI binding;
@@ -36,6 +40,21 @@ The generator owns:
 - release SHA.
 
 Local `wrangler dev` may use a localhost `BETTER_AUTH_URL` when `CANONICAL_ORIGIN` is absent. Production and CI explicitly set `CANONICAL_ORIGIN`, which makes the production origin non-negotiable.
+
+## Route-owned deployment artifacts
+
+`scripts/generate-route-documents.mjs` deterministically derives these route documents from `public/index.html` during runtime builds:
+
+- `public/home.html`
+- `public/course.html`
+- `public/bible.html`
+- `public/topics.html`
+- `public/practice.html`
+- `public/search.html`
+
+Cloudflare Static Assets uses `html_handling: auto-trailing-slash`, so clean URLs such as `/course` serve `course.html` directly. `not_found_handling: single-page-application` remains only the unknown-route/root compatibility fallback; it must not mask a missing destination document.
+
+Each generated document carries both `data-route-document="<route>"` and a bounded `data-route-content="<route>"` enhancement region. Post-deploy verification checks those markers so HTTP 200 from the generic fallback cannot be mistaken for correct route ownership.
 
 ## Pre-deploy gates
 
@@ -49,9 +68,10 @@ Before remote mutation/deploy, the workflow must:
 
 `validate:cloudflare` rejects:
 
-- wrong Worker name;
-- wrong entry file;
-- wrong/missing Static Assets binding or SPA fallback;
+- wrong Worker name or entry;
+- wrong/missing Static Assets directory/binding;
+- missing/wrong `html_handling: auto-trailing-slash`;
+- wrong/missing SPA compatibility fallback;
 - missing `/api/*` worker-first routing;
 - missing Workers AI binding;
 - wrong Better Auth/canonical origin;
@@ -83,33 +103,40 @@ The deployed Worker exposes `GET /api/health`, returning:
 1. `/api/health` reports the exact GitHub release SHA;
 2. origin is the canonical production origin;
 3. Assets, D1, and Workers AI bindings are present;
-4. `/`, `/course`, `/bible`, `/topics`, and `/practice` return the Canonical Shelf HTML application shell on direct navigation;
-5. `/llms.txt`, Statement of Faith, theology policy, and runtime catalog are reachable and contain expected release content.
+4. `/` returns the Canonical Shelf root compatibility shell;
+5. `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` each return HTML containing their exact route-ownership and bounded-content markers rather than the generic fallback;
+6. `/llms.txt`, Statement of Faith, theology policy, and runtime catalog are reachable and contain expected release content;
+7. a bounded POST to `/api/theologian` returns live `mode: "cloud"` synthesis with a substantive answer, an evidence collection, and the BSB grounding guardrail.
 
-The deployment job fails if any of those checks fail.
+The live Theologian smoke uses the benign question `What is the Decalogue?` and sends only a test route context. It is not learner data and does not alter the runtime's stateless conversation boundary.
+
+The deployment job fails if any required proof fails. The deterministic Theologian fallback remains the learner-facing resilience path during later cloud outages, but a production release must still prove that its configured cloud synthesis path works at deploy time.
 
 ## Full release audit
 
 Pull requests targeting `main` run both:
 
 - the fast/prelaunch verification + Cloudflare dry-run; and
-- a full release audit with content/assessment validation, state/sync tests, Theologian tests, Chromium/Firefox/WebKit E2E, automated accessibility coverage, and a second Cloudflare dry-run after the full build.
+- a full release audit with content/assessment validation, state/sync tests, Theologian tests, native document validation, Chromium/Firefox/WebKit E2E, automated accessibility coverage, and a second Cloudflare dry-run after the full build.
 
-This prevents production deployment from being the first environment to discover a route, content-generation, browser, or configuration regression.
+This prevents production deployment from being the first environment to discover a route-document, content-generation, browser, accessibility, state, or configuration regression.
 
-## Failure classes now guarded
+A workflow run that fails before a runner is allocated and reports zero executed steps is infrastructure/provisioning evidence only; it is not a passing or failing result for the repository code. Release gates are not waived because CI failed to start.
+
+## Failure classes guarded
 
 - accidental deployment to `canonical-shelf` instead of `the-canonical-shelf`;
 - stale or hand-edited Wrangler config;
-- missing Static Assets SPA handling causing `/bible` or another native route to fail on direct load;
+- clean route resolving to generic `index.html` instead of its generated destination document;
+- missing route document in the service-worker offline shell;
 - missing D1 binding/database mismatch;
-- missing Workers AI binding after Theologian integration;
+- missing Workers AI binding or nonfunctional live Theologian synthesis;
 - Better Auth host mismatch;
 - deployment of a different commit than the workflow believes it deployed;
 - deploy command success while the intended live route still serves the wrong or incomplete application.
 
 ## Rollback
 
-If a release fails after deployment, use the last known-good `main` commit as the release source and run the same guarded workflow. Do not bypass config generation, target validation, migrations, or post-deploy smoke verification to force a rollback.
+If a release fails after deployment, use the last known-good `main` commit as the release source and run the same guarded workflow. Do not bypass config generation, target validation, migrations, route-ownership verification, or live post-deploy smoke checks to force a rollback.
 
 A failure should be fixed in the canonical generator/workflow/validation contract rather than by manually editing `wrangler.jsonc` in production.
