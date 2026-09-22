@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {Miniflare} from 'miniflare';
-import {anonymousFeedbackKey,normalizeFeedbackBody,readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
+import {anonymousFeedbackKey,normalizeFeedbackBody,pruneFeedbackData,readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
 
 const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 const mf=new Miniflare({modules:true,script:`export default {fetch(){return new Response('ok')}}`,d1Databases:['DB']});
@@ -79,5 +79,16 @@ try{
   assert(replied?.reviewerResponse?.includes('updated the interpretation'),'reviewer response was not routed to learner');
   assert(replied?.respondedAt==='2026-09-22T22:00:00.000Z','response timestamp missing');
 
-  console.log('v7 feedback accept-and-normalize + privacy + bounded Theologian review + pseudonymous reply routing gates passed');
+  const recentResolved=await writeFeedback(db,{...valid,message:'Recent resolved record',contact:'keep-until-cutoff@example.com'},null,anonymousId,'2026-01-01T00:00:00.000Z');
+  await respondToFeedback(db,recentResolved.id,'Resolved response','responded','2026-05-01T00:00:00.000Z');
+  const oldResolved=await writeFeedback(db,{...valid,message:'Old resolved record'},null,anonymousId,'2024-01-01T00:00:00.000Z');
+  await respondToFeedback(db,oldResolved.id,'Old response','responded','2024-02-01T00:00:00.000Z');
+  const oldOpen=await writeFeedback(db,{...valid,message:'Old unresolved record'},null,anonymousId,'2024-01-01T00:00:00.000Z');
+  await pruneFeedbackData(db,new Date('2026-09-22T23:00:00.000Z'));
+  const recentResolvedRow=await db.prepare('SELECT contact FROM feedback WHERE id=?').bind(recentResolved.id).first();
+  assert(recentResolvedRow&&recentResolvedRow.contact===null,'optional contact was not removed after 90-day resolved cutoff');
+  assert(!(await db.prepare('SELECT id FROM feedback WHERE id=?').bind(oldResolved.id).first()),'resolved feedback older than 12 months was retained');
+  assert(!(await db.prepare('SELECT id FROM feedback WHERE id=?').bind(oldOpen.id).first()),'unresolved feedback older than 24 months was retained');
+
+  console.log('v7 feedback accept-and-normalize + privacy + bounded review + pseudonymous reply routing + retention enforcement gates passed');
 }finally{await mf.dispose()}
