@@ -16,7 +16,15 @@ When a new instruction conflicts with an earlier decision, identify the conflict
 
 ## Current integration baseline
 
-`main` remains the canonical production branch. The active native-rendering release candidate is being integrated through **PR #24** before merge. PR #23 contains the separate complete learner-facing `llms.txt` corpus work and should be rebased/absorbed deliberately only after the architecture branch is internally validated. Historical fixed counts of 25 units / 70 guided lessons / 69 mastery / 139 scored activities remain migration baselines only.
+`main` remains the canonical production branch. The active release candidate is **PR #24** (`fix/native-document-first-rendering`). PR #24 is the sole convergence PR for the current release and must absorb current behavior selectively rather than merge stale branches wholesale.
+
+Supersession state:
+
+- **PR #20** — superseded as an independent merge candidate. Its questions-first curriculum intent is already represented through merged PR #21/main and the current #24 runtime/validators.
+- **PR #22** — superseded as an implementation. Its Library First/Theologian/cache/live-smoke requirements are preserved natively in #24; its `locked-*`, MutationObserver, and post-render repair layers must not return.
+- **PR #23** — superseded as an independent merge candidate. Its complete learner-corpus intent has been selectively absorbed into #24 through `content/learner-content-reachability.json`, `scripts/llms-contract.mjs`, and `scripts/validate-llms.mjs`. Its generated snapshot must not be merged as a parallel authority.
+
+Historical fixed counts of 25 units / 70 guided lessons / 69 mastery / 139 scored activities remain migration baselines only.
 
 The current curriculum target is:
 
@@ -101,6 +109,16 @@ Journal Notes are private, persistent, unscored learner-owned writing tied to th
 
 Feedback context—route, activity, build/release identity where useful—may be attached internally. Submitted feedback is not a learner-facing history surface unless the owner later changes that decision.
 
+## Statement of Faith authority
+
+The public Canonical Shelf Statement of Faith and doctrinal ceiling is:
+
+`content/statement/statement-of-faith-compact.md`
+
+It is published to `public/data/statement-of-faith.md` and rendered under About. The long-form `content/statement/statement-of-faith-v3.md` is supplemental Theologian context only and must not be presented as the public Statement of Faith or independent doctrinal ceiling.
+
+Agreement with Canonical Shelf's Statement of Faith is not required to use the product, and theological assent is never a scored mastery criterion.
+
 ## Theologian authority
 
 **Theologian** is the learner-facing assistant name. Historical Guide naming may remain only in internal compatibility identifiers where changing it would create unnecessary migration risk; learner-facing copy and current documentation should use Theologian.
@@ -111,14 +129,30 @@ The guardrail order is:
 
 1. bundled **Berean Standard Bible (BSB)** for Scripture text and quotations;
 2. current Canonical Shelf Course, Topics, glossary, Bible/book, and reference content;
-3. current **Statement of Faith** as doctrinal ceiling;
-4. Canonical Shelf theology policy and vetted biblical/historical/linguistic scholarship.
+3. compact **Statement of Faith** as doctrinal ceiling for Canonical Shelf doctrinal claims;
+4. supplemental long-form belief context as lower-authority elaboration;
+5. Canonical Shelf theology policy and vetted biblical/historical/linguistic scholarship.
+
+The approved interpretive foundation requires serious attention to the biblical claims that God is love, salvation is grounded in grace rather than human merit, and Jesus identifies love of God and love of neighbor as the greatest commandments through which the rest of the law is understood. Where Christians differ over the conditions, scope, or mechanics of salvation, those interpretations must be presented distinctly rather than treated as settled.
+
+Learner agency is a hard requirement: the Theologian informs, compares, contextualizes, and tests reasoning; it does not pressure the learner to adopt Canonical Shelf doctrine or any competing interpretation. Material translation/interpretive differences must be surfaced, Canonical Shelf's position must be labeled as its position, and evidence-strength distinctions must be preserved without false balance.
 
 Canonical Shelf's LGBTQ position is affirming. The research/evidence layer must also represent serious non-affirming readings accurately and distinguish direct text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application.
 
 The attachment-derived research has been normalized into explicit arguments, evidence states, limits, and an expanded vetted source catalog. Stronger claims from the original research are not repeated as settled fact where the evidence is contested—for example, the runtime may not say that Romans 1 refers only to exploitation/pederasty, that `arsenokoitai` has one certain modern equivalent, that `to'evah` merely means ritual impurity, or that ancient eunuchs map directly onto modern LGBTQ identity.
 
-Cloud requests are stateless by default. Canonical Shelf does not persist Theologian conversations server-side, and Journal/profile/progress/account data are not model context unless a later explicit user-controlled feature changes that boundary.
+The active chat may persist locally in the browser so the current conversation remains visible across route changes/reloads until the learner starts a New chat. Canonical Shelf does not persist Theologian conversations server-side or into account sync. The cloud request may include a bounded recent conversation excerpt and an allowlisted study-state summary; Journal text, lesson notes, reflection writing, profile/account identifiers, feedback content, and inferred theological beliefs are excluded. Study-state context is not theological evidence.
+
+## Learner corpus / `llms.txt`
+
+`content/learner-content-reachability.json` owns the current learner-content map and each content family's `llms.txt` disposition.
+
+- learner-facing curriculum/reference/editorial content marked `embed` is generated into `public/llms.txt`;
+- the complete BSB corpus is marked `link` and is not duplicated verbatim;
+- the supplemental long-form belief document is marked `exclude` so it cannot be mistaken for a public doctrinal authority;
+- private learner/account/feedback content and implementation/governance material are excluded.
+
+`public/llms.txt` is generated and freshness-validated. PR #23's generated snapshot is superseded by the #24 generator/manifest contract.
 
 ## Production/deployment authority
 
@@ -139,12 +173,13 @@ A release is not considered deployed merely because `wrangler deploy` exits succ
 4. apply D1 migrations;
 5. deploy the exact canonical Worker;
 6. call `/api/health` and confirm the live release SHA and required bindings;
-7. smoke-test direct routes `/`, `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` plus critical generated data resources.
+7. smoke-test direct routes `/`, `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` plus critical generated data resources;
+8. perform a real `/api/theologian` cloud request and require a substantive answer, non-empty grounding evidence, the BSB guardrail, and passed guardrail validation.
 
-PR CI also runs a full release audit with assessment, state, cross-browser E2E/accessibility coverage, curriculum/theology validation, native-document validation, and a Cloudflare dry run. Older deployment plans remain provenance only if they conflict with this contract.
+PR CI also runs a full release audit with assessment, state, cross-browser E2E/accessibility coverage, curriculum/theology validation, native-document validation, convergence/supersession validation, and a Cloudflare dry run. Older deployment plans remain provenance only if they conflict with this contract.
 
 ## Human gates
 
 Automated evidence and human-review evidence are distinct. Editorial/theological, novice-usability, responsive/physical-device, and manual-accessibility review may be waived as blockers for prelaunch development only when explicitly recorded. A waiver is not a pass and does not imply public-launch readiness.
 
-Stable-ID, learner-state, security/privacy, data-integrity, deterministic-generation, theology-policy, and production-target safeguards are not waived by that prelaunch rule.
+Stable-ID, learner-state, security/privacy, data-integrity, deterministic-generation, theology-policy, production-target, and supersession safeguards are not waived by that prelaunch rule.
