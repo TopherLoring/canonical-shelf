@@ -25,6 +25,7 @@ const migrate=String(scripts.migrate||'');
 const prepareContent=String(scripts['prepare:content']||'');
 const repairPrelaunch=String(scripts['repair:prelaunch']||'');
 const verifyBsb=String(scripts['verify:bsb']||'');
+const generateRoutes=String(scripts['generate:routes']||'');
 const generateWrangler=String(scripts['generate:wrangler']||'');
 const validateCloudflare=String(scripts['validate:cloudflare']||'');
 const verifyDeployment=String(scripts['verify:deployment']||'');
@@ -42,10 +43,11 @@ for(const required of ['migrate-vendored.mjs','postprocess-v6.mjs','publish-theo
 if(!prepareContent.includes('bun run migrate')||!prepareContent.includes('bun run generate:curriculum-reference')||!prepareContent.includes('bun run generate:llms'))throw new Error('content preparation must migrate canonical data, generate the current curriculum reference, and regenerate llms.txt');
 if(!repairPrelaunch.includes('repair-prelaunch.mjs'))throw new Error('prelaunch repair script must be wired');
 if(!verifyBsb.includes('bsb-integrity.mjs'))throw new Error('BSB integrity check must be wired');
+if(!generateRoutes.includes('generate-route-documents.mjs'))throw new Error('route-owned document generation must use the canonical route document generator');
 if(!generateWrangler.includes('write-wrangler.mjs'))throw new Error('Cloudflare config generation must use the canonical generator');
 if(!validateCloudflare.includes('validate-cloudflare-config.mjs'))throw new Error('Cloudflare config validation gate must be wired');
 if(!verifyDeployment.includes('verify-deployment.mjs'))throw new Error('post-deploy smoke gate must be wired');
-if(!buildRuntime.includes('build:client')||!buildRuntime.includes('generate:auth-migration')||!buildRuntime.includes('bootstrap.js')||!buildRuntime.includes('build:worker'))throw new Error('runtime build must compile generated client, auth migration, browser bootstrap, and worker');
+if(!buildRuntime.includes('generate:routes')||!buildRuntime.includes('build:client')||!buildRuntime.includes('generate:auth-migration')||!buildRuntime.includes('bootstrap.js')||!buildRuntime.includes('build:worker'))throw new Error('runtime build must generate route documents, compile generated client, auth migration, browser bootstrap, and worker');
 if(!buildApp.includes('prepare:content')||!buildApp.includes('build:runtime'))throw new Error('application build must prepare content then compile the runtime');
 if(!build.includes('build:app'))throw new Error('default build must execute the application build');
 if(build.includes('generate:wrangler')||build.includes('bun run validate'))throw new Error('default build must not require deployment config or release validation');
@@ -58,9 +60,10 @@ if(!validateFull.includes('validate:curriculum-spiral'))throw new Error('full va
 for(const required of ['verify:prelaunch','generate:wrangler','validate:cloudflare','wrangler d1 migrations apply canonical-shelf --remote','wrangler deploy','verify:deployment'])if(!deploy.includes(required))throw new Error(`production deploy must include ${required}`);
 
 for(const path of [
-  'scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
+  'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
   'content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-v3.md',
   'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
+  'public/home.html','public/course.html','public/bible.html','public/topics.html','public/practice.html','public/search.html',
   'public/feedback.js','public/personal-study.js','public/utility-panels.css','worker/feedback-store.ts','worker/theologian-ai.ts','worker/migrations/0002_feedback.sql'
 ])await stat(path);
 
@@ -77,7 +80,7 @@ for(const [source,target] of [
 await verifyPublicCorpus();
 
 const sw=await readFile('public/sw.js','utf8');
-for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
+for(const asset of ['/data/corpus.txt','/data/catalog.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css','/home.html','/course.html','/bible.html','/topics.html','/practice.html','/search.html'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
 
 const wranglerWriter=await readFile('scripts/write-wrangler.mjs','utf8');
 for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","ai:{binding:'AI'}","CANONICAL_ORIGIN","RELEASE_SHA"])if(!wranglerWriter.includes(invariant))throw new Error(`canonical Wrangler generator missing ${invariant}`);
@@ -85,4 +88,4 @@ for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","ai:{binding:
 const deployWorkflow=await readFile('.github/workflows/deploy-production.yml','utf8');
 for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
 
-console.log('production build/deploy separation + exact Worker target + post-deploy smoke + canonical theology/curriculum/AI/content integrity gates passed');
+console.log('production route-document build/deploy separation + exact Worker target + post-deploy smoke + canonical theology/curriculum/AI/content integrity gates passed');
