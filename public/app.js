@@ -35,12 +35,14 @@ const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/'
 const appRouteFromPath=pathname=>{const r=pathRoot(pathname);return roots.has(r)?r:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
 const route=()=>routeFromPath(location.pathname);
+const documentRoute=()=>document.querySelector('[data-route-document]')?.dataset.routeDocument||null;
+const sameRouteNavigation=targetRoute=>targetRoute===route()&&documentRoute()===targetRoute;
 const params=()=>new URLSearchParams(location.search);
 const nativeHref=h=>h?.startsWith('#/')?h.slice(1):h;
 function canonicalizeLinks(root=document){for(const a of root.querySelectorAll('a[href^="#/"]'))a.href=nativeHref(a.getAttribute('href'))}
 function navigate(path,{replace=false}={}){
-  const target=new URL(nativeHref(path)||'/home',location.href),targetPath=`${target.pathname}${target.search}${target.hash}`;
-  if(routeFromPath(target.pathname)!==route()){
+  const target=new URL(nativeHref(path)||'/home',location.href),targetPath=`${target.pathname}${target.search}${target.hash}`,targetRoute=routeFromPath(target.pathname);
+  if(!sameRouteNavigation(targetRoute)){
     if(replace)location.replace(targetPath);else location.assign(targetPath);
     return;
   }
@@ -196,7 +198,7 @@ document.addEventListener('click',async e=>{
     const u=new URL(link.href,location.href),targetRoute=u.origin===location.origin?appRouteFromPath(u.pathname):null;
     if(targetRoute){
       rememberStudyReturn(link,u);
-      if(targetRoute===route()){e.preventDefault();navigate(u.pathname+u.search+u.hash);return}
+      if(sameRouteNavigation(targetRoute)){e.preventDefault();navigate(u.pathname+u.search+u.hash);return}
     }
   }
   const ask=e.target.closest('[data-ask]');if(ask)void theologianAnswer(ask.dataset.ask);
