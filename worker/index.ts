@@ -1,8 +1,9 @@
 import {createAuth, type AuthEnv} from './auth';
 import {deleteSync as deleteStoredSync,mergeAndWriteSync,readSync,validSyncBody} from './sync-store';
 import {validateFeedbackBody,writeFeedback} from './feedback-store';
+import {postTheologian,type TheologianAiEnv} from './theologian-ai';
 
-interface Env extends AuthEnv {
+interface Env extends AuthEnv,TheologianAiEnv {
   ASSETS?: {fetch(request:Request):Promise<Response>};
 }
 
@@ -55,6 +56,7 @@ export default {
       if(request.method==='POST')return postFeedback(request,env,auth);
       return bad('Method not allowed',405);
     }
+    if(url.pathname==='/api/theologian')return postTheologian(request,env);
     if(env.ASSETS)return env.ASSETS.fetch(request);
     return new Response('Not found',{status:404});
   }
