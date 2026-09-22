@@ -2,6 +2,7 @@ import {readFile,access} from 'node:fs/promises';
 
 const read=file=>readFile(file,'utf8');
 const requireText=(source,text,message)=>{if(!source.includes(text))throw new Error(message||`missing required marker: ${text}`)};
+const requirePattern=(source,pattern,message)=>{if(!pattern.test(source))throw new Error(message||`missing required pattern: ${pattern}`)};
 const forbid=(source,text,message)=>{if(source.includes(text))throw new Error(message||`forbidden marker: ${text}`)};
 const mustNotExist=async(file)=>{try{await access(file);throw new Error(`superseded PR #22 repair artifact still exists: ${file}`)}catch(error){if(error?.code!=='ENOENT')throw error}};
 
@@ -23,7 +24,8 @@ for(const marker of ['library-first-home','library-first-shelf','66-book library
 for(const marker of ['data-study-guide','>Theologian</button>','Session Notes'])requireText(learning,marker,`native Study Focus missing Theologian/learning invariant: ${marker}`);
 for(const marker of ['Building a grounded answer','offline evidence mode','guardrails validated','New chat'])requireText(chat,marker,`native Theologian chat missing visible state invariant: ${marker}`);
 for(const marker of ['requestCloudTheologian','/api/theologian'])requireText(cloud,marker,`direct cloud Theologian client missing invariant: ${marker}`);
-for(const marker of ['v7-native-rendering-2026-09-22-d','/theologian-chat.js','/home.html','/data/theology-policy.json'])requireText(sw,marker,`service-worker supersession/cache invariant missing: ${marker}`);
+requirePattern(sw,/const RELEASE='v7-native-rendering-\d{4}-\d{2}-\d{2}-[a-z0-9]+';/, 'service-worker release/cache identity is missing or malformed');
+for(const marker of ['/theologian-chat.js','/home.html','/data/theology-policy.json'])requireText(sw,marker,`service-worker supersession/cache invariant missing: ${marker}`);
 for(const marker of ["theologian?.mode!=='cloud'","theologian.evidence.length===0","theologian?.validation?.status!=='passed'",'learnerAgency','data-route-document'])requireText(verify,marker,`production smoke gate missing PR #22 behavioral invariant: ${marker}`);
 for(const marker of ['#24272d','#31353c','#c7a253','background-image:none!important'])requireText(libraryCss,marker,`consolidated Library First CSS missing approved baseline marker: ${marker}`);
 
