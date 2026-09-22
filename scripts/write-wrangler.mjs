@@ -1,14 +1,20 @@
 import {writeFile} from 'node:fs/promises';
 
 const WORKER_NAME='the-canonical-shelf';
-const CANONICAL_ORIGIN=`https://${WORKER_NAME}.christopherwonder.workers.dev`;
+const PRODUCTION_ORIGIN=`https://${WORKER_NAME}.christopherwonder.workers.dev`;
 const databaseId=process.env.D1_DATABASE_ID;
-const authUrl=process.env.BETTER_AUTH_URL;
+const authUrl=process.env.BETTER_AUTH_URL?.replace(/\/$/,'');
+const requestedOrigin=process.env.CANONICAL_ORIGIN?.replace(/\/$/,'');
 const releaseSha=process.env.GITHUB_SHA||'local';
 
 if(!databaseId)throw new Error('D1_DATABASE_ID is required');
 if(!authUrl)throw new Error('BETTER_AUTH_URL is required');
-if(authUrl.replace(/\/$/,'')!==CANONICAL_ORIGIN)throw new Error(`BETTER_AUTH_URL must equal canonical production origin ${CANONICAL_ORIGIN}`);
+
+// Production/CI explicitly supplies CANONICAL_ORIGIN. That makes the canonical
+// target non-negotiable while still allowing `wrangler dev` to use localhost.
+if(requestedOrigin&&requestedOrigin!==PRODUCTION_ORIGIN)throw new Error(`CANONICAL_ORIGIN must equal production origin ${PRODUCTION_ORIGIN}`);
+if(requestedOrigin&&authUrl!==requestedOrigin)throw new Error('BETTER_AUTH_URL must match CANONICAL_ORIGIN for a production release');
+const effectiveOrigin=requestedOrigin||authUrl;
 
 const config={
   $schema:'./node_modules/wrangler/config-schema.json',
@@ -25,8 +31,8 @@ const config={
   ai:{binding:'AI'},
   secrets:{required:['BETTER_AUTH_SECRET']},
   vars:{
-    BETTER_AUTH_URL:CANONICAL_ORIGIN,
-    CANONICAL_ORIGIN,
+    BETTER_AUTH_URL:authUrl,
+    CANONICAL_ORIGIN:effectiveOrigin,
     RELEASE_SHA:releaseSha
   },
   d1_databases:[{
@@ -38,4 +44,4 @@ const config={
 };
 
 await writeFile('wrangler.jsonc',JSON.stringify(config,null,2)+'\n');
-console.log(`wrangler.jsonc generated for ${WORKER_NAME} → ${CANONICAL_ORIGIN} at release ${releaseSha}`);
+console.log(`wrangler.jsonc generated for ${WORKER_NAME} → ${effectiveOrigin} at release ${releaseSha}`);
