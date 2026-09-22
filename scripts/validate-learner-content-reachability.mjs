@@ -33,6 +33,8 @@ const publisher=await readFile('scripts/publish-theology.mjs','utf8');
 for(const mapping of ['statement-of-faith-compact.md','public/data/statement-of-faith.md','statement-of-faith-v3.md','public/data/theologian-belief-context.md'])if(!publisher.includes(mapping))throw new Error(`theology publisher missing ${mapping}`);
 
 const policy=JSON.parse(await readFile('content/theology/policy.json','utf8'));
+const publishedPolicy=JSON.parse(await readFile('public/data/theology-policy.json','utf8'));
+if(JSON.stringify(publishedPolicy)!==JSON.stringify(policy))throw new Error('published theology policy is stale relative to canonical content/theology/policy.json');
 if(Number(policy.version)<4)throw new Error('theology policy must use the learner-agency v4 authority contract');
 for(const key of ['scriptureText','canonicalDoctrine','interpretivePolicy','publishedTeaching','supplementalBeliefContext','scholarshipAndTraditions'])if(!policy.authority?.domains?.[key])throw new Error(`theology policy authority domain missing ${key}`);
 for(const state of ['affirmed','bounded-inference','open','descriptive-only','outside-scope'])if(!policy.doctrinalStates?.includes(state))throw new Error(`theology policy doctrinal state missing ${state}`);
@@ -61,7 +63,7 @@ for(const invariant of ['/data/statement-of-faith.md','/data/theologian-belief-c
 
 const deterministic=await readFile('public/theologian.js','utf8');
 if(/\bGuide\b/.test(deterministic))throw new Error('learner-facing deterministic Theologian runtime must not retain Guide naming');
-for(const invariant of ['evidenceStatus','claimDomain','doctrinalStatus','masteryProtected','prohibitedOverstatements','interpretiveRules'])if(!deterministic.includes(invariant))throw new Error(`deterministic Theologian guardrail wiring missing ${invariant}`);
+for(const invariant of ['evidenceStatus','claimDomain','doctrinalStatus','masteryProtected','prohibitedOverstatements','interpretiveRules','interpretiveFoundation','learnerAgency','agencyNote'])if(!deterministic.includes(invariant))throw new Error(`deterministic Theologian guardrail wiring missing ${invariant}`);
 
 const cloudClient=await readFile('public/theologian-cloud.js','utf8');
 for(const invariant of ['Current question:','conversationMode','LEARNER CONTEXT','masteryActive'])if(!cloudClient.includes(invariant))throw new Error(`bounded Theologian request context missing ${invariant}`);
@@ -78,4 +80,4 @@ await stat('public/theologian-chat.css');
 const utilities=await readFile('public/utility-panels.css','utf8');
 if(!utilities.includes('body.study-focus-active>.feedback-open')||!utilities.includes('background:transparent'))throw new Error('learning-view Feedback must remain a quiet text-style control rather than a floating primary button');
 
-console.log(`learner content reachability + compact faith ceiling + approved grace/love interpretive foundation + free-inquiry learner agency + supplemental belief context + typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
+console.log(`learner content reachability + published policy parity + compact faith ceiling + approved grace/love interpretive foundation + free-inquiry learner agency + supplemental belief context + typed Theologian guardrails + locally persistent private-safe chat + quiet feedback affordance gates passed (${manifest.entries.length} content families)`);
