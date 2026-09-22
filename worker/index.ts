@@ -1,17 +1,19 @@
 import {createAuth, type AuthEnv} from './auth';
 import {deleteSync as deleteStoredSync,mergeAndWriteSync,readSync,validSyncBody} from './sync-store';
-import {validateFeedbackBody,writeFeedback} from './feedback-store';
+import {readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from './feedback-store';
 import {postTheologian,type TheologianAiEnv} from './theologian-ai';
 
 interface Env extends AuthEnv,TheologianAiEnv {
   ASSETS?: {fetch(request:Request):Promise<Response>};
   RELEASE_SHA?: string;
   CANONICAL_ORIGIN?: string;
+  FEEDBACK_ADMIN_TOKEN?: string;
 }
 
 const headers={'content-type':'application/json; charset=utf-8','cache-control':'no-store'};
 const json=(value:unknown,status=200)=>new Response(JSON.stringify(value),{status,headers});
 const bad=(message:string,status=400)=>json({error:message},status);
+const feedbackToken=(request:Request)=>request.headers.get('x-canonical-feedback-id')||'';
 
 async function sessionUser(request:Request,auth:ReturnType<typeof createAuth>){
   try{const session=await auth.api.getSession({headers:request.headers});return session?.user||null}catch{return null}
@@ -40,8 +42,26 @@ async function postFeedback(request:Request,env:Env,auth:ReturnType<typeof creat
   let body:unknown;try{body=await request.json()}catch{return bad('Invalid JSON')}
   if(!validateFeedbackBody(body))return bad('Invalid feedback payload');
   const user=await sessionUser(request,auth);
-  const result=await writeFeedback(env.DB,body,user?.id||null);
+  const result=await writeFeedback(env.DB,body,user?.id||null,feedbackToken(request));
   return json({ok:true,...result},201);
+}
+async function getFeedbackInbox(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
+  const user=await sessionUser(request,auth);
+  const items=await readFeedbackInbox(env.DB,user?.id||null,feedbackToken(request));
+  return json({items});
+}
+function adminAuthorized(request:Request,env:Env){
+  const configured=String(env.FEEDBACK_ADMIN_TOKEN||'');
+  if(!configured)return false;
+  const supplied=request.headers.get('authorization')||'';
+  return supplied===`Bearer ${configured}`;
+}
+async function postAdminFeedbackResponse(request:Request,env:Env){
+  if(!adminAuthorized(request,env))return bad('Unauthorized',401);
+  let body:any;try{body=await request.json()}catch{return bad('Invalid JSON')}
+  const result=await respondToFeedback(env.DB,body?.feedbackId,body?.response,body?.status||'responded');
+  if(!result.ok)return bad(result.reason==='not-found'?'Feedback not found':'Feedback id is required',result.reason==='not-found'?404:400);
+  return json(result);
 }
 
 function health(env:Env){
@@ -69,7 +89,12 @@ export default {
       return bad('Method not allowed',405);
     }
     if(url.pathname==='/api/feedback'){
+      if(request.method==='GET')return getFeedbackInbox(request,env,auth);
       if(request.method==='POST')return postFeedback(request,env,auth);
+      return bad('Method not allowed',405);
+    }
+    if(url.pathname==='/api/admin/feedback/respond'){
+      if(request.method==='POST')return postAdminFeedbackResponse(request,env);
       return bad('Method not allowed',405);
     }
     if(url.pathname==='/api/theologian')return postTheologian(request,env);
