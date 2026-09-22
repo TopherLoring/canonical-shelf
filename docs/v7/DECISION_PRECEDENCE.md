@@ -16,7 +16,7 @@ When a new instruction conflicts with an earlier decision, identify the conflict
 
 ## Current integration baseline
 
-`main` remains the canonical production branch. The active release candidate is being integrated through PR #21 before merge. Historical fixed counts of 25 units / 70 guided lessons / 69 mastery / 139 scored activities remain migration baselines only.
+`main` remains the canonical production branch. The active native-rendering release candidate is being integrated through **PR #24** before merge. PR #23 contains the separate complete learner-facing `llms.txt` corpus work and should be rebased/absorbed deliberately only after the architecture branch is internally validated. Historical fixed counts of 25 units / 70 guided lessons / 69 mastery / 139 scored activities remain migration baselines only.
 
 The current curriculum target is:
 
@@ -39,6 +39,20 @@ The six current courses are:
 6. **Christian Theology, Traditions & Synthesis**
 
 Courses 1–4 form the Biblical Literacy Core. Courses 5–6 deepen interpretation/evidence and theological synthesis.
+
+## Native document-first rendering decision
+
+The current top-level architecture is **route-owned, document-first rendering** rather than SPA-wide destination reconstruction.
+
+- `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` each have a generated HTML document that exposes meaningful route structure before JavaScript enhancement.
+- Navigation between different top-level destinations uses normal browser document navigation.
+- Query/detail changes within the same destination may use the History API and update that destination's bounded content region without a full reload.
+- JavaScript may enhance learner state, selected course/topic/book details, chapter text, practice state, Journal/Feedback, panels, and Theologian answers; it must not render an obsolete surface and repair or relocate core regions afterward.
+- Whole-body/broad-subtree `MutationObserver` repair, duplicate renderers competing for `#main`, stacked compatibility runtimes, and corrective CSS layers are not part of the current architecture.
+- Generated route documents are deployment artifacts produced by `scripts/generate-route-documents.mjs`; Cloudflare Static Assets uses explicit `html_handling: auto-trailing-slash` so clean route URLs resolve to those documents.
+- The service worker caches the route-owned documents and restores the matching route document for offline top-level navigation.
+
+`public/index.html` remains the shared shell source and root/hash-compatibility fallback. Route-specific documents are generated from that shell during build rather than hand-maintained as divergent copies.
 
 ## Questions-first curriculum decision
 
@@ -89,6 +103,8 @@ Feedback context—route, activity, build/release identity where useful—may be
 
 ## Theologian authority
 
+**Theologian** is the learner-facing assistant name. Historical Guide naming may remain only in internal compatibility identifiers where changing it would create unnecessary migration risk; learner-facing copy and current documentation should use Theologian.
+
 The conversational Theologian uses **Cloudflare Workers AI** as a synthesis layer and retains the deterministic evidence-aware Theologian as fallback. No model weights are downloaded to the learner.
 
 The guardrail order is:
@@ -119,13 +135,13 @@ A release is not considered deployed merely because `wrangler deploy` exits succ
 
 1. run prelaunch verification;
 2. generate the Wrangler configuration;
-3. validate the exact Worker name, canonical origin, static-assets routing, D1 binding, Workers AI binding, and release SHA;
+3. validate the exact Worker name, canonical origin, clean route-document handling, D1 binding, Workers AI binding, and release SHA;
 4. apply D1 migrations;
 5. deploy the exact canonical Worker;
 6. call `/api/health` and confirm the live release SHA and required bindings;
-7. smoke-test direct routes `/`, `/course`, `/bible`, `/topics`, `/practice` plus critical generated data resources.
+7. smoke-test direct routes `/`, `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` plus critical generated data resources.
 
-PR CI also runs a full release audit with assessment, state, cross-browser E2E/accessibility coverage, curriculum/theology validation, and a Cloudflare dry run. Older deployment plans remain provenance only if they conflict with this contract.
+PR CI also runs a full release audit with assessment, state, cross-browser E2E/accessibility coverage, curriculum/theology validation, native-document validation, and a Cloudflare dry run. Older deployment plans remain provenance only if they conflict with this contract.
 
 ## Human gates
 
