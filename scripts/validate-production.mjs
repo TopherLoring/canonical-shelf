@@ -29,6 +29,7 @@ const generateRoutes=String(scripts['generate:routes']||'');
 const generateWrangler=String(scripts['generate:wrangler']||'');
 const validateCloudflare=String(scripts['validate:cloudflare']||'');
 const validateNative=String(scripts['validate:native-rendering']||'');
+const validateReachability=String(scripts['validate:reachability']||'');
 const verifyDeployment=String(scripts['verify:deployment']||'');
 const buildRuntime=String(scripts['build:runtime']||'');
 const buildApp=String(scripts['build:app']||'');
@@ -48,29 +49,31 @@ if(!generateRoutes.includes('generate-route-documents.mjs'))throw new Error('rou
 if(!generateWrangler.includes('write-wrangler.mjs'))throw new Error('Cloudflare config generation must use the canonical generator');
 if(!validateCloudflare.includes('validate-cloudflare-config.mjs'))throw new Error('Cloudflare config validation gate must be wired');
 if(!validateNative.includes('validate-native-rendering.mjs'))throw new Error('native route-document validation gate must be wired');
+if(!validateReachability.includes('validate-learner-content-reachability.mjs'))throw new Error('learner content reachability gate must be wired');
 if(!verifyDeployment.includes('verify-deployment.mjs'))throw new Error('post-deploy smoke gate must be wired');
 if(!buildRuntime.includes('generate:routes')||!buildRuntime.includes('build:client')||!buildRuntime.includes('generate:auth-migration')||!buildRuntime.includes('bootstrap.js')||!buildRuntime.includes('build:worker'))throw new Error('runtime build must generate route documents, compile generated client, auth migration, browser bootstrap, and worker');
 if(!buildApp.includes('prepare:content')||!buildApp.includes('build:runtime'))throw new Error('application build must prepare content then compile the runtime');
 if(!build.includes('build:app'))throw new Error('default build must execute the application build');
 if(build.includes('generate:wrangler')||build.includes('bun run validate'))throw new Error('default build must not require deployment config or release validation');
-for(const required of ['repair:prelaunch','build:runtime','verify:bsb','validate:curriculum-spiral','validate:native-rendering','validate:llms'])if(!buildVerify.includes(required))throw new Error(`prelaunch verification build must include ${required}`);
+for(const required of ['repair:prelaunch','build:runtime','verify:bsb','validate:curriculum-spiral','validate:native-rendering','validate:llms','validate:reachability'])if(!buildVerify.includes(required))throw new Error(`prelaunch verification build must include ${required}`);
 if(!verify.includes('verify:prelaunch'))throw new Error('default verify must use the prelaunch code gate');
 for(const required of ['build:verify','test:sync','test:d1','test:feedback','test:theologian'])if(!verifyPrelaunch.includes(required))throw new Error(`prelaunch verify must include ${required}`);
 if(verifyPrelaunch.includes('validate:experience')||verifyPrelaunch.includes('test:e2e')||verifyPrelaunch.includes('test:assessment')||verifyPrelaunch.includes('axe'))throw new Error('prelaunch verify must not be blocked by browser/content-depth gates reserved for full release verification');
 if(!verifyFull.includes('test:e2e')||!verifyFull.includes('test:assessment')||!verifyFull.includes('test:theologian'))throw new Error('full verification must retain exhaustive assessment, cloud-Theologian, and browser checks');
-for(const required of ['validate:curriculum-spiral','validate:experience','validate:native-rendering','validate:llms'])if(!validateFull.includes(required))throw new Error(`full validation must include ${required}`);
+for(const required of ['validate:curriculum-spiral','validate:experience','validate:native-rendering','validate:llms','validate:reachability'])if(!validateFull.includes(required))throw new Error(`full validation must include ${required}`);
 for(const required of ['verify:prelaunch','generate:wrangler','validate:cloudflare','wrangler d1 migrations apply canonical-shelf --remote','wrangler deploy','verify:deployment'])if(!deploy.includes(required))throw new Error(`production deploy must include ${required}`);
 
 for(const path of [
-  'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/validate-native-rendering.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
-  'content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-v3.md',
-  'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
+  'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-cloudflare-config.mjs','scripts/validate-native-rendering.mjs','scripts/validate-learner-content-reachability.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
+  'content/learner-content-reachability.json','content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-compact.md','content/statement/statement-of-faith-v3.md',
+  'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theologian-belief-context.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
   'public/home.html','public/course.html','public/bible.html','public/topics.html','public/practice.html','public/search.html',
   'public/feedback.js','public/personal-study.js','public/utility-panels.css','worker/feedback-store.ts','worker/theologian-ai.ts','worker/migrations/0002_feedback.sql'
 ])await stat(path);
 
 for(const [source,target] of [
-  ['content/statement/statement-of-faith-v3.md','public/data/statement-of-faith.md'],
+  ['content/statement/statement-of-faith-compact.md','public/data/statement-of-faith.md'],
+  ['content/statement/statement-of-faith-v3.md','public/data/theologian-belief-context.md'],
   ['content/theology/policy.json','public/data/theology-policy.json'],
   ['content/theology/sources.json','public/data/theology-sources.json']
 ]){
@@ -100,4 +103,4 @@ for(const invariant of ['data-route-document','data-route-content',"'/api/theolo
 const deployWorkflow=await readFile('.github/workflows/deploy-production.yml','utf8');
 for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment','live Theologian'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
 
-console.log('production route-document build/deploy separation + exact Worker target + route ownership/live Theologian smoke + canonical theology/curriculum/AI/content integrity gates passed');
+console.log('production route-document build/deploy separation + exact Worker target + route ownership/live Theologian smoke + learner-content reachability + compact/supplemental theology roles + curriculum/AI/content integrity gates passed');
