@@ -1,149 +1,115 @@
-# Canonical Shelf v7 — Design Intent Delta
+# Canonical Shelf v7 — Design Intent
 
 ## Status
 
-**Active design-intent reference for current `main`.** The original v7 V5-polish baseline was merged as `801a9706d7cec9574ceadca7647a9f63a2b554fc`; later six-course curriculum, experience-restoration, and learner-feedback work supersedes any structural examples in this document that conflict with current `main`. The design principles remain active unless a later owner decision supersedes them.
+**Supporting design-principle reference.** This document preserves the durable intent of the earlier v5-polish work but is no longer the current palette/layout specification. Where it conflicts with a later owner decision, `AI_INSTRUCTIONS.md`, `DECISION_PRECEDENCE.md`, or `LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md`, the later/current source wins.
 
-Independent human visual, novice-learner, device, editorial, theological, and adaptive-access review remain continuing assurance activities unless separate evidence records them as completed. Their absence must not be retroactively represented as automated approval.
+In particular, the current default/reference theme is the **flat library system**: charcoal shared chrome, light/ivory reading surfaces, restrained cool-neutral structure, sparse gilt, and no decorative gradients. Historical warm-paper, oxblood, jewel, layered-depth, or gradient examples remain valid only inside user-selectable themes when intentionally chosen; they are not the default visual contract.
 
-## Direction
+## Durable direction
 
-Canonical Shelf v7 is a **premium visual and interaction evolution of the strongest v5 product model**, rebuilt on the cleaner v7 architecture. It is not a separate generic visual product and it is not an architecture-led simplification of the learner experience.
+Canonical Shelf should feel like:
 
-The target experience is:
+> **scholarly editorial study × tactile library identity × advanced interactive learning**
 
-> **v5 product structure and learning flow × v4 scholarly depth × luxury editorial study environment × tactile interactive library**
+The product is not generic SaaS, a dashboard template, a basic LMS, or a quiz shell. Architecture exists to support the learner-facing experience rather than simplify it away.
 
-## What remains recognizable from v5
+## What should remain recognizable
 
-- Home / Course / Bible / Topics / Practice as the five primary destinations.
-- Course as one coherent, progressive **six-course learning journey**, rather than a collection of disconnected skill-track tabs.
-- Bible as the home of the bookshelf, reader, book profiles, canonical groups, chapters, and timeline/context exploration.
-- Topics as a curated reference environment.
-- Practice as reinforcement rather than a second curriculum.
-- Dense, useful learner-facing information rather than architecture-driven reduction.
-- Rich learning interactions where the cognitive task warrants them.
+- Home / Course / Bible / Topics / Practice are the five primary destinations.
+- Course is one coherent six-course journey rather than disconnected skill tabs.
+- Bible owns the bookshelf, book profiles, chapters, reader, and Bible-specific context.
+- Topics is curated reference outside completion.
+- Practice reinforces learned material and does not become a second curriculum.
+- Study Focus should keep the learner oriented while exposing deeper context without covering or fragmenting the primary lesson.
+- Dense useful information is preferred to giant empty hero space.
+- Rich interactions are justified by the learning task, not by novelty.
 
-## What is deliberately elevated
+## Current interpretation of the intent
 
-- stronger editorial typography and hierarchy;
-- more tactile paper/folio surfaces and purposeful depth;
-- theme-aware semantic motion;
-- viewport-aware lesson scenes rather than long generic documents;
-- persistent mastery/progress state presentation;
-- scholarly passage apparatus that exposes evidence and limits without cluttering the reading surface;
-- responsive recomposition across desktop, tablet, phone, and short landscape viewports;
-- richer task-specific challenge boards instead of generic form controls;
-- coherent user-selectable aesthetic packages.
+### Shared shell
 
-## Prototype-derived reference principles
+The current default/reference shell uses:
 
-The retired Living Folio composition prototype is not production code or a current implementation gate, but several of its design observations remain useful and are carried forward here:
+- masthead `#24272d`;
+- secondary navigation `#31353c`;
+- white/ivory content/reading surfaces;
+- restrained cool-neutral structural colors;
+- sparse antique gilt;
+- serif editorial/content typography;
+- sans interface typography;
+- monospace only for genuine technical/system data.
 
-- maintain a legible distinction between **application chrome → scholarly object → contextual apparatus**;
-- protect the primary reading/study surface from utility density, placing secondary controls and evidence at the margins or in progressive disclosure when appropriate;
-- let each destination express its actual task instead of forcing the same card grammar everywhere: Home orients and resumes, Course guides progression, Bible behaves as a tactile library/reference reader, Practice is an active challenge environment, Topics is authored reference, and Guide/Theologian is evidence-oriented research;
-- use motion to communicate state, progression, relationship, or causality—not as decoration;
-- reject generic SaaS-dashboard and generic chat-product conventions when they weaken Canonical Shelf's scholarly/editorial/tactile identity.
+Gray is a supporting neutral rather than the visual identity. Red/brown/tan are not default/reference accents. Decorative gradients are not part of the current flat baseline.
 
-The prototype's specific whole-site palette and its requirement to block production until three composition alternatives were selected are historical exploration only. Current `main`, current owner decisions, and `DECISION_PRECEDENCE.md` govern.
+### Course
 
-## Study Focus
+`/course` is the Course Catalog. New/no-progress learners can inspect all six courses and their units before opening one. Returning learners retain direct continuation/current-course behavior. Current/Next/Later belongs to course orientation rather than becoming a second navigation tree.
 
-Starting a guided lesson transitions the current theme into a darker, concentrated **Study Focus** state. The rest of the application recedes; the lesson expands into a large elevated folio that remains comfortably inside the viewport.
+### Study Focus
 
-Study Focus is an intensified state of the selected site theme, not a second visual language.
+A lesson/mastery experience is one primary composition rather than nested decorative cards. It uses:
 
-### Composition contract
+- compact human-facing Course / Unit / lesson identity;
+- vertical dot progress rail;
+- light primary lesson surface;
+- attached charcoal Session Notes panel;
+- collapsible contextual material;
+- Journal Notes and Feedback as temporary panel actions;
+- deliberate contextual Theologian access;
+- responsive recomposition rather than simple shrink/stack.
 
-- dark outer chrome remains visibly related to the current theme;
-- a light folio occupies most, but not all, of the usable viewport;
-- the folio has a lesson/unit-specific header rather than global site navigation;
-- scene/progress state is visible without dominating the reading surface;
-- Previous / Notes / progress / Continue occupy reserved footer space and never cover content;
-- Exit lesson restores the originating Course surface and visual state;
-- no bookshelf-category stripe or arbitrary category color decorates the lesson card.
+Current technical activity/step IDs remain internal.
 
-### Overflow hierarchy
+### Bible
 
-When space narrows, resolve pressure in this order:
+The bookshelf is a signature product element. Category color is semantic and should remain understandable across themes. Book names reveal on hover/focus and, on touch/mobile, first selection before deliberate open.
 
-1. fluid typography and media sizing;
-2. tighter—but still comfortable—spacing;
-3. reduced secondary chrome;
-4. accordion collapse of secondary scholarly material;
-5. relocation of secondary material to drawer/sheet;
-6. primary-content scrolling only when the viewport remains physically too small.
+The default Bible reader uses a light Scripture surface and an attached charcoal Book Notes panel with collapsible contextual headings.
 
-The interface must not simply shrink desktop or create multiple competing scroll panes.
+### Topics
 
-## Scholarly apparatus
+Topics use the same high-level light-reading + dark-context strategy without becoming a clone of the Bible reader. Their contextual panel emphasizes topic metadata, search language, evidence/connections, and related exploration.
 
-The apparatus should feel like useful marginalia in a serious study edition, not a generic right sidebar.
+## Interaction principles
 
-It may expose:
+- Motion communicates navigation, state, progress, mastery, or causality and honors reduced-motion preferences.
+- Color blocking establishes hierarchy or source type; do not put every paragraph in a decorative colored box.
+- Scripture and selected important quotations may use charcoal/white/gilt treatment selectively.
+- Primary reading/content must remain legible, calm, and substantive.
+- Controls should be discoverable without turning every surface into persistent chrome.
+- Responsive design may change composition and ordering across desktop/tablet/phone.
+- Accessibility is a floor; it does not require flattening or removing useful interaction when accessible equivalents can be provided.
 
-- textual and translation notes;
-- manuscript evidence where materially relevant;
-- original-language observations where they clarify meaning;
-- historical and literary context;
-- evidence strength and explicit limits;
-- responsible competing interpretations;
-- reception history;
-- doctrine, clearly labeled as doctrine rather than direct textual observation;
-- application, clearly separated from interpretation;
-- citations, external scholarship, and further reading.
+## Anti-patterns
 
-The governing sequence is:
+Avoid:
 
-> **Text → evidence/history → interpretation → reception → doctrine → application**
+- generic SaaS metric/card dashboards;
+- giant typography that delays substantive content;
+- decorative gradients in the current default/reference theme;
+- excessive shadow/elevation used only to manufacture “premium” appearance;
+- nested cards without semantic purpose;
+- excessive gray saturation;
+- technical IDs in learner-facing identity;
+- a floating assistant obscuring content;
+- duplicated navigation paths that compete for attention;
+- visual novelty that weakens comprehension or library identity.
 
-Not every passage needs every layer. Density follows the material.
+## Theme capability
 
-## Aesthetic packages
+Canonical Shelf retains user-selectable appearance packages. A theme may deliberately use a warmer, darker, jewel, or other distinct aesthetic while preserving semantic state, interaction meaning, accessibility, curriculum structure, and theological content.
 
-Themes are complete design-system packages rather than palette swaps. They may vary palette, font pairing, surface treatment, rules, elevation, focus chrome, control styling, diagram treatment, and restrained motion character.
+Theme capability does not make every historical theme an acceptable default. Profile/Account owns theme selection.
 
-Current packages:
+## Product-quality test
 
-1. Heritage
-2. Canonical Original
-3. Oxblood
-4. Slate & Linen
-5. Illuminated Jewel
-6. Bookshelf Spectrum
+For a consequential visual/interaction decision, ask:
 
-Bible category colors remain semantic and are not arbitrarily remapped by themes.
+1. Does it improve learner orientation or understanding?
+2. Does it strengthen Canonical Shelf's library/editorial identity?
+3. Does it preserve or improve responsive/accessibility behavior?
+4. Is the treatment semantically justified rather than decorative repetition?
+5. Does it remain compatible with current owner-approved destination behavior?
 
-## Annotated mood / reference board
-
-| Reference | Keep | Avoid / reinterpret |
-| --- | --- | --- |
-| **Canonical Shelf v5** | five-destination IA, Course journey, Bible ownership of bookshelf, useful density, rich interaction ambition | legacy bridge/runtime debt, stacked compatibility layers, any generic/unfinished visual treatment |
-| **Canonical Shelf v4** | adult scholarly voice, substantive explanatory depth, Simply/Deeper layering, vocabulary, evidence limits, source trails | using v4 as a competing application architecture |
-| **Tactile scholarly book / study Bible** | paper hierarchy, marginalia, rules, folio framing, measured typography, source apparatus | faux-antique decoration, skeuomorphism for its own sake |
-| **Contemporary digital museum/editorial product** | confident composition, meaningful typography scale, layered surfaces, focused transitions | giant empty hero space, generic marketing bento cards, decorative motion |
-| **Interactive learning environment** | retrieval, manipulation, immediate explanatory feedback, mastery/retention state | form-like quizzes as the default, fake reward currency, animation disconnected from learning |
-| **Original Canonical Shelf bookshelf palette** | category colors as semantic library/navigation cues | painting lesson surfaces with shelf colors merely for decoration |
-
-## Motion language
-
-Motion communicates relationship, state, progress, or causality.
-
-- entering Study Focus: originating lesson affordance yields to the dark focus environment and folio;
-- changing scene: quiet directional/state transition, not slideshow spectacle;
-- challenge manipulation: tactile state response tied to the learner’s action;
-- mastery/retention: completion and review state changes become legible;
-- exiting Study Focus: folio recedes and the originating Course context returns.
-
-System/user reduced-motion preference receives the adaptive alternative; the default experience retains full semantic motion.
-
-## Anti-generic test
-
-A design choice fails if it could be dropped unchanged into an unrelated SaaS dashboard, generic LMS, or AI chat product without losing meaning.
-
-Repeated visual treatments must map to Canonical Shelf concepts: folio, shelf, marginalia, source apparatus, canonical grouping, study state, mastery/retention, textual evidence, or navigation.
-
-## Assurance posture
-
-The design intent above applies to the current v7 product, including later six-course/restoration/feedback work. Automated tests verify structural and interaction contracts but do not substitute for independent visual judgment or human usability review. Future design changes should continue to be evaluated against this artifact, the current owner decisions, `DECISION_PRECEDENCE.md`, and current product behavior; if the owner changes the direction, the newer decision governs after the conflict protocol is applied.
+If a historical v5 idea passes those tests, reimplement it natively in the current architecture rather than restoring old bridge/runtime debt.
