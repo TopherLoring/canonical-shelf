@@ -13,6 +13,11 @@ html[data-theme="canonical-original"]{
   --canon-apocalypse:#4b5056;
 }
 
+/* Flat surfaces keep the palette intentional rather than washed out. */
+.home-shelf-glance,.dashboard-card,.course-journey-card,.unit--orientation,.topic-section,
+.dashboard-card--practice,.book-drawer__head{background-color:var(--color-surface-raised)!important}
+.theme-demo__dot{background-color:var(--color-accent-primary)!important}
+
 /* Flat bookshelf/category treatment for the default theme. */
 html[data-theme="canonical-original"] .home-mini-shelf i{background:var(--mini-book)!important;background-image:none!important}
 html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="law"]{--mini-book:#556978}
@@ -62,15 +67,20 @@ html[data-theme="canonical-original"] .book-profile-page[data-cat="apoc"],html[d
   background-image:none!important;
 }
 
-/* Make the compact spine label added by the enhancement the only hover/touch title. */
+/* Make the enhancement label the only shelf-title reveal. */
 .shelf-spine>strong{display:none!important}
 .shelf-spine__reveal{display:block}
 
-/* Topic and Bible side-panel links stay readable against charcoal. */
+/* Topic and Bible side-panel content is single-column and readable on charcoal. */
 .library-reader-panel .button,.topic-context-panel .button{
   border-color:#aeb3b6;color:#fff;background:transparent;
 }
 .library-reader-panel .badge,.topic-context-panel .badge{border-color:#737a81;color:#e2e4e5}
+.topic-context-panel .topic-reference-list,.topic-context-panel .topic-course-links{grid-template-columns:1fr}
+.topic-context-panel .topic-reference-list a,.topic-context-panel .topic-course-links a{
+  background:transparent;border-color:#ffffff1c;border-radius:7px;padding:.65rem .7rem;color:#fff;
+}
+.topic-context-panel .topic-reference-list span,.topic-context-panel .topic-course-links span{color:#c9cdd0}
 
 /* Profile is the durable home for appearance preferences. */
 .account-panel .profile-theme-choice{padding-bottom:1.25rem}
