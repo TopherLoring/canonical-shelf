@@ -2,69 +2,51 @@
 
 ## Status
 
-**Implemented and merged in v7.** The personal-study and feedback work described here shipped in the release merged to `main` at `801a9706d7cec9574ceadca7647a9f63a2b554fc`. The authoritative automated production CI passed before merge, including sync/privacy, feedback persistence, offline, and cross-browser E2E coverage.
+**Historical implementation record with current UX supersession noted.** The underlying local-first personal-study state, sync behavior, and bounded Feedback persistence described here shipped in the earlier v7 release. The current learner-facing presentation was later revised by the library-system baseline and must be read through `LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md` and `DECISION_PRECEDENCE.md`.
 
-Human review of privacy perception, wording, touch/device behavior, and long-term production feedback abuse handling remains continuing QA unless separately evidenced.
+## Durable behavior retained
 
-## Objective
-Restore learner-owned notes and journal writing inside Study Focus and add an always-available feedback entry point across Canonical Shelf without degrading the v5-based experience, offline-first behavior, or theological/assessment boundaries.
+- learner-owned writing remains private, persistent, local-first, export/import capable, and unscored;
+- personal writing never changes completion, score, mastery, or review scheduling;
+- optional account sync uses deterministic per-entry timestamps/mutations;
+- Feedback remains available throughout Home, Course, Bible, Topics, Practice, and Study Focus;
+- online feedback persists through bounded `/api/feedback` storage;
+- failed/offline submissions may queue locally and retry;
+- route/activity context may be attached internally without exposing technical IDs to the learner;
+- submitted feedback history is not a learner-facing content library.
 
-## Implemented UX outcomes
-- Every lesson/mastery Study Focus surface exposes **Notes & Journal** without covering lesson content.
-- Learners can keep a private lesson note and a private journal reflection per activity; both are explicitly unscored.
-- Personal writing is local-first, survives reloads, is included in learner export/import, and participates in optional account sync.
-- Every primary screen exposes a compact **Feedback** control, including Study Focus.
-- Feedback accepts category, message, and optional contact information; route context is attached automatically, without intentional browser fingerprinting or hidden learner-content capture.
-- Offline feedback queues locally and is retried when connectivity returns.
+## Current UX superseding the original presentation
 
-## Acceptance criteria — disposition
-1. Personal notes/journal available from Unit 0, scored lessons, and mastery screens — **implemented**.
-2. Saving personal writing never changes completion, score, mastery, or review schedule — **implemented and regression-tested**.
-3. Notes/journal persist locally and merge deterministically across synced devices by latest edit timestamp per activity — **implemented and sync-tested**.
-4. Export/import retains personal writing — **implemented through learner-state serialization**.
-5. Feedback control reachable from Home, Course, Bible, Topics, Practice, and Study Focus — **implemented and E2E-tested**.
-6. Online feedback persists to D1 through bounded `/api/feedback`; offline submissions queue and later flush — **implemented**.
-7. Feedback endpoint enforces type/length validation and stores only bounded submitted fields, route, optional authenticated user id, and server timestamp — **implemented and persistence/privacy-tested**.
-8. Existing assessment, offline, sync, Guide/Theologian, responsive, and cross-browser tests continue to pass — **passed in the authoritative pre-merge production CI**.
+The earlier release exposed a broader **Notes & Journal** Study Focus model. The current approved presentation is:
 
-## Execution / WBS — final disposition
-- **P1 — personal-data state contract — COMPLETE**
-  - `notes` and `journal` maps added to learner state
-  - save/persistence helpers and sync merge policy added
-  - regression coverage added
-- **P2 — lesson personal-study UI — COMPLETE**
-  - Study Focus entry control and side panel
-  - current-activity binding
-  - save/status behavior
-  - responsive non-obscuring presentation
-- **F1 — global feedback UI — COMPLETE**
-  - persistent feedback control and panel
-  - online submit + offline queue/flush
-- **F2 — feedback persistence — COMPLETE**
-  - D1 persistence path
-  - validated Worker endpoint
-  - feedback validation/persistence/privacy tests
-- **V1 — offline/cache + E2E — COMPLETE (automated)**
-  - new client modules/styles cached
-  - normal routes and Study Focus verified
-  - full authoritative CI passed before merge
+- the lesson side panel defaults to **Session Notes**;
+- **Journal Notes** and **Feedback** are actions in that side panel rather than peer navigation tabs;
+- choosing Journal Notes or Feedback temporarily replaces Session Notes with the relevant editor, then returns after save/cancel;
+- learner-facing copy says the entry/submission is tied to the current study activity while the technical activity/step identity remains internal;
+- current-step metadata is not displayed as learner-facing technical data;
+- a separate generic personal “Note” control is not part of the current default lesson UI.
 
-## Dependency graph
-`P1 -> P2 -> V1`
+The underlying `journal`/personal-study state can continue to support additional content-linked surfaces without changing scored learner state. Bible-reading or Topic-linked Journal entry points and a Profile → Journal index must not be described as implemented until those runtime paths are present and validated.
 
-`F2 -> F1 -> V1`
+## Feedback contract
 
-All implementation nodes above are complete in the merged release.
+Feedback supports a bounded category/message payload and route context. The application must not silently add Journal content, lesson body text, browser fingerprinting, or unrelated profile/progress data to a feedback submission.
 
-## Risks and controls
-- **Private writing accidentally affects scoring:** notes/journal remain separate state fields and are not consumed by assessment-completion logic.
-- **Sync conflict data loss:** latest `updatedAt` wins independently for each activity and writing type under the current merge policy.
-- **Feedback spam:** bounded payloads and constrained categories are implemented; stronger production abuse controls may be added if traffic warrants them.
-- **Privacy:** the client does not intentionally submit automatic name/email, browser fingerprint, or lesson body content; route context and explicitly submitted fields are bounded.
-- **Offline loss:** failed feedback is queued locally and retried on `online`.
+Feedback context can include internal route/activity/build identity for diagnosis. That metadata is implementation context, not learner-facing content.
 
-## Rollback
-The client panels and feedback endpoint are additive. A future rollback can remove their UI/modules while retaining additive D1/personal-state fields without corrupting scored learner progress.
+## Privacy / assurance
 
-## Continuing human assurance
-The release is already merged. Remaining review is post-merge quality assurance rather than a statement that implementation is incomplete: verify that Notes & Journal feel private and unobtrusive, Feedback remains reachable without blocking content, Study Focus composition remains strong on physical devices, and wording clearly communicates unscored/private behavior.
+Personal writing and Feedback remain separate from assessment state. Human review of privacy perception, wording, touch/device behavior, and production abuse handling remains continuing QA unless separately evidenced.
+
+## Historical implementation evidence
+
+The original v7 implementation included:
+
+- `notes` / `journal` learner-state maps;
+- personal-study persistence and sync merge policy;
+- global Feedback UI;
+- bounded Worker/D1 feedback persistence;
+- offline feedback queueing;
+- regression and E2E coverage.
+
+Those facts remain useful provenance, but the original panel wording/layout is no longer current authority.

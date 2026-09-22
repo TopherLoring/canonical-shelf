@@ -11,6 +11,8 @@ await verifyVendorCorpus();
 console.log('pre-launch repair: regenerate deterministic content');
 run(['bun','scripts/migrate-vendored.mjs'],'vendored content migration');
 run(['bun','scripts/postprocess-v6.mjs'],'v7 curriculum postprocess');
+run(['bun','scripts/publish-theology.mjs'],'canonical theology publication');
+run(['bun','scripts/apply-curriculum-metadata.mjs'],'questions-first curriculum metadata');
 run(['bun','scripts/generate-curriculum-reference.mjs'],'current curriculum reference generation');
 run(['bun','scripts/generate-llms.mjs'],'llms generation');
 

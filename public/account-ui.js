@@ -1,16 +1,22 @@
+import {THEMES,currentTheme} from './theme.js';
+
 const panel=document.querySelector('#account-panel'),body=document.querySelector('#account-body'),open=document.querySelector('#account-open'),close=document.querySelector('#account-close');
 let apiPromise=null,busy=false,syncTimer=null;
 const api=()=>apiPromise||=(import('./generated/account.js'));
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function status(message){body.innerHTML=`<p class="notice" role="status">${esc(message)}</p>`}
+function status(message){body.innerHTML=`<p class="notice" role="status">${esc(message)}</p>${themeMarkup()}`}
+function themeMarkup(){
+  const selected=currentTheme();
+  return `<section class="profile-theme-choice"><p class="eyebrow">Profile preference</p><h3>Theme</h3><p>Choose the visual package used across Canonical Shelf. This changes presentation only; course content, progress, assessment, and interpretation remain the same.</p><div class="profile-theme-grid">${THEMES.map(theme=>`<button class="theme-card ${theme.id===selected?'is-selected':''}" type="button" data-theme-option="${esc(theme.id)}" aria-pressed="${theme.id===selected?'true':'false'}"><span class="theme-card__swatch" aria-hidden="true"><i></i><i></i><i></i></span><strong>${esc(theme.name)}</strong><span>${esc(theme.summary)}</span></button>`).join('')}</div></section>`;
+}
 async function render(){
   const a=await api(),session=await a.accountSession();
   if(!session){
-    body.innerHTML=`<p>Your course works fully without an account. Add a passkey only if you want automatic cross-device progress sync and recovery.</p><p><button class="button" data-account="enable">Enable cross-device sync</button></p><p><button class="button" data-account="signin">Sign in with an existing passkey</button></p><p class="meta">Export/import remains available from Practice as a manual backup.</p>`;
+    body.innerHTML=`<p>Your course works fully without an account. Add a passkey only if you want automatic cross-device progress sync and recovery.</p><p><button class="button" data-account="enable">Enable cross-device sync</button></p><p><button class="button" data-account="signin">Sign in with an existing passkey</button></p><p class="meta">Export/import remains available from Practice as a manual backup.</p>${themeMarkup()}`;
     return;
   }
   const anonymous=!!session.user?.isAnonymous,last=localStorage.getItem('canon.sync.last');
-  body.innerHTML=`<p><strong>${anonymous?'Sync setup in progress':'Sync account active'}</strong></p><p>${anonymous?'Finish by adding a recovery passkey before relying on this account on another device.':'This device can reconcile progress with your other signed-in devices.'}</p>${last?`<p class="meta">Last synced ${esc(new Date(last).toLocaleString())}</p>`:''}<p><button class="button" data-account="${anonymous?'finish':'sync'}">${anonymous?'Add recovery passkey':'Sync now'}</button></p><p><button class="button" data-account="signout">Sign out on this device</button></p><details><summary>Data controls</summary><p>Deleting remote data or the account does not delete progress stored on this device.</p><p><button class="button" data-account="delete-remote">Delete synced progress</button></p><p><button class="button" data-account="delete-account">Delete sync account</button></p></details>`;
+  body.innerHTML=`<p><strong>${anonymous?'Sync setup in progress':'Sync account active'}</strong></p><p>${anonymous?'Finish by adding a recovery passkey before relying on this account on another device.':'This device can reconcile progress with your other signed-in devices.'}</p>${last?`<p class="meta">Last synced ${esc(new Date(last).toLocaleString())}</p>`:''}<p><button class="button" data-account="${anonymous?'finish':'sync'}">${anonymous?'Add recovery passkey':'Sync now'}</button></p><p><button class="button" data-account="signout">Sign out on this device</button></p><details><summary>Data controls</summary><p>Deleting remote data or the account does not delete progress stored on this device.</p><p><button class="button" data-account="delete-remote">Delete synced progress</button></p><p><button class="button" data-account="delete-account">Delete sync account</button></p></details>${themeMarkup()}`;
 }
 async function perform(action){
   if(busy)return;busy=true;try{

@@ -1,0 +1,92 @@
+/* Narrow refinements layered after library-system.css. Kept editable by future agents. */
+
+html[data-theme="canonical-original"]{
+  --canon-law:#556978;
+  --canon-history-ot:#687269;
+  --canon-wisdom:#6d7880;
+  --canon-major-prophets:#666a80;
+  --canon-minor-prophets:#596a7f;
+  --canon-gospel:#526f78;
+  --canon-history-nt:#66766b;
+  --canon-paul:#5f677a;
+  --canon-general:#66766b;
+  --canon-apocalypse:#4b5056;
+}
+
+/* Flat surfaces keep the palette intentional rather than washed out. */
+.home-shelf-glance,.dashboard-card,.course-journey-card,.unit--orientation,.topic-section,
+.dashboard-card--practice,.book-drawer__head{background-color:var(--color-surface-raised)!important}
+.theme-demo__dot{background-color:var(--color-accent-primary)!important}
+
+/* Flat bookshelf/category treatment for the default theme. */
+html[data-theme="canonical-original"] .home-mini-shelf i{background:var(--mini-book)!important;background-image:none!important}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="law"]{--mini-book:#556978}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="othist"]{--mini-book:#687269}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="wisdom"]{--mini-book:#6d7880}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="major"]{--mini-book:#666a80}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="minor"]{--mini-book:#596a7f}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="gospel"]{--mini-book:#526f78}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="paul"]{--mini-book:#5f677a}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="general"]{--mini-book:#66766b}
+html[data-theme="canonical-original"] .home-mini-shelf i[data-cat="apoc"]{--mini-book:#4b5056}
+html[data-theme="canonical-original"] .shelf-spine{background:var(--book-accent)!important;background-image:none!important}
+
+html[data-theme="canonical-original"] .book-profile-page[data-cat="law"],html[data-theme="canonical-original"] .book-profile-card[data-cat="law"]{--profile-accent:#556978}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="othist"],html[data-theme="canonical-original"] .book-profile-card[data-cat="othist"]{--profile-accent:#687269}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="wisdom"],html[data-theme="canonical-original"] .book-profile-card[data-cat="wisdom"]{--profile-accent:#6d7880}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="major"],html[data-theme="canonical-original"] .book-profile-card[data-cat="major"]{--profile-accent:#666a80}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="minor"],html[data-theme="canonical-original"] .book-profile-card[data-cat="minor"]{--profile-accent:#596a7f}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="gospel"],html[data-theme="canonical-original"] .book-profile-card[data-cat="gospel"]{--profile-accent:#526f78}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="paul"],html[data-theme="canonical-original"] .book-profile-card[data-cat="paul"]{--profile-accent:#5f677a}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="general"],html[data-theme="canonical-original"] .book-profile-card[data-cat="general"]{--profile-accent:#66766b}
+html[data-theme="canonical-original"] .book-profile-page[data-cat="apoc"],html[data-theme="canonical-original"] .book-profile-card[data-cat="apoc"]{--profile-accent:#4b5056}
+
+.course-current-label{
+  padding:10px 14px 9px;background:#24272d;color:#c7a253;
+  font:700 .62rem var(--font-meta);letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid #ffffff16;
+}
+.course-catalog-contents{min-width:0}
+.course-catalog-contents__head{
+  padding:14px 16px 13px;border:1px solid var(--color-border-default);border-bottom:0;
+  border-radius:14px 14px 0 0;background:#fffefb;
+}
+.course-catalog-contents__head .eyebrow{margin:0 0 .25rem}
+.course-catalog-contents__head h2{font-size:clamp(1.55rem,3vw,2.3rem);margin:.1rem 0 .3rem}
+.course-catalog-contents__head p:last-child{margin:0;color:var(--color-text-secondary);font-size:.8rem}
+
+.study-focus__utilities [data-feedback-open],
+.study-focus__utilities [data-journal-open],
+.study-focus__utilities [data-toggle-apparatus]{display:none!important}
+.scene-content-head{display:grid;gap:.25rem;margin:0 0 .25rem}
+.scene-content-head .eyebrow{margin:0;color:#596d79}
+.scene-content-head h2{margin:0;font-size:clamp(1.55rem,2.7cqw,2.35rem);font-weight:600}
+
+/* Flat content blocks. Color identifies function rather than decorating prose. */
+.scene-visual,.sequence-card,.answer-tile,.match-card,.evidence-card,.classification-card,.argument-link,.scenario-stage{
+  background-image:none!important;
+}
+
+/* Make the enhancement label the only shelf-title reveal. */
+.shelf-spine>strong{display:none!important}
+.shelf-spine__reveal{display:block}
+
+/* Topic and Bible side-panel content is single-column and readable on charcoal. */
+.library-reader-panel .button,.topic-context-panel .button{
+  border-color:#aeb3b6;color:#fff;background:transparent;
+}
+.library-reader-panel .badge,.topic-context-panel .badge{border-color:#737a81;color:#e2e4e5}
+.topic-context-panel .topic-reference-list,.topic-context-panel .topic-course-links{grid-template-columns:1fr}
+.topic-context-panel .topic-reference-list a,.topic-context-panel .topic-course-links a{
+  background:transparent;border-color:#ffffff1c;border-radius:7px;padding:.65rem .7rem;color:#fff;
+}
+.topic-context-panel .topic-reference-list span,.topic-context-panel .topic-course-links span{color:#c9cdd0}
+
+/* Profile is the durable home for appearance preferences. */
+.account-panel .profile-theme-choice{padding-bottom:1.25rem}
+.account-panel .profile-theme-grid .theme-card{background:#fffefb}
+.account-panel .profile-theme-grid .theme-card.is-selected{border-color:#596d79;box-shadow:inset 4px 0 #c7a253}
+
+@media(max-width:900px){
+  .course-catalog-contents__head{border-radius:12px 12px 0 0}
+}

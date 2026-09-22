@@ -28,6 +28,39 @@ export function rememberBibleBook(book,chapter=0){
 const bookNumberFromHref=href=>{try{return Number(new URL(href,location.href).searchParams.get('book')||0)}catch{return 0}};
 const appendStateText=(element,text)=>{if(!text)return;const current=element.getAttribute('aria-label')||element.textContent.trim();if(element.hasAttribute('aria-label'))element.setAttribute('aria-label',`${current}, ${text}`)};
 
+function ensureShelfNameReveal(root){
+  for(const spine of root.querySelectorAll('.shelf-spine')){
+    if(spine.querySelector('.shelf-spine__reveal'))continue;
+    const name=spine.querySelector('strong')?.textContent?.trim();if(!name)continue;
+    const reveal=document.createElement('span');
+    reveal.className='shelf-spine__reveal';
+    reveal.setAttribute('aria-hidden','true');
+    reveal.textContent=name;
+    spine.append(reveal);
+  }
+}
+
+function touchShelfPeek(event){
+  const spine=event.target.closest?.('.shelf-spine');
+  if(!spine||matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(spine.dataset.nameVisible==='true')return;
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  document.querySelectorAll('.shelf-spine[data-name-visible="true"]').forEach(item=>{if(item!==spine)delete item.dataset.nameVisible});
+  spine.dataset.nameVisible='true';
+  spine.focus({preventScroll:true});
+}
+
+if(typeof document!=='undefined'&&!document.documentElement.dataset.shelfPeekBound){
+  document.documentElement.dataset.shelfPeekBound='true';
+  document.addEventListener('click',touchShelfPeek,true);
+  document.addEventListener('pointerdown',event=>{
+    if(event.target.closest?.('.shelf-spine'))return;
+    document.querySelectorAll('.shelf-spine[data-name-visible="true"]').forEach(item=>delete item.dataset.nameVisible);
+  },true);
+}
+
 export function enhanceBibleState(root=document,params=new URLSearchParams(location.search)){
   const selected=Number(params.get('book')||0),chapter=Number(params.get('chapter')||0);
   const stored=selected?rememberBibleBook(selected,chapter):getBibleState();
@@ -45,6 +78,7 @@ export function enhanceBibleState(root=document,params=new URLSearchParams(locat
       const chip=document.createElement('span');chip.className='book-state-chip';chip.textContent=isCurrent&&isLearned?'Current · learned':isCurrent?'Current':'Learned';host.prepend(chip);
     }
   }
+  ensureShelfNameReveal(root);
   const page=root.querySelector('.book-profile-page,.book-drawer,.reader.scripture');
   if(page&&selected){
     page.dataset.current='true';page.dataset.learned=String(learned.has(selected));

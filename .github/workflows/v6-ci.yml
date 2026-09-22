@@ -11,14 +11,35 @@ jobs:
     runs-on: ubuntu-latest
     env:
       D1_DATABASE_ID: 00000000-0000-0000-0000-000000000000
-      BETTER_AUTH_URL: https://canonical-shelf.example
+      BETTER_AUTH_URL: https://the-canonical-shelf.christopherwonder.workers.dev
+      CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.15
       - run: bun install --frozen-lockfile
       - name: Verify pre-launch code/runtime/state integrity
         run: bun run verify
-      - name: Validate Cloudflare production config
-        run: bun run generate:wrangler && bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
+      - name: Validate exact Cloudflare production target
+        run: bun run generate:wrangler && bun run validate:cloudflare && bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-dry-run
+
+  full-release-audit:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      D1_DATABASE_ID: 00000000-0000-0000-0000-000000000000
+      BETTER_AUTH_URL: https://the-canonical-shelf.christopherwonder.workers.dev
+      CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.15
+      - run: bun install --frozen-lockfile
+      - name: Install browser dependencies for full release audit
+        run: bunx playwright install --with-deps chromium firefox webkit
+      - name: Run exhaustive content, assessment, state, browser, and accessibility gates
+        run: bun run verify:full
+      - name: Revalidate exact Cloudflare production target after full build
+        run: bun run generate:wrangler && bun run validate:cloudflare && bunx wrangler deploy --dry-run --outdir=/tmp/canonical-shelf-full-dry-run

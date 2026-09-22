@@ -41,9 +41,18 @@ export const ORIENTATION_LESSON={
     },
     {
       role:'Explain',
+      title:'Start with the questions, then build better answers',
+      paragraphs:[
+        'Adults often arrive with questions already in mind: why Jesus died, what sin means, why suffering exists, whether Scripture can be trusted, why Christians disagree, how to read violent or morally difficult texts, what Christians mean by judgment and resurrection, or how to evaluate disputed questions about law, gender, sexuality, miracles, and other religions.',
+        'Canonical Shelf introduces those questions early instead of pretending they do not exist. It also resists giving a confident answer before the learner has the evidence and context needed to evaluate it. The six courses deliberately return to important questions after building biblical history, first-century context, primary-text familiarity, and stronger interpretive tools.'
+      ],
+      callout:'Question → foundation → context → evidence → interpretation → synthesis.'
+    },
+    {
+      role:'Explain',
       title:'What the course will teach',
       paragraphs:[
-        'The curriculum begins with orientation and the biblical library, then develops the larger story, chronology, people, places, genres, themes, key passages, historical context, translation, relevant Hebrew and Greek, interpretation, Christian doctrine, contested questions, evidence evaluation, and independent synthesis.',
+        'The curriculum develops the biblical library, larger story, chronology, people, places, genres, themes, key passages, historical context, translation, relevant Hebrew and Greek, interpretation, Christian doctrine, contested questions, evidence evaluation, and independent synthesis.',
         'The learning progression is deliberate. You will move from recognition and location toward interpretation, evaluating evidence, transferring a method to unfamiliar material, and eventually synthesizing a responsible conclusion.'
       ],
       bullets:['Remember','Locate','Distinguish','Relate','Interpret','Evaluate evidence','Transfer','Synthesize']
@@ -52,7 +61,8 @@ export const ORIENTATION_LESSON={
       role:'Navigate',
       title:'Course — the guided path',
       paragraphs:[
-        'Course is the recommended sequence through 25 scored curriculum units. Guided lessons and mastery activities are interleaved so that explanation and retrieval belong to the same learning path rather than becoming two disconnected systems.',
+        'Course is a six-course sequence containing 44 scored units. Guided lessons, integrated mastery, unit mastery, and course capstones keep explanation, retrieval, reasoning, and synthesis inside one coherent learning path.',
+        'Course 1 gives the complete introductory map and names the major questions. Courses 2–4 build the biblical and historical foundation. Course 5 focuses on interpretation and evidence. Course 6 synthesizes theology, traditions, and difficult questions using the foundation already developed.',
         'Progress distinguishes completion, retention, mastery, and review-due states. You may leave the path to investigate something elsewhere and return without losing your place.'
       ],
       actions:[{label:'Open Course overview',href:'/course'}]
@@ -71,16 +81,16 @@ export const ORIENTATION_LESSON={
       title:'Where deeper study and evidence live',
       paragraphs:[
         'Within lessons, look for vocabulary, deeper explanation, passage notes, challenge feedback, interpretive boundaries, and source trails. Passage-level study can surface translation choices, manuscript or textual notes when relevant, original-language observations, historical and literary context, evidence strength, competing interpretations, reception history, doctrine, and application.',
-        'Across the site, use Topics, book profiles, maps, timelines, search, cross-references, and the Guide. Bible translation controls help you compare wording without assuming that every difference changes doctrine. External scholarly sources, academic books or articles, primary sources, and further-reading references are cited where they materially support or qualify a claim.'
+        'Across the site, use Topics, book profiles, maps, timelines, search, cross-references, and the Theologian. The Guide uses Canonical Shelf-controlled Scripture, content, doctrinal boundaries, and vetted sources rather than treating generated prose as an independent authority.'
       ],
       callout:'Canonical Shelf should show what kind of claim you are looking at: text → evidence/history → interpretation → reception → doctrine → application.'
     },
     {
       role:'Navigate',
-      title:'Topics and the Guide — follow a question',
+      title:'Topics and the Theologian — follow a question',
       paragraphs:[
         'Topics is a curated reference layer rather than a second curriculum. Use it for doctrine, biblical concepts, Christian practice, difficult questions, glossary material, and links back into Scripture or Course content.',
-        'The Guide can help connect material already available in Canonical Shelf. It is bounded by the project’s theological and evidence policies and should distinguish direct textual evidence from interpretation rather than presenting every disputed question as settled.'
+        'The Theologian can connect material already available in Canonical Shelf and, when cloud synthesis is available, make that evidence conversational. Its responses remain bounded by the Berean Standard Bible, Canonical Shelf content, the Statement of Faith, theology policy, and vetted research. The deterministic evidence-aware path remains available when cloud generation is unavailable.'
       ],
       actions:[{label:'Browse Topics',href:'/topics'}]
     },
@@ -98,8 +108,8 @@ export const ORIENTATION_LESSON={
       role:'Personalize',
       title:'Choose the visual environment that works for you',
       paragraphs:[
-        'Canonical Shelf supports complete aesthetic packages rather than a single mandatory palette. A theme can change the site’s palette, typography pairing, surfaces, rules, elevation, focus chrome, controls, diagrams, and motion character while leaving curriculum meaning, progress, assessment, and theological interpretation unchanged.',
-        'You can change the theme again at any time from Appearance.'
+        'Canonical Shelf supports complete aesthetic packages rather than a single mandatory palette. The default library system uses flat charcoal, light reading surfaces, cool-neutral structure, and restrained gilt. Alternate themes can change palette and surface character while leaving curriculum meaning, progress, assessment, and theological interpretation unchanged.',
+        'You can change the theme at any time from your Profile / Account appearance controls.'
       ],
       themeDemo:true
     },
@@ -108,7 +118,7 @@ export const ORIENTATION_LESSON={
       title:'The course is a path, not a locked hallway',
       paragraphs:[
         'You may skip ahead, open another unit, browse the Bible, investigate a Topic, practice learned material, follow a cross-reference, or return to the guided path. The curriculum supplies a recommended learning sequence, not a restriction on curiosity.',
-        'When a lesson raises a question that matters to you, following that question is part of learning. Canonical Shelf is designed to help you return with better context rather than punish exploration.'
+        'When a lesson raises a question that matters to you, following that question is part of learning. Canonical Shelf is designed to help you return with better context rather than punish exploration. You are also allowed to hold a provisional answer and revise it as your evidence and understanding improve.'
       ]
     },
     {
@@ -116,9 +126,9 @@ export const ORIENTATION_LESSON={
       title:'The destination is independent study',
       paragraphs:[
         'At the beginning, the question may be “What should I learn next?” Over time, the goal becomes “I know how to investigate this responsibly.” Independent study means being increasingly able to locate relevant texts, distinguish evidence from interpretation, compare credible readings, identify what remains uncertain, and decide what further evidence you need.',
-        'Unit 1 begins the scored curriculum with Christianity’s central proclamation. The tutorial remains available whenever you want to revisit how Canonical Shelf works.'
+        'Unit 1 begins the scored curriculum with Christianity’s central proclamation, then explicitly introduces the major questions the curriculum will keep returning to. The tutorial remains available whenever you want to revisit how Canonical Shelf works.'
       ],
-      callout:'Next: Unit 1 · Lesson 1 — Begin with the central story',
+      callout:'Next: Unit 1 · Begin with the central story, then Questions worth carrying',
       actions:[{label:'Begin Unit 1',href:'/course?unit=unit.start&lesson=begin'}]
     }
   ]

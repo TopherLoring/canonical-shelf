@@ -18,23 +18,26 @@ jobs:
       D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
       BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.15
       - run: bun install --frozen-lockfile
-      - run: bunx playwright install --with-deps chromium firefox webkit
       - name: Verify release candidate
         run: bun run verify
-      - name: Generate Cloudflare configuration
-        run: bun run generate:wrangler
+      - name: Generate and validate canonical Cloudflare configuration
+        run: bun run generate:wrangler && bun run validate:cloudflare
       - name: Apply D1 migrations
         run: bunx wrangler d1 migrations apply canonical-shelf --remote
-      - name: Deploy Worker and static assets
+      - name: Deploy exact canonical Worker and static assets
         run: |
+          set -euo pipefail
           SECRETS_FILE="$RUNNER_TEMP/canonical-shelf-secrets.json"
+          trap 'rm -f "$SECRETS_FILE"' EXIT
           bun -e 'await Bun.write(process.env.RUNNER_TEMP + "/canonical-shelf-secrets.json", JSON.stringify({ BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET }))'
           chmod 600 "$SECRETS_FILE"
           bunx wrangler deploy --secrets-file "$SECRETS_FILE"
-          rm -f "$SECRETS_FILE"
+      - name: Verify deployed release, bindings, and direct routes
+        run: bun run verify:deployment

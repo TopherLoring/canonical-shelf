@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0",
+  "project": "Canonical Shelf integrated release candidate",
+  "pullRequest": 21,
+  "branch": "design/library-system-baseline-2026-09-21",
+  "objective": "Integrate the editable library-system experience, questions-first curriculum, Cloud Theologian with normalized theology research, complete documentation alignment, and permanent canonical deployment safeguards into one validated release candidate.",
+  "invariants": {
+    "primaryDestinations": ["Home", "Course", "Bible", "Topics", "Practice"],
+    "courses": 6,
+    "units": 44,
+    "guidedLessons": 117,
+    "masteryAndCapstones": 119,
+    "scoredActivities": 236,
+    "topics": 45,
+    "stableInheritedIds": true,
+    "bibleCorpus": "Berean Standard Bible",
+    "statementOfFaithIsDoctrinalCeiling": true,
+    "localFirstLearnerState": true,
+    "practiceIsReinforcement": true,
+    "topicsCountTowardCompletion": false,
+    "canonicalWorker": "the-canonical-shelf",
+    "canonicalOrigin": "https://the-canonical-shelf.christopherwonder.workers.dev"
+  },
+  "nodes": [
+    {"id":"IR1.DESIGN","type":"experience","status":"complete","dependsOn":[],"outputs":["flat editable library-system baseline","Course Catalog","Study Focus Session Notes","Bible/Topics contextual panels","profile themes","global Feedback"]},
+    {"id":"IR2.CURRICULUM","type":"learning","status":"complete","dependsOn":[],"outputs":["questions-first Course 1 framing","12 recurring question threads","Course 5/6 reframing","active-study ranges","curriculum validator"]},
+    {"id":"IR3.THEOLOGY","type":"content-policy","status":"complete","dependsOn":[],"outputs":["canonical theology policy","normalized LGBTQ argument framework","expanded vetted source catalog","deterministic publication"]},
+    {"id":"IR4.THEOLOGIAN","type":"capability","status":"complete","dependsOn":["IR3.THEOLOGY"],"outputs":["Workers AI synthesis","deterministic fallback","BSB/site/Statement/policy grounding","post-generation validation","stateless privacy contract"]},
+    {"id":"IR5.DEPLOYMENT","type":"release-engineering","status":"complete_pending_live_merge_proof","dependsOn":["IR4.THEOLOGIAN"],"outputs":["single canonical Worker target","generated Wrangler validator","release identity health endpoint","post-deploy direct-route smoke tests","full PR release audit"]},
+    {"id":"IR6.DOCUMENTATION","type":"governance","status":"complete","dependsOn":["IR1.DESIGN","IR2.CURRICULUM","IR3.THEOLOGY","IR4.THEOLOGIAN","IR5.DEPLOYMENT"],"outputs":["current README","updated AI instructions","decision precedence","domain baselines","documentation authority map","historical tracker retirement"]},
+    {"id":"IR7.CI","type":"validation","status":"running_on_final_head","dependsOn":["IR1.DESIGN","IR2.CURRICULUM","IR3.THEOLOGY","IR4.THEOLOGIAN","IR5.DEPLOYMENT","IR6.DOCUMENTATION"],"outputs":["prelaunch verification","curriculum/theology/content validation","assessment/state tests","Theologian tests","cross-browser E2E/accessibility","Cloudflare dry run"]},
+    {"id":"IR8.MERGE","type":"release","status":"blocked_until_IR7_green","dependsOn":["IR7.CI"],"outputs":["merge PR #21 to main"]},
+    {"id":"IR9.LIVE_VERIFY","type":"release-validation","status":"blocked_until_IR8","dependsOn":["IR8.MERGE"],"outputs":["deploy-production workflow","/api/health exact release verification","direct-route smoke tests","critical generated-data checks"]},
+    {"id":"IR10.HUMAN","type":"human-gate","status":"waived_for_prelaunch_dev","requiredBeforePublicLaunch":true,"dependsOn":["IR7.CI"],"outputs":["editorial/theological review","novice-usability review","physical-device review","manual accessibility review"],"note":"Not passed; current governance permits prelaunch development merge after automated gates, but public-launch readiness is separate."}
+  ],
+  "rollback": "Before merge, revert integration commits on PR #21. After merge/deploy, redeploy the last known-good main commit through the same guarded production workflow; do not bypass generated config validation or live smoke verification."
+}

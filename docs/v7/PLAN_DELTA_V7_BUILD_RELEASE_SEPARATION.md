@@ -1,26 +1,30 @@
 # Plan Delta — Build / Release Validation Separation
 
+Status: **implemented historical delta; current release authority is `DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md`**
+
 ## Objective
 
-Make `bun run build` a deterministic application build that does not require Cloudflare deployment credentials/configuration and is not blocked by release-only validation. Keep the comprehensive validation suite intact under `bun run verify` and the guarded production deployment workflow.
+Separate deterministic application builds from credentialed Cloudflare deployment configuration. This principle remains active: `bun run build` must not require production Cloudflare/D1 credentials.
 
-## Implementation / execution
+## Durable decisions
 
-1. Separate ordinary build from release verification and deployment configuration generation.
-2. Keep migration, client bundle, auth migration generation, browser bundle, and Worker bundle in `build`.
-3. Keep architecture/content/theology/Bible/production/v7 validation plus assessment/sync/D1/feedback/E2E tests in `verify`.
-4. Generate `wrangler.jsonc` only for dev/deploy paths that actually have deployment configuration available.
-5. Preserve `.github/workflows/deploy-production.yml` as the production deployment path.
+1. Ordinary application build prepares content and compiles client/browser/Worker runtime without production deployment credentials.
+2. Wrangler configuration is generated only for dev/release paths that have the required environment values.
+3. Release verification remains stronger than ordinary build verification.
+4. `.github/workflows/deploy-production.yml` is the production deployment path.
+5. Learner state, curriculum, UI, theology, and content must not be mutated merely to make deployment tooling easier.
 
-## Acceptance criteria
+## Current superseding release contract
 
-- `bun run build` does not require `D1_DATABASE_ID` or `BETTER_AUTH_URL`.
-- `bun run verify` retains the existing validation/test coverage.
-- production deployment still requires real Cloudflare/D1 configuration.
-- no learner-state, curriculum, UI, theology, content, or runtime behavior changes.
+The original delta predated the permanent target-hardening work. Current releases additionally require:
 
-## WBS / typed execution graph
+- exact Worker target `the-canonical-shelf`;
+- exact canonical origin `https://the-canonical-shelf.christopherwonder.workers.dev`;
+- generated Wrangler config validation;
+- D1 + Static Assets + Workers AI binding validation;
+- release-SHA identity;
+- `/api/health` post-deploy proof;
+- direct-route smoke checks;
+- PR full-release audit + Wrangler dry-run.
 
-`B0.AUDIT_LOGS -> B1.SEPARATE_BUILD -> B2.VERIFY_CI -> B3.RELEASE_READY`
-
-Rollback: restore the prior `package.json` scripts only. No data migration or runtime rollback is required.
+See `DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md` for current authority.

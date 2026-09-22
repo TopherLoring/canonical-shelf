@@ -1,68 +1,38 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
+  "status": "historical_superseded",
   "project": "Canonical Shelf v7 — v5 polish",
-  "canonicalBranch": "main",
   "releaseCommit": "801a9706d7cec9574ceadca7647a9f63a2b554fc",
   "historicalImplementationBranch": "v7-v5-polish",
-  "rollbackAnchor": "267016f7f483f3de3f22e17ed8bea2868ea35b0d",
-  "objective": "Polish the v5 learner-facing product experience on the validated v7 state/assessment foundation, using v4 selectively as a scholarly writing/content-depth reference without importing v5 runtime debt.",
-  "decisionProtocol": "docs/v7/DECISION_PRECEDENCE.md",
-  "baseline": {
+  "objective": "Historical execution evidence for the earlier v5-polish release. Retained for provenance only.",
+  "supersededBy": [
+    "AI_INSTRUCTIONS.md",
+    "docs/v7/DECISION_PRECEDENCE.md",
+    "docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md",
+    "docs/v7/PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md",
+    "docs/v7/questions-first-spiral-execution-graph.json",
+    "docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md",
+    "docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md",
+    "docs/v7/DOCUMENTATION_AUDIT_2026-09-21.md"
+  ],
+  "historicalBaseline": {
     "units": 25,
     "guidedLessons": 70,
     "masteryActivities": 69,
     "scoredActivities": 139,
-    "stableExistingActivityIds": true,
-    "stableExistingMasteryIds": true,
-    "primaryDestinations": ["Home", "Course", "Bible", "Topics", "Practice"],
-    "bibleOwnsShelfReader": true,
-    "topicsScored": false,
-    "practiceIsReinforcement": true,
-    "localFirstLearnerState": true,
-    "unit0Scored": false,
-    "notesAndJournal": true,
-    "globalFeedback": true,
-    "theologianMode": "bounded deterministic/evidence-aware; conversational-model upgrade deferred"
+    "note": "These are migration/release-history counts, not current curriculum counts."
   },
-  "releaseDisposition": {
-    "automatedProductionCI": "passed_before_merge",
+  "historicalDisposition": {
+    "automatedProductionCI": "passed_before_historical_merge",
     "merge": "owner_authorized_and_completed",
-    "staleGoldenSlicePR": "closed_without_merge",
-    "humanAssurance": "continuing_unless_separately_evidenced",
-    "productionReleaseGateForThisMerge": "superseded_by_explicit_owner_merge_instruction"
+    "humanAssurance": "not inferred from automation"
   },
-  "nodes": [
-    {"id":"P0.V5_REFERENCE_AUDIT","type":"audit","dependsOn":[],"status":"complete"},
-    {"id":"P0.V7_FOUNDATION_AUDIT","type":"audit","dependsOn":[],"status":"complete"},
-    {"id":"P0.CURRICULUM_ID_AUDIT","type":"audit","dependsOn":["P0.V7_FOUNDATION_AUDIT"],"status":"complete"},
-    {"id":"P0.V4_EDITORIAL_AUDIT","type":"audit","dependsOn":[],"status":"complete"},
-    {"id":"P1.DESIGN_SYSTEM_CONTRACT","type":"contract","dependsOn":["P0.V5_REFERENCE_AUDIT","P0.V7_FOUNDATION_AUDIT"],"status":"complete"},
-    {"id":"P1.THEME_ENGINE","type":"implementation","dependsOn":["P1.DESIGN_SYSTEM_CONTRACT"],"status":"complete"},
-    {"id":"P2.UNIT0_CONTENT_CONTRACT","type":"content","dependsOn":["P0.CURRICULUM_ID_AUDIT","P0.V4_EDITORIAL_AUDIT"],"status":"complete"},
-    {"id":"P2.UNIT0_IMPLEMENTATION","type":"implementation","dependsOn":["P1.THEME_ENGINE","P2.UNIT0_CONTENT_CONTRACT"],"status":"complete"},
-    {"id":"P3.STUDY_FOCUS_CONTRACT","type":"design","dependsOn":["P1.DESIGN_SYSTEM_CONTRACT","P0.V5_REFERENCE_AUDIT"],"status":"complete"},
-    {"id":"P3.STUDY_FOCUS_IMPLEMENTATION","type":"implementation","dependsOn":["P3.STUDY_FOCUS_CONTRACT","P1.THEME_ENGINE"],"status":"complete"},
-    {"id":"P3.SCHOLARLY_APPARATUS","type":"implementation","dependsOn":["P3.STUDY_FOCUS_IMPLEMENTATION","P0.V4_EDITORIAL_AUDIT"],"status":"complete"},
-    {"id":"P4.UNIT1L1_POLISH","type":"content","dependsOn":["P0.V4_EDITORIAL_AUDIT","P0.CURRICULUM_ID_AUDIT"],"status":"complete"},
-    {"id":"P4.GOLDEN_LESSON_INTEGRATION","type":"implementation","dependsOn":["P3.SCHOLARLY_APPARATUS","P4.UNIT1L1_POLISH"],"status":"complete"},
-    {"id":"P4.RICH_CHALLENGE_PROOF","type":"implementation","dependsOn":["P4.GOLDEN_LESSON_INTEGRATION"],"status":"complete"},
-    {"id":"P5.SCALEOUT","type":"implementation","dependsOn":["P2.UNIT0_IMPLEMENTATION","P4.RICH_CHALLENGE_PROOF"],"status":"complete_for_release","note":"future experience work may deepen rich interactions without restoring v5 runtime debt"},
-    {"id":"P5.PERSONAL_STUDY_FEEDBACK","type":"implementation","dependsOn":["P3.STUDY_FOCUS_IMPLEMENTATION"],"status":"complete","outputs":["Notes & Journal","global Feedback","offline queue","D1 feedback persistence"]},
-    {"id":"P6.LLMS_CONTRACT","type":"contract","dependsOn":["P0.V7_FOUNDATION_AUDIT"],"status":"complete","plan":"docs/v7/PLAN_DELTA_AUTOMATED_LLMS_TXT.md"},
-    {"id":"P6.LLMS_GENERATOR","type":"implementation","dependsOn":["P6.LLMS_CONTRACT"],"status":"complete","outputs":["scripts/llms-contract.mjs","scripts/generate-llms.mjs","public/llms.txt"]},
-    {"id":"P6.LLMS_DISCOVERY","type":"implementation","dependsOn":["P6.LLMS_CONTRACT"],"status":"complete","outputs":["public/index.html rel=describedby"]},
-    {"id":"P6.LLMS_VALIDATION","type":"validation","dependsOn":["P6.LLMS_GENERATOR","P6.LLMS_DISCOVERY"],"status":"implemented","outputs":["scripts/validate-llms.mjs","production validator integration"]},
-    {"id":"P6.LLMS_BUILD_GATE","type":"validation","dependsOn":["P6.LLMS_VALIDATION"],"status":"ci_running","evidence":"production-ci triggered on main after implementation"},
-    {"id":"V.AUTOMATED_ASSURANCE","type":"validation","dependsOn":["P5.SCALEOUT","P5.PERSONAL_STUDY_FEEDBACK"],"status":"passed","evidence":"authoritative pre-merge production CI"},
-    {"id":"G.GOLDEN_SLICE_UX","type":"human_gate","dependsOn":["P4.RICH_CHALLENGE_PROOF"],"status":"continuing_unless_separately_evidenced"},
-    {"id":"G.EDITORIAL_THEOLOGICAL","type":"human_gate","dependsOn":["P4.UNIT1L1_POLISH","P3.SCHOLARLY_APPARATUS"],"status":"continuing_unless_separately_evidenced"},
-    {"id":"G.RESPONSIVE_ADAPTIVE","type":"human_gate","dependsOn":["P5.SCALEOUT","V.AUTOMATED_ASSURANCE"],"status":"continuing_unless_separately_evidenced"},
-    {"id":"G.OFFLINE_ACCOUNT_PRIVACY","type":"human_gate","dependsOn":["V.AUTOMATED_ASSURANCE"],"status":"continuing_unless_separately_evidenced"},
-    {"id":"R.RELEASE","type":"release","dependsOn":["V.AUTOMATED_ASSURANCE"],"status":"merged_to_main","evidence":{"commit":"801a9706d7cec9574ceadca7647a9f63a2b554fc","pr":4,"ownerAuthorization":"explicit merge instruction"},"note":"for this merge the owner explicitly superseded the earlier requirement that all human gates precede merge; this does not mark those human gates passed"}
-  ],
-  "futureWork": [
-    "richer conversational-model Theologian using the bounded current runtime as evidence/policy layer",
-    "continued human/device/editorial/theological assurance",
-    "further v5-quality interaction/game restoration where the current native implementation remains less capable"
-  ]
+  "currentContrasts": {
+    "curriculum": "Current target is 6 courses / 44 units / 117 guided lessons / 119 mastery+capstones / 236 scored activities with a questions-first spiral.",
+    "design": "Current default/reference UX is the editable flat library-system baseline.",
+    "personalStudy": "Current lesson presentation uses Session Notes with Journal Notes and Feedback actions rather than the historical Notes & Journal panel presentation.",
+    "theologian": "Cloudflare Workers AI conversational synthesis is now implemented over the deterministic evidence-aware fallback; it is no longer future work.",
+    "deployment": "Current releases target only the-canonical-shelf.christopherwonder.workers.dev with generated config, live release identity, and post-deploy smoke verification."
+  },
+  "provenanceRule": "Use this graph to understand the historical v5-polish release only. Do not use it as the current implementation queue, product contract, count authority, or future-work list."
 }
