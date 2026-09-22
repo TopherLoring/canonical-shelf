@@ -49,8 +49,9 @@ requireText(reachabilityDoc,'New chat','reachability authority must define how l
 forbidText(reachabilityDoc,'Reloading the application clears the conversation context','reload-ephemeral chat documentation is superseded');
 forbidText(reachabilityDoc,'not written to localStorage','local browser persistence is now an approved Theologian behavior');
 
-// Learner agency remains a hard current contract.
-for(const marker of ['learner remains the decision-maker','God is love','grace rather than human merit','love of God and love of neighbor'])requireText(precedence.toLowerCase(),marker.toLowerCase(),`decision precedence missing Theologian interpretive/agency marker: ${marker}`);
+// Learner agency and the approved interpretive foundation remain hard current contracts.
+const precedenceLower=precedence.toLowerCase();
+for(const marker of ['learner agency is a hard requirement','god is love','grace rather than human merit','love of god and love of neighbor'])requireText(precedenceLower,marker,`decision precedence missing Theologian interpretive/agency marker: ${marker}`);
 
 // Superseded repair architecture must not physically survive in the active tree.
 for(const file of [
