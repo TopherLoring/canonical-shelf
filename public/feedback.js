@@ -30,22 +30,21 @@ function normalizeEvidence(items){
   })):[];
 }
 function setReviewContext(detail){
-  if(!detail||detail.kind!=='theologian-response'||!['flag','disagree'].includes(detail.action))return false;
+  if(!detail||detail.kind!=='theologian-response')return false;
   pendingContext={
-    kind:'theologian-response',action:detail.action,
+    kind:'theologian-response',action:clip(detail.action,32)||'review',
     question:clip(detail.question,1600),answer:clip(detail.answer,9000),mode:clip(detail.mode,32),model:clip(detail.model,160),
     policyVersion:typeof detail.policyVersion==='number'?detail.policyVersion:clip(detail.policyVersion,32),
     validationStatus:clip(detail.validationStatus,32),evidence:normalizeEvidence(detail.evidence)
   };
-  if(!pendingContext.question||!pendingContext.answer){resetReviewContext();return false}
   if(categorySelect)categorySelect.value='theology';
   if(reasonRow)reasonRow.hidden=false;
-  if(reasonSelect){reasonSelect.required=true;reasonSelect.value=detail.action==='disagree'?'interpretive-disagreement':'incorrect-claim'}
+  if(reasonSelect){reasonSelect.required=false;reasonSelect.value=detail.action==='disagree'?'interpretive-disagreement':'incorrect-claim'}
   if(contextPreview){
     contextPreview.hidden=false;
-    contextPreview.textContent=detail.action==='disagree'?'Your disagreement will include the specific Theologian question, answer, and visible evidence metadata for review.':'This report will include the specific Theologian question, answer, and visible evidence metadata for review.';
+    contextPreview.textContent=detail.action==='disagree'?'Your disagreement will include the specific Theologian question, answer, and visible evidence metadata for review.':'This review request will include the specific Theologian question, answer, and visible evidence metadata.';
   }
-  if(messageInput)messageInput.placeholder=detail.action==='disagree'?'What interpretation, evidence, or perspective should be considered?':'What seems incorrect, unsupported, incomplete, or too certain?';
+  if(messageInput)messageInput.placeholder=detail.action==='disagree'?'Optional: add the interpretation, evidence, or perspective you want considered.':'Optional: add what seems incorrect, unsupported, incomplete, or too certain.';
   return true;
 }
 function openPanel(trigger=openButton,reviewContext=null){
@@ -53,7 +52,7 @@ function openPanel(trigger=openButton,reviewContext=null){
   if(reviewContext){setReviewContext(reviewContext)}else resetReviewContext();
   panel.hidden=false;
   feedbackTriggers().forEach(button=>button.setAttribute('aria-expanded','true'));
-  (pendingContext?reasonSelect:form.querySelector('select,textarea,input'))?.focus({preventScroll:true});
+  (pendingContext?reasonSelect:form?.querySelector('select,textarea,input'))?.focus({preventScroll:true});
 }
 
 function closePanel(){
@@ -92,26 +91,24 @@ form?.addEventListener('submit',async event=>{
     contact:String(data.get('contact')||'').trim(),
     route:routeContext(),
     clientCreatedAt:new Date().toISOString(),
-    ...(pendingContext?{reviewReason:String(data.get('reviewReason')||''),context:pendingContext}:{})
+    ...(pendingContext?{reviewReason:String(data.get('reviewReason')||'').trim(),context:pendingContext}:{})
   };
-  if(payload.message.length<5){status.textContent='Please add a little more detail.';return}
-  if(pendingContext&&!payload.reviewReason){status.textContent='Choose why this response should be reviewed.';return}
   status.textContent='Sending…';
   try{
     await send(payload);
     form.reset();resetReviewContext();
-    status.textContent='Thank you. Your feedback was sent with the response context needed for review.';
+    status.textContent=pendingContext?'Thank you. Your review request was sent.':'Thank you. Your feedback was sent.';
   }catch{
     const queue=readQueue();
     queue.push(payload);
     writeQueue(queue.slice(-50));
     form.reset();resetReviewContext();
-    status.textContent='You appear to be offline or the service is unavailable. Your feedback and review context were saved on this device and will retry automatically.';
+    status.textContent='The service is unavailable right now. Your feedback was saved on this device and will retry automatically.';
   }
 });
 
 openButton?.addEventListener('click',()=>openPanel(openButton));
-document.addEventListener('click',event=>{const trigger=event.target.closest('[data-feedback-open]');if(trigger)openPanel(trigger)});
+document.addEventListener('click',event=>{const trigger=event.target.closest?.('[data-feedback-open]');if(trigger)openPanel(trigger)});
 document.addEventListener('canonical-theologian-review',event=>openPanel(event.detail?.trigger||openButton,event.detail));
 closeButton?.addEventListener('click',closePanel);
 window.addEventListener('online',()=>flushQueue().catch(()=>{}));
