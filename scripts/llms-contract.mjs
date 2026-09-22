@@ -22,10 +22,16 @@ const ABOUT_SECTION_LABELS={
 
 const PUBLIC_RESOURCES=[
   {label:'About & methodology',url:'/about.html',description:'Institutional disclosure for Canonical Shelf’s purpose, Scripture approach, sources and methodology, translation limits, accessibility posture, privacy model, and Statement of Faith disclosure.',embed:false,reachabilityIds:['about-disclosures']},
+  {label:'Privacy Policy',url:'/privacy.html',description:'Canonical Shelf privacy disclosures for local data, accounts, Theologian processing, pseudonymous feedback routing, sensitive information, service providers, and learner choices.',embed:true,html:true,reachabilityIds:['privacy-policy']},
+  {label:'Data Retention Policy',url:'/data-retention.html',description:'Current retention schedule for browser-local data, accounts, synchronized state, feedback/reviews, Theologian processing, crisis conversations, and operational records.',embed:true,html:true,reachabilityIds:['data-retention-policy']},
+  {label:'Cookies & Local Storage',url:'/storage.html',description:'Current first-party cookie, browser-storage, PWA/cache, anonymous-feedback identifier, and storage-control disclosure.',embed:true,html:true,reachabilityIds:['storage-disclosure']},
+  {label:'Terms of Use',url:'/terms.html',description:'Terms governing Canonical Shelf learning, learner agency, Theologian and pastoral-style guidance, emergency use, accounts, submissions, acceptable use, and service limitations.',embed:true,html:true,reachabilityIds:['terms-of-use']},
+  {label:'Theologian Safety',url:'/safety.html',description:'Public crisis and pastoral safety disclosure covering 988/911 routing, prayer, faith-community support, privacy, and learner agency.',embed:true,html:true,reachabilityIds:['theologian-safety']},
   {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true,reachabilityIds:['curriculum']},
   {label:'Runtime catalog',url:'/data/catalog.json',description:'Canonical curriculum, lesson, mastery, Topic, glossary, question-thread, challenge, stable-ID, and learning metadata. Its learner-facing substantive content is embedded below.',embed:false,reachabilityIds:['curriculum','topics','glossary']},
   {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's compact public Statement of Faith and doctrinal ceiling for Canonical Shelf doctrinal claims.",embed:true,reachabilityIds:['statement-of-faith']},
   {label:'Theology policy',url:'/data/theology-policy.json',description:'Machine-readable evidence, interpretation, learner-agency, doctrinal-boundary, and response rules used by the Theologian and theology layer.',embed:true,reachabilityIds:['theology-policy']},
+  {label:'Theologian crisis policy',url:'/data/theologian-crisis-policy.json',description:'Machine-readable suicide/self-harm crisis routing, pastoral reassurance, prayer, human-help escalation, and crisis privacy rules.',embed:true,reachabilityIds:['crisis-policy']},
   {label:'Theology sources',url:'/data/theology-sources.json',description:'Canonical metadata for public biblical, historical, scholarly, denominational, and theological sources available to the bounded evidence layer.',embed:true,reachabilityIds:['theology-sources']}
 ];
 
@@ -33,16 +39,27 @@ const LINKED_RESOURCES=[
   {label:'Full BSB Bible corpus',url:'/data/corpus.txt',reachabilityId:'scripture'}
 ];
 
-const decodeEntities=s=>String(s).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+const decodeEntities=s=>String(s).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&#x27;/gi,"'");
 const cleanLabel=s=>decodeEntities(String(s).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());
 const attr=(source,name)=>source.match(new RegExp(`\\b${name}=["']([^"']+)["']`,'i'))?.[1]||'';
 const indentContent=content=>String(content).trimEnd().split('\n').map(line=>`    ${line}`).join('\n');
 const jsonContent=value=>JSON.stringify(value,null,2);
+const publicPageText=html=>{
+  const main=String(html).match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||String(html);
+  const lines=[];
+  for(const match of main.matchAll(/<(h[1-6]|p|li)\b[^>]*>([\s\S]*?)<\/\1>/gi)){
+    const tag=match[1].toLowerCase(),text=cleanLabel(match[2]);if(!text)continue;
+    if(tag.startsWith('h'))lines.push(`${'#'.repeat(Math.min(3,Number(tag.slice(1))))} ${text}`);
+    else if(tag==='li')lines.push(`- ${text}`);
+    else lines.push(text);
+  }
+  return `${lines.join('\n\n').trim()}\n`;
+};
 
 export async function loadReachability(root=process.cwd()){
   const path=join(root,'content/learner-content-reachability.json');
   const manifest=JSON.parse(await readFile(path,'utf8'));
-  if(Number(manifest.version)<2||!Array.isArray(manifest.entries)||!manifest.entries.length)throw new Error('llms generation requires learner-content reachability v2+');
+  if(Number(manifest.version)<3||!Array.isArray(manifest.entries)||!manifest.entries.length)throw new Error('llms generation requires learner-content reachability v3+');
   const allowed=new Set(manifest.llmsContract?.allowedDispositions||[]);
   for(const required of ['embed','link','exclude'])if(!allowed.has(required))throw new Error(`reachability llms contract missing ${required}`);
   const ids=new Set();
@@ -231,7 +248,7 @@ export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],
   const lines=[
     '# Canonical Shelf','',
     '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware Theologian.','',
-    'This file is generated from Canonical Shelf’s learner-facing learning, Bible-reference, Practice, editorial, institutional, and theology content. It is a derived machine-readable corpus, not an independent authority. The complete Berean Standard Bible corpus is intentionally linked rather than duplicated verbatim; curated Scripture excerpts intentionally used by Canonical Shelf remain included.','',
+    'This file is generated from Canonical Shelf’s learner-facing learning, Bible-reference, Practice, editorial, institutional, legal/privacy, safety, and theology content. It is a derived machine-readable corpus, not an independent authority. The complete Berean Standard Bible corpus is intentionally linked rather than duplicated verbatim; curated Scripture excerpts intentionally used by Canonical Shelf remain included.','',
     `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
@@ -275,10 +292,10 @@ export async function buildLlmsContract({root=process.cwd()}={}){
   const routes=parsePrimaryNavigation(html),aboutSections=parseAboutDisclosures(aboutHtml),catalog=JSON.parse(catalogText),counts=summarizeCatalog(catalog);
   for(const resource of [...PUBLIC_RESOURCES,...LINKED_RESOURCES])await access(join(root,'public',resource.url.replace(/^\//,'')));
 
-  const embeddedResources=await Promise.all(PUBLIC_RESOURCES.filter(resource=>resource.embed).map(async resource=>({
-    ...resource,
-    content:await readFile(join(root,'public',resource.url.replace(/^\//,'')),'utf8')
-  })));
+  const embeddedResources=await Promise.all(PUBLIC_RESOURCES.filter(resource=>resource.embed).map(async resource=>{
+    const raw=await readFile(join(root,'public',resource.url.replace(/^\//,'')),'utf8');
+    return {...resource,content:resource.html?publicPageText(raw):raw};
+  }));
   const {datasets:learnerDatasets,summary:learnerSummary}=await loadLearnerDatasets({root,catalog});
   const entryById=new Map(manifest.entries.map(entry=>[entry.id,entry]));
   const linkedResources=LINKED_RESOURCES.map(resource=>({...resource,description:entryById.get(resource.reachabilityId)?.llms?.reason||'Intentionally linked rather than embedded.'}));
