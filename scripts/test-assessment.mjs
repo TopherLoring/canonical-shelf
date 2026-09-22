@@ -39,11 +39,11 @@ assert(mastery.completed.includes('mastery:test'),'passed mastery challenge did 
 assert(mastery.mastery['mastery:test']?.passed===true,'mastery pass state missing');
 
 const reflectionChallenge={kind:'reasoning',prompt:'Explain the distinction.'};
-assert(challengeShape(reflectionChallenge)==='reflection','free reasoning is not reflection mode');
-assert(challengeEvaluationMode(reflectionChallenge)==='reflection','free reasoning became scored');
+assert(challengeShape(reflectionChallenge)==='reflection','free reasoning fallback is not recognized as reflection');
+assert(challengeEvaluationMode(reflectionChallenge)==='reflection','free reasoning fallback became scored');
 let reflection=base();
 reflection=applyActivityResult(reflection,'lesson:reflection',{challengeIndex:0,totalChallenges:1,mode:'reflection',submitted:true}).state;
-assert(reflection.completed.includes('lesson:reflection'),'submitted lesson reflection did not satisfy participation requirement');
+assert(!reflection.completed.includes('lesson:reflection'),'submitted reflection incorrectly completed a lesson');
 assert(!reflection.reviewSchedule['lesson:reflection'],'reflection-only activity entered spaced review');
 assert(reflection.challengeProgress['lesson:reflection'].challenges['0'].passed!==true,'reflection was represented as a scored pass');
 
@@ -98,9 +98,19 @@ for(const id of catalog.masteryIds){
   assert(challenge,`mastery challenge missing: ${id}`);
   const shape=challengeShape(challenge);
   shapeCounts[shape]=(shapeCounts[shape]||0)+1;
-  if(challengeEvaluationMode(challenge)!=='scored')unsupported.push({id,kind:challenge.kind,shape,keys:Object.keys(challenge)});
+  if(challengeEvaluationMode(challenge)!=='scored')unsupported.push({id:`mastery:${id}`,kind:challenge.kind,shape,keys:Object.keys(challenge)});
 }
-if(unsupported.length)throw new Error(`mastery challenges without deterministic authored scoring:\n${JSON.stringify(unsupported,null,2)}`);
+for(const lessonItem of catalog.lessons){
+  const challenges=lessonItem.challenges||[];
+  assert(challenges.length>=1,`${lessonItem.id} has no lesson game/check`);
+  if(lessonItem.newCurriculum)assert(challenges.length>=2,`${lessonItem.id} new curriculum lesson needs at least two active checks`);
+  for(let index=0;index<challenges.length;index++){
+    const challenge=challenges[index],shape=challengeShape(challenge);
+    shapeCounts[shape]=(shapeCounts[shape]||0)+1;
+    if(challengeEvaluationMode(challenge)!=='scored')unsupported.push({id:`lesson:${lessonItem.id}#${index+1}`,kind:challenge.kind,shape,keys:Object.keys(challenge)});
+  }
+}
+if(unsupported.length)throw new Error(`completion-bearing challenges without deterministic authored scoring:\n${JSON.stringify(unsupported,null,2)}`);
 
 for(const unit of catalog.units){
   const ids=catalog.byUnit[unit.id]||[];
@@ -113,12 +123,6 @@ for(const course of catalog.courses){
   assert(catalog.activities.some(activity=>activity.courseId===course.id&&activity.masteryType==='course-capstone'),`${course.id} has no course capstone`);
 }
 
-for(const lessonItem of catalog.lessons){
-  const challenges=lessonItem.challenges||[];
-  assert(challenges.length>=1,`${lessonItem.id} has no lesson game/check`);
-  if(lessonItem.newCurriculum)assert(challenges.length>=2,`${lessonItem.id} new curriculum lesson needs at least two active checks`);
-}
-
 const nWhat=catalog.legacyMastery?.CANON_V4_MASTERY?.['n.what']?.challenge;
 assert(nWhat?.kind==='book-detective','n.what book-detective contract missing');
 assert(challengeShape(nWhat)==='single-choice','n.what scalar answer was not recognized as deterministic single-choice');
@@ -129,5 +133,5 @@ assert(!learningSource.includes('minlength="20"'),'legacy minimum-length pseudo-
 assert(learningSource.includes('lesson-drawers'),'lesson progressive-disclosure drawers missing');
 assert(learningSource.includes('glossaryView'),'course/global glossary surface missing');
 
-console.log('mastery challenge shapes:',shapeCounts);
-console.log(`multi-course assessment gates passed: ${catalog.lessons.length} lessons / ${catalog.masteryIds.length} mastery+capstone / ${catalog.activities.length} total`);
+console.log('scored challenge shapes:',shapeCounts);
+console.log(`multi-course assessment gates passed: ${catalog.lessons.length} lessons / ${catalog.masteryIds.length} mastery+capstone / ${catalog.activities.length} total; optional reflection cannot satisfy completion`);
