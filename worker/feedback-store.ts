@@ -23,6 +23,7 @@ export type FeedbackBody={
   context?:TheologianFeedbackContext;
 };
 
+const DAY=86_400_000;
 const clip=(value:unknown,max:number)=>String(value??'').replace(/\u0000/g,'').trim().slice(0,max);
 function normalizeTheologianContext(value:unknown):TheologianFeedbackContext|undefined{
   if(!value||typeof value!=='object')return undefined;
@@ -72,6 +73,18 @@ export async function anonymousFeedbackKey(token:unknown){
   const value=safeToken(token);if(!value)return null;
   const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
   return [...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+}
+
+export async function pruneFeedbackData(db:D1Like,now=new Date()){
+  const contactCutoff=new Date(now.getTime()-90*DAY).toISOString();
+  const resolvedCutoff=new Date(now.getTime()-365*DAY).toISOString();
+  const openCutoff=new Date(now.getTime()-730*DAY).toISOString();
+  await db.prepare("UPDATE feedback SET contact=NULL WHERE contact IS NOT NULL AND responded_at IS NOT NULL AND responded_at < ?")
+    .bind(contactCutoff).run();
+  await db.prepare("DELETE FROM feedback WHERE status IN ('responded','resolved','closed') AND COALESCE(responded_at,updated_at,created_at) < ?")
+    .bind(resolvedCutoff).run();
+  await db.prepare("DELETE FROM feedback WHERE status NOT IN ('responded','resolved','closed') AND created_at < ?")
+    .bind(openCutoff).run();
 }
 
 export async function writeFeedback(db:D1Like,body:FeedbackBody,userId:string|null,anonymousToken:string|null=null,now=new Date().toISOString()){
