@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {Miniflare} from 'miniflare';
-import {validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
+import {normalizeFeedbackBody,validateFeedbackBody,writeFeedback} from '../worker/feedback-store.ts';
 
 const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 const mf=new Miniflare({modules:true,script:`export default {fetch(){return new Response('ok')}}`,d1Databases:['DB']});
@@ -12,9 +12,14 @@ try{
   }
   const valid={category:'product',message:'The feedback button works from this route.',contact:'reader@example.com',route:'/course?unit=unit.start',clientCreatedAt:'2026-09-19T12:00:00.000Z'};
   assert(validateFeedbackBody(valid),'valid feedback payload was rejected');
-  assert(!validateFeedbackBody({...valid,message:'x'}),'too-short feedback was accepted');
-  assert(!validateFeedbackBody({...valid,category:'admin'}),'unknown feedback category was accepted');
-  assert(!validateFeedbackBody({...valid,route:'https://example.com'}),'external route was accepted');
+  assert(validateFeedbackBody({...valid,message:''}),'blank optional feedback text was rejected');
+  assert(validateFeedbackBody({...valid,message:'x'}),'short feedback was rejected');
+  assert(validateFeedbackBody({...valid,category:'something-new'}),'unknown category was rejected');
+  assert(validateFeedbackBody({...valid,route:'https://example.com'}),'unexpected route format should be normalized rather than rejected');
+  const normalized=normalizeFeedbackBody({...valid,category:'something-new',route:'https://example.com'});
+  assert(normalized?.category==='something-new','custom category was not preserved');
+  assert(normalized?.route==='/','unsafe route was not normalized');
+
   const saved=await writeFeedback(db,valid,null,'2026-09-19T12:01:00.000Z');
   assert(saved.id&&saved.createdAt,'feedback persistence did not return identity');
   const row=await db.prepare('SELECT category,message,contact,route,user_id,review_reason,context_json FROM feedback WHERE id=?').bind(saved.id).first();
@@ -43,10 +48,13 @@ try{
     }
   };
   assert(validateFeedbackBody(review),'valid Theologian review payload was rejected');
-  assert(!validateFeedbackBody({...review,category:'product'}),'Theologian review escaped theology category');
-  assert(!validateFeedbackBody({...review,reviewReason:'agree'}),'unknown review reason was accepted');
-  assert(!validateFeedbackBody({...review,context:{...review.context,answer:'x'.repeat(9001)}}),'oversized Theologian answer was accepted');
-  assert(!validateFeedbackBody({...review,context:{...review.context,history:['private prior turn']}}),'unexpected private history should not be relied upon by the schema');
+  assert(validateFeedbackBody({...review,category:'product'}),'custom review category was rejected');
+  assert(validateFeedbackBody({...review,reviewReason:'my-own-reason'}),'custom review reason was rejected');
+  assert(validateFeedbackBody({...review,message:''}),'review without explanation was rejected');
+  const oversized=normalizeFeedbackBody({...review,context:{...review.context,answer:'x'.repeat(12000),history:['private prior turn']}});
+  assert(oversized?.context?.answer.length===9000,'oversized response context was not safely clipped');
+  assert(!('history' in (oversized?.context||{})),'unexpected private history survived normalization');
+
   const reviewSaved=await writeFeedback(db,review,null,'2026-09-22T21:01:00.000Z');
   const reviewRow=await db.prepare('SELECT category,message,route,review_reason,context_json FROM feedback WHERE id=?').bind(reviewSaved.id).first();
   assert(reviewRow?.review_reason==='too-certain','review reason not persisted');
@@ -54,5 +62,5 @@ try{
   assert(parsed.kind==='theologian-response'&&parsed.action==='flag','review context identity not persisted');
   assert(parsed.question===review.context.question&&parsed.answer===review.context.answer,'question/answer review context not persisted');
   assert(!('history' in parsed),'unrelated conversation history was persisted');
-  console.log('v7 feedback validation/persistence/privacy + bounded Theologian response review gates passed');
+  console.log('v7 feedback accept-and-normalize + persistence/privacy + bounded Theologian response review gates passed');
 }finally{await mf.dispose()}
