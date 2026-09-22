@@ -1,7 +1,9 @@
 .utility-fab{position:fixed;z-index:22;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);padding:.58rem .85rem;border-radius:999px;box-shadow:var(--theme-soft-shadow);cursor:pointer;font-weight:700}
-.feedback-open{left:1rem;bottom:1rem}
+.feedback-open{left:1rem;bottom:1rem;background:transparent;color:var(--color-text-secondary);border:0;box-shadow:none;border-radius:0;padding:.2rem .25rem;font:600 .72rem var(--font-meta);letter-spacing:.035em;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px;opacity:.82}
+.feedback-open:hover,.feedback-open:focus-visible{color:var(--color-text-primary);opacity:1;text-decoration-thickness:2px}
 .personal-study-open{right:1rem;bottom:4.7rem;display:none}
-body.study-focus-active>.feedback-open,body.study-focus-active>.personal-study-open{display:block;background:var(--button-primary-bg);color:var(--button-primary-text);border-color:var(--button-border)}
+body.study-focus-active>.feedback-open{display:block;left:auto;bottom:auto;top:.72rem;right:8.5rem;z-index:38;background:transparent;color:var(--color-text-secondary);border:0;box-shadow:none}
+body.study-focus-active>.personal-study-open{display:none}
 body:not(.study-focus-active)>.feedback-open{display:block}
 .utility-panel{position:fixed;right:0;top:0;width:min(36rem,100%);height:100dvh;background:var(--guide-bg);border-left:1px solid var(--guide-border);z-index:45;padding:1.25rem;overflow:auto;box-shadow:var(--guide-shadow)}
 .utility-panel__head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-bottom:1px solid var(--color-border-default);padding-bottom:.8rem;margin-bottom:1rem}
@@ -19,8 +21,6 @@ body:not(.study-focus-active)>.feedback-open{display:block}
 .guide .evidence{border-top-color:#ffffff20}.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}.guide .meta{color:#c8ccd0}.guide .badge{border-color:#737a81;color:#e7e8e9}.guide .result{border-top-color:#ffffff20}
 .cloud-theologian-status{margin:.1rem 0 .7rem;padding:.7rem .8rem;border-left:3px solid #c7a253;background:#24272d;color:#f4f4f1;font-size:.8rem}.cloud-theologian-answer{font-family:var(--font-reading);font-size:1rem;line-height:1.62}.guide-open{background:#24272d;color:#fff;border-color:#24272d}
 
-@media(max-width:520px){.utility-panel{width:100%}.feedback-open{left:.65rem;bottom:.65rem}.personal-study-open{right:.65rem;bottom:4.2rem}.utility-fab{padding:.55rem .72rem;font-size:.9rem}}
-@media(forced-colors:active){.utility-fab{background:ButtonFace;color:ButtonText}.personal-study-tabs button[aria-selected="true"]{box-shadow:none;border-bottom:3px solid Highlight}.guide{border-left:1px solid CanvasText}.guide #guide-form textarea{border-color:CanvasText}}
-
-/* Study Focus owns reserved Feedback and Journal controls; fixed controls never cover a lesson. */
-body.study-focus-active>.feedback-open,body.study-focus-active>.personal-study-open{display:none}
+@media(max-width:700px){body.study-focus-active>.feedback-open{top:auto;right:auto;left:.7rem;bottom:.55rem}}
+@media(max-width:520px){.utility-panel{width:100%}.feedback-open{left:.65rem;bottom:.65rem}.personal-study-open{right:.65rem;bottom:4.2rem}.utility-fab{padding:.55rem .72rem;font-size:.9rem}.feedback-open{padding:.18rem .2rem;font-size:.68rem}}
+@media(forced-colors:active){.utility-fab{background:ButtonFace;color:ButtonText}.feedback-open,body.study-focus-active>.feedback-open{background:Canvas;color:LinkText;border:0;text-decoration:underline}.personal-study-tabs button[aria-selected="true"]{box-shadow:none;border-bottom:3px solid Highlight}.guide{border-left:1px solid CanvasText}.guide #guide-form textarea{border-color:CanvasText}}
