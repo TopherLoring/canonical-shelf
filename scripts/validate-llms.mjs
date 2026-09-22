@@ -79,7 +79,14 @@ const index=await readFile('public/index.html','utf8');
 const describedBy=[...index.matchAll(/<link\b[^>]*>/gi)].filter(match=>/\brel=["']describedby["']/i.test(match[0])&&/\bhref=["']\/llms\.txt["']/i.test(match[0]));
 if(describedBy.length!==1)fail('public/index.html must advertise exactly one rel="describedby" link to /llms.txt');
 
-if(/\/(?:api|account|feedback)(?:\/|\b)/i.test(output))fail('private/account/feedback API surface must not be linked from llms.txt');
+const linkedTargets=[
+  ...[...output.matchAll(/\]\((\/[^)\s]+)\)/g)].map(match=>match[1]),
+  ...[...output.matchAll(/\bhref=["'](\/[^"']+)["']/gi)].map(match=>match[1])
+];
+for(const target of linkedTargets){
+  const pathname=target.split(/[?#]/,1)[0];
+  if(/^\/api(?:\/|$)/i.test(pathname)||/^\/(?:account|feedback)(?:\/|$)/i.test(pathname))fail(`private/account/feedback surface must not be linked from llms.txt: ${target}`);
+}
 if(contract.counts.courses!==6)fail(`expected six-course catalog, found ${contract.counts.courses}`);
 
 console.log(`llms.txt reachability-authoritative complete learner corpus gates passed (${contract.reachabilityCoverage.embedded.length} embedded families, ${contract.reachabilityCoverage.linked.length} linked, ${contract.reachabilityCoverage.excluded.length} excluded; ${contract.learnerSummary.books} books, ${contract.learnerSummary.practiceLevels} Practice levels, ${contract.learnerSummary.curatedPassages} curated passages, ${contract.learnerSummary.themes} themes)`);
