@@ -85,6 +85,7 @@ async function flushQueue(){
 form?.addEventListener('submit',async event=>{
   event.preventDefault();
   const data=new FormData(form);
+  const wasReview=Boolean(pendingContext);
   const payload={
     category:pendingContext?'theology':String(data.get('category')||'other'),
     message:String(data.get('message')||'').trim(),
@@ -97,7 +98,7 @@ form?.addEventListener('submit',async event=>{
   try{
     await send(payload);
     form.reset();resetReviewContext();
-    status.textContent=pendingContext?'Thank you. Your review request was sent.':'Thank you. Your feedback was sent.';
+    status.textContent=wasReview?'Thank you. Your review request was sent.':'Thank you. Your feedback was sent.';
   }catch{
     const queue=readQueue();
     queue.push(payload);
