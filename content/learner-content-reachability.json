@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "principle": "Every current learner-facing content family must have a deliberate direct, progressive-disclosure, or Theologian-mediated path. Generated mirrors do not require a second UI surface.",
+  "entries": [
+    {"id":"orientation","source":"public/orientation.js","mode":"direct","surface":"Course","entry":"/course?lesson=orientation","host":"public/course-experience.js"},
+    {"id":"curriculum","source":"content/curriculum","published":"public/data/catalog.json","mode":"direct","surface":"Course","entry":"/course","host":"public/course-experience.js"},
+    {"id":"scripture","source":"public/data/corpus.txt","mode":"direct","surface":"Bible","entry":"/bible","host":"public/bible.js"},
+    {"id":"bible-library","source":"public/library-data.js","mode":"direct","surface":"Bible","entry":"/bible?view=shelf","host":"public/bible.js"},
+    {"id":"topics","source":"public/data/catalog.json","mode":"direct","surface":"Topics","entry":"/topics","host":"public/topics-experience.js"},
+    {"id":"glossary","source":"public/data/catalog.json","mode":"direct","surface":"Topics / Search","entry":"/topics?mode=glossary","host":"public/topics-experience.js"},
+    {"id":"practice","source":"public/practice-data.js","mode":"direct","surface":"Practice","entry":"/practice","host":"public/practice-experience.js"},
+    {"id":"curated-passages","source":"public/verse-data.js","mode":"progressive","surface":"Practice","entry":"/practice","host":"public/practice-experience.js"},
+    {"id":"appearance-themes","source":"public/theme.js","mode":"progressive","surface":"Profile / Account → Appearance","entry":"shared-shell","host":"public/bootstrap.js"},
+    {"id":"about-disclosures","source":"public/about.html","mode":"direct","surface":"About","entry":"/about.html","host":"public/about.html"},
+    {"id":"statement-of-faith","source":"content/statement/statement-of-faith-compact.md","published":"public/data/statement-of-faith.md","mode":"direct","surface":"About → Statement of Faith","entry":"/about.html#faith","host":"public/about-page.js"},
+    {"id":"theology-policy","source":"content/theology/policy.json","published":"public/data/theology-policy.json","mode":"theologian","surface":"Theologian evidence / guardrails","entry":"/api/theologian","host":"worker/theologian-ai.ts"},
+    {"id":"theology-sources","source":"content/theology/sources.json","published":"public/data/theology-sources.json","mode":"theologian","surface":"Theologian evidence and source links","entry":"/api/theologian","host":"worker/theologian-ai.ts"},
+    {"id":"supplemental-belief-context","source":"content/statement/statement-of-faith-v3.md","published":"public/data/theologian-belief-context.md","mode":"theologian","surface":"Theologian supplemental context only","entry":"/api/theologian","host":"worker/theologian-ai.ts","notDirectlyRendered":true}
+  ]
+}
