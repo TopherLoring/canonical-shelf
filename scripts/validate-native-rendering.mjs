@@ -17,12 +17,13 @@ async function filesUnder(dir){
 }
 
 const routeNames=['home','course','bible','topics','practice','search'];
-const [index,bootstrap,app,home,course,learning,bible,topics,search,cloud,sw,libraryCss,studyControls,...routeDocuments]=await Promise.all([
-  read('public/index.html'),read('public/bootstrap.js'),read('public/app.js'),read('public/progress-experience.js'),read('public/course-experience.js'),read('public/learning.js'),read('public/bible.js'),read('public/topics-experience.js'),read('public/search-experience.js'),read('public/theologian-cloud.js'),read('public/sw.js'),read('public/library-system.css'),read('public/study-controls.js'),
+const [index,bootstrap,app,home,course,learning,bible,topics,search,cloud,sw,libraryCss,studyControls,manifest,icon,...routeDocuments]=await Promise.all([
+  read('public/index.html'),read('public/bootstrap.js'),read('public/app.js'),read('public/progress-experience.js'),read('public/course-experience.js'),read('public/learning.js'),read('public/bible.js'),read('public/topics-experience.js'),read('public/search-experience.js'),read('public/theologian-cloud.js'),read('public/sw.js'),read('public/library-system.css'),read('public/study-controls.js'),read('public/manifest.webmanifest'),read('public/icon.svg'),
   ...routeNames.map(route=>read(`public/${route}.html`))
 ]);
 
 requireText(index,'/home-experience.css','Home Library First stylesheet must be a native shell asset');
+requireText(index,'content="#24272d"','shared browser chrome must use the approved charcoal theme color');
 requireText(index,'id="guide-title">Theologian','Theologian must be named in the delivered shell');
 requireText(index,'Ask the Theologian a study question','Theologian form must exist natively in the shell');
 forbid(index,'library-system-refinements.css','obsolete CSS refinement layer must not be loaded');
@@ -31,10 +32,15 @@ forbid(sw,'library-system-refinements.css','offline shell must not cache obsolet
 forbid(sw,'library-system.js','offline shell must not cache obsolete DOM repair runtime');
 requireText(sw,'v7-native-rendering-2026-09-22','service-worker cache must be bumped for native-rendering release');
 
+for(const marker of ['"background_color":"#f3f3f0"','"theme_color":"#24272d"','"start_url":"/home"'])requireText(manifest,marker,`PWA manifest missing current Library First identity: ${marker}`);
+for(const marker of ['fill="#24272d"','fill="#fffefb"','fill="#c7a253"'])requireText(icon,marker,`PWA icon missing current Library First palette: ${marker}`);
+for(const stale of ['#c8ff35','#f6f1e8'])forbid(icon,stale,`PWA icon retains superseded palette value ${stale}`);
+
 for(const [route,document] of routeNames.map((route,index)=>[route,routeDocuments[index]])){
   requireText(document,`data-route-document="${route}"`,`${route} must ship a route-owned document root`);
   requireText(document,`data-route-content="${route}"`,`${route} must ship a bounded enhancement region`);
   requireText(document,'<h1',`${route} route document must expose a meaningful heading before JavaScript enhancement`);
+  requireText(document,'content="#24272d"',`${route} route document must inherit the shared charcoal browser chrome`);
   requireText(sw,`/${route}.html`,`${route} route document must be available offline`);
 }
 
@@ -55,4 +61,4 @@ for(const legacy of ['Ask the Guide','How the Guide is reasoning','The Guide wit
 
 for(const marker of ['.study-focus__identity{display:grid','.study-layout{grid-template-columns:24px minmax(0,1fr) 286px','.library-reader-layout,.topic-reference-layout','.shelf-spine[data-touch-named="true"]'])requireText(libraryCss,marker,`consolidated Library First style missing: ${marker}`);
 
-console.log(`native document-first rendering gate passed: ${routeNames.length} route documents + ${jsFiles.length} production JS files checked; cross-destination navigation is native; DOM repair layers absent`);
+console.log(`native document-first rendering gate passed: ${routeNames.length} route documents + ${jsFiles.length} production JS files checked; cross-destination navigation is native; PWA identity matches Library First; DOM repair layers absent`);
