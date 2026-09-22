@@ -166,9 +166,9 @@ A consolidated Profile → Journal browsing/index experience and additional Bibl
 
 ## Ask the Theologian
 
-The Theologian now has two layers:
+The Theologian has two layers:
 
-1. **deterministic evidence-aware fallback** — existing bounded retrieval/evidence logic;
+1. **deterministic evidence-aware fallback** — bounded retrieval/evidence logic that remains available without cloud synthesis;
 2. **Cloudflare Workers AI conversational synthesis** — a remote model turns first-party retrieved evidence into a more natural answer when available.
 
 No model weights are downloaded to the learner's device.
@@ -222,27 +222,35 @@ Stable activity IDs—not mutable display placement—anchor inherited progress 
 
 ### Browser
 
-- semantic HTML;
+- semantic route-owned HTML documents for **Home, Course, Bible, Topics, Practice, and Search**;
+- `public/index.html` as the shared shell source and root/legacy-hash compatibility fallback;
+- deterministic route-document generation through `scripts/generate-route-documents.mjs`;
+- normal browser document navigation between different top-level destinations;
+- History API updates only for query/detail state inside the currently owned destination;
+- bounded JavaScript enhancement of route content rather than SPA-wide page reconstruction;
 - modular vanilla JavaScript;
 - CSS custom properties and destination-specific experience layers;
 - IndexedDB learner state;
-- native History API routing;
-- service-worker PWA caching;
+- service-worker PWA caching, including route-specific offline documents;
 - generated curriculum/glossary/topic data;
 - Cloud Theologian progressive enhancement over deterministic fallback.
 
+The architecture intentionally does **not** use a whole-body `MutationObserver`, render-old-UI-then-repair behavior, duplicate renderers competing for `#main`, or stacked corrective CSS/runtime layers.
+
 ### Cloudflare Worker
 
-- static assets binding;
+- static assets binding with clean HTML routing (`html_handling: auto-trailing-slash`);
 - Better Auth and passkeys;
 - D1 account/sync/feedback persistence;
 - Workers AI binding for Theologian synthesis;
 - `/api/health` release/binding identity endpoint;
 - canonical production target `the-canonical-shelf`.
 
-## Deterministic content generation
+## Deterministic generation
 
-Authoritative source content is regenerated into runtime artifacts rather than maintained by hand:
+Authoritative content and route structure are regenerated into runtime artifacts rather than maintained as divergent copies.
+
+Source inputs include:
 
 ```text
 content/curriculum/               curriculum source
@@ -250,9 +258,10 @@ content/statement/                Statement of Faith
 content/theology/policy.json      theology/interpretation policy
 content/theology/sources.json     vetted source catalog
 content/vendor/legacy/            admitted legacy snapshot / BSB source
+public/index.html                 shared application shell source
 ```
 
-Generation publishes:
+Generation publishes content artifacts:
 
 ```text
 public/data/catalog.json
@@ -265,6 +274,19 @@ public/llms.txt
 ```
 
 `public/llms.txt` is generated and freshness-validated rather than hand-maintained.
+
+`bun run generate:routes` runs `scripts/generate-route-documents.mjs` and creates the route-owned build artifacts:
+
+```text
+public/home.html
+public/course.html
+public/bible.html
+public/topics.html
+public/practice.html
+public/search.html
+```
+
+These route documents are generated from `public/index.html`; they are not independent hand-maintained shells.
 
 ## Development
 
@@ -285,8 +307,10 @@ bun run build
 bun run verify
 bun run verify:full
 bun run validate:curriculum-spiral
+bun run validate:native-rendering
 bun run test:theologian
 bun run generate:llms
+bun run generate:routes
 bun run generate:wrangler
 bun run validate:cloudflare
 bun run serve
@@ -318,21 +342,23 @@ BETTER_AUTH_URL
 BETTER_AUTH_SECRET
 ```
 
-`wrangler.jsonc` is generated from `scripts/write-wrangler.mjs`; it is not an independently maintained production source of truth.
+`wrangler.jsonc` is generated from `scripts/write-wrangler.mjs`; it is not an independently maintained production source of truth. The generated Static Assets configuration explicitly uses `html_handling: auto-trailing-slash` so clean URLs such as `/course` resolve to the corresponding generated route document rather than depending on the generic SPA fallback.
 
 The production workflow permanently guards the target by:
 
 1. running prelaunch verification;
 2. generating Wrangler configuration;
-3. verifying exact Worker name/origin, asset routing, D1, AI binding, and release SHA;
+3. verifying exact Worker name/origin, clean route-document handling, D1, AI binding, and release SHA;
 4. applying remote D1 migrations;
-5. deploying the exact canonical Worker;
+5. deploying the exact canonical Worker and static assets;
 6. calling `/api/health` to verify the live release SHA and required bindings;
-7. smoke-testing direct navigation to `/`, `/course`, `/bible`, `/topics`, and `/practice` plus critical generated content.
+7. smoke-testing `/`, `/home`, `/course`, `/bible`, `/topics`, `/practice`, and `/search` and requiring the six destination routes to expose their matching `data-route-document` ownership marker rather than a generic fallback;
+8. verifying critical generated content;
+9. making a bounded live `/api/theologian` request and requiring grounded cloud synthesis with BSB guardrails.
 
 PR CI additionally performs the full release audit and a Wrangler dry-run so a deployable branch is proven before merge.
 
-See `docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md`.
+See `docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md` and `docs/v7/PLAN_NATIVE_DOCUMENT_RENDERING_2026-09-22.md`.
 
 ## Current governance
 
@@ -351,6 +377,8 @@ Current key documents:
 AI_INSTRUCTIONS.md
 docs/v7/DECISION_PRECEDENCE.md
 docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md
+docs/v7/PLAN_NATIVE_DOCUMENT_RENDERING_2026-09-22.md
+docs/v7/native-document-rendering-graph.json
 docs/v7/PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md
 docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md
 docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md
