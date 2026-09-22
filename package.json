@@ -31,7 +31,7 @@
     "test:sync":"bun scripts/test-sync.mjs",
     "test:d1":"bun scripts/test-d1-sync.mjs",
     "test:feedback":"bun scripts/test-feedback.mjs",
-    "test:theologian":"bun scripts/test-theologian-cloud.mjs",
+    "test:theologian":"bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs",
     "test:e2e":"playwright test",
     "build:client":"mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
     "build:worker":"bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser",
