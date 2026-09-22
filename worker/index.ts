@@ -1,6 +1,6 @@
 import {createAuth, type AuthEnv} from './auth';
 import {deleteSync as deleteStoredSync,mergeAndWriteSync,readSync,validSyncBody} from './sync-store';
-import {readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from './feedback-store';
+import {pruneFeedbackData,readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from './feedback-store';
 import {postTheologian,type TheologianAiEnv} from './theologian-ai';
 import {maybeTheologianCrisisResponse} from './theologian-crisis';
 
@@ -42,11 +42,13 @@ async function deleteSync(request:Request,env:Env,auth:ReturnType<typeof createA
 async function postFeedback(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
   let body:unknown;try{body=await request.json()}catch{return bad('Invalid JSON')}
   if(!validateFeedbackBody(body))return bad('Invalid feedback payload');
+  await pruneFeedbackData(env.DB);
   const user=await sessionUser(request,auth);
   const result=await writeFeedback(env.DB,body,user?.id||null,feedbackToken(request));
   return json({ok:true,...result},201);
 }
 async function getFeedbackInbox(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
+  await pruneFeedbackData(env.DB);
   const user=await sessionUser(request,auth);
   const items=await readFeedbackInbox(env.DB,user?.id||null,feedbackToken(request));
   return json({items});
@@ -60,6 +62,7 @@ function adminAuthorized(request:Request,env:Env){
 async function postAdminFeedbackResponse(request:Request,env:Env){
   if(!adminAuthorized(request,env))return bad('Unauthorized',401);
   let body:any;try{body=await request.json()}catch{return bad('Invalid JSON')}
+  await pruneFeedbackData(env.DB);
   const result=await respondToFeedback(env.DB,body?.feedbackId,body?.response,body?.status||'responded');
   if(!result.ok)return bad(result.reason==='not-found'?'Feedback not found':'Feedback id is required',result.reason==='not-found'?404:400);
   return json(result);
