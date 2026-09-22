@@ -33,10 +33,11 @@ const OPTIONAL_RESOURCES=[
 ];
 
 const REPO_CONTEXT_ROOT_EXTENSIONS=new Set(['.md']);
-const REPO_CONTEXT_DIRS=['docs'];
-const REPO_CONTEXT_EXTENSIONS=new Set(['.md']);
+const REPO_CONTEXT_DIRS=['docs','content'];
+const REPO_CONTEXT_EXTENSIONS=new Set(['.md','.json','.txt']);
 const REPO_CONTEXT_EXCLUDES=[
-  /^docs\/(?:archive|historical)\//i
+  /^docs\/(?:archive|historical)\//i,
+  /^content\/(?:vendor|migration)(?:\/|$)/i
 ];
 
 const decodeEntities=s=>String(s).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
@@ -183,7 +184,7 @@ export async function loadSubstantiveRuntimeDatasets({root,catalog}){
   return {datasets,summary};
 }
 
-async function collectMarkdownTree(root,relativeDir){
+async function collectRepositoryTree(root,relativeDir){
   const absolute=join(root,relativeDir);
   const entries=await readdir(absolute,{withFileTypes:true}).catch(()=>[]);
   const files=[];
@@ -191,7 +192,7 @@ async function collectMarkdownTree(root,relativeDir){
     if(entry.name.startsWith('.'))continue;
     const rel=`${relativeDir}/${entry.name}`.replace(/\\/g,'/');
     if(REPO_CONTEXT_EXCLUDES.some(pattern=>pattern.test(rel)))continue;
-    if(entry.isDirectory())files.push(...await collectMarkdownTree(root,rel));
+    if(entry.isDirectory())files.push(...await collectRepositoryTree(root,rel));
     else if(entry.isFile()&&REPO_CONTEXT_EXTENSIONS.has(extname(entry.name).toLowerCase()))files.push(rel);
   }
   return files;
@@ -203,7 +204,7 @@ export async function loadRepositoryContext(root){
     .filter(entry=>entry.isFile()&&!entry.name.startsWith('.')&&REPO_CONTEXT_ROOT_EXTENSIONS.has(extname(entry.name).toLowerCase()))
     .map(entry=>entry.name);
   const nested=[];
-  for(const dir of REPO_CONTEXT_DIRS)nested.push(...await collectMarkdownTree(root,dir));
+  for(const dir of REPO_CONTEXT_DIRS)nested.push(...await collectRepositoryTree(root,dir));
   const paths=[...new Set([...rootFiles,...nested])].sort((a,b)=>a.localeCompare(b));
   const files=[];
   for(const path of paths){
@@ -217,8 +218,8 @@ export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],
   const lines=[
     '# Canonical Shelf','',
     '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware study Guide.','',
-    'This file is generated from Canonical Shelf’s substantive published content plus repository documentation that materially explains the product, curriculum, theology, design, governance, architecture, and current decisions. It intentionally excludes the complete Berean Standard Bible corpus, secrets, private learner/account/feedback data, build artifacts, dependencies, and implementation-only code.','',
-    'Repository documentation may contain historical plans, audits, or superseded decisions. When documents conflict, use explicit decision-precedence/current-baseline documents and the generated runtime artifacts as the current authority; historical material remains context rather than an instruction to regress the product.','',
+    'This file is generated from Canonical Shelf’s substantive published content plus repository documentation and source data that materially explain the product, curriculum, theology, design, governance, architecture, and current decisions. It intentionally excludes the complete Berean Standard Bible corpus, secrets, private learner/account/feedback data, build artifacts, dependencies, vendored migration snapshots, and implementation-only code.','',
+    'Repository context may contain historical plans, audits, or superseded decisions. When documents conflict, use explicit decision-precedence/current-baseline documents and the generated runtime artifacts as the current authority; historical material remains context rather than an instruction to regress the product.','',
     `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
@@ -242,7 +243,7 @@ export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],
     lines.push(`### ${dataset.label}`,'',`Source: [${dataset.url}](${dataset.url})`,'',indentContent(jsonContent(dataset.data)),'');
   }
   lines.push('## Repository context','',
-    'The following repository documentation is included because it provides material context an LLM may need even when the text is not directly rendered to an end user. Source paths are preserved so current baselines, audits, plans, and historical context can be distinguished.','');
+    'The following repository documentation and semantic source data are included because they provide material context an LLM may need even when the text is not directly rendered to an end user. Source paths are preserved so current baselines, audits, plans, authoritative source data, and historical context can be distinguished.','');
   for(const file of repositoryContext){
     lines.push(`### ${file.path}`,'',indentContent(file.content),'');
   }
