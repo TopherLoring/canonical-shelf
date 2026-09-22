@@ -1,0 +1,17 @@
+{
+  "id": "pr24-content-reachability-faith-chat-2026-09-22",
+  "objective": "Preserve complete learner content reachability, separate compact public faith from supplemental belief context, and add bounded multi-turn Theologian chat.",
+  "nodes": [
+    {"id":"R0","type":"audit","label":"Audit current learner content and faith/Theologian wiring","status":"complete"},
+    {"id":"R1","type":"content","label":"Create compact canonical Statement of Faith","dependsOn":["R0"]},
+    {"id":"R2","type":"content","label":"Publish long-form belief context separately","dependsOn":["R0"]},
+    {"id":"R3","type":"governance","label":"Define learner-content reachability manifest","dependsOn":["R0"]},
+    {"id":"R4","type":"runtime","label":"Load compact ceiling plus supplemental belief context in Worker","dependsOn":["R1","R2"]},
+    {"id":"R5","type":"runtime","label":"Add bounded session-only multi-turn Theologian history","dependsOn":["R4"]},
+    {"id":"R6","type":"validation","label":"Add reachability/role-separation validator and tests","dependsOn":["R1","R2","R3","R4","R5"]},
+    {"id":"R7","type":"docs","label":"Align README and AI instructions","dependsOn":["R1","R2","R3","R4","R5"]},
+    {"id":"R8","type":"verification","label":"Run current-head prelaunch/full CI and live cloud smoke","dependsOn":["R6","R7"],"humanGate":true}
+  ],
+  "rollback": "Revert this PR #24 delta; no learner-state schema or migration changes are introduced.",
+  "humanReview": ["theological/editorial nuance","novice usability","physical-device visual review","manual accessibility"]
+}
