@@ -8,7 +8,8 @@ const assets={
     glossary:[{id:'arsenokoitai',term:'arsenokoitai',quick:'A rare Greek term whose precise scope is debated.'}]
   }),
   '/data/corpus.txt':'45\t1\t26\tFor this reason God gave them over to dishonorable passions. Even their women exchanged natural relations for unnatural ones.\n45\t1\t27\tLikewise, the men also abandoned natural relations with women and burned with lust for one another.\n45\t2\t1\tYou therefore have no excuse, you who pass judgment on another.\n',
-  '/data/statement-of-faith.md':'# Statement of Faith\nCanonical Shelf affirms grace, dignity, and faithful Christian discipleship while treating disputed interpretation with care.\n',
+  '/data/statement-of-faith.md':'# Statement of Faith\nYou are not asked to agree with this Statement of Faith to use Canonical Shelf. It is the doctrinal ceiling. Canonical Shelf affirms grace, dignity, and faithful Christian discipleship while treating disputed interpretation with care.\n',
+  '/data/theologian-belief-context.md':'# Supplemental belief context\n## Sexuality, relationships, and inclusion\nCanonical Shelf’s longer belief context explains its affirming position in greater detail while remaining subordinate to the compact Statement of Faith.\n',
   '/data/theology-policy.json':JSON.stringify({
     authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'Do not establish doctrine beyond the Statement of Faith.'},
     lgbtq:{status:'affirmed',claims:['LGBTQ people possess equal dignity and belonging.','Faithful same-sex relationships and marriage may embody Christian virtue.']},
@@ -34,7 +35,7 @@ const goodEnv={
     }
   }
 };
-const request=new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'How should Canonical Shelf understand same-sex relationships in Romans 1?',context:{path:'/bible?book=45&chapter=1'}})});
+const request=new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'Previous user: What is Romans 1 about?\nPrevious Theologian: It belongs to a larger Pauline argument.\n\nCurrent question: How should Canonical Shelf understand same-sex relationships in Romans 1?',context:{path:'/bible?book=45&chapter=1',conversationMode:'session-memory'}})});
 const response=await postTheologian(request,goodEnv);
 assert.equal(response.status,200);
 const body=await response.json();
@@ -42,10 +43,12 @@ assert.equal(body.mode,'cloud');
 assert.equal(body.model,THEOLOGIAN_MODEL);
 assert.equal(body.lgbtqResearchApplied,true);
 assert.ok(body.guardrails.includes('Berean Standard Bible'));
+assert.ok(body.guardrails.includes('Compact Canonical Shelf Statement of Faith'));
+assert.ok(body.guardrails.includes('Supplemental long-form belief context'));
 assert.ok(body.evidence.some(item=>item.evidence==='vetted Canonical Shelf LGBTQ research'));
 assert.equal(captured.model,THEOLOGIAN_MODEL);
 const prompt=JSON.stringify(captured.input);
-for(const required of ['Berean Standard Bible','Statement of Faith','Same-Sex Relations in the Biblical World','Theodore W. Jennings','Romans 1'])assert.ok(prompt.includes(required),`prompt missing ${required}`);
+for(const required of ['Berean Standard Bible','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','lower authority','Same-Sex Relations in the Biblical World','Theodore W. Jennings','Current question'])assert.ok(prompt.toLowerCase().includes(required.toLowerCase()),`prompt missing ${required}`);
 
 const badEnv={ASSETS:assetBinding,AI:{run:async()=>({response:'Romans 1 refers only to pederasty, temple prostitution, or exploitation.'})}};
 const rejected=await postTheologian(new Request('https://canonical.test/api/theologian',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'What does Romans 1 mean?'})}),badEnv);
@@ -53,4 +56,4 @@ assert.equal(rejected.status,422);
 const rejectedBody=await rejected.json();
 assert.equal(rejectedBody.fallback,true);
 
-console.log('cloud theologian guardrail + BSB/site/Statement/LGBTQ research grounding passed');
+console.log('cloud theologian guardrail + compact faith ceiling + supplemental belief context + conversational question + BSB/site/LGBTQ grounding passed');
