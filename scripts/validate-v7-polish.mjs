@@ -52,7 +52,8 @@ assert(JSON.stringify(catalog.retentionDays)===JSON.stringify([1,3,7,14,30,60]),
 assert(JSON.stringify(REVIEW_DAYS)===JSON.stringify([1,3,7,14,30,60]),'learner-state retention schedule changed');
 
 const orientationText=JSON.stringify(ORIENTATION_LESSON).toLowerCase();
-for(const term of ['canon','chronology','translation','external','practice','independent','theme'])assert(orientationText.includes(term),`Orientation missing ${term} coverage`);
+for(const term of ['canon','chronology','translation','evidence','practice','independent','theme'])assert(orientationText.includes(term),`Orientation missing ${term} coverage`);
+assert(orientationText.includes('theologian')&&orientationText.includes('statement of faith')&&orientationText.includes('vetted research'),'Orientation missing current bounded-Theologian coverage');
 
 const expectedThemes=['canonical-original','heritage','oxblood','illuminated-jewel','slate-linen','bookshelf-spectrum'];
 assert(THEMES.length===expectedThemes.length,`expected ${expectedThemes.length} curated themes; found ${THEMES.length}`);
@@ -76,6 +77,6 @@ const sw=await readFile('public/sw.js','utf8');
 for(const asset of ['/theme.js','/orientation.js','/study-controls.js'])assert(sw.includes(asset),`offline shell missing ${asset}`);
 
 const packageJson=JSON.parse(await readFile('package.json','utf8'));
-assert((packageJson.scripts?.validate||'').includes('validate-v7-polish.mjs'),'v7 polish validator is not wired into validate');
+assert((packageJson.scripts?.['validate:full']||'').includes('validate-v7-polish.mjs'),'v7 polish validator is not wired into full release validation');
 
 console.log(`multi-course polish invariants passed: ${catalog.courses.length} courses / ${catalog.units.length} units / ${catalog.lessons.length} lessons / ${catalog.activities.length} scored activities`);
