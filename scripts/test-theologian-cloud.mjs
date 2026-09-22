@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import {postTheologian,THEOLOGIAN_MODEL} from '../worker/theologian-ai.ts';
 
+const approvedFoundation="Scripture should be interpreted with serious attention to the biblical claims that God is love, salvation is grounded in God’s grace rather than human merit, and Jesus identifies love of God and love of neighbor as the greatest commandments through which the rest of the law is understood. Where Christians differ over the conditions, scope, or mechanics of salvation, those interpretations should be presented distinctly rather than treated as settled.";
+const learnerAgencyRule="The learner is the decision-maker. The Theologian informs, compares, contextualizes, and tests reasoning; it does not pressure the learner to adopt Canonical Shelf doctrine or any competing interpretation.";
+
 const assets={
   '/data/catalog.json':JSON.stringify({
     topics:[{id:'sexuality',title:'Sexuality and faithful relationships',answer:'Canonical Shelf evaluates relationships by fidelity, consent, honesty, mutuality, equality, responsibility, self-control, care, dignity, and self-giving love rather than partner gender.',tags:['same-sex','relationships']}],
@@ -11,16 +14,18 @@ const assets={
   '/data/statement-of-faith.md':'# Statement of Faith\nYou are not asked to agree with this Statement of Faith to use Canonical Shelf. It is the doctrinal ceiling. Canonical Shelf affirms grace, dignity, and faithful Christian discipleship while treating disputed interpretation with care.\n',
   '/data/theologian-belief-context.md':'# Supplemental belief context\n## Sexuality, relationships, and inclusion\nCanonical Shelf’s longer belief context explains its affirming position in greater detail while remaining subordinate to the compact Statement of Faith.\n',
   '/data/theology-policy.json':JSON.stringify({
-    version:3,
-    authority:{normativeCeiling:'Canonical Shelf compact Statement of Faith',rule:'The Theologian may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.',domains:{scriptureText:'BSB quotation authority',canonicalDoctrine:'compact faith ceiling',interpretivePolicy:'policy boundaries'}},
+    version:4,
+    authority:{normativeCeiling:'Canonical Shelf compact Statement of Faith',rule:'The Theologian may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.',domains:{scriptureText:'BSB quotation authority',canonicalDoctrine:'compact faith ceiling',interpretivePolicy:'policy boundaries, interpretive foundation, and learner agency'}},
     doctrinalStates:['affirmed','bounded-inference','open','descriptive-only','outside-scope'],
     evidenceStates:['direct','strong','plausible','contested','speculative'],
     claimDomains:['biblical-text','history','language','doctrine','interpretation','ethics','reception-history','application'],
-    responseContract:['Answer first.','State Canonical Shelf position separately when relevant.'],
+    interpretiveFoundation:{status:'approved',principle:approvedFoundation,boundaries:['Do not erase context.','Love and grace are not shortcuts.','Greatest commandments are not the only commands Jesus gave.','Salvation disagreements remain distinct.']},
+    learnerAgency:{rule:learnerAgencyRule,requirements:['Present relevant documented viewpoints when beliefs, interpretations, manuscript judgments, lexical claims, or translations materially differ.','Explain why viewpoints differ and what evidence each relies on.','Identify meaningful translation differences when wording affects interpretation.','State Canonical Shelf\'s position as its position, not a conclusion the learner must adopt.','Never make agreement a condition of learning or receiving an answer.','Allow the learner to challenge Canonical Shelf, request alternatives, compare traditions, and form a considered conclusion.','Describe a tradition\'s required doctrine as that tradition\'s requirement, not an instruction to the learner.','Avoid false balance by preserving evidence-status distinctions.']},
+    responseContract:['Answer first.','State Canonical Shelf position separately when relevant.','Where beliefs, interpretations, or translations materially differ, present relevant documented viewpoints and their evidence.','Treat the learner as the decision-maker and do not pressure them to adopt a doctrine.'],
     learnerContext:{allowed:['current route','review-due count'],forbidden:['Journal text','profile data'],rule:'Study context is not theological evidence.'},
     masteryProtection:{rule:'Do not reveal assessed answers.',theologicalAssent:'Personal theological assent is never scored.'},
     lgbtq:{status:'affirmed',claims:['LGBTQ people possess equal dignity and belonging.','Faithful same-sex relationships and marriage may embody Christian virtue.']},
-    interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application.'],
+    interpretiveRules:['Apply the approved interpretive foundation.','Preserve learner agency and free inquiry.','Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application.'],
     queerReception:{firstClass:true},
     prohibitedOverstatements:['Romans 1 refers only to pederasty, temple prostitution, or exploitation.']
   }),
@@ -37,7 +42,7 @@ const goodEnv={
   ASSETS:assetBinding,
   AI:{run:async(model,input)=>{
     captured={model,input};
-    return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently.'};
+    return{response:'Canonical Shelf reads Romans 1 from the BSB text, within its larger rhetorical and historical context. Its stated position affirms LGBTQ dignity and permits faithful same-sex relationships while acknowledging that Christians interpret these passages differently and that the learner remains free to examine the evidence and reach a considered conclusion.'};
   }}
 };
 const longPrior=`Previous user: ${'context '.repeat(180)}\nPrevious Theologian: Earlier answer retained only for follow-up resolution.`;
@@ -60,7 +65,7 @@ assert.ok(body.evidenceModel.evidenceStates.includes('contested'));
 assert.ok(body.evidenceModel.claimDomains.includes('application'));
 assert.equal(captured.model,THEOLOGIAN_MODEL);
 const prompt=JSON.stringify(captured.input);
-for(const required of ['AUTHORITY BY DOMAIN','Berean Standard Bible','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','lower authority','Same-Sex Relations in the Biblical World','Theodore W. Jennings',current,'LEARNER CONTEXT','never theological authority'])assert.ok(prompt.toLowerCase().includes(required.toLowerCase()),`prompt missing ${required}`);
+for(const required of ['AUTHORITY BY DOMAIN','THEOLOGY POLICY','Berean Standard Bible','COMPACT CANONICAL SHELF STATEMENT OF FAITH','SUPPLEMENTAL LONG-FORM BELIEF CONTEXT','lower authority','Same-Sex Relations in the Biblical World','Theodore W. Jennings',current,'LEARNER CONTEXT','never theological authority',approvedFoundation,learnerAgencyRule,'translation differences','challenge Canonical Shelf','false balance'])assert.ok(prompt.toLowerCase().includes(required.toLowerCase()),`prompt missing ${required}`);
 
 let masteryPrompt='';
 const masteryEnv={ASSETS:assetBinding,AI:{run:async(_model,input)=>{masteryPrompt=JSON.stringify(input);return{response:'I can help you compare the evidence and test your reasoning without selecting the assessed answer.'}}}};
@@ -76,4 +81,4 @@ assert.equal(rejected.status,422);
 const rejectedBody=await rejected.json();
 assert.equal(rejectedBody.fallback,true);
 
-console.log('cloud Theologian authority-domain + typed evidence + compact faith ceiling + supplemental belief context + bounded conversation/state context + mastery protection + prohibited-overstatement gates passed');
+console.log('cloud Theologian authority-domain + approved grace/love interpretive foundation + learner-agency/free-inquiry + material-viewpoint/translation-difference + typed evidence + compact faith ceiling + supplemental belief context + bounded conversation/state context + mastery protection + prohibited-overstatement gates passed');
