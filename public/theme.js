@@ -2,12 +2,12 @@ const STORAGE_KEY='canonical-shelf-theme-v1';
 export const DEFAULT_THEME_ID='canonical-original';
 
 export const THEMES=[
-  {id:'canonical-original',name:'Canonical Original',summary:'The original Canonical Shelf paper, blue and gilt family.',themeColor:'#274c8e'},
+  {id:'canonical-original',name:'Canonical Original',summary:'Flat charcoal chrome, cool-neutral surfaces, and restrained gilt.',themeColor:'#24272d'},
   {id:'heritage',name:'Heritage',summary:'Warm paper, ink, oxblood and restrained gilt.',themeColor:'#2a211b'},
   {id:'oxblood',name:'Oxblood',summary:'Deep burgundy, parchment and editorial contrast.',themeColor:'#4d1f22'},
   {id:'illuminated-jewel',name:'Illuminated Jewel',summary:'Manuscript-inspired jewel accents with restrained richness.',themeColor:'#392b52'},
   {id:'slate-linen',name:'Slate & Linen',summary:'Cool slate, linen and quiet scholarly neutrals.',themeColor:'#34424a'},
-  {id:'bookshelf-spectrum',name:'Bookshelf Spectrum',summary:'A neutral folio grounded by Canonical Shelf’s original category colors.',themeColor:'#26313c'}
+  {id:'bookshelf-spectrum',name:'Bookshelf Spectrum',summary:'A neutral folio grounded by Canonical Shelf’s category colors.',themeColor:'#26313c'}
 ];
 
 const ids=new Set(THEMES.map(theme=>theme.id));
