@@ -107,12 +107,14 @@ export function bibleView(text,params,esc){
   return background;
 }
 
-document.addEventListener('click',event=>{
-  const spine=event.target.closest?.('.shelf-spine');
-  if(!spine||!matchMedia('(hover: none), (pointer: coarse)').matches)return;
-  if(spine.dataset.touchNamed!=='true'){
-    event.preventDefault();
-    document.querySelectorAll('.shelf-spine[data-touch-named="true"]').forEach(item=>{if(item!==spine)delete item.dataset.touchNamed});
-    spine.dataset.touchNamed='true';
-  }
-});
+if(typeof document!=='undefined'){
+  document.addEventListener('click',event=>{
+    const spine=event.target.closest?.('.shelf-spine');
+    if(!spine||typeof matchMedia!=='function'||!matchMedia('(hover: none), (pointer: coarse)').matches)return;
+    if(spine.dataset.touchNamed!=='true'){
+      event.preventDefault();
+      document.querySelectorAll('.shelf-spine[data-touch-named="true"]').forEach(item=>{if(item!==spine)delete item.dataset.touchNamed});
+      spine.dataset.touchNamed='true';
+    }
+  });
+}
