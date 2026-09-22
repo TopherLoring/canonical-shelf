@@ -1,4 +1,4 @@
-type D1StatementLike={bind(...values:unknown[]):D1StatementLike;run():Promise<unknown>};
+type D1StatementLike={bind(...values:unknown[]):D1StatementLike;run():Promise<unknown>;first<T=Record<string,unknown>>():Promise<T|null>;all<T=Record<string,unknown>>():Promise<{results?:T[]}>};
 type D1Like={prepare(sql:string):D1StatementLike};
 
 type TheologianEvidence={label?:string;href?:string;evidenceStatus?:string;claimDomain?:string;doctrinalStatus?:string;limits?:string};
@@ -64,12 +64,48 @@ export function validateFeedbackBody(body:unknown):body is FeedbackBody{
   return normalizeFeedbackBody(body)!==null;
 }
 
-export async function writeFeedback(db:D1Like,body:FeedbackBody,userId:string|null,now=new Date().toISOString()){
+const safeToken=(value:unknown)=>{
+  const token=clip(value,180);
+  return token.length>=24&&/^[A-Za-z0-9_-]+$/.test(token)?token:'';
+};
+export async function anonymousFeedbackKey(token:unknown){
+  const value=safeToken(token);if(!value)return null;
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
+  return [...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+}
+
+export async function writeFeedback(db:D1Like,body:FeedbackBody,userId:string|null,anonymousToken:string|null=null,now=new Date().toISOString()){
   const normalized=normalizeFeedbackBody(body)||{category:'other',message:'',route:'/'};
-  const id=crypto.randomUUID();
+  const id=crypto.randomUUID(),anonymousKey=await anonymousFeedbackKey(anonymousToken);
   const contextJson=normalized.context?JSON.stringify(normalized.context):null;
-  await db.prepare('INSERT INTO feedback(id,user_id,category,message,contact,route,client_created_at,created_at,review_reason,context_json) VALUES(?,?,?,?,?,?,?,?,?,?)')
-    .bind(id,userId,normalized.category,normalized.message,normalized.contact||null,normalized.route,normalized.clientCreatedAt||null,now,normalized.reviewReason||null,contextJson)
+  await db.prepare('INSERT INTO feedback(id,user_id,category,message,contact,route,client_created_at,created_at,review_reason,context_json,anonymous_key,status,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)')
+    .bind(id,userId,normalized.category,normalized.message,normalized.contact||null,normalized.route,normalized.clientCreatedAt||null,now,normalized.reviewReason||null,contextJson,anonymousKey,'new',now)
     .run();
-  return {id,createdAt:now};
+  return {id,createdAt:now,status:'new'};
+}
+
+export async function readFeedbackInbox(db:D1Like,userId:string|null,anonymousToken:string|null){
+  const anonymousKey=await anonymousFeedbackKey(anonymousToken);
+  if(!userId&&!anonymousKey)return [];
+  const fields='id,category,message,route,review_reason,status,reviewer_response,responded_at,created_at,updated_at';
+  let statement:D1StatementLike;
+  if(userId&&anonymousKey)statement=db.prepare(`SELECT ${fields} FROM feedback WHERE user_id=? OR anonymous_key=? ORDER BY created_at DESC LIMIT 50`).bind(userId,anonymousKey);
+  else if(userId)statement=db.prepare(`SELECT ${fields} FROM feedback WHERE user_id=? ORDER BY created_at DESC LIMIT 50`).bind(userId);
+  else statement=db.prepare(`SELECT ${fields} FROM feedback WHERE anonymous_key=? ORDER BY created_at DESC LIMIT 50`).bind(anonymousKey);
+  const result=await statement.all<Record<string,unknown>>();
+  return (result.results||[]).map(row=>({
+    id:String(row.id||''),category:String(row.category||'other'),message:String(row.message||''),route:String(row.route||'/'),reviewReason:row.review_reason?String(row.review_reason):null,
+    status:String(row.status||'new'),reviewerResponse:row.reviewer_response?String(row.reviewer_response):null,respondedAt:row.responded_at?String(row.responded_at):null,
+    createdAt:String(row.created_at||''),updatedAt:row.updated_at?String(row.updated_at):String(row.created_at||'')
+  }));
+}
+
+export async function respondToFeedback(db:D1Like,feedbackId:unknown,response:unknown,status:unknown='responded',now=new Date().toISOString()){
+  const id=clip(feedbackId,80),message=clip(response,6000),nextStatus=clip(status,40)||'responded';
+  if(!id)return {ok:false,reason:'missing-id'};
+  const existing=await db.prepare('SELECT id FROM feedback WHERE id=?').bind(id).first();
+  if(!existing)return {ok:false,reason:'not-found'};
+  await db.prepare('UPDATE feedback SET reviewer_response=?, status=?, responded_at=?, updated_at=? WHERE id=?')
+    .bind(message,nextStatus,now,now,id).run();
+  return {ok:true,id,status:nextStatus,respondedAt:now};
 }
