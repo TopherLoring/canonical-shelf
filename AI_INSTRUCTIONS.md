@@ -29,6 +29,10 @@ Treat viewport composition, scene/card state, responsive recomposition, animatio
 
 If a strong interaction needs more engineering, solve it; do not collapse useful interactions into basic controls for maintenance convenience.
 
+Top-level Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Navigation between different destinations uses normal browser document navigation; query/detail changes inside the same destination may use the History API and update that destination's bounded content region. JavaScript may enhance dynamic learner/content state, but it must not render an obsolete page and then repair, relocate, or rename core regions after render.
+
+Do not use whole-body/broad-subtree `MutationObserver` repair, duplicate top-level renderers competing for `#main`, stacked compatibility runtimes, or permanent corrective CSS layers. `public/index.html` is the shared shell/root compatibility source; route documents are deterministic build artifacts generated from that shell.
+
 ## Guided learning
 Course and Practice should not default to long scrolling documents. Prefer viewport-aware scenes, progressive disclosure, semantic motion, progress, feedback, mastery/retention, and purposeful gamification. Curriculum updates must only improve upon the existing content and never reduce the learning already offered.
 
@@ -56,7 +60,7 @@ Use progressive disclosure to preserve Scripture, context, vocabulary, diagrams,
 * **Bible:** owns shelf, browse, book profiles, chapters, reader, groups, maps/timelines, and study affordances. Scripture may scroll. The shelf is a signature feature. Bible reading uses a light reading surface with attached contextual Book Notes in the default library baseline.
 * **Topics:** curated reference, not scored curriculum; support categories, relationships, Scripture/Course links, evidence labels, related questions. Topic reading uses a light reference surface with attached contextual notes in the default library baseline.
 * **Advanced Study:** may use multi-pane study, synchronized references, original-language/lexical tools, maps/timelines, cross-reference visualization, notes, command palette, and focus mode without burdening beginners.
-* **Guide/Theologian:** distinguish text, evidence, interpretation, reception, doctrine, Canonical Shelf position, and application. The primary conversational path uses Cloudflare Workers AI when available, grounded by Canonical Shelf-controlled evidence and followed by policy validation. The deterministic evidence-aware Theologian remains the fallback and must continue to work if cloud generation is unavailable or rejected.
+* **Theologian:** distinguish text, evidence, interpretation, reception, doctrine, Canonical Shelf position, and application. The primary conversational path uses Cloudflare Workers AI when available, grounded by Canonical Shelf-controlled evidence and followed by policy validation. The deterministic evidence-aware Theologian remains the fallback and must continue to work if cloud generation is unavailable or rejected. The learner-facing assistant name is **Theologian**; historical `guide` identifiers may remain internally only when changing them would create needless compatibility risk.
 
 ## Theologian authority and privacy
 The Theologian’s grounding/guardrail order is:
