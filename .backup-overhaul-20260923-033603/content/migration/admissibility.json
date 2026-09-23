@@ -1,0 +1,36 @@
+{
+  "policyVersion": 1,
+  "sourceRepo": "TopherLoring/the-canonical-shelf",
+  "sourceRef": "25ea6acd012fb28e1427eb4a5e69e358824e1d96",
+  "rule": "Legacy assets are migration candidates, not defaults. Only explicitly admitted assets may be extracted into v6; admission does not preserve legacy runtime, presentation, routing, state, or interaction architecture.",
+  "approvedAssets": [
+    {"path":"public/v4-course-map.js","class":"curriculum-identity","disposition":"extract-and-transform","reason":"Stable unit/mastery identity and placement source; v6 owns sequencing and runtime."},
+    {"path":"public/topics-data.js","class":"reference-content","disposition":"extract-and-transform","reason":"Curated Topic intellectual property; v6 owns schema and presentation."},
+    {"path":"public/topics-extended.js","class":"reference-content","disposition":"extract-and-transform","reason":"Curated Topic intellectual property; v6 owns schema and presentation."},
+    {"path":"public/foundations-data.js","class":"guided-content","disposition":"extract-and-transform","reason":"Authored lesson content is eligible only after v6 mapping and validation."},
+    {"path":"public/foundations-expansion-core.js","class":"guided-content","disposition":"extract-and-transform","reason":"Required authored lesson definitions; executable behavior is not admitted."},
+    {"path":"public/foundations-units-02-08.js","class":"guided-content","disposition":"extract-and-transform","reason":"Authored lesson content only."},
+    {"path":"public/foundations-units-09-16.js","class":"guided-content","disposition":"extract-and-transform","reason":"Authored lesson content only."},
+    {"path":"public/v4-mastery-manifest.js","class":"mastery-identity","disposition":"extract-and-transform","reason":"Stable mastery identities and authored assessment metadata."},
+    {"path":"public/v4-mastery-story.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-order.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-groups.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-chrono.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-content.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-content-profiles.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-themes.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/v4-mastery-verses.js","class":"mastery-content","disposition":"extract-and-transform","reason":"Authored mastery content only."},
+    {"path":"public/docs/curriculum.md","class":"curriculum-reference","disposition":"reference-only","reason":"Historical curriculum documentation for parity/review, not runtime authority."},
+    {"path":"public/corpus.txt","class":"scripture-corpus","disposition":"extract","reason":"Approved local Scripture corpus; v6 owns reader/search/runtime."}
+  ],
+  "rejectedClasses": [
+    "legacy application shell",
+    "legacy routing",
+    "legacy CSS architecture",
+    "DOM relocation or MutationObserver repair layers",
+    "v4/v5 bridge/adaptor runtime",
+    "legacy service-worker/update behavior",
+    "legacy localStorage ownership model",
+    "legacy component/rendering structure"
+  ]
+}

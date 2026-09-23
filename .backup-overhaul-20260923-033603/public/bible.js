@@ -72,7 +72,7 @@ function bibleContextHref(params,changes={}){const next=new URLSearchParams(para
 function profileDrawer(text,bn,params,esc){
   const book=bookByNumber(bn);if(!book)return'<p class="notice">Book not found.</p>';
   const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era),count=chapterCount(text,bn),closeHref=bibleContextHref(params,{book:null,profile:null,focus:bn}),bookHref=number=>bibleContextHref(params,{book:number,profile:1,focus:null}),chapterLinks=Array.from({length:count},(_,index)=>`<a href="/bible?book=${bn}&chapter=${index+1}">${index+1}</a>`).join('');
-  return `<a class="book-drawer-scrim" href="${closeHref}" tabindex="-1" aria-hidden="true"></a><aside class="book-drawer" data-book-drawer data-cat="${book.cat}" role="dialog" aria-modal="true" aria-labelledby="book-drawer-title"><header class="book-drawer__head"><p class="book-drawer__meta">Book ${String(book.n).padStart(2,'0')} of 66 · <strong>${esc(category.name)}</strong> · ${esc(category.testament==='OT'?'Old Testament':'New Testament')}</p><h2 id="book-drawer-title">${esc(book.name)}</h2><a class="book-drawer__close" data-book-drawer-close href="${closeHref}" aria-label="Close ${esc(book.name)} details">×</a></header><div class="book-drawer__body"><p class="book-profile-hook">${esc(book.hook)}</p><div class="book-drawer__length" aria-label="${book.ch} chapters"><span style="width:${Math.max(3,Math.round(book.ch/150*100))}%"></span></div><p class="book-drawer__length-copy">${book.ch} chapter${book.ch===1?'':'s'} · ${book.ch>35?'a long haul — read it in sections':book.ch>15?'a substantial book':book.ch>5?'a focused read':'a short read'}</p><p class="book-drawer__synopsis">${esc(book.syn)}</p><dl class="book-drawer__facts"><div><dt>Written by</dt><dd>${esc(book.who)}</dd></div><div><dt>Period</dt><dd>${esc(book.when)}</dd></div><div><dt>Story setting</dt><dd>${esc(era?.name||book.era)} · ${esc(range(book.setA,book.setB))}</dd></div><div><dt>Who’s in it</dt><dd>${esc(book.people.join(' · '))}</dd></div><div><dt>Group</dt><dd>${esc(category.blurb)}</dd></div></dl><div class="badge-row">${evidenceBadge(book)}${book.threads.map(thread=>`<span class="badge">${esc(THREADS[thread]||thread)}</span>`).join('')}</div><section class="book-drawer__chapters" aria-labelledby="drawer-chapters"><div><p class="eyebrow">Read the book</p><h3 id="drawer-chapters">Choose a chapter.</h3></div><div>${chapterLinks}</div></section><p class="source-boundary">Traditional attributions, reconstructed dates, and disputed authorship are different evidence types. Uncertain entries are marked for fuller editorial sourcing.</p><a class="button book-drawer__read" href="/bible?book=${bn}&chapter=1">Read ${esc(book.name)} from chapter 1</a><nav class="book-drawer__stepper" aria-label="Adjacent books">${bn>1?`<a href="${bookHref(bn-1)}"><small>Previous</small><strong>${esc(bookByNumber(bn-1).name)}</strong></a>`:'<span></span>'}${bn<66?`<a href="${bookHref(bn+1)}"><small>Next</small><strong>${esc(bookByNumber(bn+1).name)}</strong></a>`:'<span></span>'}</nav></div></aside>`;
+  return `<a class="book-drawer-scrim" href="${closeHref}" tabindex="-1" aria-hidden="true"></a><aside class="book-drawer" data-book-drawer data-cat="${book.cat}" role="dialog" aria-modal="true" aria-labelledby="book-drawer-title"><header class="book-drawer__head"><p class="book-drawer__meta">Book ${String(book.n).padStart(2,'0')} of 66 · <strong>${esc(category.name)}</strong> · ${esc(category.testament==='OT'?'Old Testament':'New Testament')}</p><h2 id="book-drawer-title">${esc(book.name)}</h2><a class="book-drawer__close" data-book-drawer-close href="${closeHref}" aria-label="Close ${esc(book.name)} details">×</a></header><div class="book-drawer__body"><p class="book-profile-hook">${esc(book.hook)}</p><div class="book-drawer__length" aria-label="${book.ch} chapters"><span style="width:${Math.max(3,Math.round(book.ch/150*100))}%"></span></div><p class="book-drawer__length-copy">${book.ch} chapter${book.ch===1?'':'s'} · ${book.ch>35?'a long haul — read it in sections':book.ch>15?'a substantial book':book.ch>5?'a focused read':'a short read'}</p><p class="book-drawer__synopsis">${esc(book.syn)}</p><dl class="book-drawer__facts"><div><dt>Written by</dt><dd>${esc(book.who)}</dd></div><div><dt>Period</dt><dd>${esc(book.when)}</dd></div><div><dt>Story setting</dt><dd>${esc(era?.name||book.era)} · ${esc(range(book.setA,book.setB))}</dd></div><div><dt>Who’s in it</dt><dd>${esc(book.people.join(' · '))}</dd></div><div><dt>Where to start</dt><dd>${esc(book.read)}</dd></div><div><dt>Group</dt><dd>${esc(category.blurb)}</dd></div></dl><div class="badge-row">${evidenceBadge(book)}${book.threads.map(thread=>`<span class="badge">${esc(THREADS[thread]||thread)}</span>`).join('')}</div><section class="book-drawer__chapters" aria-labelledby="drawer-chapters"><div><p class="eyebrow">Read the book</p><h3 id="drawer-chapters">Choose a chapter.</h3></div><div>${chapterLinks}</div></section><p class="source-boundary">Traditional attributions, reconstructed dates, and disputed authorship are different evidence types. Uncertain entries are marked for fuller editorial sourcing.</p><a class="button book-drawer__read" href="/bible?book=${bn}&chapter=1">Read ${esc(book.name)} from chapter 1</a><nav class="book-drawer__stepper" aria-label="Adjacent books">${bn>1?`<a href="${bookHref(bn-1)}"><small>Previous</small><strong>${esc(bookByNumber(bn-1).name)}</strong></a>`:'<span></span>'}${bn<66?`<a href="${bookHref(bn+1)}"><small>Next</small><strong>${esc(bookByNumber(bn+1).name)}</strong></a>`:'<span></span>'}</nav></div></aside>`;
 }
 
 function bookNotes(book,chapter,esc){
@@ -134,60 +134,4 @@ if(typeof document!=='undefined'){
       spine.dataset.touchNamed='true';
     }
   });
-}
-
-
-if (typeof document !== 'undefined') {
-  function _v5AttachReaderAugmentations() {
-    setTimeout(() => {
-      const params = new URLSearchParams(window.location.search);
-      const bn = Number(params.get('book')) || 1;
-      const ch = Number(params.get('chapter')) || 1;
-      const panel = document.querySelector('.library-reader-panel');
-      if (panel && window.CANON_CATALOG && Array.isArray(window.CANON_CATALOG.lessons)) {
-        const matches = window.CANON_CATALOG.lessons.filter(l => l.readingAddress?.book === bn && l.readingAddress?.chapter === ch);
-        if (matches.length) {
-          let existing = panel.querySelector('.v5-course-inject');
-          if (existing) existing.remove();
-          const box = document.createElement('div');
-          box.className = 'v5-course-inject';
-          box.style.cssText = 'margin:0.75rem 1rem;padding:0.85rem;background:var(--color-surface-subtle,#f2f3f5);border-left:3px solid var(--color-gilt,#c59b27);border-radius:4px;';
-          box.innerHTML = `
-            <p style="font:750 0.72rem var(--font-meta);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent,#486272);margin:0 0 0.25rem;">Course Insights · Ch. ${ch}</p>
-            ${matches.map(l => `
-              <p style="margin:0 0 0.35rem;font-size:0.88rem;"><strong>${l.title}:</strong> ${l.plainSummary}</p>
-              <a href="/course?unit=${encodeURIComponent(l.unitId)}&lesson=${encodeURIComponent(l.id)}" style="font-size:0.75rem;font-weight:700;color:var(--color-ink,#1c2024);">Open Lesson Deck →</a>
-            `).join('')}
-          `;
-          panel.prepend(box);
-        }
-      }
-
-      const verses = document.querySelectorAll('.reader.scripture .verses p');
-      verses.forEach((p, idx) => {
-        const vNum = idx + 1;
-        p.style.cursor = 'pointer';
-        p.addEventListener('click', () => {
-          document.querySelectorAll('.reader.scripture .verses p.v5-active').forEach(el => el.classList.remove('v5-active'));
-          p.classList.add('v5-active');
-          let inspectBox = document.querySelector('#v5-verse-inspect');
-          if (!inspectBox) {
-            inspectBox = document.createElement('div');
-            inspectBox.id = 'v5-verse-inspect';
-            inspectBox.style.cssText = 'margin:1rem 0;padding:1rem;background:#fffaf0;border:1px solid #e6d3a3;border-radius:6px;';
-            const r = document.querySelector('.reader.scripture');
-            if (r) r.prepend(inspectBox);
-          }
-          inspectBox.innerHTML = `
-            <span style="font:750 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Verse Deep-Dive · ${bn}:${ch}:${vNum}</span>
-            <p style="font-family:var(--font-display);font-size:1.1rem;margin:0.35rem 0;">${p.textContent.trim()}</p>
-            <p style="font-size:0.88rem;color:#4a5058;margin:0;"><em>Contextual observation:</em> Trace how this verse anchors its immediate literary movement before generalizing application.</p>
-          `;
-        });
-      });
-    }, 100);
-  }
-  document.addEventListener('catalog:loaded', _v5AttachReaderAugmentations);
-  window.addEventListener('popstate', _v5AttachReaderAugmentations);
-  setTimeout(_v5AttachReaderAugmentations, 300);
 }

@@ -1,0 +1,258 @@
+[
+  {
+    "id":"oup.jennings.same-sex-biblical-world",
+    "type":"academic-handbook-chapter",
+    "title":"Same-Sex Relations in the Biblical World",
+    "author":"Theodore W. Jennings",
+    "publication":"The Oxford Handbook of Theology, Sexuality, and Gender",
+    "year":2014,
+    "doi":"10.1093/oxfordhb/9780199664153.013.004",
+    "url":"https://academic.oup.com/edited-volume/34452/chapter/292322730",
+    "supports":["documented queer and same-sex-love readings in biblical scholarship","documented reading of love between women in Ruth","documented queer readings of David and other biblical relationships"],
+    "limits":"Supports the existence of a serious scholarly interpretive tradition; it does not make the Ruth/Naomi lesbian reading an uncontested textual or historical fact."
+  },
+  {
+    "id":"oup.dunning.same-sex-relations-nt",
+    "type":"academic-handbook-chapter",
+    "title":"Same-Sex Relations",
+    "author":"Benjamin H. Dunning",
+    "publication":"The Oxford Handbook of New Testament, Gender, and Sexuality",
+    "year":2019,
+    "doi":"10.1093/oxfordhb/9780190213398.013.39",
+    "url":"https://academic.oup.com/edited-volume/34457/chapter-abstract/292371306",
+    "supports":["Romans 1 must be interpreted within the history of sexuality","multiple scholarly approaches exist to Romans 1:18-32","continuity and difference between ancient and modern sexual categories require analysis"],
+    "limits":"Does not by itself establish Canonical Shelf's affirming doctrinal conclusion."
+  },
+  {
+    "id":"oup.punt.queer-bible-readings",
+    "type":"academic-handbook-chapter",
+    "title":"Queer Bible Readings in Global Hermeneutical Perspective",
+    "author":"Jeremy Punt",
+    "publication":"The Oxford Handbook of Feminist Approaches to the Hebrew Bible",
+    "year":2020,
+    "doi":"10.1093/oxfordhb/9780190462673.013.3",
+    "url":"https://academic.oup.com/edited-volume/34271/chapter-abstract/290560771",
+    "supports":["queer biblical interpretation is an established scholarly hermeneutical field","queer reception examines how sex, gender, identity and power shape interpretation"],
+    "limits":"Provides hermeneutical context rather than a verse-by-verse doctrinal ruling."
+  },
+  {
+    "id":"oup.ruth.narrative-desire",
+    "type":"academic-handbook-chapter",
+    "title":"Reading Ruth, Reading Desire",
+    "publication":"The Oxford Handbook of Biblical Narrative",
+    "year":2015,
+    "url":"https://academic.oup.com/edited-volume/34438/chapter-abstract/292232297",
+    "supports":["Ruth supports serious queer-theoretical and desire-focused literary readings","the narrative permits interpretive attention beyond a simple heteronormative plot resolution"],
+    "limits":"Does not establish that Ruth and Naomi are explicitly narrated as a sexual couple."
+  },
+  {
+    "id":"brownson.2013.bible-gender-sexuality",
+    "type":"academic-monograph",
+    "title":"Bible, Gender, Sexuality: Reframing the Church's Debate on Same-Sex Relationships",
+    "author":"James V. Brownson",
+    "publication":"Eerdmans",
+    "year":2013,
+    "supports":["affirming Christian hermeneutic grounded in Scripture","analysis of Romans 1, gender complementarity, lust, purity and relational ethics","distinction between ancient same-sex practices and contemporary covenantal relationships"],
+    "limits":"Argues an affirming theological conclusion and should be represented as an interpretive argument, not neutral consensus."
+  },
+  {
+    "id":"martin.1996.arsenokoitai-malakos",
+    "type":"academic-book-chapter",
+    "title":"Arsenokoitai and Malakos: Meanings and Consequences",
+    "author":"Dale B. Martin",
+    "publication":"Biblical Ethics and Homosexuality: Listening to Scripture",
+    "year":1996,
+    "supports":["semantic complexity of arsenokoitai and malakoi","caution against mapping ancient vice-list vocabulary directly onto modern homosexual identity","history of interpretation of Pauline sexual vocabulary"],
+    "limits":"Martin's lexical and historical analysis is influential but not the only scholarly reconstruction of these terms."
+  },
+  {
+    "id":"martin.2006.sex-single-savior",
+    "type":"academic-monograph",
+    "title":"Sex and the Single Savior: Gender and Sexuality in Biblical Interpretation",
+    "author":"Dale B. Martin",
+    "publication":"Westminster John Knox Press",
+    "year":2006,
+    "supports":["critical study of gender and sexuality in New Testament interpretation","history and consequences of translating ancient categories into modern sexuality discourse"],
+    "limits":"Offers a particular critical-hermeneutical approach and should not be presented as the sole scholarly view."
+  },
+  {
+    "id":"nissinen.1998.homoeroticism-biblical-world",
+    "type":"academic-monograph",
+    "title":"Homoeroticism in the Biblical World: A Historical Perspective",
+    "author":"Martti Nissinen",
+    "publication":"Fortress Press",
+    "year":1998,
+    "supports":["historical context for same-sex behavior in the ancient Near East and biblical world","distinction between ancient social practices and modern sexual identities"],
+    "limits":"Historical contextualization does not itself determine contemporary Christian doctrine."
+  },
+  {
+    "id":"scroggs.1983.nt-homosexuality",
+    "type":"academic-monograph",
+    "title":"The New Testament and Homosexuality: Contextual Background for Contemporary Debate",
+    "author":"Robin Scroggs",
+    "publication":"Fortress Press",
+    "year":1983,
+    "supports":["importance of Greco-Roman social context for New Testament same-sex texts","analysis of pederastic and status-structured sexual practices"],
+    "limits":"The claim that New Testament prohibitions can be restricted to specific exploitative forms is debated and must not be rendered as settled fact."
+  },
+  {
+    "id":"via-gagnon.2003.two-views",
+    "type":"academic-dialogue",
+    "title":"Homosexuality and the Bible: Two Views",
+    "author":"Dan O. Via and Robert A. J. Gagnon",
+    "publication":"Fortress Press",
+    "year":2003,
+    "supports":["direct comparison of affirming and non-affirming Christian biblical arguments","evidence that serious interpreters disagree over text, hermeneutics, creation, and contemporary application"],
+    "limits":"Contains competing arguments rather than a single conclusion; the Guide should attribute positions to the respective authors."
+  },
+  {
+    "id":"hays.1996.moral-vision",
+    "type":"academic-monograph",
+    "title":"The Moral Vision of the New Testament",
+    "author":"Richard B. Hays",
+    "publication":"HarperSanFrancisco",
+    "year":1996,
+    "supports":["major non-affirming New Testament ethical interpretation","canonical and ecclesial approach to Christian moral reasoning"],
+    "limits":"Hays argues a traditional/non-affirming position; use as a serious competing interpretation rather than as Canonical Shelf's conclusion."
+  },
+  {
+    "id":"gagnon.2001.bible-homosexual-practice",
+    "type":"academic-monograph",
+    "title":"The Bible and Homosexual Practice: Texts and Hermeneutics",
+    "author":"Robert A. J. Gagnon",
+    "publication":"Abingdon Press",
+    "year":2001,
+    "supports":["detailed traditional/non-affirming exegesis of Genesis, Leviticus, Romans and Pauline vice lists","arguments for continuity between biblical prohibitions and contemporary Christian sexual ethics"],
+    "limits":"Represents a prominent non-affirming interpretation; Canonical Shelf does not adopt its doctrinal conclusion."
+  },
+  {
+    "id":"loader.2012.nt-sexuality",
+    "type":"academic-monograph",
+    "title":"The New Testament on Sexuality",
+    "author":"William Loader",
+    "publication":"Eerdmans",
+    "year":2012,
+    "supports":["historically grounded analysis of New Testament sexual ethics","nuanced account of Jewish and Greco-Roman sexual assumptions surrounding Pauline texts"],
+    "limits":"Historical reconstruction and the author's ethical conclusions must be distinguished from Canonical Shelf doctrine."
+  },
+  {
+    "id":"olyan.1994.leviticus-male-lying",
+    "type":"peer-reviewed-article",
+    "title":"'And with a Male You Shall Not Lie the Lying Down of a Woman': On the Meaning and Significance of Leviticus 18:22 and 20:13",
+    "author":"Saul M. Olyan",
+    "publication":"Journal of the History of Sexuality 5(2)",
+    "year":1994,
+    "supports":["close analysis of the Hebrew wording and social logic of Leviticus 18:22 and 20:13","historical questions about gender, status and sexual classification in Leviticus"],
+    "limits":"Does not justify reducing to'evah to ritual impurity only or treating the Levitical prohibition as textually nonexistent."
+  },
+  {
+    "id":"milgrom.leviticus.anchor-bible",
+    "type":"critical-commentary",
+    "title":"Leviticus: A New Translation with Introduction and Commentary",
+    "author":"Jacob Milgrom",
+    "publication":"Anchor Bible 3, 3A, 3B",
+    "year":2001,
+    "supports":["Holiness Code context","Hebrew lexical and legal context of Leviticus 18 and 20","distinction among ritual, ethical and communal functions of Levitical law"],
+    "limits":"Milgrom's historical and ethical proposals should be attributed rather than treated as universally accepted."
+  },
+  {
+    "id":"jewett.2007.romans",
+    "type":"critical-commentary",
+    "title":"Romans: A Commentary",
+    "author":"Robert Jewett",
+    "publication":"Hermeneia",
+    "year":2007,
+    "supports":["literary and social context for Romans 1-2","rhetorical role of judgment and Gentile/Jewish relations in Romans"],
+    "limits":"A commentary can illuminate Paul's historical argument but does not by itself settle modern sexual ethics."
+  },
+  {
+    "id":"fitzmyer.1993.romans",
+    "type":"critical-commentary",
+    "title":"Romans: A New Translation with Introduction and Commentary",
+    "author":"Joseph A. Fitzmyer",
+    "publication":"Anchor Bible 33",
+    "year":1993,
+    "supports":["Greek, historical and literary context for Romans","interpretive context for para physin and Romans 1-2"],
+    "limits":"Use for exegetical context while distinguishing the commentator's theological judgments from Canonical Shelf doctrine."
+  },
+  {
+    "id":"hubbard.2003.greece-rome-sourcebook",
+    "type":"primary-source-anthology",
+    "title":"Homosexuality in Greece and Rome: A Sourcebook of Basic Documents",
+    "author":"Thomas K. Hubbard, editor",
+    "publication":"University of California Press",
+    "year":2003,
+    "supports":["primary-source evidence for the diversity of same-sex practices, status relationships and cultural attitudes in Greece and Rome","historical comparison between ancient practices and modern sexuality categories"],
+    "limits":"The ancient evidence is diverse; it should not be summarized as if all Greco-Roman same-sex behavior were pederastic, coercive, or cultic."
+  },
+  {
+    "id":"dover.1989.greek-homosexuality",
+    "type":"academic-monograph",
+    "title":"Greek Homosexuality",
+    "author":"Kenneth J. Dover",
+    "publication":"Harvard University Press",
+    "year":1989,
+    "supports":["historical study of same-sex practices, roles and social expectations in classical Greek sources"],
+    "limits":"Classical Greek evidence is not identical to first-century Roman or Jewish contexts and cannot determine Pauline intent by itself."
+  },
+  {
+    "id":"bdag.2000.greek-lexicon",
+    "type":"critical-lexicon",
+    "title":"A Greek-English Lexicon of the New Testament and Other Early Christian Literature",
+    "author":"Frederick W. Danker, Walter Bauer, William F. Arndt, and F. Wilbur Gingrich",
+    "publication":"University of Chicago Press, 3rd edition",
+    "year":2000,
+    "supports":["standard lexical evidence for New Testament Greek including malakos, arsenokoites and para physin terminology"],
+    "limits":"Lexicons summarize semantic evidence and scholarly judgment; a lexical gloss cannot by itself establish contemporary doctrine."
+  },
+  {
+    "id":"lsj.1996.greek-lexicon",
+    "type":"critical-lexicon",
+    "title":"A Greek-English Lexicon",
+    "author":"Henry George Liddell, Robert Scott, and Henry Stuart Jones",
+    "publication":"Oxford, 9th edition with supplement",
+    "year":1996,
+    "supports":["broader classical Greek semantic range for terms such as malakos and physis"],
+    "limits":"Classical usage must be weighed alongside Koine and early Christian evidence."
+  },
+  {
+    "id":"halot.2001.hebrew-aramaic-lexicon",
+    "type":"critical-lexicon",
+    "title":"The Hebrew and Aramaic Lexicon of the Old Testament",
+    "author":"Ludwig Koehler and Walter Baumgartner",
+    "publication":"Brill, revised edition",
+    "year":2001,
+    "supports":["standard lexical evidence for Hebrew terms including to'evah and yada"],
+    "limits":"Individual Hebrew terms have context-sensitive ranges; dictionary glosses should not be converted into one-word doctrinal conclusions."
+  },
+  {
+    "id":"bdb.1907.hebrew-lexicon",
+    "type":"historical-critical-lexicon",
+    "title":"A Hebrew and English Lexicon of the Old Testament",
+    "author":"Francis Brown, S. R. Driver, and Charles A. Briggs",
+    "publication":"Clarendon Press",
+    "year":1907,
+    "supports":["historical lexical evidence for Hebrew vocabulary used in Genesis and Leviticus"],
+    "limits":"BDB remains useful but is older scholarship; prefer contemporary lexica and context when available."
+  },
+  {
+    "id":"metzger.2001.bible-translation",
+    "type":"academic-monograph",
+    "title":"The Bible in Translation: Ancient and English Versions",
+    "author":"Bruce M. Metzger",
+    "publication":"Baker Academic",
+    "year":2001,
+    "supports":["history and methodology of English Bible translation","context for distinguishing translation choices from underlying Greek and Hebrew semantics"],
+    "limits":"General translation history does not by itself prove a specific interpretation of arsenokoitai or malakoi."
+  },
+  {
+    "id":"vines.2014.gay-christian",
+    "type":"popular-theological-monograph",
+    "title":"God and the Gay Christian: The Biblical Case in Support of Same-Sex Relationships",
+    "author":"Matthew Vines",
+    "publication":"Convergent Books",
+    "year":2014,
+    "supports":["accessible affirming synthesis of the principal disputed biblical passages","Christian fruit, covenant and celibacy arguments used in contemporary affirming theology"],
+    "limits":"A popular theological argument rather than a neutral academic reference; use alongside critical scholarship and serious non-affirming sources."
+  }
+]
