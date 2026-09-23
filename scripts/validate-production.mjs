@@ -68,7 +68,7 @@ for(const required of ['verify:prelaunch','generate:wrangler','validate:cloudfla
 for(const path of [
   'scripts/generate-route-documents.mjs','scripts/generate-curriculum-reference.mjs','scripts/publish-theology.mjs','scripts/apply-curriculum-metadata.mjs','scripts/validate-curriculum-spiral.mjs','scripts/validate-scoreable-challenges.mjs','scripts/validate-cloudflare-config.mjs','scripts/validate-native-rendering.mjs','scripts/validate-learner-content-reachability.mjs','scripts/verify-deployment.mjs','scripts/test-theologian-cloud.mjs',
   'content/learner-content-reachability.json','content/theology/policy.json','content/theology/sources.json','content/statement/statement-of-faith-compact.md','content/statement/statement-of-faith-v3.md','src/knowledge/model.ts',
-  'public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theologian-belief-context.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
+  'public/canonical-shelf.css','public/data/catalog.json','public/data/corpus.txt','public/data/curriculum.md','public/data/statement-of-faith.md','public/data/theologian-belief-context.md','public/data/theology-policy.json','public/data/theology-sources.json','public/llms.txt','public/generated/account.js','worker/migrations/0000_auth.sql',
   'public/home.html','public/course.html','public/bible.html','public/topics.html','public/practice.html','public/search.html',
   'public/feedback.js','public/personal-study.js','public/utility-panels.css','public/theologian-chat.js','public/theologian-chat.css','worker/feedback-store.ts','worker/theologian-ai.ts','worker/migrations/0002_feedback.sql'
 ])await stat(path);
@@ -95,10 +95,18 @@ for(const route of ['home','course','bible','topics','practice','search']){
 
 const index=await readFile('public/index.html','utf8');
 if(!index.includes('/theologian-chat.css'))throw new Error('application shell must load Theologian chat styles');
+if(!index.includes('/canonical-shelf.css'))throw new Error('application shell must load the canonical visual contract');
+if(index.includes('/tokens.css'))throw new Error('application shell must not load retired tokens.css');
 if(!index.includes('Private journal entry'))throw new Error('Journal terminology must remain distinct from assessment reflection');
 
+for(const page of ['about.html','privacy.html','data-retention.html','storage.html','terms.html','safety.html']){
+  const source=await readFile(`public/${page}`,'utf8');
+  if(!source.includes('/canonical-shelf.css'))throw new Error(`${page} must load the canonical visual contract`);
+  if(source.includes('/tokens.css'))throw new Error(`${page} still references retired tokens.css`);
+}
+
 const sw=await readFile('public/sw.js','utf8');
-for(const asset of ['/data/corpus.txt','/data/catalog.json','/data/statement-of-faith.md','/data/theologian-belief-context.md','/data/theology-policy.json','/data/theology-sources.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css','/theologian-chat.js','/theologian-chat.css','/home.html','/course.html','/bible.html','/topics.html','/practice.html','/search.html'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
+for(const asset of ['/data/corpus.txt','/data/catalog.json','/data/statement-of-faith.md','/data/theologian-belief-context.md','/data/theology-policy.json','/data/theology-sources.json','/generated/account.js','/feedback.js','/personal-study.js','/utility-panels.css','/theologian-chat.js','/theologian-chat.css','/canonical-shelf.css','/home.html','/course.html','/bible.html','/topics.html','/practice.html','/search.html'])if(!sw.includes(asset))throw new Error(`offline release missing ${asset}`);
 
 const wranglerWriter=await readFile('scripts/write-wrangler.mjs','utf8');
 for(const invariant of ["name:WORKER_NAME","'the-canonical-shelf'","html_handling:'auto-trailing-slash'","not_found_handling:'single-page-application'","ai:{binding:'AI'}","CANONICAL_ORIGIN","RELEASE_SHA"])if(!wranglerWriter.includes(invariant))throw new Error(`canonical Wrangler generator missing ${invariant}`);
@@ -109,4 +117,4 @@ for(const invariant of ['data-route-document','data-route-content',"'/api/theolo
 const deployWorkflow=await readFile('.github/workflows/deploy-production.yml','utf8');
 for(const invariant of ['CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev','bun run validate:cloudflare','bun run verify:deployment','live Theologian'])if(!deployWorkflow.includes(invariant))throw new Error(`production workflow missing ${invariant}`);
 
-console.log('production route-document build/deploy separation + exact Worker target + route ownership/live Theologian smoke + scoreable assessments + learner-content reachability + compact/supplemental theology roles + persistent/offline Theologian chat + curriculum/content integrity gates passed');
+console.log('production route-document build/deploy separation + canonical visual contract + exact Worker target + route ownership/live Theologian smoke + scoreable assessments + learner-content reachability + compact/supplemental theology roles + persistent/offline Theologian chat + curriculum/content integrity gates passed');
