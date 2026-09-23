@@ -18,57 +18,48 @@ Optimize in this order:
 
 ## Current release authority
 
-`main` is the canonical production branch. **PR #24 (`fix/native-document-first-rendering`) is the sole active convergence/release PR.**
+`main` is the canonical production branch. PR #24 (`fix/native-document-first-rendering`) is the sole active convergence/release PR until merged.
 
-- #20 is superseded as an independent merge candidate; its questions-first curriculum intent is already represented.
-- #22 is superseded as an implementation; preserve its desired Library First/Theologian/cache/live-smoke outcomes, never its `locked-*`, MutationObserver, or repair-layer architecture.
-- #23 is superseded as an independent merge candidate; its complete learner-corpus intent is represented through current reachability + generated/freshness-validated `llms.txt`.
+- #20 is superseded as an independent merge candidate; its questions-first curriculum intent is represented in current work.
+- #22 is superseded as an implementation; preserve desired outcomes, never its broad repair-layer architecture.
+- #23 is superseded as an independent merge candidate; learner-corpus intent is represented through current reachability/generation.
 
-Do not merge stale PRs wholesale. Do not close #20/#22/#23, mark #24 ready, merge, or deploy until current-head executable validation succeeds. Zero-step `runner_id: 0` Actions failures are infrastructure failures, not validation evidence.
+Do not merge stale PRs wholesale. Deployment remains a separate explicit production action.
 
-Current decision authority: latest explicit owner decision → this file → `docs/v7/DECISION_PRECEDENCE.md` → current domain/source contracts → generated artifacts → historical docs.
+Current decision authority: latest explicit owner decision → this file → `docs/VERIFICATION_CONTRACT.md` → `docs/v7/DECISION_PRECEDENCE.md` → current domain/source contracts → generated artifacts → historical docs.
 
 ## Experience / architecture
 
-`public/canonical-shelf.css` is the **sole visual-system authority** for the current PR #24-derived experience. Feature CSS may own feature-specific structure and composition, but it must consume the canonical contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language. `public/tokens.css` is retired.
+`public/canonical-shelf.css` is the sole visual-system authority for the current PR #24-derived experience. Feature CSS may own feature-specific structure/composition, but must consume the shared contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language.
 
-Locked design selection:
+Current locked design direction:
 
-- scholarly typography: serif display/reading with restrained sans UI and mono metadata;
-- bookish geometry with **15px** primary radius and compact controls;
-- bright gilt signal **`#ffc800`**, secondary chrome **`#3e4551`**, reader paper **`#ffffff`**, reader ink **`#303136`**;
-- Bible category colors are semantic and theme-independent;
-- Home uses a **graphite** background and is the one destination without the shared global navigation bar;
-- Home is shelf-first: title/summary at upper left, destination buttons at upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware Continue/Current Context surfaces above the exploration paths;
-- Course landing is a six-volume shelf; course/unit/activity behavior remains owned by the current curriculum engine;
-- lessons use Study Focus with a side study apparatus; use **Glossary**, not “Vocabulary,” for learner-facing terminology;
-- Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → paper reader, with right-side book/chapter notes and contextual surrounding verses when a specific range is selected;
-- Topics uses the editorial **dossier** approach rather than a generic card dashboard;
-- Practice uses the compact, due-first dashboard;
-- Theologian launches from the lower-right edge into a bounded chat panel with space around it; in Study Focus it belongs in the lesson apparatus rather than overlapping the lesson.
+- scholarly serif display/reading typography with restrained sans UI and mono metadata;
+- bookish geometry;
+- bright gilt as a signal, cool graphite/chrome structure, white reader paper, dark reader ink;
+- Bible category colors remain semantic and theme-independent;
+- Home uses a graphite background and is the one destination without the shared global navigation bar;
+- Home is shelf-first: title/summary upper left, destination buttons upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware continuation surfaces before exploration paths;
+- Course landing is a six-volume shelf while course/unit/activity behavior remains owned by the curriculum engine;
+- lessons use Study Focus with a side study apparatus; learner-facing terminology is **Glossary**, not “Vocabulary”;
+- Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → contextual reader with visible/expandable book/chapter notes;
+- Topics uses an editorial dossier/reference approach rather than a generic card dashboard;
+- Practice uses the compact due-first dashboard;
+- Theologian launches from the lower-right into a bounded chat panel; in Study Focus it belongs in the lesson apparatus rather than overlapping the lesson.
 
-Current curated color packages are `scholarly-graphite` (default), `cool-archive`, `blue-stone`, and `quiet-jewel`. They may change palette/material tone only; they must not change typography hierarchy, component geometry, page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
+Current curated color packages may vary palette/material tone only. They must not change page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
-Top-level Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Navigation between different destinations uses normal document navigation; same-route detail changes may use bounded History API enhancement.
+Top-level Home, Course, Bible, Topics, Practice, and Search use route-owned generated HTML documents. Cross-destination navigation uses normal document navigation; same-route detail changes may use bounded History API enhancement.
 
-Never restore whole-body/broad-subtree MutationObserver repair, competing top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, or `public/locked-library-baseline.css`.
+Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, or `public/locked-library-baseline.css`.
 
 ## Curriculum / learning
 
-Current runtime contract:
+The current runtime is a six-course adult Bible-literacy curriculum with guided lessons, mastery/capstone work, Topics outside completion, stable activity identity, and spaced review. Current generated counts are descriptive runtime data, **not long-term verification constants**.
 
-- 6 courses;
-- 44 scored units;
-- 117 guided lessons;
-- 119 mastery/capstone activities;
-- 236 scored activities;
-- 45 Topics outside completion;
-- inherited stable IDs;
-- review cadence **1 → 3 → 7 → 14 → 30 → 60 days**.
+The curriculum uses a questions-first spiral. Difficult doctrinal/interpretive questions appear early enough to motivate adults, recur where evidence naturally appears, and are synthesized after foundations and interpretive tools develop. Score understanding and reasoning, never theological assent. Practice reinforces the curriculum rather than becoming a parallel curriculum.
 
-Historical 25/70/69/139 values are migration baselines only.
-
-The curriculum uses a **questions-first spiral**. Difficult doctrinal/interpretive questions appear early enough to motivate adults, recur where evidence naturally appears, and are synthesized after foundations and interpretive tools develop. Score understanding and reasoning, never theological assent. Practice reinforces the curriculum rather than becoming a parallel curriculum.
+Reflection/journal writing is learner-owned and cannot satisfy scored completion.
 
 ## Statement of Faith / Theologian authority
 
@@ -90,24 +81,15 @@ Theologian grounding order:
 4. supplemental long-form belief context as lower-authority elaboration;
 5. theology policy and vetted scholarship/traditions as attributed evidence.
 
-Approved interpretive foundation:
-
-> Scripture should be interpreted with serious attention to the biblical claims that God is love, salvation is grounded in God’s grace rather than human merit, and Jesus identifies love of God and love of neighbor as the greatest commandments through which the rest of the law is understood. Where Christians differ over the conditions, scope, or mechanics of salvation, those interpretations should be presented distinctly rather than treated as settled.
-
-**Learner agency is a hard requirement. The learner remains the decision-maker.** Theologian informs, compares, contextualizes, challenges reasoning, distinguishes evidence from interpretation/doctrine/application, labels Canonical Shelf's position, surfaces material translation/viewpoint differences, and preserves evidence strength without pressuring agreement.
+Learner agency is a hard requirement. The learner remains the decision-maker. Theologian informs, compares, contextualizes, challenges reasoning, distinguishes evidence from interpretation/doctrine/application, labels Canonical Shelf's position, surfaces material translation/viewpoint differences, and preserves evidence strength without pressuring agreement.
 
 Canonical Shelf's LGBTQ position is affirming while serious non-affirming readings and contested lexical/historical claims must be represented accurately. Never collapse contested evidence into categorical proof.
 
 ## Theologian conversation / state privacy
 
-The active chat may persist locally in the browser until **New chat** or browser-data clearing.
+The active chat may persist locally in the browser until New chat or browser-data clearing.
 
-Normal cloud requests may include only:
-
-- current question;
-- bounded recent conversation;
-- current learner-facing route/activity;
-- allowlisted aggregate study state such as completion/reviews/recent study labels.
+Normal cloud requests may include only current question, bounded recent conversation, current learner-facing route/activity, and allowlisted aggregate study state.
 
 Do not send or infer from Journal text, lesson notes, optional reflection writing, profile/account identifiers, feedback content, theological assent, denomination, sexuality, or other sensitive identity traits. Study state is not theological evidence.
 
@@ -115,37 +97,32 @@ Ordinary Theologian chat is not persisted server-side merely because it is sent 
 
 ## Response review / feedback
 
-Every Theologian response must offer:
+Every Theologian response must offer a review/disagreement path.
 
-- **Flag for review**;
-- **Disagree / another interpretation**.
+Bounded response-review context may include the preceding question, answer, visible evidence metadata, route, mode/model, policy version, validation status, optional reason, and learner explanation. It must not automatically include Journal/private writing, profile/account data, inferred beliefs, or unrelated conversation history.
 
-Bounded response-review context may include the preceding question, exact answer, visible evidence metadata, route, mode/model, policy version, validation status, optional reason, and learner explanation. It must not automatically include Journal/private writing, profile/account data, inferred beliefs, or unrelated conversation history.
+Never reject learner feedback/review because wording, category, reason, or explanation does not match a predefined taxonomy. Accept and normalize custom/blank/short content; clip/sanitize only for transport/storage safety.
 
-**Never reject a learner's feedback/review because its wording, category, reason, or explanation does not match a predefined taxonomy.** Accept and normalize unknown/custom/blank/short content; clip/sanitize only for transport/storage safety.
+Anonymous response routing uses a random browser-scoped token. The reusable token stays in that browser; persistence uses a one-way routing key. Do not use IP address as anonymous feedback identity. The learner can forget the browser link.
 
-Anonymous response routing uses a random browser-scoped token. The reusable token stays in that browser; D1 stores only a SHA-256 routing key. **Do not use IP address as the anonymous feedback identity.** The learner can forget the browser link. Reviewer responses may return through the browser inbox or authenticated account.
-
-Account deletion de-identifies retained feedback by clearing the account `user_id`.
+Retention must be enforced in code and disclosed publicly, but verification should test that retention behavior exists rather than freezing implementation-specific storage details or arbitrary internal limits.
 
 ## Crisis / pastoral safety
 
-`content/theology/crisis-policy.json` is current authority. A deterministic crisis layer runs **before ordinary AI generation** for credible first-person suicide/self-harm indicators so crisis support does not depend on cloud inference.
+`content/theology/crisis-policy.json` is current authority. A deterministic crisis layer runs before ordinary AI generation for credible first-person suicide/self-harm indicators.
 
 When warranted:
 
-- immediate danger, attempt underway, serious injury, or suspected overdose → clearly direct to **911/local emergency service/emergency department**;
-- U.S. suicidal/self-harm/behavioral-health crisis → prominently offer **call or text 988**;
-- encourage a trusted person to be physically present and distance from means when relevant;
+- immediate danger/attempt/serious injury/overdose → clearly direct to emergency care/services;
+- U.S. suicidal/self-harm crisis → prominently offer 988;
+- encourage another trusted person to be physically present and distance from means when relevant;
 - remain conversational and ask directly about immediate safety.
 
-Pastoral response should accompany—not replace—human help. Theologian may affirm that doubt, depression, despair, suicidal thoughts, and self-harm do not put the learner beyond God's love, grace, presence, or power; encourage prayer and asking God for comfort/healing/courage/hope/strength/perseverance; recommend a trusted pastor/chaplain/clergy/spiritual director/shared-faith person; and pray with the learner if requested.
+Pastoral response may accompany but never replace urgent human help. After prayer, return to the safety check. Never use hell/divine punishment/shame/salvation threats, imply weak faith, claim prayer alone should resolve the crisis, promise guaranteed healing, silently contact third parties, use IP-based crisis identity, create permanent diagnosis/risk labels, or automatically convert crisis conversation into feedback.
 
-After prayer, return directly to the safety check. Never use hell/divine punishment/shame/salvation threats, imply weak faith, claim prayer alone should resolve the crisis, promise guaranteed healing, silently contact third parties, use IP-based crisis identity, create a permanent diagnosis/risk label, or automatically turn crisis conversation into feedback.
+## Privacy / public policy surfaces
 
-## Privacy / retention / Terms
-
-Current public learner-facing policy surfaces:
+Current learner-facing policy surfaces include:
 
 - `/privacy.html`
 - `/data-retention.html`
@@ -153,37 +130,17 @@ Current public learner-facing policy surfaces:
 - `/terms.html`
 - `/safety.html`
 
-Current posture:
+Current posture: local-first guest use; optional account/passkey sync; no personal-data sale; no targeted advertising; no advertising pixels/behavioral analytics trackers; first-party auth/security cookies and functional browser storage.
 
-- local-first guest use;
-- optional account/passkey sync;
-- no personal-data sale;
-- no targeted advertising;
-- no advertising pixels or behavioral analytics trackers;
-- first-party auth/security cookies and functional browser storage;
-- no generic "accept all cookies" banner while no optional tracking exists;
-- if nonessential tracking is introduced later, disclosure/consent must change where legally required.
-
-Feedback retention contract:
-
-- unresolved/open: up to 24 months;
-- responded/resolved: up to 12 months after response/resolution;
-- optional contact: remove/anonymize within 90 days after response/resolution absent a documented exception;
-- hashed anonymous routing key ends with the feedback record.
-
-Retention rules must be enforced in code as well as disclosed publicly. Never commit `FEEDBACK_ADMIN_TOKEN` or other secrets; reviewer-response authorization is operational configuration.
+Never commit secrets such as `FEEDBACK_ADMIN_TOKEN`, Better Auth secrets, or Cloudflare credentials.
 
 ## Learner content / `llms.txt`
 
-`content/learner-content-reachability.json` v3 owns learner-facing reachability and `llms.txt` `embed` / `link` / `exclude` disposition.
+`content/learner-content-reachability.json` owns learner-facing reachability and `llms.txt` disposition.
 
 Embed substantive learner-facing curriculum/reference/editorial/legal/privacy/safety content. Link the complete BSB corpus rather than duplicating it. Exclude supplemental long-form belief context as a standalone public authority and exclude private learner/account/feedback records, secrets, and implementation/governance material.
 
-`public/llms.txt` is generated and freshness-validated, never hand-maintained authority.
-
-## Personal study
-
-Journal writing is learner-owned, private, persistent, and unscored. Learner-facing language should describe human study context rather than technical IDs. Journal/private reflections are not Theologian evidence and are not automatically attached to feedback/review.
+`public/llms.txt` is generated, not hand-maintained authority.
 
 ## Accessibility / performance
 
@@ -191,13 +148,39 @@ Accessibility is a floor, not a reason to flatten the experience. Support keyboa
 
 Cloud inference must never block deterministic/offline evidence fallback. Crisis mode must never depend on cloud inference.
 
-## Planning / implementation
+## Verification contract
 
-Material mutation follows current plan/PEG unless the owner directs otherwise. For consequential UX/UI, compare genuinely distinct approaches before choosing. Preserve stable schemas, single ownership, deterministic generation/migrations, privacy/security boundaries, and testable rendering.
+The sole repository merge/release verification command is:
 
-Compile/test success alone is insufficient: validate function, visuals, responsiveness, accessibility, touch, offline behavior, state migration, content integrity, theological/editorial accuracy, novice usability, cloud fallback/guardrails, feedback privacy, retention enforcement, and crisis safety as applicable.
+```bash
+bun run verify
+```
 
-## Release gates
+`docs/VERIFICATION_CONTRACT.md` defines what that gate may protect.
+
+Verification protects **durable behavior and template semantics**, not a frozen implementation. Do not add release-blocking assertions for:
+
+- exact copy, headings, button labels, punctuation, character sequences, or source line numbers unless the literal value is itself an immutable external/legal/data contract;
+- CSS values, colors, font choices, dimensions, radii, spacing, theme names, or visual classes;
+- historical screenshots/layouts, parity with an earlier version, restoration of superseded presentation, or one-time branch/PR migration state;
+- exact generated curriculum/content counts expected to evolve;
+- implementation details such as table names, prompt wording, hash lengths, clipping thresholds, source-code substrings, or internal error messages when observable behavior can be tested instead.
+
+Prefer observable behavior → accessibility semantics/relationships → stable route/data contracts → purpose-built semantic test hooks only when necessary.
+
+When presentation changes but capability does not, verification should normally require no change. When product behavior intentionally changes, update the durable contract rather than forcing production code to imitate an obsolete test.
+
+The current automated gate consists of:
+
+- build/generation;
+- immutable BSB integrity;
+- a small grouped product/template contract;
+- behavior-level assessment/sync/D1/feedback/Theologian/crisis tests;
+- a small Chromium browser smoke for core routes, utilities, responsiveness, and serious/critical accessibility failures.
+
+Cloudflare target validation and post-deployment live verification are separate infrastructure contracts. Human visual/editorial/novice review remains separate from automated verification.
+
+## Production
 
 Canonical production target:
 
@@ -206,8 +189,8 @@ Canonical production target:
 Worker: `the-canonical-shelf`  
 D1: `canonical-shelf`
 
-Before merge/release require executable current-head prelaunch/full validation, native rendering/supersession/release-governance/llms/reachability gates, feedback + Theologian crisis tests, Cloudflare configuration dry run, D1 migration validation, and the separate human visual/accessibility/editorial/novice gates.
+Before merge, require successful current-head `bun run verify` plus the Cloudflare dry-run in CI and any applicable human visual/accessibility/editorial/novice gates. Do not resurrect removed parity/restoration/supersession validators.
 
-After merge, deploy only through the canonical production workflow and verify exact release/bindings, route documents, policy/legal resources, generated learner corpus, offline behavior, and a real cloud Theologian response.
+After merge, deploy only through the canonical production workflow and verify exact release/bindings, route documents, public policy resources, generated learner data, offline behavior, and a real cloud Theologian response.
 
 **Completion standard:** strongest feasible Canonical Shelf experience delivered by the simplest reliable architecture capable of supporting it.
