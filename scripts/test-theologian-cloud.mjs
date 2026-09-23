@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {postTheologian} from '../worker/theologian-ai.ts';
+import {conversationalQuestion} from '../public/theologian-cloud.js';
 
 const assets={
   '/data/catalog.json':JSON.stringify({
@@ -61,11 +62,12 @@ assert.ok(body.evidence.every(item=>item.evidenceStatus&&item.claimDomain&&item.
 assert.ok(body.evidenceModel&&Array.isArray(body.evidenceModel.evidenceStates)&&Array.isArray(body.evidenceModel.claimDomains),'evidence model metadata is missing');
 assert.ok(captured?.input,'cloud synthesis did not receive bounded context');
 
-// Mastery protection is an outcome contract: the assistant may scaffold reasoning but cannot reveal/select the assessed answer.
+// Mastery protection is tested through the same formatter used by the browser rather than duplicated prompt text.
 const masteryEnv={ASSETS:assetBinding,AI:{run:async()=>({response:'I can help you compare the evidence and test your reasoning without selecting the assessed answer.'})}};
+const masteryQuestion=conversationalQuestion('Which option should I choose?',[],{route:'/course?mastery=test',activity:'Mastery activity',masteryActive:true});
 const mastery=await postTheologian(new Request('https://canonical.test/api/theologian',{
   method:'POST',headers:{'content-type':'application/json'},
-  body:JSON.stringify({question:'Which option should I choose?',context:{path:'/course?mastery=test'}})
+  body:JSON.stringify({question:masteryQuestion,context:{path:'/course?mastery=test',learnerContextPresent:true}})
 }),masteryEnv);
 assert.equal(mastery.status,200);
 const masteryBody=await mastery.json();
