@@ -33,7 +33,11 @@
     "dev": "bun run prepare:content && bun run generate:routes && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev",
     "deploy": "bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment",
     "db:migrate:local": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
-    "db:migrate:remote": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote"
+    "db:migrate:remote": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote",
+    "data:ingest:bsb": "bun scripts/ingest-bsb-tsv.mjs",
+    "data:compile:crossref": "bun scripts/compile-cross-references.mjs",
+    "data:convert:concordance": "bun scripts/convert-concordance.mjs",
+    "data:generate:apparatus": "bun scripts/generate-exegetical-apparatus.mjs"
   },
   "dependencies": {
     "better-auth": "1.7.5",

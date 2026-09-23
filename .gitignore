@@ -22,3 +22,13 @@ worker/migrations/0000_auth.sql
 !.env.example
 .dev.vars
 .dev.vars.*
+
+# Local SQLite databases & source data
+data/*.db
+data/source/
+# Generated Scripture datasets
+public/data/bible/
+public/data/crossref/
+public/data/canon-structure.json
+public/data/concordance.json
+public/data/verse-annotations.json
