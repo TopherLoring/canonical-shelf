@@ -8,6 +8,7 @@ const body=document.querySelector('#guide-body');
 const openButton=document.querySelector('#guide-open');
 const closeButton=document.querySelector('#guide-close');
 if(!panel||!body||!openButton||!closeButton)throw new Error('Theologian shell unavailable');
+const shellHost=panel.parentElement;
 
 const STYLE='/theologian-chat.css';
 if(!document.querySelector(`link[href="${STYLE}"]`)){
@@ -26,6 +27,22 @@ const evidenceStatus=item=>clip(item?.evidenceStatus||item?.status||((item?.evid
 const claimDomain=item=>clip(item?.claimDomain||(
   item?.type==='scripture'?'biblical-text':item?.type==='glossary'?'language':item?.type==='source'?'interpretation':''
 ),40);
+
+function restorePanelHost(){
+  panel.parentElement?.classList?.remove('study-apparatus--theologian');
+  panel.classList.remove('guide--study-apparatus');
+  if(shellHost&&panel.parentElement!==shellHost)shellHost.insertBefore(panel,openButton);
+}
+function placePanelForContext(){
+  const apparatus=document.querySelector('.study-apparatus');
+  if(document.body.classList.contains('study-focus-active')&&apparatus){
+    if(panel.parentElement!==apparatus){panel.parentElement?.classList?.remove('study-apparatus--theologian');apparatus.append(panel)}
+    apparatus.classList.add('study-apparatus--theologian');
+    panel.classList.add('guide--study-apparatus');
+    return;
+  }
+  restorePanelHost();
+}
 
 function normalizeMessage(value){
   if(!value||!['user','assistant'].includes(value.role))return null;
@@ -148,7 +165,7 @@ async function ask(question){
   const text=clip(question,1400);if(!text||sending)return;
   const history=messages.slice(-8).map(({role,text})=>({role,text}));
   messages.push({role:'user',text,at:now()});messages=messages.slice(-MAX_STORED_MESSAGES);saveMessages(messages);
-  sending=true;render({thinking:true,status:'Building a grounded answer…'});panel.hidden=false;
+  sending=true;placePanelForContext();render({thinking:true,status:'Building a grounded answer…'});panel.hidden=false;
   try{
     const context=await learnerContext();
     const result=await requestCloudTheologian(text,{path:`${location.pathname}${location.search}`,history,learnerContext:context});
@@ -178,9 +195,9 @@ function requestResponseReview(index,action,trigger){
   }}));
 }
 function openChat(trigger=openButton,{draft=''}={}){
-  lastTrigger=trigger||openButton;render();panel.hidden=false;openButton.setAttribute('aria-expanded','true');const input=body.querySelector('#guide-q');if(input){input.value=draft;input.focus({preventScroll:true})}
+  lastTrigger=trigger||openButton;placePanelForContext();render();panel.hidden=false;openButton.setAttribute('aria-expanded','true');const input=body.querySelector('#guide-q');if(input){input.value=draft;input.focus({preventScroll:true})}
 }
-function closeChat(){cancelCloudTheologian();panel.hidden=true;openButton.setAttribute('aria-expanded','false');(lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true})}
+function closeChat(){cancelCloudTheologian();panel.hidden=true;openButton.setAttribute('aria-expanded','false');restorePanelHost();(lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true})}
 function newChat(){cancelCloudTheologian();messages=[];saveMessages(messages);sending=false;render();body.querySelector('#guide-q')?.focus({preventScroll:true})}
 
 // Capture handlers replace the older single-answer Guide behavior without reviving DOM-repair layers.
@@ -202,6 +219,11 @@ document.addEventListener('keydown',event=>{
   if(event.target?.id==='guide-q'&&event.key==='Enter'&&!event.shiftKey){event.preventDefault();event.target.form?.requestSubmit()}
   if(event.key==='Escape'&&!panel.hidden)closeChat();
 },true);
+
+document.addEventListener('canonical-route-rendered',()=>{
+  if(panel.hidden){restorePanelHost();return}
+  placePanelForContext();render();
+});
 
 export function openTheologianChat(question=''){openChat(openButton,{draft:question})}
 export function clearTheologianChat(){newChat()}
