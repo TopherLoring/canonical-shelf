@@ -55,12 +55,12 @@ for(const marker of ['topicEvidenceDetail','lessonEvidenceDetail','bookEvidenceD
 requireText(app,'e.href||fallback','Theologian evidence renderer must honor owning-surface links');
 for(const boundary of ['scored activity','prohibited overstatement','arsenokoitai','malakoi','Romans 1'])requireText(theologian,boundary,`Theologian safety/editorial boundary missing: ${boundary}`);
 
-for(const marker of ['practice-dashboard','Due now','Free practice','Practice Campaign','Arcade','Games & mastery','Ranks & achievements','Context & interpretation','Themes','Verse Library','Restored v2/v3 passage library','Start Verse Drill'])requireText(practiceExperience,marker,`Practice surface missing: ${marker}`);
+for(const marker of ['practice-dashboard','Due now','Free practice','Practice Campaign','Arcade','Games & mastery','Context & interpretation','Themes','Verse Library','Restored v2/v3 passage library','Start Verse Drill'])requireText(practiceExperience,marker,`Practice capability missing: ${marker}`);
 for(const marker of ['The Order','The Groups','The Substance','The Verses','Full Gilt','Archivist','VERSE_COUNT'])requireText(practiceData,marker,`legacy Practice progression missing: ${marker}`);
 const campaignLevels=(practiceData.match(/\{id:'[ogsv]\d+'/g)||[]).length;
 if(campaignLevels!==40)throw new Error(`expected 40 restored Practice campaign levels, found ${campaignLevels}`);
 requireText(practiceEngine,"export * from './practice-engine-restored.js'",'Practice compatibility module must route through restored engine');
-for(const marker of ['sequenceQuestion','shelfQuestion','binsQuestion','pairsQuestion','questionVerseBook','questionVerseTheme','questionVerseFill','questionVerseJumble','questionVerseDrill','finishPracticeRun','practiceCampaignView','practiceArcadeView','Unsupported Practice engine'])requireText(practiceEngineRestored,marker,`restored Practice engine missing: ${marker}`);
+for(const marker of ['sequenceQuestion','shelfQuestion','binsQuestion','pairsQuestion','questionVerseBook','questionVerseTheme','questionVerseFill','questionVerseJumble','questionVerseDrill','finishPracticeRun','practiceCampaignView','practiceArcadeView','practiceAchievementsView','Unsupported Practice engine'])requireText(practiceEngineRestored,marker,`restored Practice engine missing: ${marker}`);
 for(const engine of ['jumble','jumble-hard','guess-book','verse-book','verse-theme','verse-fill','verse-drill'])requireText(practiceEngineRestored,`engine==='${engine}'`,`advertised Practice engine is not implemented: ${engine}`);
 requireText(practiceState,'canonical-shelf-practice-v3','Practice state must remain separately namespaced from Course learner state');
 
