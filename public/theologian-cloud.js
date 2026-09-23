@@ -5,7 +5,7 @@ const MAX_HISTORY_TURNS=4;
 
 const clip=(value,max)=>String(value||'').replace(/\s+/g,' ').trim().slice(0,max);
 
-function conversationalQuestion(question,history=[],learnerContext={}){
+export function conversationalQuestion(question,history=[],learnerContext={}){
   const current=clip(question,MAX_CURRENT);
   const parts=[];
   const learner=[];
