@@ -8,12 +8,13 @@ export interface AuthEnv {
   BETTER_AUTH_URL: string;
 }
 
-export function createAuth(env:AuthEnv){
+export function createAuth(env:AuthEnv,{quiet=false}:{quiet?:boolean}={}){
   const publicUrl=new URL(env.BETTER_AUTH_URL);
   return betterAuth({
     database:env.DB,
     secret:env.BETTER_AUTH_SECRET,
     baseURL:env.BETTER_AUTH_URL,
+    logger:{disabled:quiet},
     plugins:[
       anonymous(),
       passkey({rpID:publicUrl.hostname,rpName:'Canonical Shelf',origin:publicUrl.origin})
