@@ -25,6 +25,8 @@ jobs:
         with:
           bun-version: 1.2.15
       - run: bun install --frozen-lockfile
+      - name: Install Chromium for browser contract smoke
+        run: bunx playwright install --with-deps chromium
       - name: Verify release candidate
         run: bun run verify
       - name: Generate and validate canonical Cloudflare configuration
