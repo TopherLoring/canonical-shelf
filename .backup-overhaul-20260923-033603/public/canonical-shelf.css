@@ -241,11 +241,3 @@ body.study-focus-active>.guide-open{display:none}
 @media(max-width:520px){.library-entry-map{grid-template-columns:1fr}.library-first-actions a{flex:1 1 auto}.course-volume-shelf{overflow:auto;justify-content:flex-start}.course-volume{flex:0 0 54px}.practice-dashboard__head{display:block}.practice-dashboard__actions{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){.library-first-book,.course-volume{transition:none!important}}
 @media(forced-colors:active){.library-first-shelf,.course-volume-shelf,.reader.scripture,.guide{border:1px solid CanvasText;box-shadow:none}.library-first-book{background:Canvas;border-color:CanvasText}.course-volume{background:Canvas;color:CanvasText}.guide-open{background:ButtonFace;color:ButtonText}}
-
-/* [SURGICAL-v5] Active Verse Highlight */
-.reader.scripture .verses p.v5-active {
-  background: #fff8e7;
-  outline: 1.5px solid var(--color-gilt, #c59b27);
-  border-radius: 4px;
-  padding: 0.25rem 0.40rem;
-}
