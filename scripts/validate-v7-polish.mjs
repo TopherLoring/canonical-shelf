@@ -55,15 +55,19 @@ const orientationText=JSON.stringify(ORIENTATION_LESSON).toLowerCase();
 for(const term of ['canon','chronology','translation','evidence','practice','independent','theme'])assert(orientationText.includes(term),`Orientation missing ${term} coverage`);
 assert(orientationText.includes('theologian')&&orientationText.includes('statement of faith')&&orientationText.includes('vetted research'),'Orientation missing current bounded-Theologian coverage');
 
-const expectedThemes=['canonical-original','heritage','oxblood','illuminated-jewel','slate-linen','bookshelf-spectrum'];
+const expectedThemes=['scholarly-graphite','cool-archive','blue-stone','quiet-jewel'];
 assert(THEMES.length===expectedThemes.length,`expected ${expectedThemes.length} curated themes; found ${THEMES.length}`);
 assert(JSON.stringify(THEMES.map(theme=>theme.id))===JSON.stringify(expectedThemes),'curated theme package IDs/order changed');
-assert(DEFAULT_THEME_ID==='canonical-original','Canonical Original must remain the new-install default');
+assert(DEFAULT_THEME_ID==='scholarly-graphite','Scholarly Graphite must remain the new-install default');
 
-const tokens=await readFile('public/tokens.css','utf8');
-for(const id of expectedThemes.filter(id=>id!=='heritage'))assert(tokens.includes(`data-theme="${id}"`),`theme tokens missing ${id}`);
-for(const marker of ["'Iowan Old Style'","'Palatino Linotype'","--font-meta:var(--ref-font-mono)"])assert(tokens.includes(marker),`original typography contract missing ${marker}`);
-for(const semantic of ['--canon-law','--canon-history-ot','--canon-wisdom','--canon-gospel','--canon-paul','--canon-apocalypse'])assert(tokens.includes(semantic),`semantic bookshelf color missing ${semantic}`);
+const contract=await readFile('public/canonical-shelf.css','utf8');
+const index=await readFile('public/index.html','utf8');
+assert((index.match(/\/canonical-shelf\.css/g)||[]).length===1,'application shell must load canonical-shelf.css exactly once');
+assert(!index.includes('/tokens.css'),'obsolete tokens.css must not remain a loaded visual authority');
+for(const id of expectedThemes)assert(contract.includes(`data-theme='${id}'`)||id==='scholarly-graphite'&&contract.includes("data-theme='scholarly-graphite'"),`visual contract missing ${id}`);
+for(const marker of ['Cambria','--font-meta:var(--ref-font-mono)','--theme-radius:15px','--color-gilt:#ffc800','--reader-paper:#ffffff','--reader-ink:#303136','--home-bg:#252a30','--home-shelf-height:111px','--home-shelf-depth:10px'])assert(contract.includes(marker),`locked visual contract missing ${marker}`);
+for(const semantic of ['--canon-law:#274c8e','--canon-history-ot:#8b5e34','--canon-wisdom:#2c7a6b','--canon-gospel:#b7362c','--canon-paul:#a8476b','--canon-apocalypse:#26292f'])assert(contract.includes(semantic),`semantic bookshelf color missing ${semantic}`);
+for(const layout of ['library-first-homehead','course-volume-shelf','study-layout','bible-reader-shell','topics-dossier','practice-dashboard','guide-open'])assert(contract.includes(layout),`locked destination visual grammar missing ${layout}`);
 
 const learning=await readFile('public/learning.js','utf8');
 for(const marker of ['studyFocusShell','study-apparatus','sequence-board','argument-board','unit--orientation','lesson-drawers','glossaryView','courseOverview'])assert(learning.includes(marker),`Study Focus/multi-course implementation missing ${marker}`);
@@ -74,9 +78,9 @@ const styles=await readFile('public/learning.css','utf8');
 for(const marker of ['container-type:inline-size','study-nav','max-height:640px','study-apparatus.is-open'])assert(styles.includes(marker),`responsive Study Focus contract missing ${marker}`);
 
 const sw=await readFile('public/sw.js','utf8');
-for(const asset of ['/theme.js','/orientation.js','/study-controls.js'])assert(sw.includes(asset),`offline shell missing ${asset}`);
+for(const asset of ['/theme.js','/orientation.js','/study-controls.js','/canonical-shelf.css'])assert(sw.includes(asset),`offline shell missing ${asset}`);
 
 const packageJson=JSON.parse(await readFile('package.json','utf8'));
 assert((packageJson.scripts?.['validate:full']||'').includes('validate-v7-polish.mjs'),'v7 polish validator is not wired into full release validation');
 
-console.log(`multi-course polish invariants passed: ${catalog.courses.length} courses / ${catalog.units.length} units / ${catalog.lessons.length} lessons / ${catalog.activities.length} scored activities`);
+console.log(`multi-course + canonical visual-contract invariants passed: ${catalog.courses.length} courses / ${catalog.units.length} units / ${catalog.lessons.length} lessons / ${catalog.activities.length} scored activities / ${THEMES.length} color packages`);
