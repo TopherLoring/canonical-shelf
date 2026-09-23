@@ -3,7 +3,6 @@ node_modules/
 .tmp/
 playwright-report/
 test-results/
-
 # Generated runtime data. theology-policy.json is authored and committed.
 public/data/catalog.json
 public/data/corpus.txt
@@ -11,21 +10,17 @@ public/data/curriculum.md
 public/data/statement-of-faith.md
 public/data/theology-sources.json
 public/generated/
-
 # Generated deployment/auth configuration.
 wrangler.jsonc
 worker/migrations/0000_auth.sql
-
 # Local environment/secrets.
 .env
 .env.*
 !.env.example
 .dev.vars
 .dev.vars.*
-
 # Local SQLite databases & source data
-data/*.db
-data/source/
+data/
 # Generated Scripture datasets
 public/data/bible/
 public/data/crossref/
