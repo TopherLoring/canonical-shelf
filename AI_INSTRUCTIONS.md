@@ -30,7 +30,24 @@ Current decision authority: latest explicit owner decision → this file → `do
 
 ## Experience / architecture
 
-Current default/reference visual system is the editable Library First baseline: charcoal shared chrome, light/ivory reading surfaces, restrained neutral structure, sparse gilt, serif editorial content, sans UI, and no decorative gradients in the default theme.
+`public/canonical-shelf.css` is the **sole visual-system authority** for the current PR #24-derived experience. Feature CSS may own feature-specific structure and composition, but it must consume the canonical contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language. `public/tokens.css` is retired.
+
+Locked design selection:
+
+- scholarly typography: serif display/reading with restrained sans UI and mono metadata;
+- bookish geometry with **15px** primary radius and compact controls;
+- bright gilt signal **`#ffc800`**, secondary chrome **`#3e4551`**, reader paper **`#ffffff`**, reader ink **`#303136`**;
+- Bible category colors are semantic and theme-independent;
+- Home uses a **graphite** background and is the one destination without the shared global navigation bar;
+- Home is shelf-first: title/summary at upper left, destination buttons at upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware Continue/Current Context surfaces above the exploration paths;
+- Course landing is a six-volume shelf; course/unit/activity behavior remains owned by the current curriculum engine;
+- lessons use Study Focus with a side study apparatus; use **Glossary**, not “Vocabulary,” for learner-facing terminology;
+- Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → paper reader, with right-side book/chapter notes and contextual surrounding verses when a specific range is selected;
+- Topics uses the editorial **dossier** approach rather than a generic card dashboard;
+- Practice uses the compact, due-first dashboard;
+- Theologian launches from the lower-right edge into a bounded chat panel with space around it; in Study Focus it belongs in the lesson apparatus rather than overlapping the lesson.
+
+Current curated color packages are `scholarly-graphite` (default), `cool-archive`, `blue-stone`, and `quiet-jewel`. They may change palette/material tone only; they must not change typography hierarchy, component geometry, page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
 Top-level Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Navigation between different destinations uses normal document navigation; same-route detail changes may use bounded History API enhancement.
 
