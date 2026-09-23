@@ -18,11 +18,14 @@ Optimize in this order:
 
 ## Current release authority
 
-`main` is the canonical production branch. PR #24 (`fix/native-document-first-rendering`) is the sole active convergence/release PR until merged.
+`main` is the canonical production branch and includes the merged PR #24 convergence work. PR #24 is now historical baseline, not an active release branch.
+
+The current post-merge cleanup branch is `fix/runtime-style-authority` until its work is merged. It exists to remove superseded visual authority, stabilize the locked design contract, and improve Theologian conversation/runtime behavior without undoing the merged learner experience.
 
 - #20 is superseded as an independent merge candidate; its questions-first curriculum intent is represented in current work.
 - #22 is superseded as an implementation; preserve desired outcomes, never its broad repair-layer architecture.
 - #23 is superseded as an independent merge candidate; learner-corpus intent is represented through current reachability/generation.
+- #24 is merged historical baseline; do not reopen its obsolete parity/restoration assumptions as new requirements.
 
 Do not merge stale PRs wholesale. Deployment remains a separate explicit production action.
 
@@ -30,7 +33,7 @@ Current decision authority: latest explicit owner decision → this file → `do
 
 ## Experience / architecture
 
-`public/canonical-shelf.css` is the sole visual-system authority for the current PR #24-derived experience. Feature CSS may own feature-specific structure/composition, but must consume the shared contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language.
+`public/canonical-shelf.css` is the single visual-contract authority for the current experience. The application shell marks exactly one stylesheet with `data-visual-contract`. Feature CSS may own feature-specific structure/composition and local interaction mechanics, but must consume the shared contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language. Never add a second visual-contract stylesheet or a compatibility layer that restyles the same destination underneath/above the canonical contract.
 
 Current locked design direction:
 
@@ -41,17 +44,18 @@ Current locked design direction:
 - Home uses a graphite background and is the one destination without the shared global navigation bar;
 - Home is shelf-first: title/summary upper left, destination buttons upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware continuation surfaces before exploration paths;
 - Course landing is a six-volume shelf while course/unit/activity behavior remains owned by the curriculum engine;
-- lessons use Study Focus with a side study apparatus; learner-facing terminology is **Glossary**, not “Vocabulary”;
+- lessons use Study Focus with a side Session Notes apparatus; learner-facing terminology is **Glossary**, not “Vocabulary”;
+- when Theologian opens in Study Focus, Session Notes remains visible and usable. On wide screens Theologian opens alongside it as a companion column; medium/narrow layouts may recompose vertically, but Theologian must not replace, hide, or destroy the notes apparatus;
 - Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → contextual reader with visible/expandable book/chapter notes;
 - Topics uses an editorial dossier/reference approach rather than a generic card dashboard;
 - Practice uses the compact due-first dashboard;
-- Theologian launches from the lower-right into a bounded chat panel; in Study Focus it belongs in the lesson apparatus rather than overlapping the lesson.
+- outside Study Focus, Theologian launches from the lower-right into a bounded chat panel.
 
 Current curated color packages may vary palette/material tone only. They must not change page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
 Top-level Home, Course, Bible, Topics, Practice, and Search use route-owned generated HTML documents. Cross-destination navigation uses normal document navigation; same-route detail changes may use bounded History API enhancement.
 
-Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, or `public/locked-library-baseline.css`.
+Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, `public/locked-library-baseline.css`, `public/library-system.css`, or a separate Home visual-authority stylesheet.
 
 ## Curriculum / learning
 
@@ -85,11 +89,15 @@ Learner agency is a hard requirement. The learner remains the decision-maker. Th
 
 Canonical Shelf's LGBTQ position is affirming while serious non-affirming readings and contested lexical/historical claims must be represented accurately. Never collapse contested evidence into categorical proof.
 
+Theologian's internal policy, prompt scaffold, source metadata, evidence model, and doctrinal boundaries are **silent operating context**, not the default learner-facing answer. The learner should receive a natural, conversational synthesis first. Evidence/limits remain inspectable separately. Do not answer ordinary questions by reciting the Statement of Faith, theology policy, guardrails, learner-agency text, or source instructions. The deterministic/offline fallback must also synthesize a question-specific answer rather than dump policy language.
+
 ## Theologian conversation / state privacy
 
 The active chat may persist locally in the browser until New chat or browser-data clearing.
 
-Normal cloud requests may include only current question, bounded recent conversation, current learner-facing route/activity, and allowlisted aggregate study state.
+The chat UI behaves as a conventional conversation surface: the panel/frame itself does not scroll; the transcript is the scrollable region; the composer/input remains fixed at the bottom; new messages/thinking/final replies autoscroll the transcript to the latest content.
+
+Normal cloud requests may include only the current question, bounded recent user/assistant turns, current learner-facing route/activity, and allowlisted aggregate study state. Conversation history must be transmitted as structured turns, not flattened into pseudo-instruction prose.
 
 Do not send or infer from Journal text, lesson notes, optional reflection writing, profile/account identifiers, feedback content, theological assent, denomination, sexuality, or other sensitive identity traits. Study state is not theological evidence.
 
@@ -174,7 +182,7 @@ The current automated gate consists of:
 
 - build/generation;
 - immutable BSB integrity;
-- a small grouped product/template contract;
+- a small grouped product/template contract, including a single marked visual-contract authority;
 - behavior-level assessment/sync/D1/feedback/Theologian/crisis tests;
 - a small Chromium browser smoke for core routes, utilities, responsiveness, and serious/critical accessibility failures.
 
