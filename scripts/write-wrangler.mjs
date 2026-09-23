@@ -44,7 +44,7 @@ const config={
     run_worker_first:['/api/*']
   },
   ai:{binding:'AI'},
-  secrets:{required:['BETTER_AUTH_SECRET']},
+  ...(isProduction?{secrets:{required:['BETTER_AUTH_SECRET']}}:{}),
   vars,
   d1_databases:[{
     binding:'DB',
