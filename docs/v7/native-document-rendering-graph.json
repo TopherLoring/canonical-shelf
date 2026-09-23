@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "native-document-first-rendering-remediation",
+  "objective": "Remove post-render repair architecture and make the approved Library First / Theologian experience native to the production rendering path.",
+  "outcomes": [
+    "final learner-facing structure is owned by the delivered route/document and route modules",
+    "Theologian is a single direct cloud-plus-deterministic implementation",
+    "no MutationObserver or post-render renaming/replacement layer is needed",
+    "flat library design is owned by normal feature styles",
+    "offline, learner state, assessment, Bible, Topics, Practice, account/sync, feedback and theology behavior remain intact"
+  ],
+  "invariants": [
+    "6 courses / 44 units / 117 lessons / 119 mastery-capstone / 236 scored activities / 45 topics",
+    "stable pre-existing activity and mastery IDs",
+    "Home Course Bible Topics Practice remain primary destinations",
+    "BSB remains bundled Scripture corpus",
+    "Statement of Faith remains doctrinal ceiling",
+    "questions-first spiral remains current curriculum model",
+    "local-first learner state and offline behavior remain first-class",
+    "no v5 bridge architecture, DOM repair layer, stacked runtime, or whole-body MutationObserver"
+  ],
+  "nodes": [
+    {"id":"N0","type":"audit-plan","label":"Audit current main, active PRs, rendering layers, and commit plan/PEG","dependsOn":[],"systems":["governance","repo"],"acceptance":["plan and typed PEG exist before runtime mutation"]},
+    {"id":"N1","type":"implementation","label":"Replace cloud Theologian observer/renaming upgrade with direct event-driven integration","dependsOn":["N0"],"systems":["Theologian","worker API","client UI"],"acceptance":["no MutationObserver","Theologian named natively","cloud and deterministic fallback both work"]},
+    {"id":"N2","type":"implementation","label":"Move approved Library First Home into canonical Home rendering path and remove post-render replacement","dependsOn":["N0"],"systems":["Home","learner state","Bible shelf"],"acceptance":["no locked-home runtime","category shelf and continuation remain"]},
+    {"id":"N3","type":"implementation","label":"Move Course/Bible/Topics/Study Focus behaviors out of generic DOM repair layer into owning route modules","dependsOn":["N0"],"systems":["Course","Bible","Topics","Journal","Feedback"],"acceptance":["no core-region relocation/reconstruction enhancer","owned dynamic regions only"]},
+    {"id":"N4","type":"implementation","label":"Consolidate approved flat baseline into owning CSS and remove corrective override layers","dependsOn":["N2","N3"],"systems":["design system","responsive","accessibility"],"acceptance":["no locked/refinement override sheets required","no decorative gradients in default baseline"]},
+    {"id":"N5","type":"cleanup","label":"Delete obsolete runtime/assets and update shell/service-worker manifests","dependsOn":["N1","N2","N3","N4"],"systems":["HTML shell","service worker","offline"],"acceptance":["all referenced assets exist","old repair assets absent","cache release bumped"]},
+    {"id":"N6","type":"governance-validation","label":"Update validators and authoritative docs to encode native-rendering invariant","dependsOn":["N5"],"systems":["CI","docs","release gates"],"acceptance":["validators forbid MutationObserver repair and stale Guide naming","docs match implementation"]},
+    {"id":"N7","type":"verification","label":"Run automated release validation and inspect failures","dependsOn":["N6"],"systems":["build","tests","Cloudflare config","PWA"],"acceptance":["prelaunch passes","Theologian tests pass","deployment validation passes","no blocking regression"]},
+    {"id":"N8","type":"release","label":"Merge, deploy, and live-smoke primary routes and Theologian","dependsOn":["N7"],"systems":["GitHub","Cloudflare","production"],"acceptance":["production routes render intended baseline","live Theologian returns grounded response"]}
+  ],
+  "risks": [
+    {"id":"R1","risk":"offline route/cache regression","mitigation":"preserve SW data strategy, update only live assets, bump cache release and validate offline shell"},
+    {"id":"R2","risk":"learner state regression","mitigation":"do not alter state schemas or stable IDs; reuse existing state modules"},
+    {"id":"R3","risk":"visual drift during CSS consolidation","mitigation":"move approved rules before simplifying; verify rendered composition"},
+    {"id":"R4","risk":"cloud inference outage","mitigation":"retain deterministic evidence fallback and stateless request path"},
+    {"id":"R5","risk":"parallel PR conflict","mitigation":"keep unrelated llms corpus PR separate until architecture branch validates, then rebase/absorb deliberately"}
+  ],
+  "rollback": "Revert the native-rendering integration commit(s) to current main. Do not restore observer/repair architecture as the long-term rollback target.",
+  "humanReviewGates": ["physical-device visual review","screen-reader/device assistive review","editorial/theological nuance review","novice usability review"]
+}

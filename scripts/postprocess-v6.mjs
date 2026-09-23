@@ -70,7 +70,6 @@ cat.legacyMasteryIds=[...cat.masteryIds];
 cat.masteryIds=[...cat.legacyMasteryIds,...newMasteryIds];
 cat.courseCapstoneIds=courseCapstoneIds;
 
-// Old unit-only bookmarks continue to land on the closest semantic destination.
 cat.legacyUnitAliases={
   'unit.start':'c1.christianity','unit.read':'c1.reading','unit.library':'c1.bible','unit.interpretation':'c1.reading','unit.story':'c1.story',
   'unit.beginnings':'c1.story','unit.abraham-exodus':'c2.exodus','unit.torah':'c2.sinai','unit.land':'c2.land-kings','unit.kings-temple':'c2.temple-kingdom',
@@ -141,6 +140,7 @@ if(courses.some(course=>!courseCapstoneIds.some(id=>newMastery[id]?.courseId===c
 for(const required of ['c2-passover','c2-tabernacle','c2-ark','c2-day-atonement','c2-new-covenant','c3-alexander-hellenization','c3-pharisees-sadducees','c3-messianic-diversity','c4-pentecost'])if(!cat.lessons.some(lesson=>lesson.id===required))throw new Error(`required bridge lesson missing: ${required}`);
 
 await writeFile(path,JSON.stringify(cat,null,2));
-await writeFile('public/data/statement-of-faith.md',await readFile('content/statement/statement-of-faith-v3.md','utf8'));
+await writeFile('public/data/statement-of-faith.md',await readFile('content/statement/statement-of-faith-compact.md','utf8'));
+await writeFile('public/data/theologian-belief-context.md',await readFile('content/statement/statement-of-faith-v3.md','utf8'));
 await writeFile('public/data/theology-sources.json',await readFile('content/theology/sources.json','utf8'));
 console.log(`multi-course catalog: ${cat.courses.length} courses, ${cat.units.length} units, ${cat.lessons.length} guided lessons, ${cat.masteryIds.length} mastery/capstone activities, ${cat.activities.length} scored activities, ${cat.glossary.length} glossary terms`);

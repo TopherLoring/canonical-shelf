@@ -1,6 +1,6 @@
-export type DoctrinalStatus = "affirmed" | "bounded-inference" | "open" | "descriptive-only";
+export type DoctrinalStatus = "affirmed" | "bounded-inference" | "open" | "descriptive-only" | "outside-scope";
 export type EvidenceStatus = "direct" | "strong" | "plausible" | "contested" | "speculative";
-export type ClaimDomain = "biblical-text" | "history" | "language" | "doctrine" | "interpretation" | "ethics" | "reception-history";
+export type ClaimDomain = "biblical-text" | "history" | "language" | "doctrine" | "interpretation" | "ethics" | "reception-history" | "application";
 export type InterpretationType = "historical-critical" | "traditional" | "theological" | "canonical" | "feminist" | "queer" | "liberation" | "literary" | "reception-history";
 
 export interface Claim {
@@ -42,6 +42,16 @@ export interface StatementArticle {
   interpretiveRules: string[];
 }
 
+export interface LearnerContextSummary {
+  route?: string;
+  activity?: string;
+  masteryActive: boolean;
+  completed?: number;
+  total?: number;
+  reviewsDue?: number;
+  recent?: string[];
+}
+
 export interface TheologyPolicyContext {
   question: string;
   doctrinalStatus: DoctrinalStatus;
@@ -52,10 +62,5 @@ export interface TheologyPolicyContext {
   scriptureRefs: string[];
   interpretationRefs: string[];
   sourceRefs: string[];
-  learnerContext?: {
-    unitId?: string;
-    lessonId?: string;
-    masteryActive: boolean;
-    depth: "novice" | "intermediate" | "advanced";
-  };
+  learnerContext?: LearnerContextSummary;
 }

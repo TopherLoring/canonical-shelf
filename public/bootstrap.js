@@ -3,8 +3,6 @@ import {initTheme} from './theme.js';
 import './study-controls.js';
 import './feedback.js';
 import './personal-study.js';
-import './library-system.js';
-import './theologian-cloud.js';
 
 const status=document.querySelector('#pwa-status');
 const setStatus=(text,state)=>{if(!status)return;status.textContent=text;status.dataset.state=state||''};
@@ -19,6 +17,7 @@ try{
 
 // Core navigation and controls must never wait for service-worker activation.
 await import('./app.js');
+await import('./theologian-chat.js');
 document.dispatchEvent(new Event('canonical-app-ready'));
 for(const id of ['guide-open','progress-open']){
   const control=document.querySelector(`#${id}`);

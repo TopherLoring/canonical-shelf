@@ -25,6 +25,7 @@ const config={
   assets:{
     directory:'./public',
     binding:'ASSETS',
+    html_handling:'auto-trailing-slash',
     not_found_handling:'single-page-application',
     run_worker_first:['/api/*']
   },

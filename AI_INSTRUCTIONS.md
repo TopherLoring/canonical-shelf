@@ -1,114 +1,196 @@
 # CANONICAL SHELF — PROJECT INSTRUCTIONS
 
-## Mission
-Act as Canonical Shelf’s senior product/design/learning/content/engineering partner. Treat it as a premium Bible-learning and scholarly reference product—not generic SaaS, a basic LMS, quiz app, or engineering exercise.
+## Mission and priority
 
-## Priority
+Act as Canonical Shelf's senior product/design/learning/content/engineering partner. Treat it as a premium Bible-learning and scholarly reference product for adult learners—not generic SaaS, a basic LMS, quiz app, or engineering exercise.
+
 Optimize in this order:
+
 1. exceptional end-user experience;
 2. learning effectiveness, retention, reasoning, and productivity;
 3. time to meaningful learner value;
-4. floors: correctness, accessibility, learner-state safety, security/privacy, theological/editorial integrity, content integrity, acceptable performance, offline reliability;
-5. product capability/future leverage;
+4. correctness, accessibility, learner-state safety, security/privacy, theological/editorial integrity, content integrity, performance, and offline reliability;
+5. capability/future leverage;
 6. maintainability/architecture;
-7. implementation convenience, code volume, speed, and elegance.
+7. implementation convenience.
 
-**Architecture serves the experience. Simplify implementation before simplifying experience.** Never reduce UX, visual quality, interaction richness, content/reasoning depth, responsiveness, capability, or delight merely to ease implementation.
+**Architecture serves the experience. Simplify implementation before simplifying experience.**
 
-## Quality bar
-Target: **scholarly editorial design × luxury digital product × tactile library × advanced interactive learning environment**.
+## Current release authority
 
-The currently approved default/reference visual baseline is the flat library system documented in `docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md`: charcoal shared chrome, light/ivory reading surfaces, restrained cool-neutral structure, sparse gilt, serif editorial content, sans UI, mono only for genuinely technical metadata. Decorative gradients are not part of that default baseline. Alternate user-selectable themes may intentionally use their own palettes.
+`main` is the canonical production branch. PR #24 (`fix/native-document-first-rendering`) is the sole active convergence/release PR until merged.
 
-Rule: **every design element needs a role; repeated treatments need hierarchy; motifs need Canonical Shelf-specific meaning.** Avoid generic AI/component-library aesthetics, austerity, endless flat text, repetitive cards, giant whitespace, meaningless motion, arbitrary decoration, and architecture-driven product reduction.
+- #20 is superseded as an independent merge candidate; its questions-first curriculum intent is represented in current work.
+- #22 is superseded as an implementation; preserve desired outcomes, never its broad repair-layer architecture.
+- #23 is superseded as an independent merge candidate; learner-corpus intent is represented through current reachability/generation.
 
-The design baseline is authoritative for continuity but intentionally editable. A later explicit owner decision may supersede it; do not add branch protection, read-only rules, or validators whose purpose is to prevent future approved design changes.
+Do not merge stale PRs wholesale. Deployment remains a separate explicit production action.
 
-## Experience-first engineering
-Treat viewport composition, scene/card state, responsive recomposition, animation, challenge rendering, progress/mastery/retention visualization, direct manipulation, focus, touch, keyboard, and accessibility alternatives as first-class architecture.
+Current decision authority: latest explicit owner decision → this file → `docs/VERIFICATION_CONTRACT.md` → `docs/v7/DECISION_PRECEDENCE.md` → current domain/source contracts → generated artifacts → historical docs.
 
-If a strong interaction needs more engineering, solve it; do not collapse useful interactions into basic controls for maintenance convenience.
+## Experience / architecture
 
-## Guided learning
-Course and Practice should not default to long scrolling documents. Prefer viewport-aware scenes, progressive disclosure, semantic motion, progress, feedback, mastery/retention, and purposeful gamification. Curriculum updates must only improve upon the existing content and never reduce the learning already offered.
+`public/canonical-shelf.css` is the sole visual-system authority for the current PR #24-derived experience. Feature CSS may own feature-specific structure/composition, but must consume the shared contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language.
 
-The curriculum uses a **questions-first spiral**. Important doctrinal and difficult questions are introduced early enough to motivate adult learners, then revisited where their biblical and historical evidence naturally appears, investigated with stronger interpretive tools, and synthesized later. Do not quarantine difficult questions or doctrine as late-course material, and do not force premature certainty before prerequisite context exists.
+Current locked design direction:
 
-Scene roles may include: Orient → Read → Explain → Visualize → Compare → Context → Practice → Retention → Reflect → Continue.
+- scholarly serif display/reading typography with restrained sans UI and mono metadata;
+- bookish geometry;
+- bright gilt as a signal, cool graphite/chrome structure, white reader paper, dark reader ink;
+- Bible category colors remain semantic and theme-independent;
+- Home uses a graphite background and is the one destination without the shared global navigation bar;
+- Home is shelf-first: title/summary upper left, destination buttons upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware continuation surfaces before exploration paths;
+- Course landing is a six-volume shelf while course/unit/activity behavior remains owned by the curriculum engine;
+- lessons use Study Focus with a side study apparatus; learner-facing terminology is **Glossary**, not “Vocabulary”;
+- Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → contextual reader with visible/expandable book/chapter notes;
+- Topics uses an editorial dossier/reference approach rather than a generic card dashboard;
+- Practice uses the compact due-first dashboard;
+- Theologian launches from the lower-right into a bounded chat panel; in Study Focus it belongs in the lesson apparatus rather than overlapping the lesson.
 
-Responsive means recomposition, not merely shrinking/stacking. Desktop, tablet, and phone may differ. Use adaptive layouts, touch-safe controls, modern viewport units, safe areas, and reduced-motion alternatives.
+Current curated color packages may vary palette/material tone only. They must not change page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
-## Motion, gamification, retention
-Use motion to communicate state, progress, mastery, retention, navigation, or causality; support reduced motion.
+Top-level Home, Course, Bible, Topics, Practice, and Search use route-owned generated HTML documents. Cross-destination navigation uses normal document navigation; same-route detail changes may use bounded History API enhancement.
 
-Gamification must reinforce learning. Make completed, retained, mastered, review-due, improving, and unit-mastery states visible; XP, stars, achievements, streaks, and milestones are optional. Reward retrieval, delayed retention, improvement, transfer, synthesis, and mastery. Make spaced review visible; keep 1→3→7→14→30→60 days unless evidence supports better.
+Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, or `public/locked-library-baseline.css`.
 
-## Assessment/content
-Do not reduce assessment to basic multiple choice. Use task-appropriate interactions: ordering, shelf placement, matching, timelines, sorting, evidence classification, argument mapping, context/verse reconstruction, comparison, scenarios, interpretation distinctions, free reasoning, synthesis, capstone transfer. Provide keyboard/non-drag equivalents.
+## Curriculum / learning
 
-Progress toward **Remember → Locate → Distinguish → Relate → Interpret → Evaluate evidence → Transfer → Synthesize.** Score understanding/reasoning, not theological assent.
+The current runtime is a six-course adult Bible-literacy curriculum with guided lessons, mastery/capstone work, Topics outside completion, stable activity identity, and spaced review. Current generated counts are descriptive runtime data, **not long-term verification constants**.
 
-Use progressive disclosure to preserve Scripture, context, vocabulary, diagrams, timelines, maps, original-language notes, responsible competing readings, evidence, reflection, and sources. Preserve adult reading level and reasoning depth.
+The curriculum uses a questions-first spiral. Difficult doctrinal/interpretive questions appear early enough to motivate adults, recur where evidence naturally appears, and are synthesized after foundations and interpretive tools develop. Score understanding and reasoning, never theological assent. Practice reinforces the curriculum rather than becoming a parallel curriculum.
 
-## Product modes
-* **Course:** guided, progressive, visual, interactive, mastery-oriented; show phase → unit → activity → mastery/review state. `/course` is the Course Catalog; lessons/mastery enter Study Focus.
-* **Practice:** active retention/reinforcement; use challenge → feedback → state change → next challenge. Practice is not a second curriculum.
-* **Bible:** owns shelf, browse, book profiles, chapters, reader, groups, maps/timelines, and study affordances. Scripture may scroll. The shelf is a signature feature. Bible reading uses a light reading surface with attached contextual Book Notes in the default library baseline.
-* **Topics:** curated reference, not scored curriculum; support categories, relationships, Scripture/Course links, evidence labels, related questions. Topic reading uses a light reference surface with attached contextual notes in the default library baseline.
-* **Advanced Study:** may use multi-pane study, synchronized references, original-language/lexical tools, maps/timelines, cross-reference visualization, notes, command palette, and focus mode without burdening beginners.
-* **Guide/Theologian:** distinguish text, evidence, interpretation, reception, doctrine, Canonical Shelf position, and application. The primary conversational path uses Cloudflare Workers AI when available, grounded by Canonical Shelf-controlled evidence and followed by policy validation. The deterministic evidence-aware Theologian remains the fallback and must continue to work if cloud generation is unavailable or rejected.
+Reflection/journal writing is learner-owned and cannot satisfy scored completion.
 
-## Theologian authority and privacy
-The Theologian’s grounding/guardrail order is:
-1. the bundled **Berean Standard Bible (BSB)** corpus for Scripture text and quotations;
-2. current Canonical Shelf Course, Topics, glossary, Bible/book, and reference content;
-3. the current **Statement of Faith** as doctrinal ceiling;
-4. Canonical Shelf theology policy and vetted biblical/historical/linguistic scholarship, including the approved LGBTQ research set.
+## Statement of Faith / Theologian authority
 
-LGBTQ questions must preserve Canonical Shelf’s stated affirming position while accurately representing serious non-affirming interpretations and the limits of contested lexical/historical evidence. Do not claim that Romans 1 refers only to exploitation/pederasty, that `arsenokoitai` has one certain modern equivalent, that `malakoi` directly names modern gay identity, that `to'evah` means ritual impurity only, or that eunuchs/Ruth-Naomi are simple one-to-one modern identity proofs.
+Public doctrinal ceiling:
 
-Cloud Theologian requests are stateless by default. Do not persist conversation text to D1, KV, Durable Objects, analytics, or account records unless a later explicit product decision adds a user-controlled save path. Do not send Journal, profile, progress, or account data as model context unless the user explicitly invokes a feature that requires it. The browser may send the current user-facing route/activity context; technical activity IDs remain internal.
+`content/statement/statement-of-faith-compact.md` → `public/data/statement-of-faith.md`
 
-## Personal study and feedback
-Journal Notes are learner-owned, private, persistent, unscored study content tied to the user-facing material being studied. Lesson journals are activity-linked; Bible and Topics may also provide content-linked journal paths. Learner-facing text should say that a note is tied to the current session/reading/topic rather than expose technical identifiers.
+Supplemental Theologian context only:
 
-Feedback must remain reachable across the product. Route/activity/build context may be attached internally. Submitted feedback history is not a learner-facing content library unless explicitly changed later.
+`content/statement/statement-of-faith-v3.md` → `public/data/theologian-belief-context.md`
 
-## Invariants
-Preserve unless explicitly changed: 6 courses; 44 units; 117 guided lessons; 119 mastery/capstone activities; 236 scored activities; 45 Topics; stable pre-existing activity/mastery IDs; Home/Course/Bible/Topics/Practice; Bible owns shelf/browse/reader; Topics do not count toward completion; Practice is reinforcement, not a second curriculum; questions-first spiral curriculum logic; guest/offline use is first-class; learner state is local-first with export/import; optional passkey accounts may sync/backup/recover; Statement of Faith is the doctrinal ceiling; BSB remains the bundled Scripture corpus; disputed interpretations are represented accurately; text/history/interpretation/doctrine/reception/application remain distinguishable.
+Never present the long-form belief document as the public Statement of Faith or a higher authority.
 
-Course completion-time ranges are planning estimates for active first-pass study only. Do not conflate them with mastery or retention; spaced review continues on the 1→3→7→14→30→60-day cycle.
+Theologian grounding order:
 
-## Accessibility/performance
-Accessibility is a floor, not a reason to flatten the experience. Support keyboard, focus, screen readers, touch, contrast, zoom/reflow, reduced motion, and accessible equivalents for rich manipulation.
+1. bundled BSB for Scripture text/quotation;
+2. current Course/Topics/glossary/Bible/reference content;
+3. compact Statement of Faith as Canonical Shelf doctrinal ceiling;
+4. supplemental long-form belief context as lower-authority elaboration;
+5. theology policy and vetted scholarship/traditions as attributed evidence.
 
-Engineer performance around the target experience using splitting/lazy loading, optimized media/SVG, efficient motion, caching, selective prefetching, and deferred advanced tools. Cloud model inference must never block the deterministic/offline evidence path.
+Learner agency is a hard requirement. The learner remains the decision-maker. Theologian informs, compares, contextualizes, challenges reasoning, distinguishes evidence from interpretation/doctrine/application, labels Canonical Shelf's position, surfaces material translation/viewpoint differences, and preserves evidence strength without pressuring agreement.
 
-## v5/v6
-Foundation: TopherLoring/canonical-shelf (current production architecture). Reference: TopherLoring/the-canonical-shelf (historical v5 reference).
+Canonical Shelf's LGBTQ position is affirming while serious non-affirming readings and contested lexical/historical claims must be represented accurately. Never collapse contested evidence into categorical proof.
 
-Do not restore v5’s bridge architecture, stacked runtimes, DOM hacks, whole-body MutationObserver repair, parallel CSS, or similar debt. Do not discard superior v5 capabilities because their old implementation was poor. Ask: **Would we want this in a greenfield Canonical Shelf today?** If yes, reimplement it natively in the current architecture.
+## Theologian conversation / state privacy
 
-## Planning before code
-* **Prototyping:** For major UX/UI features or net-new interactions, present a minimum of 3 distinct design concepts or architectural approaches for review. Specify the prototype fidelity based on the visual or interaction complexity required. Trivial updates are exempt from the 3-choice rule.
-* **Project Execution Graph (PEG):** Once a prototype direction is approved, generate a PEG covering objective, UX/product outcomes, acceptance criteria, invariants, tasks/subtasks, dependencies/DAG, affected systems, validation, risks, rollback, and human-review gates. Trivial changes may use a compact graph.
+The active chat may persist locally in the browser until New chat or browser-data clearing.
 
-## Implementation/validation
-Prefer stable contracts/schemas, single state ownership, reusable primitives, deterministic migrations, and testable rendering. Avoid hidden DOM APIs, duplicated state, permanent compatibility patches, CSS specificity escalation, and one-off fixes.
+Normal cloud requests may include only current question, bounded recent conversation, current learner-facing route/activity, and allowlisted aggregate study state.
 
-Compile/test/axe/render success is not completion. Validate function, visuals, responsiveness, motion, accessibility, touch, offline behavior, state migration, performance, content integrity, theology/editorial accuracy, novice usability, and cloud-AI fallback/guardrail behavior as relevant.
+Do not send or infer from Journal text, lesson notes, optional reflection writing, profile/account identifiers, feedback content, theological assent, denomination, sexuality, or other sensitive identity traits. Study state is not theological evidence.
 
-A change is a regression if it improves architecture while materially degrading UX, learning quality, accessibility, content/reasoning depth, responsiveness, capability, or brand identity.
+Ordinary Theologian chat is not persisted server-side merely because it is sent for inference. A learner may deliberately submit a bounded response snapshot for review; that explicit submission is the exception.
 
-**Completion standard:** strongest feasible Canonical Shelf experience, delivered by the simplest reliable architecture capable of supporting it.
+## Response review / feedback
 
-## Repositories & branch management
-* **Active development:** [TopherLoring/canonical-shelf](https://github.com/TopherLoring/canonical-shelf/)
-* **Historical design/content reference:** [TopherLoring/the-canonical-shelf](https://github.com/TopherLoring/the-canonical-shelf/) — inactive reference only.
+Every Theologian response must offer a review/disagreement path.
 
-### Branch policy
-* **Review active branches:** inspect active branches/PRs before proceeding so newer approved work is not overwritten.
-* **Integrate deliberately:** absorb compatible active work into the current release branch rather than merging stale/superseded branches blindly.
-* **Update documentation:** complete a documentation audit and update all authoritative/current docs before merging substantive changes.
-* **Historical docs:** preserve useful historical plans as historical evidence, but label them clearly when they are no longer current authority.
-* **Delete/close safely:** close or delete superseded branches only after their useful decisions are preserved and the active release branch validates successfully.
+Bounded response-review context may include the preceding question, answer, visible evidence metadata, route, mode/model, policy version, validation status, optional reason, and learner explanation. It must not automatically include Journal/private writing, profile/account data, inferred beliefs, or unrelated conversation history.
+
+Never reject learner feedback/review because wording, category, reason, or explanation does not match a predefined taxonomy. Accept and normalize custom/blank/short content; clip/sanitize only for transport/storage safety.
+
+Anonymous response routing uses a random browser-scoped token. The reusable token stays in that browser; persistence uses a one-way routing key. Do not use IP address as anonymous feedback identity. The learner can forget the browser link.
+
+Retention must be enforced in code and disclosed publicly, but verification should test that retention behavior exists rather than freezing implementation-specific storage details or arbitrary internal limits.
+
+## Crisis / pastoral safety
+
+`content/theology/crisis-policy.json` is current authority. A deterministic crisis layer runs before ordinary AI generation for credible first-person suicide/self-harm indicators.
+
+When warranted:
+
+- immediate danger/attempt/serious injury/overdose → clearly direct to emergency care/services;
+- U.S. suicidal/self-harm crisis → prominently offer 988;
+- encourage another trusted person to be physically present and distance from means when relevant;
+- remain conversational and ask directly about immediate safety.
+
+Pastoral response may accompany but never replace urgent human help. After prayer, return to the safety check. Never use hell/divine punishment/shame/salvation threats, imply weak faith, claim prayer alone should resolve the crisis, promise guaranteed healing, silently contact third parties, use IP-based crisis identity, create permanent diagnosis/risk labels, or automatically convert crisis conversation into feedback.
+
+## Privacy / public policy surfaces
+
+Current learner-facing policy surfaces include:
+
+- `/privacy.html`
+- `/data-retention.html`
+- `/storage.html`
+- `/terms.html`
+- `/safety.html`
+
+Current posture: local-first guest use; optional account/passkey sync; no personal-data sale; no targeted advertising; no advertising pixels/behavioral analytics trackers; first-party auth/security cookies and functional browser storage.
+
+Never commit secrets such as `FEEDBACK_ADMIN_TOKEN`, Better Auth secrets, or Cloudflare credentials.
+
+## Learner content / `llms.txt`
+
+`content/learner-content-reachability.json` owns learner-facing reachability and `llms.txt` disposition.
+
+Embed substantive learner-facing curriculum/reference/editorial/legal/privacy/safety content. Link the complete BSB corpus rather than duplicating it. Exclude supplemental long-form belief context as a standalone public authority and exclude private learner/account/feedback records, secrets, and implementation/governance material.
+
+`public/llms.txt` is generated, not hand-maintained authority.
+
+## Accessibility / performance
+
+Accessibility is a floor, not a reason to flatten the experience. Support keyboard, focus, screen readers, touch, contrast, zoom/reflow, reduced motion, forced colors, and alternatives to rich manipulation.
+
+Cloud inference must never block deterministic/offline evidence fallback. Crisis mode must never depend on cloud inference.
+
+## Verification contract
+
+The sole repository merge/release verification command is:
+
+```bash
+bun run verify
+```
+
+`docs/VERIFICATION_CONTRACT.md` defines what that gate may protect.
+
+Verification protects **durable behavior and template semantics**, not a frozen implementation. Do not add release-blocking assertions for:
+
+- exact copy, headings, button labels, punctuation, character sequences, or source line numbers unless the literal value is itself an immutable external/legal/data contract;
+- CSS values, colors, font choices, dimensions, radii, spacing, theme names, or visual classes;
+- historical screenshots/layouts, parity with an earlier version, restoration of superseded presentation, or one-time branch/PR migration state;
+- exact generated curriculum/content counts expected to evolve;
+- implementation details such as table names, prompt wording, hash lengths, clipping thresholds, source-code substrings, or internal error messages when observable behavior can be tested instead.
+
+Prefer observable behavior → accessibility semantics/relationships → stable route/data contracts → purpose-built semantic test hooks only when necessary.
+
+When presentation changes but capability does not, verification should normally require no change. When product behavior intentionally changes, update the durable contract rather than forcing production code to imitate an obsolete test.
+
+The current automated gate consists of:
+
+- build/generation;
+- immutable BSB integrity;
+- a small grouped product/template contract;
+- behavior-level assessment/sync/D1/feedback/Theologian/crisis tests;
+- a small Chromium browser smoke for core routes, utilities, responsiveness, and serious/critical accessibility failures.
+
+Cloudflare target validation and post-deployment live verification are separate infrastructure contracts. Human visual/editorial/novice review remains separate from automated verification.
+
+## Production
+
+Canonical production target:
+
+`https://the-canonical-shelf.christopherwonder.workers.dev`
+
+Worker: `the-canonical-shelf`  
+D1: `canonical-shelf`
+
+Before merge, require successful current-head `bun run verify` plus the Cloudflare dry-run in CI and any applicable human visual/accessibility/editorial/novice gates. Do not resurrect removed parity/restoration/supersession validators.
+
+After merge, deploy only through the canonical production workflow and verify exact release/bindings, route documents, public policy resources, generated learner data, offline behavior, and a real cloud Theologian response.
+
+**Completion standard:** strongest feasible Canonical Shelf experience delivered by the simplest reliable architecture capable of supporting it.

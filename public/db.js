@@ -103,19 +103,13 @@ function hasScoredChallenge(progress){
   return Object.values(progress?.challenges||{}).some(challenge=>challenge?.mode==='scored');
 }
 
-export function activityRequirementsSatisfied(id,progress){
+export function activityRequirementsSatisfied(_id,progress){
   const total=Math.max(0,Number(progress?.total||0));
   if(total<1)return false;
-  const mastery=id.startsWith('mastery:');
 
   for(let index=0;index<total;index++){
     const challenge=progress?.challenges?.[String(index)];
-    if(!challenge)return false;
-    if(challenge.mode==='reflection'){
-      if(mastery||challenge.submitted!==true)return false;
-    }else if(challenge.passed!==true){
-      return false;
-    }
+    if(!challenge||challenge.mode!=='scored'||challenge.passed!==true)return false;
   }
 
   return true;

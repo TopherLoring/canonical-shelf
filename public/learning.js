@@ -133,7 +133,7 @@ function drawerTray(lesson,esc,{includeDeeper=true}={}){
 const beginBodyHeadings=[
   ['Explain','The proclamation at the center'],
   ['Context','A reminder inside a letter'],
-  ['Position','How this guide approaches belief'],
+  ['Position','How Canonical Shelf approaches belief'],
   ['Method','Observe before settling the mechanism'],
   ['Context','Corinth: community, status, and shared life']
 ];
@@ -200,7 +200,7 @@ function lessonApparatus(lesson,esc,scene){
 function orientationApparatus(){
   return apparatusModule('Orientation','not scored','<p>This tutorial teaches the product and study method. It does not add to course completion.</p>',{open:true})+
     apparatusModule('Study layers','method','<p>Canonical Shelf keeps text, historical evidence, interpretation, reception, doctrine, and application visible as related but distinct layers.</p>')+
-    apparatusModule('Need help?','navigation','<p>Inside lessons use hints, drawers, glossary, notes and sources. Across the site use Bible, Topics, search, the Guide, Practice, and Advanced Study.</p>');
+    apparatusModule('Need help?','navigation','<p>Inside lessons use hints, drawers, glossary, Session Notes, and sources. Across the site use Bible, Topics, search, the Theologian, Practice, and Advanced Study.</p>');
 }
 
 function focusHref(base,index){return `${base}${base.includes('?')?'&':'?'}scene=${index+1}`}
@@ -213,23 +213,23 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
   const nextLabel=!finalScene?'Continue →':continuation?completed?`Continue to ${continuation.label} →`:`Explore ${continuation.label} →`:'Return to unit →';
   const completion=finalScene&&completed?'<aside class="lesson-complete" role="status"><span aria-hidden="true">✓</span><div><strong>Lesson complete</strong><p>You finished every required check. Review remains available whenever you want a refresher.</p></div></aside>':'';
   const progress=Math.round(((sceneIndex+1)/Math.max(scenes.length,1))*100);
-  const courseLabel=courseSequence?`Course ${courseSequence} · ${courseTitle} · `:'';
+  const hierarchy=[courseSequence?`COURSE ${courseSequence}${courseTitle?` / ${courseTitle.toUpperCase()}`:''}`:'',`UNIT ${unitSequence} / ${String(unitTitle||'').toUpperCase()}`,String(title||'').toUpperCase()].filter(Boolean).join(' · ');
   return `<section class="study-focus" data-study-focus>
     <header class="study-focus__chrome">
-      <div class="study-focus__identity"><span>${esc(courseLabel)}Unit ${unitSequence} · ${esc(unitTitle)}</span><strong>Lesson ${lessonSequence} · ${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal</button><button type="button" data-toggle-apparatus>Notes &amp; sources</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
+      <div class="study-focus__identity"><span>${esc(hierarchy)}</span><strong>${esc(title)}</strong></div>
+      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-study-guide data-ask="What can you help me study in this lesson?">Theologian</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
     </header>
     <article class="study-folio" aria-labelledby="study-scene-title">
-      <header class="study-folio__head"><div><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div><div class="study-folio__count"><strong>${sceneIndex+1}</strong><span>of ${scenes.length}</span></div></header>
+      <header class="study-folio__head"><div class="scene-content-head"><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div></header>
       <div class="study-layout">
-        <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Scene ${index+1}: ${esc(item.role)}" ${index===sceneIndex?'aria-current="step"':''}><span>${index+1}</span><small>${esc(item.role)}</small></a>`).join('')}</nav>
+        <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Scene ${index+1}: ${esc(item.role)}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><small>${esc(item.role)}</small></a>`).join('')}</nav>
         <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
-        <aside id="study-apparatus" class="study-apparatus" aria-label="Scholarly notes"><div class="study-apparatus__head"><div><p class="eyebrow">Study apparatus</p><h2>Notes &amp; sources</h2></div><button type="button" data-close-apparatus aria-label="Close notes and sources">×</button></div>${apparatus}</aside>
+        <aside id="study-apparatus" class="study-apparatus" aria-label="Session Notes"><div class="study-apparatus__head"><div><h2>Session Notes</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div></div></div><p class="session-context-note">These notes, your journal, and feedback are tied to the current study activity.</p>${apparatus}</aside>
       </div>
       <footer class="study-nav" aria-label="Lesson navigation">
         <div>${previous?`<a class="study-nav__button" href="${previous}">← Previous</a>`:'<span class="study-nav__button is-disabled" aria-hidden="true">← Previous</span>'}</div>
-        <button type="button" class="study-nav__notes" data-toggle-apparatus>Notes &amp; sources</button>
-        <div class="study-nav__progress"><span>${esc(scene.role)} · ${sceneIndex+1}/${scenes.length}</span><div class="study-nav__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}" aria-label="${progress}% through this lesson"><i style="width:${progress}%"></i></div></div>
+        <button type="button" class="study-nav__notes" data-toggle-apparatus aria-controls="study-apparatus">Session Notes</button>
+        <div class="study-nav__progress"><span class="sr-only">${esc(scene.role)} · ${sceneIndex+1}/${scenes.length}</span><div class="study-nav__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}" aria-label="${progress}% through this lesson"><i style="width:${progress}%"></i></div></div>
         <a class="study-nav__button study-nav__button--next" href="${next}">${nextLabel}</a>
       </footer>
     </article>

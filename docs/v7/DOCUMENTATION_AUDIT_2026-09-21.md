@@ -1,202 +1,179 @@
 # Canonical Shelf documentation audit — 2026-09-21
 
-Status: **current documentation authority map for PR #21**
+Status: **current documentation authority map; refreshed 2026-09-22 for PR #24 convergence**
 
 ## Purpose
 
-This audit prevents old restoration plans, superseded design experiments, historical release notes, generated artifacts, or prior curriculum names/counts from being mistaken for the current Canonical Shelf contract.
-
-The audit covered the root project instructions/README, generated discovery/reference surfaces, current `docs/v7/` documents, v6 historical documentation, curriculum/theology source documentation, and deployment/release documentation.
+This audit prevents superseded restoration plans, design experiments, architecture workarounds, historical release notes, old curriculum counts, legacy Guide terminology, and open-but-superseded PRs from being mistaken for current Canonical Shelf authority.
 
 ## Authority order
 
-When two documents disagree, use this order:
+When documents disagree, use this order:
 
 1. latest explicit owner decision;
 2. `AI_INSTRUCTIONS.md`;
 3. `docs/v7/DECISION_PRECEDENCE.md`;
-4. current domain baselines listed below;
-5. canonical source code/data contracts;
+4. current domain authority documents/source contracts listed below;
+5. canonical runtime/data source;
 6. generated artifacts produced from those sources;
-7. historical plans/audits only as provenance.
+7. historical plans/audits/PRs as provenance only.
 
-“Approved”, “locked”, or “canonical” means current baseline, not immutable. Later approved work remains editable.
+“Approved”, “locked”, and “canonical” describe the current baseline, not immutability.
 
 ## Current authoritative documents
 
-| Document | Status | What it owns |
+| Document | Status | Owns |
 |---|---|---|
-| `README.md` | current | product overview, current counts/names, user-facing capabilities, architecture, deployment summary |
-| `AI_INSTRUCTIONS.md` | current | agent/project operating rules and invariants |
-| `docs/v7/DECISION_PRECEDENCE.md` | current | owner-precedence protocol and integrated product/curriculum/deployment decisions |
-| `docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md` | current editable baseline | flat library-system UX/theme grammar, Course/Study Focus/Bible/Topics/Profile/Feedback behavior |
-| `docs/v7/CURRICULUM_MULTI_COURSE_PLAN.md` | current structural reference | six-course architecture and stable-ID curriculum contract |
-| `docs/v7/PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md` | current curriculum delta | questions-first spiral, time ranges, question threads, Course 5/6 framing |
-| `docs/v7/questions-first-spiral-execution-graph.json` | current execution state | machine-readable curriculum-delta execution state |
-| `docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md` | current | cloud/deterministic Theologian authority, evidence, privacy, LGBTQ argument/source boundaries |
-| `docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md` | current | exact production Worker, generated config, pre/post-deploy verification contract |
+| `README.md` | current | concise current product/runtime/content/deployment overview |
+| `AI_INSTRUCTIONS.md` | current | project operating rules and experience priorities |
+| `docs/v7/DECISION_PRECEDENCE.md` | current | decision precedence + integrated release authority |
+| `docs/v7/CONVERGENCE_SUPERSESSION_2026-09-22.md` | current | #20/#22/#23 → #24 convergence and supersession |
+| `docs/v7/CONTENT_REACHABILITY_AND_THEOLOGIAN_AUTHORITY_2026-09-22.md` | current | compact faith ceiling, supplemental belief context, Theologian agency/privacy, learner-content reachability, `llms.txt` disposition |
+| `docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md` | current editable baseline | default visual/interaction grammar |
+| `docs/v7/PLAN_NATIVE_DOCUMENT_RENDERING_2026-09-22.md` | active release implementation record | native route documents and release work for #24 |
+| `docs/v7/native-document-rendering-graph.json` | current typed PEG | #24 execution dependencies/invariants |
+| `docs/v7/CURRICULUM_MULTI_COURSE_PLAN.md` | current structural reference | six-course/stable-ID curriculum structure |
+| `docs/v7/PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md` | current curriculum record | questions-first spiral/current course framing |
+| `docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md` | supporting runtime reference | cloud/deterministic evidence runtime; defers to newer 2026-09-22 authority on faith/agency/chat persistence |
+| `docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md` | current | exact production target and release verification |
 | `docs/v7/DOCUMENTATION_AUDIT_2026-09-21.md` | current | this authority/status map |
 
-## Canonical source data vs generated documentation
-
-The following are author-maintained canonical inputs:
-
-- `content/curriculum/`
-- `content/statement/statement-of-faith-v3.md`
-- `content/theology/policy.json`
-- `content/theology/sources.json`
-- admitted/pinned migration sources under `content/vendor/legacy/`
-
-The following are generated/published outputs and must not become independent hand-edited sources of truth:
-
-- `public/data/catalog.json`
-- `public/data/curriculum.md`
-- `public/data/statement-of-faith.md`
-- `public/data/theology-policy.json`
-- `public/data/theology-sources.json`
-- `public/data/corpus.txt`
-- `public/llms.txt`
-- generated account/auth/runtime artifacts
-- generated `wrangler.jsonc`
-
-`publish-theology.mjs`, curriculum migration/post-processing, `generate-curriculum-reference.mjs`, and `generate-llms.mjs` keep published copies aligned with canonical inputs. Production validation rejects theology source/publication drift.
-
-## Current values corrected during this audit
-
-The documentation set now uses the same current curriculum values:
+## Current product/runtime values
 
 - 6 courses
 - 44 scored units
 - 117 guided lessons
 - 119 mastery/capstone activities
 - 236 scored activities
-- 12 question threads
-- 45 Topics
+- 12 recurring question threads
+- 45 Topics outside completion
+- retention cadence 1 → 3 → 7 → 14 → 30 → 60 days
 
-Current learner-facing course names are:
+Historical 25-unit / 70-lesson / 69-mastery / 139-activity values are migration baselines only.
 
-1. Bible & Christianity: Foundations
-2. Israel: Exodus, Covenant, Temple & Prophetic Hope
-3. From Exile to Jesus: The Second Temple World
-4. Jesus, the Gospels & the Early Church
-5. How We Know: Interpretation & Evidence
-6. Christian Theology, Traditions & Synthesis
+Current Course 5/6 titles are **How We Know: Interpretation & Evidence** and **Christian Theology, Traditions & Synthesis**.
 
-The old learner-facing names “Advanced Biblical Interpretation” and “Theology, Traditions & Difficult Questions” are historical labels and must not be reintroduced as the current Course 5/6 titles.
+## Current rendering architecture
 
-## Current Theologian documentation corrected during this audit
+PR #24 uses route-owned, document-first rendering:
 
-The documentation no longer describes conversational AI as merely future work. Current architecture is:
+- `public/index.html` is the shared shell/root compatibility source;
+- `scripts/generate-route-documents.mjs` generates route documents for Home, Course, Bible, Topics, Practice, Search;
+- different top-level destinations use normal document navigation;
+- same-destination detail/query state may use bounded History API enhancement;
+- whole-body/broad-subtree MutationObserver repair, duplicate `#main` renderers, render-old-then-repair flows, and stacked corrective layers are excluded;
+- `public/library-system.js` and `public/library-system-refinements.css` are removed from active architecture;
+- `public/locked-home.js` and `public/locked-library-baseline.css` are superseded #22 artifacts and must not exist in #24;
+- service-worker/offline handling owns route-specific generated documents.
 
-- Cloudflare Workers AI for conversational synthesis;
-- deterministic evidence-aware Theologian as fallback;
-- BSB → site content → Statement of Faith → theology policy/vetted research as guardrail order;
-- canonical theology policy/source files published deterministically;
-- attachment-derived LGBTQ beliefs/arguments normalized into evidence states, limits, and source records;
-- no Canonical Shelf server-side conversation persistence;
-- no Journal/profile/progress/account data supplied as model context by default.
+## Canonical sources vs generated outputs
 
-## Current deployment documentation corrected during this audit
+Author-maintained canonical inputs include:
 
-There is one production target:
+```text
+content/curriculum/
+content/statement/statement-of-faith-compact.md
+content/statement/statement-of-faith-v3.md        # supplemental Theologian context only
+content/theology/policy.json
+content/theology/sources.json
+content/learner-content-reachability.json
+content/vendor/legacy/
+public/index.html
+```
+
+Generated/published outputs include:
+
+```text
+public/data/catalog.json
+public/data/curriculum.md
+public/data/statement-of-faith.md
+public/data/theologian-belief-context.md
+public/data/theology-policy.json
+public/data/theology-sources.json
+public/data/corpus.txt
+public/llms.txt
+public/home.html
+public/course.html
+public/bible.html
+public/topics.html
+public/practice.html
+public/search.html
+wrangler.jsonc
+```
+
+Generated outputs are not independent hand-edited authorities.
+
+## Statement of Faith / theology authority
+
+Public doctrinal ceiling:
+
+`content/statement/statement-of-faith-compact.md`
+
+Supplemental Theologian-only belief context:
+
+`content/statement/statement-of-faith-v3.md`
+
+The long-form file is not the public Statement of Faith. Older documentation that says otherwise is superseded.
+
+Agreement with the compact Statement of Faith is not required to use Canonical Shelf, and theological assent is not scored.
+
+## Current Theologian documentation
+
+The learner-facing name is **Theologian**. Historical `guide-*` identifiers may remain internally only for compatibility.
+
+Current contract:
+
+- Cloudflare Workers AI conversational synthesis when available;
+- deterministic evidence-aware fallback;
+- BSB → current site content → compact Statement of Faith → supplemental belief context → theology policy/vetted scholarship;
+- approved grace/love interpretive foundation;
+- multiple viewpoints and material translation differences where responsibly disputed;
+- Canonical Shelf position labeled rather than imposed;
+- learner agency/free inquiry preserved;
+- active chat may persist locally in the browser across reloads until New chat;
+- no server/account persistence of Theologian conversation text;
+- bounded recent conversation + allowlisted study-state summary may be model context;
+- Journal text, lesson notes, reflection writing, profile/account identifiers, feedback content, and inferred theological beliefs are excluded.
+
+## Learner corpus / `llms.txt`
+
+`content/learner-content-reachability.json` owns `embed` / `link` / `exclude` dispositions.
+
+- complete learner-facing corpus is generated into `public/llms.txt` according to that manifest;
+- full BSB corpus is linked, not duplicated verbatim;
+- supplemental long-form belief context is excluded as a standalone public authority;
+- private/internal content is excluded;
+- `public/llms.txt` is regenerated/freshness-validated and is not a hand-maintained authority.
+
+## PR convergence status
+
+- **#24** — sole active release/convergence PR.
+- **#20** — superseded independent PR; curriculum intent is already represented by merged #21/main and current #24.
+- **#22** — superseded implementation; requirements preserved natively in #24, repair architecture rejected.
+- **#23** — superseded independent PR; learner-corpus intent selectively absorbed into #24, generated snapshot must not be merged.
+
+See `docs/v7/CONVERGENCE_SUPERSESSION_2026-09-22.md`.
+
+## Current deployment documentation
+
+Canonical production target:
 
 `https://the-canonical-shelf.christopherwonder.workers.dev`
 
-The deployment contract now includes generated configuration validation, exact Worker/D1/AI/origin checks, release-SHA identity, `/api/health`, direct-route smoke tests, and PR full-release/dry-run gates. Older deployment-target experiments are historical only.
+Release verification requires exact Worker/origin/D1/AI/release identity, generated route ownership, critical generated content, offline/runtime validation, and a real `/api/theologian` cloud inference with substantive answer, non-empty evidence, BSB guardrail, and passed policy validation.
 
-## `docs/v7/` status inventory
+A successful `wrangler deploy` or HTTP 200 alone is insufficient.
 
-### Current / carried forward
+## Historical provenance
 
-| File | Disposition |
-|---|---|
-| `.restoration-active` | rewritten as current integration marker; restoration-parity phase declared superseded |
-| `CURRICULUM_MULTI_COURSE_PLAN.md` | updated to current Course 5/6 names, counts, questions-first relationship |
-| `DECISION_PRECEDENCE.md` | rewritten to current integrated authority |
-| `LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md` | current editable design baseline |
-| `PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md` | added/absorbed from PR #20 and updated for PR #21 |
-| `questions-first-spiral-execution-graph.json` | added/absorbed and pointed at PR #21 integrated validation |
-| `THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md` | updated for expanded arguments/sources and canonical publication |
-| `DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md` | added as deployment authority |
-| `PLAN_DELTA_V7_PERSONAL_STUDY_FEEDBACK.md` | retained but rewritten to distinguish durable state behavior from superseded panel UX |
-| `RESTORATION_NEXT.md` | explicitly retired as historical pointer |
-| `RESTORATION_PROGRESS.md` | explicitly retired as historical tracker |
-| `RESTORATION_WORKING_RULE.md` | still valid as a general principle: content that is unreachable does not count as restored |
-| `DOCUMENTATION_CLOSEOUT_PLAN.md` | already correctly labeled historical/completed |
-| `DESIGN_INTENT_DELTA_V5_POLISH.md` | supporting design-intent history; its own status already defers to later owner decisions; palette/surface conflicts are superseded by the library-system baseline |
+Historical v5/v6, restoration, migration, completed delta, corrective-layer, and superseded PR documentation may remain for provenance/rollback reasoning. It must not override current authority.
 
-### Historical provenance — retain, do not use as current authority
+Examples include earlier restoration plans/graphs, old branch audits, old design correction documents, completed implementation deltas, and prior production hotfix approaches.
 
-These files document earlier restoration, migration, design, or release phases. They remain useful evidence of why a change happened but do not override current docs/runtime:
+If an old finding remains actionable, promote it into a current authority/plan rather than silently following the historical file.
 
-- `BRANCH_AUDIT_2026-09-20.md`
-- `EXPERIENCE_PARITY_RESTORATION_PLAN.md`
-- `NON_COURSE_LEGACY_SOURCE_AUDIT.md`
-- `PLAN_DELTA_ABOUT_FOOTER_REFINEMENT.md`
-- `PLAN_DELTA_AUTOMATED_LLMS_TXT.md`
-- `PLAN_DELTA_BIBLE_IDENTITY_RESTORATION.md`
-- `PLAN_DELTA_FEEDBACK_REMEDIATION.md`
-- `PLAN_DELTA_ORIGINAL_BIBLE_DRAWER_THEME.md`
-- `PLAN_DELTA_PRELAUNCH_SELF_HEALING_GATE.md`
-- `PLAN_DELTA_V7_BUILD_RELEASE_SEPARATION.md`
-- `PLAN_DELTA_V7_OPEN_SOURCE_ASSEMBLY.md`
-- `PLAN_DELTA_V7_V5_POLISH.md`
-- `PLAN_FULL_EXPERIENCE_RESTORATION.md`
-- `RESTORATION_AUDIT_2026-09-20.md`
-- `TOPICS_RESTORATION_ACCEPTANCE.md`
-- `TOPICS_RESTORATION_NOTE.md`
-- `WBS_ABOUT_FOOTER_REFINEMENT.md`
-- `EXECUTION_GRAPH_ABOUT_FOOTER_REFINEMENT.json`
-- `bible-identity-restoration-graph.json`
-- `build-release-separation-graph.json`
-- `curriculum-multicourse-execution-graph.json`
-- `documentation-closeout-graph.json`
-- `experience-parity-execution-graph.json`
-- `feedback-remediation-execution-graph.json`
-- `feedback-remediation-wbs.json`
-- `full-experience-restoration-graph.json`
-- `original-bible-drawer-theme-execution-graph.json`
-- `original-bible-drawer-theme-wbs.json`
-- `prelaunch-self-healing-gate-graph.json`
-- `project-execution-graph.json`
+## Verification status
 
-Historical files are not deleted because they provide implementation provenance and rollback context. Their dates/names and this audit make their status explicit. If a historical finding remains actionable, it must be promoted into a current plan rather than silently treated as current because an old file still exists.
+The latest #24 GitHub Actions attempts have continued to fail before runner allocation with zero executed steps and `runner_id: 0`. These are infrastructure/no-runner outcomes, not code-test results. PR #24 remains draft until a current head actually receives a runner and executes the release gates.
 
-## v6 documentation
-
-`docs/v6/` is historical architecture/release documentation for the previous foundation. It may be consulted for implementation history, evidence discipline, migrations, or prior decisions, but it cannot override current v7/current product governance.
-
-## User-facing data-path documentation
-
-Current docs recognize these user-facing ownership rules:
-
-- Course owns courses, units, lessons, mastery/capstones, and current learning position.
-- Bible owns the 66-book shelf, book information, chapters, Scripture reading, and Bible-specific context.
-- Topics owns curated reference/glossary exploration outside completion.
-- Practice owns reinforcement/review rather than curriculum progression.
-- About owns Statement of Faith, methodology, translation, accessibility, privacy, and institutional explanation.
-- Theologian synthesizes evidence across first-party content but is not itself the source of authority.
-- Feedback is globally reachable.
-- Profile/Account owns appearance selection and account/sync controls.
-
-A consolidated learner Journal index and extra Bible/Topic Journal entry points must not be described as implemented until runtime paths and validation exist.
-
-## Fixes completed in this pass
-
-- root README rewritten to current product state;
-- `AI_INSTRUCTIONS.md` aligned with questions-first curriculum, library baseline, cloud Theologian, evidence/privacy rules, and editable-baseline policy;
-- `DECISION_PRECEDENCE.md` rewritten to current authority;
-- multi-course plan updated to current names/counts and questions-first model;
-- questions-first plan/graph absorbed from PR #20;
-- Orientation updated from the old 25-unit framing to the six-course questions-first model;
-- Cloud Theologian runtime doc expanded for normalized arguments/source catalog;
-- personal-study/Feedback historical plan corrected so superseded “Notes & Journal” presentation is not mistaken for the current Session Notes pattern;
-- stale restoration-next/progress markers retired;
-- canonical deployment contract added;
-- deterministic theology publication and drift validation added;
-- README/current docs no longer call cloud conversational Theologian “not implemented”;
-- README/current docs no longer use the old Course 5/6 names or 116/235 counts.
-
-## Remaining pre-merge documentation work
-
-Only generated artifacts remain to be regenerated by the authoritative build (`catalog.json`, `curriculum.md`, `llms.txt`, and published theology files). Final PR #21 CI must prove those generated outputs and all documented contracts converge. No document should be marked “final merged/deployed” until that evidence exists.
+Do not document #24 as merged, deployed, or fully validated until that evidence exists.

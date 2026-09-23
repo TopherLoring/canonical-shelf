@@ -25,6 +25,8 @@ jobs:
         with:
           bun-version: 1.2.15
       - run: bun install --frozen-lockfile
+      - name: Install Chromium for browser contract smoke
+        run: bunx playwright install --with-deps chromium
       - name: Verify release candidate
         run: bun run verify
       - name: Generate and validate canonical Cloudflare configuration
@@ -39,5 +41,5 @@ jobs:
           bun -e 'await Bun.write(process.env.RUNNER_TEMP + "/canonical-shelf-secrets.json", JSON.stringify({ BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET }))'
           chmod 600 "$SECRETS_FILE"
           bunx wrangler deploy --secrets-file "$SECRETS_FILE"
-      - name: Verify deployed release, bindings, and direct routes
+      - name: Verify release, route documents, bindings, and live Theologian
         run: bun run verify:deployment

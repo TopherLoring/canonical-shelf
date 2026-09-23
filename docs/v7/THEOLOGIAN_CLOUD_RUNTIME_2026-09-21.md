@@ -1,115 +1,113 @@
 # Canonical Shelf Cloud Theologian runtime — 2026-09-21
 
-Status: **approved, editable implementation baseline**
+Status: **supporting runtime reference; updated 2026-09-22**
 
-The Theologian uses Cloudflare Workers AI for conversational synthesis while retaining Canonical Shelf's deterministic evidence engine as the fallback. No model weights are downloaded to the learner's device.
+This document describes the Cloud Theologian runtime. Where it conflicts with later authority, defer to:
+
+- `AI_INSTRUCTIONS.md`
+- `docs/v7/DECISION_PRECEDENCE.md`
+- `docs/v7/CONTENT_REACHABILITY_AND_THEOLOGIAN_AUTHORITY_2026-09-22.md`
+
+The Theologian uses Cloudflare Workers AI for conversational synthesis while retaining Canonical Shelf's deterministic evidence engine as fallback. No model weights are downloaded to the learner's device.
 
 ## Authority and guardrails
 
-The cloud model is a synthesis layer, not an independent theological authority. Its guardrail order is:
+The model is a synthesis layer, not an independent theological authority. Grounding/guardrail order:
 
-1. **Berean Standard Bible (BSB)** — Scripture quotations and passage evidence come from Canonical Shelf's bundled BSB corpus. The model must not invent BSB wording or silently substitute another translation.
-2. **Canonical Shelf published content** — Course, Topics, glossary, Bible/book material, and other approved site content provide the product's own teaching and contextual material.
-3. **Canonical Shelf Statement of Faith** — the doctrinal ceiling. Other Christian or scholarly positions may be explained accurately, but the model may not establish a contrary position as Canonical Shelf doctrine.
-4. **Canonical Shelf theology policy and vetted research** — evidence labels, interpretive boundaries, declared LGBTQ position, queer-reception material, and vetted source metadata govern disputed claims.
+1. **Berean Standard Bible (BSB)** — Scripture quotation authority.
+2. **Current Canonical Shelf content** — Course, Topics, glossary, Bible/book/reference content.
+3. **Compact Statement of Faith** — public doctrinal ceiling for claims labeled Canonical Shelf doctrine.
+4. **Supplemental long-form belief context** — lower-authority elaboration for the Theologian only.
+5. **Theology policy and vetted research** — evidence labels, interpretive boundaries, learner agency, translation differences, and source metadata.
 
-The evidence discipline is mandatory: distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, Canonical Shelf position, and application; label contested evidence; do not turn lexical shortcuts into doctrine; represent significant non-affirming Christian interpretations accurately without displacing Canonical Shelf's stated affirming position.
+Public Statement of Faith source:
 
-## Canonical theology sources
+`content/statement/statement-of-faith-compact.md`
 
-The author-maintained sources are:
+Supplemental long-form Theologian context:
 
-- `content/statement/statement-of-faith-v3.md`
-- `content/theology/policy.json`
-- `content/theology/sources.json`
+`content/statement/statement-of-faith-v3.md`
 
-`scripts/publish-theology.mjs` deterministically publishes them to:
+`scripts/publish-theology.mjs` publishes them separately to:
 
 - `public/data/statement-of-faith.md`
+- `public/data/theologian-belief-context.md`
 - `public/data/theology-policy.json`
 - `public/data/theology-sources.json`
 
-Production validation rejects drift between the canonical and published copies.
+Production validation rejects drift between canonical/published policy and rejects promotion of the long-form belief context into the public Statement of Faith.
 
-## LGBTQ beliefs and argument framework
+## Interpretive foundation and learner agency
 
-Canonical Shelf's stated position remains affirming:
+Approved interpretive foundation:
 
-- LGBTQ people possess equal dignity and belonging.
-- Homosexual or bisexual orientation is not inherently sinful.
-- Renouncing LGBTQ orientation is not a condition of grace or Christian discipleship.
-- Faithful same-sex relationships and marriage may embody Christian virtue.
-- LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.
-- Relationships are evaluated by fidelity, consent, honesty, mutuality, equality, responsibility, self-control, care, dignity, and self-giving love rather than partner gender.
+> Scripture should be interpreted with serious attention to the biblical claims that God is love, salvation is grounded in God’s grace rather than human merit, and Jesus identifies love of God and love of neighbor as the greatest commandments through which the rest of the law is understood. Where Christians differ over the conditions, scope, or mechanics of salvation, those interpretations should be presented distinctly rather than treated as settled.
 
-The source research has been normalized into an explicit argument framework rather than copied as advocacy prose. The current framework covers:
+The learner is the decision-maker. The Theologian must:
 
-- **Sodom:** Genesis 19 is not a depiction of a consensual same-sex relationship; violence, domination, threatened gang rape, and failed hospitality are central. Ezekiel and Jesus supply additional canonical interpretation. Jude 7 prevents flattening the story into a claim that it has no sexual dimension at all.
-- **Leviticus 18/20:** the male-male prohibitions are real texts inside Israel's Holiness Code. Christian application requires both careful Hebrew exegesis and an account of covenant/law after Christ. `to'evah` must not be reduced to “ritual impurity only.”
-- **Romans 1–2:** Romans 1 belongs to Paul's larger argument about idolatry, desire, judgment, and the rhetorical turn toward the one who judges in Romans 2. Ancient sexual categories and modern orientation/covenantal-marriage categories are not identical. `para physin` cannot simply be glossed as “unusual,” and the text must not be restricted with certainty to pederasty, prostitution, or exploitation.
-- **`malakoi` / `arsenokoitai`:** the terms are historically and lexically more complicated than the modern orientation category “homosexual.” Their semantic range and social scope must be presented with appropriate uncertainty; neither term gets a one-word modern identity equivalent by decree.
-- **1 Timothy 1:** adjacency to enslavers can support inquiry into exploitation/coercion in the ancient social world, but list order does not prove that `arsenokoitai` means trafficking or exploitation.
-- **Jesus and love:** the Gospels do not record Jesus explicitly addressing same-sex relationships. His repeated teaching on love, mercy, faithfulness, and burdensome religious hypocrisy is relevant theological evidence, but silence alone does not decide the exegetical dispute; Matthew 19 remains a serious text in Christian marriage arguments.
-- **Law and grace:** Acts 15, Romans, and Galatians establish a changed covenantal relationship to Mosaic law for Gentile Christians. That requires theological interpretation rather than simple reenactment of the Israelite legal code, but it does not mean every Old Testament moral concern disappears.
-- **Fruit and relational ethics:** fruit-of-the-Spirit and love/faithfulness reasoning forms part of Canonical Shelf's theological synthesis for evaluating relationships by the same virtues. It is not a lexical proof of a disputed sexuality passage.
-- **Eunuchs and expanding belonging:** Deuteronomy 23, Isaiah 56, Acts 8, and Acts 10 contribute to a canonical pattern of widening covenant belonging. Ancient eunuchs are not treated as a direct equivalent of a modern LGBTQ identity.
-- **Grace and belonging:** orientation is not treated as a precondition that must be renounced before receiving grace or participating in Christian life. Grace texts govern the gospel context of the dispute without pretending to settle every lexical question by themselves.
+- distinguish biblical text, history, language, interpretation, reception history, doctrine, Canonical Shelf position, and application;
+- present materially different credible viewpoints where beliefs, manuscripts, lexical claims, interpretations, or translations differ;
+- explain why views differ and what evidence each uses;
+- label Canonical Shelf's position rather than impose it;
+- allow challenge/comparison/alternative exploration;
+- never make doctrinal agreement a condition of learning or receiving an answer;
+- preserve evidence-strength distinctions and avoid false balance.
 
-## Vetted research set
+## LGBTQ evidence discipline
 
-The source catalog now includes affirming, non-affirming, lexical, historical, commentary, and primary-source-oriented scholarship so the model does not depend on its own training memory for disputed claims. Representative sources include:
+Canonical Shelf's stated position is affirming. The source catalog also includes serious non-affirming scholarship and must represent those readings accurately.
 
-- Theodore W. Jennings, *Same-Sex Relations in the Biblical World*.
-- Benjamin H. Dunning, *Same-Sex Relations*.
-- Jeremy Punt, *Queer Bible Readings in Global Hermeneutical Perspective*.
-- James V. Brownson, *Bible, Gender, Sexuality*.
-- Dale B. Martin, *Arsenokoitai and Malakos: Meanings and Consequences* and *Sex and the Single Savior*.
-- Martti Nissinen, *Homoeroticism in the Biblical World*.
-- Robin Scroggs, *The New Testament and Homosexuality*.
-- Dan O. Via and Robert A. J. Gagnon, *Homosexuality and the Bible: Two Views*.
-- Richard B. Hays, *The Moral Vision of the New Testament*.
-- Robert A. J. Gagnon, *The Bible and Homosexual Practice*.
-- William Loader, *The New Testament on Sexuality*.
-- Saul M. Olyan on Leviticus 18:22 / 20:13.
-- Jacob Milgrom on Leviticus.
-- Robert Jewett and Joseph A. Fitzmyer on Romans.
-- Thomas K. Hubbard and Kenneth J. Dover for Greco-Roman source/history context.
-- BDAG, LSJ, HALOT, and BDB for lexical evidence.
-- Bruce Metzger for translation history.
-- Matthew Vines as an accessible contemporary affirming synthesis.
+Required cautions include:
 
-Each source record states both what it can support and its limits. Non-affirming sources are intentionally present so serious competing interpretations can be described accurately rather than caricatured.
+- Genesis 19 cannot be flattened into a consensual same-sex relationship; violence/domination/rape/hospitality are central, while Jude prevents claiming the story has no sexual dimension.
+- Leviticus 18/20 contain actual male-male prohibitions inside the Holiness Code; Christian application requires contextual/covenantal interpretation and `to'evah` must not be reduced to “ritual impurity only.”
+- Romans 1 belongs to the wider idolatry/desire/judgment/Romans 2 argument; the text must not be restricted with certainty to pederasty, prostitution, or exploitation.
+- `malakoi` / `arsenokoitai` are lexically/historically more complicated than a one-word modern orientation identity.
+- 1 Timothy list adjacency does not prove `arsenokoitai` means trafficking/exploitation.
+- Jesus' love/mercy/faithfulness teaching is relevant theological evidence, but silence does not by itself settle the sexuality dispute.
+- Acts 15/Romans/Galatians require theological interpretation of Mosaic law after Christ rather than simple reenactment, without erasing every Old Testament moral concern.
+- fruit/relational ethics inform theological synthesis but are not lexical proofs of disputed passages.
+- eunuch/belonging texts contribute to a widening-belonging pattern but ancient eunuchs are not treated as direct modern LGBTQ equivalents.
 
-## Privacy and storage
+## Conversation, state, and privacy
 
-- The browser sends the current question and current user-facing route to `/api/theologian`.
-- The Worker retrieves BSB, site content, Statement of Faith, policy, and source metadata from first-party static assets.
-- Canonical Shelf does **not** write Theologian conversations to D1, KV, Durable Objects, account sync, or another Canonical Shelf server-side store.
-- The initial cloud implementation is stateless per request.
-- Journal content, profile data, progress history, and account data are not sent as model context.
-- The response uses `Cache-Control: no-store`.
-- The question and selected grounding context are nevertheless processed remotely by Cloudflare Workers AI; the feature should not be described as device-local AI.
+The learner-facing Theologian is a multi-turn chat. The active chat may persist **locally in the browser** so the conversation remains visible/contextually useful across ordinary route changes and reloads until the learner chooses **New chat** or clears local browser storage.
+
+Canonical Shelf does **not** write Theologian conversation text to D1, KV, Durable Objects, account sync, Journal, Feedback, or analytics.
+
+Cloud requests may include:
+
+- current question;
+- bounded recent conversation excerpt;
+- current learner-facing route/activity label;
+- allowlisted study-state summary such as aggregate completion, review-due count, or recent-study labels when useful for state awareness.
+
+They must not include Journal text, lesson notes, reflection writing, profile/account identifiers, feedback content, or inferred theological beliefs. Study-state context is not theological evidence.
+
+The question and selected grounding context are remotely processed by Cloudflare Workers AI; the feature is not device-local AI. Responses use no-store semantics where applicable.
 
 ## Runtime flow
 
-`question → first-party retrieval → bounded prompt → Workers AI synthesis → deterministic post-generation validation → learner response`
+`question + bounded recent chat + allowlisted study-state → first-party retrieval → bounded prompt → Workers AI synthesis → deterministic post-generation validation → learner response`
 
-The selected cloud model is `@cf/qwen/qwen3-30b-a3b-fp8`. The model may be replaced later; the authority, retrieval, evidence, privacy, and fallback contracts are model-independent.
+The selected model is currently `@cf/qwen/qwen3-30b-a3b-fp8`. The model may change; authority, evidence, privacy, learner-agency, and fallback contracts are model-independent.
 
-If Workers AI is unavailable, its binding is missing, the request fails, or validation rejects the generated answer, the UI retains the deterministic Theologian response. Cloud synthesis is therefore an enhancement rather than a single point of failure.
+If Workers AI is unavailable, the binding is missing, the request fails, or policy validation rejects the generated answer, the UI uses the deterministic Theologian fallback.
 
 ## Mastery protection
 
-During scored/mastery work the model may define terms, explain context, identify evidence, compare interpretations, and scaffold reasoning. It must not select or reveal the assessed answer. Existing deterministic mastery protection remains authoritative.
+During scored/mastery work the Theologian may define terms, explain context, identify evidence, compare interpretations, and scaffold reasoning. It must not select or reveal the assessed answer. Personal theological assent is never scored.
 
 ## Implementation surfaces
 
 - `worker/theologian-ai.ts` — trusted retrieval, prompt assembly, Workers AI call, validation.
-- `worker/index.ts` — `/api/theologian` plus deployment-health endpoint.
-- `scripts/write-wrangler.mjs` — Workers AI binding and release identity.
-- `public/theologian-cloud.js` — progressive cloud enhancement.
+- `worker/index.ts` — `/api/theologian` and health endpoint.
+- `public/theologian-chat.js` — traditional multi-turn chat, local persistence, state-aware bounded context, cloud/fallback UI.
+- `public/theologian-cloud.js` — direct cloud request transport.
 - `public/theologian.js` — deterministic evidence-aware fallback.
-- `scripts/test-theologian-cloud.mjs` — BSB/site/Statement/LGBTQ grounding and rejection fallback tests.
-- `scripts/publish-theology.mjs` — deterministic publication of canonical theology data.
+- `content/theology/policy.json` — authority, interpretive foundation, learner agency, evidence/doctrinal states.
+- `scripts/test-theologian-cloud.mjs` — prompt/authority/agency/mastery/prohibited-overstatement tests.
+- `scripts/validate-learner-content-reachability.mjs` — publication/privacy/chat-context contract.
+- `scripts/verify-deployment.mjs` — live post-deploy cloud inference smoke gate.
 
-This document is authoritative for continuity but remains editable by later approved decisions. It does not create an immutable design or theology lock.
+This runtime reference is editable by later approved decisions and does not create an immutable theology or implementation lock.

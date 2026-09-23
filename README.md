@@ -1,301 +1,141 @@
 # The Canonical Shelf
 
-**Canonical Shelf** is a self-paced Bible-literacy, Scripture-reading, and Christian-study application for adult learners. It is designed to help a learner understand the Bible as a library, read texts in context, build durable biblical knowledge, evaluate interpretations and evidence, understand Christian doctrine and disagreement, and eventually investigate unfamiliar questions independently.
+**Canonical Shelf** is an offline-capable Bible-literacy, Scripture-reading, Christian-study, and reference application for adult learners. It teaches the Bible as a library, develops durable biblical knowledge and interpretive reasoning, makes evidence/limits visible, presents Christian disagreement responsibly, and supports independent investigation rather than permanent dependence on lessons.
 
-The current application uses the v7/current architecture, retains the strongest learner-facing ideas from earlier versions, and does not restore the bridge/runtime debt of the historical v5 implementation.
+> **Release status:** PR #24 is the sole active convergence/release candidate and remains draft until the current head passes `bun run verify` and the applicable human visual, accessibility, editorial/theological, and novice-usability gates. A GitHub Actions job that receives no runner and executes zero steps is infrastructure failure, not validation evidence.
 
-> **Release status:** automated verification is a release gate, not a substitute for human review. Editorial/theological, novice-usability, physical-device, and manual-accessibility reviews remain separate evidence classes and must not be represented as passed without evidence.
+## Product model
 
-## Current product model
+Primary destinations:
 
-The five primary destinations are:
+1. **Home** — shelf-first orientation, continuation, and routes into the rest of the product.
+2. **Course** — six-course guided curriculum and scored learning.
+3. **Bible** — 66-book shelf, book profiles, chapters, BSB reader, and Bible-specific context.
+4. **Topics** — curated reference and question-driven investigation outside completion.
+5. **Practice** — retrieval, spaced review, mastery reinforcement, and learning games; not a second curriculum.
 
-1. **Home** — orientation, progress, and continuation.
-2. **Course** — six-course guided curriculum and scored learning activities.
-3. **Bible** — 66-book bookshelf, book profiles, chapters, Scripture reader, search, and Bible-specific study context.
-4. **Topics** — curated reference material outside course completion.
-5. **Practice** — retrieval, spaced review, mastery reinforcement, games, and related practice modes; not a second curriculum.
+Supporting capabilities include Search, Progress, optional Account/Profile sync, appearance themes, Journal, **Feedback & reviews**, and **Theologian**.
 
-Supporting capabilities include Search, Progress, Account/Profile, appearance themes, Feedback, Journal Notes, and the Theologian.
+## Learning model
 
-## Six-course curriculum
+Canonical Shelf uses a **questions-first spiral**: difficult doctrinal and interpretive questions are introduced early, revisited where evidence naturally appears, investigated with better interpretive tools, and synthesized later. Assessment evaluates understanding and reasoning, never theological assent.
 
-Canonical Shelf uses a **questions-first spiral**. Important doctrinal and difficult questions are introduced early enough to motivate an adult learner, revisited where their biblical and historical evidence naturally appears, investigated with stronger interpretive tools, and synthesized later. The curriculum does not hide difficult questions until the final course, and it does not force confidence before the learner has the context needed to evaluate a claim responsibly.
+Current generated curriculum counts are descriptive runtime data and may evolve. They are not long-term verification constants. Stable activity identity, deterministic scoring for completion-bearing work, learner-state preservation, spaced review behavior, and separation of reflection from scored completion are durable contracts.
 
-### 1. Bible & Christianity: Foundations
+## Experience / architecture
 
-A rigorous adult-beginner map of Christianity, the Bible, transmission and translation, interpretation, theology, practice, traditions, the biblical story, and the major questions the curriculum will revisit.
+`public/canonical-shelf.css` is the shared visual-system authority. Feature CSS may own feature-specific composition but should not create a competing destination-wide design system.
 
-Estimated active first-pass study: **6–8 hours**.
+The current selected direction uses scholarly typography, bookish geometry, graphite/chrome structure, bright gilt as a signal, semantic Bible-category colors, and a reader-first paper surface for Scripture.
 
-### 2. Israel: Exodus, Covenant, Temple & Prophetic Hope
+Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Cross-destination navigation uses normal document navigation; bounded same-route detail changes may use History API enhancement.
 
-Egypt and Exodus, Sinai and covenant, tabernacle and Ark, sacrifice and sacred time, land and monarchy, Temple, prophets, exile, restoration, and unresolved hope.
+The architecture intentionally excludes broad MutationObserver repair, duplicate top-level renderers, `locked-*` post-render patches, `public/library-system.js`, and `public/library-system-refinements.css`.
 
-Estimated active first-pass study: **7–10 hours**.
+## Theologian
 
-### 3. From Exile to Jesus: The Second Temple World
+Theologian is Canonical Shelf's conversational biblical/theological study assistant.
 
-Persian, Hellenistic, Hasmonean, Herodian, and Roman contexts; Jewish institutions and diversity; apocalyptic and resurrection expectations; and the world surrounding the Gospels.
+Response paths:
 
-Estimated active first-pass study: **5–7 hours**.
+1. **Cloudflare Workers AI synthesis** when available.
+2. **Deterministic evidence-aware fallback** when cloud inference is unavailable or rejected.
+3. **Deterministic crisis safety response** before ordinary AI generation when credible first-person suicide/self-harm indicators appear.
 
-### 4. Jesus, the Gospels & the Early Church
+Authority order:
 
-The four Gospels, Jesus' kingdom and teaching, passion and resurrection, Ascension, Pentecost, Acts, Paul, Gentile inclusion, and earliest Christian communities.
+1. bundled Berean Standard Bible for Scripture text/quotation;
+2. current Course/Topics/glossary/Bible/reference content;
+3. compact Statement of Faith as Canonical Shelf doctrinal ceiling;
+4. supplemental long-form belief context as lower-authority Theologian context;
+5. theology policy + vetted scholarship/traditions as attributed evidence.
 
-Estimated active first-pass study: **7–10 hours**.
-
-### 5. How We Know: Interpretation & Evidence
-
-Textual transmission, translation theory, genre, intertextuality, Gospel and letter study, historical context, lexical evidence, competing interpretations, confidence, and accountable independent interpretation.
-
-Estimated active first-pass study: **6–9 hours**.
-
-### 6. Christian Theology, Traditions & Synthesis
-
-God and Christ, humanity/sin/salvation, providence, Church and practice, Christian traditions, contested texts and difficult questions, resurrection, judgment, and final hope—using the foundations developed across Courses 1–5.
-
-Estimated active first-pass study: **6–9 hours**.
-
-Current target/runtime contract:
-
-- **6 courses**
-- **44 scored units**
-- **117 guided lessons**
-- **119 mastery/capstone activities**
-- **236 scored activities**
-- **12 recurring difficult-question/doctrinal threads**
-- **45 curated Topics** outside completion
-- replayable non-scored Orientation
-- inherited stable lesson/mastery IDs preserved
-
-The historical 25-unit / 70-lesson / 69-mastery / 139-activity values remain migration baselines, not current curriculum ceilings.
-
-## Learning architecture
-
-Guided learning is progressive and interactive rather than a collection of long lecture pages. Scene roles may include:
-
-**Orient → Prepare → Read → Explain → Visualize → Compare → Context → Practice → Retention → Reflect → Continue**
-
-The exact sequence depends on the learning task. Assessment can use ordering, matching, classification, evidence selection, reconstruction, scenarios, argument mapping, comparison, interpretation distinctions, reflection, and synthesis. Scored work evaluates understanding and reasoning rather than requiring theological assent.
-
-### Study Focus
-
-Lessons and mastery activities enter **Study Focus**, which uses the current library-system design:
-
-- human-facing Course / Unit / lesson identity rather than technical IDs;
-- a thin vertical dot progress rail;
-- a light editorial reading/interaction surface;
-- an attached dark **Session Notes** panel;
-- contextual collapsible vocabulary, passage, evidence, deeper-study, interpretive-limit, and source material;
-- **Journal Notes** and **Feedback** actions that temporarily use the side panel;
-- deliberate-open contextual Theologian rather than a floating overlay;
-- responsive recomposition for narrower/shorter viewports.
-
-Current activity/step identifiers remain internal. Learner-facing copy may say a journal entry or feedback submission is tied to the current study activity without exposing the identifier.
-
-### Mastery and retention
-
-- Every scored unit has authored mastery.
-- Every course has a cumulative capstone.
-- Inherited mastery IDs remain valid.
-- Spaced review uses **1 → 3 → 7 → 14 → 30 → 60 days** unless later evidence supports a better interval.
-- Completion, retention, mastery, and review-due state remain distinct.
-
-## Bible
-
-Canonical Shelf includes an embedded local copy of the **Berean Standard Bible (BSB)** as the canonical Scripture corpus used by the application and Theologian quotation layer.
-
-The Bible destination provides:
-
-- a proportional **66-book bookshelf**;
-- canonical-category color coding;
-- full book-name reveal on desktop hover/focus;
-- first-touch name reveal on touch/mobile before deliberate open;
-- book profiles and reading paths;
-- chapter reading and reference lookup;
-- local word/phrase search;
-- canon/timeline and other Bible-context surfaces.
-
-The current Bible reader uses a **light reading surface** with an attached charcoal **Book Notes** panel. Book Notes use collapsible sections such as At a glance, People & setting, Group & themes, Where to start, and Reader links.
-
-The bundled BSB remains available offline from `public/data/corpus.txt`.
-
-## Topics
-
-Topics are authored reference, not a parallel course and not part of completion. Topic reading uses a light reference surface with an attached charcoal contextual panel for metadata, search language, Scripture/course connections, evidence, and related exploration.
-
-The glossary is generated from lesson vocabulary and is discoverable through the Topics/reference layer and global search.
-
-## Practice
-
-Practice reinforces material already encountered. It includes recommended spaced review and the application's existing mastery, campaign, arcade/game, interpretation, themes, verse-library, rank/achievement, and related reinforcement surfaces where applicable.
-
-Practice should follow **challenge → feedback → state change → next challenge**, and correct/incorrect feedback should communicate the result without showing contradictory simultaneous success/error states.
-
-## Visual system and themes
-
-The approved default/reference theme is an **editable flat library system**, documented in `docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md`.
-
-Default/reference visual grammar:
-
-- masthead charcoal `#24272d`;
-- secondary/menu charcoal `#31353c`;
-- white/ivory primary reading surfaces;
-- restrained cool-neutral structural colors;
-- sparse antique gilt `#c7a253`;
-- serif editorial/content typography;
-- sans-serif interface typography;
-- monospace only for genuine technical metadata;
-- no decorative gradients in the reference theme;
-- no default red/brown/tan cast;
-- no generic SaaS dashboard treatment or unnecessary card-within-card nesting.
-
-Appearance packages remain selectable from **Profile / Account**. Existing optional themes such as Heritage, Oxblood, Illuminated Jewel, Slate & Linen, and Bookshelf Spectrum may intentionally use their own palettes. Theme choice affects presentation, not curriculum meaning, progress, assessment, or theology.
-
-The baseline is authoritative for continuity but intentionally editable when a later owner-approved decision supersedes it.
-
-## Journal Notes and Feedback
-
-Journal Notes are private, persistent, unscored learner-owned writing tied to the material being studied. Lesson Journal Notes are tied to the current study activity. Context should be described to the learner in human terms rather than exposing technical activity IDs.
-
-Feedback is available throughout the product. Feedback can attach current route/activity/build context internally; submitted feedback history is not exposed as a learner-facing content library. Offline/failed submissions can queue locally and retry.
-
-A consolidated Profile → Journal browsing/index experience and additional Bible/Topic-linked Journal entry points should only be documented as implemented once their runtime paths are present and validated.
-
-## Ask the Theologian
-
-The Theologian now has two layers:
-
-1. **deterministic evidence-aware fallback** — existing bounded retrieval/evidence logic;
-2. **Cloudflare Workers AI conversational synthesis** — a remote model turns first-party retrieved evidence into a more natural answer when available.
-
-No model weights are downloaded to the learner's device.
-
-### Authority order
-
-1. **Berean Standard Bible** — canonical Scripture text/quotation source.
-2. **Canonical Shelf site content** — Course, Topics, glossary, Bible/book/reference content.
-3. **Statement of Faith** — doctrinal ceiling.
-4. **Theology policy + vetted research** — evidence labels, interpretive boundaries, source metadata, LGBTQ arguments/research, and serious competing interpretations.
-
-The model is a synthesis layer, not an independent theological authority. Post-generation validation can reject a cloud answer and retain the deterministic response.
-
-### LGBTQ research / evidence discipline
-
-Canonical Shelf's stated position is affirming. The canonical theology policy includes an explicit argument framework for Sodom, Leviticus, Romans 1–2, `malakoi`/`arsenokoitai`, 1 Timothy, Jesus/love, law/grace, fruit/relational ethics, eunuchs/belonging, and grace/belonging.
-
-The source catalog includes affirming and non-affirming scholarship, critical commentaries, lexicons, historical studies, and primary-source-oriented works. Claims are stored with what the source can support and its limits. The runtime specifically prevents common overstatements such as reducing Romans 1 exclusively to pederasty/exploitation, assigning one certain modern meaning to `arsenokoitai`, reducing `to'evah` to ritual impurity only, or mapping ancient eunuchs directly onto modern LGBTQ identity.
-
-Canonical theology sources:
+Canonical theology files:
 
 ```text
+content/statement/statement-of-faith-compact.md
 content/statement/statement-of-faith-v3.md
 content/theology/policy.json
+content/theology/crisis-policy.json
 content/theology/sources.json
 ```
 
-Published runtime copies are regenerated deterministically under `public/data/`.
+### Learner agency
 
-### Privacy
+**Learner agency is a hard requirement. The learner remains the decision-maker.** Theologian informs, compares, contextualizes, challenges reasoning, distinguishes text/evidence/interpretation/reception/doctrine/application, surfaces material translation/viewpoint differences, labels Canonical Shelf's own position, and does not pressure agreement where an issue is genuinely contested.
 
-The browser sends the current question and user-facing route to `/api/theologian`. The Worker retrieves trusted first-party evidence. Canonical Shelf does not persist Theologian conversation text to D1, KV, Durable Objects, or account sync, and it does not send Journal/profile/progress/account data as model context. Workers AI is remote processing, so this feature must not be described as device-local AI.
+### Conversation privacy
 
-See `docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md`.
+The active Theologian transcript may persist locally in the browser until **New chat** or browser-data clearing. Normal cloud requests may include the current question, bounded recent conversation, route/activity, and allowlisted aggregate study-state context.
 
-## Statement of Faith and About
+Journal text, lesson notes, optional reflections, profile/account identifiers, feedback content, and inferred beliefs/identity are excluded. Ordinary chat is not persisted server-side merely because it is sent for inference.
 
-The Statement of Faith is user-facing under **About → Statement of Faith** (`/about.html#faith`) and is linked from the footer. Its canonical source is `content/statement/statement-of-faith-v3.md`.
+## Response review and feedback
 
-About also owns methodology, Scripture/interpretation posture, translation, accessibility, privacy, and related institutional/reference information rather than competing with the five primary learning destinations.
+A Theologian answer can be flagged for review or challenged with another interpretation. A submitted review stores only bounded relevant context. Journal/private reflections, unrelated chat history, inferred beliefs, and account/profile data are not automatically attached.
 
-## Offline-first and learner state
+Feedback follows an **accept-and-normalize** rule: unknown/custom categories and reasons, blank explanations, and short explanations remain valid submissions rather than being rejected by a taxonomy.
 
-Core Bible/Course/Topics/Practice content, learner state, theme preferences, search, and deterministic Theologian evidence are local/offline-capable according to the PWA cache/runtime contract. Cloud synthesis naturally requires network access, but its failure does not remove the deterministic Theologian path.
+Anonymous users can receive reviewer responses without providing identity. A browser-scoped identifier is transformed into a one-way routing key for persistence; IP address is not used as feedback identity. The learner can forget the browser link.
 
-Learner state is local-first in IndexedDB. Optional accounts provide sync/backup/recovery using Better Auth, passkeys, and Cloudflare D1 while retaining stable local identity/state semantics.
+## Crisis / pastoral safety
 
-Stable activity IDs—not mutable display placement—anchor inherited progress compatibility.
+The deterministic crisis layer precedes normal Workers AI generation. Credible risk can route the learner to emergency care and U.S. 988 support while remaining conversational, encouraging nearby trusted human help, and allowing pastoral support or prayer without substituting them for urgent safety action.
 
-## Architecture
+Public disclosure: `/safety.html`.
 
-### Browser
+## Privacy / policy surfaces
 
-- semantic HTML;
-- modular vanilla JavaScript;
-- CSS custom properties and destination-specific experience layers;
-- IndexedDB learner state;
-- native History API routing;
-- service-worker PWA caching;
-- generated curriculum/glossary/topic data;
-- Cloud Theologian progressive enhancement over deterministic fallback.
+Public policy surfaces:
 
-### Cloudflare Worker
+- `/privacy.html` — Privacy Policy
+- `/data-retention.html` — Data Retention Policy
+- `/storage.html` — Cookies & Local Storage
+- `/terms.html` — Terms of Use
+- `/safety.html` — Theologian Safety
 
-- static assets binding;
-- Better Auth and passkeys;
-- D1 account/sync/feedback persistence;
-- Workers AI binding for Theologian synthesis;
-- `/api/health` release/binding identity endpoint;
-- canonical production target `the-canonical-shelf`.
+Current posture includes local-first guest use, optional account/passkey sync, no personal-data sale, no targeted advertising, and no advertising pixels or behavioral analytics trackers.
 
-## Deterministic content generation
+## Learner corpus / `llms.txt`
 
-Authoritative source content is regenerated into runtime artifacts rather than maintained by hand:
+`content/learner-content-reachability.json` owns learner-facing UI paths and `llms.txt` disposition.
+
+`public/llms.txt` is generated. It represents substantive learner-facing curriculum/reference/editorial/legal/privacy/safety content while linking the full BSB corpus rather than duplicating it. Supplemental long-form belief context is excluded as a standalone public authority, and private learner/account/feedback records, secrets, tests, plans, and implementation/governance material are excluded.
+
+## Deterministic generation
+
+Canonical inputs include:
 
 ```text
-content/curriculum/               curriculum source
-content/statement/                Statement of Faith
-content/theology/policy.json      theology/interpretation policy
-content/theology/sources.json     vetted source catalog
-content/vendor/legacy/            admitted legacy snapshot / BSB source
+content/curriculum/
+content/statement/
+content/theology/
+content/learner-content-reachability.json
+content/vendor/legacy/
+public/index.html
 ```
 
-Generation publishes:
+Generated/published outputs include route-owned documents and the current catalog, curriculum reference, theology data, BSB corpus, and `llms.txt`.
 
-```text
-public/data/catalog.json
-public/data/curriculum.md
-public/data/statement-of-faith.md
-public/data/theology-policy.json
-public/data/theology-sources.json
-public/data/corpus.txt
-public/llms.txt
-```
+## Development / verification
 
-`public/llms.txt` is generated and freshness-validated rather than hand-maintained.
-
-## Development
-
-Requirements:
-
-- **Bun 1.2.15**
-
-Install:
+Requirement: **Bun 1.2.15** is the CI reference version.
 
 ```bash
 bun install --frozen-lockfile
-```
-
-Common commands:
-
-```bash
-bun run build
+bunx playwright install chromium
 bun run verify
-bun run verify:full
-bun run validate:curriculum-spiral
-bun run test:theologian
-bun run generate:llms
-bun run generate:wrangler
-bun run validate:cloudflare
-bun run serve
-bun run test:e2e
 ```
 
-`bun run verify` is the prelaunch code/state gate. `bun run verify:full` includes the deeper assessment and cross-browser E2E/accessibility release audit.
+`bun run verify` is the single repository merge/release gate. It performs current generation/build, immutable BSB integrity, a small grouped product/template contract, behavior-level assessment/state/sync/feedback/Theologian/crisis tests, and a small Chromium browser smoke for core routes, utilities, responsive overflow, and serious/critical automated accessibility failures.
 
-## Production deployment
+Verification intentionally does **not** freeze exact copy, source line numbers, CSS values, theme names, styling classes, historical layouts/screenshots, evolving curriculum counts, internal table names, prompt wording, hash lengths, clipping thresholds, or other replaceable implementation details.
+
+See [`docs/VERIFICATION_CONTRACT.md`](docs/VERIFICATION_CONTRACT.md) for the durable testing rules.
+
+Cloudflare configuration validation and live post-deployment verification are separate infrastructure contracts. Human visual/accessibility/editorial/novice review remains separate from automated verification.
+
+## Production
 
 Canonical production URL:
 
@@ -303,58 +143,20 @@ Canonical production URL:
 https://the-canonical-shelf.christopherwonder.workers.dev
 ```
 
-Worker name: `the-canonical-shelf`  
-D1 database name: `canonical-shelf`
+Worker: `the-canonical-shelf`  
+D1: `canonical-shelf`
 
-Production uses **Cloudflare Workers Static Assets + Worker + D1 + Workers AI**.
+A production release runs the durable verification gate, validates the exact Cloudflare configuration, applies D1 migrations, deploys the canonical Worker/assets, and then verifies the live release/bindings/routes/policy resources/offline behavior/Theologian. Deployment is separate from ordinary development verification.
 
-Required deployment values:
+## Governance
 
-```text
-CLOUDFLARE_API_TOKEN
-CLOUDFLARE_ACCOUNT_ID
-D1_DATABASE_ID
-BETTER_AUTH_URL
-BETTER_AUTH_SECRET
-```
+Current release authority:
 
-`wrangler.jsonc` is generated from `scripts/write-wrangler.mjs`; it is not an independently maintained production source of truth.
+- **#24** — sole active release/convergence PR until merged.
+- **#20** — superseded independent merge candidate.
+- **#22** — superseded implementation; desired behavior preserved without its repair architecture.
+- **#23** — superseded independent merge candidate; learner-corpus behavior absorbed through current generation/reachability.
 
-The production workflow permanently guards the target by:
-
-1. running prelaunch verification;
-2. generating Wrangler configuration;
-3. verifying exact Worker name/origin, asset routing, D1, AI binding, and release SHA;
-4. applying remote D1 migrations;
-5. deploying the exact canonical Worker;
-6. calling `/api/health` to verify the live release SHA and required bindings;
-7. smoke-testing direct navigation to `/`, `/course`, `/bible`, `/topics`, and `/practice` plus critical generated content.
-
-PR CI additionally performs the full release audit and a Wrangler dry-run so a deployable branch is proven before merge.
-
-See `docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md`.
-
-## Current governance
-
-Current authority order for repository work:
-
-1. latest explicit owner decision;
-2. `AI_INSTRUCTIONS.md`;
-3. `docs/v7/DECISION_PRECEDENCE.md`;
-4. current approved/editable domain baselines such as the library-system and Theologian runtime docs;
-5. current canonical source/runtime contracts;
-6. older plans/audits as historical provenance when they conflict with newer decisions.
-
-Current key documents:
-
-```text
-AI_INSTRUCTIONS.md
-docs/v7/DECISION_PRECEDENCE.md
-docs/v7/LIBRARY_SYSTEM_DESIGN_BASELINE_2026-09-21.md
-docs/v7/PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md
-docs/v7/THEOLOGIAN_CLOUD_RUNTIME_2026-09-21.md
-docs/v7/DEPLOYMENT_CANONICAL_TARGET_2026-09-21.md
-docs/v7/DOCUMENTATION_AUDIT_2026-09-21.md
-```
-
-Historical v6 and restoration/delta documents remain useful provenance, but they do not override the current integrated baseline.
+Current project instructions: `AI_INSTRUCTIONS.md`  
+Verification authority: `docs/VERIFICATION_CONTRACT.md`  
+Decision history: `docs/v7/DECISION_PRECEDENCE.md`

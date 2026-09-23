@@ -1,0 +1,243 @@
+/*
+CANONICAL SHELF VISUAL CONTRACT
+
+Sole visual-system authority for the locked PR #24-derived design.
+Feature CSS may provide structure and feature-specific layout, but this file owns
+palette, typography, geometry, material treatment, component appearance, and the
+locked destination presentation.
+
+Locked selection:
+- scholarly typography
+- bookish geometry
+- graphite Home background
+- Home shelf hero, no global Home nav
+- Course volume shelf
+- Lesson side apparatus
+- Bible reader first, right-side notes
+- Topics editorial dossier
+- Practice compact dashboard
+- Theologian lower-right floating panel
+*/
+
+:root{
+  --ref-font-serif:Cambria,Charter,Georgia,'Times New Roman',serif;
+  --ref-font-sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --ref-font-mono:ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace;
+  --font-body:var(--ref-font-sans);
+  --font-reading:var(--ref-font-serif);
+  --font-display:var(--ref-font-serif);
+  --font-meta:var(--ref-font-mono);
+  --measure-reading:72ch;
+
+  --color-text-primary:#22252a;
+  --color-text-secondary:#62686d;
+  --color-surface-primary:#f2f3f2;
+  --color-surface-raised:#fffefb;
+  --color-surface-subtle:#e8e9e8;
+  --color-border-default:#c7cbce;
+  --color-accent-primary:#596d79;
+  --color-accent-secondary:#687269;
+  --color-focus:#376d9a;
+  --color-gilt:#ffc800;
+
+  --chrome:#24272d;
+  --chrome-2:#3e4551;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#ffffff;
+  --reader-ink:#303136;
+  --reader-edge:#d7d0c2;
+  --reader-leather:#3d2d28;
+  --reader-leather-2:#261c19;
+
+  --theme-radius:15px;
+  --control-radius:7px;
+  --theme-rule-width:1px;
+  --theme-shadow:0 18px 48px #0000001a;
+  --theme-soft-shadow:0 8px 24px #0000000d;
+  --space-xs:.5rem;
+  --space-sm:.75rem;
+  --space-md:1rem;
+  --space-lg:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+
+  --button-border:var(--color-text-primary);
+  --button-bg:transparent;
+  --button-text:var(--color-text-primary);
+  --button-primary-bg:var(--chrome);
+  --button-primary-text:#fff;
+  --nav-active-border:var(--color-gilt);
+  --guide-bg:var(--chrome-2);
+  --guide-border:#50565d;
+  --guide-shadow:0 22px 58px #0005;
+  --notice-border:var(--color-accent-primary);
+  --notice-bg:color-mix(in srgb,var(--color-surface-raised) 82%,transparent);
+  --progress-track:var(--color-surface-subtle);
+  --progress-fill:var(--color-accent-primary);
+
+  --study-chrome:var(--chrome);
+  --study-chrome-2:var(--chrome-2);
+  --study-chrome-text:var(--chrome-text);
+  --study-chrome-muted:var(--chrome-muted);
+  --study-folio:var(--color-surface-raised);
+  --study-folio-2:#f0f1f0;
+  --study-rule:var(--color-border-default);
+  --study-accent:var(--color-gilt);
+  --study-nav-bg:var(--color-surface-raised);
+
+  /* Canonical category colors are semantic and theme-independent. */
+  --canon-law:#274c8e;
+  --canon-history-ot:#8b5e34;
+  --canon-wisdom:#2c7a6b;
+  --canon-major-prophets:#6a3475;
+  --canon-minor-prophets:#bc8a1c;
+  --canon-gospel:#b7362c;
+  --canon-history-nt:#4f7c2a;
+  --canon-paul:#a8476b;
+  --canon-general:#455a75;
+  --canon-apocalypse:#26292f;
+
+  --home-bg:#252a30;
+  --home-bg-2:#30363d;
+  --home-bg-3:#343b43;
+  --home-text:#f4f3ee;
+  --home-muted:#c8ccd0;
+  --home-rule:#505860;
+  --home-shelf:#20252a;
+  --home-shelf-edge:#555d68;
+  --home-shelf-height:111px;
+  --home-shelf-depth:10px;
+}
+
+html[data-theme='scholarly-graphite'],html:not([data-theme]){
+  --color-text-primary:#22252a;
+  --color-text-secondary:#62686d;
+  --color-surface-primary:#f2f3f2;
+  --color-surface-raised:#fffefb;
+  --color-surface-subtle:#e8e9e8;
+  --color-border-default:#c7cbce;
+  --color-accent-primary:#596d79;
+  --color-accent-secondary:#687269;
+  --color-gilt:#ffc800;
+  --chrome:#24272d;
+  --chrome-2:#3e4551;
+}
+html[data-theme='cool-archive']{
+  --color-text-primary:#1f2933;--color-text-secondary:#637381;
+  --color-surface-primary:#eef2f4;--color-surface-raised:#fff;--color-surface-subtle:#e4e9ed;
+  --color-border-default:#c5cfd6;--color-accent-primary:#436782;--color-accent-secondary:#5f7f83;
+  --color-gilt:#d8b73f;--chrome:#1a2631;--chrome-2:#253542;
+}
+html[data-theme='blue-stone']{
+  --color-text-primary:#252936;--color-text-secondary:#686f80;
+  --color-surface-primary:#eff1f5;--color-surface-raised:#fdfdfe;--color-surface-subtle:#e4e7ed;
+  --color-border-default:#c7ccd6;--color-accent-primary:#536b97;--color-accent-secondary:#667c78;
+  --color-gilt:#d3b944;--chrome:#202633;--chrome-2:#2a3445;
+}
+html[data-theme='quiet-jewel']{
+  --color-text-primary:#242633;--color-text-secondary:#6b6978;
+  --color-surface-primary:#f2f1f5;--color-surface-raised:#fffefe;--color-surface-subtle:#e7e4ec;
+  --color-border-default:#cec9d5;--color-accent-primary:#5d638c;--color-accent-secondary:#4e7a77;
+  --color-gilt:#d5b83b;--chrome:#262735;--chrome-2:#333548;
+}
+
+html,body{background:var(--color-surface-primary);color:var(--color-text-primary)}
+body{font-family:var(--font-body)}
+h1,h2,h3,h4{font-family:var(--font-display)}
+.lede{font-family:var(--font-reading)}
+.eyebrow{font-family:var(--font-meta);color:var(--color-accent-primary)}
+.button,.search button,.account-open,.appearance-open,.progress-open,.guide-open,input,select,textarea{border-radius:var(--control-radius)}
+.card,.dashboard-card,.course-preview,.course-selector,.journey-unit-card,.book-profile-card,.topic-card,.glossary-card{border-radius:var(--theme-radius)}
+
+/* Shared chrome */
+.masthead{background:var(--chrome);color:var(--chrome-text);border-bottom-color:#3b4046}
+.masthead .brand{color:#fff}.masthead .brand>span:first-child{color:var(--color-gilt)}
+.masthead .search input{color:#fff;border-color:#8b9197}.masthead .search input::placeholder{color:#b9bec3}
+.masthead .search button,.masthead .account-open,.masthead .appearance-open,.masthead .progress-open{border-color:#737a81;color:#f7f7f4;background:transparent}
+.masthead .search button:hover,.masthead .account-open:hover,.masthead .appearance-open:hover,.masthead .progress-open:hover{background:var(--chrome-2)}
+.masthead .translation-control{color:#d3d6d8}.masthead .translation-control select{background:var(--chrome-2);color:#fff;border-color:#737a81}
+.primary{background:var(--chrome-2);color:#f7f7f4;border-bottom-color:#505762}.primary a{color:#fff}.primary a[aria-current='page']{border-color:var(--color-gilt)}
+
+/* HOME — locked graphite shelf-first destination. */
+body:has(.library-first-home){background:var(--home-bg)}
+body:has(.library-first-home)>.masthead,body:has(.library-first-home)>.primary{display:none}
+body:has(.library-first-home)>.pwa-status{color:var(--home-muted);margin:.55rem clamp(1rem,4vw,4rem) 0}
+body:has(.library-first-home)>main{max-width:none;padding:0;background:var(--home-bg);color:var(--home-text)}
+.library-first-home{display:grid;gap:10px;max-width:1280px;margin:auto;padding:clamp(18px,2.6vw,30px) clamp(18px,4vw,54px) 28px;color:var(--home-text)}
+.library-first-hero{display:grid;gap:10px;padding:0;border:0}
+.library-first-homehead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,60px);align-items:start;padding-bottom:12px;border-bottom:1px solid var(--home-rule)}
+.library-first-copy{display:grid;grid-template-columns:minmax(270px,.72fr) minmax(320px,1.15fr);gap:clamp(24px,4vw,54px);align-items:end;min-width:0}
+.library-first-copy h1{margin:0;max-width:8.5ch;font:600 clamp(42px,6.8vw,78px)/.93 var(--font-display);letter-spacing:-.025em;color:var(--home-text)}
+.library-first-copy h1 em{display:block;font-style:italic;font-weight:600;color:#c6cbd0}
+.library-first-copy .home-kicker{display:block;margin:0 0 11px;font:700 10.5px/1.25 var(--font-meta);letter-spacing:.14em;text-transform:uppercase;color:#aeb5ba}
+.library-first-copy .lede{margin:0 0 .2rem;max-width:54ch;color:var(--home-muted);font-size:clamp(16px,1.6vw,20px);line-height:1.5}
+.library-first-actions{display:flex;justify-content:flex-end;align-items:flex-start;gap:6px;flex-wrap:wrap;padding-top:2px}
+.library-first-actions a{display:inline-flex;align-items:center;min-height:34px;padding:.5rem .72rem;border:1px solid #59616a;border-radius:var(--control-radius);background:var(--home-bg-2);color:#fff;text-decoration:none;font-size:.74rem;font-weight:750}
+.library-first-actions a:hover{background:#3b424b}.library-first-actions a.is-primary{background:#f5f5f1;color:#24272d;border-color:#f5f5f1}
+.library-first-shelf-wrap{display:grid;gap:7px;padding:9px 11px 8px;border:1px solid #4d555e;border-radius:var(--theme-radius);background:var(--home-bg-2)}
+.library-first-shelf-row{display:grid;grid-template-columns:94px minmax(0,1fr);gap:9px;align-items:end}
+.library-first-shelf-label{display:block;margin:0;padding:0 0 10px;text-align:right;font:700 .58rem var(--font-meta);letter-spacing:.13em;text-transform:uppercase;color:#adb4ba}
+.library-first-shelf{height:var(--home-shelf-height);display:flex;align-items:end;gap:2px;padding:5px 10px 0;background:var(--home-shelf);border:0;border-bottom:var(--home-shelf-depth) solid var(--home-shelf-edge);box-shadow:inset 0 calc(var(--home-shelf-depth)*-1) 16px #0003;overflow:visible}
+.library-first-book{position:relative;display:block;flex:0 0 auto;width:clamp(7px,calc(6px + (var(--chapters) * .075px)),18px);height:clamp(46px,calc(46px + (var(--chapters) * .42px)),101px);background:var(--book,var(--canon-general));border:1px solid #ffffff20;border-radius:2px 2px 0 0;text-decoration:none;transform-origin:bottom;box-shadow:inset -1px 0 #ffffff18}
+.library-first-book[data-cat='law']{--book:var(--canon-law)}.library-first-book[data-cat='othist']{--book:var(--canon-history-ot)}.library-first-book[data-cat='wisdom']{--book:var(--canon-wisdom)}.library-first-book[data-cat='major']{--book:var(--canon-major-prophets)}.library-first-book[data-cat='minor']{--book:var(--canon-minor-prophets)}.library-first-book[data-cat='gospel']{--book:var(--canon-gospel)}.library-first-book[data-cat='nthist']{--book:var(--canon-history-nt)}.library-first-book[data-cat='paul']{--book:var(--canon-paul)}.library-first-book[data-cat='general']{--book:var(--canon-general)}.library-first-book[data-cat='apoc']{--book:var(--canon-apocalypse)}
+.library-first-book span{position:absolute;left:50%;bottom:calc(100% + 7px);translate:-50% 4px;opacity:0;pointer-events:none;background:#11171d;color:#fff;border:1px solid #515a62;padding:4px 6px;white-space:nowrap;font:700 .6rem var(--font-body);z-index:4}
+.library-first-book:hover,.library-first-book:focus-visible{transform:translateY(-5px);filter:brightness(1.14);z-index:3}.library-first-book:hover span,.library-first-book:focus-visible span{opacity:1;translate:-50% 0}
+.library-first-bookend-space{flex:1;min-width:72px}.library-first-bookend{width:14px;height:70%;margin-left:8px;background:linear-gradient(90deg,#9e7e00,var(--color-gilt),#9e7e00);transform:skewY(-3deg);box-shadow:2px 2px 6px #0005}
+.library-first-shelf-note{display:none}
+.library-first-cards{display:grid;grid-template-columns:1.2fr .8fr;gap:8px}.library-first-card{min-height:72px;padding:11px 14px;border:1px solid #505860;border-radius:var(--theme-radius);background:var(--home-bg-3);color:var(--home-text)}.library-first-card h2{margin:.08em 0 .18em;font-size:1.2rem;color:#fff}.library-first-card p{margin:.2em 0;color:var(--home-muted);font-size:.76rem}.library-first-card .eyebrow{color:#aeb5ba}.library-first-card a{color:#fff}.library-first-progress{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:.68rem;color:#bbc1c6}.library-first-progress span{padding-top:6px;border-top:1px solid #59616a;min-width:100px}.library-first-progress strong{color:#fff}
+.library-entry-map{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid #505860;border-radius:var(--theme-radius);overflow:hidden;background:#505860}.library-entry-map a{min-height:74px;padding:11px 14px;border:0;background:#30363d;color:#fff;text-decoration:none}.library-entry-map a:hover{background:#3a4149}.library-entry-map small{display:block;margin:0 0 3px;font:700 .58rem var(--font-meta);letter-spacing:.11em;text-transform:uppercase;color:#aeb5ba}.library-entry-map strong{display:block;margin:0 0 2px;font:600 1rem var(--font-reading);color:#fff}.library-entry-map span{display:block;font-size:.7rem;line-height:1.38;color:#c8ccd0}
+.library-first-recent{padding-top:8px;border-top:1px solid #505860}.library-first-recent .eyebrow{color:#aeb5ba}.library-first-recent__items{display:flex;gap:6px;flex-wrap:wrap}.library-first-recent__items a{padding:6px 8px;border:1px solid #59616a;border-radius:var(--control-radius);background:#30363d;color:#fff;text-decoration:none;font-size:.72rem}
+
+/* COURSE — six physical volumes as the destination dashboard. */
+.course-volume-landing{padding-bottom:3rem}.course-volume-heading{padding:1rem 0 .8rem;border-bottom:1px solid var(--color-border-default)}.course-volume-heading h1{font-size:clamp(2.2rem,4.4vw,4rem);margin:.08em 0 .2em}.course-volume-heading .lede{font-size:1.02rem;max-width:66ch;color:var(--color-text-secondary)}
+.course-volume-shelf{height:clamp(340px,50vh,470px);display:flex;align-items:end;gap:8px;margin-top:18px;padding:28px 28px 17px;background:linear-gradient(180deg,#353b45,#2a2f37);border:1px solid #242a31;border-bottom:16px solid #555d68;border-radius:var(--theme-radius) var(--theme-radius) 4px 4px;box-shadow:inset 0 -18px 24px #0003}
+.course-volume{position:relative;display:flex;flex:1 1 0;min-width:78px;height:var(--volume-height,78%);padding:12px 10px;border:1px solid #ffffff25;border-radius:5px 5px 2px 2px;background:linear-gradient(90deg,#f8f8f5,#e7e8e5 14%,#fff 72%,#e1e3e1);color:#252a30;text-decoration:none;box-shadow:2px 3px 7px #0004;transform-origin:bottom;transition:transform .15s ease,filter .15s ease}
+.course-volume:nth-child(even){background:linear-gradient(90deg,#e4e8e9,#f8faf9 18%,#e2e6e6 76%,#d3d8da)}.course-volume:hover,.course-volume:focus-visible{transform:translateY(-7px);filter:brightness(1.03)}.course-volume[data-current='true']{background:linear-gradient(90deg,#526b78,#6f8792 18%,#526875 78%,#415560);color:#fff;transform:translateY(-10px);box-shadow:4px 9px 18px #0005}.course-volume__seq{font:700 .58rem var(--font-meta);letter-spacing:.12em;text-transform:uppercase;align-self:flex-start}.course-volume__title{position:absolute;inset:42px auto 42px 50%;writing-mode:vertical-rl;transform:translateX(-50%) rotate(180deg);font:600 clamp(.9rem,1.5vw,1.15rem) var(--font-reading);white-space:nowrap}.course-volume__status{position:absolute;left:9px;right:9px;bottom:10px;font-size:.62rem;line-height:1.25;color:inherit}.course-volume__status strong{display:block;font-family:var(--font-meta)}
+.course-volume-summary{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-top:12px;padding:12px 14px;border:1px solid var(--color-border-default);border-radius:var(--theme-radius);background:var(--color-surface-raised)}.course-volume-summary p{margin:.15rem 0;color:var(--color-text-secondary);font-size:.78rem}
+
+/* LESSON — side apparatus remains visible without competing with the reading task. */
+.study-focus{background:var(--study-chrome);border-radius:var(--theme-radius);box-shadow:var(--theme-shadow)}
+.study-focus__chrome{background:#303742}.study-layout{grid-template-columns:22px minmax(0,1fr) 300px}.study-folio{background:var(--study-folio)}.study-scene{padding:clamp(30px,4vw,52px);background:var(--study-folio)}.study-scene__inner{width:min(760px,100%)}.study-folio__head{background:var(--study-folio)}.study-scripture{background:var(--chrome-2);border-left-color:var(--color-gilt);padding:18px 20px}.study-scripture .eyebrow{color:var(--color-gilt)}.study-apparatus{background:#343b46;padding:14px}.apparatus-module{padding:13px 0}.apparatus-module summary::after{color:var(--color-gilt)}.scene-rail a[aria-current='step'] span{background:var(--color-gilt);border-color:var(--color-gilt)}.study-nav__track i{background:var(--color-gilt)}
+
+/* BIBLE — reader first. Compact shelf → view links → address → reader. */
+.bible-reader-shell{display:grid;gap:8px;padding-bottom:2rem}.bible-reader-heading{display:flex;justify-content:space-between;gap:24px;align-items:end;padding:.65rem 0 .4rem}.bible-reader-heading h1{font-size:clamp(2.2rem,4vw,3.6rem);margin:.05em 0}.bible-reader-heading p{max-width:62ch;margin:.25rem 0;color:var(--color-text-secondary)}
+.bible-reader-shelves{padding:8px 10px 0;border-radius:var(--theme-radius) var(--theme-radius) 0 0;background:#313741;color:#fff}.bible-reader-shelf-row{display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px;align-items:end}.bible-reader-shelf-label{padding-bottom:9px;text-align:right;font:700 .58rem var(--font-meta);letter-spacing:.12em;text-transform:uppercase;color:#c6cbd0}.bible-reader-shelf{height:92px;display:flex;align-items:end;gap:2px;padding:4px 9px 0;background:#262c33;border-bottom:8px solid #555d68}.bible-reader-shelf .library-first-book{max-width:15px}.bible-reader-shelf .library-first-bookend-space{min-width:55px}
+.bible-reader-nav{display:flex;gap:20px;padding:7px 11px;background:#313741;color:#fff;border-top:1px solid #ffffff10;overflow:auto}.bible-reader-nav a,.bible-reader-nav span{padding:4px 0;border-bottom:2px solid transparent;color:#fff;text-decoration:none;font:700 .6rem var(--font-meta);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}.bible-reader-nav a[aria-current='page']{border-color:var(--color-gilt)}.bible-reader-nav [aria-disabled='true']{opacity:.45}
+.bible-address-tools{display:grid;grid-template-columns:1.25fr .58fr .5fr .5fr auto;gap:6px;align-items:end;padding:9px 10px;border:1px solid var(--color-border-default);border-top:0;background:var(--color-surface-subtle)}.bible-address-tools label{display:grid;gap:2px;font:700 .57rem var(--font-meta);letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-secondary)}.bible-address-tools select,.bible-address-tools input{width:100%;min-width:0;background:var(--color-surface-raised);border:1px solid var(--color-border-default);padding:.55rem .6rem}.bible-address-tools .button{min-height:37px}
+.library-reader-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;align-items:start;margin-top:2px}.reader.scripture{max-width:820px;width:100%;margin:0 auto;padding:clamp(38px,6vw,70px);background:var(--reader-paper);color:var(--reader-ink);border:1px solid var(--reader-edge);border-radius:6px;box-shadow:0 20px 50px #00000022,0 2px 4px #0000000d;font-family:var(--font-reading)}.reader.scripture h1{font-size:clamp(2rem,4vw,3.2rem);text-align:center;color:var(--reader-ink)}.reader-utility{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#6a665f;font-family:var(--font-body);font-size:.72rem}.reader.scripture .verses{font-size:1.08rem;line-height:1.82}.reader.scripture .verses p{margin:.32rem 0}.reader.scripture .verses sup{padding-right:4px;font:700 .58rem var(--font-body);color:#7b746a}.reader.scripture .verses p:target,.reader.scripture .verses p[data-selected='true']{background:#fff4bf;box-shadow:0 0 0 3px #fff4bf}.chapter-nav{margin:1rem 0 1.35rem}.chapter-nav .button{border-radius:var(--control-radius)}.reader-footer{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #ded9cf}.library-reader-panel{position:sticky;top:1rem;border:1px solid var(--color-border-default);border-radius:var(--theme-radius);background:var(--color-surface-raised);box-shadow:none}.library-reader-panel>header{padding:14px 15px}.library-reader-panel details{border-top:1px solid var(--color-border-default)}
+.bible-closed-book{min-height:500px;display:grid;place-items:center;padding:38px}.bible-closed-book__cover{width:min(560px,80%);aspect-ratio:1.38;background:linear-gradient(135deg,var(--reader-leather),var(--reader-leather-2));border-radius:15px 22px 22px 15px;box-shadow:0 28px 58px #0005,inset 0 0 0 2px #ffffff08;display:grid;place-items:center;color:#d9c38b;font:600 clamp(1.6rem,4vw,2.5rem) var(--font-display);letter-spacing:.08em}.bible-closed-book__cover span{padding:20px 26px;border:1px solid #b59b62}
+
+/* TOPICS — editorial dossier rather than another card dashboard. */
+.topics-dossier{display:grid;gap:14px}.topics-dossier__head{display:flex;justify-content:space-between;gap:20px;align-items:end;padding:.75rem 0 .8rem;border-bottom:1px solid var(--color-border-default)}.topics-dossier__head h1{font-size:clamp(2.4rem,4.5vw,4.1rem);margin:.05em 0}.topics-dossier__head p{max-width:64ch;color:var(--color-text-secondary)}.topics-dossier__search{display:flex;gap:6px;max-width:760px}.topics-dossier__search input{flex:1;padding:.72rem .8rem;background:var(--color-surface-raised);border:1px solid var(--color-border-default)}.topics-dossier__body{display:grid;grid-template-columns:220px minmax(0,760px);gap:clamp(28px,5vw,60px);align-items:start}.topics-dossier__nav{position:sticky;top:1rem;border-top:2px solid var(--color-text-primary)}.topics-dossier__nav a{display:block;padding:10px 4px;border-bottom:1px solid var(--color-border-default);color:var(--color-text-secondary);text-decoration:none;font:700 .66rem var(--font-meta);letter-spacing:.08em;text-transform:uppercase}.topics-dossier__nav a[aria-current='page']{color:var(--color-text-primary)}.topics-dossier__questions{display:grid}.topics-dossier__question{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;padding:15px 0;border-bottom:1px solid var(--color-border-default);text-decoration:none}.topics-dossier__question>span:first-child{font:600 1.35rem var(--font-display);color:var(--color-accent-primary)}.topics-dossier__question strong{display:block;font:600 1.05rem var(--font-reading)}.topics-dossier__question small{display:block;margin-top:3px;color:var(--color-text-secondary);line-height:1.45}.topic-reference-layout{grid-template-columns:minmax(0,760px) 290px;gap:28px}.topic-reference-page{max-width:760px}.topic-reference-heading h1{font-size:clamp(2.1rem,4vw,3.6rem);max-width:15ch}.topic-section{padding:20px 0;background:transparent;border:0;border-top:1px solid var(--color-border-default)}.topic-section h2{font-size:1.45rem}.topic-section p,.topic-body-extra{font-family:var(--font-reading);font-size:1.04rem;line-height:1.72}.topic-context-panel{position:sticky;top:1rem;border-radius:var(--theme-radius)}
+
+/* PRACTICE — compact due-first dashboard. */
+.practice-dashboard{display:grid;gap:10px}.practice-dashboard__head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:.5rem 0 .55rem;border-bottom:1px solid var(--color-border-default)}.practice-dashboard__head h1{font-size:clamp(1.8rem,3vw,2.7rem);margin:0}.practice-dashboard__head p{margin:.2rem 0 0;max-width:60ch;color:var(--color-text-secondary);font-size:.84rem}.practice-dashboard__actions{display:flex;gap:6px;flex-wrap:wrap}.practice-dashboard__grid{display:grid;grid-template-columns:1.25fr .55fr .55fr;gap:10px}.practice-dashboard__card{padding:14px;border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-surface-raised)}.practice-dashboard__card h2{margin:.08em 0;font-size:1.9rem}.practice-dashboard__card p{color:var(--color-text-secondary);font-size:.76rem}.practice-dashboard__due{grid-row:span 2}.practice-review-list{display:grid;gap:1px;margin-top:9px;border:1px solid var(--color-border-default);background:var(--color-border-default)}.practice-review-row{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;background:var(--color-surface-raised);font-size:.72rem}.practice-dashboard__families{grid-column:2/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.practice-dashboard__families a{min-height:92px;padding:12px;border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-surface-raised);text-decoration:none}.practice-dashboard__families strong{display:block;font:600 1rem var(--font-reading)}.practice-dashboard__families small{display:block;margin-top:4px;color:var(--color-text-secondary)}
+
+/* THEOLOGIAN — lower-right floating launcher with bounded panel. */
+.guide-open{right:12px;bottom:22px;border-radius:999px;padding:10px 14px;background:var(--chrome);color:#fff;border-color:#59616a;box-shadow:0 8px 24px #0003;z-index:24}
+.guide{right:28px;top:auto;bottom:74px;width:min(400px,calc(100vw - 56px));height:min(640px,calc(100dvh - 110px));padding:14px 15px;border:1px solid var(--guide-border);border-radius:16px;background:var(--chrome-2);color:#fff;box-shadow:var(--guide-shadow)}
+.guide .guide-head{border-bottom-color:#ffffff1c}.guide .guide-head h2,.guide .guide-head button{color:#fff}.guide .theologian-chat{height:100%;min-height:0}.guide .theologian-chat__toolbar{padding-top:.45rem}
+body.study-focus-active>.guide-open{display:none}
+
+/* Bright gilt is a signal, never a large field. */
+.course-choice[aria-selected='true'],.study-scripture,.primary a[aria-current='page']{--local-gilt:var(--color-gilt)}
+
+@media(max-width:980px){
+  .library-first-homehead{grid-template-columns:1fr}.library-first-copy{grid-template-columns:1fr 1fr}.library-first-actions{justify-content:flex-start}
+  .library-first-cards,.library-reader-layout,.topics-dossier__body,.topic-reference-layout{grid-template-columns:1fr}
+  .library-reader-panel,.topic-context-panel,.topics-dossier__nav{position:static}
+  .practice-dashboard__grid{grid-template-columns:1fr 1fr}.practice-dashboard__due{grid-column:1/-1;grid-row:auto}.practice-dashboard__families{grid-column:1/-1}
+  .study-layout{grid-template-columns:22px minmax(0,1fr)}.study-apparatus{grid-column:1/-1;border-left:0;border-top:1px solid #202329}
+}
+@media(max-width:700px){
+  .library-first-home{padding-inline:12px}.library-first-copy{grid-template-columns:1fr}.library-first-copy h1{font-size:clamp(40px,14vw,62px)}
+  .library-first-shelf-row{grid-template-columns:1fr}.library-first-shelf-label{text-align:left;padding:0}.library-first-shelf{height:100px;padding-inline:5px}.library-first-bookend-space{min-width:30px}
+  .library-entry-map{grid-template-columns:1fr 1fr}.course-volume-shelf{height:350px;padding-inline:12px;gap:4px}.course-volume{min-width:42px;padding-inline:6px}.course-volume__title{font-size:.82rem}
+  .bible-address-tools{grid-template-columns:1fr 1fr}.bible-address-tools label:first-child{grid-column:1/-1}.bible-address-tools .button{grid-column:1/-1}.bible-reader-shelf-row{grid-template-columns:1fr}.bible-reader-shelf-label{text-align:left;padding:0}.reader.scripture{padding:30px 20px}.bible-closed-book{padding:22px}.bible-closed-book__cover{width:94%}
+  .practice-dashboard__grid,.practice-dashboard__families{grid-template-columns:1fr}.practice-dashboard__families{grid-column:1}.topics-dossier__questions{display:block}.topics-dossier__question{grid-template-columns:30px 1fr}.topics-dossier__question>span:last-child{display:none}
+  .guide{right:8px;left:8px;bottom:70px;width:auto;height:calc(100dvh - 88px)}
+}
+@media(max-width:520px){.library-entry-map{grid-template-columns:1fr}.library-first-actions a{flex:1 1 auto}.course-volume-shelf{overflow:auto;justify-content:flex-start}.course-volume{flex:0 0 54px}.practice-dashboard__head{display:block}.practice-dashboard__actions{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.library-first-book,.course-volume{transition:none!important}}
+@media(forced-colors:active){.library-first-shelf,.course-volume-shelf,.reader.scripture,.guide{border:1px solid CanvasText;box-shadow:none}.library-first-book{background:Canvas;border-color:CanvasText}.course-volume{background:Canvas;color:CanvasText}.guide-open{background:ButtonFace;color:ButtonText}}
