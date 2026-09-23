@@ -2,7 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 
 const req = [
   'public/index.html',
-  'public/tokens.css',
+  'public/canonical-shelf.css',
   'public/styles.css',
   'public/learning.css',
   'public/bible.css',
@@ -34,11 +34,13 @@ for (const f of req) {
   await stat(f);
 }
 
-// FIX: Actually read the architecture file into the variable before testing
 const architecture = await readFile('docs/v6/README.md', 'utf8');
-
 if (/brownfield at the product\/content\/data layer/i.test(architecture)) {
   throw new Error('superseded brownfield architecture rule remains');
 }
 
-console.log('v6 architecture/content/theology/design-system/native-routing/PWA/account-sync/audited-migration gates passed');
+const shell=await readFile('public/index.html','utf8');
+if(!shell.includes('/canonical-shelf.css'))throw new Error('canonical visual contract is not loaded by the shell');
+if(shell.includes('/tokens.css'))throw new Error('legacy tokens.css remains a loaded visual authority');
+
+console.log('v6 architecture/content/theology/canonical-design/native-routing/PWA/account-sync/audited-migration gates passed');
