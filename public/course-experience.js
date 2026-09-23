@@ -30,6 +30,21 @@ function chooserView({data,esc}){
   return `<header class="section compact-section course-catalog-heading"><p class="eyebrow">Course Catalog</p><h1>Choose where to begin.</h1><p class="lede">Browse the six-course collection, inspect what each course establishes, and open the volume you want to study.</p></header><section class="course-catalog-chooser" aria-label="Canonical learning course catalog"><div class="course-selector"><header class="course-selector__head"><h2>Canonical learning</h2><p>6 courses · select one to inspect</p></header><div data-course-choices>${courses.map((course,index)=>`<button class="course-choice" type="button" data-course-choice="${esc(course.id)}" aria-selected="${index===0?'true':'false'}"><span class="course-choice__roman">${esc(course.sequence||index+1)}</span><span><strong>${esc(course.shortTitle||course.title)}</strong><small>${esc(course.scope||'')}</small></span><span class="course-choice__arrow" aria-hidden="true">›</span></button>`).join('')}</div>${templates}</div><article class="course-preview" data-course-preview aria-live="polite">${first?chooserPreview(data,first,esc):''}</article></section>`;
 }
 
+function volumeLandingView({data,state,esc}){
+  const courses=data.courses||[],completed=new Set(state?.completed||[]),firstIncomplete=(data.activities||[]).find(activity=>!completed.has(activity.id));
+  const activeCourseId=firstIncomplete?.courseId||courses.find(course=>courseProgress(data,state,course).started&&!courseProgress(data,state,course).complete)?.id||courses[0]?.id;
+  const due=dueSet(state),total=(data.activities||[]).length,done=(data.activities||[]).filter(activity=>completed.has(activity.id)).length,pct=Math.round(done/Math.max(total,1)*100);
+  const volumes=courses.map((course,index)=>{
+    const stats=courseProgress(data,state,course),dueCount=stats.ids.filter(id=>due.has(id)).length,current=course.id===activeCourseId;
+    const height=Math.min(96,68+stats.units.length*3+index*2);
+    const status=dueCount?`${dueCount} review${dueCount===1?'':'s'} due`:stats.complete?'Complete':stats.started?`${stats.pct}% complete`:'Not started';
+    return `<a class="course-volume" data-current="${current?'true':'false'}" href="/course?course=${encodeURIComponent(course.id)}" style="--volume-height:${height}%" aria-label="Course ${esc(course.sequence||index+1)}: ${esc(course.shortTitle||course.title)}, ${status}"><span class="course-volume__seq">Course ${esc(course.sequence||index+1)}</span><strong class="course-volume__title">${esc(course.shortTitle||course.title)}</strong><span class="course-volume__status"><strong>${status}</strong>${stats.units.length} units</span></a>`;
+  }).join('');
+  const current=courses.find(course=>course.id===activeCourseId)||courses[0];
+  const currentStats=current?courseProgress(data,state,current):null;
+  return `<section class="course-volume-landing"><header class="course-volume-heading"><p class="eyebrow">Guided learning · six-course collection</p><h1>Course</h1><p class="lede">Open the curriculum as a set of six volumes. Each course has its own purpose, ordered units, scored activities, and mastery work; completed material remains available for review.</p></header><div class="course-volume-shelf" aria-label="Six Canonical Shelf courses">${volumes}</div><section class="course-volume-summary"><div><p class="eyebrow">${currentStats?.started?'Continue':'Suggested starting point'}</p><h2>${esc(current?.title||'Foundations')}</h2><p>${esc(current?.scope||'Begin with the orientation and foundational reading skills.')}</p></div><div><strong>${pct}%</strong><p>${done}/${total} scored activities</p>${current?`<a class="button button--primary" href="/course?course=${encodeURIComponent(current.id)}">Open volume →</a>`:''}</div></section></section>`;
+}
+
 document.addEventListener('click',event=>{
   const button=event.target.closest?.('[data-course-choice]');if(!button)return;
   const chooser=button.closest('.course-catalog-chooser'),choices=chooser?.querySelector('[data-course-choices]'),preview=chooser?.querySelector('[data-course-preview]'),template=chooser?.querySelector(`template[data-course-preview-template="${CSS.escape(button.dataset.courseChoice||'')}"]`);
@@ -39,12 +54,8 @@ document.addEventListener('click',event=>{
 });
 
 export function courseLandingView({data,state,esc}){
-  const activityIds=new Set((data.activities||[]).map(activity=>activity.id));
-  const completed=(state?.completed||[]).filter(id=>activityIds.has(id));
-  if(!completed.length)return chooserView({data,esc});
-  const completedSet=new Set(completed),next=(data.activities||[]).find(activity=>!completedSet.has(activity.id));
-  const activeCourse=(data.courses||[]).find(course=>course.id===(next?.courseId||(data.activities||[]).findLast?.(activity=>completedSet.has(activity.id))?.courseId));
-  return activeCourse?courseDetailView({data,state,course:activeCourse,esc}):chooserView({data,esc});
+  if(!(data.courses||[]).length)return chooserView({data,esc});
+  return volumeLandingView({data,state,esc});
 }
 
 export function courseDetailView({data,state,course,esc}){
