@@ -12,7 +12,7 @@ import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
 
-const main=document.querySelector('#main');
+const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
 const theologian=document.querySelector('#guide'),theologianBody=document.querySelector('#guide-body');
 const progressPanel=document.querySelector('#progress-panel'),progressBody=document.querySelector('#progress-body');
@@ -82,14 +82,25 @@ function courseRouteView(p){
 }
 
 function render(){
+  const main=getMain();
+  if(!main)return;
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
   document.body.classList.toggle('study-focus-active',focus);if(focus)theologian.hidden=true;setCurrent(r);
-  if(r==='search')main.innerHTML=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
-  else if(r==='course')main.innerHTML=courseRouteView(p);
-  else if(r==='bible')main.innerHTML=bibleView(corpus,p,esc);
-  else if(r==='topics')main.innerHTML=topicsView({data,params:p,esc});
-  else if(r==='practice')main.innerHTML=practiceView({data,state,params:p,esc,dueReviews,activityHref});
-  else main.innerHTML=homeView({data,state,esc});
+  
+  let view;
+  if(r==='search')view=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
+  else if(r==='course')view=courseRouteView(p);
+  else if(r==='bible')view=bibleView(corpus,p,esc);
+  else if(r==='topics')view=topicsView({data,params:p,esc});
+  else if(r==='practice')view=practiceView({data,state,params:p,esc,dueReviews,activityHref});
+  else view=homeView({data,state,esc});
+
+  if(typeof view==='string'){
+    main.innerHTML=view;
+  }else{
+    main.replaceChildren(view);
+  }
+
   canonicalizeLinks(main);
   if(r==='course')enhanceLearningVisuals(main);
   if(r==='bible')enhanceBibleState(main,p);

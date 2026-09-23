@@ -179,7 +179,7 @@ body:has(.library-first-home)>main{max-width:none;padding:0;background:var(--hom
 .library-first-shelf-row{display:grid;grid-template-columns:94px minmax(0,1fr);gap:9px;align-items:end}
 .library-first-shelf-label{display:block;margin:0;padding:0 0 10px;text-align:right;font:700 .58rem var(--font-meta);letter-spacing:.13em;text-transform:uppercase;color:#adb4ba}
 .library-first-shelf{height:var(--home-shelf-height);display:flex;align-items:end;gap:2px;padding:5px 10px 0;background:var(--home-shelf);border:0;border-bottom:var(--home-shelf-depth) solid var(--home-shelf-edge);box-shadow:inset 0 calc(var(--home-shelf-depth)*-1) 16px #0003;overflow:visible}
-.library-first-book{position:relative;display:block;flex:0 0 auto;width:clamp(7px,calc(6px + (var(--chapters) * .075px)),18px);height:clamp(46px,calc(46px + (var(--chapters) * .42px)),101px);background:var(--book,var(--canon-general));border:1px solid #ffffff20;border-radius:2px 2px 0 0;text-decoration:none;transform-origin:bottom;box-shadow:inset -1px 0 #ffffff18}
+.library-first-book{position:relative;display:block;flex:0 0 auto;width:clamp(7px,calc(6px + (var(--chapters, 10) * .075px)),18px);height:clamp(46px,calc(46px + (var(--chapters, 10) * .42px)),101px);background:var(--book,var(--canon-general));border:1px solid #ffffff20;border-radius:2px 2px 0 0;text-decoration:none;transform-origin:bottom;box-shadow:inset -1px 0 #ffffff18}
 .library-first-book[data-cat='law']{--book:var(--canon-law)}.library-first-book[data-cat='othist']{--book:var(--canon-history-ot)}.library-first-book[data-cat='wisdom']{--book:var(--canon-wisdom)}.library-first-book[data-cat='major']{--book:var(--canon-major-prophets)}.library-first-book[data-cat='minor']{--book:var(--canon-minor-prophets)}.library-first-book[data-cat='gospel']{--book:var(--canon-gospel)}.library-first-book[data-cat='nthist']{--book:var(--canon-history-nt)}.library-first-book[data-cat='paul']{--book:var(--canon-paul)}.library-first-book[data-cat='general']{--book:var(--canon-general)}.library-first-book[data-cat='apoc']{--book:var(--canon-apocalypse)}
 .library-first-book span{position:absolute;left:50%;bottom:calc(100% + 7px);translate:-50% 4px;opacity:0;pointer-events:none;background:#11171d;color:#fff;border:1px solid #515a62;padding:4px 6px;white-space:nowrap;font:700 .6rem var(--font-body);z-index:4}
 .library-first-book:hover,.library-first-book:focus-visible{transform:translateY(-5px);filter:brightness(1.14);z-index:3}.library-first-book:hover span,.library-first-book:focus-visible span{opacity:1;translate:-50% 0}
@@ -248,4 +248,35 @@ body.study-focus-active>.guide-open{display:none}
   outline: 1.5px solid var(--color-gilt, #c59b27);
   border-radius: 4px;
   padding: 0.25rem 0.40rem;
+}
+
+.library-first-home, .library-first-shelf-wrap { overflow-x: clip; max-width: 100vw; }
+
+
+/* Narrow layout overflow prevention */
+.bible-reader-shell,
+.bible-reader-heading,
+.bible-reader-shelves,
+.bible-reader-shelf-row,
+.bible-reader-shelf,
+.bible-reader-nav,
+.bible-closed-book,
+.bible-closed-book__cover,
+.library-reader-panel,
+.reader.scripture {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+@media (max-width: 600px) {
+  .bible-reader-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .bible-reader-nav a,
+  .bible-reader-nav span {
+    min-width: 0;
+  }
 }
