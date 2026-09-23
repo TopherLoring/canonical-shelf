@@ -4,6 +4,8 @@ import {LIBRARY_BOOKS} from '../public/library-data.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shelfBooks=(books,{bookend=false}={})=>`${books.map(book=>`<a class="library-first-book" data-cat="${esc(book.cat)}" href="/bible?book=${book.n}&chapter=1" style="--chapters:${book.ch}" aria-label="${esc(book.name)}, ${book.ch} chapters" title="${esc(book.name)}"><span>${esc(book.name)}</span></a>`).join('')}${bookend?'<span class="library-first-bookend-space" aria-hidden="true"></span><span class="library-first-bookend" aria-hidden="true"></span>':''}`;
 const compactBibleShelves=()=>`<div class="bible-reader-shelves" aria-label="Bible book selector"><div class="bible-reader-shelf-row"><div class="bible-reader-shelf-label">Old</div><div class="bible-reader-shelf">${shelfBooks(LIBRARY_BOOKS.filter(book=>book.n<=39))}</div></div><div class="bible-reader-shelf-row"><div class="bible-reader-shelf-label">New</div><div class="bible-reader-shelf">${shelfBooks(LIBRARY_BOOKS.filter(book=>book.n>=40),{bookend:true})}</div></div></div>`;
+const catalog=JSON.parse(await readFile('public/data/catalog.json','utf8'));
+const courseSpines=(catalog.courses||[]).map((course,index)=>`<a class="course-volume" href="/course?course=${encodeURIComponent(course.id)}" style="--volume-height:${Math.min(96,68+index*5)}%"><span class="course-volume__seq">Course ${esc(course.sequence||index+1)}</span><strong class="course-volume__title">${esc(course.shortTitle||course.title)}</strong><span class="course-volume__status"><strong>Loading progress…</strong></span></a>`).join('');
 
 const routes={
   home:{
@@ -12,7 +14,7 @@ const routes={
   },
   course:{
     title:'Course',
-    html:`<section class="course-volume-landing route-prerender"><header class="course-volume-heading"><p class="eyebrow">Guided learning · six-course collection</p><h1>Course</h1><p class="lede">Open the curriculum as a set of six volumes. Each course has its own purpose, ordered units, scored activities, and mastery work.</p></header><div class="course-volume-shelf" aria-label="Six Canonical Shelf courses">${['Foundations','Israel','Second Temple World','Jesus & Church','Interpretation','Theology'].map((title,index)=>`<a class="course-volume" href="/course" style="--volume-height:${68+index*5}%"><span class="course-volume__seq">Course ${index+1}</span><strong class="course-volume__title">${title}</strong><span class="course-volume__status"><strong>Loading progress…</strong></span></a>`).join('')}</div></section>`
+    html:`<section class="course-volume-landing route-prerender"><header class="course-volume-heading"><p class="eyebrow">Guided learning · six-course collection</p><h1>Course</h1><p class="lede">Open the curriculum as a set of six volumes. Each course has its own purpose, ordered units, scored activities, and mastery work.</p></header><div class="course-volume-shelf" aria-label="Six Canonical Shelf courses">${courseSpines}</div></section>`
   },
   bible:{
     title:'Bible',
