@@ -1,49 +1,52 @@
 {
-  "name":"canonical-shelf",
-  "private":true,
-  "type":"module",
-  "packageManager":"bun@1.2.15",
-  "scripts":{
-    "migrate":"bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs && bun scripts/publish-theology.mjs && bun scripts/apply-curriculum-metadata.mjs",
-    "generate:auth-migration":"bun scripts/generate-auth-migration.mjs",
-    "generate:wrangler":"bun scripts/write-wrangler.mjs",
-    "generate:curriculum-reference":"bun scripts/generate-curriculum-reference.mjs",
-    "generate:llms":"bun scripts/generate-llms.mjs",
-    "generate:routes":"bun scripts/generate-route-documents.mjs",
-    "prepare:content":"bun run migrate && bun run generate:curriculum-reference && bun run generate:llms",
-    "verify:bsb":"bun scripts/bsb-integrity.mjs",
-    "verify:contract":"bun scripts/verify-product-contract.mjs",
-    "verify:deployment":"bun scripts/verify-deployment.mjs",
-    "validate:cloudflare":"bun scripts/validate-cloudflare-config.mjs",
-    "test:assessment":"bun scripts/test-assessment.mjs",
-    "test:sync":"bun scripts/test-sync.mjs",
-    "test:d1":"bun scripts/test-d1-sync.mjs",
-    "test:feedback":"bun scripts/test-feedback.mjs",
-    "test:theologian":"bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs",
-    "test:core":"bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian",
-    "test:browser":"playwright test",
-    "test":"bun run test:core && bun run test:browser",
-    "build:client":"mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
-    "build:worker":"bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser",
-    "build:runtime":"bun run generate:routes && bun run build:client && bun run generate:auth-migration && bun build public/bootstrap.js --outdir=.tmp/canonical-shelf-browser --target=browser && bun run build:worker",
-    "build:app":"bun run prepare:content && bun run build:runtime",
-    "build":"bun run build:app",
-    "verify":"bun run build:app && bun run verify:bsb && bun run verify:contract && bun run test:core && bun run test:browser",
-    "serve":"bun run prepare:content && bun run generate:routes && bun run build:client && bun scripts/serve.mjs",
-    "dev":"bun run prepare:content && bun run generate:routes && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev",
-    "deploy":"bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment",
-    "db:migrate:local":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
-    "db:migrate:remote":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote"
+  "name": "canonical-shelf",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.2.15",
+  "scripts": {
+    "migrate": "bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs && bun scripts/publish-theology.mjs && bun scripts/apply-curriculum-metadata.mjs",
+    "generate:auth-migration": "bun scripts/generate-auth-migration.mjs",
+    "generate:wrangler": "bun scripts/write-wrangler.mjs",
+    "generate:curriculum-reference": "bun scripts/generate-curriculum-reference.mjs",
+    "generate:llms": "bun scripts/generate-llms.mjs",
+    "generate:routes": "bun scripts/generate-route-documents.mjs",
+    "prepare:content": "bun run migrate && bun run generate:curriculum-reference && bun run generate:llms",
+    "verify:bsb": "bun scripts/bsb-integrity.mjs",
+    "verify:contract": "bun scripts/verify-product-contract.mjs",
+    "verify:deployment": "bun scripts/verify-deployment.mjs",
+    "validate:cloudflare": "bun scripts/validate-cloudflare-config.mjs",
+    "test:assessment": "bun scripts/test-assessment.mjs",
+    "test:sync": "bun scripts/test-sync.mjs",
+    "test:d1": "bun scripts/test-d1-sync.mjs",
+    "test:feedback": "bun scripts/test-feedback.mjs",
+    "test:theologian": "bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs",
+    "test:core": "bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian",
+    "test:browser": "playwright test",
+    "test": "bun run test:core && bun run test:browser",
+    "build:client": "mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
+    "build:worker": "bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser",
+    "build:runtime": "bun run generate:routes && bun run build:client && bun run generate:auth-migration && bun build public/bootstrap.js --outdir=.tmp/canonical-shelf-browser --target=browser && bun run build:worker",
+    "build:app": "bun run prepare:content && bun run build:runtime",
+    "build": "bun run build:app",
+    "verify": "bun run build:app && bun run verify:bsb && bun run verify:contract && bun run test:core && bun run test:browser",
+    "serve": "bun run prepare:content && bun run generate:routes && bun run build:client && bun scripts/serve.mjs",
+    "dev": "bun run prepare:content && bun run generate:routes && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev",
+    "deploy": "bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment",
+    "db:migrate:local": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
+    "db:migrate:remote": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote"
   },
-  "dependencies":{
-    "better-auth":"1.7.5",
-    "@better-auth/passkey":"1.7.5"
+  "dependencies": {
+    "better-auth": "1.7.5",
+    "@better-auth/passkey": "1.7.5"
   },
-  "devDependencies":{
-    "@axe-core/playwright":"4.13.0",
-    "@playwright/test":"1.63.0",
-    "miniflare":"4.20260730.0",
-    "wrangler":"4.133.0"
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "miniflare": "4.20260730.0",
+    "wrangler": "4.133.0",
+    "xlsx": "^0.18.5"
   },
-  "engines":{"bun":"1.2.15"}
+  "engines": {
+    "bun": "1.2.15"
+  }
 }

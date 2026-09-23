@@ -78,7 +78,7 @@ function profileDrawer(text,bn,params,esc){
 function bookNotes(book,chapter,esc){
   const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era),themes=(book.threads||[]).map(thread=>THREADS[thread]||thread);
   const module=(title,body,open=false)=>`<details ${open?'open':''}><summary>${esc(title)}</summary><div>${body}</div></details>`;
-  return `<aside class="library-reader-panel" aria-label="Book Notes"><header><p class="eyebrow">Reading context</p><h2>Book Notes</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div><p class="session-context-note">Notes update with the current book and chapter. Your private journal remains separate.</p></header>${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Where to start',`<p>${esc(book.read||`Continue with ${book.name} ${chapter}.`)}</p>`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}</aside>`;
+  return `<aside class="library-reader-panel" aria-label="Book Notes"><header><p class="eyebrow">Reading context</p><h2>Book Notes</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div><p class="session-context-note">Notes update with the current book and chapter. Your private journal remains separate.</p></header>${module('Cross-references',`<div id="v5-crossref-panel" class="reader-crossref-panel"><p class="session-context-note" style="margin:0 0 0.5rem;">Select any verse to inspect parallel citations.</p><div id="v5-crossref-list"></div></div>`,true)}${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Where to start',`<p>${esc(book.read||`Continue with ${book.name} ${chapter}.`)}</p>`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}</aside>`;
 }
 
 function compactReaderShelf(esc){
@@ -138,38 +138,82 @@ if(typeof document!=='undefined'){
 
 
 if (typeof document !== 'undefined') {
+  async function _v5LoadCrossrefs(bn, ch) {
+    try {
+      const res = await fetch('/data/crossref/' + bn + '_' + ch + '.json');
+      if (res.ok) return await res.json();
+    } catch (e) {}
+    return null;
+  }
+
+  function _v5RenderPills(refs, targetEl) {
+    if (!targetEl) return;
+    if (!refs || !refs.length) {
+      targetEl.innerHTML = '<p style="font-size:0.82rem;color:var(--color-muted,#717a84);margin:0.25rem 0;">No direct parallels indexed for this verse.</p>';
+      return;
+    }
+    targetEl.innerHTML = '<div style="display:flex;flex-direction:column;gap:0.35rem;margin-top:0.35rem;">' +
+      refs.map(function(r) {
+        const b = r.ref[0], c = r.ref[1], vs = r.ref[2], ve = r.ref[3];
+        const bookObj = typeof bookByNumber === 'function' ? bookByNumber(b) : null;
+        const name = bookObj ? bookObj.name : ('Book ' + b);
+        const isParallel = r.label && r.label.indexOf('Linked from') === 0;
+        const label = (r.label && !isParallel) ? r.label : (name + ' ' + c + ':' + vs + (ve && ve !== vs ? '–' + ve : ''));
+        const href = '/bible?book=' + b + '&chapter=' + c + '&start=' + vs + (ve && ve !== vs ? '&end=' + ve : '') + '#v' + vs;
+        return '<a href="' + href + '" style="display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0.6rem;background:var(--color-surface-subtle,#f2f3f5);border:1px solid var(--color-border,#d7dbe0);border-radius:4px;text-decoration:none;color:var(--color-ink,#1c2024);font-size:0.84rem;">' +
+          '<span><span style="color:var(--color-accent,#486272);font-weight:700;margin-right:0.35rem;">' + (isParallel ? '⇠' : '↳') + '</span><strong>' + label + '</strong></span>' +
+          '<span style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;padding:0.1rem 0.35rem;background:#e5e9ee;border-radius:3px;font-weight:700;color:#486272;">' + (isParallel ? 'Parallel' : 'Citation') + '</span>' +
+        '</a>';
+      }).join('') +
+    '</div>';
+  }
+
   function _v5AttachReaderAugmentations() {
-    setTimeout(() => {
+    setTimeout(async function() {
       const params = new URLSearchParams(window.location.search);
       const bn = Number(params.get('book')) || 1;
       const ch = Number(params.get('chapter')) || 1;
       const panel = document.querySelector('.library-reader-panel');
+
       if (panel && window.CANON_CATALOG && Array.isArray(window.CANON_CATALOG.lessons)) {
-        const matches = window.CANON_CATALOG.lessons.filter(l => l.readingAddress?.book === bn && l.readingAddress?.chapter === ch);
+        const matches = window.CANON_CATALOG.lessons.filter(function(l) {
+          return l.readingAddress && l.readingAddress.book === bn && l.readingAddress.chapter === ch;
+        });
         if (matches.length) {
           let existing = panel.querySelector('.v5-course-inject');
           if (existing) existing.remove();
           const box = document.createElement('div');
           box.className = 'v5-course-inject';
           box.style.cssText = 'margin:0.75rem 1rem;padding:0.85rem;background:var(--color-surface-subtle,#f2f3f5);border-left:3px solid var(--color-gilt,#c59b27);border-radius:4px;';
-          box.innerHTML = `
-            <p style="font:750 0.72rem var(--font-meta);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent,#486272);margin:0 0 0.25rem;">Course Insights · Ch. ${ch}</p>
-            ${matches.map(l => `
-              <p style="margin:0 0 0.35rem;font-size:0.88rem;"><strong>${l.title}:</strong> ${l.plainSummary}</p>
-              <a href="/course?unit=${encodeURIComponent(l.unitId)}&lesson=${encodeURIComponent(l.id)}" style="font-size:0.75rem;font-weight:700;color:var(--color-ink,#1c2024);">Open Lesson Deck →</a>
-            `).join('')}
-          `;
+          box.innerHTML = '<p style="font:750 0.72rem var(--font-meta);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent,#486272);margin:0 0 0.25rem;">Course Insights · Ch. ' + ch + '</p>' +
+            matches.map(function(l) {
+              return '<p style="margin:0 0 0.35rem;font-size:0.88rem;"><strong>' + l.title + ':</strong> ' + l.plainSummary + '</p>' +
+                '<a href="/course?unit=' + encodeURIComponent(l.unitId) + '&lesson=' + encodeURIComponent(l.id) + '" style="font-size:0.75rem;font-weight:700;color:var(--color-ink,#1c2024);">Open Lesson Deck →</a>';
+            }).join('');
           panel.prepend(box);
         }
       }
 
+      const crossRefData = await _v5LoadCrossrefs(bn, ch);
+
+      const crossrefListEl = document.querySelector('#v5-crossref-list');
+      if (crossrefListEl && crossRefData && crossRefData.verses) {
+        const count = Object.keys(crossRefData.verses).length;
+        if (count > 0) {
+          crossrefListEl.innerHTML = '<p style="font-size:0.82rem;color:var(--color-ink,#1c2024);margin:0;"><strong>' + count + '</strong> verses in this chapter have parallel cross-references. Click any verse to view citations.</p>';
+        }
+      }
+
       const verses = document.querySelectorAll('.reader.scripture .verses p');
-      verses.forEach((p, idx) => {
-        const vNum = idx + 1;
+      verses.forEach(function(p, idx) {
+        const vNum = Number(p.id ? p.id.replace(/^v/, '') : (idx + 1));
         p.style.cursor = 'pointer';
-        p.addEventListener('click', () => {
-          document.querySelectorAll('.reader.scripture .verses p.v5-active').forEach(el => el.classList.remove('v5-active'));
+        p.addEventListener('click', function() {
+          document.querySelectorAll('.reader.scripture .verses p.v5-active').forEach(function(el) {
+            el.classList.remove('v5-active');
+          });
           p.classList.add('v5-active');
+
           let inspectBox = document.querySelector('#v5-verse-inspect');
           if (!inspectBox) {
             inspectBox = document.createElement('div');
@@ -178,11 +222,25 @@ if (typeof document !== 'undefined') {
             const r = document.querySelector('.reader.scripture');
             if (r) r.prepend(inspectBox);
           }
-          inspectBox.innerHTML = `
-            <span style="font:750 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Verse Deep-Dive · ${bn}:${ch}:${vNum}</span>
-            <p style="font-family:var(--font-display);font-size:1.1rem;margin:0.35rem 0;">${p.textContent.trim()}</p>
-            <p style="font-size:0.88rem;color:#4a5058;margin:0;"><em>Contextual observation:</em> Trace how this verse anchors its immediate literary movement before generalizing application.</p>
-          `;
+
+          inspectBox.innerHTML = '<span style="font:750 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Verse Deep-Dive · ' + bn + ':' + ch + ':' + vNum + '</span>' +
+            '<p style="font-family:var(--font-display);font-size:1.1rem;margin:0.35rem 0;">' + p.textContent.trim() + '</p>' +
+            '<div id="v5-inspect-crossrefs" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed #e6d3a3;">' +
+              '<span style="font:700 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Parallel Cross-References</span>' +
+              '<div id="v5-inspect-crossrefs-target"></div>' +
+            '</div>';
+
+          const verseRefs = crossRefData && crossRefData.verses ? crossRefData.verses[String(vNum)] : null;
+          _v5RenderPills(verseRefs, document.querySelector('#v5-inspect-crossrefs-target'));
+
+          const sidebarTarget = document.querySelector('#v5-crossref-list');
+          if (sidebarTarget) {
+            const noteHead = document.querySelector('#v5-crossref-panel .session-context-note');
+            if (noteHead) noteHead.innerHTML = 'Cross-references for <strong>Verse ' + vNum + '</strong>:';
+            _v5RenderPills(verseRefs, sidebarTarget);
+            const parentDetails = sidebarTarget.closest('details');
+            if (parentDetails) parentDetails.open = true;
+          }
         });
       });
     }, 100);

@@ -38,23 +38,23 @@ try {
 } catch {}
 
 const { newLessons } = await import(join(ROOT, 'content/curriculum/new-lessons.mjs'));
-const allLessonsRaw = [...(targetCatalog.lessons || []), ...newLessons];
+const allLessonsRaw = [...newLessons, ...(targetCatalog.lessons || [])];
 const deduplicatedLessons = [];
 const seenLessons = new Set();
 
 const READING_REPLACEMENTS = {
-  'c1-bible-languages': { ref:, reading: 'Nehemiah 8:1–8' },
-  'library': { ref:, reading: 'Deuteronomy 30:11–14' },
-  'gospel-comparison': { ref:, reading: 'Mark 1:1 // Matthew 1:1 // John 1:1–5' },
-  'c3-alexander-hellenization': { ref:, reading: 'Daniel 8:1–8' },
+  'c1-bible-languages': { ref: [16, 8, 1, 8], reading: 'Nehemiah 8:1–8' },
+  'library': { ref: [5, 30, 11, 14], reading: 'Deuteronomy 30:11–14' },
+  'gospel-comparison': { ref: [41, 1, 1, 1], reading: 'Mark 1:1 // Matthew 1:1 // John 1:1–5' },
+  'c3-alexander-hellenization': { ref: [27, 8, 1, 8], reading: 'Daniel 8:1–8' },
   'c3-hasmoneans': { ref: [0, 0, 0, 0], reading: '1 Maccabees 2:19–28, 4:36–40' },
-  'c3-essenes-qumran': { ref:, reading: 'Isaiah 40:1–5' },
-  'c5-synoptic-problem': { ref:, reading: 'Mark 2:1–12 // Matthew 9:1–8 // Luke 5:17–26' },
-  'cross-grace': { ref:, reading: 'Romans 3:21–26' },
-  'creeds-reading': { ref:, reading: 'Philippians 2:5–11' },
-  'suffering-discernment': { ref:, reading: 'John 9:1–7' },
-  'inclusion-reading': { ref:, reading: 'Acts 8:26–39' },
-  'communion-table': { ref:, reading: 'Mark 14:22–26' }
+  'c3-essenes-qumran': { ref: [23, 40, 1, 5], reading: 'Isaiah 40:1–5' },
+  'c5-synoptic-problem': { ref: [41, 2, 1, 12], reading: 'Mark 2:1–12 // Matthew 9:1–8 // Luke 5:17–26' },
+  'cross-grace': { ref: [45, 3, 21, 26], reading: 'Romans 3:21–26' },
+  'creeds-reading': { ref: [50, 2, 5, 11], reading: 'Philippians 2:5–11' },
+  'suffering-discernment': { ref: [43, 9, 1, 7], reading: 'John 9:1–7' },
+  'inclusion-reading': { ref: [44, 8, 26, 39], reading: 'Acts 8:26–39' },
+  'communion-table': { ref: [41, 14, 22, 26], reading: 'Mark 14:22–26' }
 };
 
 for (const lesson of allLessonsRaw) {
@@ -62,7 +62,7 @@ for (const lesson of allLessonsRaw) {
   seenLessons.add(lesson.id);
 
   const override = READING_REPLACEMENTS[lesson.id];
-  const activeRef = override ? override.ref : (lesson.ref ||);
+  const activeRef = override ? override.ref : (lesson.ref || [0, 0, 0, 0]);
   const activeReading = override ? override.reading : (lesson.reading || '');
 
   const rawBody = Array.isArray(lesson.body) ? lesson.body : [lesson.body || ''];
@@ -71,7 +71,7 @@ for (const lesson of allLessonsRaw) {
     stepNumber: idx + 1,
     title: idx === 0 ? lesson.title : `Context & Analysis (${idx + 1})`,
     body: [paragraph],
-    verseRef: `${activeRef[0]}:${activeRef}`,
+    verseRef: `${activeRef[0]}:${activeRef[1]}`,
     whatDoesThisMean: lesson.quick || lesson.plainSummary || 'Observe what the text actually states in context before deriving an application.'
   }));
 
@@ -82,11 +82,13 @@ for (const lesson of allLessonsRaw) {
     title: lesson.title,
     objective: lesson.objective || 'Develop biblical literacy and contextual reasoning.',
     plainSummary: lesson.quick || lesson.summary || '',
+    ref: activeRef,
+    reading: activeReading,
     readingAddress: {
       book: Number(activeRef[0]),
-      chapter: Number(activeRef),
-      verseStart: Number(activeRef || 1),
-      verseEnd: activeRef ? Number(activeRef) : undefined
+      chapter: Number(activeRef[1]),
+      verseStart: Number(activeRef[2] ?? 1),
+      verseEnd: activeRef[3] !== undefined ? Number(activeRef[3]) : undefined
     },
     readingReferenceText: activeReading,
     stepCards,
@@ -109,7 +111,8 @@ const movements = [
 
 const finalCatalog = {
   ...targetCatalog,
-  curriculumVersion: 5,
+  version: 6,
+  curriculumVersion: 6,
   generatedAt: new Date().toISOString(),
   books: canonicalBooks,
   movements,
@@ -117,4 +120,4 @@ const finalCatalog = {
 };
 
 await writeFile(targetCatalogPath, JSON.stringify(finalCatalog, null, 2), 'utf8');
-console.log('✓ Unified master catalog generated.');
+console.log('✓ Unified master catalog compiled successfully.');
