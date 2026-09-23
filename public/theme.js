@@ -1,17 +1,24 @@
-const STORAGE_KEY='canonical-shelf-theme-v1';
-export const DEFAULT_THEME_ID='canonical-original';
+const STORAGE_KEY='canonical-shelf-theme-v2';
+const LEGACY_KEY='canonical-shelf-theme-v1';
+export const DEFAULT_THEME_ID='scholarly-graphite';
 
 export const THEMES=[
-  {id:'canonical-original',name:'Canonical Original',summary:'Flat charcoal chrome, cool-neutral surfaces, and restrained gilt.',themeColor:'#24272d'},
-  {id:'heritage',name:'Heritage',summary:'Warm paper, ink, oxblood and restrained gilt.',themeColor:'#2a211b'},
-  {id:'oxblood',name:'Oxblood',summary:'Deep burgundy, parchment and editorial contrast.',themeColor:'#4d1f22'},
-  {id:'illuminated-jewel',name:'Illuminated Jewel',summary:'Manuscript-inspired jewel accents with restrained richness.',themeColor:'#392b52'},
-  {id:'slate-linen',name:'Slate & Linen',summary:'Cool slate, linen and quiet scholarly neutrals.',themeColor:'#34424a'},
-  {id:'bookshelf-spectrum',name:'Bookshelf Spectrum',summary:'A neutral folio grounded by Canonical Shelf’s category colors.',themeColor:'#26313c'}
+  {id:'scholarly-graphite',name:'Scholarly Graphite',summary:'Cool paper, graphite chrome, scholarly serif reading, and bright gilt signals.',themeColor:'#24272d'},
+  {id:'cool-archive',name:'Cool Archive',summary:'Cool archival whites, blue-gray structure, and restrained scholarly contrast.',themeColor:'#1a2631'},
+  {id:'blue-stone',name:'Blue Stone',summary:'Stone-blue structure with clean paper surfaces and muted green secondary accents.',themeColor:'#202633'},
+  {id:'quiet-jewel',name:'Quiet Jewel',summary:'Cool ivory surfaces with restrained plum, teal, and gold accents.',themeColor:'#262735'}
 ];
 
 const ids=new Set(THEMES.map(theme=>theme.id));
 const byId=id=>THEMES.find(theme=>theme.id===id)||THEMES.find(theme=>theme.id===DEFAULT_THEME_ID);
+const LEGACY_MAP={
+  'canonical-original':'scholarly-graphite',
+  heritage:'scholarly-graphite',
+  oxblood:'scholarly-graphite',
+  'illuminated-jewel':'quiet-jewel',
+  'slate-linen':'cool-archive',
+  'bookshelf-spectrum':'blue-stone'
+};
 
 export function currentTheme(){
   return ids.has(document.documentElement.dataset.theme)?document.documentElement.dataset.theme:DEFAULT_THEME_ID;
@@ -40,7 +47,7 @@ function panelMarkup(){
       <div><p class="eyebrow">Display preference</p><h2 id="appearance-title">Appearance</h2></div>
       <button id="appearance-close" class="appearance-close" type="button" aria-label="Close appearance settings">×</button>
     </div>
-    <p class="appearance-panel__intro">Choose a complete visual package. Theme changes affect presentation only; course content, progress, assessment, and interpretation do not change.</p>
+    <p class="appearance-panel__intro">Choose a color package. Typography, geometry, page architecture, Bible category colors, learner state, and interaction behavior stay consistent.</p>
     <div class="theme-grid" role="list">${THEMES.map(theme=>`<button class="theme-card" type="button" role="listitem" data-theme-option="${theme.id}" aria-pressed="false"><span class="theme-card__swatch" aria-hidden="true"><i></i><i></i><i></i></span><strong>${theme.name}</strong><span>${theme.summary}</span></button>`).join('')}</div>
   </aside>`;
 }
@@ -76,7 +83,12 @@ function closePanel(){
 
 export function initTheme(){
   let saved=DEFAULT_THEME_ID;
-  try{saved=localStorage.getItem(STORAGE_KEY)||saved}catch{}
+  try{
+    const current=localStorage.getItem(STORAGE_KEY);
+    const legacy=localStorage.getItem(LEGACY_KEY);
+    saved=current||LEGACY_MAP[legacy]||saved;
+    if(!current&&legacy)localStorage.setItem(STORAGE_KEY,LEGACY_MAP[legacy]||DEFAULT_THEME_ID);
+  }catch{}
   applyTheme(ids.has(saved)?saved:DEFAULT_THEME_ID,{persist:false});
   ensureControls();
   applyTheme(currentTheme(),{persist:false});
