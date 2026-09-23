@@ -39,6 +39,16 @@ await check('Application shell',async()=>{
   return 'search, navigation, study utilities, feedback, journal, account/progress';
 });
 
+await check('Visual contract authority',async()=>{
+  const stylesheetTags=[...shell.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*>/gi)].map(match=>match[0]);
+  const authorities=stylesheetTags.filter(tag=>/data-visual-contract=["'][^"']+["']/i.test(tag));
+  requireContract(authorities.length===1,'shell must declare exactly one visual-contract stylesheet');
+  const href=authorities[0].match(/href=["']\/([^"']+)["']/i)?.[1];
+  requireContract(Boolean(href),'visual-contract stylesheet must publish a local href');
+  requireContract(await exists(`${PUBLIC}/${href}`),'visual-contract stylesheet target is missing');
+  return 'one marked visual authority; feature styles may remain structural';
+});
+
 await check('Route-owned documents',async()=>{
   for(const route of routes){
     const path=`${PUBLIC}/${route}.html`;

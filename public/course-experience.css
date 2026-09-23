@@ -6,3 +6,24 @@
 @media(max-width:560px){.activity-step{grid-template-columns:2.7rem minmax(0,1fr)}.activity-step__mark{grid-column:2;justify-self:start}.course-journey-hero h1,.course-detail-hero h1,.unit-experience-hero h1{font-size:clamp(3rem,16vw,5rem)}}
 @media(prefers-reduced-motion:no-preference){.course-journey-card,.journey-unit-card,.activity-step{transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease}.course-journey-card:hover,.journey-unit-card:hover{transform:translateY(-2px);box-shadow:var(--theme-soft-shadow)}}
 @media(forced-colors:active){.course-journey-card,.journey-unit-card,.activity-step__mark{border-color:CanvasText}.state-due,.activity-step[data-review-due="true"] .activity-state{color:Highlight!important}}
+
+/* Study Focus structural contract: learner notes remain visible at every lesson breakpoint. */
+@media(min-width:1101px){
+  body.study-focus-active .study-layout:not(.study-layout--theologian){grid-template-columns:clamp(76px,7cqw,102px) minmax(0,1fr) clamp(282px,22cqw,350px)}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.study-apparatus{display:block;position:static;left:auto;right:auto;top:auto;bottom:auto;width:auto;max-height:none;border-radius:0;box-shadow:none;z-index:auto}
+  body.study-focus-active .study-nav__notes{display:none}
+}
+@media(max-width:1100px){
+  body.study-focus-active .study-layout:not(.study-layout--theologian){grid-template-columns:clamp(70px,8cqw,92px) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(180px,34%)}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.scene-rail{grid-column:1;grid-row:1}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.study-scene{grid-column:2;grid-row:1}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.study-apparatus{display:block;position:static;grid-column:1/-1;grid-row:2;left:auto;right:auto;top:auto;bottom:auto;width:auto;max-height:none;border-left:0;border-top:1px solid var(--study-rule);border-radius:0;box-shadow:none;z-index:auto}
+  body.study-focus-active .study-apparatus__head button{display:none}
+  body.study-focus-active .study-nav__notes{display:none}
+}
+@media(max-width:820px){
+  body.study-focus-active .study-layout:not(.study-layout--theologian){grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(180px,38%)}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.scene-rail{display:none}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.study-scene{grid-column:1;grid-row:1}
+  body.study-focus-active .study-layout:not(.study-layout--theologian)>.study-apparatus{grid-column:1;grid-row:2;display:block;position:static;left:auto;right:auto;top:auto;bottom:auto;width:auto;max-height:none;border-radius:0}
+}

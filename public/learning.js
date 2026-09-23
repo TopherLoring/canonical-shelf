@@ -140,15 +140,14 @@ const beginBodyHeadings=[
 
 function lessonScenes(lesson,corpus,esc){
   const aid=`lesson:${lesson.id}`;
-  const support=drawerTray(lesson,esc);
-  const scenes=[{role:'Orient',title:lesson.title,html:`<p class="scene-objective">${esc(lesson.objective||'')}</p>${lesson.reading?`<p class="reading-ref">Primary reading ahead · <strong>${esc(lesson.reading)}</strong></p>`:''}${support}`}];
   const body=[...(lesson.body||[])];
   const defaults=[['Explain','Read closely'],['Context','Locate the claim in context'],['Explain','Follow the relationship'],['Context','Keep the setting visible'],['Interpret','Distinguish what follows from the evidence']];
+  const opening=[];
+  if(lesson.simple)opening.push(`<aside class="scene-callout"><p>${esc(lesson.simple)}</p></aside>`);
+  if(body.length)opening.push(proseMarkup([body.shift()],corpus,esc));
+  if(lesson.reading)opening.push(`<p class="reading-ref">Primary reading ahead · <strong>${esc(lesson.reading)}</strong></p>`);
+  const scenes=[{role:'Orient',title:lesson.title,html:opening.join('')}];
 
-  if(body.length){
-    const [role,title]=lesson.id==='begin'?['Prepare','Before you read: the central claim']:['Prepare','What to notice before reading'];
-    scenes.push({role,title,html:proseMarkup([body.shift()],corpus,esc)});
-  }
   if(lesson.reading)scenes.push({role:'Read',title:'Read the passage with the question in view',html:scriptureMarkup(lesson,corpus,esc)});
 
   for(let offset=0;offset<body.length;offset+=2){
@@ -158,10 +157,9 @@ function lessonScenes(lesson,corpus,esc){
     scenes.push({role,title,html:proseMarkup(body.slice(offset,offset+2),corpus,esc)});
   }
 
-  if(lesson.simple)scenes.push({role:'Clarify',title:'In plain language',html:`<aside class="scene-callout"><p>${esc(lesson.simple)}</p></aside>`});
   if(lesson.visual||lesson.diagram)scenes.push({role:'Visualize',title:'See the relationship',html:visualBlock(lesson,esc)});
   (lesson.challenges||[]).forEach((challenge,index)=>scenes.push({role:'Practice',title:challenge.title||'Check understanding',html:challengeForm(challenge,aid,index,esc)}));
-  if(lesson.reflect)scenes.push({role:'Reflect',title:'Reflect and keep lesson notes',html:`<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}<label class="reflection-notes"><span>Lesson notes</span><textarea rows="5" maxlength="12000" data-inline-lesson-note data-activity="${esc(aid)}" placeholder="Capture observations, questions, connections, or references to revisit."></textarea><small data-inline-note-status aria-live="polite">Saved locally and never scored.</small></label>`});
+  if(lesson.reflect)scenes.push({role:'Reflect',title:'Reflect on the lesson',html:`<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}`});
   return scenes;
 }
 
@@ -179,11 +177,13 @@ function apparatusModule(title,tag,body,{open=false}={}){
 }
 
 function lessonApparatus(lesson,esc,scene){
+  const aid=`lesson:${lesson.id}`;
   const vocab=vocabEntries(lesson);
   const sources=(lesson.sources||[]).map((source,index)=>`<li><a href="${esc(source)}" target="_blank" rel="noreferrer">Source ${index+1}</a></li>`).join('');
   let modules='';
-  if(scene)modules+=apparatusModule(`This scene · ${esc(scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use this panel for the evidence, vocabulary, and interpretive boundaries most relevant while this scene is open.</p>`,{open:true});
-  modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`,{open:true});
+  modules+=apparatusModule('Session Notes','private',`<label class="reflection-notes"><span>Lesson notes</span><textarea rows="7" maxlength="12000" data-inline-lesson-note data-activity="${esc(aid)}" placeholder="Capture observations, questions, connections, or references to revisit."></textarea><small data-inline-note-status aria-live="polite">Saved locally and never scored.</small></label>`,{open:true});
+  if(scene)modules+=apparatusModule(`This scene · ${esc(scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use the study tools below for evidence, vocabulary, and interpretive boundaries relevant to this lesson.</p>`);
+  modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`);
   if(lesson.id==='begin'){
     modules+=apparatusModule('Transmission','evidence',`<p>Paul says he “received” and “passed on” the proclamation. This supports discussion of transmitted tradition; it does not by itself reconstruct the exact date or wording of every earlier form.</p>`);
     modules+=apparatusModule('Corinth','context',`<p>The letter addresses an existing congregation. Social status, communal meals, patronage, and public honor can illuminate questions in 1 Corinthians, but background evidence should not be used to invent the private motive of every participant.</p>`);
@@ -224,11 +224,11 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
       <div class="study-layout">
         <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Scene ${index+1}: ${esc(item.role)}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><small>${esc(item.role)}</small></a>`).join('')}</nav>
         <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
-        <aside id="study-apparatus" class="study-apparatus" aria-label="Session Notes"><div class="study-apparatus__head"><div><h2>Session Notes</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div></div></div><p class="session-context-note">These notes, your journal, and feedback are tied to the current study activity.</p>${apparatus}</aside>
+        <aside id="study-apparatus" class="study-apparatus" aria-label="Study Desk"><div class="study-apparatus__head"><div><h2>Study Desk</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div></div></div><p class="session-context-note">Session Notes stay with this lesson. Study tools below provide optional evidence, vocabulary, context, and sources.</p>${apparatus}</aside>
       </div>
       <footer class="study-nav" aria-label="Lesson navigation">
         <div>${previous?`<a class="study-nav__button" href="${previous}">← Previous</a>`:'<span class="study-nav__button is-disabled" aria-hidden="true">← Previous</span>'}</div>
-        <button type="button" class="study-nav__notes" data-toggle-apparatus aria-controls="study-apparatus">Session Notes</button>
+        <button type="button" class="study-nav__notes" data-toggle-apparatus aria-controls="study-apparatus">Study Desk</button>
         <div class="study-nav__progress"><span class="sr-only">${esc(scene.role)} · ${sceneIndex+1}/${scenes.length}</span><div class="study-nav__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}" aria-label="${progress}% through this lesson"><i style="width:${progress}%"></i></div></div>
         <a class="study-nav__button study-nav__button--next" href="${next}">${nextLabel}</a>
       </footer>

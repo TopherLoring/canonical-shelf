@@ -30,7 +30,7 @@
     "build":"bun run build:app",
     "verify":"bun run build:app && bun run verify:bsb && bun run verify:contract && bun run test:core && bun run test:browser",
     "serve":"bun run prepare:content && bun run generate:routes && bun run build:client && bun scripts/serve.mjs",
-    "dev":"bun run prepare:content && bun run generate:routes && bun run build:client && bun run generate:auth-migration && bun run generate:wrangler && wrangler dev",
+    "dev":"bun run prepare:content && bun run generate:routes && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev",
     "deploy":"bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment",
     "db:migrate:local":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
     "db:migrate:remote":"bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote"

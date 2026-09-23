@@ -1,43 +1,45 @@
 let controller=null;
 const MAX_CURRENT=1400;
-const MAX_CONTEXT=2600;
 const MAX_HISTORY_TURNS=4;
 
 const clip=(value,max)=>String(value||'').replace(/\s+/g,' ').trim().slice(0,max);
 
-export function conversationalQuestion(question,history=[],learnerContext={}){
-  const current=clip(question,MAX_CURRENT);
-  const parts=[];
-  const learner=[];
-  if(learnerContext.route)learner.push(`Current route: ${clip(learnerContext.route,180)}`);
-  if(learnerContext.activity)learner.push(`Current activity: ${clip(learnerContext.activity,240)}`);
-  if(Number.isFinite(learnerContext.completed)&&Number.isFinite(learnerContext.total))learner.push(`Course progress: ${learnerContext.completed}/${learnerContext.total} scored activities complete`);
-  if(Number.isFinite(learnerContext.reviewsDue))learner.push(`Reviews due: ${learnerContext.reviewsDue}`);
-  if(Array.isArray(learnerContext.recent)&&learnerContext.recent.length)learner.push(`Recent study: ${learnerContext.recent.slice(0,4).map(value=>clip(value,90)).join(' | ')}`);
-  if(learnerContext.masteryActive===true)learner.push('Current activity is scored/mastery work: scaffold reasoning but never reveal or select the assessed answer.');
-  if(learner.length)parts.push(`LEARNER CONTEXT (study-state summary only; not theological evidence or authority):\n${learner.join('\n')}`);
+// Kept as a small public formatter for callers/tests. Conversation history and
+// learner state are transmitted separately rather than embedded into this text.
+export function conversationalQuestion(question){return clip(question,MAX_CURRENT)}
 
-  const safeHistory=Array.isArray(history)?history.slice(-MAX_HISTORY_TURNS*2):[];
-  for(let index=0;index<safeHistory.length;index+=2){
-    const user=safeHistory[index],assistant=safeHistory[index+1];
-    if(user?.role!=='user'||assistant?.role!=='assistant')continue;
-    parts.push(`Previous user: ${clip(user.text,260)}\nPrevious Theologian: ${clip(assistant.text,520)}`);
-  }
-  parts.push(`Current question: ${current}`);
-  let value=parts.join('\n\n');
-  if(value.length>MAX_CONTEXT)value=`${parts[0]?.startsWith('LEARNER CONTEXT')?`${parts[0]}\n\n`:''}${parts.slice(-2).join('\n\n')}`.slice(-MAX_CONTEXT);
-  return value;
+function boundedHistory(history=[]){
+  if(!Array.isArray(history))return[];
+  return history.slice(-MAX_HISTORY_TURNS*2).map(item=>({
+    role:item?.role==='assistant'?'assistant':'user',
+    text:clip(item?.text,item?.role==='assistant'?1200:700)
+  })).filter(item=>item.text);
+}
+function boundedLearnerContext(value={}){
+  const context={};
+  if(value?.route)context.route=clip(value.route,180);
+  if(value?.activity)context.activity=clip(value.activity,240);
+  if(Number.isFinite(value?.completed))context.completed=Number(value.completed);
+  if(Number.isFinite(value?.total))context.total=Number(value.total);
+  if(Number.isFinite(value?.reviewsDue))context.reviewsDue=Number(value.reviewsDue);
+  if(Array.isArray(value?.recent))context.recent=value.recent.slice(0,4).map(item=>clip(item,90)).filter(Boolean);
+  context.masteryActive=value?.masteryActive===true;
+  return context;
 }
 
 export async function requestCloudTheologian(question,{path=`${location.pathname}${location.search}`,history=[],learnerContext={}}={}){
-  const text=String(question||'').trim();
+  const text=conversationalQuestion(question);
   if(!text)throw new Error('Question is required');
   controller?.abort();
   controller=new AbortController();
   const response=await fetch('/api/theologian',{
     method:'POST',
     headers:{'content-type':'application/json'},
-    body:JSON.stringify({question:conversationalQuestion(text,history,learnerContext),context:{path,conversationMode:'local-persistent-bounded',learnerContextPresent:Boolean(Object.keys(learnerContext||{}).length)}}),
+    body:JSON.stringify({
+      question:text,
+      history:boundedHistory(history),
+      context:{path:clip(path,600),learnerContext:boundedLearnerContext(learnerContext)}
+    }),
     signal:controller.signal
   });
   const result=await response.json().catch(()=>({}));
