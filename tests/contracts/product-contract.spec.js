@@ -41,6 +41,20 @@ test('global study utilities remain operable',async({page})=>{
   await expect(page.locator('#personal-study-panel')).toBeVisible();
 });
 
+test('guided lessons foreground learner copy and keep notes separate from study tools',async({page})=>{
+  await page.goto('/course?unit=c1.christianity&lesson=begin');
+  const scene=page.locator('.study-scene__inner');
+  await expect(scene.locator('.scene-objective')).toHaveCount(0);
+  await expect(scene.locator('.scene-callout')).toBeVisible();
+  await expect(scene.locator('.scene-prose')).toBeVisible();
+
+  const desk=page.locator('#study-apparatus');
+  await expect(desk).toBeVisible();
+  await expect(desk.locator('h2')).toHaveText('Study Desk');
+  await expect(desk.locator('[data-inline-lesson-note]')).toBeVisible();
+  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Session Notes');
+});
+
 test('desktop and narrow layouts do not create horizontal page overflow',async({page})=>{
   for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
     await page.setViewportSize(viewport);
