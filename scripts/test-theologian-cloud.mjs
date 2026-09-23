@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import {postTheologian} from '../worker/theologian-ai.ts';
-import {conversationalQuestion} from '../public/theologian-cloud.js';
 
 const assets={
   '/data/catalog.json':JSON.stringify({
@@ -40,13 +39,17 @@ const goodEnv={
   ASSETS:assetBinding,
   AI:{run:async(model,input)=>{
     captured={model,input};
-    return{response:'Canonical Shelf distinguishes the biblical text, historical context, and later interpretation. Christians can disagree about application, and the learner remains free to examine the evidence and reach a considered conclusion.'};
+    return{response:'The passage is best read by starting with what the text actually says, then asking what historical context and later interpretation add. Christians can disagree about application, and the learner remains free to examine the evidence and reach a considered conclusion.'};
   }}
 };
 
 const request=new Request('https://canonical.test/api/theologian',{
   method:'POST',headers:{'content-type':'application/json'},
-  body:JSON.stringify({question:'How should I understand this passage?',context:{path:'/bible?book=45&chapter=1',conversationMode:'local-persistent-bounded',learnerContextPresent:true}})
+  body:JSON.stringify({
+    question:'How should I understand this passage?',
+    history:[{role:'user',text:'What is the larger context?'},{role:'assistant',text:'Start with the argument around the passage.'}],
+    context:{path:'/bible?book=45&chapter=1',learnerContext:{route:'/bible?book=45&chapter=1',activity:'Romans 1',completed:4,total:20,reviewsDue:1,masteryActive:false}}
+  })
 });
 const response=await postTheologian(request,goodEnv);
 assert.equal(response.status,200);
@@ -60,14 +63,14 @@ assert.ok(Array.isArray(body.guardrails)&&body.guardrails.length>0,'guardrail me
 assert.ok(Array.isArray(body.evidence)&&body.evidence.length>0,'evidence metadata is missing');
 assert.ok(body.evidence.every(item=>item.evidenceStatus&&item.claimDomain&&item.doctrinalStatus),'evidence items are not typed');
 assert.ok(body.evidenceModel&&Array.isArray(body.evidenceModel.evidenceStates)&&Array.isArray(body.evidenceModel.claimDomains),'evidence model metadata is missing');
-assert.ok(captured?.input,'cloud synthesis did not receive bounded context');
+const sentMessages=captured?.input?.messages;
+assert.ok(Array.isArray(sentMessages)&&sentMessages.some(message=>message.role==='assistant')&&sentMessages.filter(message=>message.role==='user').length>=2,'prior dialogue was not preserved as conversation turns');
 
-// Mastery protection is tested through the same formatter used by the browser rather than duplicated prompt text.
+// Mastery protection follows structured learner state, independent of prompt wording.
 const masteryEnv={ASSETS:assetBinding,AI:{run:async()=>({response:'I can help you compare the evidence and test your reasoning without selecting the assessed answer.'})}};
-const masteryQuestion=conversationalQuestion('Which option should I choose?',[],{route:'/course?mastery=test',activity:'Mastery activity',masteryActive:true});
 const mastery=await postTheologian(new Request('https://canonical.test/api/theologian',{
   method:'POST',headers:{'content-type':'application/json'},
-  body:JSON.stringify({question:masteryQuestion,context:{path:'/course?mastery=test',learnerContextPresent:true}})
+  body:JSON.stringify({question:'Which option should I choose?',context:{path:'/course?mastery=test',learnerContext:{route:'/course?mastery=test',activity:'Mastery activity',masteryActive:true}}})
 }),masteryEnv);
 assert.equal(mastery.status,200);
 const masteryBody=await mastery.json();
@@ -78,10 +81,10 @@ assert.ok(typeof masteryBody.answer==='string'&&masteryBody.answer.length>0,'mas
 const badEnv={ASSETS:assetBinding,AI:{run:async()=>({response:'Romans 1 refers only to pederasty, temple prostitution, or exploitation.'})}};
 const rejected=await postTheologian(new Request('https://canonical.test/api/theologian',{
   method:'POST',headers:{'content-type':'application/json'},
-  body:JSON.stringify({question:'What does Romans 1 mean?'})
+  body:JSON.stringify({question:'What does Romans 1 mean?',context:{learnerContext:{masteryActive:false}}})
 }),badEnv);
 assert.equal(rejected.status,422);
 const rejectedBody=await rejected.json();
 assert.equal(rejectedBody.fallback,true,'policy-rejected cloud answer did not activate fallback');
 
-console.log('PASS — Theologian cloud response, evidence typing, learner-agency policy validation, mastery protection, and fallback behavior.');
+console.log('PASS — Theologian conversation turns, evidence typing, learner agency, mastery protection, and fallback behavior.');
