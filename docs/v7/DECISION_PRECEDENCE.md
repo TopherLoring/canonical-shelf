@@ -45,6 +45,26 @@ The curriculum uses a **questions-first spiral**. Difficult doctrinal and interp
 
 ## Experience / architecture
 
+`public/canonical-shelf.css` is the **sole visual-system authority** for the current experience. Feature CSS may implement feature-specific layout and composition but must not establish a competing palette, typography hierarchy, geometry system, theme hierarchy, or destination-level visual language. `public/tokens.css` is retired.
+
+Locked visual/product selection:
+
+- scholarly typography with serif display/reading, restrained sans UI, and mono metadata;
+- bookish geometry with **15px** primary radius;
+- bright gilt signal **`#ffc800`**, secondary chrome **`#3e4551`**, white Bible reader paper **`#ffffff`**, reader ink **`#303136`**;
+- canonical Bible-category colors remain semantic and theme-independent;
+- Home is a graphite shelf-first experience and the one primary destination without the shared global navigation bar;
+- Home puts destination buttons at upper right, uses separate Old/New Testament shelves sized by relative book length, and leaves empty shelf/bookend space after Revelation;
+- learner history adds Continue/Current Context above the four exploration paths; without history, the four paths lead to Bible, Topics, Course, and Practice;
+- Course landing is the six-volume shelf;
+- lessons use Study Focus + side apparatus and learner-facing **Glossary** terminology;
+- Bible is reader-first with compact shelf, Books/Timeline/Maps/Search tools, address controls, contextual reader, and right-side notes;
+- Topics uses the editorial dossier approach;
+- Practice uses the compact due-first dashboard;
+- Theologian is a lower-right floating launcher opening a bounded chat panel; in Study Focus it belongs in the side apparatus rather than overlapping the lesson.
+
+Current curated palette packages are `scholarly-graphite` (default), `cool-archive`, `blue-stone`, and `quiet-jewel`. A theme may change palette/material tone but not typography hierarchy, geometry, destination architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
+
 Top-level Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Normal top-level navigation uses document navigation; bounded same-route state changes may use History API enhancement.
 
 Do not restore:
@@ -58,7 +78,7 @@ Do not restore:
 - `public/locked-home.js`;
 - `public/locked-library-baseline.css`.
 
-The editable Library First visual baseline remains the default/reference design. End-user experience and learning effectiveness are co-primary; architecture serves the experience.
+End-user experience and learning effectiveness are co-primary; architecture serves the experience.
 
 ## Statement of Faith / interpretation authority
 
