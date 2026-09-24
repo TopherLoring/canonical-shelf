@@ -1,7 +1,7 @@
 # v7 Decision Precedence and Conflict Protocol
 
 Status: **current authority**  
-Updated: **2026-09-22**
+Updated: **2026-09-24**
 
 ## Authority
 
@@ -18,30 +18,28 @@ Terms such as **locked**, **approved**, **canonical**, and **invariant** describ
 
 ## Current release / convergence
 
-`main` is the canonical production branch. **PR #24 (`fix/native-document-first-rendering`) is the sole active convergence/release PR.**
+`main` is the canonical production branch. Historical PR/convergence records remain provenance and must not override the current owner-approved architecture or current-head verification evidence.
 
 - **#20** — superseded independent merge candidate; questions-first curriculum intent is already represented.
 - **#22** — superseded implementation; preserve Library First/Theologian/cache/live-smoke outcomes, not its `locked-*`, MutationObserver, or post-render repair architecture.
 - **#23** — superseded independent merge candidate; learner-corpus intent is represented by reachability + generated/freshness-validated `llms.txt`, not its snapshot.
+- **#24** — merged historical convergence baseline; its later document-first routing implementation was superseded by the 2026-09-24 owner decision to restore a true SPA.
 
-Do not close the superseded PRs, mark #24 ready, merge, or deploy until current-head executable validation succeeds. A GitHub Actions run with zero steps and `runner_id: 0` is infrastructure evidence, not code-validation evidence.
+Do not merge stale PRs wholesale. Deployment remains a separate explicit production action. A GitHub Actions run with zero executed steps is infrastructure evidence, not code-validation evidence.
 
 ## Product and curriculum invariants
 
-Current scored curriculum:
+Current scored curriculum counts are descriptive runtime data, not permanent verification constants. Durable curriculum requirements are:
 
-- 6 courses;
-- 44 units;
-- 117 guided lessons;
-- 119 mastery/capstone activities;
-- 236 scored activities;
-- 45 Topics outside completion;
-- inherited stable learner IDs;
-- retention cadence **1 → 3 → 7 → 14 → 30 → 60 days**.
+- six-course adult Bible-literacy structure;
+- Topics outside completion;
+- inherited stable learner/activity IDs;
+- deterministic completion-bearing assessment behavior;
+- spaced review and retention;
+- questions-first spiral learning;
+- assessment of understanding/reasoning, never personal theological assent.
 
-Historical 25-unit / 70-lesson / 69-mastery / 139-activity values are migration baselines only.
-
-The curriculum uses a **questions-first spiral**. Difficult doctrinal and interpretive questions appear early enough to motivate adult learners, recur where evidence becomes available, and are synthesized only after prerequisite context and interpretive tools are established. Assessment evaluates understanding/reasoning, not personal theological assent.
+Historical exact counts and earlier 25-unit / 70-lesson / 69-mastery / 139-activity values are migration snapshots only.
 
 ## Experience / architecture
 
@@ -65,7 +63,9 @@ Locked visual/product selection:
 
 Current curated palette packages are `scholarly-graphite` (default), `cool-archive`, `blue-stone`, and `quiet-jewel`. A theme may change palette/material tone but not typography hierarchy, geometry, destination architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
-Top-level Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Normal top-level navigation uses document navigation; bounded same-route state changes may use History API enhancement.
+Top-level Home, Course, Bible, Topics, Practice, and Search are routes in a **single-document SPA**. `public/index.html` is the sole application document. Internal application navigation uses clean path-based URLs, History API state, and bounded client rendering without replacing the browser document. Back/Forward rerenders through `popstate`. Direct entry and refresh use local/Cloudflare SPA fallback to the canonical shell. Course, Unit, Home, and Progress views use native HTML `<template>` elements in that shell and DOM population. The current architecture SSOT is `docs/v7/SPA_ARCHITECTURE_2026-09-24.md`.
+
+Generated top-level route documents and normal cross-destination document navigation are superseded architecture and must not be restored unless a later explicit owner decision changes the target.
 
 Do not restore:
 
@@ -73,6 +73,7 @@ Do not restore:
 - duplicate renderers competing for `#main`;
 - render-obsolete-UI-then-relocate/rename flows;
 - stacked compatibility runtimes;
+- generated top-level application route documents or route-ownership markers;
 - `public/library-system.js`;
 - `public/library-system-refinements.css`;
 - `public/locked-home.js`;
@@ -202,14 +203,14 @@ D1: `canonical-shelf`
 
 Required release evidence includes:
 
-1. executable current-head prelaunch validation;
-2. full validation/E2E/accessibility release audit;
-3. Cloudflare configuration dry run;
+1. executable current-head `bun run verify`;
+2. browser verification of same-document navigation, deep links, Back/Forward, and representative user-facing routes;
+3. Cloudflare configuration validation and dry run with SPA fallback;
 4. D1 migration validation;
 5. release-governance gate;
-6. generated/fresh `llms.txt` and route documents;
+6. generated/fresh `llms.txt` and other deterministic content/runtime outputs;
 7. real post-deploy cloud Theologian smoke with evidence and guardrail validation;
-8. human physical-device, accessibility, editorial/theological nuance, and novice-usability review.
+8. applicable human physical-device, accessibility, editorial/theological nuance, and novice-usability review.
 
 `FEEDBACK_ADMIN_TOKEN` is an operational secret for reviewer-response administration and must never be committed as a plaintext configuration value.
 
