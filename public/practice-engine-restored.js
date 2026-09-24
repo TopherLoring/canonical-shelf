@@ -1,4 +1,4 @@
-import {LIBRARY_BOOKS,CATEGORIES,CATEGORY_ORDER} from './library-data.js';
+﻿import {LIBRARY_BOOKS,CATEGORIES,CATEGORY_ORDER} from './library-data.js';
 import {PRACTICE_STAGES,PRACTICE_LEVELS,PRACTICE_GAME_FAMILIES,PRACTICE_SCOPES,PRACTICE_ACHIEVEMENTS} from './practice-data.js';
 import {practiceStateSummary,recordPracticeResult} from './practice-state.js';
 import {VERSES,VERSE_THEMES,verseText} from './verse-data.js';
@@ -62,7 +62,6 @@ function questionBounds(){
 function questionHook(spec){const target=pick(safePool(spec));return mc(`hook-${target.n}`,`Which book is summarized by “${target.hook}”?`,String(target.n),[target,...wrongBooks(target,null,3)].map(item=>({value:String(item.n),label:item.name})),`${target.name}: ${target.syn}`,{book:target.n})}
 function questionPeople(spec){const pool=safePool(spec).filter(item=>item.people?.length),target=pick(pool.length?pool:safePool(spec));return mc(`people-${target.n}`,`Which book includes ${(target.people||[]).slice(0,Math.min(3,(target.people||[]).length)).join(', ')||'this cast of people'}?`,String(target.n),[target,...wrongBooks(target,null,3)].map(item=>({value:String(item.n),label:item.name})),`${target.name} includes ${(target.people||[]).join(', ')}.`,{book:target.n})}
 function questionSynopsis(spec){const target=pick(safePool(spec));return mc(`syn-${target.n}`,`Which book fits this plot movement? “${target.syn}”`,String(target.n),[target,...wrongBooks(target,null,3)].map(item=>({value:String(item.n),label:item.name})),`${target.name}: ${target.hook}.`,{book:target.n})}
-
 function sequenceQuestion(spec){
   const pool=safePool(spec),size=Math.min(Number(spec.size||5),pool.length);let ordered;
   if(spec.mode==='run'){const start=Math.floor(Math.random()*Math.max(1,pool.length-size+1));ordered=pool.slice(start,start+size)}else ordered=sample(pool,size).sort((a,b)=>a.n-b.n);
@@ -112,9 +111,78 @@ function questionVerseJumble(spec,hard=false){
   const size=Math.min(hard?10:7,words.length),start=Math.floor(Math.random()*Math.max(1,words.length-size+1)),slice=words.slice(start,start+size),items=slice.map((label,index)=>({value:`${index}`,label}));
   return{id:`verse-jumble-${hard?'hard':'standard'}-${target.ref}-${start}`,shape:'sequence',prompt:`Rebuild this ${hard?'longer ':''}excerpt from ${target.ref}.`,items:shuffle(items),answer:items.map(item=>item.value),explanation:`${target.ref}: ${activeVerseText(target)}`,book:target.bn,verseRef:target.ref};
 }
-function questionVerseDrill(spec){return generate(pick(['verse-book','verse-theme','verse-fill']),spec)}
+function questionMemory(spec, {data, state, esc}) {
+  const bookPool = safePool(spec);
+  const completedUnits = state?.completed || [];
+  
+  const entities = [];
+  
+  bookPool.forEach(b => {
+    entities.push({
+      id: `book-${b.n}`,
+      type: 'book',
+      primary: b.name,
+      secondary: b.hook,
+      altSecondary: CATEGORIES[b.cat]?.name || b.cat,
+      meta: b
+    });
+  });
 
-function generate(engine,spec){
+  const relevantCourseIds = new Set(bookPool.map(b => b.courseId));
+  data.units.forEach(u => {
+    if (relevantCourseIds.has(u.courseId)) {
+      entities.push({
+        id: `unit-${u.id}`,
+        type: 'unit',
+        primary: u.title,
+        secondary: clip(u.scope, 100),
+        altSecondary: data.courses.find(c => c.id === u.courseId)?.name || 'Course',
+        meta: u
+      });
+    }
+  });
+
+  const learned = entities.filter(e => {
+    if (e.type === 'unit') return completedUnits.includes(e.id);
+    if (e.type === 'book') {
+      return completedUnits.some(uid => data.units.find(u => u.id === uid)?.courseId === e.meta.courseId);
+    }
+    return false;
+  });
+  const future = entities.filter(e => !learned.includes(e));
+
+  const count = Math.min(Number(spec.pairs || 6), Math.floor(entities.length / 2));
+  const targets = [];
+  
+  const challengeCount = Math.min(2, future.length);
+  targets.push(...sample(future, challengeCount));
+  const remaining = count - targets.length;
+  targets.push(...sample(learned.length ? learned : entities, remaining));
+
+  const modes = [
+    { id: 'hook', name: 'Identity & Key Hook', logic: e => e.secondary },
+    { id: 'cat', name: 'Identity & Category', logic: e => e.altSecondary }
+  ];
+  const mode = pick(modes);
+  
+  const pairs = [];
+  targets.forEach(target => {
+    pairs.push({ id: target.id, label: target.primary, type: 'primary' });
+    pairs.push({ id: target.id, label: mode.logic(target), type: 'secondary' });
+  });
+
+  return {
+    id: `memory-${targets.map(t => t.id).join('-')}`,
+    shape: 'memory',
+    prompt: `Memory Match: ${mode.name}`,
+    items: shuffle(pairs),
+    answer: Object.fromEntries(targets.map(t => [t.id, t.id])),
+    explanation: `Matching ${mode.name} helps link specific labels to their broader context.`,
+    books: targets.filter(t => t.type === 'book').map(t => t.meta.n)
+  };
+}
+
+function generate(engine,spec,{data,state,esc}={}){
   if(engine==='sequence')return sequenceQuestion(spec);
   if(engine==='gap')return questionGap(spec);
   if(engine==='next')return questionNext(spec,1);
@@ -138,6 +206,7 @@ function generate(engine,spec){
   if(engine==='verse-theme')return questionVerseTheme(spec);
   if(engine==='verse-fill')return questionVerseFill(spec);
   if(engine==='verse-drill')return questionVerseDrill(spec);
+  if(engine==='memory')return questionMemory(spec);
   if(engine==='clock'||engine==='survival')return generate(pick(['next','gap','before-after','category','hook','people','guess-book']),spec);
   throw new Error(`Unsupported Practice engine: ${engine}`);
 }
@@ -162,7 +231,6 @@ function createRun(spec,{arcade=false,game=null,scope=null}={}){
   }
   const session={runId,spec:runSpec,questions,arcade,game:runSpec.game,startedAt:Date.now(),seconds:runSpec.seconds||60,lives:runSpec.lives||3};sessions.set(runId,session);return session;
 }
-
 const inputName=(index,suffix='answer')=>`q${index}-${suffix}`;
 function renderQuestion(question,index,esc){
   const heading=`<p class="practice-question__num">${String(index+1).padStart(2,'0')}</p><h3>${esc(question.prompt)}</h3>`;
@@ -171,6 +239,7 @@ function renderQuestion(question,index,esc){
   if(question.shape==='shelf')return `<fieldset class="practice-question practice-question--board" data-question="${index}"><legend class="sr-only">Shelf slots</legend>${heading}<div class="slot-board">${question.slots.map(slot=>`<label><span>Book ${slot}</span><select name="${inputName(index,`slot-${slot}`)}"><option value="">Choose…</option>${question.items.map(item=>`<option value="${escAttr(item.value)}">${esc(item.label)}</option>`).join('')}</select></label>`).join('')}</div></fieldset>`;
   if(question.shape==='bins')return `<fieldset class="practice-question practice-question--board" data-question="${index}"><legend class="sr-only">Sort books</legend>${heading}<div class="sort-board">${question.items.map(item=>`<label><strong>${esc(item.label)}</strong><select name="${inputName(index,`bin-${item.value}`)}"><option value="">Choose group…</option>${question.categories.map(key=>`<option value="${key}">${esc(CATEGORIES[key].name)}</option>`).join('')}</select></label>`).join('')}</div></fieldset>`;
   if(question.shape==='pairs')return `<fieldset class="practice-question practice-question--board" data-question="${index}"><legend class="sr-only">Match pairs</legend>${heading}<div class="pair-board">${question.items.map(item=>`<label><strong>${esc(item.label)}</strong><select name="${inputName(index,`pair-${item.value}`)}"><option value="">Choose match…</option>${question.options.map(option=>`<option value="${escAttr(option.value)}">${esc(option.label)}</option>`).join('')}</select></label>`).join('')}</div></fieldset>`;
+  if(question.shape==='memory')return `<fieldset class="practice-question practice-question--board" data-question="${index}"><legend class="sr-only">Memory Match</legend>${heading}<div class="memory-grid" data-memory-game>${question.items.map((item,i)=>`<div class="memory-card" data-card-id="${escAttr(item.id)}" data-card-value="${escAttr(item.label)}" tabindex="0">${esc(item.label)}</div>`).join('')}</div><input type="hidden" name="${inputName(index)}" value=""> </fieldset>`;
   return'';
 }
 
@@ -202,6 +271,7 @@ function gradeQuestion(form,question,index){
   if(question.shape==='shelf')return question.slots.every(slot=>String(fd.get(inputName(index,`slot-${slot}`))||'')===String(question.answer[String(slot)]));
   if(question.shape==='bins')return question.items.every(item=>String(fd.get(inputName(index,`bin-${item.value}`))||'')===question.answer[item.value]);
   if(question.shape==='pairs')return question.items.every(item=>String(fd.get(inputName(index,`pair-${item.value}`))||'')===question.answer[item.value]);
+  if(question.shape==='memory')return String(fd.get(inputName(index))||'')==='complete';
   return false;
 }
 

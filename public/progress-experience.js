@@ -73,7 +73,7 @@ export function homeView({data,state,esc}){
     <nav class="library-entry-map" aria-label="Explore Canonical Shelf">
       <a href="/bible"><small>Bible</small><strong>Browse books</strong><span>Shelf, profiles, chapters, context.</span></a>
       <a href="/topics"><small>Topics</small><strong>Ask a question</strong><span>Curated evidence and interpretation.</span></a>
-      <a href="/course"><small>Course</small><strong>Learn in sequence</strong><span>Six courses with scored activities.</span></a>
+      <a href="/course"><small>Course</small><strong>Learn in sequence</strong><span>${data.courses?.length || 6} courses with scored activities.</span></a>
       <a href="/practice"><small>Practice</small><strong>Retain what matters</strong><span>Due review before optional practice.</span></a>
     </nav>
 
