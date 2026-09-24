@@ -78,7 +78,15 @@ function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)renderIn
 'progress-open string renderer');
 
   await write('public/app.js',app);
-  console.log('SPA migration phase 1 applied: repaired public-first Theologian boundary, DOM-capable progress rendering, History API navigation');
+
+  let css=await read('public/canonical-shelf.css');
+  css=replaceOnce(css,
+`body:has(.library-first-home)>.pwa-status{color:var(--home-muted);margin:.55rem clamp(1rem,4vw,4rem) 0}`,
+`body:has(.library-first-home)>.pwa-status{color:var(--home-muted);background:var(--home-bg);margin:.55rem clamp(1rem,4vw,4rem) 0}`,
+'Home PWA status surface');
+  await write('public/canonical-shelf.css',css);
+
+  console.log('SPA migration phase 1 applied: repaired public-first Theologian boundary, DOM-capable progress rendering, History API navigation, Home shell contrast');
 }
 
 async function phase2(){
