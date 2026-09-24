@@ -23,7 +23,7 @@
     "test:core": "bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian",
     "test:browser": "playwright test",
     "test": "bun run test:core && bun run test:browser",
-    "build:client": "mkdir -p public/generated && bun build src/client/account.ts --outfile=public/generated/account.js --target=browser --minify",
+    "build:client": "mkdir -p public/generated && bun build public/account-client.ts --outfile=public/generated/account.js --target=browser --minify",
     "build:worker": "bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser",
     "build:runtime": "bun run generate:routes && bun run build:client && bun run generate:auth-migration && bun build public/bootstrap.js --outdir=.tmp/canonical-shelf-browser --target=browser && bun run build:worker",
     "build:app": "bun run prepare:content && bun run build:runtime",
