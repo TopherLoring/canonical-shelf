@@ -30,6 +30,8 @@ The current selected direction uses scholarly typography, bookish geometry, grap
 
 Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Cross-destination navigation uses normal document navigation; bounded same-route detail changes may use History API enhancement.
 
+The architecture follows a **public-first SPA pattern**: the `/public` directory is the authoritative source for all runtime logic and assets. Legacy source files from `/src` have been moved to `.src-archived`. Key orchestration logic is modularized into standalone engines such as `public/search-engine.js` and `public/theologian-engine.js`.
+
 The architecture intentionally excludes broad MutationObserver repair, duplicate top-level renderers, `locked-*` post-render patches, `public/library-system.js`, and `public/library-system-refinements.css`.
 
 ## Theologian
@@ -53,11 +55,11 @@ Authority order:
 Canonical theology files:
 
 ```text
-content/statement/statement-of-faith-compact.md
-content/statement/statement-of-faith-v3.md
-content/theology/policy.json
-content/theology/crisis-policy.json
-content/theology/sources.json
+public/data/statement-of-faith.md
+public/data/theologian-belief-context.md
+public/data/theology-policy.json
+public/data/theology-crisis-policy.json
+public/data/theology-sources.json
 ```
 
 ### Learner agency
@@ -107,15 +109,11 @@ Current posture includes local-first guest use, optional account/passkey sync, n
 Canonical inputs include:
 
 ```text
-content/curriculum/
-content/statement/
-content/theology/
-content/learner-content-reachability.json
-content/vendor/legacy/
+public/data/
 public/index.html
 ```
 
-Generated/published outputs include route-owned documents and the current catalog, curriculum reference, theology data, BSB corpus, and `llms.txt`.
+Generated/published outputs include route-owned documents, the current catalog, curriculum reference, theology data, BSB corpus, `llms.txt`, and modular runtime engines (`public/search-engine.js`, `public/theologian-engine.js`).
 
 ## Development / verification
 

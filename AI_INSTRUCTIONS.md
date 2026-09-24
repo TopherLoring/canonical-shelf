@@ -55,6 +55,11 @@ Current curated color packages may vary palette/material tone only. They must no
 
 Top-level Home, Course, Bible, Topics, Practice, and Search use route-owned generated HTML documents. Cross-destination navigation uses normal document navigation; same-route detail changes may use bounded History API enhancement.
 
+The application employs a **public-first SPA architecture**: the `/public` directory is the sole authoritative source for runtime logic and assets. Legacy `/src` files are archived in `.src-archived`. Core orchestration logic is modularized into dedicated engines:
+- `public/search-engine.js` — Search orchestration and result synthesis.
+- `public/theologian-engine.js` — AI prompt orchestration and response formatting.
+- `public/practice-engine-restored.js` — Practice game generation and grading logic.
+
 Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, `public/locked-library-baseline.css`, `public/library-system.css`, or a separate Home visual-authority stylesheet.
 
 ## Curriculum / learning
@@ -69,11 +74,11 @@ Reflection/journal writing is learner-owned and cannot satisfy scored completion
 
 Public doctrinal ceiling:
 
-`content/statement/statement-of-faith-compact.md` → `public/data/statement-of-faith.md`
+`public/data/statement-of-faith.md`
 
 Supplemental Theologian context only:
 
-`content/statement/statement-of-faith-v3.md` → `public/data/theologian-belief-context.md`
+`public/data/theologian-belief-context.md`
 
 Never present the long-form belief document as the public Statement of Faith or a higher authority.
 
@@ -163,6 +168,8 @@ The sole repository merge/release verification command is:
 ```bash
 bun run verify
 ```
+
+Curriculum structural integrity is verified via `bun run validate-catalog` (running `scripts/validate-catalog.js`).
 
 `docs/VERIFICATION_CONTRACT.md` defines what that gate may protect.
 
