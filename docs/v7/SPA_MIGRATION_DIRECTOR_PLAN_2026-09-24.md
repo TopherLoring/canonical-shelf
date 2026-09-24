@@ -72,4 +72,4 @@ Otherwise, implementation proceeds through the DAG without additional governance
 ## Execution status
 
 - G0: PASS
-- Node 1: ACTIVE
+- Node 1: ACTIVE — recovering the previously reverted DOM-template implementation before writing replacement code.
