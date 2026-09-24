@@ -12,6 +12,18 @@ const replaceOnce=(content,from,to,label)=>{
 async function phase1(){
   let app=await read('public/app.js');
 
+  // The public-first modularization commit imported theologian-engine but left a
+  // corrupted copy of the old local Theologian implementation in app.js. Remove
+  // that obsolete block before evaluating the SPA router. The engine module is
+  // already the live owner of these functions.
+  const obsoleteStart=app.indexOf("\n\n`:e.type==='course'");
+  const obsoleteEnd=app.indexOf('\nfunction rememberStudyReturn');
+  if(obsoleteStart>=0&&obsoleteEnd>obsoleteStart){
+    app=app.slice(0,obsoleteStart)+app.slice(obsoleteEnd);
+  }
+  app=app.replace("import {theologianAnswer,theologianForm} from './theologian-engine.js';","import {theologianAnswer} from './theologian-engine.js';");
+  if(app.includes("function deterministicTheologian(q)"))throw new Error('obsolete local Theologian implementation remains in app.js');
+
   app=replaceOnce(app,
 `const route=()=>routeFromPath(location.pathname);
 const documentRoute=()=>document.querySelector('[data-route-document]')?.dataset.routeDocument||null;
@@ -66,7 +78,7 @@ function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)renderIn
 'progress-open string renderer');
 
   await write('public/app.js',app);
-  console.log('SPA migration phase 1 applied: DOM-capable progress rendering + History API navigation');
+  console.log('SPA migration phase 1 applied: repaired public-first Theologian boundary, DOM-capable progress rendering, History API navigation');
 }
 
 async function phase2(){
