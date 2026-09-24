@@ -162,7 +162,7 @@ h1,h2,h3,h4{font-family:var(--font-display)}
 /* HOME — locked graphite shelf-first destination. */
 body:has(.library-first-home){background:var(--home-bg)}
 body:has(.library-first-home)>.masthead,body:has(.library-first-home)>.primary{display:none}
-body:has(.library-first-home)>.pwa-status{color:var(--home-muted);margin:.55rem clamp(1rem,4vw,4rem) 0}
+body:has(.library-first-home)>.pwa-status{color:var(--home-muted);background:var(--home-bg);margin:.55rem clamp(1rem,4vw,4rem) 0}
 body:has(.library-first-home)>main{max-width:none;padding:0;background:var(--home-bg);color:var(--home-text)}
 .library-first-home{display:grid;gap:10px;max-width:1280px;margin:auto;padding:clamp(18px,2.6vw,30px) clamp(18px,4vw,54px) 28px;color:var(--home-text)}
 .library-first-hero{display:grid;gap:10px;padding:0;border:0}

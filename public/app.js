@@ -12,7 +12,7 @@ import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
 import {scriptureResults,searchPage} from './search-engine.js';
-import {theologianAnswer,theologianForm} from './theologian-engine.js';
+import {theologianAnswer} from './theologian-engine.js';
 
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -37,23 +37,25 @@ const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/'
 const appRouteFromPath=pathname=>{const r=pathRoot(pathname);return roots.has(r)?r:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
 const route=()=>routeFromPath(location.pathname);
-const documentRoute=()=>document.querySelector('[data-route-document]')?.dataset.routeDocument||null;
-const sameRouteNavigation=targetRoute=>targetRoute===route()&&documentRoute()===targetRoute;
 const params=()=>new URLSearchParams(location.search);
 const nativeHref=h=>h?.startsWith('#/')?h.slice(1):h;
 function canonicalizeLinks(root=document){for(const a of root.querySelectorAll('a[href^="#/"]'))a.href=nativeHref(a.getAttribute('href'))}
 function navigate(path,{replace=false}={}){
-  const target=new URL(nativeHref(path)||'/home',location.href),targetPath=`${target.pathname}${target.search}${target.hash}`,targetRoute=routeFromPath(target.pathname);
-  if(!sameRouteNavigation(targetRoute)){
-    if(replace)location.replace(targetPath);else location.assign(targetPath);
+  const target=new URL(nativeHref(path)||'/home',location.href);
+  const targetRoute=appRouteFromPath(target.pathname);
+  const targetPath=`${target.pathname}${target.search}${target.hash}`;
+  if(target.origin!==location.origin||!targetRoute){
+    if(replace)location.replace(target.href);else location.assign(target.href);
     return;
   }
-  history[replace?'replaceState':'pushState']({},'',targetPath);render();
+  history[replace?'replaceState':'pushState']({},'',targetPath);
+  render();
 }
 function setCurrent(r){nav.forEach(a=>a.toggleAttribute('aria-current',a.dataset.route===r))}
 function shell(title,eye,body){return `<header class="section"><p class="eyebrow">${esc(eye)}</p><h1>${esc(title)}</h1></header>${body}`}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
-function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)progressBody.innerHTML=progressPanelView({data,state,esc})}
+function renderInto(target,view){if(!target)return;if(typeof view==='string')target.innerHTML=view;else target.replaceChildren(view)}
+function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)renderInto(progressBody,progressPanelView({data,state,esc}))}
 
 function courseRouteView(p){
   if(!data.units.length)return shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
@@ -101,37 +103,6 @@ function render(){
   else main.focus({preventScroll:true});
   refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
 }
-
-`:e.type==='course'&&e.id?`/course?unit=${encodeURIComponent(e.id)}`:null,link=e.href||fallback;return `<article class="result"><p class="eyebrow">${esc(e.type)} · ${esc(e.evidence||'evidence')}</p><h4>${link?`<a href="${esc(link)}"${/^https?:/i.test(link)?' target="_blank" rel="noreferrer"':''}>${esc(e.label)}</a>`:esc(e.label)}</h4>${e.detail?`<p>${esc(e.detail)}</p>`:''}${e.limits?`<p><strong>Limit:</strong> ${esc(e.limits)}</p>`:''}</article>`}
-</textarea><button class="button">Ask</button></form>`}
-</p>`).join('')}
-function deterministicTheologian(q){
-  try{return buildTheologianResponse({question:q,data,policy,statement,sources:theologySources,corpus,context:{scored:route()==='course'&&!!params().get('mastery')}})}
-  catch{return {intent:'study',position:policy.authority.rule,method:policy.interpretiveRules||[],evidence:[],warnings:['The Theologian withheld a response because its theological validation failed.'],masteryProtected:false}}
-}
-function deterministicMarkup(q,result,{cloudStatus=''}={}){
-  return `${theologianForm(q)}${cloudStatus?`<p class="cloud-theologian-status" role="status" aria-live="polite">${esc(cloudStatus)}</p>`:''}<div class="evidence"><span class="badge">${esc(result.intent)}</span>${result.masteryProtected?'<span class="badge">mastery protected</span>':''}<span class="badge">bounded by ${esc(policy.authority.normativeCeiling)}</span><p class="lede">${esc(result.position)}</p></div>${result.warnings.length?`<div class="evidence"><h3>Evidence cautions</h3>${result.warnings.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${result.evidence.length?`<section class="evidence"><h3>Evidence and connections</h3>${result.evidence.map(evidenceMarkup).join('')}</section>`:''}<div class="evidence"><h3>How the Theologian is reasoning</h3><ul>${result.method.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="evidence"><span class="badge">local evidence fallback</span></div>`
-}
-function cloudMarkup(q,result){
-  const evidence=Array.isArray(result.evidence)?result.evidence:[],guardrails=Array.isArray(result.guardrails)?result.guardrails:[];
-  return `${theologianForm(q)}<section class="evidence cloud-theologian-answer"><div class="badge-row"><span class="badge">Theologian</span><span class="badge">cloud grounded</span>${result.lgbtqResearchApplied?'<span class="badge">LGBTQ research applied</span>':''}</div><div class="cloud-theologian-copy">${answerMarkup(result.answer)}</div></section>${evidence.length?`<section class="evidence"><h3>Evidence and connections</h3>${evidence.map(evidenceMarkup).join('')}</section>`:''}<details class="evidence"><summary>Guardrails used for this answer</summary><ul>${guardrails.map(item=>`<li>${esc(item)}</li>`).join('')}</ul><p class="meta">The current question and user-facing page context are processed by Canonical Shelf's Cloudflare Worker for this response. Canonical Shelf does not write the conversation to its database.</p></details><div class="evidence"><span class="badge">cloud synthesis</span><span class="badge">local evidence fallback available</span></div>`
-}
-async function theologianAnswer(question){
-  const q=String(question||'').trim()||'What can you help me study?';
-  const fallback=deterministicTheologian(q);
-  theologianBody.innerHTML=deterministicMarkup(q,fallback,{cloudStatus:'Building a grounded response from the BSB, Canonical Shelf content, the Statement of Faith, and vetted theology research…'});
-  canonicalizeLinks(theologianBody);theologian.hidden=false;
-  try{
-    const result=await requestCloudTheologian(q,{path:`${location.pathname}${location.search}`});
-    if(theologianBody.querySelector('#guide-q')?.value.trim()!==q)return;
-    theologianBody.innerHTML=cloudMarkup(q,result);canonicalizeLinks(theologianBody);
-  }catch(error){
-    if(error?.name==='AbortError')return;
-    theologianBody.innerHTML=deterministicMarkup(q,fallback,{cloudStatus:'Cloud synthesis is unavailable right now. Canonical Shelf is showing the local evidence response instead.'});
-    canonicalizeLinks(theologianBody);
-  }
-}
-
 function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}}
 function exitStudy(button){
   let saved=null;try{saved=JSON.parse(sessionStorage.getItem(STUDY_RETURN_KEY)||'null')}catch{}
@@ -198,7 +169,7 @@ document.addEventListener('click',async e=>{
     const u=new URL(link.href,location.href),targetRoute=u.origin===location.origin?appRouteFromPath(u.pathname):null;
     if(targetRoute){
       rememberStudyReturn(link,u);
-      if(sameRouteNavigation(targetRoute)){e.preventDefault();navigate(u.pathname+u.search+u.hash);return}
+      e.preventDefault();navigate(u.pathname+u.search+u.hash);return;
     }
   }
   const ask=e.target.closest('[data-ask]');if(ask)void theologianAnswer(ask.dataset.ask,{data,policy,statement,theologySources,corpus,route,params,esc,theologianBody});
@@ -242,7 +213,7 @@ document.addEventListener('submit',async e=>{
 document.addEventListener('change',e=>{if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`);if(e.target.id==='translation-select'&&e.target.value!=='bsb')e.target.value='bsb'});
 document.querySelector('#guide-open').addEventListener('click',()=>{void theologianAnswer('What can you help me study?',{data,policy,statement,theologySources,corpus,route,params,esc,theologianBody});document.querySelector('#guide-q')?.focus()});
 document.querySelector('#guide-close').addEventListener('click',()=>{cancelCloudTheologian();theologian.hidden=true;document.querySelector('#guide-open').focus()});
-document.querySelector('#progress-open').addEventListener('click',()=>{progressBody.innerHTML=progressPanelView({data,state,esc});progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
+document.querySelector('#progress-open').addEventListener('click',()=>{renderInto(progressBody,progressPanelView({data,state,esc}));progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
 document.querySelector('#progress-close').addEventListener('click',()=>{progressPanel.hidden=true;document.querySelector('#progress-open').focus()});
 render();
 

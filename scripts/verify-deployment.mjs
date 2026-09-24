@@ -49,9 +49,10 @@ for(const route of ['home','course','bible','topics','practice','search']){
   const type=response.headers.get('content-type')||'';
   const body=await response.text();
   if(!type.includes('text/html'))throw new Error(`${path} did not return HTML (${type||'no content-type'})`);
-  if(!/<html[\s>]/i.test(body)||!/Canonical Shelf/i.test(body))throw new Error(`${path} did not return a Canonical Shelf document`);
-  if(!body.includes(`data-route-document="${route}"`))throw new Error(`${path} resolved to generic fallback instead of its route-owned ${route} document`);
-  if(!body.includes(`data-route-content="${route}"`))throw new Error(`${path} is missing its bounded ${route} enhancement region`);
+  if(!/<html[\s>]/i.test(body)||!/Canonical Shelf/i.test(body))throw new Error(`${path} did not return the Canonical Shelf SPA shell`);
+  if(!body.includes('id="main" tabindex="-1" aria-live="polite"'))throw new Error(`${path} is missing the canonical SPA mount`);
+  if(!body.includes('id="tpl-course-landing"'))throw new Error(`${path} is missing canonical DOM view templates`);
+  if(body.includes('data-route-document='))throw new Error(`${path} is still serving a generated route-owned document`);
   assertNativeShell(body,path);
 }
 
@@ -110,4 +111,4 @@ if(!Array.isArray(theologian?.guardrails)||!theologian.guardrails.some(item=>/Be
 if(!Array.isArray(theologian?.evidence)||theologian.evidence.length===0)throw new Error('live Theologian smoke returned no grounding evidence');
 if(theologian?.validation?.status!=='passed')throw new Error('live Theologian smoke did not report passed guardrail validation');
 
-console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: route-owned documents, legal/privacy/safety surfaces, crisis policy/mode, generated content, bindings, and live cloud Theologian verified`);
+console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: SPA route fallback, legal/privacy/safety surfaces, crisis policy/mode, generated content, bindings, and live cloud Theologian verified`);
