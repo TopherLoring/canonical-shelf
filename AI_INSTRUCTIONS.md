@@ -53,14 +53,16 @@ Current locked design direction:
 
 Current curated color packages may vary palette/material tone only. They must not change page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
 
-Top-level Home, Course, Bible, Topics, Practice, and Search use route-owned generated HTML documents. Cross-destination navigation uses normal document navigation; same-route detail changes may use bounded History API enhancement.
+Top-level Home, Course, Bible, Topics, Practice, and Search are routes inside a **single-document SPA**. `public/index.html` is the sole application document. Internal app links use clean path-based URLs with History API navigation and bounded `#main` rendering; Back/Forward rerenders through `popstate`. Direct entry and refresh resolve to the same shell through local and Cloudflare SPA fallback. Do not reintroduce generated top-level route HTML documents.
 
-The application employs a **public-first SPA architecture**: the `/public` directory is the sole authoritative source for runtime logic and assets. Legacy `/src` files are archived in `.src-archived`. Core orchestration logic is modularized into dedicated engines:
+The application employs a **public-first SPA architecture**: the `/public` directory is the sole authoritative source for runtime logic and assets. Legacy `/src` files are archived in `.src-archived`. Course, Unit, Home, and Progress views use native HTML `<template>` elements from `public/index.html` and populate them through DOM operations. Core orchestration logic is modularized into dedicated engines:
 - `public/search-engine.js` — Search orchestration and result synthesis.
 - `public/theologian-engine.js` — AI prompt orchestration and response formatting.
 - `public/practice-engine-restored.js` — Practice game generation and grading logic.
 
-Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, `public/locked-library-baseline.css`, `public/library-system.css`, or a separate Home visual-authority stylesheet.
+Current top-level architecture authority: `docs/v7/SPA_ARCHITECTURE_2026-09-24.md`.
+
+Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, generated route-document ownership, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, `public/locked-library-baseline.css`, `public/library-system.css`, or a separate Home visual-authority stylesheet.
 
 ## Curriculum / learning
 
@@ -189,9 +191,9 @@ The current automated gate consists of:
 
 - build/generation;
 - immutable BSB integrity;
-- a small grouped product/template contract, including a single marked visual-contract authority;
+- a small grouped product/template contract, including a single marked visual-contract authority and the single-document SPA contract;
 - behavior-level assessment/sync/D1/feedback/Theologian/crisis tests;
-- a small Chromium browser smoke for core routes, utilities, responsiveness, and serious/critical accessibility failures.
+- a small Chromium browser smoke for core routes, same-document navigation, utilities, responsiveness, and serious/critical accessibility failures.
 
 Cloudflare target validation and post-deployment live verification are separate infrastructure contracts. Human visual/editorial/novice review remains separate from automated verification.
 
@@ -206,6 +208,6 @@ D1: `canonical-shelf`
 
 Before merge, require successful current-head `bun run verify` plus the Cloudflare dry-run in CI and any applicable human visual/accessibility/editorial/novice gates. Do not resurrect removed parity/restoration/supersession validators.
 
-After merge, deploy only through the canonical production workflow and verify exact release/bindings, route documents, public policy resources, generated learner data, offline behavior, and a real cloud Theologian response.
+After merge, deploy only through the canonical production workflow and verify exact release/bindings, SPA route fallback/direct-entry behavior, public policy resources, generated learner data, offline behavior, and a real cloud Theologian response.
 
 **Completion standard:** strongest feasible Canonical Shelf experience delivered by the simplest reliable architecture capable of supporting it.
