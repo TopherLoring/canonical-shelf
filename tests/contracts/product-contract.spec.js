@@ -14,18 +14,23 @@ test('core destinations render as valid documents',async({page})=>{
 });
 
 test('primary navigation is a same-document SPA transition',async({page})=>{
-  await page.goto('/home');
-  await expect(page.locator('#main h1')).toBeVisible();
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/course');
+  await expect(page.locator('#guide-open')).toBeEnabled();
   await page.evaluate(()=>{window.__CANONICAL_SPA_SENTINEL__='same-document'});
-  for(const route of ['/course','/bible','/topics','/practice','/home']){
+  for(const route of ['/bible','/topics','/practice','/home']){
     await page.locator(`nav.primary a[href="${route}"]`).click();
     await expect(page).toHaveURL(new RegExp(`${route.replace('/','\\/')}(?:[?#]|$)`));
     await expect(page.locator('#main h1')).toHaveCount(1);
     expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   }
-  await page.goBack();
-  await expect(page).toHaveURL(/\/practice(?:[?#]|$)/);
+  await page.locator('main a[href="/course"]').first().click();
+  await expect(page).toHaveURL(/\/course(?:[?#]|$)/);
   expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
+  await page.goBack();
+  await expect(page).toHaveURL(/\/home(?:[?#]|$)/);
+  expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
+  expect(errors).toEqual([]);
 });
 
 test('DOM template bank drives home, progress, course, and unit views',async({page})=>{
@@ -33,11 +38,12 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await page.goto('/home');
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
+  await page.locator('main a[href="/course"]').first().click();
+  await expect(page.locator('.course-volume-landing')).toBeVisible();
+  await expect(page.locator('#progress-open')).toBeEnabled();
   await page.locator('#progress-open').click();
   await expect(page.locator('#progress-body .progress-panel__summary')).toBeVisible();
   await page.locator('#progress-close').click();
-  await page.locator('nav.primary a[href="/course"]').click();
-  await expect(page.locator('.course-volume-landing')).toBeVisible();
   const courseHref=await page.locator('.course-volume').first().getAttribute('href');
   expect(courseHref).toBeTruthy();
   await page.locator('.course-volume').first().click();
