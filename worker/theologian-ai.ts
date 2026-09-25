@@ -95,8 +95,22 @@ async function loadResources(env:TheologianAiEnv,requestUrl:string):Promise<Reso
   return cached;
 }
 
+const THEOLOGY_TERM_EXPANSIONS: Record<string, string[]> = {
+  decalogue: ['commandments', 'commandment', 'sinai', 'exodus', 'covenant', 'law'],
+  pentateuch: ['torah', 'moses', 'law', 'genesis', 'exodus'],
+  synoptic: ['gospels', 'matthew', 'mark', 'luke'],
+  theodicy: ['evil', 'suffering', 'justice', 'job'],
+  eschatology: ['revelation', 'resurrection', 'prophecy', 'kingdom']
+};
+
 function termsFor(question:string){
-  return [...new Set(question.toLowerCase().replace(/[^a-z0-9'\- ]/g,' ').split(/\s+/).filter(term=>term.length>=3&&!STOP.has(term)))].slice(0,18);
+  const base=[...new Set(question.toLowerCase().replace(/[^a-z0-9'\- ]/g,' ').split(/\s+/).filter(term=>term.length>=3&&!STOP.has(term)))];
+  const expanded=new Set(base);
+  for(const term of base){
+    const list=THEOLOGY_TERM_EXPANSIONS[term];
+    if(list)for(const s of list)expanded.add(s);
+  }
+  return [...expanded].slice(0,18);
 }
 function scoreText(value:unknown,terms:string[]){
   const text=String(value??'').toLowerCase();let score=0;
@@ -289,6 +303,11 @@ export async function postTheologian(request:Request,env:TheologianAiEnv){
   const evidence=[...scriptureEvidence(question,resources,terms),...siteEvidence(question,path,resources,terms),...researchEvidence(question,resources,terms)];
   const unique:Evidence[]=[];const seen=new Set<string>();
   for(const item of evidence){const key=`${item.type}:${item.label}:${item.href||''}`;if(seen.has(key))continue;seen.add(key);unique.push(item)}
+  if(!unique.length&&resources.catalog?.topics?.length){
+    for(const t of resources.catalog.topics.slice(0,2)){
+      unique.push(siteItem('topic',clean(t.title||t.id,180),summarize(t,2000),`/topics?topic=${encodeURIComponent(String(t.id||''))}`,'Canonical Shelf Topic'));
+    }
+  }
   const selected=unique.slice(0,14),prompt=buildTheologianPrompt(question,path,resources,selected,learnerContext);
   const messages=[{role:'system',content:prompt.system},...history.map(turn=>({role:turn.role,content:turn.text})),{role:'user',content:prompt.user}];
   let result:unknown;
