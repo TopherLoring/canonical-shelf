@@ -9,7 +9,7 @@
     "generate:wrangler": "bun scripts/write-wrangler.mjs",
     "generate:curriculum-reference": "bun scripts/generate-curriculum-reference.mjs",
     "generate:llms": "bun scripts/generate-llms.mjs",
-    "prepare:content": "bun run migrate && bun run generate:curriculum-reference && bun run generate:llms",
+    "prepare:content": "bun run migrate && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms",
     "verify:bsb": "bun scripts/bsb-integrity.mjs",
     "verify:contract": "bun scripts/verify-product-contract.mjs",
     "verify:deployment": "bun scripts/verify-deployment.mjs",
@@ -34,7 +34,7 @@
     "db:migrate:local": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local",
     "db:migrate:remote": "bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote",
     "data:ingest:bsb": "bun scripts/ingest-bsb-tsv.mjs",
-    "data:compile:crossref": "bun scripts/compile-cross-references.mjs",
+    "data:crossref": "bun scripts/build-crossrefs.mjs",
     "data:convert:concordance": "bun scripts/convert-concordance.mjs",
     "data:generate:apparatus": "bun scripts/generate-exegetical-apparatus.mjs"
   },
