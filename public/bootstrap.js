@@ -57,7 +57,7 @@ async function setupOffline(){
     reg.update().catch(()=>{});
     const ready=await navigator.serviceWorker.ready;
     ready.active?.postMessage('CACHE_DATA');
-    setStatus(navigator.onLine?'Offline access ready':'Offline mode active','ready');
+    setStatus(navigator.onLine?'':'Offline — showing saved content','ready');
   }catch(err){
     console.warn('Offline setup failed',err);
     setStatus('Offline setup unavailable; the current session still works online.','error');
@@ -65,5 +65,5 @@ async function setupOffline(){
 }
 
 setupOffline();
-window.addEventListener('online',()=>setStatus('Offline access ready','ready'));
-window.addEventListener('offline',()=>setStatus('Offline mode active','ready'));
+window.addEventListener('online',()=>setStatus('','ready'));
+window.addEventListener('offline',()=>setStatus('Offline — showing saved content','ready'));
