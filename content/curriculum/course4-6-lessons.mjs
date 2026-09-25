@@ -11,7 +11,7 @@ export const course4Lessons=[
       'Christian traditions disagree about how the Sermon relates to law, grace, Church, politics, perfection, and ordinary discipleship. Before those debates, the learner should be able to reconstruct what the Sermon actually emphasizes and how its parts connect.'
     ],
     simple:'The Sermon on the Mount is a connected vision of kingdom-shaped life, not a bag of inspirational quotations.',
-    vocab:{Beatitudes:'Blessing sayings opening Matthew’s Sermon on the Mount.',EnemyLove:'Jesus’ command to love enemies and pray for persecutors in Matthew 5.',SermonOnTheMount:'Matthew 5–7, a major collection of Jesus’ teaching.'},
+    vocab:{Beatitudes:'Blessing sayings opening Matthew’s Sermon on the Mount.','Enemy Love':'Jesus’ command to love enemies and pray for persecutors in Matthew 5.','Sermon on the Mount':'Matthew 5–7, a major collection of Jesus’ teaching.'},
     deeper:'The relationship between Matthew’s Sermon and Luke’s Sermon on the Plain is a Synoptic question; Course 5 treats Gospel relationships without requiring a beginner to solve source criticism first.',
     drawers:[
       drawer('Why the Beatitudes are not personality tips','They announce blessing in relation to God’s kingdom and reversal, not a self-improvement list for becoming sufficiently meek or mournful.'),
@@ -53,7 +53,7 @@ export const course4Lessons=[
       'Christian interpretation can see Jesus’ death through Passover, covenant, sacrifice, and liberation patterns while still recognizing Passover as a living Jewish festival with meanings not exhausted by Christian use.'
     ],
     simple:'The Last Supper draws on Passover and covenant memory; Christian interpretation adds a claim about Jesus without erasing the Jewish story underneath it.',
-    vocab:{LastSupper:'Traditional name for Jesus’ final meal with disciples before the crucifixion.',CovenantBlood:'Language linking blood with covenant ratification or relationship in biblical texts.',Eucharist:'A traditional Christian name for Communion/Lord’s Supper, from a Greek word associated with thanksgiving.'},
+    vocab:{'Last Supper':'Traditional name for Jesus’ final meal with disciples before the crucifixion.','Covenant Blood':'Language linking blood with covenant ratification or relationship in biblical texts.',Eucharist:'A traditional Christian name for Communion/Lord’s Supper, from a Greek word associated with thanksgiving.'},
     deeper:'The chronology and festival framing differ in important ways across the Gospels, especially between John and the Synoptics. Course 5’s Gospel-comparison tools help learners examine those differences without premature harmonization.',
     drawers:[drawer('Passover is not merely “the Christian prequel”','Jewish Passover continues as Jewish worship and memory. Christian typology is a Christian interpretive claim, not a reason to deny Jewish meaning or practice.')],
     challenges:[
@@ -91,7 +91,7 @@ export const course4Lessons=[
       'Christians differ about how Pentecost relates to later experiences of Spirit, charismatic gifts, baptism in the Spirit, and church order. The core lesson first establishes what Acts 2 narrates before those theological systems are compared.'
     ],
     simple:'Pentecost takes place at a Jewish festival and links the Spirit with multilingual witness and the outward movement of the early Church.',
-    vocab:{Pentecost:'Greek-derived name associated with the Jewish festival of Weeks; in Acts 2, the setting of the Spirit’s coming.',Diaspora:'Communities living outside an ancestral homeland; Acts’ audience list reflects a wide Jewish geography.',HolySpirit:'In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth.'},
+    vocab:{Pentecost:'Greek-derived name associated with the Jewish festival of Weeks; in Acts 2, the setting of the Spirit’s coming.',Diaspora:'Communities living outside an ancestral homeland; Acts’ audience list reflects a wide Jewish geography.','Holy Spirit':'In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth.'},
     deeper:'Acts 2 has generated major theological debates about gifts and ecclesiology. Those debates should not be imported into every narrative detail before the passage’s literary movement is understood.',
     drawers:[drawer('Why Course 2 matters here','Without Israel’s festival calendar, “Pentecost” can sound like a purely Christian event name. The earlier course supplies the Jewish sacred-time context that Acts assumes.')],
     visual:{title:'Festival becomes mission scene',text:'Weeks/Pentecost pilgrimage → Jerusalem gathering → Spirit/languages → diaspora hearers → widening witness'},
@@ -114,7 +114,7 @@ export const course5Lessons=[
       'For serious study, use multiple translations and consult a translation’s own preface and notes. A spectrum is a diagnostic tool, not a holiness ranking.'
     ],
     simple:'Formal and functional translation describe different priorities. Every real translation balances form, meaning, idiom, and readable target-language expression.',
-    vocab:{FormalEquivalence:'A translation tendency emphasizing correspondence with source-language form where workable.',FunctionalEquivalence:'A translation tendency emphasizing natural communication of source-language meaning in the target language.',Paraphrase:'A freer restatement that may work at larger units of meaning rather than close formal correspondence.'},
+    vocab:{'Formal Equivalence':'A translation tendency emphasizing correspondence with source-language form where workable.','Functional Equivalence':'A translation tendency emphasizing natural communication of source-language meaning in the target language.',Paraphrase:'A freer restatement that may work at larger units of meaning rather than close formal correspondence.'},
     deeper:'Translation studies uses more precise and varied terminology than a simple formal/dynamic spectrum. The spectrum remains useful for beginners if presented as a heuristic rather than a complete theory.',
     drawers:[drawer('Do not call one translation “literal” in every verse','No full translation can preserve every lexical, syntactic, rhetorical, and cultural feature simultaneously. “Literal” often hides which feature is being preserved.')],
     challenges:[
@@ -171,7 +171,7 @@ export const course5Lessons=[
       'Literary dependence is not the same thing as plagiarism in a modern academic-policy sense. Ancient authors could reuse and reshape sources. The interpretive payoff is learning to notice what each Gospel preserves, omits, relocates, or emphasizes.'
     ],
     simple:'Matthew, Mark, and Luke are unusually similar. Scholars propose source relationships to explain that pattern; those hypotheses help comparison but are not themselves manuscripts we possess.',
-    vocab:{SynopticGospels:'Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story.',MarkanPriority:'The hypothesis that Mark was written before and used by Matthew and Luke.',Q:'A hypothetical source proposed in some models to explain shared Matthew-Luke material absent from Mark.'},
+    vocab:{'Synoptic Gospels':'Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story.','Markan Priority':'The hypothesis that Mark was written before and used by Matthew and Luke.',Q:'A hypothetical source proposed in some models to explain shared Matthew-Luke material absent from Mark.'},
     deeper:'Source criticism interacts with oral tradition, memory, redaction criticism, dating, and ancient compositional practice. No single introductory model should be presented as if all scholarly questions are closed.',
     drawers:[drawer('What this changes for reading','If two writers reuse a shared scene, differences in placement or wording can become evidence of each writer’s literary and theological emphasis rather than problems to erase immediately.')],
     challenges:[
@@ -230,7 +230,7 @@ export const course6Lessons=[
       'Canonical Shelf will not teach that Christian belonging licenses contempt for Jews or proves God simply abandoned the Jewish people. A framework must account for the actual texts and for the ethical consequences of how it speaks about Israel and Judaism.'
     ],
     simple:'Christians organize covenant continuity and Israel/Church relationships differently; any framework must preserve the texts and reject Gentile superiority.',
-    vocab:{CovenantTheology:'A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary.',Dispensationalism:'A family of systems emphasizing distinct administrations in biblical history and often a distinctive future for Israel.',Supersessionism:'A range of claims that the Church supersedes or replaces Israel; definitions and theological forms vary.'},
+    vocab:{'Covenant Theology':'A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary.',Dispensationalism:'A family of systems emphasizing distinct administrations in biblical history and often a distinctive future for Israel.',Supersessionism:'A range of claims that the Church supersedes or replaces Israel; definitions and theological forms vary.'},
     deeper:'“Supersessionism” is used broadly in scholarship and theology, so accusations require definition. Some Christian traditions affirm fulfillment in Christ while explicitly rejecting the idea that God has abandoned Jewish people or that the Church may treat Judaism with contempt.',
     drawers:[drawer('Why Romans 11 matters','Paul’s olive-tree image includes warning to Gentile believers not to boast over branches. Whatever larger system one adopts, that warning constrains triumphalist application.')],
     challenges:[
