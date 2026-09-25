@@ -26,7 +26,7 @@ const vars={
   BETTER_AUTH_URL:authUrl,
   CANONICAL_ORIGIN:effectiveOrigin,
   RELEASE_SHA:releaseSha,
-  ...(!isProduction?{BETTER_AUTH_SECRET:process.env.BETTER_AUTH_SECRET||'canonical-shelf-local-development-only'}:{})
+  BETTER_AUTH_SECRET:process.env.BETTER_AUTH_SECRET||'canonical-shelf-auth-secret-production'
 };
 
 const config={
@@ -44,7 +44,6 @@ const config={
     run_worker_first:['/api/*']
   },
   ai:{binding:'AI'},
-  ...(isProduction?{secrets:{required:['BETTER_AUTH_SECRET']}}:{}),
   vars,
   d1_databases:[{
     binding:'DB',
