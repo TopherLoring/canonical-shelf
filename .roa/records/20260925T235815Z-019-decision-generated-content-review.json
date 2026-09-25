@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "generated-content-review",
+  "date": "2026-09-25",
+  "text": "[default, by agent] Generated curriculum content is reviewed before learners see it",
+  "by": "Claude"
+}

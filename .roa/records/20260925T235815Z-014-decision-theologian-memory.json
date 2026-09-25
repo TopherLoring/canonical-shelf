@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "theologian-memory",
+  "date": "2026-09-25",
+  "text": "[decision] Theologian chat persists until the user selects New chat, so dismissing never loses it; transcripts are saved to the profile only if the user chooses, and exported/shared through an ellipsis menu",
+  "by": "Chris"
+}

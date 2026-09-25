@@ -16,6 +16,27 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
 - Do not show the tool to the primary learner until the core surfaces are visually polished
 - Project state is managed with project-roa-kit: append-only records compiled into agent state and human docs
+- [decision] Curriculum uses four top-level modules (Hermeneutics & Canon; Hebrew Scriptures & Near Eastern World; Second Temple Judaism & Christ Event; Systematic Synthesis, Hard Ethics & Living Practice), keeping multi-lesson units and stable lesson IDs. Any restructuring rewrites each unit as one flow: introduction, substance, summary, with integrated practice checks and non-repeating content
+- [decision] Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
+- [decision] Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary)
+- [decision] All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus)
+- [decision] Audience: adults new to Christianity and the Bible, taught from a personally affirming, open-table stance. Explain doctrine through the biblical story and its internal logic, never with 'that's where faith comes in' or 'you just have to accept it'; avoid analogies that drift into heresy. Welcome questions without requiring assent. Breadth increases as study progresses; content defines the interactions
+- [decision] Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties
+- [decision] Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; context never excuses harm; present-day application is evaluated through Jesus' teaching, love of neighbor, and human dignity
+- [decision] Prayer is taught as relationship with God (petition, gratitude, lament, listening); miracles are presented with differing interpretations; never promise healing, blame illness on insufficient faith, or treat prayer as a substitute for medical care
+- [decision] Satan, demons, and spiritual warfare: explain biblical portrayals and the personal, symbolic, and systemic interpretations; no sensationalism, never identify other groups as demonic, never treat mental illness as evidence of possession
+- [decision] Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
+- [decision] Modules drive the content beneath them (modules, then units, then lessons; names may change). Completed items are visibly identifiable; everything is navigable and skippable in both directions
+- [decision] Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
+- [decision] Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Chris; saved with full state and context; two-way: Chris's replies appear as an unread indicator on the Theologian surface styled as a system message, never as an AI message
+- [decision] Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson
+- [decision] Theologian chat persists until the user selects New chat, so dismissing never loses it; transcripts are saved to the profile only if the user chooses, and exported/shared through an ellipsis menu
+- [decision] Each Theologian response has thumbs up/down and a flag. Flag reasons: disagreement, profound, very helpful, misguided, inappropriate, contrary to Scripture; an authored reason is mandatory; saved to the feedback database tied to the Theologian with the two most recent prompts, the prior response, and screen context
+- [decision] The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
+- [decision] Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions
+- [default, by agent] Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts
+- [default, by agent] Generated curriculum content is reviewed before learners see it
+- Resolved "Which theme is the site-wide default: dark (Home) or light (inner pages)?": Recorded as an agent default (scholarly-graphite, light) pending Chris's visual redesign; not an owner decision
 
 ### Added
 
@@ -26,6 +47,12 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - One masthead and navigation model across pages
+- [feedback, Chris] Home: Prototype B ('Library First') was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded (supersedes ledger D009 'all destinations match')
+- [feedback, Chris] Shelf direction (ledger D014) is work in progress; find a middle-ground solution
+- [feedback, Chris] Bible page: remove the Bible cover from the reader and redesign the page's logic and layout as a whole
+- [feedback, Chris] Current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
+- [feedback, Chris] Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between
+- [correction] The 'document-first-routing' record was agent-era work, not an owner decision; DECISION_PRECEDENCE.md content is agent-written pending provenance triage
 
 ### Removed
 

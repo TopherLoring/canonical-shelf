@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "default-theme-scholarly-graphite",
+  "date": "2026-09-25",
+  "text": "[default, by agent] Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts",
+  "by": "Claude"
+}

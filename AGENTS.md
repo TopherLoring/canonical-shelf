@@ -30,12 +30,13 @@
 - Stable learner and activity IDs are inherited; never renumber or rename them
 - Topics sit outside course completion
 - Single-document SPA: public/index.html is the only application document
-- public/canonical-shelf.css is the sole visual-system authority until an owner decision replaces it
+- The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
 - Pastoral and crisis-adjacent content routes through the Theologian crisis policy
 - No streaks, public leaderboards, or peer comparison
 
 ## Agent rules
 
+- Chris's current request outranks every document; raise any contradiction explicitly for approve/reject. Only records marked [decision] by Chris bind; [default] and [feedback] records are adjustable
 - Run `bun run verify` before opening a pull request
 - Never deploy to production without explicit owner instruction in the current task
 - Do not merge stale pull requests wholesale; carry forward only named outcomes

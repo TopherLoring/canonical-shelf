@@ -5,6 +5,93 @@ Latest decisions first. A decision stays in force until a later record supersede
 
 ## Decisions
 
+### [default, by agent] Generated curriculum content is reviewed before learners see it
+
+- **ID:** `generated-content-review` · **Date:** 2026-09-25 · **Status:** active · **By:** Claude
+
+### [default, by agent] Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts
+
+- **ID:** `default-theme-scholarly-graphite` · **Date:** 2026-09-25 · **Status:** active · **By:** Claude
+
+### [decision] Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions
+
+- **ID:** `decision-authority` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
+
+- **ID:** `visual-authority` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
+
+### [decision] Each Theologian response has thumbs up/down and a flag. Flag reasons: disagreement, profound, very helpful, misguided, inappropriate, contrary to Scripture; an authored reason is mandatory; saved to the feedback database tied to the Theologian with the two most recent prompts, the prior response, and screen context
+
+- **ID:** `theologian-review` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes accepting blank explanations and single-question snapshots
+
+### [decision] Theologian chat persists until the user selects New chat, so dismissing never loses it; transcripts are saved to the profile only if the user chooses, and exported/shared through an ellipsis menu
+
+- **ID:** `theologian-memory` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson
+
+- **ID:** `theologian-ui` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes the floating pill and the Study Focus side-apparatus placement
+
+### [decision] Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Chris; saved with full state and context; two-way: Chris's replies appear as an unread indicator on the Theologian surface styled as a system message, never as an AI message
+
+- **ID:** `feedback-cta` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes the fixed bottom-left Feedback link
+
+### [decision] Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
+
+- **ID:** `notes-context` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes the floating Journal launcher
+
+### [decision] Modules drive the content beneath them (modules, then units, then lessons; names may change). Completed items are visibly identifiable; everything is navigable and skippable in both directions
+
+- **ID:** `navigation-hierarchy` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
+
+- **ID:** `learning-games` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Satan, demons, and spiritual warfare: explain biblical portrayals and the personal, symbolic, and systemic interpretations; no sensationalism, never identify other groups as demonic, never treat mental illness as evidence of possession
+
+- **ID:** `spiritual-warfare` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Prayer is taught as relationship with God (petition, gratitude, lament, listening); miracles are presented with differing interpretations; never promise healing, blame illness on insufficient faith, or treat prayer as a substitute for medical care
+
+- **ID:** `prayer-miracles-healing` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; context never excuses harm; present-day application is evaluated through Jesus' teaching, love of neighbor, and human dignity
+
+- **ID:** `ethics-difficult-texts` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties
+
+- **ID:** `doctrine-trinity-incarnation` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Audience: adults new to Christianity and the Bible, taught from a personally affirming, open-table stance. Explain doctrine through the biblical story and its internal logic, never with 'that's where faith comes in' or 'you just have to accept it'; avoid analogies that drift into heresy. Welcome questions without requiring assent. Breadth increases as study progresses; content defines the interactions
+
+- **ID:** `teaching-approach` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Chris's Gemini curriculum transcript
+
+### [decision] All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus)
+
+- **ID:** `excluded-gospels-coverage` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary)
+
+- **ID:** `extra-credit-module` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
+
+- **ID:** `module1-opening` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+
+### [decision] Curriculum uses four top-level modules (Hermeneutics & Canon; Hebrew Scriptures & Near Eastern World; Second Temple Judaism & Christ Event; Systematic Synthesis, Hard Ethics & Living Practice), keeping multi-lesson units and stable lesson IDs. Any restructuring rewrites each unit as one flow: introduction, substance, summary, with integrated practice checks and non-repeating content
+
+- **ID:** `curriculum-four-modules` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
+- **Why:** Supersedes the six-course structure (ledger D015, confirmed 2026-09-25)
+
 ### Project state is managed with project-roa-kit: append-only records compiled into agent state and human docs
 
 - **ID:** `project-roa-kit` · **Date:** 2026-09-25 · **Status:** active · **By:** Chris
@@ -34,7 +121,7 @@ Latest decisions first. A decision stays in force until a later record supersede
 
 ## Resolved questions
 
-None.
+- 2026-09-25: **Which theme is the site-wide default: dark (Home) or light (inner pages)?** → Recorded as an agent default (scholarly-graphite, light) pending Chris's visual redesign; not an owner decision (decision `default-theme-scholarly-graphite`)
 
 ---
 *Generated by project-roa-kit 1.0.0 from `.roa/` records and repository facts.*

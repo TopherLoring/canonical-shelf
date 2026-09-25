@@ -1,0 +1,8 @@
+{
+  "type": "decision",
+  "id": "visual-authority",
+  "date": "2026-09-25",
+  "text": "[decision] The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output",
+  "rationale": "Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)",
+  "by": "Chris"
+}

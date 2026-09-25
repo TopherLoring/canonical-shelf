@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "navigation-hierarchy",
+  "date": "2026-09-25",
+  "text": "[decision] Modules drive the content beneath them (modules, then units, then lessons; names may change). Completed items are visibly identifiable; everything is navigable and skippable in both directions",
+  "by": "Chris"
+}

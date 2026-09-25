@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-09-25",
+  "text": "[feedback, Chris] Home: Prototype B ('Library First') was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded (supersedes ledger D009 'all destinations match')"
+}
