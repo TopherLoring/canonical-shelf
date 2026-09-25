@@ -27,3 +27,6 @@ public/data/crossref/
 public/data/canon-structure.json
 public/data/concordance.json
 public/data/verse-annotations.json
+
+# Local backups created by Execute-CanonicalShelfOverhaul.ps1
+.backup-overhaul-*/

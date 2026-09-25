@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project-roa-kit/manifest.schema.json",
+  "title": "project-roa-kit manifest (.roa/manifest.json)",
+  "description": "Authored project identity. Edited only on explicit owner instruction.",
+  "type": "object",
+  "required": ["name", "summary", "purpose", "audience", "status", "owner"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1, "description": "One line: what it is." },
+    "purpose": { "type": "string", "minLength": 1, "description": "Why it exists." },
+    "audience": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "status": { "enum": ["planning", "active", "maintenance", "dormant", "archived"] },
+    "owner": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string", "minLength": 1 }, "contact": { "type": "string" } } },
+    "links": { "type": "object", "additionalProperties": { "type": "string" } },
+    "map": { "type": "object", "description": "Path (dirs end in /) -> what lives there.", "additionalProperties": { "type": "string" } },
+    "invariants": { "type": "array", "description": "Product rules that must never be broken.", "items": { "type": "string" } },
+    "agentRules": { "type": "array", "description": "How agents must behave in this repo.", "items": { "type": "string" } },
+    "agentDocs": { "type": "array", "description": "Other instruction files agents must also read.", "items": { "type": "string" } },
+    "conventions": { "type": "object", "description": "e.g. commits, branches, reviews, releases.", "additionalProperties": { "type": "string" } },
+    "security": { "type": "object", "required": ["contact"], "properties": { "contact": { "type": "string", "minLength": 1 }, "policy": { "type": "string" } } },
+    "outputs": {
+      "type": "object",
+      "description": "Toggle generated outputs. Defaults: all true; security true only when security is set.",
+      "properties": { "changelog": { "type": "boolean" }, "status": { "type": "boolean" }, "decisions": { "type": "boolean" }, "agents": { "type": "boolean" }, "readme": { "type": "boolean" }, "contributing": { "type": "boolean" }, "security": { "type": "boolean" } },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

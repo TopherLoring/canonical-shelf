@@ -1,0 +1,7 @@
+{
+  "type": "question",
+  "id": "default-theme",
+  "date": "2026-09-25",
+  "text": "Which theme is the site-wide default: dark (Home) or light (inner pages)?",
+  "owner": "Chris"
+}

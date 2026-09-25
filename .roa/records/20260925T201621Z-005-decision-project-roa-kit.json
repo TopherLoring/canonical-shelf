@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "project-roa-kit",
+  "date": "2026-09-25",
+  "text": "Project state is managed with project-roa-kit: append-only records compiled into agent state and human docs",
+  "by": "Chris"
+}
