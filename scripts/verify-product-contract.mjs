@@ -6,16 +6,9 @@ const PUBLIC='public';
 const results=[];
 const exists=async path=>{try{await access(path,constants.R_OK);return true}catch{return false}};
 const read=path=>readFile(path,'utf8');
-const escapeRe=value=>String(value).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-const hasTag=(html,tag)=>new RegExp(`<${tag}(?:\\s|>)`,'i').test(html);
-const hasAttr=(html,name,value)=>new RegExp(`${escapeRe(name)}=["']${escapeRe(value)}["']`,'i').test(html);
 const check=async(name,fn)=>{
-  try{
-    const detail=await fn();
-    results.push({name,ok:true,detail:typeof detail==='string'?detail:''});
-  }catch(error){
-    results.push({name,ok:false,detail:error?.message||String(error)});
-  }
+  try{const detail=await fn();results.push({name,ok:true,detail:typeof detail==='string'?detail:''})}
+  catch(error){results.push({name,ok:false,detail:error?.message||String(error)})}
 };
 const requireContract=(condition,message)=>{if(!condition)throw new Error(message)};
 
@@ -25,6 +18,7 @@ const requireContract=(condition,message)=>{if(!condition)throw new Error(messag
 const routes=['home','course','bible','topics','practice','search'];
 const legalFiles=['about.html','privacy.html','data-retention.html','storage.html','terms.html','safety.html'];
 const durableAssets=['manifest.webmanifest','sw.js','llms.txt','data/catalog.json','data/corpus.txt','data/theology-policy.json','data/theologian-crisis-policy.json'];
+const viewTemplates=['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'];
 
 const shell=await read(`${PUBLIC}/index.html`);
 
@@ -39,6 +33,14 @@ await check('Application shell',async()=>{
   return 'search, navigation, study utilities, feedback, journal, account/progress';
 });
 
+await check('Single-document SPA contract',async()=>{
+  requireContract((shell.match(/<main\b/gi)||[]).length===1,'SPA shell must own exactly one main region');
+  requireContract(!shell.includes('data-route-document='),'canonical shell must not contain generated route-document ownership');
+  for(const route of routes)requireContract(new RegExp(`href=["']/${route}(?:[?#["'])`,'i').test(shell)||route==='search',`shell cannot reach ${route}`);
+  for(const id of viewTemplates)requireContract(new RegExp(`id=["']${id}["']`,'i').test(shell),`missing DOM view template ${id}`);
+  return 'one document shell + History API routes + native view templates';
+});
+
 await check('Visual contract authority',async()=>{
   const stylesheetTags=[...shell.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*>/gi)].map(match=>match[0]);
   const authorities=stylesheetTags.filter(tag=>/data-visual-contract=["'][^"']+["']/i.test(tag));
@@ -49,42 +51,27 @@ await check('Visual contract authority',async()=>{
   return 'one marked visual authority; feature styles may remain structural';
 });
 
-await check('Route-owned documents',async()=>{
-  for(const route of routes){
-    const path=`${PUBLIC}/${route}.html`;
-    requireContract(await exists(path),`${route} route document is missing`);
-    const html=await read(path);
-    requireContract((html.match(/<main\b/gi)||[]).length===1,`${route} must own one main region`);
-    requireContract(hasTag(html,'h1'),`${route} must expose a page heading`);
-    requireContract(hasAttr(html,'data-route-content',route),`${route} must identify its generated route content`);
-  }
-  return routes.join(', ');
-});
-
 await check('Home exploration template',async()=>{
-  const html=await read(`${PUBLIC}/home.html`);
-  for(const target of ['/course','/bible','/topics','/practice']){
-    requireContract(new RegExp(`href=["']${escapeRe(target)}(?:[?#["'])`,'i').test(html),`Home cannot reach ${target}`);
-  }
-  const bookLinks=html.match(/href=["']\/bible\?book=/gi)||[];
-  requireContract(bookLinks.length===66,'Home bookshelf must expose the 66-book canon');
-  return 'four primary destinations + canonical bookshelf';
+  for(const target of ['/course','/bible','/topics','/practice'])requireContract(new RegExp(`href=["']${target}["']`,'i').test(shell),`Home cannot reach ${target}`);
+  requireContract(/id=["']tpl-home-book["']/i.test(shell),'Home bookshelf must publish its reusable book template');
+  requireContract(LIBRARY_BOOKS.length===66,'Home bookshelf data must expose the 66-book canon');
+  return 'four primary destinations + canonical bookshelf template/data';
 });
 
 await check('Published policy surfaces',async()=>{
   const missing=[];
-  for(const file of legalFiles) if(!(await exists(`${PUBLIC}/${file}`))) missing.push(file);
+  for(const file of legalFiles)if(!(await exists(`${PUBLIC}/${file}`)))missing.push(file);
   requireContract(missing.length===0,`missing: ${missing.join(', ')}`);
   return legalFiles.join(', ');
 });
 
 await check('Published runtime/data assets',async()=>{
   const missing=[];
-  for(const file of durableAssets) if(!(await exists(`${PUBLIC}/${file}`))) missing.push(file);
+  for(const file of durableAssets)if(!(await exists(`${PUBLIC}/${file}`)))missing.push(file);
   requireContract(missing.length===0,`missing: ${missing.join(', ')}`);
   const refs=[...shell.matchAll(/(?:href|src)=["']\/(.*?\.(?:css|js|webmanifest))["']/gi)].map(match=>match[1]);
   const unresolved=[];
-  for(const ref of new Set(refs)) if(!(await exists(`${PUBLIC}/${ref}`))) unresolved.push(ref);
+  for(const ref of new Set(refs))if(!(await exists(`${PUBLIC}/${ref}`)))unresolved.push(ref);
   requireContract(unresolved.length===0,`shell references missing assets: ${unresolved.join(', ')}`);
   return 'shell assets, PWA files, learner corpus, theology policies';
 });
@@ -121,10 +108,7 @@ await check('Theology/safety policy data',async()=>{
 });
 
 console.log('\nCanonical Shelf durable product contract');
-for(const result of results) console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?` — ${result.detail}`:''}`);
+for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?` — ${result.detail}`:''}`);
 const failed=results.filter(result=>!result.ok);
-if(failed.length){
-  console.error(`\n${failed.length}/${results.length} contract groups failed.`);
-  process.exit(1);
-}
+if(failed.length){console.error(`\n${failed.length}/${results.length} contract groups failed.`);process.exit(1)}
 console.log(`\nPASS — ${results.length} durable contract groups.`);

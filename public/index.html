@@ -117,6 +117,60 @@
     </div>
   </footer>
 
+  <template id="tpl-course-chooser">
+    <header class="section compact-section course-catalog-heading"><p class="eyebrow">Course Catalog</p><h1>Choose where to begin.</h1><p class="lede tpl-course-chooser-lede"></p></header>
+    <section class="course-catalog-chooser" aria-label="Canonical learning course catalog"><div class="course-selector"><header class="course-selector__head"><h2>Canonical learning</h2><p class="tpl-course-chooser-count"></p></header><div data-course-choices></div></div><article class="course-preview" data-course-preview aria-live="polite"></article></section>
+  </template>
+
+  <template id="tpl-course-chooser-preview">
+    <header class="course-preview__head"><p class="eyebrow tpl-course-prev-seq"></p><h2 class="tpl-course-prev-title"></h2><p class="tpl-course-prev-scope"></p></header>
+    <div class="course-preview__body"><section><h3>What this course establishes</h3><p class="tpl-course-prev-outcome"></p><h3>Learning path</h3><p>The units below are ordered intentionally, while completed material remains available for review.</p></section><section><h3>Course contents</h3><div class="course-preview__units tpl-course-prev-units"></div></section></div>
+    <footer class="course-preview__foot"><div class="course-preview__meta"><span class="tpl-course-prev-count"></span><span>No progress yet</span><a class="tpl-course-prev-orientation">Orientation</a></div><a class="button tpl-course-prev-open">Open course →</a></footer>
+  </template>
+
+  <template id="tpl-course-landing">
+    <section class="course-volume-landing"><header class="course-volume-heading"><p class="eyebrow tpl-course-landing-eyebrow"></p><h1>Course</h1><p class="lede tpl-course-landing-lede"></p></header><div class="course-volume-shelf tpl-course-landing-shelf"></div><section class="course-volume-summary"><div><p class="eyebrow tpl-course-summary-label"></p><h2 class="tpl-course-summary-title"></h2><p class="tpl-course-summary-scope"></p></div><div><strong class="tpl-course-summary-pct"></strong><p class="tpl-course-summary-count"></p><a class="button button--primary tpl-course-summary-open">Open volume →</a></div></section></section>
+  </template>
+
+  <template id="tpl-course-volume-link">
+    <a class="course-volume"><span class="course-volume__seq tpl-course-volume-seq"></span><strong class="course-volume__title tpl-course-volume-title"></strong><span class="course-volume__status"><strong class="tpl-course-volume-status"></strong><span class="tpl-course-volume-units"></span></span></a>
+  </template>
+
+  <template id="tpl-course-detail">
+    <section class="course-catalog-detail"><aside class="course-detail-hero"><div class="course-current-label">Current volume</div><div class="course-detail-hero__grid"><div><p class="eyebrow tpl-course-detail-eyebrow"></p><h1 class="tpl-course-detail-title"></h1><p class="lede tpl-course-detail-scope"></p><p class="tpl-course-detail-outcome"></p><div class="hero-actions"><a class="button button--primary tpl-course-detail-primary"></a><a class="button tpl-course-detail-glossary">Course glossary</a></div></div></div><div class="course-current-sequence tpl-course-detail-sequence"></div><div class="course-total-state"><strong class="tpl-course-detail-pct"></strong><span class="tpl-course-detail-count"></span><small class="tpl-course-detail-review"></small></div><nav class="course-volume-nav" aria-label="Course navigation"><a class="tpl-course-prev">Prev</a><a class="tpl-course-next">Next</a></nav></aside><section class="course-catalog-contents"><header class="course-catalog-contents__head"><p class="eyebrow tpl-course-contents-eyebrow"></p><h2 class="tpl-course-contents-title"></h2><p class="tpl-course-contents-count"></p></header><div class="unit-card-grid tpl-course-detail-units"></div></section></section>
+  </template>
+
+  <template id="tpl-course-unit-card">
+    <article class="journey-unit-card"><header><span class="tpl-unit-card-seq"></span><span class="unit-state tpl-unit-card-state"></span></header><h2><a class="tpl-unit-card-title"></a></h2><p class="tpl-unit-card-scope"></p><div class="progress"><span class="tpl-unit-card-progress"></span></div><div class="journey-unit-card__stats"><span class="tpl-unit-card-activities"></span><span class="tpl-unit-card-mastery"></span></div><footer><a class="tpl-unit-card-open"></a></footer></article>
+  </template>
+
+  <template id="tpl-unit-experience">
+    <header class="unit-experience-hero"><p><a class="tpl-unit-back"></a></p><div class="unit-experience-hero__grid"><div><p class="eyebrow tpl-unit-eyebrow"></p><h1 class="tpl-unit-title"></h1><p class="lede tpl-unit-scope"></p><p class="unit-access-note">Recommended sequence, open navigation: start or revisit any activity whenever it is useful.</p></div><aside><strong class="tpl-unit-pct"></strong><span class="tpl-unit-count"></span><small class="tpl-unit-review" hidden></small></aside></div></header><ol class="activity-journey unit-list tpl-unit-exp-activities"></ol>
+  </template>
+
+  <template id="tpl-unit-activity-step">
+    <li class="activity-step unit"><span class="activity-step__num unit-num tpl-activity-num"></span><div><p class="eyebrow tpl-activity-label"></p><h3><a class="tpl-activity-link"></a></h3><p class="activity-state tpl-activity-state"></p></div><span class="activity-step__mark tpl-activity-mark"></span></li>
+  </template>
+
+  <template id="tpl-home">
+    <div class="library-first-home">
+      <section class="library-first-hero"><header class="library-first-homehead"><div class="library-first-copy"><div><span class="home-kicker">66 books · full Bible reader · guided learning</span><h1>The Canonical <em>Shelf</em></h1></div><p class="lede">Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div><nav class="library-first-actions" aria-label="Home destinations"><a href="/course">Course</a><a href="/bible">Bible</a><a href="/topics">Topics</a><a href="/practice">Practice</a><a class="is-primary tpl-home-continue" hidden>Continue</a></nav></header><div class="library-first-shelf-wrap" aria-label="Canonical bookshelf"><div class="library-first-shelf-row"><div class="library-first-shelf-label">Old Testament</div><div class="library-first-shelf tpl-home-shelf-ot"></div></div><div class="library-first-shelf-row"><div class="library-first-shelf-label">New Testament</div><div class="library-first-shelf tpl-home-shelf-nt"></div></div><span class="library-first-bookend-space" aria-hidden="true"></span><span class="library-first-bookend" aria-hidden="true"></span><p class="library-first-shelf-note">Book height and width follow relative length; color follows canonical category.</p></div></section>
+      <section class="library-first-cards tpl-home-history" aria-label="Continue where you left off" hidden><article class="library-first-card"><p class="eyebrow">Continue learning</p><h2 class="tpl-home-next-title"></h2><p class="tpl-home-next-copy"></p><div class="library-first-progress"><span><strong class="tpl-home-progress-pct"></strong><br><span class="tpl-home-progress-count"></span></span><span><strong class="tpl-home-review-count"></strong><br><span class="tpl-home-review-label"></span></span><span class="tpl-home-course-context" hidden><strong class="tpl-home-course-seq"></strong><br><span class="tpl-home-course-title"></span></span></div></article><article class="library-first-card"><p class="eyebrow">Current context</p><h2><a class="tpl-home-context-title"></a></h2><p class="tpl-home-context-copy"></p></article></section>
+      <nav class="library-entry-map" aria-label="Explore Canonical Shelf"><a href="/bible"><small>Bible</small><strong>Browse books</strong><span>Shelf, profiles, chapters, context.</span></a><a href="/topics"><small>Topics</small><strong>Ask a question</strong><span>Curated evidence and interpretation.</span></a><a href="/course"><small>Course</small><strong>Learn in sequence</strong><span class="tpl-home-course-count"></span></a><a href="/practice"><small>Practice</small><strong>Retain what matters</strong><span>Due review before optional practice.</span></a></nav>
+      <section class="library-first-recent tpl-home-recent" hidden><p class="eyebrow">Recent study</p><div class="library-first-recent__items tpl-home-recent-items"></div></section>
+    </div>
+  </template>
+
+  <template id="tpl-home-book"><a class="library-first-book"><span class="tpl-home-book-name"></span></a></template>
+  <template id="tpl-home-recent-item"><a class="tpl-home-recent-link"></a></template>
+
+  <template id="tpl-progress-panel">
+    <div class="progress-panel__summary"><div class="progress-ring progress-ring--small tpl-progress-ring"><span><strong class="tpl-progress-pct"></strong><small class="tpl-progress-count"></small></span></div><div><p class="eyebrow">Learning progress</p><h3 class="tpl-progress-due"></h3><p>Completion, mastery, and review state remain local-first and can be backed up or synced separately.</p></div></div><div class="progress-panel__courses tpl-progress-courses"></div><section><h3>Practice</h3><p><strong class="tpl-practice-rank"></strong> · <span class="tpl-practice-xp"></span> XP · <span class="tpl-practice-stars"></span> stars · <span class="tpl-practice-achievements"></span> achievements</p><p><a href="/practice?mode=campaign">Continue Practice Campaign →</a></p></section><section><h3>Recent activity</h3><ul class="tpl-progress-recent-list"></ul><p class="tpl-progress-recent-empty">No recent activity yet.</p></section><section><h3>Backup</h3><p><button class="button" id="export">Export progress</button> <button class="button" id="import">Import progress</button></p></section>
+  </template>
+
+  <template id="tpl-progress-course-link"><a class="tpl-progress-course"><span class="tpl-progress-course-seq"></span><strong class="tpl-progress-course-title"></strong><small class="tpl-progress-course-meta"></small></a></template>
+  <template id="tpl-progress-recent-item"><li><a class="tpl-progress-recent-link"></a></li></template>
+
   <noscript><p class="notice">Canonical Shelf requires JavaScript for interactive study tools. The published Bible, curriculum, Topics, and reference content remain local site assets.</p></noscript>
   <script type="module" src="/bootstrap.js"></script>
 </body>

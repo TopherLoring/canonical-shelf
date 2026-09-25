@@ -28,11 +28,13 @@ Current generated curriculum counts are descriptive runtime data and may evolve.
 
 The current selected direction uses scholarly typography, bookish geometry, graphite/chrome structure, bright gilt as a signal, semantic Bible-category colors, and a reader-first paper surface for Scripture.
 
-Home, Course, Bible, Topics, Practice, and Search use **route-owned generated HTML documents**. Cross-destination navigation uses normal document navigation; bounded same-route detail changes may use History API enhancement.
+Canonical Shelf is a **single-document, public-first SPA**. `public/index.html` is the sole application document for Home, Course, Bible, Topics, Practice, and Search. Clean path-based URLs are preserved with the History API; ordinary internal navigation renders the next destination without replacing the browser document, while direct entry and refresh resolve to the same shell through the local/Cloudflare SPA fallback.
 
-The architecture follows a **public-first SPA pattern**: the `/public` directory is the authoritative source for all runtime logic and assets. Legacy source files from `/src` have been moved to `.src-archived`. Key orchestration logic is modularized into standalone engines such as `public/search-engine.js` and `public/theologian-engine.js`.
+The `/public` directory is the authoritative source for runtime logic and assets. Legacy source files from `/src` have been moved to `.src-archived`. Course, Unit, Home, and Progress views use native HTML `<template>` elements from the canonical shell and populate them through DOM operations. Other bounded views may continue to return strings while they remain behaviorally correct. Key orchestration logic is modularized into standalone engines such as `public/search-engine.js` and `public/theologian-engine.js`.
 
-The architecture intentionally excludes broad MutationObserver repair, duplicate top-level renderers, `locked-*` post-render patches, `public/library-system.js`, and `public/library-system-refinements.css`.
+The architecture intentionally excludes generated top-level route documents, broad MutationObserver repair, duplicate top-level renderers, `locked-*` post-render patches, `public/library-system.js`, and `public/library-system-refinements.css`.
+
+Current architecture SSOT: [`docs/v7/SPA_ARCHITECTURE_2026-09-24.md`](docs/v7/SPA_ARCHITECTURE_2026-09-24.md).
 
 ## Theologian
 
@@ -58,7 +60,7 @@ Canonical theology files:
 public/data/statement-of-faith.md
 public/data/theologian-belief-context.md
 public/data/theology-policy.json
-public/data/theology-crisis-policy.json
+public/data/theologian-crisis-policy.json
 public/data/theology-sources.json
 ```
 
@@ -113,7 +115,7 @@ public/data/
 public/index.html
 ```
 
-Generated/published outputs include route-owned documents, the current catalog, curriculum reference, theology data, BSB corpus, `llms.txt`, and modular runtime engines (`public/search-engine.js`, `public/theologian-engine.js`).
+Generated/published outputs include the current catalog, curriculum reference, theology data, BSB corpus, `llms.txt`, the account client bundle, and modular runtime engines (`public/search-engine.js`, `public/theologian-engine.js`). Top-level route HTML documents are not generated; `public/index.html` is the sole application shell.
 
 ## Development / verification
 
