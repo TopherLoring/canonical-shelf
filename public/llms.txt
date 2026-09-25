@@ -4,7 +4,7 @@
 
 This file is generated from Canonical Shelf’s learner-facing learning, Bible-reference, Practice, editorial, institutional, legal/privacy, safety, and theology content. It is a derived machine-readable corpus, not an independent authority. The complete Berean Standard Bible corpus is intentionally linked rather than duplicated verbatim; curated Scripture excerpts intentionally used by Canonical Shelf remain included.
 
-Current scored curriculum: 6 courses, 44 units, 117 guided lessons, 119 mastery/capstone activities, and 236 scored activities. Current reference library: 45 Topics and 270 glossary terms.
+Current scored curriculum: 6 courses, 44 units, 117 guided lessons, 119 mastery/capstone activities, and 236 scored activities. Current reference library: 45 Topics and 268 glossary terms.
 
 ## Primary destinations
 
@@ -423,7 +423,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     - **119 mastery/capstone activities**
     - **236 scored activities total**
     - **45 curated Topics** outside course completion
-    - **270 glossary terms** generated from lesson vocabulary
+    - **268 glossary terms** generated from lesson vocabulary
     - **12 recurring question threads** that connect foundations, biblical/historical encounters, interpretation, and later synthesis
     
     The curriculum uses a questions-first spiral. Important doctrinal and difficult questions are introduced early, revisited where their biblical and historical evidence naturally appears, investigated with stronger interpretive tools, and synthesized later. Course 6 is therefore not the first exposure to theology or difficult questions.
@@ -13770,8 +13770,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "The tabernacle is a portable sanctuary representing God dwelling among Israel, with increasingly restricted sacred zones.",
           "vocab": {
             "Tabernacle": "The portable sanctuary described in Exodus.",
-            "HolyPlace": "The first chamber of the sanctuary tent.",
-            "HolyOfHolies": "The innermost sacred space associated with the Ark."
+            "Holy Place": "The first chamber of the sanctuary tent.",
+            "Holy of Holies": "The innermost sacred space associated with the Ark."
           },
           "deeper": "Different modern diagrams can vary because ancient measurements, terminology, construction assumptions, and artistic choices require reconstruction. The text’s theological and ritual relationships are more important here than false architectural precision.",
           "drawers": [
@@ -13864,8 +13864,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Ark links covenant testimony, the sanctuary’s innermost space, and divine presence; it is not a magical guarantee of success.",
           "vocab": {
-            "ArkOfTheCovenant": "The sacred chest associated with covenant testimony and the innermost sanctuary.",
-            "MercySeat": "A traditional English term for the Ark’s cover, also rendered atonement cover.",
+            "Ark of the Covenant": "The sacred chest associated with covenant testimony and the innermost sanctuary.",
+            "Mercy Seat": "A traditional English term for the Ark’s cover, also rendered atonement cover.",
             "Presence": "In this context, language for God dwelling, meeting, or being manifest among the people."
           },
           "deeper": "Hebrews 9 and other later texts remember tabernacle furnishings in theological argument. Course 4 and Course 5 distinguish an earlier text’s own setting from later reuse.",
@@ -14045,8 +14045,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Day of Atonement is an annual complex of rites dealing with sanctuary cleansing, communal wrongdoing, removal, and restored relationship.",
           "vocab": {
-            "DayOfAtonement": "The annual Israelite observance described especially in Leviticus 16.",
-            "HighPriest": "The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.",
+            "Day of Atonement": "The annual Israelite observance described especially in Leviticus 16.",
+            "High Priest": "The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.",
             "Scapegoat": "Traditional term for the goat sent away bearing confessed wrongs in the Leviticus 16 ritual."
           },
           "deeper": "The Hebrew term associated with the sent-away goat and the precise mechanics of atonement are debated. The lesson should preserve what the chapter clearly distinguishes before adjudicating technical theories.",
@@ -14218,7 +14218,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "God’s promise to David links dynasty and kingdom with an enduring line of hope even though individual kings can fail.",
           "vocab": {
-            "DavidicCovenant": "The biblical promise associated with David’s dynasty, especially in 2 Samuel 7.",
+            "Davidic Covenant": "The biblical promise associated with David’s dynasty, especially in 2 Samuel 7.",
             "Dynasty": "A succession of rulers from the same family line.",
             "Messiah": "Anointed one; later Jewish and Christian expectations use the term in several ways, including royal-Davidic hope."
           },
@@ -14470,8 +14470,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Temple is rebuilt under Persian rule, but restoration does not mean every exile-era loss or prophetic hope is fully resolved.",
           "vocab": {
-            "SecondTemple": "The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE.",
-            "PersianPeriod": "The period of Persian imperial rule over the region after Babylon’s fall.",
+            "Second Temple": "The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE.",
+            "Persian Period": "The period of Persian imperial rule over the region after Babylon’s fall.",
             "Restoration": "Return, rebuilding, and renewed communal life after catastrophe; not necessarily complete fulfillment of every hope."
           },
           "deeper": "The return narratives, Persian administration, temple chronology, and relationships among Ezra, Nehemiah, Chronicles, Haggai, Zechariah, and other sources require careful historical reconstruction. Course 3 keeps the broad sequence while marking uncertainty.",
@@ -14552,8 +14552,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Jeremiah’s new-covenant hope addresses Israel and Judah after covenant rupture; later Christian texts reuse that promise in relation to Jesus.",
           "vocab": {
-            "NewCovenant": "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.",
-            "InternalizedInstruction": "Jeremiah’s image of divine instruction written on the heart.",
+            "New Covenant": "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.",
+            "Internalized Instruction": "Jeremiah’s image of divine instruction written on the heart.",
             "Supersessionism": "The claim that the Church simply replaces Israel in a way that renders Jewish covenantal identity obsolete; forms and definitions vary."
           },
           "deeper": "Christian traditions disagree on covenant continuity, Israel and Church, and fulfillment. Jewish interpretation does not accept Christian claims about Jesus as the fulfillment of Jeremiah. Course 5 distinguishes original context from later canonical reuse; Course 6 treats theological frameworks.",
@@ -14637,9 +14637,9 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The prophets offer several kinds of hope—restoration, justice, presence, Spirit, kingship, peace—not one flat prediction chart.",
           "vocab": {
-            "PropheticHope": "Future-oriented promises or visions emerging from prophetic messages in concrete historical crises.",
+            "Prophetic Hope": "Future-oriented promises or visions emerging from prophetic messages in concrete historical crises.",
             "Jesse": "David’s father; “root/shoot of Jesse” language evokes Davidic royal hope.",
-            "MessianicExpectation": "Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities."
+            "Messianic Expectation": "Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities."
           },
           "deeper": "“Messianic prophecy” can become an anachronistic category if every prophetic passage is assumed to function as a direct prediction of Jesus. Christian interpretation can affirm fulfillment while still asking how a passage operated in its earlier literary and historical context.",
           "drawers": [
@@ -14727,7 +14727,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "vocab": {
             "Yehud": "The Persian-period province corresponding broadly to Judah/Judea.",
             "Diaspora": "Communities living outside an ancestral homeland.",
-            "SecondTemplePeriod": "The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE."
+            "Second Temple Period": "The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE."
           },
           "deeper": "Historians reconstruct Persian-period Judah from biblical texts, Persian evidence, archaeology, epigraphy, and comparative imperial history. The biblical narratives have theological interests that should be respected rather than mistaken for modern historiography.",
           "drawers": [
@@ -14810,7 +14810,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Postexilic Jewish life visibly centers Scripture, interpretation, worship, and communal identity—without producing one uniform Jewish viewpoint.",
           "vocab": {
-            "PublicReading": "Communal proclamation of Scripture.",
+            "Public Reading": "Communal proclamation of Scripture.",
             "Interpretation": "Explanation of meaning using language, context, evidence, and reasoning.",
             "Identity": "The ways a community understands belonging, story, obligations, and boundaries."
           },
@@ -14889,7 +14889,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "Alexander brings Judea into a Hellenistic world where Greek language and culture spread, but Jewish communities respond in diverse rather than uniform ways.",
           "vocab": {
             "Hellenization": "The spread and local adaptation of Greek language and cultural forms in the Hellenistic world.",
-            "HellenisticPeriod": "The era shaped by Alexander’s conquests and successor kingdoms.",
+            "Hellenistic Period": "The era shaped by Alexander’s conquests and successor kingdoms.",
             "Septuagint": "A conventional name for ancient Greek translations of Jewish Scriptures; the collection and translation history developed over time."
           },
           "deeper": "“The Septuagint” is a convenient label but can imply more uniformity than the evidence warrants. Different books were translated at different times and textual histories are complex.",
@@ -14978,7 +14978,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Antiochus IV’s policies and the Temple crisis provoke Jewish resistance; the Temple is rededicated, and the revolt helps produce Hasmonean rule.",
           "vocab": {
-            "AntiochusIV": "Seleucid ruler whose reign is associated with the second-century BCE Judean crisis.",
+            "Antiochus IV": "Seleucid ruler whose reign is associated with the second-century BCE Judean crisis.",
             "Maccabees": "The family and movement associated with revolt against Seleucid rule and the Temple crisis.",
             "Hanukkah": "The later Jewish festival commemorating the Temple’s rededication."
           },
@@ -15059,7 +15059,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "Maccabean resistance develops into Hasmonean rule, bringing Jewish self-government but also conflicts over dynasty, priesthood, and legitimacy.",
           "vocab": {
             "Hasmoneans": "The Jewish ruling dynasty that developed from the Maccabean movement.",
-            "HighPriesthood": "The senior priestly office associated with Temple leadership.",
+            "High Priesthood": "The senior priestly office associated with Temple leadership.",
             "Legitimacy": "A claim to rightful authority or rule."
           },
           "deeper": "The boundaries between independence, client relationships, titles, and territorial control change across the Hasmonean period. The course uses a broad political map rather than pretending every decade has the same constitutional arrangement.",
@@ -15140,8 +15140,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Gospel world sits inside Roman imperial power expressed through emperors, client rulers, governors, local elites, taxation, and force.",
           "vocab": {
-            "RomanEmpire": "The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament.",
-            "ClientRuler": "A local ruler whose authority depends substantially on a larger imperial power.",
+            "Roman Empire": "The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament.",
+            "Client Ruler": "A local ruler whose authority depends substantially on a larger imperial power.",
             "Governor": "An imperial official administering a province or territory under Roman authority."
           },
           "deeper": "Administrative arrangements change over time. Judea under Herod the Great, his successors, Roman prefects/procurators, and later provincial structures should not be treated as one unchanging system.",
@@ -15225,9 +15225,9 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Herod is a Roman-backed Jewish king whose building projects reshape the Temple and whose dynasty continues into the Gospel world.",
           "vocab": {
-            "HerodTheGreat": "Roman-aligned king of Judea who ruled in the late first century BCE.",
-            "HerodianDynasty": "Herod’s ruling family and successors in parts of the region.",
-            "ClientKing": "A king whose rule is locally exercised but depends on imperial recognition and power."
+            "Herod the Great": "Roman-aligned king of Judea who ruled in the late first century BCE.",
+            "Herodian Dynasty": "Herod’s ruling family and successors in parts of the region.",
+            "Client King": "A king whose rule is locally exercised but depends on imperial recognition and power."
           },
           "deeper": "Chronology around Herod’s death and the birth narratives is part of wider historical discussion. The course need not force the Gospels into a modern biography model to teach Herod’s political setting accurately.",
           "drawers": [
@@ -15317,9 +15317,9 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Second Temple is the center of sacrifice and pilgrimage and also an institution with economic and political significance.",
           "vocab": {
-            "HighPriest": "The senior priestly office associated with Temple worship and leadership.",
-            "PilgrimageFestival": "A festival associated with travel to the sanctuary.",
-            "TempleEconomy": "The material systems surrounding worship, offerings, exchange, labor, travel, and administration."
+            "High Priest": "The senior priestly office associated with Temple worship and leadership.",
+            "Pilgrimage Festival": "A festival associated with travel to the sanctuary.",
+            "Temple Economy": "The material systems surrounding worship, offerings, exchange, labor, travel, and administration."
           },
           "deeper": "Ancient evidence about priestly groups, Temple administration, sacrifice, and political influence is uneven. Later rabbinic memory, Josephus, archaeology, the New Testament, and other sources must be handled according to genre and date.",
           "drawers": [
@@ -15403,7 +15403,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "Jewish life is centered on more than Jerusalem: synagogues and diaspora communities make Scripture, worship, and community visible across a wide geography.",
           "vocab": {
             "Synagogue": "A Jewish communal gathering institution associated with assembly, Scripture, teaching, prayer, and local life.",
-            "DiasporaJudaism": "Jewish communities living outside Judea/Israel.",
+            "Diaspora Judaism": "Jewish communities living outside Judea/Israel.",
             "Assembly": "A gathered community; different institutions and texts use related gathering language in different ways."
           },
           "deeper": "It is risky to project later rabbinic synagogue practice backward unchanged into the first century. Archaeology, inscriptions, literary texts, and later traditions illuminate different times and places.",
@@ -15562,7 +15562,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Dead Sea Scrolls give direct evidence for biblical texts and diverse Jewish communities before the New Testament period; Qumran’s exact relationship to the Essenes remains a historical question.",
           "vocab": {
-            "DeadSeaScrolls": "Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts.",
+            "Dead Sea Scrolls": "Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts.",
             "Qumran": "An archaeological site near caves containing many Dead Sea Scrolls.",
             "Essenes": "A Jewish group described by several ancient writers and often associated with Qumran, though details are debated."
           },
@@ -15648,7 +15648,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "Resistance to Rome takes many forms. “Zealot” should not be used as a catch-all label for every Jewish opponent of imperial rule.",
           "vocab": {
             "Zealot": "Strictly, a label especially associated with a movement active in the revolt against Rome; it is often used too broadly.",
-            "JudasTheGalilean": "A figure linked in ancient sources with resistance connected to Roman taxation.",
+            "Judas the Galilean": "A figure linked in ancient sources with resistance connected to Roman taxation.",
             "Revolt": "Organized armed resistance against political authority."
           },
           "deeper": "Ancient categories such as “bandit,” “rebel,” “prophet,” or “deceiver” can themselves reflect the perspective of authorities or historians. Historical analysis should ask who applies the label and why.",
@@ -15734,7 +15734,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "vocab": {
             "Apocalyptic": "Visionary literature that unveils earthly conflict in relation to heavenly realities, divine judgment, and hope.",
             "Resurrection": "Raising the dead to transformed life.",
-            "AgeToCome": "Language for a future order of divine restoration or judgment in some Jewish and Christian traditions."
+            "Age to Come": "Language for a future order of divine restoration or judgment in some Jewish and Christian traditions."
           },
           "deeper": "“Apocalyptic” names both a literary genre and, in scholarship, broader patterns of thought. Those categories overlap but are not identical. Beginners should first learn how symbolic visions function before debating technical taxonomies.",
           "drawers": [
@@ -15818,7 +15818,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "Messiah means “anointed one,” and Second Temple Jewish hopes were diverse rather than one universally agreed checklist.",
           "vocab": {
             "Messiah": "Anointed one; a title whose meanings and expectations vary across biblical and later Jewish/Christian contexts.",
-            "DavidicHope": "Expectation connected with David’s dynasty and royal promises.",
+            "Davidic Hope": "Expectation connected with David’s dynasty and royal promises.",
             "Anointed": "Consecrated or appointed, often symbolized by anointing with oil."
           },
           "deeper": "Modern discussions often speak of “the Jewish Messiah” as if one standardized doctrine existed. Ancient evidence instead supports a range of messianic and non-messianic eschatological expectations.",
@@ -15902,9 +15902,9 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Gospels begin inside Roman-ruled, Second Temple Jewish life—not in an empty gap after the Old Testament.",
           "vocab": {
-            "KingdomOfGod": "God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death.",
-            "SecondTempleJudaism": "A broad label for diverse Jewish life during the Second Temple period.",
-            "HistoricalContext": "Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself."
+            "Kingdom of God": "God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death.",
+            "Second Temple Judaism": "A broad label for diverse Jewish life during the Second Temple period.",
+            "Historical Context": "Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself."
           },
           "deeper": "The phrase “Second Temple Judaism” is itself an analytical umbrella. It should help learners notice diversity and history, not suggest that every Jewish practice belongs to one coherent system.",
           "drawers": [
@@ -15996,8 +15996,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "simple": "The Sermon on the Mount is a connected vision of kingdom-shaped life, not a bag of inspirational quotations.",
           "vocab": {
             "Beatitudes": "Blessing sayings opening Matthew’s Sermon on the Mount.",
-            "EnemyLove": "Jesus’ command to love enemies and pray for persecutors in Matthew 5.",
-            "SermonOnTheMount": "Matthew 5–7, a major collection of Jesus’ teaching."
+            "Enemy Love": "Jesus’ command to love enemies and pray for persecutors in Matthew 5.",
+            "Sermon on the Mount": "Matthew 5–7, a major collection of Jesus’ teaching."
           },
           "deeper": "The relationship between Matthew’s Sermon and Luke’s Sermon on the Plain is a Synoptic question; Course 5 treats Gospel relationships without requiring a beginner to solve source criticism first.",
           "drawers": [
@@ -16170,8 +16170,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "The Last Supper draws on Passover and covenant memory; Christian interpretation adds a claim about Jesus without erasing the Jewish story underneath it.",
           "vocab": {
-            "LastSupper": "Traditional name for Jesus’ final meal with disciples before the crucifixion.",
-            "CovenantBlood": "Language linking blood with covenant ratification or relationship in biblical texts.",
+            "Last Supper": "Traditional name for Jesus’ final meal with disciples before the crucifixion.",
+            "Covenant Blood": "Language linking blood with covenant ratification or relationship in biblical texts.",
             "Eucharist": "A traditional Christian name for Communion/Lord’s Supper, from a Greek word associated with thanksgiving."
           },
           "deeper": "The chronology and festival framing differ in important ways across the Gospels, especially between John and the Synoptics. Course 5’s Gospel-comparison tools help learners examine those differences without premature harmonization.",
@@ -16339,7 +16339,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "vocab": {
             "Pentecost": "Greek-derived name associated with the Jewish festival of Weeks; in Acts 2, the setting of the Spirit’s coming.",
             "Diaspora": "Communities living outside an ancestral homeland; Acts’ audience list reflects a wide Jewish geography.",
-            "HolySpirit": "In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth."
+            "Holy Spirit": "In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth."
           },
           "deeper": "Acts 2 has generated major theological debates about gifts and ecclesiology. Those debates should not be imported into every narrative detail before the passage’s literary movement is understood.",
           "drawers": [
@@ -16427,8 +16427,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Formal and functional translation describe different priorities. Every real translation balances form, meaning, idiom, and readable target-language expression.",
           "vocab": {
-            "FormalEquivalence": "A translation tendency emphasizing correspondence with source-language form where workable.",
-            "FunctionalEquivalence": "A translation tendency emphasizing natural communication of source-language meaning in the target language.",
+            "Formal Equivalence": "A translation tendency emphasizing correspondence with source-language form where workable.",
+            "Functional Equivalence": "A translation tendency emphasizing natural communication of source-language meaning in the target language.",
             "Paraphrase": "A freer restatement that may work at larger units of meaning rather than close formal correspondence."
           },
           "deeper": "Translation studies uses more precise and varied terminology than a simple formal/dynamic spectrum. The spectrum remains useful for beginners if presented as a heuristic rather than a complete theory.",
@@ -16682,8 +16682,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Matthew, Mark, and Luke are unusually similar. Scholars propose source relationships to explain that pattern; those hypotheses help comparison but are not themselves manuscripts we possess.",
           "vocab": {
-            "SynopticGospels": "Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story.",
-            "MarkanPriority": "The hypothesis that Mark was written before and used by Matthew and Luke.",
+            "Synoptic Gospels": "Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story.",
+            "Markan Priority": "The hypothesis that Mark was written before and used by Matthew and Luke.",
             "Q": "A hypothetical source proposed in some models to explain shared Matthew-Luke material absent from Mark."
           },
           "deeper": "Source criticism interacts with oral tradition, memory, redaction criticism, dating, and ancient compositional practice. No single introductory model should be presented as if all scholarly questions are closed.",
@@ -16938,7 +16938,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "simple": "Christians organize covenant continuity and Israel/Church relationships differently; any framework must preserve the texts and reject Gentile superiority.",
           "vocab": {
-            "CovenantTheology": "A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary.",
+            "Covenant Theology": "A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary.",
             "Dispensationalism": "A family of systems emphasizing distinct administrations in biblical history and often a distinctive future for Israel.",
             "Supersessionism": "A range of claims that the Church supersedes or replaces Israel; definitions and theological forms vary."
           },
@@ -27558,8 +27558,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.agetocome",
-          "term": "AgeToCome",
+          "id": "term.age-to-come",
+          "term": "Age to Come",
           "quick": "Language for a future order of divine restoration or judgment in some Jewish and Christian traditions.",
           "definitions": [
             "Language for a future order of divine restoration or judgment in some Jewish and Christian traditions."
@@ -27675,8 +27675,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.antiochusiv",
-          "term": "AntiochusIV",
+          "id": "term.antiochus-iv",
+          "term": "Antiochus IV",
           "quick": "Seleucid ruler whose reign is associated with the second-century BCE Judean crisis.",
           "definitions": [
             "Seleucid ruler whose reign is associated with the second-century BCE Judean crisis."
@@ -27768,8 +27768,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.arkofthecovenant",
-          "term": "ArkOfTheCovenant",
+          "id": "term.ark-of-the-covenant",
+          "term": "Ark of the Covenant",
           "quick": "The sacred chest associated with covenant testimony and the innermost sanctuary.",
           "definitions": [
             "The sacred chest associated with covenant testimony and the innermost sanctuary."
@@ -28119,8 +28119,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.clientking",
-          "term": "ClientKing",
+          "id": "term.client-king",
+          "term": "Client King",
           "quick": "A king whose rule is locally exercised but depends on imperial recognition and power.",
           "definitions": [
             "A king whose rule is locally exercised but depends on imperial recognition and power."
@@ -28134,8 +28134,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.clientruler",
-          "term": "ClientRuler",
+          "id": "term.client-ruler",
+          "term": "Client Ruler",
           "quick": "A local ruler whose authority depends substantially on a larger imperial power.",
           "definitions": [
             "A local ruler whose authority depends substantially on a larger imperial power."
@@ -28334,8 +28334,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.covenantblood",
-          "term": "CovenantBlood",
+          "id": "term.covenant-blood",
+          "term": "Covenant Blood",
           "quick": "Language linking blood with covenant ratification or relationship in biblical texts.",
           "definitions": [
             "Language linking blood with covenant ratification or relationship in biblical texts."
@@ -28349,8 +28349,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.covenanttheology",
-          "term": "CovenantTheology",
+          "id": "term.covenant-theology",
+          "term": "Covenant Theology",
           "quick": "A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary.",
           "definitions": [
             "A family of Christian systems emphasizing covenantal continuity across Scripture; forms vary."
@@ -28400,8 +28400,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.davidiccovenant",
-          "term": "DavidicCovenant",
+          "id": "term.davidic-covenant",
+          "term": "Davidic Covenant",
           "quick": "The biblical promise associated with David’s dynasty, especially in 2 Samuel 7.",
           "definitions": [
             "The biblical promise associated with David’s dynasty, especially in 2 Samuel 7."
@@ -28415,8 +28415,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.davidichope",
-          "term": "DavidicHope",
+          "id": "term.davidic-hope",
+          "term": "Davidic Hope",
           "quick": "Expectation connected with David’s dynasty and royal promises.",
           "definitions": [
             "Expectation connected with David’s dynasty and royal promises."
@@ -28430,8 +28430,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.dayofatonement",
-          "term": "DayOfAtonement",
+          "id": "term.day-of-atonement",
+          "term": "Day of Atonement",
           "quick": "The annual Israelite observance described especially in Leviticus 16.",
           "definitions": [
             "The annual Israelite observance described especially in Leviticus 16."
@@ -28445,8 +28445,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.deadseascrolls",
-          "term": "DeadSeaScrolls",
+          "id": "term.dead-sea-scrolls",
+          "term": "Dead Sea Scrolls",
           "quick": "Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts.",
           "definitions": [
             "Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts."
@@ -28592,8 +28592,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.diasporajudaism",
-          "term": "DiasporaJudaism",
+          "id": "term.diaspora-judaism",
+          "term": "Diaspora Judaism",
           "quick": "Jewish communities living outside Judea/Israel.",
           "definitions": [
             "Jewish communities living outside Judea/Israel."
@@ -28778,8 +28778,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.enemylove",
-          "term": "EnemyLove",
+          "id": "term.enemy-love",
+          "term": "Enemy Love",
           "quick": "Jesus’ command to love enemies and pray for persecutors in Matthew 5.",
           "definitions": [
             "Jesus’ command to love enemies and pray for persecutors in Matthew 5."
@@ -29006,8 +29006,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.formalequivalence",
-          "term": "FormalEquivalence",
+          "id": "term.formal-equivalence",
+          "term": "Formal Equivalence",
           "quick": "A translation tendency emphasizing correspondence with source-language form where workable.",
           "definitions": [
             "A translation tendency emphasizing correspondence with source-language form where workable."
@@ -29093,8 +29093,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.functionalequivalence",
-          "term": "FunctionalEquivalence",
+          "id": "term.functional-equivalence",
+          "term": "Functional Equivalence",
           "quick": "A translation tendency emphasizing natural communication of source-language meaning in the target language.",
           "definitions": [
             "A translation tendency emphasizing natural communication of source-language meaning in the target language."
@@ -29301,8 +29301,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.hellenisticperiod",
-          "term": "HellenisticPeriod",
+          "id": "term.hellenistic-period",
+          "term": "Hellenistic Period",
           "quick": "The era shaped by Alexander’s conquests and successor kingdoms.",
           "definitions": [
             "The era shaped by Alexander’s conquests and successor kingdoms."
@@ -29331,23 +29331,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.herodiandynasty",
-          "term": "HerodianDynasty",
-          "quick": "Herod’s ruling family and successors in parts of the region.",
-          "definitions": [
-            "Herod’s ruling family and successors in parts of the region."
-          ],
-          "occurrences": [
-            {
-              "courseId": "course.second-temple",
-              "unitId": "c3.hasmonean-rome",
-              "lessonId": "c3-herod"
-            }
-          ]
-        },
-        {
-          "id": "term.herodthegreat",
-          "term": "HerodTheGreat",
+          "id": "term.herod-the-great",
+          "term": "Herod the Great",
           "quick": "Roman-aligned king of Judea who ruled in the late first century BCE.",
           "definitions": [
             "Roman-aligned king of Judea who ruled in the late first century BCE."
@@ -29361,8 +29346,23 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.highpriest",
-          "term": "HighPriest",
+          "id": "term.herodian-dynasty",
+          "term": "Herodian Dynasty",
+          "quick": "Herod’s ruling family and successors in parts of the region.",
+          "definitions": [
+            "Herod’s ruling family and successors in parts of the region."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.second-temple",
+              "unitId": "c3.hasmonean-rome",
+              "lessonId": "c3-herod"
+            }
+          ]
+        },
+        {
+          "id": "term.high-priest",
+          "term": "High Priest",
           "quick": "The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.",
           "definitions": [
             "The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.",
@@ -29382,8 +29382,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.highpriesthood",
-          "term": "HighPriesthood",
+          "id": "term.high-priesthood",
+          "term": "High Priesthood",
           "quick": "The senior priestly office associated with Temple leadership.",
           "definitions": [
             "The senior priestly office associated with Temple leadership."
@@ -29401,13 +29401,19 @@ Source: [/data/catalog.json](/data/catalog.json)
           "term": "Historical context",
           "quick": "The circumstances in which a text and its audience are situated.",
           "definitions": [
-            "The circumstances in which a text and its audience are situated."
+            "The circumstances in which a text and its audience are situated.",
+            "Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself."
           ],
           "occurrences": [
             {
               "courseId": "course.theology",
               "unitId": "c6.difficult",
               "lessonId": "ethical-texts"
+            },
+            {
+              "courseId": "course.second-temple",
+              "unitId": "c3.enter-gospels",
+              "lessonId": "c3-enter-gospels"
             }
           ]
         },
@@ -29427,23 +29433,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.historicalcontext",
-          "term": "HistoricalContext",
-          "quick": "Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself.",
-          "definitions": [
-            "Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself."
-          ],
-          "occurrences": [
-            {
-              "courseId": "course.second-temple",
-              "unitId": "c3.enter-gospels",
-              "lessonId": "c3-enter-gospels"
-            }
-          ]
-        },
-        {
-          "id": "term.holyofholies",
-          "term": "HolyOfHolies",
+          "id": "term.holy-of-holies",
+          "term": "Holy of Holies",
           "quick": "The innermost sacred space associated with the Ark.",
           "definitions": [
             "The innermost sacred space associated with the Ark."
@@ -29457,8 +29448,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.holyplace",
-          "term": "HolyPlace",
+          "id": "term.holy-place",
+          "term": "Holy Place",
           "quick": "The first chamber of the sanctuary tent.",
           "definitions": [
             "The first chamber of the sanctuary tent."
@@ -29472,8 +29463,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.holyspirit",
-          "term": "HolySpirit",
+          "id": "term.holy-spirit",
+          "term": "Holy Spirit",
           "quick": "In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth.",
           "definitions": [
             "In Christian Scripture and doctrine, the Spirit of God; Course 6 develops theological formulations in greater depth."
@@ -29699,8 +29690,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.internalizedinstruction",
-          "term": "InternalizedInstruction",
+          "id": "term.internalized-instruction",
+          "term": "Internalized Instruction",
           "quick": "Jeremiah’s image of divine instruction written on the heart.",
           "definitions": [
             "Jeremiah’s image of divine instruction written on the heart."
@@ -29780,8 +29771,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.judasthegalilean",
-          "term": "JudasTheGalilean",
+          "id": "term.judas-the-galilean",
+          "term": "Judas the Galilean",
           "quick": "A figure linked in ancient sources with resistance connected to Roman taxation.",
           "definitions": [
             "A figure linked in ancient sources with resistance connected to Roman taxation."
@@ -29851,7 +29842,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "quick": "God’s reign and its realization.",
           "definitions": [
             "God’s reign and its realization.",
-            "God’s reign or active rule, not merely a geographical destination."
+            "God’s reign or active rule, not merely a geographical destination.",
+            "God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death."
           ],
           "occurrences": [
             {
@@ -29868,17 +29860,7 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.jesus-church",
               "unitId": "c4.israel-story",
               "lessonId": "kingdom-following"
-            }
-          ]
-        },
-        {
-          "id": "term.kingdomofgod",
-          "term": "KingdomOfGod",
-          "quick": "God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death.",
-          "definitions": [
-            "God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death."
-          ],
-          "occurrences": [
+            },
             {
               "courseId": "course.second-temple",
               "unitId": "c3.enter-gospels",
@@ -29920,8 +29902,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.lastsupper",
-          "term": "LastSupper",
+          "id": "term.last-supper",
+          "term": "Last Supper",
           "quick": "Traditional name for Jesus’ final meal with disciples before the crucifixion.",
           "definitions": [
             "Traditional name for Jesus’ final meal with disciples before the crucifixion."
@@ -30046,8 +30028,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.markanpriority",
-          "term": "MarkanPriority",
+          "id": "term.markan-priority",
+          "term": "Markan Priority",
           "quick": "The hypothesis that Mark was written before and used by Matthew and Luke.",
           "definitions": [
             "The hypothesis that Mark was written before and used by Matthew and Luke."
@@ -30103,8 +30085,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.mercyseat",
-          "term": "MercySeat",
+          "id": "term.mercy-seat",
+          "term": "Mercy Seat",
           "quick": "A traditional English term for the Ark’s cover, also rendered atonement cover.",
           "definitions": [
             "A traditional English term for the Ark’s cover, also rendered atonement cover."
@@ -30154,8 +30136,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.messianicexpectation",
-          "term": "MessianicExpectation",
+          "id": "term.messianic-expectation",
+          "term": "Messianic Expectation",
           "quick": "Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities.",
           "definitions": [
             "Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities."
@@ -30307,6 +30289,21 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
+          "id": "term.new-covenant",
+          "term": "New Covenant",
+          "quick": "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.",
+          "definitions": [
+            "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.israel",
+              "unitId": "c2.restoration-hope",
+              "lessonId": "c2-new-covenant"
+            }
+          ]
+        },
+        {
           "id": "term.new-creation",
           "term": "New creation",
           "quick": "The renewal of life and creation within Christian final hope.",
@@ -30318,21 +30315,6 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.theology",
               "unitId": "c6.final-hope",
               "lessonId": "apocalypse-hope"
-            }
-          ]
-        },
-        {
-          "id": "term.newcovenant",
-          "term": "NewCovenant",
-          "quick": "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.",
-          "definitions": [
-            "Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation."
-          ],
-          "occurrences": [
-            {
-              "courseId": "course.israel",
-              "unitId": "c2.restoration-hope",
-              "lessonId": "c2-new-covenant"
             }
           ]
         },
@@ -30549,8 +30531,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.persianperiod",
-          "term": "PersianPeriod",
+          "id": "term.persian-period",
+          "term": "Persian Period",
           "quick": "The period of Persian imperial rule over the region after Babylon’s fall.",
           "definitions": [
             "The period of Persian imperial rule over the region after Babylon’s fall."
@@ -30630,8 +30612,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.pilgrimagefestival",
-          "term": "PilgrimageFestival",
+          "id": "term.pilgrimage-festival",
+          "term": "Pilgrimage Festival",
           "quick": "A festival associated with travel to the sanctuary.",
           "definitions": [
             "A festival associated with travel to the sanctuary."
@@ -30822,8 +30804,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.prophetichope",
-          "term": "PropheticHope",
+          "id": "term.prophetic-hope",
+          "term": "Prophetic Hope",
           "quick": "Future-oriented promises or visions emerging from prophetic messages in concrete historical crises.",
           "definitions": [
             "Future-oriented promises or visions emerging from prophetic messages in concrete historical crises."
@@ -30924,8 +30906,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.publicreading",
-          "term": "PublicReading",
+          "id": "term.public-reading",
+          "term": "Public Reading",
           "quick": "Communal proclamation of Scripture.",
           "definitions": [
             "Communal proclamation of Scripture."
@@ -31272,8 +31254,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.romanempire",
-          "term": "RomanEmpire",
+          "id": "term.roman-empire",
+          "term": "Roman Empire",
           "quick": "The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament.",
           "definitions": [
             "The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament."
@@ -31377,8 +31359,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.secondtemple",
-          "term": "SecondTemple",
+          "id": "term.second-temple",
+          "term": "Second Temple",
           "quick": "The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE.",
           "definitions": [
             "The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE."
@@ -31392,8 +31374,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.secondtemplejudaism",
-          "term": "SecondTempleJudaism",
+          "id": "term.second-temple-judaism",
+          "term": "Second Temple Judaism",
           "quick": "A broad label for diverse Jewish life during the Second Temple period.",
           "definitions": [
             "A broad label for diverse Jewish life during the Second Temple period."
@@ -31407,8 +31389,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.secondtempleperiod",
-          "term": "SecondTemplePeriod",
+          "id": "term.second-temple-period",
+          "term": "Second Temple Period",
           "quick": "The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE.",
           "definitions": [
             "The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE."
@@ -31467,8 +31449,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.sermononthemount",
-          "term": "SermonOnTheMount",
+          "id": "term.sermon-on-the-mount",
+          "term": "Sermon on the Mount",
           "quick": "Matthew 5–7, a major collection of Jesus’ teaching.",
           "definitions": [
             "Matthew 5–7, a major collection of Jesus’ teaching."
@@ -31568,8 +31550,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.synopticgospels",
-          "term": "SynopticGospels",
+          "id": "term.synoptic-gospels",
+          "term": "Synoptic Gospels",
           "quick": "Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story.",
           "definitions": [
             "Matthew, Mark, and Luke, named for their substantial overlap and comparable view of Jesus’ story."
@@ -31646,8 +31628,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
-          "id": "term.templeeconomy",
-          "term": "TempleEconomy",
+          "id": "term.temple-economy",
+          "term": "Temple Economy",
           "quick": "The material systems surrounding worship, offerings, exchange, labor, travel, and administration.",
           "definitions": [
             "The material systems surrounding worship, offerings, exchange, labor, travel, and administration."

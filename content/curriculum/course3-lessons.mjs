@@ -11,7 +11,7 @@ export const course3Lessons=[
       'This Persian setting is the starting point for the Second Temple period. The learner should resist the common mental jump from “return” directly to Roman-era Jesus; several centuries of political and cultural change lie between them.'
     ],
     simple:'Some Judeans return and rebuild under Persian rule, but Jewish life remains dispersed and Judea is not an independent restored monarchy.',
-    vocab:{Yehud:'The Persian-period province corresponding broadly to Judah/Judea.',Diaspora:'Communities living outside an ancestral homeland.',SecondTemplePeriod:'The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE.'},
+    vocab:{Yehud:'The Persian-period province corresponding broadly to Judah/Judea.',Diaspora:'Communities living outside an ancestral homeland.','Second Temple Period':'The long period centered on the rebuilt Jerusalem Temple, conventionally extending until its destruction in 70 CE.'},
     deeper:'Historians reconstruct Persian-period Judah from biblical texts, Persian evidence, archaeology, epigraphy, and comparative imperial history. The biblical narratives have theological interests that should be respected rather than mistaken for modern historiography.',
     drawers:[drawer('Why “return” is not the end of diaspora','Many Jewish communities remain or develop outside Judea. Diaspora becomes a durable feature of Jewish history rather than a temporary mistake corrected by one migration.')],
     visual:{title:'The bridge begins under empire',text:'Babylon → Persia → restored Temple/Judea under Persian rule → later Greek rule'},
@@ -31,7 +31,7 @@ export const course3Lessons=[
       'This diversity becomes essential for reading the Gospels. Pharisees, Sadducees, priests, teachers, diaspora communities, and other groups participate in overlapping Jewish worlds rather than representing different religions.'
     ],
     simple:'Postexilic Jewish life visibly centers Scripture, interpretation, worship, and communal identity—without producing one uniform Jewish viewpoint.',
-    vocab:{PublicReading:'Communal proclamation of Scripture.',Interpretation:'Explanation of meaning using language, context, evidence, and reasoning.',Identity:'The ways a community understands belonging, story, obligations, and boundaries.'},
+    vocab:{'Public Reading':'Communal proclamation of Scripture.',Interpretation:'Explanation of meaning using language, context, evidence, and reasoning.',Identity:'The ways a community understands belonging, story, obligations, and boundaries.'},
     deeper:'Scholars debate the relationship between Ezra-Nehemiah’s literary presentation and historical reconstruction. The lesson uses the text to identify a real conceptual development: Scripture is received through communal reading and explanation.',
     drawers:[drawer('Why this matters for synagogues','Later synagogue life includes Scripture reading and teaching, but the institutional history is complex. Do not simply label Nehemiah 8 a fully developed first-century synagogue service.')],
     challenges:[
@@ -50,7 +50,7 @@ export const course3Lessons=[
       'Cultural exchange can produce opportunity, conflict, creativity, and arguments about fidelity. The Maccabean crisis becomes intelligible only after seeing Hellenization as a complex social process rather than a simple contest between two sealed cultures.'
     ],
     simple:'Alexander brings Judea into a Hellenistic world where Greek language and culture spread, but Jewish communities respond in diverse rather than uniform ways.',
-    vocab:{Hellenization:'The spread and local adaptation of Greek language and cultural forms in the Hellenistic world.',HellenisticPeriod:'The era shaped by Alexander’s conquests and successor kingdoms.',Septuagint:'A conventional name for ancient Greek translations of Jewish Scriptures; the collection and translation history developed over time.'},
+    vocab:{Hellenization:'The spread and local adaptation of Greek language and cultural forms in the Hellenistic world.','Hellenistic Period':'The era shaped by Alexander’s conquests and successor kingdoms.',Septuagint:'A conventional name for ancient Greek translations of Jewish Scriptures; the collection and translation history developed over time.'},
     deeper:'“The Septuagint” is a convenient label but can imply more uniformity than the evidence warrants. Different books were translated at different times and textual histories are complex.',
     drawers:[
       drawer('Greek does not mean non-Jewish','Greek-speaking Jews appear throughout the ancient Mediterranean. Language use and religious identity are different dimensions.'),
@@ -73,7 +73,7 @@ export const course3Lessons=[
       'Many historical-critical interpreters relate important portions of Daniel’s visions to the Antiochene crisis. That relationship illustrates how apocalyptic literature can address concrete oppression through symbolic visions without functioning as a modern newspaper code.'
     ],
     simple:'Antiochus IV’s policies and the Temple crisis provoke Jewish resistance; the Temple is rededicated, and the revolt helps produce Hasmonean rule.',
-    vocab:{AntiochusIV:'Seleucid ruler whose reign is associated with the second-century BCE Judean crisis.',Maccabees:'The family and movement associated with revolt against Seleucid rule and the Temple crisis.',Hanukkah:'The later Jewish festival commemorating the Temple’s rededication.'},
+    vocab:{'Antiochus IV':'Seleucid ruler whose reign is associated with the second-century BCE Judean crisis.',Maccabees:'The family and movement associated with revolt against Seleucid rule and the Temple crisis.',Hanukkah:'The later Jewish festival commemorating the Temple’s rededication.'},
     deeper:'Ancient sources differ in emphases and explanations for the crisis. Political rivalry, Hellenization, imperial coercion, priestly conflict, and religious persecution interact. A responsible introduction avoids reducing the conflict to one cause.',
     drawers:[
       drawer('Why use sources outside the Protestant canon?','Historical study can use 1–2 Maccabees, Josephus, inscriptions, archaeology, and other sources without treating all of them as Scripture in a Protestant canon.'),
@@ -95,7 +95,7 @@ export const course3Lessons=[
       'Internal Hasmonean conflict eventually creates an opening for Roman intervention. When Pompey enters Jerusalem in 63 BCE, Judea moves into a new imperial relationship that will frame the world of Herod and the Gospels.'
     ],
     simple:'Maccabean resistance develops into Hasmonean rule, bringing Jewish self-government but also conflicts over dynasty, priesthood, and legitimacy.',
-    vocab:{Hasmoneans:'The Jewish ruling dynasty that developed from the Maccabean movement.',HighPriesthood:'The senior priestly office associated with Temple leadership.',Legitimacy:'A claim to rightful authority or rule.'},
+    vocab:{Hasmoneans:'The Jewish ruling dynasty that developed from the Maccabean movement.','High Priesthood':'The senior priestly office associated with Temple leadership.',Legitimacy:'A claim to rightful authority or rule.'},
     deeper:'The boundaries between independence, client relationships, titles, and territorial control change across the Hasmonean period. The course uses a broad political map rather than pretending every decade has the same constitutional arrangement.',
     drawers:[drawer('Why this matters for “sects”','Pharisaic, Sadducean, Essene, priestly, and other identities emerge within histories of institutions and power. They are not timeless personality types.')],
     challenges:[
@@ -114,7 +114,7 @@ export const course3Lessons=[
       'Kingdom language, messianic claims, taxation questions, crucifixion, and public gatherings can all acquire political dimensions in this setting. Reading those dimensions does not mean reducing Jesus to a modern political category.'
     ],
     simple:'The Gospel world sits inside Roman imperial power expressed through emperors, client rulers, governors, local elites, taxation, and force.',
-    vocab:{RomanEmpire:'The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament.',ClientRuler:'A local ruler whose authority depends substantially on a larger imperial power.',Governor:'An imperial official administering a province or territory under Roman authority.'},
+    vocab:{'Roman Empire':'The imperial system centered on Rome that controlled the eastern Mediterranean world of the New Testament.','Client Ruler':'A local ruler whose authority depends substantially on a larger imperial power.',Governor:'An imperial official administering a province or territory under Roman authority.'},
     deeper:'Administrative arrangements change over time. Judea under Herod the Great, his successors, Roman prefects/procurators, and later provincial structures should not be treated as one unchanging system.',
     drawers:[drawer('Why crucifixion is political as well as brutal','Crucifixion is a Roman execution associated especially with enslaved people, rebels, and others subjected to imperial power. The Gospels’ passion narratives therefore have a concrete imperial setting.')],
     challenges:[
@@ -133,7 +133,7 @@ export const course3Lessons=[
       'After Herod’s death, his territories are divided among successors, including Herod Antipas in Galilee. The New Testament’s several “Herods” are therefore members of a dynasty, not repeated references to one man.'
     ],
     simple:'Herod is a Roman-backed Jewish king whose building projects reshape the Temple and whose dynasty continues into the Gospel world.',
-    vocab:{HerodTheGreat:'Roman-aligned king of Judea who ruled in the late first century BCE.',HerodianDynasty:'Herod’s ruling family and successors in parts of the region.',ClientKing:'A king whose rule is locally exercised but depends on imperial recognition and power.'},
+    vocab:{'Herod the Great':'Roman-aligned king of Judea who ruled in the late first century BCE.','Herodian Dynasty':'Herod’s ruling family and successors in parts of the region.','Client King':'A king whose rule is locally exercised but depends on imperial recognition and power.'},
     deeper:'Chronology around Herod’s death and the birth narratives is part of wider historical discussion. The course need not force the Gospels into a modern biography model to teach Herod’s political setting accurately.',
     drawers:[
       drawer('The “Herods” are not one person','Herod Antipas, Archelaus, Philip, Agrippa I, Agrippa II, and others belong to the wider Herodian dynasty and appear in different New Testament settings.'),
@@ -156,7 +156,7 @@ export const course3Lessons=[
       'Jesus’ Temple actions and the passion narratives belong inside this world. Criticism of Temple practices should not be converted into a Christian claim that Jewish worship as such was corrupt or obsolete.'
     ],
     simple:'The Second Temple is the center of sacrifice and pilgrimage and also an institution with economic and political significance.',
-    vocab:{HighPriest:'The senior priestly office associated with Temple worship and leadership.',PilgrimageFestival:'A festival associated with travel to the sanctuary.',TempleEconomy:'The material systems surrounding worship, offerings, exchange, labor, travel, and administration.'},
+    vocab:{'High Priest':'The senior priestly office associated with Temple worship and leadership.','Pilgrimage Festival':'A festival associated with travel to the sanctuary.','Temple Economy':'The material systems surrounding worship, offerings, exchange, labor, travel, and administration.'},
     deeper:'Ancient evidence about priestly groups, Temple administration, sacrifice, and political influence is uneven. Later rabbinic memory, Josephus, archaeology, the New Testament, and other sources must be handled according to genre and date.',
     drawers:[drawer('Why Passover can feel politically charged','A festival remembering liberation gathers crowds in Jerusalem while Judea lives under imperial power. That context does not determine every participant’s motive, but it explains heightened concern for public order.')],
     challenges:[
@@ -175,7 +175,7 @@ export const course3Lessons=[
       'This background matters especially for Acts and Paul. Early Christian mission often moves through diaspora cities where Jewish communities already provide networks, Scriptures, debates about Gentiles, and spaces of encounter.'
     ],
     simple:'Jewish life is centered on more than Jerusalem: synagogues and diaspora communities make Scripture, worship, and community visible across a wide geography.',
-    vocab:{Synagogue:'A Jewish communal gathering institution associated with assembly, Scripture, teaching, prayer, and local life.',DiasporaJudaism:'Jewish communities living outside Judea/Israel.',Assembly:'A gathered community; different institutions and texts use related gathering language in different ways.'},
+    vocab:{Synagogue:'A Jewish communal gathering institution associated with assembly, Scripture, teaching, prayer, and local life.','Diaspora Judaism':'Jewish communities living outside Judea/Israel.',Assembly:'A gathered community; different institutions and texts use related gathering language in different ways.'},
     deeper:'It is risky to project later rabbinic synagogue practice backward unchanged into the first century. Archaeology, inscriptions, literary texts, and later traditions illuminate different times and places.',
     drawers:[drawer('Why Greek-speaking Judaism matters','Greek Jewish Scriptures and diaspora communities are not peripheral to Christian origins. The earliest Christian movement spreads through a world where many Jews already live and read Scripture in Greek.')],
     challenges:[
@@ -213,7 +213,7 @@ export const course3Lessons=[
       'Community documents also reveal intense concerns about purity, covenant, interpretation, calendar, leadership, and end-time expectation. They provide one window into Jewish diversity, not a secret blueprint for all first-century Judaism or Christianity.'
     ],
     simple:'The Dead Sea Scrolls give direct evidence for biblical texts and diverse Jewish communities before the New Testament period; Qumran’s exact relationship to the Essenes remains a historical question.',
-    vocab:{DeadSeaScrolls:'Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts.',Qumran:'An archaeological site near caves containing many Dead Sea Scrolls.',Essenes:'A Jewish group described by several ancient writers and often associated with Qumran, though details are debated.'},
+    vocab:{'Dead Sea Scrolls':'Ancient manuscripts found in caves near the Dead Sea, including biblical and nonbiblical Jewish texts.',Qumran:'An archaeological site near caves containing many Dead Sea Scrolls.',Essenes:'A Jewish group described by several ancient writers and often associated with Qumran, though details are debated.'},
     deeper:'The Scrolls are a collection, not one library in a modern cataloging sense with completely known provenance. Textual classification and community attribution remain active scholarly fields.',
     drawers:[drawer('Why this belongs in Bible literacy','The Scrolls make manuscript transmission and Second Temple interpretation tangible. Course 5 returns to their significance for textual criticism rather than using them as sensational evidence for or against faith.')],
     challenges:[
@@ -232,7 +232,7 @@ export const course3Lessons=[
       'This context helps explain why claims about kingdom, Messiah, taxes, crowds, and public order could be politically sensitive. It does not prove that Jesus or every disciple belongs to one revolutionary program.'
     ],
     simple:'Resistance to Rome takes many forms. “Zealot” should not be used as a catch-all label for every Jewish opponent of imperial rule.',
-    vocab:{Zealot:'Strictly, a label especially associated with a movement active in the revolt against Rome; it is often used too broadly.',JudasTheGalilean:'A figure linked in ancient sources with resistance connected to Roman taxation.',Revolt:'Organized armed resistance against political authority.'},
+    vocab:{Zealot:'Strictly, a label especially associated with a movement active in the revolt against Rome; it is often used too broadly.','Judas the Galilean':'A figure linked in ancient sources with resistance connected to Roman taxation.',Revolt:'Organized armed resistance against political authority.'},
     deeper:'Ancient categories such as “bandit,” “rebel,” “prophet,” or “deceiver” can themselves reflect the perspective of authorities or historians. Historical analysis should ask who applies the label and why.',
     drawers:[drawer('Why taxes matter in the Gospels','Tax questions are not abstract accounting puzzles under imperial rule. They touch sovereignty, collaboration, livelihood, and public allegiance without automatically determining one theological answer.')],
     challenges:[
@@ -251,7 +251,7 @@ export const course3Lessons=[
       'Early Christian resurrection claims therefore emerge inside an existing Jewish conversation while also making a distinctive claim about Jesus. Course 4 will place Jesus’ resurrection inside that background; Course 6 will study Christian final hope in depth.'
     ],
     simple:'Resurrection and apocalyptic hope are already part of Jewish debate before Christianity; Christians enter that conversation with claims about Jesus.',
-    vocab:{Apocalyptic:'Visionary literature that unveils earthly conflict in relation to heavenly realities, divine judgment, and hope.',Resurrection:'Raising the dead to transformed life.',AgeToCome:'Language for a future order of divine restoration or judgment in some Jewish and Christian traditions.'},
+    vocab:{Apocalyptic:'Visionary literature that unveils earthly conflict in relation to heavenly realities, divine judgment, and hope.',Resurrection:'Raising the dead to transformed life.','Age to Come':'Language for a future order of divine restoration or judgment in some Jewish and Christian traditions.'},
     deeper:'“Apocalyptic” names both a literary genre and, in scholarship, broader patterns of thought. Those categories overlap but are not identical. Beginners should first learn how symbolic visions function before debating technical taxonomies.',
     drawers:[drawer('Why this changes Gospel reading','When Gospel characters debate resurrection or speak of the Son of Man, judgment, angels, or the kingdom, they participate in already existing Jewish scriptural and interpretive worlds.')],
     challenges:[
@@ -270,7 +270,7 @@ export const course3Lessons=[
       'This diversity explains why Gospel questions such as “Who do you say that I am?” carry real interpretive weight. Identifying Jesus as Messiah is not simply matching him to one universally agreed job description.'
     ],
     simple:'Messiah means “anointed one,” and Second Temple Jewish hopes were diverse rather than one universally agreed checklist.',
-    vocab:{Messiah:'Anointed one; a title whose meanings and expectations vary across biblical and later Jewish/Christian contexts.',DavidicHope:'Expectation connected with David’s dynasty and royal promises.',Anointed:'Consecrated or appointed, often symbolized by anointing with oil.'},
+    vocab:{Messiah:'Anointed one; a title whose meanings and expectations vary across biblical and later Jewish/Christian contexts.','Davidic Hope':'Expectation connected with David’s dynasty and royal promises.',Anointed:'Consecrated or appointed, often symbolized by anointing with oil.'},
     deeper:'Modern discussions often speak of “the Jewish Messiah” as if one standardized doctrine existed. Ancient evidence instead supports a range of messianic and non-messianic eschatological expectations.',
     drawers:[drawer('What Christians later claim','Christian texts identify Jesus with royal, prophetic, priestly, servant, Son of Man, and other scriptural patterns. Course 5 will separate direct quotation, allusion, typology, and theological synthesis.')],
     challenges:[
@@ -289,7 +289,7 @@ export const course3Lessons=[
       'This context sets limits as well as possibilities. Historical background can illuminate a Gospel scene, but it cannot reveal motives the text does not give or settle every theological interpretation. Course 4 returns to the primary Gospel narratives with this context in place.'
     ],
     simple:'The Gospels begin inside Roman-ruled, Second Temple Jewish life—not in an empty gap after the Old Testament.',
-    vocab:{KingdomOfGod:'God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death.',SecondTempleJudaism:'A broad label for diverse Jewish life during the Second Temple period.',HistoricalContext:'Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself.'},
+    vocab:{'Kingdom of God':'God’s reign; in the Gospels it draws on Jewish scriptural hopes and is not merely a synonym for heaven after death.','Second Temple Judaism':'A broad label for diverse Jewish life during the Second Temple period.','Historical Context':'Evidence about the world in which a text or event is located; useful but not a substitute for reading the text itself.'},
     deeper:'The phrase “Second Temple Judaism” is itself an analytical umbrella. It should help learners notice diversity and history, not suggest that every Jewish practice belongs to one coherent system.',
     drawers:[
       drawer('A checklist before interpreting a Gospel dispute','Ask: Who is involved? What institution or text matters? What is explicitly said? Which background claim is well supported? What remains inference?'),

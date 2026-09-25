@@ -93,7 +93,7 @@ export const course2Lessons=[
       'A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement.'
     ],
     simple:'The tabernacle is a portable sanctuary representing God dwelling among Israel, with increasingly restricted sacred zones.',
-    vocab:{Tabernacle:'The portable sanctuary described in Exodus.',HolyPlace:'The first chamber of the sanctuary tent.',HolyOfHolies:'The innermost sacred space associated with the Ark.'},
+    vocab:{Tabernacle:'The portable sanctuary described in Exodus.','Holy Place':'The first chamber of the sanctuary tent.','Holy of Holies':'The innermost sacred space associated with the Ark.'},
     deeper:'Different modern diagrams can vary because ancient measurements, terminology, construction assumptions, and artistic choices require reconstruction. The text’s theological and ritual relationships are more important here than false architectural precision.',
     drawers:[
       drawer('What belongs where?','The courtyard contains the altar and basin; the tent’s Holy Place contains furnishings such as the lampstand and table; the Ark belongs in the innermost space.'),
@@ -116,7 +116,7 @@ export const course2Lessons=[
       'Later Jewish and Christian traditions develop additional stories and interpretations. Those should be labeled as later reception rather than silently inserted into the biblical narrative.'
     ],
     simple:'The Ark links covenant testimony, the sanctuary’s innermost space, and divine presence; it is not a magical guarantee of success.',
-    vocab:{ArkOfTheCovenant:'The sacred chest associated with covenant testimony and the innermost sanctuary.',MercySeat:'A traditional English term for the Ark’s cover, also rendered atonement cover.',Presence:'In this context, language for God dwelling, meeting, or being manifest among the people.'},
+    vocab:{'Ark of the Covenant':'The sacred chest associated with covenant testimony and the innermost sanctuary.','Mercy Seat':'A traditional English term for the Ark’s cover, also rendered atonement cover.',Presence:'In this context, language for God dwelling, meeting, or being manifest among the people.'},
     deeper:'Hebrews 9 and other later texts remember tabernacle furnishings in theological argument. Course 4 and Course 5 distinguish an earlier text’s own setting from later reuse.',
     drawers:[
       drawer('What was inside?','Exodus emphasizes the covenant testimony/tablets. Other biblical texts and later traditions mention additional items in related ways. Compare passages rather than forcing every reference into one moment.'),
@@ -159,7 +159,7 @@ export const course2Lessons=[
       'Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms.'
     ],
     simple:'The Day of Atonement is an annual complex of rites dealing with sanctuary cleansing, communal wrongdoing, removal, and restored relationship.',
-    vocab:{DayOfAtonement:'The annual Israelite observance described especially in Leviticus 16.',HighPriest:'The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.',Scapegoat:'Traditional term for the goat sent away bearing confessed wrongs in the Leviticus 16 ritual.'},
+    vocab:{'Day of Atonement':'The annual Israelite observance described especially in Leviticus 16.','High Priest':'The priest with distinctive responsibilities, including the Day of Atonement entry into the innermost sanctuary.',Scapegoat:'Traditional term for the goat sent away bearing confessed wrongs in the Leviticus 16 ritual.'},
     deeper:'The Hebrew term associated with the sent-away goat and the precise mechanics of atonement are debated. The lesson should preserve what the chapter clearly distinguishes before adjudicating technical theories.',
     drawers:[drawer('Why Hebrews feels dense without this','Hebrews assumes familiarity with priests, sanctuary zones, blood rites, access, and annual repetition. Course 5 can examine how Hebrews interprets those patterns.')],
     challenges:[
@@ -198,7 +198,7 @@ export const course2Lessons=[
       'The New Testament later presents Jesus with Davidic titles and genealogical claims. Course 3 studies the diversity of messianic expectation; Course 4 studies how the Gospels use Davidic language.'
     ],
     simple:'God’s promise to David links dynasty and kingdom with an enduring line of hope even though individual kings can fail.',
-    vocab:{DavidicCovenant:'The biblical promise associated with David’s dynasty, especially in 2 Samuel 7.',Dynasty:'A succession of rulers from the same family line.',Messiah:'Anointed one; later Jewish and Christian expectations use the term in several ways, including royal-Davidic hope.'},
+    vocab:{'Davidic Covenant':'The biblical promise associated with David’s dynasty, especially in 2 Samuel 7.',Dynasty:'A succession of rulers from the same family line.',Messiah:'Anointed one; later Jewish and Christian expectations use the term in several ways, including royal-Davidic hope.'},
     deeper:'Interpreters debate how unconditional and conditional elements of royal promises fit together across Samuel, Kings, Psalms, prophets, and later literature. The introductory point is the persistence of Davidic promise through royal failure.',
     drawers:[drawer('King versus Messiah','“Anointed” language can refer to actual kings and other figures. Course 3 will prevent the learner from assuming every use already means the later Christian claim about Jesus.')],
     challenges:[
@@ -256,7 +256,7 @@ export const course2Lessons=[
       'This is the doorway to Course 3. Between Persian restoration and the Gospels come Hellenistic rule, the Maccabean crisis, Hasmonean rule, Rome, Herod, and substantial developments in Jewish life and expectation.'
     ],
     simple:'The Temple is rebuilt under Persian rule, but restoration does not mean every exile-era loss or prophetic hope is fully resolved.',
-    vocab:{SecondTemple:'The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE.',PersianPeriod:'The period of Persian imperial rule over the region after Babylon’s fall.',Restoration:'Return, rebuilding, and renewed communal life after catastrophe; not necessarily complete fulfillment of every hope.'},
+    vocab:{'Second Temple':'The Jerusalem Temple rebuilt after the Babylonian destruction and later extensively renovated before its destruction in 70 CE.','Persian Period':'The period of Persian imperial rule over the region after Babylon’s fall.',Restoration:'Return, rebuilding, and renewed communal life after catastrophe; not necessarily complete fulfillment of every hope.'},
     deeper:'The return narratives, Persian administration, temple chronology, and relationships among Ezra, Nehemiah, Chronicles, Haggai, Zechariah, and other sources require careful historical reconstruction. Course 3 keeps the broad sequence while marking uncertainty.',
     drawers:[drawer('Why the tears matter','Ezra’s mixed celebration and grief prevents “restoration” from becoming a simplistic reset button. The new community carries memory, loss, and unresolved expectations.')],
     challenges:[
@@ -275,7 +275,7 @@ export const course2Lessons=[
       'This distinction also guards against supersessionism—the idea that Christian identity simply makes Israel or Judaism obsolete. Canonical Shelf will present Christian fulfillment claims while refusing to erase the continuing Jewish context of the texts Christians inherit.'
     ],
     simple:'Jeremiah’s new-covenant hope addresses Israel and Judah after covenant rupture; later Christian texts reuse that promise in relation to Jesus.',
-    vocab:{NewCovenant:'Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.',InternalizedInstruction:'Jeremiah’s image of divine instruction written on the heart.',Supersessionism:'The claim that the Church simply replaces Israel in a way that renders Jewish covenantal identity obsolete; forms and definitions vary.'},
+    vocab:{'New Covenant':'Jeremiah’s promise of renewed covenant relationship, later important in Christian interpretation.','Internalized Instruction':'Jeremiah’s image of divine instruction written on the heart.',Supersessionism:'The claim that the Church simply replaces Israel in a way that renders Jewish covenantal identity obsolete; forms and definitions vary.'},
     deeper:'Christian traditions disagree on covenant continuity, Israel and Church, and fulfillment. Jewish interpretation does not accept Christian claims about Jesus as the fulfillment of Jeremiah. Course 5 distinguishes original context from later canonical reuse; Course 6 treats theological frameworks.',
     drawers:[drawer('Why this matters for Communion','New-covenant language appears in Last Supper/Communion traditions. Course 4 will reconnect that phrase to Jeremiah rather than allowing it to appear without its prophetic background.')],
     challenges:[
@@ -294,7 +294,7 @@ export const course2Lessons=[
       'Course 3 therefore asks what kinds of hopes existed before asking how Christians identify Jesus with them. Course 4 examines Gospel fulfillment claims, and Course 5 studies quotation, allusion, typology, and prophecy as distinct interpretive relationships.'
     ],
     simple:'The prophets offer several kinds of hope—restoration, justice, presence, Spirit, kingship, peace—not one flat prediction chart.',
-    vocab:{PropheticHope:'Future-oriented promises or visions emerging from prophetic messages in concrete historical crises.',Jesse:'David’s father; “root/shoot of Jesse” language evokes Davidic royal hope.',MessianicExpectation:'Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities.'},
+    vocab:{'Prophetic Hope':'Future-oriented promises or visions emerging from prophetic messages in concrete historical crises.',Jesse:'David’s father; “root/shoot of Jesse” language evokes Davidic royal hope.','Messianic Expectation':'Expectation concerning an anointed or divinely appointed figure; forms vary across texts and communities.'},
     deeper:'“Messianic prophecy” can become an anachronistic category if every prophetic passage is assumed to function as a direct prediction of Jesus. Christian interpretation can affirm fulfillment while still asking how a passage operated in its earlier literary and historical context.',
     drawers:[drawer('Direct prediction is not the only connection','Later texts can quote, echo, typologically reuse, or reread earlier Scripture. Course 5 teaches those relationships explicitly.')],
     visual:{title:'Several streams of hope',text:'Davidic ruler · Spirit · justice · restored Israel · renewed covenant · presence · peace · new creation'},
