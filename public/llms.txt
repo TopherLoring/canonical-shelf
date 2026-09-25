@@ -40071,31 +40071,67 @@ Source: [/verse-data.js](/verse-data.js)
 Source: [/theme.js](/theme.js)
 
     {
-      "defaultThemeId": "scholarly-graphite",
+      "defaultThemeId": "canonical-paper",
       "themes": [
+        {
+          "id": "canonical-paper",
+          "name": "Canonical Paper",
+          "summary": "Authentic warm archival parchment, carbon ink, and antique gold.",
+          "themeColor": "#E6E7E2",
+          "darkThemeColor": "#181B1E",
+          "swatch": [
+            "#E6E7E2",
+            "#454A53",
+            "#C9A227"
+          ]
+        },
         {
           "id": "scholarly-graphite",
           "name": "Scholarly Graphite",
-          "summary": "Cool paper, graphite chrome, scholarly serif reading, and bright gilt signals.",
-          "themeColor": "#24272d"
+          "summary": "Cool alabaster paper, graphite chrome, and bright gilt signals.",
+          "themeColor": "#F0F2F4",
+          "darkThemeColor": "#15171A",
+          "swatch": [
+            "#F0F2F4",
+            "#505862",
+            "#FFC800"
+          ]
         },
         {
-          "id": "cool-archive",
-          "name": "Cool Archive",
-          "summary": "Cool archival whites, blue-gray structure, and restrained scholarly contrast.",
-          "themeColor": "#1a2631"
+          "id": "oxford-scriptorium",
+          "name": "Oxford Scriptorium",
+          "summary": "Collegiate navy structure, warm linen surfaces, and heraldic bronze.",
+          "themeColor": "#F4F2EB",
+          "darkThemeColor": "#111822",
+          "swatch": [
+            "#F4F2EB",
+            "#233B58",
+            "#D4A838"
+          ]
         },
         {
-          "id": "blue-stone",
-          "name": "Blue Stone",
-          "summary": "Stone-blue structure with clean paper surfaces and muted green secondary accents.",
-          "themeColor": "#202633"
+          "id": "monastic-cedar",
+          "name": "Monastic Cedar",
+          "summary": "Rich aged cedar leather, warm sand surfaces, and luminous amber.",
+          "themeColor": "#F4EFE6",
+          "darkThemeColor": "#1A1513",
+          "swatch": [
+            "#F4EFE6",
+            "#614B3F",
+            "#C88A24"
+          ]
         },
         {
-          "id": "quiet-jewel",
-          "name": "Quiet Jewel",
-          "summary": "Cool ivory surfaces with restrained plum, teal, and gold accents.",
-          "themeColor": "#262735"
+          "id": "cambridge-stone",
+          "name": "Cambridge Stone",
+          "summary": "Limestone archival paper, muted moss accents, and understated bronze.",
+          "themeColor": "#ECEFEA",
+          "darkThemeColor": "#141A17",
+          "swatch": [
+            "#ECEFEA",
+            "#4B5E55",
+            "#B89738"
+          ]
         }
       ]
     }

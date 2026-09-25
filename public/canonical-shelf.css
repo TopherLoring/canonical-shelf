@@ -98,48 +98,353 @@ Locked selection:
   --canon-general:#455a75;
   --canon-apocalypse:#26292f;
 
-  --home-bg:#252a30;
-  --home-bg-2:#30363d;
-  --home-bg-3:#343b43;
-  --home-text:#f4f3ee;
-  --home-muted:#c8ccd0;
-  --home-rule:#505860;
-  --home-shelf:#20252a;
-  --home-shelf-edge:#555d68;
+  --home-bg:#E6E7E2;
+  --home-bg-2:#DCDDD6;
+  --home-bg-3:#FAFAF8;
+  --home-text:#1B1D22;
+  --home-muted:#454A53;
+  --home-rule:rgba(27,29,34,.22);
+  --home-shelf:#DCDDD6;
+  --home-shelf-edge:#b8b5ad;
+
   --home-shelf-height:111px;
   --home-shelf-depth:10px;
 }
 
-html[data-theme='scholarly-graphite'],html:not([data-theme]){
-  --color-text-primary:#22252a;
-  --color-text-secondary:#62686d;
-  --color-surface-primary:#f2f3f2;
-  --color-surface-raised:#fffefb;
-  --color-surface-subtle:#e8e9e8;
-  --color-border-default:#c7cbce;
-  --color-accent-primary:#596d79;
-  --color-accent-secondary:#687269;
+/* ==========================================================================
+   CANONICAL THEME VARIATIONS (Light default, Dark via [data-mode="dark"])
+   ========================================================================== */
+
+/* 1. CANONICAL PAPER (Default — Authentic archival parchment, carbon ink, antique gold) */
+html[data-theme='canonical-paper'],html:not([data-theme]),
+html[data-theme='heritage'],html[data-theme='slate-linen'],html[data-theme='canonical-original']{
+  --color-text-primary:#1b1d22;
+  --color-text-secondary:#454a53;
+  --color-surface-primary:#e6e7e2;
+  --color-surface-raised:#fafaf8;
+  --color-surface-subtle:#dcddd6;
+  --color-border-default:rgba(27,29,34,.20);
+  --color-accent-primary:#454a53;
+  --color-accent-secondary:#5a5f69;
+  --color-gilt:#c9a227;
+  --chrome:#25282e;
+  --chrome-2:#3b4048;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#ffffff;
+  --reader-ink:#1b1d22;
+  --reader-edge:#d5d3cc;
+  --home-bg:#e6e7e2;
+  --home-bg-2:#dcddd6;
+  --home-bg-3:#fafaf8;
+  --home-text:#1b1d22;
+  --home-muted:#454a53;
+  --home-rule:rgba(27,29,34,.20);
+  --home-shelf:#dcddd6;
+  --home-shelf-edge:#b8b5ad;
+  --home-em:#454a53;
+  --home-card-h2:#1b1d22;
+  --home-card-p:#454a53;
+  --home-card-eyebrow:#5a5f69;
+  --home-card-link:#1b1d22;
+  --home-card-meta:#5a5f69;
+}
+html[data-theme='canonical-paper'][data-mode='dark'],html:not([data-theme])[data-mode='dark'],
+html[data-theme='heritage'][data-mode='dark'],html[data-theme='slate-linen'][data-mode='dark'],html[data-theme='canonical-original'][data-mode='dark']{
+  --color-text-primary:#f4f3ee;
+  --color-text-secondary:#b8bdc3;
+  --color-surface-primary:#181b1e;
+  --color-surface-raised:#22262b;
+  --color-surface-subtle:#1e2125;
+  --color-border-default:#383e46;
+  --color-accent-primary:#8a929b;
+  --color-accent-secondary:#727a84;
+  --color-gilt:#e5c158;
+  --chrome:#141618;
+  --chrome-2:#1f2328;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#22262b;
+  --reader-ink:#f4f3ee;
+  --reader-edge:#383e46;
+  --home-bg:#181b1e;
+  --home-bg-2:#22262b;
+  --home-bg-3:#2c3138;
+  --home-text:#f4f3ee;
+  --home-muted:#b8bdc3;
+  --home-rule:#383e46;
+  --home-shelf:#1c1f22;
+  --home-shelf-edge:#4a525d;
+  --home-em:#e5c158;
+  --home-card-h2:#f4f3ee;
+  --home-card-p:#b8bdc3;
+  --home-card-eyebrow:#9ba2ab;
+  --home-card-link:#f4f3ee;
+  --home-card-meta:#9ba2ab;
+}
+
+/* 2. SCHOLARLY GRAPHITE (Cool paper, graphite chrome, bright gilt signals) */
+html[data-theme='scholarly-graphite'],html[data-theme='cool-archive']{
+  --color-text-primary:#202428;
+  --color-text-secondary:#555b62;
+  --color-surface-primary:#f0f2f4;
+  --color-surface-raised:#ffffff;
+  --color-surface-subtle:#e4e7ea;
+  --color-border-default:#c5c9ce;
+  --color-accent-primary:#505862;
+  --color-accent-secondary:#606872;
   --color-gilt:#ffc800;
   --chrome:#24272d;
   --chrome-2:#3e4551;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#ffffff;
+  --reader-ink:#202428;
+  --reader-edge:#d0d4d8;
+  --home-bg:#f0f2f4;
+  --home-bg-2:#e4e7ea;
+  --home-bg-3:#ffffff;
+  --home-text:#202428;
+  --home-muted:#555b62;
+  --home-rule:#c5c9ce;
+  --home-shelf:#e4e7ea;
+  --home-shelf-edge:#b2b7be;
+  --home-em:#505862;
+  --home-card-h2:#202428;
+  --home-card-p:#555b62;
+  --home-card-eyebrow:#555b62;
+  --home-card-link:#202428;
+  --home-card-meta:#555b62;
 }
-html[data-theme='cool-archive']{
-  --color-text-primary:#1f2933;--color-text-secondary:#637381;
-  --color-surface-primary:#eef2f4;--color-surface-raised:#fff;--color-surface-subtle:#e4e9ed;
-  --color-border-default:#c5cfd6;--color-accent-primary:#436782;--color-accent-secondary:#5f7f83;
-  --color-gilt:#d8b73f;--chrome:#1a2631;--chrome-2:#253542;
+html[data-theme='scholarly-graphite'][data-mode='dark'],html[data-theme='cool-archive'][data-mode='dark']{
+  --color-text-primary:#f5f6f8;
+  --color-text-secondary:#a2a8af;
+  --color-surface-primary:#15171a;
+  --color-surface-raised:#1f2226;
+  --color-surface-subtle:#1b1d20;
+  --color-border-default:#34383f;
+  --color-accent-primary:#848b94;
+  --color-accent-secondary:#6c737c;
+  --color-gilt:#ffd026;
+  --chrome:#111215;
+  --chrome-2:#1a1d21;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#1f2226;
+  --reader-ink:#f5f6f8;
+  --reader-edge:#34383f;
+  --home-bg:#15171a;
+  --home-bg-2:#1f2226;
+  --home-bg-3:#262a30;
+  --home-text:#f5f6f8;
+  --home-muted:#a2a8af;
+  --home-rule:#34383f;
+  --home-shelf:#1a1c1f;
+  --home-shelf-edge:#424750;
+  --home-em:#ffd026;
+  --home-card-h2:#f5f6f8;
+  --home-card-p:#a2a8af;
+  --home-card-eyebrow:#a2a8af;
+  --home-card-link:#f5f6f8;
+  --home-card-meta:#a2a8af;
 }
-html[data-theme='blue-stone']{
-  --color-text-primary:#252936;--color-text-secondary:#686f80;
-  --color-surface-primary:#eff1f5;--color-surface-raised:#fdfdfe;--color-surface-subtle:#e4e7ed;
-  --color-border-default:#c7ccd6;--color-accent-primary:#536b97;--color-accent-secondary:#667c78;
-  --color-gilt:#d3b944;--chrome:#202633;--chrome-2:#2a3445;
+
+/* 3. OXFORD SCRIPTORIUM (Collegiate navy, warm linen, heraldic bronze) */
+html[data-theme='oxford-scriptorium'],html[data-theme='blue-stone'],html[data-theme='bookshelf-spectrum']{
+  --color-text-primary:#182230;
+  --color-text-secondary:#485465;
+  --color-surface-primary:#f4f2eb;
+  --color-surface-raised:#fcfaf7;
+  --color-surface-subtle:#e8e5dd;
+  --color-border-default:#c8c5bd;
+  --color-accent-primary:#233b58;
+  --color-accent-secondary:#55687e;
+  --color-gilt:#d4a838;
+  --chrome:#1b2a3d;
+  --chrome-2:#273b52;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#fcfaf7;
+  --reader-ink:#182230;
+  --reader-edge:#d2cfc7;
+  --home-bg:#f4f2eb;
+  --home-bg-2:#e8e5dd;
+  --home-bg-3:#fcfaf7;
+  --home-text:#182230;
+  --home-muted:#485465;
+  --home-rule:#c8c5bd;
+  --home-shelf:#e8e5dd;
+  --home-shelf-edge:#b8b4aa;
+  --home-em:#233b58;
+  --home-card-h2:#182230;
+  --home-card-p:#485465;
+  --home-card-eyebrow:#485465;
+  --home-card-link:#182230;
+  --home-card-meta:#485465;
 }
-html[data-theme='quiet-jewel']{
-  --color-text-primary:#242633;--color-text-secondary:#6b6978;
-  --color-surface-primary:#f2f1f5;--color-surface-raised:#fffefe;--color-surface-subtle:#e7e4ec;
-  --color-border-default:#cec9d5;--color-accent-primary:#5d638c;--color-accent-secondary:#4e7a77;
-  --color-gilt:#d5b83b;--chrome:#262735;--chrome-2:#333548;
+html[data-theme='oxford-scriptorium'][data-mode='dark'],html[data-theme='blue-stone'][data-mode='dark'],html[data-theme='bookshelf-spectrum'][data-mode='dark']{
+  --color-text-primary:#f0f3f7;
+  --color-text-secondary:#9ba8b8;
+  --color-surface-primary:#111822;
+  --color-surface-raised:#192330;
+  --color-surface-subtle:#151e2a;
+  --color-border-default:#2d3b4c;
+  --color-accent-primary:#4a6b95;
+  --color-accent-secondary:#6884a4;
+  --color-gilt:#e5b842;
+  --chrome:#0d131b;
+  --chrome-2:#16202d;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#192330;
+  --reader-ink:#f0f3f7;
+  --reader-edge:#2d3b4c;
+  --home-bg:#111822;
+  --home-bg-2:#192330;
+  --home-bg-3:#202d3e;
+  --home-text:#f0f3f7;
+  --home-muted:#9ba8b8;
+  --home-rule:#2d3b4c;
+  --home-shelf:#151e2a;
+  --home-shelf-edge:#3a4a5e;
+  --home-em:#e5b842;
+  --home-card-h2:#f0f3f7;
+  --home-card-p:#9ba8b8;
+  --home-card-eyebrow:#9ba8b8;
+  --home-card-link:#f0f3f7;
+  --home-card-meta:#9ba8b8;
+}
+
+/* 4. MONASTIC CEDAR (Rich aged cedar leather, warm sand, luminous amber) */
+html[data-theme='monastic-cedar'],html[data-theme='quiet-jewel'],html[data-theme='illuminated-jewel'],html[data-theme='oxblood']{
+  --color-text-primary:#251e1a;
+  --color-text-secondary:#5a4d45;
+  --color-surface-primary:#f4efe6;
+  --color-surface-raised:#fdfbf7;
+  --color-surface-subtle:#e8e2d6;
+  --color-border-default:#c9bfb2;
+  --color-accent-primary:#614b3f;
+  --color-accent-secondary:#7a6355;
+  --color-gilt:#c88a24;
+  --chrome:#342621;
+  --chrome-2:#4a3832;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#fdfbf7;
+  --reader-ink:#251e1a;
+  --reader-edge:#d6cebf;
+  --home-bg:#f4efe6;
+  --home-bg-2:#e8e2d6;
+  --home-bg-3:#fdfbf7;
+  --home-text:#251e1a;
+  --home-muted:#5a4d45;
+  --home-rule:#c9bfb2;
+  --home-shelf:#e8e2d6;
+  --home-shelf-edge:#b8ad9e;
+  --home-em:#614b3f;
+  --home-card-h2:#251e1a;
+  --home-card-p:#5a4d45;
+  --home-card-eyebrow:#5a4d45;
+  --home-card-link:#251e1a;
+  --home-card-meta:#5a4d45;
+}
+html[data-theme='monastic-cedar'][data-mode='dark'],html[data-theme='quiet-jewel'][data-mode='dark'],html[data-theme='illuminated-jewel'][data-mode='dark'],html[data-theme='oxblood'][data-mode='dark']{
+  --color-text-primary:#f5efe8;
+  --color-text-secondary:#aea298;
+  --color-surface-primary:#1a1513;
+  --color-surface-raised:#261f1c;
+  --color-surface-subtle:#201a17;
+  --color-border-default:#3e332e;
+  --color-accent-primary:#8c7364;
+  --color-accent-secondary:#766154;
+  --color-gilt:#e09b2d;
+  --chrome:#14100e;
+  --chrome-2:#1f1815;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#261f1c;
+  --reader-ink:#f5efe8;
+  --reader-edge:#3e332e;
+  --home-bg:#1a1513;
+  --home-bg-2:#261f1c;
+  --home-bg-3:#302824;
+  --home-text:#f5efe8;
+  --home-muted:#aea298;
+  --home-rule:#3e332e;
+  --home-shelf:#1f1a17;
+  --home-shelf-edge:#4c3f38;
+  --home-em:#e09b2d;
+  --home-card-h2:#f5efe8;
+  --home-card-p:#aea298;
+  --home-card-eyebrow:#aea298;
+  --home-card-link:#f5efe8;
+  --home-card-meta:#aea298;
+}
+
+/* 5. CAMBRIDGE STONE (Limestone archival paper, muted moss accents, bronze) */
+html[data-theme='cambridge-stone']{
+  --color-text-primary:#1d2421;
+  --color-text-secondary:#4d5651;
+  --color-surface-primary:#ecefea;
+  --color-surface-raised:#f7faf5;
+  --color-surface-subtle:#dfe3dc;
+  --color-border-default:#c2c7be;
+  --color-accent-primary:#4b5e55;
+  --color-accent-secondary:#5e7066;
+  --color-gilt:#b89738;
+  --chrome:#222b27;
+  --chrome-2:#333e38;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#f7faf5;
+  --reader-ink:#1d2421;
+  --reader-edge:#cdd2c8;
+  --home-bg:#ecefea;
+  --home-bg-2:#dfe3dc;
+  --home-bg-3:#f7faf5;
+  --home-text:#1d2421;
+  --home-muted:#4d5651;
+  --home-rule:#c2c7be;
+  --home-shelf:#dfe3dc;
+  --home-shelf-edge:#b0b6ac;
+  --home-em:#4b5e55;
+  --home-card-h2:#1d2421;
+  --home-card-p:#4d5651;
+  --home-card-eyebrow:#4d5651;
+  --home-card-link:#1d2421;
+  --home-card-meta:#4d5651;
+}
+html[data-theme='cambridge-stone'][data-mode='dark']{
+  --color-text-primary:#eef3ee;
+  --color-text-secondary:#9eaaa1;
+  --color-surface-primary:#141a17;
+  --color-surface-raised:#1d2421;
+  --color-surface-subtle:#19201c;
+  --color-border-default:#313b35;
+  --color-accent-primary:#6a8074;
+  --color-accent-secondary:#586b60;
+  --color-gilt:#d1af45;
+  --chrome:#0f1411;
+  --chrome-2:#19201c;
+  --chrome-text:#f7f7f4;
+  --chrome-muted:#c8ccd0;
+  --reader-paper:#1d2421;
+  --reader-ink:#eef3ee;
+  --reader-edge:#313b35;
+  --home-bg:#141a17;
+  --home-bg-2:#1d2421;
+  --home-bg-3:#252e2a;
+  --home-text:#eef3ee;
+  --home-muted:#9eaaa1;
+  --home-rule:#313b35;
+  --home-shelf:#19201c;
+  --home-shelf-edge:#3e4a43;
+  --home-em:#d1af45;
+  --home-card-h2:#eef3ee;
+  --home-card-p:#9eaaa1;
+  --home-card-eyebrow:#9eaaa1;
+  --home-card-link:#eef3ee;
+  --home-card-meta:#9eaaa1;
 }
 
 html,body{background:var(--color-surface-primary);color:var(--color-text-primary)}
@@ -159,7 +464,7 @@ h1,h2,h3,h4{font-family:var(--font-display)}
 .masthead .translation-control{color:#d3d6d8}.masthead .translation-control select{background:var(--chrome-2);color:#fff;border-color:#737a81}
 .primary{background:var(--chrome-2);color:#f7f7f4;border-bottom-color:#505762}.primary a{color:#fff}.primary a[aria-current='page']{border-color:var(--color-gilt)}
 
-/* HOME — locked graphite shelf-first destination. */
+/* HOME — shelf-first destination, supports light (default) and dark mode. */
 body:has(.library-first-home){background:var(--home-bg)}
 body:has(.library-first-home)>.masthead,body:has(.library-first-home)>.primary{display:none}
 body:has(.library-first-home)>.pwa-status:empty{display:none}body:has(.library-first-home)>.pwa-status{color:var(--home-muted);background:var(--home-bg);margin:.55rem clamp(1rem,4vw,4rem) 0}
@@ -169,25 +474,42 @@ body:has(.library-first-home)>main{max-width:none;padding:0;background:var(--hom
 .library-first-homehead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,60px);align-items:start;padding-bottom:12px;border-bottom:1px solid var(--home-rule)}
 .library-first-copy{display:grid;grid-template-columns:minmax(270px,.72fr) minmax(320px,1.15fr);gap:clamp(24px,4vw,54px);align-items:end;min-width:0}
 .library-first-copy h1{margin:0;max-width:8.5ch;font:600 clamp(42px,6.8vw,78px)/.93 var(--font-display);letter-spacing:-.025em;color:var(--home-text)}
-.library-first-copy h1 em{display:block;font-style:italic;font-weight:600;color:#c6cbd0}
-.library-first-copy .home-kicker{display:block;margin:0 0 11px;font:700 10.5px/1.25 var(--font-meta);letter-spacing:.14em;text-transform:uppercase;color:#aeb5ba}
+.library-first-copy h1 em{display:block;font-style:italic;font-weight:600;color:var(--home-em)}
+.library-first-copy .home-kicker{display:block;margin:0 0 11px;font:700 10.5px/1.25 var(--font-meta);letter-spacing:.14em;text-transform:uppercase;color:var(--home-muted)}
 .library-first-copy .lede{margin:0 0 .2rem;max-width:54ch;color:var(--home-muted);font-size:clamp(16px,1.6vw,20px);line-height:1.5}
 .library-first-actions{display:flex;justify-content:flex-end;align-items:flex-start;gap:6px;flex-wrap:wrap;padding-top:2px}
-.library-first-actions a{display:inline-flex;align-items:center;min-height:34px;padding:.5rem .72rem;border:1px solid #59616a;border-radius:var(--control-radius);background:var(--home-bg-2);color:#fff;text-decoration:none;font-size:.74rem;font-weight:750}
-.library-first-actions a:hover{background:#3b424b}.library-first-actions a.is-primary{background:#f5f5f1;color:#24272d;border-color:#f5f5f1}
-.library-first-shelf-wrap{display:grid;gap:7px;padding:9px 11px 8px;border:1px solid #4d555e;border-radius:var(--theme-radius);background:var(--home-bg-2)}
+.library-first-actions a,.library-first-actions button{display:inline-flex;align-items:center;min-height:34px;padding:.5rem .72rem;border:1px solid var(--home-rule);border-radius:var(--control-radius);background:var(--home-bg-2);color:var(--home-text);text-decoration:none;font-size:.74rem;font-weight:750;cursor:pointer;font-family:var(--font-body)}
+.library-first-actions a:hover,.library-first-actions button:hover{background:var(--home-bg-3)}
+.library-first-actions a.is-primary{background:var(--home-text);color:var(--home-bg-3);border-color:var(--home-text)}
+.library-first-shelf-wrap{display:grid;gap:7px;padding:9px 11px 8px;border:1px solid var(--home-rule);border-radius:var(--theme-radius);background:var(--home-bg-2)}
 .library-first-shelf-row{display:grid;grid-template-columns:94px minmax(0,1fr);gap:9px;align-items:end}
-.library-first-shelf-label{display:block;margin:0;padding:0 0 10px;text-align:right;font:700 .58rem var(--font-meta);letter-spacing:.13em;text-transform:uppercase;color:#adb4ba}
-.library-first-shelf{height:var(--home-shelf-height);display:flex;align-items:end;gap:2px;padding:5px 10px 0;background:var(--home-shelf);border:0;border-bottom:var(--home-shelf-depth) solid var(--home-shelf-edge);box-shadow:inset 0 calc(var(--home-shelf-depth)*-1) 16px #0003;overflow:visible}
+.library-first-shelf-label{display:block;margin:0;padding:0 0 10px;text-align:right;font:700 .58rem var(--font-meta);letter-spacing:.13em;text-transform:uppercase;color:var(--home-muted)}
+.library-first-shelf{height:var(--home-shelf-height);display:flex;align-items:end;gap:2px;padding:5px 10px 0;background:var(--home-shelf);border:0;border-bottom:var(--home-shelf-depth) solid var(--home-shelf-edge);box-shadow:inset 0 calc(var(--home-shelf-depth)*-1) 16px rgba(0,0,0,.12);overflow:visible}
 .library-first-book{position:relative;display:block;flex:calc(2 + (var(--chapters, 10) / 10)) 1 0;min-width:4px;max-width:30px;height:clamp(46px,calc(46px + (var(--chapters, 10) * .42px)),101px);background:var(--book,var(--canon-general));border:1px solid #ffffff20;border-radius:2px 2px 0 0;text-decoration:none;transform-origin:bottom;box-shadow:inset -1px 0 #ffffff18}
 .library-first-book[data-cat='law']{--book:var(--canon-law)}.library-first-book[data-cat='othist']{--book:var(--canon-history-ot)}.library-first-book[data-cat='wisdom']{--book:var(--canon-wisdom)}.library-first-book[data-cat='major']{--book:var(--canon-major-prophets)}.library-first-book[data-cat='minor']{--book:var(--canon-minor-prophets)}.library-first-book[data-cat='gospel']{--book:var(--canon-gospel)}.library-first-book[data-cat='nthist']{--book:var(--canon-history-nt)}.library-first-book[data-cat='paul']{--book:var(--canon-paul)}.library-first-book[data-cat='general']{--book:var(--canon-general)}.library-first-book[data-cat='apoc']{--book:var(--canon-apocalypse)}
-.library-first-book span{position:absolute;left:50%;bottom:calc(100% + 7px);translate:-50% 4px;opacity:0;pointer-events:none;background:#11171d;color:#fff;border:1px solid #515a62;padding:4px 6px;white-space:nowrap;font:700 .6rem var(--font-body);z-index:4}
+.library-first-book span{position:absolute;left:50%;bottom:calc(100% + 7px);translate:-50% 4px;opacity:0;pointer-events:none;background:var(--color-surface-raised);color:var(--color-text-primary);border:1px solid var(--color-border-default);padding:4px 6px;white-space:nowrap;font:700 .6rem var(--font-body);z-index:4;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .library-first-book:hover,.library-first-book:focus-visible{transform:translateY(-5px);filter:brightness(1.14);z-index:3}.library-first-book:hover span,.library-first-book:focus-visible span{opacity:1;translate:-50% 0}
 .library-first-bookend-space{flex:0 0 6px;min-width:0}.library-first-bookend{width:14px;height:70%;margin-left:8px;background:linear-gradient(90deg,#9e7e00,var(--color-gilt),#9e7e00);transform:skewY(-3deg);box-shadow:2px 2px 6px #0005}
 .library-first-shelf-note{display:none}
-.library-first-cards{display:grid;grid-template-columns:1.2fr .8fr;gap:8px}.library-first-card{min-height:72px;padding:11px 14px;border:1px solid #505860;border-radius:var(--theme-radius);background:var(--home-bg-3);color:var(--home-text)}.library-first-card h2{margin:.08em 0 .18em;font-size:1.2rem;color:#fff}.library-first-card p{margin:.2em 0;color:var(--home-muted);font-size:.76rem}.library-first-card .eyebrow{color:#aeb5ba}.library-first-card a{color:#fff}.library-first-progress{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:.68rem;color:#bbc1c6}.library-first-progress span{padding-top:6px;border-top:1px solid #59616a;min-width:100px}.library-first-progress strong{color:#fff}
-.library-entry-map{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid #505860;border-radius:var(--theme-radius);overflow:hidden;background:#505860}.library-entry-map a{min-height:74px;padding:11px 14px;border:0;background:#30363d;color:#fff;text-decoration:none}.library-entry-map a:hover{background:#3a4149}.library-entry-map small{display:block;margin:0 0 3px;font:700 .58rem var(--font-meta);letter-spacing:.11em;text-transform:uppercase;color:#aeb5ba}.library-entry-map strong{display:block;margin:0 0 2px;font:600 1rem var(--font-reading);color:#fff}.library-entry-map span{display:block;font-size:.7rem;line-height:1.38;color:#c8ccd0}
-.library-first-recent{padding-top:8px;border-top:1px solid #505860}.library-first-recent .eyebrow{color:#aeb5ba}.library-first-recent__items{display:flex;gap:6px;flex-wrap:wrap}.library-first-recent__items a{padding:6px 8px;border:1px solid #59616a;border-radius:var(--control-radius);background:#30363d;color:#fff;text-decoration:none;font-size:.72rem}
+.library-first-cards{display:grid;grid-template-columns:1.2fr .8fr;gap:8px}
+.library-first-card{min-height:72px;padding:11px 14px;border:1px solid var(--home-rule);border-radius:var(--theme-radius);background:var(--home-bg-3);color:var(--home-text)}
+.library-first-card h2{margin:.08em 0 .18em;font-size:1.2rem;color:var(--home-card-h2, var(--home-text))}
+.library-first-card p{margin:.2em 0;color:var(--home-card-p, var(--home-muted));font-size:.76rem}
+.library-first-card .eyebrow{color:var(--home-card-eyebrow, var(--home-muted))}
+.library-first-card a{color:var(--home-card-link, var(--home-text))}
+.library-first-progress{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:.68rem;color:var(--home-card-meta, var(--home-muted))}
+.library-first-progress span{padding-top:6px;border-top:1px solid var(--home-rule);min-width:100px}
+.library-first-progress strong{color:var(--home-card-h2, var(--home-text))}
+.library-entry-map{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--home-rule);border-radius:var(--theme-radius);overflow:hidden;background:var(--home-rule)}
+.library-entry-map a{min-height:74px;padding:11px 14px;border:0;background:var(--home-bg-2);color:var(--home-text);text-decoration:none}
+.library-entry-map a:hover{background:var(--home-bg-3)}
+.library-entry-map small{display:block;margin:0 0 3px;font:700 .58rem var(--font-meta);letter-spacing:.11em;text-transform:uppercase;color:var(--home-muted)}
+.library-entry-map strong{display:block;margin:0 0 2px;font:600 1rem var(--font-reading);color:var(--home-text)}
+.library-entry-map span{display:block;font-size:.7rem;line-height:1.38;color:var(--home-muted)}
+.library-first-recent{padding-top:8px;border-top:1px solid var(--home-rule)}
+.library-first-recent .eyebrow{color:var(--home-muted)}
+.library-first-recent__items{display:flex;gap:6px;flex-wrap:wrap}
+.library-first-recent__items a{padding:6px 8px;border:1px solid var(--home-rule);border-radius:var(--control-radius);background:var(--home-bg-2);color:var(--home-text);text-decoration:none;font-size:.72rem}
 
 /* COURSE — six physical volumes as the destination dashboard. */
 .course-volume-landing{max-width:1280px;margin:auto;padding:clamp(18px,2.6vw,30px) clamp(18px,4vw,54px) 28px;display:grid;gap:10px}.course-volume-heading{padding:1rem 0 .8rem;border-bottom:1px solid var(--color-border-default)}.course-volume-heading h1{font-size:clamp(32px,4.4vw,64px);margin:.08em 0 .2em}.course-volume-heading .lede{font-size:clamp(16px,1.6vw,20px);max-width:66ch;color:var(--color-text-secondary)}
