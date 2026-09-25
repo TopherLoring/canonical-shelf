@@ -22,12 +22,30 @@ let data={courses:[],units:[],topics:[],lessons:[],masteryIds:[],activities:[],b
 const reviewSession=new Map(),STUDY_RETURN_KEY='canonical-shelf-study-return-v1';
 const FALLBACK={authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'The Theologian may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.'},lgbtq:{claims:['LGBTQ people possess equal dignity and belonging.','Homosexual or bisexual orientation is not inherently sinful.','Faithful same-sex relationships and marriage may embody Christian virtue.','LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.']},interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, and application.','Do not render contested evidence as scholarly consensus.'],queerReception:{ruthNaomi:{allowed:'Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses.',boundary:'The biblical narrator does not explicitly identify Ruth and Naomi as sexual partners; present this as reception history or interpretation, not uncontested textual fact.'}},prohibitedOverstatements:[]};
 
+let corpusPromise=null;
+function ensureCorpus(){
+  if(!corpusPromise){
+    corpusPromise=fetch('/data/corpus.txt').then(r=>r.ok?r.text():'').then(t=>{corpus=t;return t}).catch(()=>{corpus='';return ''});
+  }
+  return corpusPromise;
+}
+
 async function load(){
-  try{data=await fetch('/data/catalog.json').then(r=>r.ok?r.json():Promise.reject()); window.CANON_CATALOG=data; document.dispatchEvent(new CustomEvent('catalog:loaded',{detail:data}));}catch{}
-  try{corpus=await fetch('/data/corpus.txt').then(r=>r.ok?r.text():'')}catch{}
-  try{policy=await fetch('/data/theology-policy.json').then(r=>r.ok?r.json():FALLBACK)}catch{policy=FALLBACK}
-  try{statement=await fetch('/data/statement-of-faith.md').then(r=>r.ok?r.text():'')}catch{}
-  try{theologySources=await fetch('/data/theology-sources.json').then(r=>r.ok?r.json():[])}catch{}
+  const [catRes,polRes,stRes,thRes]=await Promise.allSettled([
+    fetch('/data/catalog.json').then(r=>r.ok?r.json():Promise.reject()),
+    fetch('/data/theology-policy.json').then(r=>r.ok?r.json():FALLBACK),
+    fetch('/data/statement-of-faith.md').then(r=>r.ok?r.text():''),
+    fetch('/data/theology-sources.json').then(r=>r.ok?r.json():[])
+  ]);
+  if(catRes.status==='fulfilled'&&catRes.value){
+    data=catRes.value;
+    window.CANON_CATALOG=data;
+    document.dispatchEvent(new CustomEvent('catalog:loaded',{detail:data}));
+  }
+  policy=(polRes.status==='fulfilled'&&polRes.value)?polRes.value:FALLBACK;
+  statement=(stRes.status==='fulfilled'&&stRes.value)?stRes.value:'';
+  theologySources=(thRes.status==='fulfilled'&&thRes.value)?thRes.value:[];
+  ensureCorpus();
 }
 await load();policy||=FALLBACK;
 
@@ -72,12 +90,16 @@ function courseRouteView(p){
   return courseLandingView({data,state,esc});
 }
 
-function render(){
+async function render(){
   const main=getMain();
   if(!main)return;
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
   document.body.classList.toggle('study-focus-active',focus);if(focus)theologian.hidden=true;setCurrent(r);
   
+  if((r==='bible'||r==='search'||(r==='course'&&(p.has('lesson')||p.has('mastery')||p.has('glossary'))))&&!corpus){
+    await ensureCorpus();
+  }
+
   let view;
   if(r==='search')view=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
   else if(r==='course')view=courseRouteView(p);

@@ -145,7 +145,7 @@ function panelMarkup(){
       </div>
     </div>
     <p class="appearance-panel__intro">Choose a visual package. Typography, geometry, page architecture, Bible category colors, learner state, and interaction behavior stay consistent.</p>
-    <div class="theme-grid" role="list">${THEMES.map(theme=>`<button class="theme-card" type="button" role="listitem" data-theme-option="${theme.id}" aria-pressed="false"><span class="theme-card__swatch" aria-hidden="true"><i style="background:${theme.swatch[0]}"></i><i style="background:${theme.swatch[1]}"></i><i style="background:${theme.swatch[2]}"></i></span><strong>${theme.name}</strong><span>${theme.summary}</span></button>`).join('')}</div>
+    <div class="theme-grid" role="list">${THEMES.map(theme=>`<button class="theme-card" type="button" role="listitem" data-theme-option="${theme.id}" aria-pressed="false"><span class="theme-card__swatch" data-swatch="${theme.id}" aria-hidden="true"><i></i><i></i><i></i></span><strong>${theme.name}</strong><span>${theme.summary}</span></button>`).join('')}</div>
   </aside>`;
 }
 
