@@ -10,6 +10,16 @@ export function stripJs(src, { strings = false } = {}) {
     const c = src[i], d = src[i + 1];
     if (c === '/' && d === '/') { while (i < n && src[i] !== '\n') { out += ' '; i++; } continue; }
     if (c === '/' && d === '*') { out += '  '; i += 2; while (i < n && !(src[i] === '*' && src[i + 1] === '/')) { out += src[i] === '\n' ? '\n' : ' '; i++; } out += '  '; i += 2; continue; }
+    if (c === '/' && regexAllowed(out)) {
+      // Regex literal: copy (or blank) through the closing slash, honoring escapes and [classes].
+      let j = i + 1, inClass = false;
+      while (j < n && src[j] !== '\n') {
+        if (src[j] === '\\') { j += 2; continue; }
+        if (src[j] === '[') inClass = true; else if (src[j] === ']') inClass = false; else if (src[j] === '/' && !inClass) break;
+        j++;
+      }
+      if (j < n && src[j] === '/') { const body = src.slice(i, j + 1); out += strings ? '/' + ' '.repeat(body.length - 2) + '/' : body; i = j + 1; continue; }
+    }
     if (c === '"' || c === "'" || c === '`') {
       const q = c; out += q; i++;
       while (i < n && src[i] !== q) {
@@ -21,6 +31,14 @@ export function stripJs(src, { strings = false } = {}) {
     out += c; i++;
   }
   return out;
+}
+// A slash starts a regex (not division) after an operator, opening bracket, comma, or keyword.
+function regexAllowed(before) {
+  const t = before.replace(/\s+$/, '');
+  if (!t) return true;
+  const ch = t.at(-1);
+  if ('(,=:[!&|?{};+-*%<>~^'.includes(ch)) return true;
+  return /\b(return|typeof|case|do|else|in|of|void|yield|await|delete|throw|new)$/.test(t);
 }
 export const stripCss = src => src.replace(/\/\*[\s\S]*?\*\//g, m => m.replace(/[^\n]/g, ' '));
 

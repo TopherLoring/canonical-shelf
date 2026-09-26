@@ -295,6 +295,12 @@
       "text": "@media(forced-colors:active){.course-journey-card,.journey-unit-card,.activity-step__mark{border-color:CanvasText}.state-due,.activity-step[data-review-due=\"tru",
       "count": 1
     },
+    "8a50a757bf7d8656": {
+      "rule": "js-head-inject",
+      "file": "public/learning-visuals.js",
+      "text": "document.head.append(link);",
+      "count": 1
+    },
     "8b884b0fa2490f13": {
       "rule": "css-z-index-literal",
       "file": "public/bible.css",
