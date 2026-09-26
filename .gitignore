@@ -25,6 +25,7 @@ data/
 public/data/bible/
 public/data/crossref/
 public/data/canon-structure.json
+public/data/bsb.json
 public/data/concordance.json
 public/data/verse-annotations.json
 

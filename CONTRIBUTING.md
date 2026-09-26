@@ -63,4 +63,5 @@ None declared in an env example file.
 | `roa` | `node .roa-kit/roa.mjs` |
 | `roa:verify` | `node .roa-kit/roa.mjs verify` |
 | `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
+| `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
 <!-- roa:end roa-contributing -->

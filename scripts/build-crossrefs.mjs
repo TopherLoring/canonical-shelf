@@ -10,8 +10,7 @@ const OUT_DIR = resolve(process.cwd(), 'public/data/crossref');
 const MIN_VOTES = 3;      // drops low-confidence community links
 const MAX_PER_VERSE = 15; // keeps each verse's list readable
 
-const BOOKS = ['Gen','Exod','Lev','Num','Deut','Josh','Judg','Ruth','1Sam','2Sam','1Kgs','2Kgs','1Chr','2Chr','Ezra','Neh','Esth','Job','Ps','Prov','Eccl','Song','Isa','Jer','Lam','Ezek','Dan','Hos','Joel','Amos','Obad','Jonah','Mic','Nah','Hab','Zeph','Hag','Zech','Mal','Matt','Mark','Luke','John','Acts','Rom','1Cor','2Cor','Gal','Eph','Phil','Col','1Thess','2Thess','1Tim','2Tim','Titus','Phlm','Heb','Jas','1Pet','2Pet','1John','2John','3John','Jude','Rev'];
-const BOOK_NUMBER = new Map(BOOKS.map((b, i) => [b, i + 1]));
+import { BOOK_BY_OSIS as BOOK_NUMBER } from './lib/bible-books.mjs';
 
 function parseVerse(token) {
   const [book, chapter, verse] = token.split('.');

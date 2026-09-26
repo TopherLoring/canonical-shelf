@@ -14,6 +14,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - [default, by agent] BSB source files are not committed. scripts/fetch-bsb-sources.mjs (bun run data:fetch) downloads bsb_tables.tsv, bsb_concordance.xlsx, and bsb_topical_index.xlsx from bereanbible.com into data/source and verifies pinned SHA-256 hashes (matching Chris's local copies). public/data/corpus.txt stays the reading-text authority; bible.db from the TSV is used for verse-address validation and structure, because its reconstructed verse text differs from the published reading text in 20,888 verses (bracketed implied words, ellipsis artifacts)
 - Resolved "BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?": Fetched from bereanbible.com with pinned hashes; nothing committed
 
+### Added
+
+- Machine-readable Bible: public/data/bsb.json (66 books, 1,189 chapters, 31,086 verses, 3,104 section headings) built by bun run data:build:bsb from corpus.txt, bible.db headings, and library-data book metadata
+
 ## 2026-09-25
 
 ### Milestones

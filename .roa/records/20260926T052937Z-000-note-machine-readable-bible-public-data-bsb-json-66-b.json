@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "added",
+  "date": "2026-09-26",
+  "text": "Machine-readable Bible: public/data/bsb.json (66 books, 1,189 chapters, 31,086 verses, 3,104 section headings) built by bun run data:build:bsb from corpus.txt, bible.db headings, and library-data book metadata"
+}
