@@ -56,5 +56,61 @@
     "docs/v7/DECISION_PRECEDENCE.md",
     "docs/v7/SPA_ARCHITECTURE_2026-09-24.md",
     "docs/VERIFICATION_CONTRACT.md"
+  ],
+  "guard": {
+    "governed": [
+      "public/",
+      "scripts/",
+      "worker/"
+    ],
+    "allow": [],
+    "exclude": [
+      "public/data/",
+      "public/generated/"
+    ],
+    "browserTests": {
+      "pages": [
+        "/"
+      ],
+      "dir": "tests/contracts/roa"
+    }
+  },
+  "forbid": [
+    {
+      "file": "public/library-system.js",
+      "message": "retired stacked runtime"
+    },
+    {
+      "file": "public/library-system-refinements.css",
+      "message": "retired override sheet"
+    },
+    {
+      "file": "public/locked-home.js",
+      "message": "retired post-render repair layer"
+    },
+    {
+      "file": "public/locked-library-baseline.css",
+      "message": "retired override sheet"
+    },
+    {
+      "file": "public/home.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/course.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/bible.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/topics.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/practice.html",
+      "message": "single-page app: no top-level route documents"
+    }
   ]
 }

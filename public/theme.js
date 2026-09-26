@@ -1,7 +1,7 @@
 const STORAGE_THEME_KEY='canonical-shelf-theme-v2';
 const STORAGE_MODE_KEY='canonical-shelf-mode-v1';
 const LEGACY_KEY='canonical-shelf-theme-v1';
-export const DEFAULT_THEME_ID='canonical-paper';
+export const DEFAULT_THEME_ID='scholarly-graphite';
 export const DEFAULT_MODE='light';
 
 export const THEMES=[

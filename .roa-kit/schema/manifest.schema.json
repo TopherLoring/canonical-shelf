@@ -264,6 +264,83 @@
         }
       },
       "additionalProperties": false
+    },
+    "guard": {
+      "type": "object",
+      "description": "Opt-in workaround guards. governed: folders where new files must be allowed; allow: extra allowed paths; exclude: paths not scanned; browserTests: generate Playwright conformance tests",
+      "properties": {
+        "governed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^/].*$"
+          }
+        },
+        "allow": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^/].*$"
+          }
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^/].*$"
+          }
+        },
+        "browserTests": {
+          "type": "object",
+          "properties": {
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^/"
+              },
+              "minItems": 1
+            },
+            "dir": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "pages"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "forbid": {
+      "type": "array",
+      "description": "Patterns or files that must never appear",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[^/].*$"
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": false

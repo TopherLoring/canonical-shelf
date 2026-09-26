@@ -11,6 +11,13 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, copyFi
 import { execFileSync } from 'node:child_process';
 import { resolve, join, dirname, relative, basename, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadProjectContracts, evaluate, requiredPaths, validateDefinition } from './lib/contracts.mjs';
+import { impact as impactOf } from './lib/refs.mjs';
+import { render as renderTemplate } from './lib/render.mjs';
+import { VIEWS } from './lib/views.mjs';
+import { scanFile, tally, compare, normColor } from './lib/guards.mjs';
+import { importDesignTokens } from './lib/import-css.mjs';
+import { set as setPath, remove as removePath, get as getPath, schemaAt } from './lib/paths.mjs';
 
 const KIT_DIR = dirname(fileURLToPath(import.meta.url));
 const KIT_VERSION = readFileSync(join(KIT_DIR, 'VERSION'), 'utf8').trim();
@@ -67,6 +74,12 @@ function validateManifest(m) {
   if (!m.owner || typeof m.owner.name !== 'string' || !m.owner.name.trim()) errs.push('manifest.owner.name is required');
   for (const k of ['invariants', 'agentRules', 'agentDocs']) if (m[k] !== undefined && (!Array.isArray(m[k]) || m[k].some(x => typeof x !== 'string'))) errs.push(`manifest.${k} must be an array of strings`);
   for (const k of ['map', 'links', 'conventions']) if (m[k] !== undefined && (typeof m[k] !== 'object' || Array.isArray(m[k]) || Object.values(m[k]).some(x => typeof x !== 'string'))) errs.push(`manifest.${k} must be an object of strings`);
+  if (m.guard !== undefined) {
+    const g = m.guard, strs = v => v === undefined || (Array.isArray(v) && v.every(x => typeof x === 'string' && x && !x.startsWith('/') && !x.includes('..')));
+    if (typeof g !== 'object' || Array.isArray(g) || !strs(g.governed) || !strs(g.allow) || !strs(g.exclude) || Object.keys(g).some(k => !['governed', 'allow', 'exclude', 'browserTests'].includes(k))) errs.push('manifest.guard must be {governed, allow, exclude: relative path lists, browserTests?}');
+    if (g.browserTests !== undefined && (typeof g.browserTests !== 'object' || !Array.isArray(g.browserTests.pages) || !g.browserTests.pages.length || !g.browserTests.pages.every(p => typeof p === 'string' && p.startsWith('/')) || (g.browserTests.dir !== undefined && !strs([g.browserTests.dir])))) errs.push('manifest.guard.browserTests must be {pages: ["/path", ...], dir?: "tests/roa"}');
+  }
+  if (m.forbid !== undefined && (!Array.isArray(m.forbid) || m.forbid.some(f => !f || typeof f !== 'object' || (typeof f.pattern !== 'string' && typeof f.file !== 'string') || (f.pattern && (() => { try { new RegExp(f.pattern); return false; } catch { return true; } })()) || typeof f.message !== 'string'))) errs.push('manifest.forbid must be a list of {pattern (regex) | file, message, paths?}');
   if (m.security !== undefined && (typeof m.security !== 'object' || typeof m.security.contact !== 'string' || !m.security.contact.trim())) errs.push('manifest.security.contact is required when manifest.security is present');
   if (m.outputs !== undefined) {
     const allowed = ['changelog', 'status', 'decisions', 'agents', 'readme', 'contributing', 'security'];
@@ -144,8 +157,8 @@ function trackedFiles() {
   return out.split('\0').filter(Boolean);
 }
 
-function derive(manifest) {
-  const files = trackedFiles();
+function derive(manifest, isGenerated = () => false) {
+  const files = trackedFiles().filter(f => !isGenerated(f));
   const has = f => files.includes(f);
   const d = { runtime: [], packageManager: null, version: null, license: null, commands: {}, languages: [], workflows: [], env: [], topLevel: [] };
   if (has('package.json')) {
@@ -181,7 +194,16 @@ function derive(manifest) {
 function assemble() {
   const manifest = loadManifest();
   const recs = loadRecords();
-  const derived = derive(manifest);
+  const cl = loadProjectContracts(ROOT, KIT_DIR);
+  const genPaths = new Set(['.roa/state.json', '.roa/guard-baseline.json', 'CHANGELOG.md', 'docs/STATUS.md', 'docs/DECISIONS.md', 'SECURITY.md']);
+  for (const v of Object.values(manifest.outputs || {})) if (v && typeof v === 'object' && v.path) genPaths.add(v.path);
+  for (const [n, c] of Object.entries(cl.contracts)) { genPaths.add(`docs/contracts/${n}.md`); for (const o of Object.values(c.def.outputs || {})) genPaths.add(o.path); }
+  const btDir = manifest.guard?.browserTests ? `${manifest.guard.browserTests.dir || 'tests/roa'}/` : null;
+  const derived = derive(manifest, f => genPaths.has(f) || (btDir && f.startsWith(btDir)) || f.startsWith('docs/contracts/'));
+  if (cl.errors.length) fail(`Contract problems:\n  - ${cl.errors.join('\n  - ')}`);
+  const ev = evaluate(cl.contracts);
+  if (ev.errors.length) fail(`Contract values invalid:\n  - ${ev.errors.join('\n  - ')}`);
+  const contracts = { list: cl.contracts, resolved: ev.resolved || {}, dependents: ev.dependents, notices: cl.notices };
   const decisions = recs.filter(r => r.type === 'decision').map(r => r.kind ? r : { ...r, kind: 'decision', topic: `legacy.${r.id}`, legacy: true });
   const supersededBy = new Map();
   for (const r of decisions) for (const s of r.supersedes || []) supersededBy.set(s, r.id);
@@ -246,9 +268,10 @@ function assemble() {
     superseded: decisions.filter(r => supersededBy.has(r.id)).map(r => r.id),
     open: questions.filter(q => !resolutions.has(q.id)).map(q => ({ id: q.id, kind: q.kind || 'question', text: q.text, owner: q.owner || null, since: q.date, ...(q.kind === 'conflict' ? { request: q.request, source: q.source, sourceText: q.sourceText } : {}) })),
     checks: checks.map(c => ({ id: c.check, text: c.text || c.check, status: c.status })),
-    recent: notes.slice(-10).reverse().map(n => ({ date: n.date, kind: n.kind, text: n.text }))
+    recent: notes.slice(-10).reverse().map(n => ({ date: n.date, kind: n.kind, text: n.text })),
+    contracts: Object.fromEntries(Object.entries(cl.contracts).map(([n, c]) => [n, { version: c.def.version, description: c.def.description, values: `.roa/values/${n}.json`, outputs: Object.values(c.def.outputs || {}).map(o => o.path) }]))
   };
-  return { manifest, recs, derived, state, decisions, decisionState, feedback, approvals, topics, supersededBy, resolutions, questions, phases, checks, notes, outputs };
+  return { contracts, manifest, recs, derived, state, decisions, decisionState, feedback, approvals, topics, supersededBy, resolutions, questions, phases, checks, notes, outputs };
 }
 
 // ---------- renderers ----------
@@ -424,12 +447,163 @@ function render() {
   const P = a.outputs.paths;
   const outs = [['changelog', renderChangelog], ['status', renderStatus], ['decisions', renderDecisions], ['security', renderSecurity]].filter(([k]) => a.outputs[k]);
   for (const [k, fn] of outs) { if (out.has(P[k])) fail(`output path collision: ${P[k]}`); out.set(P[k], fn(a)); }
+  for (const [file, content] of renderContracts(a)) { if (out.has(file)) fail(`output path collision: ${file}`); out.set(file, content); }
+  if (a.manifest.guard) {
+    const g = runGuards(a, out);
+    a.guardResult = g;
+    if (g.baselineContent !== null) out.set('.roa/guard-baseline.json', g.baselineContent);
+    for (const [file, content] of browserTests(a)) { if (out.has(file)) fail(`output path collision: ${file}`); out.set(file, content); }
+  }
   for (const [key, [file, name, fn, header]] of Object.entries(BLOCKS)) {
     if (!a.outputs[key]) continue;
     const p = join(ROOT, file);
     out.set(file, applyBlock(existsSync(p) ? readFileSync(p, 'utf8') : null, name, fn(a), header(a)));
   }
   return { a, out };
+}
+
+// ---------- contract outputs ----------
+const packCache = new Map();
+function loadPack(target) {
+  if (!packCache.has(target)) {
+    const p = join(KIT_DIR, 'packs', `${target}.json`);
+    if (!existsSync(p)) fail(`No language pack "${target}" in ${relative(ROOT, join(KIT_DIR, 'packs')) || 'packs'}`);
+    packCache.set(target, JSON.parse(readFileSync(p, 'utf8')));
+  }
+  return packCache.get(target);
+}
+
+function renderOne(name, def, resolved, outputId, output) {
+  const view = VIEWS[output.view];
+  if (!view) fail(`${name}: unknown view "${output.view}" for output "${outputId}"`);
+  const pack = loadPack(output.target);
+  const template = pack.templates[output.template || output.view];
+  if (template === undefined) fail(`${name}: pack "${output.target}" has no template "${output.template || output.view}"`);
+  const once = () => {
+    const data = view({ def, resolved: structuredClone(resolved), outputId, output });
+    try { return renderTemplate(pack.header || '', { contract: name }) + renderTemplate(template, data); }
+    catch (e) { fail(`${name}.${outputId}: ${e.message}`); }
+  };
+  const first = once(), second = once();
+  if (first !== second) fail(`${name}.${outputId}: output is not deterministic (two renders differ)`);
+  return first;
+}
+
+function renderContracts(a) {
+  const files = [];
+  for (const [name, { def }] of Object.entries(a.contracts.list)) {
+    const resolved = a.contracts.resolved[name];
+    for (const [id, output] of Object.entries(def.outputs || {})) files.push([output.path, renderOne(name, def, resolved, id, output)]);
+    files.push([`docs/contracts/${name}.md`, renderOne(name, def, resolved, 'reference', { target: 'markdown', view: 'reference-table', path: `docs/contracts/${name}.md` })]);
+  }
+  return files;
+}
+
+// ---------- guards ----------
+function guardContext(a, out) {
+  const ownedProps = new Set(), tokenColors = new Set();
+  for (const [file, content] of out) if (file.endsWith('.css')) for (const m of content.matchAll(/(--[a-zA-Z0-9-]+)\s*:\s*([^;]+);/g)) { ownedProps.add(m[1]); for (const c of m[2].match(/#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b/g) || []) tokenColors.add(normColor(c)); }
+  return { ownedProps, tokenColors, forbid: (a.manifest.forbid || []).filter(f => f.pattern) };
+}
+
+function runGuards(a, out) {
+  const g = a.manifest.guard;
+  const skip = new Set([...out.keys()]);
+  const excluded = f => f.startsWith('.roa-kit/') || f.startsWith('node_modules/') || f.startsWith('.roa/') || (g.exclude || []).some(p => f.startsWith(p));
+  const ctx = guardContext(a, out);
+  const scannable = /\.(css|m?js|ts|jsx|tsx|html)$/;
+  const violations = [];
+  for (const f of trackedFiles()) {
+    if (skip.has(f) || excluded(f) || !scannable.test(f) || !existsSync(join(ROOT, f))) continue;
+    violations.push(...scanFile(f, readFileSync(join(ROOT, f), 'utf8'), ctx));
+  }
+  const bPath = join(ROA, 'guard-baseline.json');
+  const baseline = existsSync(bPath) ? JSON.parse(readFileSync(bPath, 'utf8')).violations || {} : null;
+  const current = tally(violations);
+  const { fresh, shrunk } = compare(current, baseline || {});
+  const baselineContent = baseline === null ? null : JSON.stringify({ _: 'GENERATED by project-roa-kit: guard violations accepted when guards were adopted. This file may only shrink.', violations: Object.fromEntries(Object.entries(shrunk).sort(([x], [y]) => x.localeCompare(y))) }, null, 2) + '\n';
+  const missingFiles = (a.manifest.forbid || []).filter(f => f.file && existsSync(join(ROOT, f.file))).map(f => `${f.file} must not exist: ${f.message}`);
+  return { violations, current, fresh: baseline === null ? [...current.values()].map(e => ({ ...e, over: e.count })) : fresh, baselineContent, hasBaseline: baseline !== null, forbiddenFiles: missingFiles };
+}
+
+function browserTests(a) {
+  const bt = a.manifest.guard.browserTests;
+  if (!bt) return [];
+  const dir = bt.dir || 'tests/roa';
+  const files = [];
+  const header = `// GENERATED by project-roa-kit from .roa/values — do not edit. Regenerate: ${CMD} sync\nimport { test, expect } from '@playwright/test';\n`;
+  const tokens = a.contracts.resolved['design-tokens'];
+  if (tokens) {
+    const cases = [];
+    for (const [id, theme] of Object.entries(tokens.themes)) for (const mode of ['light', 'dark']) {
+      const expected = {};
+      for (const group of Object.values(tokens.base || {})) for (const [k, v] of Object.entries(group)) expected[`--${k}`] = String(v);
+      for (const [k, v] of Object.entries(theme.modes[mode])) expected[`--${k}`] = String(v);
+      cases.push({ theme: id, mode, expected });
+    }
+    files.push([`${dir}/design-tokens.spec.mjs`, `${header}
+const PAGE = ${JSON.stringify(bt.pages[0])};
+const CASES = ${JSON.stringify(cases)};
+const norm = v => v.trim().replace(/\\s+/g, ' ');
+// Custom properties that reference others compute to the substituted text, so resolve var() the same way.
+const resolveVars = (v, map, depth = 0) => depth > 20 ? v : v.replace(/var\\(\\s*(--[a-zA-Z0-9-]+)\\s*(?:,\\s*([^()]*))?\\)/g, (_, n, fb) => resolveVars(map[n] !== undefined ? map[n] : (fb ?? ''), map, depth + 1));
+for (const c of CASES) {
+  test(\`design tokens: \${c.theme} / \${c.mode}\`, async ({ page }) => {
+    await page.goto(PAGE);
+    const actual = await page.evaluate(({ theme, mode, names }) => {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', theme);
+      html.setAttribute('data-mode', mode);
+      const cs = getComputedStyle(html);
+      return Object.fromEntries(names.map(n => [n, cs.getPropertyValue(n)]));
+    }, { theme: c.theme, mode: c.mode, names: Object.keys(c.expected) });
+    const mismatches = Object.entries(c.expected).filter(([n, v]) => norm(actual[n]) !== norm(resolveVars(v, c.expected))).map(([n, v]) => \`\${n}: expected \${v}, rendered \${actual[n] || '(unset)'}\`);
+    expect(mismatches, 'computed values must match the design-tokens contract').toEqual([]);
+  });
+}
+`]);
+  }
+  const layout = a.contracts.resolved.layout;
+  if (layout) {
+    const widths = Object.entries(layout.breakpoints).map(([bp, min]) => ({ bp, width: Math.max(Number.parseFloat(min) * (String(min).endsWith('rem') ? 16 : 1) || 0, Number.parseFloat(layout.minViewport)) }));
+    const layers = Object.fromEntries(layout.layers.map((l, i) => [`--layer-${l}`, String((i + 1) * 10)]));
+    files.push([`${dir}/layout.spec.mjs`, `${header}
+const PAGES = ${JSON.stringify(bt.pages)};
+const WIDTHS = ${JSON.stringify(widths)};
+const LAYERS = ${JSON.stringify(layers)};
+for (const { bp, width } of WIDTHS) for (const path of PAGES) {
+  test(\`layout: \${path} at \${bp} (\${width}px)\`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(path);
+    const r = await page.evaluate(names => ({ overflow: document.documentElement.scrollWidth - window.innerWidth, layers: Object.fromEntries(names.map(n => [n, getComputedStyle(document.documentElement).getPropertyValue(n).trim()])) }), Object.keys(LAYERS));
+    expect(r.overflow, 'no horizontal overflow').toBeLessThanOrEqual(0);
+    expect(r.layers, 'layer order must match the layout contract').toEqual(LAYERS);
+  });
+}
+`]);
+  }
+  return files;
+}
+
+function guardCmd(flags) {
+  const a = assemble();
+  const out = new Map();
+  for (const [file, content] of renderContracts(a)) out.set(file, content);
+  if (!a.manifest.guard) fail('Guards are off: add "guard": {"governed": [...]} to .roa/manifest.json (owner instruction required)');
+  const g = runGuards(a, out);
+  if (flags.baseline) {
+    if (g.hasBaseline) fail('A guard baseline already exists; it can only shrink (run sync after fixing violations).');
+    const content = JSON.stringify({ _: 'GENERATED by project-roa-kit: guard violations accepted when guards were adopted. This file may only shrink.', violations: Object.fromEntries([...g.current.entries()].sort(([x], [y]) => x.localeCompare(y))) }, null, 2) + '\n';
+    writeFileSync(join(ROA, 'guard-baseline.json'), content);
+    console.log(`roa: guard baseline created with ${g.violations.length} existing violations; new ones will fail verify`);
+    return 0;
+  }
+  const byRule = {};
+  for (const v of g.violations) byRule[v.rule] = (byRule[v.rule] || 0) + 1;
+  console.log(`roa guard: ${g.violations.length} violations (${Object.entries(byRule).map(([r, n]) => `${r} ${n}`).join(', ') || 'none'}); ${g.fresh.reduce((n, e) => n + e.over, 0)} new`);
+  for (const e of g.fresh) console.log(`  NEW ${e.rule}  ${e.file}: ${e.text}`);
+  for (const f of g.forbiddenFiles) console.log(`  FORBIDDEN ${f}`);
+  return g.fresh.length || g.forbiddenFiles.length ? 1 : 0;
 }
 
 // ---------- commands ----------
@@ -467,6 +641,33 @@ function verify(flags) {
     }
   } catch (e) { if (!(e instanceof RoaError)) throw e; }
   const base = typeof flags.base === 'string' && flags.base && !/^0+$/.test(flags.base) ? flags.base : null;
+  let a = null;
+  try { a = assemble(); } catch (e) { if (!(e instanceof RoaError)) throw e; }
+  if (a && a.manifest.guard) {
+    const outs = new Map(renderContracts(a));
+    const g = runGuards(a, outs);
+    if (!g.hasBaseline) notices.push(`no guard baseline yet; run ${CMD} guard --baseline once to adopt guards`);
+    else for (const e of g.fresh) problems.push(`guard ${e.rule}: ${e.file}: ${e.text}`);
+    problems.push(...g.forbiddenFiles);
+    if (base) {
+      const prev = git(['show', `${base}:.roa/guard-baseline.json`]);
+      if (prev && g.hasBaseline) {
+        const before = JSON.parse(prev).violations || {};
+        const now = JSON.parse(readFileSync(join(ROA, 'guard-baseline.json'), 'utf8')).violations || {};
+        for (const [k, e] of Object.entries(now)) if ((before[k]?.count || 0) < e.count) problems.push(`guard baseline grew: ${e.rule} ${e.file} (baselines may only shrink)`);
+      }
+      const governed = a.manifest.guard.governed || [];
+      const allowed = f => (a.manifest.guard.allow || []).some(p => f === p || f.startsWith(p.endsWith('/') ? p : `${p}/`)) || Object.keys(a.manifest.map || {}).some(p => !p.endsWith('/') && p === f);
+      const generated = new Set([...render().out.keys()]);
+      const added = git(['diff', '--name-status', `${base}...HEAD`]);
+      if (added) for (const line of added.split('\n').filter(Boolean)) {
+        const [st, f] = line.split('\t');
+        if (st === 'A' && governed.some(d => f.startsWith(d)) && !allowed(f) && !generated.has(f)) problems.push(`new file ${f} is in a governed folder but not listed in manifest.guard.allow or manifest.map`);
+      }
+      const prevManifest = git(['show', `${base}:.roa/manifest.json`]);
+      if (prevManifest) { const pm = JSON.parse(prevManifest); for (const k of ['guard', 'forbid', 'invariants']) if (JSON.stringify(pm[k]) !== JSON.stringify(a.manifest[k])) notices.push(`manifest.${k} changed; confirm the owner instructed this`); }
+    }
+  }
   if (base) {
     const diff = git(['diff', '--name-status', `${base}...HEAD`, '--', '.roa/records', '.roa/manifest.json']);
     if (diff === null) notices.push(`base ${base} not available; record immutability not checked`);
@@ -539,6 +740,134 @@ function record(type, positional, flags) {
   sync({ stage: flags['no-stage'] !== true });
 }
 
+// ---------- contracts and typed edits ----------
+const parseValue = v => { if (v === true) return true; try { return JSON.parse(v); } catch { return String(v); } };
+const writeValues = (name, values) => { mkdirSync(join(ROA, 'values'), { recursive: true }); writeFileSync(join(ROA, 'values', `${name}.json`), JSON.stringify(values, null, 2) + '\n'); };
+
+function targetOf(address) {
+  const i = String(address).indexOf('.');
+  if (i < 1) fail(`Address must look like <contract>.<path> or manifest.<path>, got "${address}"`);
+  return [address.slice(0, i), address.slice(i + 1)];
+}
+
+function applyEdit(address, mutate, flags) {
+  const [name, path] = targetOf(address);
+  if (name === 'manifest') {
+    const m = loadManifest();
+    let next;
+    try { next = mutate(m, path, null); } catch (e) { fail(e.message); }
+    validateManifest(next);
+    writeFileSync(MANIFEST, JSON.stringify(next, null, 2) + '\n');
+    console.log(`roa: updated manifest.${path}`);
+    sync({ stage: flags['no-stage'] !== true });
+    return;
+  }
+  const cl = loadProjectContracts(ROOT, KIT_DIR);
+  if (cl.errors.length) fail(`Contract problems:\n  - ${cl.errors.join('\n  - ')}`);
+  const c = cl.contracts[name];
+  if (!c) fail(`No installed contract "${name}". Installed: ${Object.keys(cl.contracts).join(', ') || 'none'}`);
+  let next;
+  try { next = mutate(c.values, path, c.def.schema); } catch (e) { fail(e.message); }
+  const ev = evaluate({ ...cl.contracts, [name]: { def: c.def, values: next } });
+  if (ev.errors.length) fail(`Edit rejected; nothing was written:\n  - ${ev.errors.join('\n  - ')}`);
+  writeValues(name, next);
+  console.log(`roa: updated ${name}.${path}`);
+  sync({ stage: flags['no-stage'] !== true });
+}
+
+function edit(cmd, positional, flags) {
+  const address = positional[0];
+  if (!address) fail(`Usage: ${cmd} <contract|manifest>.<path> ${cmd === 'set' ? '<value>' : cmd === 'add' ? '[key] <value>' : ''}`);
+  if (cmd === 'set') {
+    if (positional.length < 2) fail('Usage: set <contract|manifest>.<path> <value>');
+    const value = parseValue(positional[1]);
+    return applyEdit(address, (vals, path, schema) => {
+      if (schema && !schemaAt(schema, path)) fail(`Unknown field "${path}" for this contract`);
+      return setPath(vals, path, value);
+    }, flags);
+  }
+  if (cmd === 'add') {
+    return applyEdit(address, (vals, path, schema) => {
+      const node = schema ? schemaAt(schema, path) : null;
+      const cur = getPath(vals, path);
+      const isList = node ? node.type === 'list' : Array.isArray(cur);
+      if (isList) { if (positional.length < 2) fail('Usage: add <address> <value>'); return setPath(vals, path, [...(cur || []), parseValue(positional[1])]); }
+      if (positional.length < 3) fail('Usage: add <address> <key> <value> (maps need a key)');
+      if (cur && positional[1] in cur) fail(`"${positional[1]}" already exists at ${path}; use set to change it`);
+      return setPath(vals, `${path}.${positional[1]}`, parseValue(positional[2]));
+    }, flags);
+  }
+  if (cmd === 'remove') return applyEdit(address, (vals, path) => removePath(vals, path), flags);
+}
+
+function impactCmd(positional) {
+  const [name, path] = targetOf(positional[0] || '');
+  const a = assemble();
+  const c = a.contracts.list[name];
+  if (!c) fail(`No installed contract "${name}"`);
+  if (getPath(c.values, path) === undefined) fail(`Nothing at ${name}.${path}`);
+  const q = `${name}:${path}`;
+  const deps = [q, ...impactOf(a.contracts.dependents, q)];
+  const outputs = new Set();
+  for (const d of deps) {
+    const [cn, cp] = [d.slice(0, d.indexOf(':')), d.slice(d.indexOf(':') + 1)];
+    const def = a.contracts.list[cn].def;
+    const parts = cp.split('.');
+    for (let i = parts.length; i >= 1; i--) { const n = schemaAt(def.schema, parts.slice(0, i).join('.')); for (const o of n?.emit || []) outputs.add(def.outputs[o].path); }
+    outputs.add(`docs/contracts/${cn}.md`);
+  }
+  console.log(`${name}.${path}\n  used by: ${deps.slice(1).map(d => d.replace(':', '.')).join(', ') || 'nothing else'}\n  outputs: ${[...outputs].join(', ')}`);
+}
+
+function contractCmd(positional, flags) {
+  const [sub, name] = positional;
+  const kitDir = join(KIT_DIR, 'contracts');
+  if (sub === 'list') {
+    const kit = existsSync(kitDir) ? readdirSync(kitDir).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(join(kitDir, f), 'utf8'))) : [];
+    const installed = existsSync(join(ROA, 'contracts')) ? readdirSync(join(ROA, 'contracts')).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, '')) : [];
+    for (const d of kit) console.log(`${installed.includes(d.contract) ? '*' : ' '} ${d.contract}@${d.version}  ${d.description}`);
+    if (!kit.length) console.log('No contracts in this kit.');
+    return;
+  }
+  if (sub === 'add') {
+    if (!name) fail('Usage: contract add <name> --values <file.json>');
+    const src = join(kitDir, `${name}.json`);
+    if (!existsSync(src)) fail(`Unknown contract "${name}". See: contract list`);
+    const def = JSON.parse(readFileSync(src, 'utf8'));
+    const defErrs = validateDefinition(def, `contracts/${name}.json`);
+    if (defErrs.length) fail(defErrs.join('\n'));
+    if (existsSync(join(ROA, 'contracts', `${name}.json`))) fail(`${name} is already installed; edit values with set/add/remove`);
+    if (typeof flags.values !== 'string') fail(`contract add ${name} needs --values <file.json> with every required field (no placeholders are written):\n  - ${requiredPaths(def.schema).join('\n  - ')}`);
+    const values = JSON.parse(readFileSync(resolve(ROOT, flags.values), 'utf8'));
+    const cl = loadProjectContracts(ROOT, KIT_DIR);
+    const ev = evaluate({ ...cl.contracts, [name]: { def, values } });
+    if (ev.errors.length) fail(`Values rejected; nothing was written:\n  - ${ev.errors.join('\n  - ')}`);
+    mkdirSync(join(ROA, 'contracts'), { recursive: true });
+    writeFileSync(join(ROA, 'contracts', `${name}.json`), readFileSync(src, 'utf8'));
+    writeValues(name, values);
+    console.log(`roa: installed contract ${name}@${def.version}`);
+    sync({ stage: flags['no-stage'] !== true });
+    return;
+  }
+  if (sub === 'upgrade') {
+    if (!name) fail('Usage: contract upgrade <name>');
+    const src = join(kitDir, `${name}.json`);
+    const pinned = join(ROA, 'contracts', `${name}.json`);
+    if (!existsSync(pinned)) fail(`${name} is not installed`);
+    const def = JSON.parse(readFileSync(src, 'utf8'));
+    const cur = JSON.parse(readFileSync(pinned, 'utf8'));
+    if (def.version <= cur.version) fail(`${name} is already at version ${cur.version}`);
+    const cl = loadProjectContracts(ROOT, KIT_DIR);
+    const ev = evaluate({ ...cl.contracts, [name]: { def, values: cl.contracts[name].values } });
+    if (ev.errors.length) fail(`Current values do not satisfy ${name}@${def.version}; nothing changed:\n  - ${ev.errors.join('\n  - ')}`);
+    writeFileSync(pinned, readFileSync(src, 'utf8'));
+    console.log(`roa: upgraded ${name} ${cur.version} -> ${def.version}`);
+    sync({ stage: flags['no-stage'] !== true });
+    return;
+  }
+  fail('Usage: contract list | contract add <name> --values <file.json> | contract upgrade <name>');
+}
+
 // ---------- install ----------
 function detectDefaults() {
   let name = basename(ROOT);
@@ -554,7 +883,11 @@ function copyKit(target) {
   mkdirSync(join(dest, 'schema'), { recursive: true });
   mkdirSync(join(dest, 'templates'), { recursive: true });
   for (const f of ['roa.mjs', 'VERSION', 'README.md']) copyFileSync(join(KIT_DIR, f), join(dest, f));
-  for (const dir of ['schema', 'templates']) for (const f of readdirSync(join(KIT_DIR, dir))) copyFileSync(join(KIT_DIR, dir, f), join(dest, dir, f));
+  for (const dir of ['schema', 'templates', 'lib', 'contracts', 'packs']) {
+    if (!existsSync(join(KIT_DIR, dir))) continue;
+    mkdirSync(join(dest, dir), { recursive: true });
+    for (const f of readdirSync(join(KIT_DIR, dir))) copyFileSync(join(KIT_DIR, dir, f), join(dest, dir, f));
+  }
 }
 
 function install(flags) {
@@ -646,6 +979,16 @@ Records (append-only; each regenerates and stages outputs):
   check <id> <${CHECK_STATUS.join('|')}> [--text "..."]
   note <${NOTE_KINDS.join('|')}> "text"
 
+Contracts and typed edits:
+  contract list | contract add <name> --values <file.json>
+  set <contract|manifest>.<path> <value>      value is JSON when it parses (numbers, {"$ref": "..."}), else text
+  add <contract|manifest>.<path> [key] <value>
+  remove <contract|manifest>.<path>
+  impact <contract>.<path>                    what depends on a value and which outputs it reaches
+  guard [--baseline]                          scan for workarounds; --baseline adopts existing violations once
+  contract upgrade <name>                     move a pinned contract to the kit's newer version
+  import design-tokens --from-css <f> --out <values.json>   extract tokens from an existing stylesheet
+
 Maintenance:
   sync [--stage]         regenerate all outputs
   verify [--base <ref>]  fail if outputs are stale or records were edited/deleted since <ref>
@@ -664,6 +1007,17 @@ export function main(argv) {
       case 'verify': return verify(flags);
       case 'state': console.log(render().out.get('.roa/state.json').trim()); return 0;
       case 'install': install(flags); return 0;
+      case 'set': case 'add': case 'remove': edit(cmd, positional, flags); return 0;
+      case 'impact': impactCmd(positional); return 0;
+      case 'contract': contractCmd(positional, flags); return 0;
+      case 'guard': return guardCmd(flags);
+      case 'import': {
+        if (positional[0] !== 'design-tokens' || typeof flags['from-css'] !== 'string' || typeof flags.out !== 'string') fail('Usage: import design-tokens --from-css <file.css> --out <values.json>');
+        const values = importDesignTokens(readFileSync(resolve(ROOT, flags['from-css']), 'utf8'));
+        writeFileSync(resolve(ROOT, flags.out), JSON.stringify(values, null, 2) + '\n');
+        console.log(`roa: wrote ${flags.out}: ${Object.values(values.base).reduce((n, g) => n + Object.keys(g).length, 0)} base variables, ${Object.keys(values.themes).length} themes, default ${values.default.theme}. Review it, add contrastPairs, then: ${CMD} contract add design-tokens --values ${flags.out}`);
+        return 0;
+      }
       case 'protect': protect(flags); return 0;
       case undefined: case 'help': case '--help': case '-h': help(); return 0;
       default: help(); return 1;

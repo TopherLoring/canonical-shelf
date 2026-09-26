@@ -1,0 +1,46 @@
+{
+  "contract": "layout",
+  "version": 1,
+  "description": "Spatial rules: breakpoints (min-widths), containers, stacking layers, and per-screen grid placement by breakpoint, including regions that become overlays. Components use data-screen and data-region attributes.",
+  "schema": {
+    "type": "object",
+    "props": {
+      "minViewport": { "type": "length", "min": "240px", "max": "480px" },
+      "breakpoints": { "type": "map", "of": { "type": "length" }, "keyPattern": "^[a-z][a-z0-9-]*$", "minItems": 1 },
+      "containers": {
+        "type": "map", "keyPattern": "^[a-z][a-z0-9-]*$", "optional": true,
+        "of": { "type": "object", "props": { "max": { "type": "length" }, "pad": { "type": "length" } } }
+      },
+      "layers": { "type": "list", "of": { "type": "id" }, "unique": true, "minItems": 1 },
+      "screens": {
+        "type": "map", "keyPattern": "^[a-z][a-z0-9-]*$", "optional": true,
+        "of": {
+          "type": "object",
+          "props": {
+            "regions": { "type": "list", "of": { "type": "id" }, "unique": true, "minItems": 1 },
+            "at": {
+              "type": "map", "keyPattern": "^[a-z][a-z0-9-]*$", "minItems": 1,
+              "of": {
+                "type": "object",
+                "props": {
+                  "areas": { "type": "list", "of": { "type": "string", "pattern": "^[a-z][a-z0-9-]*( [a-z][a-z0-9-]*)*$" }, "minItems": 1 },
+                  "columns": { "type": "list", "of": { "type": "css-value" }, "minItems": 1 },
+                  "rows": { "type": "list", "of": { "type": "css-value" }, "optional": true },
+                  "gap": { "type": "length" },
+                  "overlays": { "type": "map", "of": { "type": "enum", "options": ["sheet-right", "sheet-bottom", "drawer-left", "hidden"] }, "optional": true }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "checks": [
+    { "rule": "ascending", "map": "breakpoints" },
+    { "rule": "screenLayout", "screens": "screens", "breakpoints": "breakpoints", "minViewport": "minViewport" }
+  ],
+  "outputs": {
+    "css": { "target": "css", "view": "layout", "path": "public/layout.css" }
+  }
+}

@@ -40071,7 +40071,7 @@ Source: [/verse-data.js](/verse-data.js)
 Source: [/theme.js](/theme.js)
 
     {
-      "defaultThemeId": "canonical-paper",
+      "defaultThemeId": "scholarly-graphite",
       "themes": [
         {
           "id": "canonical-paper",
