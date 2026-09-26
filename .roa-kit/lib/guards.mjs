@@ -58,7 +58,9 @@ export function scanFile(path, src, ctx) {
     for (const m of css.matchAll(/!important/g)) push('css-important', m.index, '!important overrides the cascade; fix specificity instead');
     for (const m of css.matchAll(/(^|[;{\s])(--[a-zA-Z0-9-]+)\s*:/g)) if (ctx.ownedProps.has(m[2])) push('css-owned-prop', m.index + m[1].length, `${m[2]} is owned by a contract; change it with roa set`);
     for (const m of css.matchAll(/(?<![\w-])z-index\s*:\s*-?\d+/g)) push('css-z-index-literal', m.index, 'literal z-index; use a layout layer variable (var(--layer-*))');
-    for (const m of css.matchAll(/:[^;{}]*?(#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b)/g)) if (ctx.tokenColors.has(normColor(m[1]))) push('css-raw-color', m.index + m[0].indexOf(m[1]), `${m[1]} duplicates a design token; use its variable`);
+    // Any hard-coded color outside generated token files is flagged: one that duplicates a token today
+    // silently drifts the moment that token changes.
+    for (const m of css.matchAll(/:[^;{}]*?(#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3,4}\b)/g)) push('css-raw-color', m.index + m[0].indexOf(m[1]), ctx.tokenColors.has(normColor(m[1])) ? `${m[1]} duplicates a design token; use its variable` : `${m[1]} is a hard-coded color; add it to design-tokens or use an existing token`);
   }
   if (/\.(m?js|ts|jsx|tsx)$/.test(path)) {
     const code = stripJs(src, { strings: true });

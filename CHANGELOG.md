@@ -5,6 +5,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ## 2026-09-26
 
+### Milestones
+
+- Phase 1b done: Project state kit, then CSS consolidation (kit portion)
+
 ### Decided
 
 - [decision] Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only
@@ -54,6 +58,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - Design tokens now come from the design-tokens contract (public/design-tokens.css); zero visual change verified across 3,960 computed values; default theme set to scholarly-graphite
+- Proof gate: session-start context 27 KB (state.json 22 KB + AGENTS.md 5 KB) vs 29 KB before (AI_INSTRUCTIONS.md + DECISION_PRECEDENCE.md, stale); visual changes read a 16 KB values file instead of 172 KB of CSS; one token edit is one command (~0.7 s) regenerating 4 files; guards caught 2 of 2 seeded workarounds; baseline now tracks 273 existing violations including 207 hard-coded colors
 
 ## 2026-09-25
 

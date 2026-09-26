@@ -3,7 +3,7 @@
 
 A guided Bible-learning library: full BSB reader, questions-first courses, topics, practice, and a grounded Theologian.
 
-**Project status:** active · **Current phase:** **Project state kit, then CSS consolidation** (`1b`, active) · **Checks:** 0/6 passing
+**Project status:** active · **Current phase:** **Anchor the reader: resume, you-are-here, reading path, ask about this passage** (`1c`, planned) · **Checks:** 1/7 passing
 
 ## Open questions
 
@@ -18,7 +18,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 |---|---|---|---|
 | `0` | Merge single-page app (PR #27) | done | 2026-09-25 |
 | `1a` | Hygiene and data fixes | done | 2026-09-25 |
-| `1b` | Project state kit, then CSS consolidation | active | 2026-09-25 |
+| `1b` | Project state kit, then CSS consolidation (kit portion) | done | 2026-09-26 |
 | `1c` | Anchor the reader: resume, you-are-here, reading path, ask about this passage | planned | 2026-09-25 |
 | `2` | Visual redesign of Home, Bible, Course, and lesson | planned | 2026-09-25 |
 | `3` | Unit 0 content and Theologian evaluation on real questions | planned | 2026-09-25 |
@@ -33,69 +33,70 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | Unit 0 answers the primary learner's first questions (`r4-unit-0`) | open |
 | A stand-in tester completes a session without getting lost (`r5-stand-in`) | open |
 | The Theologian beats a general chatbot on the primary learner's real questions (`r6-theologian`) | open |
+| Proof gate for kit v1.1: context parity with correctness, 90% less CSS to read for visual changes, one-command token edits, 2 of 2 seeded workarounds caught (`proof-gate`) | pass |
 
 ## Current decisions by topic
 
 | Topic | Current | Kind | Since |
 |---|---|---|---|
-| `arch.routing` | The app is a single-page application: one document, History API routing, native DOM templates | Owner decision | 2026-09-26 |
-| `arch.spa-implementation` | Single-page app implementation: public/index.html is the only application document; clean path URLs with History API state; Back/Forward re-render through popstate; direct entry and refresh use SPA fallback; views use native <template> elements. Architecture reference: docs/v7/SPA_ARCHITECTURE_2026-09-24.md | Agent default | 2026-09-24 |
-| `content.anchoring` | One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back | Owner decision | 2026-09-26 |
-| `content.reachability` | content/learner-content-reachability.json (v3) owns UI reachability and llms.txt disposition: embed learner-facing curriculum, reference, editorial, legal, privacy, and safety content; link the BSB corpus rather than duplicating it; exclude the supplemental belief document as a standalone authority and all private learner, account, feedback, and governance material. public/llms.txt is generated and freshness-validated | Agent default | 2026-09-24 |
-| `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. Each entry is tied to a specific outline anchor (lesson and section) and is generated on that same course step, alongside the lesson content it supports | Owner decision | 2026-09-26 |
-| `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only | Owner decision | 2026-09-26 |
-| `curriculum.content-review` | Generated curriculum content is reviewed before learners see it | Agent default | 2026-09-26 |
-| `curriculum.excluded-gospels` | All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus) | Owner decision | 2026-09-26 |
-| `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary) | Owner decision | 2026-09-26 |
-| `curriculum.invariants` | Durable curriculum requirements: Topics sit outside completion; inherited stable learner and activity IDs; deterministic completion-bearing assessment; spaced review and retention; questions-first spiral learning; assessment of understanding and reasoning, never personal theological assent. Curriculum counts are descriptive data, not constants | Agent default | 2026-09-24 |
-| `curriculum.module1` | Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit | Owner decision | 2026-09-26 |
-| `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; Hebrew Scriptures & Near Eastern World; Second Temple Judaism & Christ Event; Systematic Synthesis, Hard Ethics & Living Practice), keeping multi-lesson units and stable lesson IDs. Any restructuring rewrites each unit as one flow: introduction, substance, summary, with integrated practice checks and non-repeating content | Owner decision | 2026-09-26 |
-| `curriculum.teaching-approach` | Audience: adults new to Christianity and the Bible, taught from a personally affirming, open-table stance. Explain doctrine through the biblical story and its internal logic, never with 'that's where faith comes in' or 'you just have to accept it'; avoid analogies that drift into heresy. Welcome questions without requiring assent. Breadth increases as study progresses; content defines the interactions | Owner decision | 2026-09-26 |
-| `data.bsb-source` | BSB source files are not committed. scripts/fetch-bsb-sources.mjs (bun run data:fetch) downloads bsb_tables.tsv, bsb_concordance.xlsx, and bsb_topical_index.xlsx from bereanbible.com into data/source and verifies pinned SHA-256 hashes (matching Chris's local copies). public/data/corpus.txt stays the reading-text authority; bible.db from the TSV is used for verse-address validation and structure, because its reconstructed verse text differs from the published reading text in 20,888 verses (bracketed implied words, ellipsis artifacts) | Agent default | 2026-09-26 |
-| `data.dictionary` | Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names | Agent default | 2026-09-26 |
-| `design.authority` | The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output | Owner decision | 2026-09-26 |
-| `design.layout-contract` | The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile | Agent default | 2026-09-26 |
-| `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; context never excuses harm; present-day application is evaluated through Jesus' teaching, love of neighbor, and human dignity | Owner decision | 2026-09-26 |
-| `doctrine.interpretive-foundation` | Scripture should be interpreted with serious attention to the biblical claims that God is love, salvation is grounded in God’s grace rather than human merit, and Jesus identifies love of God and love of neighbor as the greatest commandments through which the rest of the law is understood. Where Christians differ over the conditions, scope, or mechanics of salvation, those interpretations should be presented distinctly rather than treated as settled. | Agent default | 2026-09-24 |
-| `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); miracles are presented with differing interpretations; never promise healing, blame illness on insufficient faith, or treat prayer as a substitute for medical care | Owner decision | 2026-09-26 |
-| `doctrine.spiritual-warfare` | Satan, demons, and spiritual warfare: explain biblical portrayals and the personal, symbolic, and systemic interpretations; no sensationalism, never identify other groups as demonic, never treat mental illness as evidence of possession | Owner decision | 2026-09-26 |
-| `doctrine.statement-of-faith` | Public doctrinal ceiling is content/statement/statement-of-faith-compact.md; content/statement/statement-of-faith-v3.md is supplemental Theologian context only and must never be presented as the public Statement of Faith or promoted above the compact ceiling | Agent default | 2026-09-24 |
-| `doctrine.trinity-incarnation` | Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties | Owner decision | 2026-09-26 |
-| `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Chris; saved with full state and context; two-way: Chris's replies appear as an unread indicator on the Theologian surface styled as a system message, never as an AI message | Owner decision | 2026-09-26 |
-| `feedback.privacy` | Feedback and review snapshots never automatically attach Journal writing, private reflections, lesson notes, profile or account data, inferred beliefs, or unrelated chat history. Anonymous reply routing uses a random browser-scoped identifier; the server stores only a one-way SHA-256 routing key; IP addresses are never feedback identity; the learner may forget the link at any time. Account deletion de-identifies retained feedback | Agent default | 2026-09-24 |
-| `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | 2026-09-26 |
-| `learning.games` | Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games | Owner decision | 2026-09-26 |
-| `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; names may change). Completed items are visibly identifiable; everything is navigable and skippable in both directions | Owner decision | 2026-09-26 |
-| `notes` | Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile | Owner decision | 2026-09-26 |
-| `platform.offline` | Offline access is not a requirement | Owner decision | 2026-09-26 |
-| `privacy.posture` | Local-first guest learning; optional account/passkey sync; no sale of personal data; no targeted advertising; no advertising pixels or behavioral analytics trackers; first-party authentication/security cookies and functional storage only; no cookie banner while no optional tracking exists; disclosure and consent change if nonessential tracking is ever introduced. Public policy pages: /privacy.html, /data-retention.html, /storage.html, /terms.html, /safety.html | Agent default | 2026-09-24 |
-| `privacy.retention` | Feedback retention: unresolved feedback up to 24 months; resolved feedback up to 12 months after resolution; optional contact information removed or anonymized within 90 days of resolution unless a documented exception applies; the routing key ends with the record. Enforced in code, not only documented | Agent default | 2026-09-24 |
-| `process.authority-order` | Authority order: the owner's current request, then owner decision records, then AI_INSTRUCTIONS.md, then domain docs and source contracts, then generated artifacts; historical plans and audits are provenance only | Agent default | 2026-09-26 |
-| `process.decision-authority` | Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions | Owner decision | 2026-09-26 |
-| `process.experience-first` | End-user experience and learning effectiveness are co-primary; architecture serves the experience | Agent default | 2026-09-24 |
-| `process.guards` | Guards are on for public/, scripts/, and worker/ with a shrink-only baseline; the retired files from the old rules document are forbidden as engineering defaults | Agent default | 2026-09-26 |
-| `process.project-state` | Project state is managed with project-roa-kit: append-only records compiled into agent state and human docs | Owner decision | 2026-09-26 |
-| `process.pull-requests` | Do not merge stale pull requests wholesale; PRs #20, #22, #23 were superseded, #24 was merged and later superseded by the single-page app. Carry forward only named outcomes | Agent default | 2026-09-24 |
-| `product.audience` | Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups | Owner decision | 2026-09-26 |
-| `release.deployment` | Production deployment is a separate, explicit owner action. A GitHub Actions run with zero executed steps is infrastructure evidence, not code-validation evidence | Agent default | 2026-09-24 |
-| `release.gates` | Production target https://the-canonical-shelf.christopherwonder.workers.dev (Worker the-canonical-shelf, D1 canonical-shelf). Release evidence: current-head bun run verify; browser checks of same-document navigation, deep links, Back/Forward, and key routes; Cloudflare config validation and dry run with SPA fallback; D1 migration validation; release-governance gate; fresh generated outputs including llms.txt; real post-deploy Theologian smoke test; applicable human device, accessibility, editorial/theological, and novice-usability review. FEEDBACK_ADMIN_TOKEN is a secret and never committed | Agent default | 2026-09-24 |
-| `release.human-gates` | Automated evidence and human-review evidence are distinct; a waiver is not a pass. Security and privacy, data integrity, stable IDs, deterministic generation, theology policy, production target, supersession state, feedback privacy, crisis safety, and retention enforcement are never satisfied by a visual or editorial waiver | Agent default | 2026-09-24 |
-| `safety.crisis` | content/theology/crisis-policy.json is the crisis-safety policy. A deterministic crisis layer runs before normal generation for credible first-person suicide or self-harm indicators: immediate danger goes to 911/emergency services; U.S. crisis offers call or text 988; encourage a trusted person present and distance from means; stay conversational. Pastoral response (God's love and presence, prayer alongside human help, referral to trusted clergy, praying on request) is expected, but prayer never replaces or delays urgent help. Prohibited: shame, threats of hell or punishment, implying weak faith, prayer-alone advice, promised healing, silent third-party contact, IP-based identity, permanent risk labels, converting crisis chat into feedback | Agent default | 2026-09-24 |
-| `theologian.learner-agency` | Learner agency is a hard requirement: the learner remains the decision-maker. The Theologian informs, compares, contextualizes, challenges reasoning, and labels Canonical Shelf's own position; it never pressures agreement on genuinely contested issues. Viewpoint, translation, and evidence-strength differences stay visible | Agent default | 2026-09-24 |
-| `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; transcripts are saved to the profile only if the user chooses, and exported/shared through an ellipsis menu | Owner decision | 2026-09-26 |
-| `theologian.privacy` | Cloud Theologian requests may include the current question, bounded recent conversation, current route or activity label, and allowlisted aggregate study-state context. They exclude Journal text, lesson notes, reflection writing, account or profile identifiers, feedback content, and inferred beliefs, denomination, sexuality, or other sensitive traits. Ordinary conversation is not persisted server-side; an explicit feedback submission is the only exception | Agent default | 2026-09-24 |
-| `theologian.review` | Each Theologian response has thumbs up/down and a flag. Flag reasons: disagreement, profound, very helpful, misguided, inappropriate, contrary to Scripture; an authored reason is mandatory; saved to the feedback database tied to the Theologian with the two most recent prompts, the prior response, and screen context | Owner decision | 2026-09-26 |
-| `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson | Owner decision | 2026-09-26 |
-| `ui.current-values` | Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard | Agent default | 2026-09-24 |
-| `ui.theme.default` | Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts | Agent default | 2026-09-26 |
+| `arch.routing` | The app is a single-page application: | Owner decision | undefined |
+| `arch.spa-implementation` | undefined | Agent default | undefined |
+| `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
+| `content.reachability` | undefined | Agent default | undefined |
+| `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. | Owner decision | undefined |
+| `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; | Owner decision | undefined |
+| `curriculum.content-review` | undefined | Agent default | undefined |
+| `curriculum.excluded-gospels` | All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus) | Owner decision | undefined |
+| `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: | Owner decision | undefined |
+| `curriculum.invariants` | undefined | Agent default | undefined |
+| `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
+| `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
+| `curriculum.teaching-approach` | Audience: | Owner decision | undefined |
+| `data.bsb-source` | undefined | Agent default | undefined |
+| `data.dictionary` | undefined | Agent default | undefined |
+| `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
+| `design.layout-contract` | undefined | Agent default | undefined |
+| `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
+| `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
+| `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |
+| `doctrine.spiritual-warfare` | Satan, demons, and spiritual warfare: | Owner decision | undefined |
+| `doctrine.statement-of-faith` | undefined | Agent default | undefined |
+| `doctrine.trinity-incarnation` | Trinity and incarnation foundation: | Owner decision | undefined |
+| `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
+| `feedback.privacy` | undefined | Agent default | undefined |
+| `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
+| `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
+| `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
+| `platform.offline` | Offline access is not a requirement | Owner decision | undefined |
+| `privacy.posture` | undefined | Agent default | undefined |
+| `privacy.retention` | undefined | Agent default | undefined |
+| `process.authority-order` | undefined | Agent default | undefined |
+| `process.decision-authority` | Chris's current request outranks every document. | Owner decision | undefined |
+| `process.experience-first` | undefined | Agent default | undefined |
+| `process.guards` | undefined | Agent default | undefined |
+| `process.project-state` | Project state is managed with project-roa-kit: | Owner decision | undefined |
+| `process.pull-requests` | undefined | Agent default | undefined |
+| `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
+| `release.deployment` | undefined | Agent default | undefined |
+| `release.gates` | undefined | Agent default | undefined |
+| `release.human-gates` | undefined | Agent default | undefined |
+| `safety.crisis` | undefined | Agent default | undefined |
+| `theologian.learner-agency` | undefined | Agent default | undefined |
+| `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; | Owner decision | undefined |
+| `theologian.privacy` | undefined | Agent default | undefined |
+| `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
+| `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
+| `ui.current-values` | undefined | Agent default | undefined |
+| `ui.theme.default` | undefined | Agent default | undefined |
 
 ## Open feedback (adjust, not locked)
 
-- `ui.home`: Home: Prototype B ("Library First") was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded (2026-09-26)
-- `ui.shelf`: Shelf direction (ledger D014) is work in progress; find a middle-ground solution (2026-09-26)
-- `ui.bible`: Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole (2026-09-26)
-- `ui.theme.palettes`: The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign (2026-09-26)
-- `ui.course-shelf`: Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between (2026-09-26)
+- `ui.home`: Home: Prototype B ("Library First") was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded (undefined)
+- `ui.shelf`: Shelf direction (ledger D014) is work in progress; find a middle-ground solution (undefined)
+- `ui.bible`: Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole (undefined)
+- `ui.theme.palettes`: The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign (undefined)
+- `ui.course-shelf`: Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between (undefined)
 
 Full history: [decision log](v7/DECISION_PRECEDENCE.md) · [changelog](../CHANGELOG.md)
 

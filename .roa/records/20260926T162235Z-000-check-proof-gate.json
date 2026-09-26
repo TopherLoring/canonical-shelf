@@ -1,0 +1,7 @@
+{
+  "type": "check",
+  "check": "proof-gate",
+  "status": "pass",
+  "date": "2026-09-26",
+  "text": "Proof gate for kit v1.1: context parity with correctness, 90% less CSS to read for visual changes, one-command token edits, 2 of 2 seeded workarounds caught"
+}

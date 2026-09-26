@@ -5,7 +5,7 @@
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".guide .evidence{border-top-color:#ffffff20}.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}.guide",
-      "count": 1
+      "count": 6
     },
     "02c859ce0f559606": {
       "rule": "css-z-index-literal",
@@ -13,10 +13,22 @@
       "text": ".utility-fab{position:fixed;z-index:22;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);padding:.58rem",
       "count": 1
     },
+    "08a39662cfab0c37": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".response-is-correct{position:relative;border-color:#25754a!important;box-shadow:inset 3px 0 0 #25754a!important;background:color-mix(in srgb,#e7f5ec 78%,var(--",
+      "count": 3
+    },
     "09da4b72b654c228": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "color:#1b1d22;",
+      "count": 1
+    },
+    "0bbcbd8e341e6cb5": {
+      "rule": "css-raw-color",
+      "file": "public/theologian-chat.css",
+      "text": ".theologian-chat__toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:.7rem 0 .8rem;border-bottom:1px solid #ffffff20;fle",
       "count": 1
     },
     "0d52beddb0501ae2": {
@@ -67,10 +79,22 @@
       "text": ".course-journey-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:end;padding:2.3rem 0 1.5rem}.course-journey-intro h2{max-width:",
       "count": 1
     },
+    "215a84f427b264ed": {
+      "rule": "css-raw-color",
+      "file": "public/learning-visuals.css",
+      "text": ".semantic-stack{display:grid;gap:.34rem}.semantic-stack section{display:grid;grid-template-columns:5rem minmax(0,1fr);gap:.75rem;align-items:center;padding:.65r",
+      "count": 1
+    },
     "215e7f2dcb4dc37a": {
       "rule": "css-important",
       "file": "public/theologian-chat.css",
       "text": ".study-layout.study-layout--theologian{grid-template-columns:clamp(54px,6cqw,66px) minmax(0,1fr) minmax(300px,38vw)!important;grid-template-rows:minmax(0,1fr)!i",
+      "count": 2
+    },
+    "23417f7f9e9d8969": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".lesson-complete{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem;align-items:start;border:1px solid color-mix(in srgb,#25754a 48%,var(--study-r",
       "count": 2
     },
     "2a8211339a5efa1c": {
@@ -83,7 +107,7 @@
       "rule": "css-raw-color",
       "file": "public/learning.css",
       "text": ".lesson-complete>span{display:grid;place-items:center;width:1.75rem;height:1.75rem;border-radius:50%;background:#25754a;color:#fff;font-weight:900}.lesson-compl",
-      "count": 1
+      "count": 3
     },
     "35f9aec97b02a380": {
       "rule": "css-important",
@@ -103,16 +127,28 @@
       "text": "document.head.append(link);",
       "count": 1
     },
+    "3c65d7bb41bdf5c9": {
+      "rule": "css-raw-color",
+      "file": "public/bible.css",
+      "text": ".canonical-shelf{padding:1rem 0 3rem}.shelf-row{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:1rem;align-items:end;margin:0 0 1.25rem}.shelf-row h3",
+      "count": 1
+    },
     "43ecbeb713fe10e4": {
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".study-layout>.guide.guide--study-companion .guide-head{margin:0;padding:10px 0 8px;border-bottom:1px solid #ffffff20}.study-layout>.guide.guide--study-companio",
-      "count": 1
+      "count": 2
     },
     "44eb6f79d32b56cf": {
       "rule": "css-z-index-literal",
       "file": "public/experience.css",
       "text": ".progress-ring{--progress:0;position:relative;width:9rem;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--progre",
+      "count": 1
+    },
+    "45afc3421252b6ad": {
+      "rule": "css-raw-color",
+      "file": "public/utility-panels.css",
+      "text": "html[data-mode='dark'] .feedback-open{background:var(--chrome-2);color:var(--chrome-muted);border-color:#555d68}",
       "count": 1
     },
     "45f6fcf1280e1103": {
@@ -133,6 +169,12 @@
       "text": ".theme-card__swatch[data-swatch=\"scholarly-graphite\"] i:nth-child(1){background:#f0f2f4}",
       "count": 1
     },
+    "48bce61e6098bae6": {
+      "rule": "css-raw-color",
+      "file": "public/learning-visuals.css",
+      "text": ".semantic-node{display:grid;gap:.12rem;align-content:start;min-width:8.5rem;padding:.72rem .78rem;border:1px solid var(--study-rule);border-radius:10px;backgrou",
+      "count": 1
+    },
     "4a7eb6e8d89e963a": {
       "rule": "css-raw-color",
       "file": "public/styles.css",
@@ -151,23 +193,47 @@
       "text": ".guide-open{position:fixed;right:1rem;bottom:1rem;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);pad",
       "count": 1
     },
+    "4ef33392f20b5e64": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".study-nav{min-height:58px;display:grid;grid-template-columns:auto auto minmax(160px,1fr) auto;align-items:center;gap:.65rem;padding:.55rem clamp(.65rem,1.3vw,1",
+      "count": 1
+    },
     "5184a1896fd60ca3": {
       "rule": "css-important",
       "file": "public/theologian-chat.css",
       "text": ".guide[hidden]{display:none!important}",
       "count": 1
     },
+    "52bf413731458a40": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".bible-closed-book{min-height:500px;display:grid;place-items:center;padding:38px}.bible-closed-book__cover{width:min(560px,80%);aspect-ratio:1.38;background:lin",
+      "count": 3
+    },
     "53e7980fef6b896a": {
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".chat-message{display:grid;gap:.38rem;max-width:92%}.chat-message--user{align-self:flex-end;justify-items:end}.chat-message--assistant{align-self:flex-start;jus",
-      "count": 2
+      "count": 8
+    },
+    "5460e3a73ed66f73": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".sequence-board{list-style:none;padding:0;margin:0;display:grid;gap:.42rem;max-height:min(42vh,360px);overflow:auto}.sequence-card{display:grid;grid-template-co",
+      "count": 1
     },
     "5573f12907a4a9ef": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".guide-open{right:12px;bottom:22px;border-radius:999px;padding:10px 14px;background:var(--chrome);color:#fff;border-color:#59616a;box-shadow:0 8px 24px #0003;z-",
-      "count": 1
+      "count": 3
+    },
+    "55bc2e9915a6f511": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".library-first-book{position:relative;display:block;flex:calc(2 + (var(--chapters, 10) / 10)) 1 0;min-width:4px;max-width:30px;height:clamp(46px,calc(46px + (va",
+      "count": 2
     },
     "563c19ae513c3da9": {
       "rule": "css-raw-color",
@@ -175,11 +241,17 @@
       "text": ".theme-card__swatch[data-swatch=\"oxford-scriptorium\"] i:nth-child(2){background:#233b58}",
       "count": 1
     },
+    "577e89eb76ab9838": {
+      "rule": "css-raw-color",
+      "file": "public/theologian-chat.css",
+      "text": ".study-layout.study-layout--theologian>.guide.guide--study-companion{grid-column:3;grid-row:1;height:52%!important;align-self:end;border-top:1px solid #ffffff1d",
+      "count": 2
+    },
     "5a90e83767555be4": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "html[data-mode='dark'] .masthead .search button,html[data-mode='dark'] .masthead .account-open,html[data-mode='dark'] .masthead .appearance-open,html[data-mode=",
-      "count": 1
+      "count": 2
     },
     "611048425414c987": {
       "rule": "css-raw-color",
@@ -191,7 +263,7 @@
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".guide .guide-head{border-bottom-color:#ffffff1c}.guide .guide-head h2,.guide .guide-head button{color:#fff}.guide .theologian-chat{height:100%;min-height:0}.gu",
-      "count": 1
+      "count": 2
     },
     "6373b5462b9c1aae": {
       "rule": "css-raw-color",
@@ -217,11 +289,17 @@
       "text": "html[data-mode='dark'] .primary a[aria-current='page']{color:#fff;border-color:var(--color-gilt)}",
       "count": 1
     },
+    "6afdf2eaefafea55": {
+      "rule": "css-raw-color",
+      "file": "public/learning-visuals.css",
+      "text": ".semantic-shelf{display:flex;align-items:end;min-height:11rem;gap:.18rem;padding:1.1rem .7rem .55rem;border-bottom:.7rem solid color-mix(in srgb,var(--color-tex",
+      "count": 4
+    },
     "6d0f0bac052e65de": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".course-volume:nth-child(even){background:linear-gradient(90deg,#e4e8e9,#f8faf9 18%,#e2e6e6 76%,#d3d8da)}.course-volume:hover,.course-volume:focus-visible{trans",
-      "count": 1
+      "count": 4
     },
     "7150f9a47d5d6c14": {
       "rule": "css-z-index-literal",
@@ -245,7 +323,7 @@
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".theologian-chat__empty{margin:auto;padding:2rem 1rem;text-align:center;max-width:28rem}.theologian-chat__empty h3{font-family:var(--font-display);font-size:1.7",
-      "count": 2
+      "count": 4
     },
     "759d9340817bb130": {
       "rule": "css-raw-color",
@@ -258,6 +336,12 @@
       "file": "public/learning.css",
       "text": ".study-nav{min-height:58px;display:grid;grid-template-columns:auto auto minmax(160px,1fr) auto;align-items:center;gap:.65rem;padding:.55rem clamp(.65rem,1.3vw,1",
       "count": 1
+    },
+    "79918c32bb738d7a": {
+      "rule": "css-raw-color",
+      "file": "public/library.css",
+      "text": ".book-profile-page[data-cat=\"law\"],.book-profile-card[data-cat=\"law\"]{--profile-accent:#87522f}.book-profile-page[data-cat=\"othist\"],.book-profile-card[data-cat",
+      "count": 9
     },
     "7a6acd259981274b": {
       "rule": "css-z-index-literal",
@@ -275,13 +359,13 @@
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "html[data-mode='dark'] .masthead .search input{color:#fff;background:var(--chrome-2);border-color:#555d68}",
-      "count": 1
+      "count": 2
     },
     "816be77f968661fb": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "html[data-mode='dark'] .masthead .translation-control select{background:var(--chrome-2);color:#fff;border-color:#555d68}",
-      "count": 1
+      "count": 2
     },
     "820a03d0c0f9c712": {
       "rule": "css-z-index-literal",
@@ -313,6 +397,12 @@
       "text": "@media(max-width:780px){.practice-status{grid-template-columns:1fr 1fr}.practice-status>div:first-child{grid-column:1/-1}.arcade-config{grid-template-columns:1f",
       "count": 1
     },
+    "8de05e399fcdef08": {
+      "rule": "css-raw-color",
+      "file": "public/learning-visuals.css",
+      "text": ".scene-visual--semantic{border:0;padding:0;background:transparent}.semantic-visual{margin:0;border:1px solid var(--study-rule);border-radius:14px;overflow:hidde",
+      "count": 1
+    },
     "8fc6dc5526898d12": {
       "rule": "css-important",
       "file": "public/canonical-shelf.css",
@@ -325,11 +415,17 @@
       "text": "@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}",
       "count": 3
     },
+    "9452280e9903c6fe": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": "html[data-mode='dark'] .masthead .translation-control{color:#d3d6d8}",
+      "count": 1
+    },
     "94634791b7339e8e": {
       "rule": "css-raw-color",
       "file": "public/learning.css",
       "text": ".response-status{display:inline-flex;align-items:center;gap:.25rem;margin:.38rem 0 0;color:#185c38;font-size:.72rem;font-weight:850}.response-status>span{displa",
-      "count": 1
+      "count": 3
     },
     "9541098d9811ac02": {
       "rule": "css-z-index-literal",
@@ -365,13 +461,19 @@
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".guide{background:#31353c;color:#fff;border-left-color:#202329;box-shadow:-16px 0 40px #0003}",
-      "count": 1
+      "count": 4
+    },
+    "a86ea559ca44e945": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".response-complete{border-color:color-mix(in srgb,#25754a 42%,var(--study-rule));background:color-mix(in srgb,#e7f5ec 72%,var(--study-folio))}.response-complete",
+      "count": 3
     },
     "ac070d4fd5373480": {
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".guide #guide-form{display:grid;gap:8px;padding:14px 0}.guide #guide-form label{font:600 .9rem var(--font-reading);color:#fff}.guide #guide-form textarea{width:",
-      "count": 2
+      "count": 7
     },
     "afd54816eaed577a": {
       "rule": "css-important",
@@ -379,17 +481,29 @@
       "text": ".chat-message__evidence{width:min(34rem,100%);border:1px solid #ffffff20;border-radius:.7rem;background:#292d33}.chat-message__evidence summary{cursor:pointer;p",
       "count": 2
     },
+    "b03e24fe22712c94": {
+      "rule": "css-raw-color",
+      "file": "public/bible-state.css",
+      "text": ".shelf-spine[data-learned=\"true\"]::after{content:\"\";position:absolute;right:.18rem;top:.2rem;width:.42rem;height:.42rem;border-radius:50%;background:var(--color",
+      "count": 2
+    },
     "b172069ad7e1f2fc": {
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".cloud-theologian-status{margin:.1rem 0 .7rem;padding:.7rem .8rem;border-left:3px solid #c7a253;background:#24272d;color:#f4f4f1;font-size:.8rem}.cloud-theologi",
+      "count": 6
+    },
+    "b26d7698349c5e2e": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".course-volume-shelf{height:clamp(340px,50vh,470px);display:flex;align-items:end;gap:8px;margin-top:18px;padding:28px 28px 17px;background:linear-gradient(180de",
       "count": 4
     },
     "b60a2b32be85c77f": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".bible-reader-nav{display:flex;gap:20px;padding:7px 11px;background:#313741;color:#fff;border-top:1px solid #ffffff10;overflow:auto}.bible-reader-nav a,.bible-r",
-      "count": 2
+      "count": 4
     },
     "b80361a41f3f9f2a": {
       "rule": "css-z-index-literal",
@@ -397,11 +511,17 @@
       "text": ".shelf-cabinet{display:grid;grid-template-columns:minmax(0,39fr) minmax(0,27fr);gap:1rem;padding:0;background:transparent}.shelf-testament{display:flex;flex-dir",
       "count": 2
     },
+    "b8d4e66a334bb105": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": "outline: 1.5px solid var(--color-gilt, #c59b27);",
+      "count": 1
+    },
     "ba92cb510d7e8d96": {
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".study-layout>.guide.guide--study-companion{position:static!important;inset:auto!important;display:grid;grid-template-rows:auto minmax(0,1fr);width:auto!importa",
-      "count": 1
+      "count": 3
     },
     "bb00fd8d8bf2e163": {
       "rule": "css-z-index-literal",
@@ -437,7 +557,19 @@
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".theologian-chat__thinking{display:inline-flex;gap:.28rem;align-items:center;padding:.7rem .85rem;background:#24272d;border:1px solid #ffffff1c;border-radius:1r",
-      "count": 2
+      "count": 3
+    },
+    "c2027f8bf79ea93e": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".study-folio{container-type:inline-size;width:min(1540px,100%);height:100%;min-height:0;margin:auto;background:var(--study-folio);color:var(--color-text-primary",
+      "count": 1
+    },
+    "c44d60420bcd3f18": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".course-volume{position:relative;display:flex;flex:1 1 0;min-width:78px;height:var(--volume-height,78%);padding:12px 10px;border:1px solid #ffffff25;border-radi",
+      "count": 4
     },
     "c4a9f1b382c25079": {
       "rule": "css-z-index-literal",
@@ -451,16 +583,40 @@
       "text": "background:color-mix(in srgb,var(--chrome) 80%,#fff);",
       "count": 1
     },
+    "c5ee1eacf4c42207": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".study-layout{grid-template-columns:22px minmax(0,1fr)}.study-apparatus{grid-column:1/-1;border-left:0;border-top:1px solid #202329}",
+      "count": 1
+    },
     "c93669d6241fd7a3": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".bible-reader-shelves{padding:8px 10px 0;border-radius:var(--theme-radius) var(--theme-radius) 0 0;background:#313741;color:#fff}.bible-reader-shelf-row{display",
+      "count": 5
+    },
+    "cae5f3034074fd4b": {
+      "rule": "css-raw-color",
+      "file": "public/learning.css",
+      "text": ".study-apparatus{display:none;position:absolute;right:12px;top:12px;bottom:12px;width:min(390px,42vw);border:1px solid var(--study-rule);border-radius:14px;box-",
       "count": 1
     },
     "cc26a3c33002499c": {
       "rule": "css-z-index-literal",
       "file": "public/canonical-shelf.css",
       "text": ".guide-open{right:12px;bottom:22px;border-radius:999px;padding:10px 14px;background:var(--chrome);color:#fff;border-color:#59616a;box-shadow:0 8px 24px #0003;z-",
+      "count": 1
+    },
+    "cd5b4a2348f42549": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".library-reader-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;align-items:start;margin-top:2px}.reader.scripture{max-width:820px;width:",
+      "count": 6
+    },
+    "d3561b5c8c579fc6": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": "background: #fff8e7;",
       "count": 1
     },
     "d3c177d3f0d64a23": {
@@ -473,12 +629,24 @@
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".theologian-chat__composer{flex:0 0 auto;border-top:1px solid #ffffff20;padding:.8rem 0 .05rem;display:grid;gap:.42rem;background:linear-gradient(180deg,#343b46",
-      "count": 4
+      "count": 17
     },
     "d71c1cb1474cb447": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": ".theme-card__swatch[data-swatch=\"canonical-paper\"] i:nth-child(3){background:#c9a227}",
+      "count": 1
+    },
+    "d7e53839713b4645": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": "border-color:#555d68;",
+      "count": 1
+    },
+    "d8236343fef11051": {
+      "rule": "css-raw-color",
+      "file": "public/theologian-chat.css",
+      "text": ".study-layout.study-layout--theologian>.guide.guide--study-companion{grid-column:1;grid-row:3;height:auto!important;border:0;border-top:1px solid #ffffff1d;bord",
       "count": 1
     },
     "d8e73b0ad3fe3793": {
@@ -491,7 +659,7 @@
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".guide .guide-head{border-bottom-color:#ffffff20}.guide .guide-head h2,.guide .guide-head button{color:#fff}",
-      "count": 1
+      "count": 2
     },
     "dc4fb5db8dfd9f3d": {
       "rule": "css-raw-color",
@@ -499,11 +667,17 @@
       "text": ".theme-card__swatch[data-swatch=\"monastic-cedar\"] i:nth-child(3){background:#c88a24}",
       "count": 1
     },
+    "e03e52997a9d6c7a": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".study-focus__chrome{background:#303742}.study-layout{grid-template-columns:22px minmax(0,1fr) 300px}.study-folio{background:var(--study-folio)}.study-scene{pad",
+      "count": 2
+    },
     "e42daaa01a3584d5": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "html[data-mode='dark'] .primary{background:var(--chrome-2);color:#f7f7f4;border-bottom-color:#505762}",
-      "count": 1
+      "count": 2
     },
     "e515d14f2987f839": {
       "rule": "css-raw-color",
@@ -575,7 +749,7 @@
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".theologian-chat__toolbar p{margin:0;color:#c8ccd0;font-size:.78rem;line-height:1.4;max-width:36ch}.theologian-chat__new{border:1px solid #737a81;background:tra",
-      "count": 2
+      "count": 4
     },
     "f91184c3af11d46a": {
       "rule": "css-z-index-literal",
@@ -599,7 +773,13 @@
       "rule": "css-raw-color",
       "file": "public/theologian-chat.css",
       "text": ".chat-message__evidence{width:min(34rem,100%);border:1px solid #ffffff20;border-radius:.7rem;background:#292d33}.chat-message__evidence summary{cursor:pointer;p",
-      "count": 1
+      "count": 10
+    },
+    "fec4abdca85ab9c8": {
+      "rule": "css-raw-color",
+      "file": "public/canonical-shelf.css",
+      "text": ".library-first-bookend-space{flex:0 0 6px;min-width:0}.library-first-bookend{width:14px;height:70%;margin-left:8px;background:linear-gradient(90deg,#9e7e00,var(",
+      "count": 2
     }
   }
 }

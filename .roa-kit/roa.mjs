@@ -223,13 +223,17 @@ function assemble() {
     const overridden = current ? ruling.slice(cut + 1) : [];
     for (const r of [...history, ...overridden]) if (!supersededBy.has(r.id)) supersededBy.set(r.id, current ? current.id : `topic:${topic}`);
     const prev = history.at(-1) || null;
-    const view = r => ({ id: r.id, kind: r.kind, date: r.date, text: r.text, by: r.by || null, ...(r.reverts ? { reverts: r.reverts } : {}), ...(r.legacy ? { needsProvenanceReview: true } : {}) });
+    // Compact for agents: the first sentence (max 160 chars); full text lives in the decision log.
+    const brief = t => { const first = String(t).split(/(?<=[.;:])\s/)[0]; return first.length > 160 ? `${first.slice(0, 157)}...` : first; };
+    // Owner decisions carry their text; agent defaults are listed by id (full text in the decision log).
+    const view = r => ({ id: r.id, kind: r.kind, since: r.date, ...(r.kind === 'default' ? {} : { text: brief(r.text) }), ...(r.reverts ? { reverts: r.reverts } : {}), ...(r.legacy ? { needsProvenanceReview: true } : {}) });
+    const ref = r => ({ id: r.id, kind: r.kind, since: r.date });
     const movedAway = !current && ruling.length && ruling.every(r => { const by = decisions.find(d => d.id === supersededBy.get(r.id)); return by && by.topic !== topic; });
-    if ((current || prev) && !movedAway) decisionState[topic] = { current: current ? view(current) : null, previous: prev ? view(prev) : null, prior: history.slice(0, -1).map(r => r.id), ...(overridden.length ? { overriddenDefaults: overridden.map(r => r.id) } : {}) };
+    if ((current || prev) && !movedAway) decisionState[topic] = { current: current ? view(current) : null, previous: prev ? ref(prev) : null, prior: history.slice(0, -1).map(r => r.id), ...(overridden.length ? { overriddenDefaults: overridden.map(r => r.id) } : {}) };
     list.forEach((f, i) => {
       if (f.kind !== 'feedback') return;
       const addressed = list.slice(i + 1).some(r => r.kind === 'decision' || r.kind === 'default');
-      feedback.push({ topic, id: f.id, date: f.date, text: f.text, by: f.by, status: addressed ? 'addressed' : 'open' });
+      feedback.push({ topic, id: f.id, since: f.date, text: f.text.length > 200 ? `${f.text.slice(0, 197)}...` : f.text, status: addressed ? 'addressed' : 'open' });
     });
     for (const ap of list.filter(r => r.kind === 'approval')) approvals.push({ topic, id: ap.id, date: ap.date, scope: ap.scope, text: ap.text, by: ap.by });
   }
@@ -268,7 +272,7 @@ function assemble() {
     superseded: decisions.filter(r => supersededBy.has(r.id)).map(r => r.id),
     open: questions.filter(q => !resolutions.has(q.id)).map(q => ({ id: q.id, kind: q.kind || 'question', text: q.text, owner: q.owner || null, since: q.date, ...(q.kind === 'conflict' ? { request: q.request, source: q.source, sourceText: q.sourceText } : {}) })),
     checks: checks.map(c => ({ id: c.check, text: c.text || c.check, status: c.status })),
-    recent: notes.slice(-10).reverse().map(n => ({ date: n.date, kind: n.kind, text: n.text })),
+    recent: notes.slice(-5).reverse().map(n => ({ date: n.date, kind: n.kind, text: n.text.length > 160 ? `${n.text.slice(0, 157)}...` : n.text })),
     contracts: Object.fromEntries(Object.entries(cl.contracts).map(([n, c]) => [n, { version: c.def.version, description: c.def.description, values: `.roa/values/${n}.json`, outputs: Object.values(c.def.outputs || {}).map(o => o.path) }]))
   };
   return { contracts, manifest, recs, derived, state, decisions, decisionState, feedback, approvals, topics, supersededBy, resolutions, questions, phases, checks, notes, outputs };
@@ -374,9 +378,7 @@ ${s.invariants.map(i => `- ${md(i)}`).join('\n') || 'None recorded.'}
 
 ${s.agentRules.map(i => `- ${md(i)}`).join('\n') || 'None recorded.'}
 ${s.agentDocs.length ? `\n## Further instructions\n\n${s.agentDocs.map(p => `- \`${p}\``).join('\n')}\n` : ''}
-## Commands
-
-${commandsTable(s.commands)}`;
+Project commands are listed in \`.roa/state.json\` (\`commands\`) and README.md.`;
 }
 
 function blockReadme(a) {
