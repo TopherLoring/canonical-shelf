@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "doctrine.difficult-texts.ethics-difficult-texts",
+  "topic": "doctrine.difficult-texts",
+  "date": "2026-09-26",
+  "text": "Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; context never excuses harm; present-day application is evaluated through Jesus' teaching, love of neighbor, and human dignity",
+  "supersedes": [
+    "ethics-difficult-texts"
+  ],
+  "by": "Chris"
+}

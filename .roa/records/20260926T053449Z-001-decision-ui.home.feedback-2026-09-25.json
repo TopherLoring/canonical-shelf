@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "feedback",
+  "id": "ui.home.feedback-2026-09-25",
+  "topic": "ui.home",
+  "date": "2026-09-26",
+  "text": "Home: Prototype B (\"Library First\") was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded",
+  "by": "Chris"
+}

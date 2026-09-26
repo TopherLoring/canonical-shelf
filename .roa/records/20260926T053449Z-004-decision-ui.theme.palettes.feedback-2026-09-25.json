@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "feedback",
+  "id": "ui.theme.palettes.feedback-2026-09-25",
+  "topic": "ui.theme.palettes",
+  "date": "2026-09-26",
+  "text": "The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign",
+  "by": "Chris"
+}

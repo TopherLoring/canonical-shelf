@@ -13,7 +13,7 @@
 Decisions, open questions, phases, checks, and changelog notes live in `.roa/records/` and are append-only. Generated documents are rebuilt from them; never edit those by hand.
 
 ```sh
-node .roa-kit/roa.mjs decide "What was decided" --id short-slug --why "Reason"
+node .roa-kit/roa.mjs decide "What was decided" --topic area.subject --by <owner> --kind decision --why "Reason"
 node .roa-kit/roa.mjs note fixed "What changed for users"
 node .roa-kit/roa.mjs verify
 ```

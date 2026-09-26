@@ -3,9 +3,12 @@
 <!-- roa:begin roa-agents — GENERATED, do not edit inside this block -->
 ## Start here (for AI agents)
 
-1. Read `.roa/state.json` first. It is the compact, current source of truth for identity, commands, map, invariants, phase, decisions, and open questions.
-2. The latest active decision overrides older documents. Treat anything in `superseded` as history only.
-3. Do not act on an open question; ask the owner (Chris).
+1. Read `.roa/state.json` first. It is the compact, current source of truth for identity, commands, map, invariants, phase, decisions by topic, open feedback, and open questions.
+2. **The owner's current request outranks every document**, including generated docs and recorded decisions. Documents never block or silently reshape an owner request.
+3. **When a request contradicts a document or recorded decision, say so explicitly**: quote the request, the conflicting source and its text, and the effect of each choice, then ask the owner to approve or reject. Never silently follow the document and never silently override it. Record it with `node .roa-kit/roa.mjs ask "..." --id slug --kind conflict --request "..." --source path-or-id --source-text "..."` and close it with `resolve` plus a decision.
+4. For each topic, the owner's latest **decision** is current. Previous and prior entries are history; never restore them unless the owner decides it. An owner decision that changes or reverts the current state takes effect when recorded; never ask the owner to reconfirm it.
+5. Only **decision** records and in-scope **approval** records by the owner (Chris) bind. An approval ("yes", "proceed", "approved") covers only the proposal it answered. **Feedback** ("I don't like X") means adjust X; it never locks X out or mandates a replacement. **Defaults** are agent engineering choices: overridable and never attributed to the owner.
+6. Never record an owner decision you inferred from an approval or feedback. Do not act on an open question; ask the owner.
 
 ## Rules for project records
 
@@ -13,7 +16,8 @@
 - **Never edit or delete files in `.roa/records/`.** They are append-only. Change a decision by recording a new one that supersedes it.
 - **Never edit `.roa/manifest.json`** unless the owner explicitly instructs it in the current task.
 - Record facts only when the owner has stated them or the work completed them:
-  - `node .roa-kit/roa.mjs decide "text" --id slug [--supersedes id] [--why "..."]`
+  - `node .roa-kit/roa.mjs decide "text" --topic dotted.topic --by <who> --kind <decision|approval|feedback|default> [--id slug] [--scope proposal] [--reverts id] [--why "..."]`
+    (decision, approval, feedback: only what the owner actually said, --by the owner; default: your own engineering choice, --by your agent name)
   - `node .roa-kit/roa.mjs ask "question" --id slug [--owner name]`
   - `node .roa-kit/roa.mjs resolve <question-id> "answer" [--decision id]`
   - `node .roa-kit/roa.mjs phase <id> <planned|active|blocked|done|dropped> [--name "..."]`

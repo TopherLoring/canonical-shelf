@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "plan.autonomy.2026-09-26",
+  "topic": "plan.autonomy",
+  "date": "2026-09-26",
+  "text": "Keep working without asking for explicit approval, following everything discussed through 2026-09-26 (roa kit v1.1 DAG, curriculum design, data and anchoring work)",
+  "scope": "roa-kit-v1.1-dag and the Canonical Shelf plans discussed on 2026-09-25/26",
+  "by": "Chris"
+}

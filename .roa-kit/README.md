@@ -17,6 +17,10 @@ Contract-first project state for any git repository. Every project keeps the sam
 
 Managed blocks sit between `<!-- roa:begin ... -->` and `<!-- roa:end ... -->`. Text outside a block is yours and is never touched.
 
+## Authority model
+
+The owner's current request outranks every document. Contradictions are raised explicitly (a `conflict` question) and closed by an owner decision. Per topic, the owner's latest decision is current; previous and prior entries are history and changes or reverts need no reconfirmation. Only owner decisions and in-scope approvals bind; feedback and agent defaults never lock anything. `verify` rejects owner-kind records not attributed to the owner and defaults attributed to the owner.
+
 ## Inputs
 
 **Authored (by the owner)**
@@ -25,8 +29,8 @@ Managed blocks sit between `<!-- roa:begin ... -->` and `<!-- roa:end ... -->`. 
 
 | Record | Purpose | Command |
 |---|---|---|
-| decision | A choice that governs the project; may supersede earlier ones | `decide "text" --id slug [--supersedes a,b] [--why "..."]` |
-| question | An open question waiting on someone | `ask "question" --id slug [--owner name]` |
+| decision | Grouped by `--topic`; `--kind decision` (owner statement, binding; latest per topic is current), `approval` (owner yes to a `--scope`d proposal only), `feedback` (owner dislike: adjust, never lock), `default` (agent engineering choice, overridable). `--reverts id` restores an earlier state without retyping | `decide "text" --topic a.b --by name --kind decision [--id slug] [--scope p] [--reverts id] [--why "..."]` |
+| question | An open question; `--kind conflict` records an owner request that contradicts a document or decision, with both sides quoted | `ask "question" --id slug [--owner name] [--kind conflict --request .. --source .. --source-text ..]` |
 | resolution | Closes a question, optionally linking the decision | `resolve <question-id> "answer" [--decision id]` |
 | phase | Work phase status: planned, active, blocked, done, dropped | `phase <id> <status> [--name "..."]` |
 | check | Readiness or audit check: open, pass, fail, waived | `check <id> <status> [--text "..."]` |

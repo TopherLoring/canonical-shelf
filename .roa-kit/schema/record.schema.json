@@ -4,22 +4,220 @@
   "title": "project-roa-kit record (.roa/records/*.json)",
   "description": "Append-only. Never edit or delete; supersede with a new record.",
   "type": "object",
-  "required": ["type", "date"],
+  "required": [
+    "type",
+    "date"
+  ],
   "properties": {
-    "type": { "enum": ["decision", "question", "resolution", "phase", "check", "note"] },
-    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-    "by": { "type": "string" }
+    "type": {
+      "enum": [
+        "decision",
+        "question",
+        "resolution",
+        "phase",
+        "check",
+        "note"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "by": {
+      "type": "string"
+    }
   },
   "oneOf": [
-    { "properties": { "type": { "const": "decision" }, "id": { "$ref": "#/$defs/id" }, "text": { "$ref": "#/$defs/text" }, "rationale": { "type": "string" }, "supersedes": { "type": "array", "items": { "$ref": "#/$defs/id" } } }, "required": ["id", "text"] },
-    { "properties": { "type": { "const": "question" }, "id": { "$ref": "#/$defs/id" }, "text": { "$ref": "#/$defs/text" }, "owner": { "type": "string" } }, "required": ["id", "text"] },
-    { "properties": { "type": { "const": "resolution" }, "question": { "$ref": "#/$defs/id" }, "text": { "$ref": "#/$defs/text" }, "decision": { "$ref": "#/$defs/id" } }, "required": ["question", "text"] },
-    { "properties": { "type": { "const": "phase" }, "phase": { "$ref": "#/$defs/id" }, "status": { "enum": ["planned", "active", "blocked", "done", "dropped"] }, "name": { "type": "string" } }, "required": ["phase", "status"] },
-    { "properties": { "type": { "const": "check" }, "check": { "$ref": "#/$defs/id" }, "status": { "enum": ["open", "pass", "fail", "waived"] }, "text": { "type": "string" } }, "required": ["check", "status"] },
-    { "properties": { "type": { "const": "note" }, "kind": { "enum": ["added", "changed", "fixed", "removed", "security", "deprecated"] }, "text": { "$ref": "#/$defs/text" } }, "required": ["kind", "text"] }
+    {
+      "properties": {
+        "type": {
+          "const": "decision"
+        },
+        "kind": {
+          "enum": [
+            "decision",
+            "approval",
+            "feedback",
+            "default"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "topic": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "reverts": {
+          "$ref": "#/$defs/id"
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "kind",
+        "topic",
+        "by"
+      ],
+      "description": "decision/approval/feedback: by the owner; default: by an agent; approval requires scope"
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "question"
+        },
+        "kind": {
+          "enum": [
+            "question",
+            "conflict"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "request": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "sourceText": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "description": "kind=conflict requires request, source, sourceText"
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "resolution"
+        },
+        "question": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "decision": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "question",
+        "text"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "phase"
+        },
+        "phase": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "active",
+            "blocked",
+            "done",
+            "dropped"
+          ]
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "phase",
+        "status"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "check"
+        },
+        "check": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "pass",
+            "fail",
+            "waived"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "check",
+        "status"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "note"
+        },
+        "kind": {
+          "enum": [
+            "added",
+            "changed",
+            "fixed",
+            "removed",
+            "security",
+            "deprecated"
+          ]
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "kind",
+        "text"
+      ]
+    }
   ],
   "$defs": {
-    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{0,63}$" },
-    "text": { "type": "string", "minLength": 1 }
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9.-]{0,63}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    }
   }
 }

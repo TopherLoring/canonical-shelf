@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.theme.default.default-theme-scholarly-graphite",
+  "topic": "ui.theme.default",
+  "date": "2026-09-26",
+  "text": "Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts",
+  "supersedes": [
+    "default-theme-scholarly-graphite"
+  ],
+  "by": "Claude"
+}

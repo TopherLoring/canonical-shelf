@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian.review.theologian-review",
+  "topic": "theologian.review",
+  "date": "2026-09-26",
+  "text": "Each Theologian response has thumbs up/down and a flag. Flag reasons: disagreement, profound, very helpful, misguided, inappropriate, contrary to Scripture; an authored reason is mandatory; saved to the feedback database tied to the Theologian with the two most recent prompts, the prior response, and screen context",
+  "rationale": "Supersedes accepting blank explanations and single-question snapshots",
+  "supersedes": [
+    "theologian-review"
+  ],
+  "by": "Chris"
+}

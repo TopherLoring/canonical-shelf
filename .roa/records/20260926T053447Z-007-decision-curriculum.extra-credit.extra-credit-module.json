@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.extra-credit.extra-credit-module",
+  "topic": "curriculum.extra-credit",
+  "date": "2026-09-26",
+  "text": "Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary)",
+  "supersedes": [
+    "extra-credit-module"
+  ],
+  "by": "Chris"
+}
