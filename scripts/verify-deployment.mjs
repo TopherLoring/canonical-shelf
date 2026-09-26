@@ -1,6 +1,7 @@
-const origin=(process.env.CANONICAL_ORIGIN||'https://the-canonical-shelf.christopherwonder.workers.dev').replace(/\/$/,'');
+const origin=(process.env.CANONICAL_ORIGIN||'').replace(/\/$/,'');
 const expectedRelease=process.env.GITHUB_SHA||'';
 if(!origin)throw new Error('CANONICAL_ORIGIN is required for deployment verification');
+if(!expectedRelease)throw new Error('GITHUB_SHA is required for deployment verification');
 
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
@@ -25,7 +26,7 @@ async function fetchWithRetry(path,{attempts=10,delay=3000,init={}}={}){
 const healthResponse=await fetchWithRetry('/api/health');
 const health=await healthResponse.json();
 if(health?.service!=='the-canonical-shelf')throw new Error(`health check reported unexpected service ${health?.service}`);
-if(expectedRelease&&health?.release!==expectedRelease)throw new Error(`deployed release ${health?.release||'(missing)'} does not match GitHub SHA ${expectedRelease}`);
+if(health?.release!==expectedRelease)throw new Error(`deployed release ${health?.release||'(missing)'} does not match GitHub SHA ${expectedRelease}`);
 for(const binding of ['assets','db','ai'])if(health?.bindings?.[binding]!==true)throw new Error(`health check reports missing ${binding} binding`);
 if(health?.origin!==origin)throw new Error(`health check origin ${health?.origin||'(missing)'} does not match ${origin}`);
 
