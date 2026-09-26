@@ -12,7 +12,7 @@
 
 ## Rules for project records
 
-- **Never edit generated files by hand:** `.roa/state.json`, `CHANGELOG.md`, `docs/STATUS.md`, `docs/DECISIONS.md`, and every `<!-- roa:begin -->` block. CI regenerates and rejects hand edits.
+- **Never edit generated files by hand:** `.roa/state.json`, `CHANGELOG.md`, `docs/STATUS.md`, `docs/v7/DECISION_PRECEDENCE.md`, and every `<!-- roa:begin -->` block. CI regenerates and rejects hand edits.
 - **Never edit or delete files in `.roa/records/`.** They are append-only. Change a decision by recording a new one that supersedes it.
 - **Never edit `.roa/manifest.json`** unless the owner explicitly instructs it in the current task.
 - Record facts only when the owner has stated them or the work completed them:

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "privacy.retention.from-precedence-doc",
+  "topic": "privacy.retention",
+  "date": "2026-09-24",
+  "text": "Feedback retention: unresolved feedback up to 24 months; resolved feedback up to 12 months after resolution; optional contact information removed or anonymized within 90 days of resolution unless a documented exception applies; the routing key ends with the record. Enforced in code, not only documented",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

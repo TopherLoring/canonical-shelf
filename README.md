@@ -228,5 +228,5 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `.roa/` — Project records and generated state (project-roa-kit)
 - `.roa-kit/` — Vendored project-roa-kit
 
-Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/DECISIONS.md](docs/DECISIONS.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
+Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
 <!-- roa:end roa-readme -->

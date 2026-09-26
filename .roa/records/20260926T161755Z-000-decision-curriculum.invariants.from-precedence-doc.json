@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "curriculum.invariants.from-precedence-doc",
+  "topic": "curriculum.invariants",
+  "date": "2026-09-24",
+  "text": "Durable curriculum requirements: Topics sit outside completion; inherited stable learner and activity IDs; deterministic completion-bearing assessment; spaced review and retention; questions-first spiral learning; assessment of understanding and reasoning, never personal theological assent. Curriculum counts are descriptive data, not constants",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

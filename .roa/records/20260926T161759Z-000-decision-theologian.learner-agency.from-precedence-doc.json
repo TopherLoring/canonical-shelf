@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "theologian.learner-agency.from-precedence-doc",
+  "topic": "theologian.learner-agency",
+  "date": "2026-09-24",
+  "text": "Learner agency is a hard requirement: the learner remains the decision-maker. The Theologian informs, compares, contextualizes, challenges reasoning, and labels Canonical Shelf's own position; it never pressures agreement on genuinely contested issues. Viewpoint, translation, and evidence-strength differences stay visible",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

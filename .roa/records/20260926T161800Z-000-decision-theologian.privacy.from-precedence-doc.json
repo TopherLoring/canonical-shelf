@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "theologian.privacy.from-precedence-doc",
+  "topic": "theologian.privacy",
+  "date": "2026-09-24",
+  "text": "Cloud Theologian requests may include the current question, bounded recent conversation, current route or activity label, and allowlisted aggregate study-state context. They exclude Journal text, lesson notes, reflection writing, account or profile identifiers, feedback content, and inferred beliefs, denomination, sexuality, or other sensitive traits. Ordinary conversation is not persisted server-side; an explicit feedback submission is the only exception",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

@@ -116,5 +116,10 @@
       "file": "public/practice.html",
       "message": "single-page app: no top-level route documents"
     }
-  ]
+  ],
+  "outputs": {
+    "decisions": {
+      "path": "docs/v7/DECISION_PRECEDENCE.md"
+    }
+  }
 }
