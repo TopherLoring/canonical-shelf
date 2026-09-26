@@ -62,4 +62,5 @@ None declared in an env example file.
 | `prepare` | `git config core.hooksPath .githooks \|\| true` |
 | `roa` | `node .roa-kit/roa.mjs` |
 | `roa:verify` | `node .roa-kit/roa.mjs verify` |
+| `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
 <!-- roa:end roa-contributing -->

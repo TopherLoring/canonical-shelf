@@ -5,6 +5,10 @@ Latest decisions first. A decision stays in force until a later record supersede
 
 ## Decisions
 
+### [default, by agent] BSB source files are not committed. scripts/fetch-bsb-sources.mjs (bun run data:fetch) downloads bsb_tables.tsv, bsb_concordance.xlsx, and bsb_topical_index.xlsx from bereanbible.com into data/source and verifies pinned SHA-256 hashes (matching Chris's local copies). public/data/corpus.txt stays the reading-text authority; bible.db from the TSV is used for verse-address validation and structure, because its reconstructed verse text differs from the published reading text in 20,888 verses (bracketed implied words, ellipsis artifacts)
+
+- **ID:** `bsb-source-hosting-fetch` · **Date:** 2026-09-26 · **Status:** active · **By:** Claude
+
 ### [default, by agent] Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names
 
 - **ID:** `data-dictionary` · **Date:** 2026-09-26 · **Status:** active · **By:** Claude
@@ -137,6 +141,7 @@ Latest decisions first. A decision stays in force until a later record supersede
 
 ## Resolved questions
 
+- 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)
 - 2026-09-25: **Which theme is the site-wide default: dark (Home) or light (inner pages)?** → Recorded as an agent default (scholarly-graphite, light) pending Chris's visual redesign; not an owner decision (decision `default-theme-scholarly-graphite`)
 
 ---

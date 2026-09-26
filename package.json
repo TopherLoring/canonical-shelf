@@ -39,7 +39,8 @@
     "data:generate:apparatus": "bun scripts/generate-exegetical-apparatus.mjs",
     "prepare": "git config core.hooksPath .githooks || true",
     "roa": "node .roa-kit/roa.mjs",
-    "roa:verify": "node .roa-kit/roa.mjs verify"
+    "roa:verify": "node .roa-kit/roa.mjs verify",
+    "data:fetch": "bun scripts/fetch-bsb-sources.mjs"
   },
   "dependencies": {
     "better-auth": "1.7.5",

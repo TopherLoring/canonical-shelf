@@ -213,6 +213,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `prepare` | `git config core.hooksPath .githooks \|\| true` |
 | `roa` | `node .roa-kit/roa.mjs` |
 | `roa:verify` | `node .roa-kit/roa.mjs verify` |
+| `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
 
 ## Repository map
 

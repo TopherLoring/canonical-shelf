@@ -8,7 +8,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 ## Open questions
 
 - **Visual direction for the redesign: refine the current scholarly look, one of Gemini's three concepts, or a new reference?** (`visual-direction`, owner: Chris, since 2026-09-25)
-- **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** (`bsb-source-hosting`, owner: Chris, since 2026-09-25)
 - **[proposal] Library metaphor throughout: card-catalog drawers for topics/categories, arcade games in drawers, books checked out into the reader (leave a visible gap on the shelf), a return cart for replaced books, sessions reset the shelf. Adopt?** (`library-metaphor`, owner: Chris, since 2026-09-25)
 - **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** (`curriculum-design`, owner: Chris, since 2026-09-26)
 
@@ -65,6 +64,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - 2026-09-26: [decision] Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. Each entry is tied to a specific outline anchor (lesson and section) and is generated on that same course step, alongside the lesson content it supports (`apparatus-anchoring`)
 - 2026-09-26: [decision] One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back (`universal-anchoring`)
 - 2026-09-26: [default, by agent] Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names (`data-dictionary`)
+- 2026-09-26: [default, by agent] BSB source files are not committed. scripts/fetch-bsb-sources.mjs (bun run data:fetch) downloads bsb_tables.tsv, bsb_concordance.xlsx, and bsb_topical_index.xlsx from bereanbible.com into data/source and verifies pinned SHA-256 hashes (matching Chris's local copies). public/data/corpus.txt stays the reading-text authority; bible.db from the TSV is used for verse-address validation and structure, because its reconstructed verse text differs from the published reading text in 20,888 verses (bracketed implied words, ellipsis artifacts) (`bsb-source-hosting-fetch`)
 
 Full history: [DECISIONS.md](DECISIONS.md) · [CHANGELOG.md](../CHANGELOG.md)
 
