@@ -3,6 +3,12 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-26
+
+### Decided
+
+- [decision] Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only
+
 ## 2026-09-25
 
 ### Milestones

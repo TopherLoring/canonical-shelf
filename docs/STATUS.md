@@ -61,6 +61,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - 2026-09-25: [decision] Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions (`decision-authority`)
 - 2026-09-25: [default, by agent] Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts (`default-theme-scholarly-graphite`)
 - 2026-09-25: [default, by agent] Generated curriculum content is reviewed before learners see it (`generated-content-review`)
+- 2026-09-26: [decision] Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only (`lesson-authoring-model`)
 
 Full history: [DECISIONS.md](DECISIONS.md) · [CHANGELOG.md](../CHANGELOG.md)
 
