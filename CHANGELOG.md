@@ -8,6 +8,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - [decision] Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only
+- [decision] Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. Each entry is tied to a specific outline anchor (lesson and section) and is generated on that same course step, alongside the lesson content it supports
 
 ## 2026-09-25
 
