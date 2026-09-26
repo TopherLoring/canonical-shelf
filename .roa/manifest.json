@@ -63,7 +63,11 @@
       "scripts/",
       "worker/"
     ],
-    "allow": [],
+    "allow": [
+      "scripts/build-bsb-json.mjs",
+      "scripts/fetch-bsb-sources.mjs",
+      "scripts/lib/bible-books.mjs"
+    ],
     "exclude": [
       "public/data/",
       "public/generated/"
