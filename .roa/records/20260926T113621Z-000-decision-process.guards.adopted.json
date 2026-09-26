@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "process.guards.adopted",
+  "topic": "process.guards",
+  "date": "2026-09-26",
+  "text": "Guards are on for public/, scripts/, and worker/ with a shrink-only baseline; the retired files from the old rules document are forbidden as engineering defaults",
+  "by": "Claude"
+}

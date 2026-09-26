@@ -74,6 +74,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
 
+### `design.layout-contract`
+
+- **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
+  The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile
+
 ### `doctrine.difficult-texts`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `doctrine.difficult-texts.ethics-difficult-texts`
@@ -260,6 +265,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `process.decision-authority.decision-authority`
   Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions
+
+### `process.guards`
+
+- **Current** · 2026-09-26 · Agent default (Claude) · `process.guards.adopted`
+  Guards are on for public/, scripts/, and worker/ with a shrink-only baseline; the retired files from the old rules document are forbidden as engineering defaults
 
 ### `process.project-state`
 

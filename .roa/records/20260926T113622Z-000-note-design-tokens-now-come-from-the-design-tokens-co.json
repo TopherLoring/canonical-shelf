@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-09-26",
+  "text": "Design tokens now come from the design-tokens contract (public/design-tokens.css); zero visual change verified across 3,960 computed values; default theme set to scholarly-graphite"
+}

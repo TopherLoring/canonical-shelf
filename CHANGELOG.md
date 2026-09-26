@@ -43,10 +43,16 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Generated curriculum content is reviewed before learners see it (agent default) (supersedes generated-content-review)
 - Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names (agent default) (supersedes data-dictionary)
 - BSB source files are not committed. scripts/fetch-bsb-sources.mjs (bun run data:fetch) downloads bsb_tables.tsv, bsb_concordance.xlsx, and bsb_topical_index.xlsx from bereanbible.com into data/source and verifies pinned SHA-256 hashes (matching Chris's local copies). public/data/corpus.txt stays the reading-text authority; bible.db from the TSV is used for verse-address validation and structure, because its reconstructed verse text differs from the published reading text in 20,888 verses (bracketed implied words, ellipsis artifacts) (agent default) (supersedes bsb-source-hosting-fetch)
+- The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile (agent default)
+- Guards are on for public/, scripts/, and worker/ with a shrink-only baseline; the retired files from the old rules document are forbidden as engineering defaults (agent default)
 
 ### Added
 
 - Machine-readable Bible: public/data/bsb.json (66 books, 1,189 chapters, 31,086 verses, 3,104 section headings) built by bun run data:build:bsb from corpus.txt, bible.db headings, and library-data book metadata
+
+### Changed
+
+- Design tokens now come from the design-tokens contract (public/design-tokens.css); zero visual change verified across 3,960 computed values; default theme set to scholarly-graphite
 
 ## 2026-09-25
 
