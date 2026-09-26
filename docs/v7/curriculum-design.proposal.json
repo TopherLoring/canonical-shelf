@@ -1,0 +1,96 @@
+{
+  "status": "proposal — awaiting Chris approval; nothing restructured until approved",
+  "date": "2026-09-25",
+  "inputs": {
+    "learner": "Primary: graduate-level adult who recently came to faith; eager, analytical, near-zero biblical literacy; anxious that nuance means the faith is 'made up'; reads sequentially from wherever he lands and takes questions to a general chatbot. Also: casual adult learners; existing Christians and study groups.",
+    "site_intent": "A connected library: full reader with a map, guided modules, and a Theologian that answers from the passage in front of the learner.",
+    "teaching_decisions": ["teaching-approach", "doctrine-trinity-incarnation", "ethics-difficult-texts", "prayer-miracles-healing", "spiritual-warfare", "module1-opening", "curriculum-four-modules", "extra-credit-module", "excluded-gospels-coverage", "navigation-hierarchy"]
+  },
+  "unit_pattern": {
+    "intro": "The question this unit answers, why it matters, and where it sits on the map (era, genre, place in the story)",
+    "substance": "Primary reading, then lessons; each reading skill is taught the first time a passage needs it; one visual anchor per unit",
+    "checks": "Teach one idea, then check it immediately; checks placed by subject fit, never batched at the end; no repeated items across units",
+    "summary": "What you now know, what Christians still debate, and which question carries forward",
+    "apparatus": "Footnotes/details: excluded gospels, Apocrypha, manuscript notes, extra-canonical sources, clearly labeled as outside the canon",
+    "skip": "Placement check per unit ('prove it to skip') for existing Christians; skipping is allowed in both directions"
+  },
+  "breadth": "Module 1 is narrow and guided; each module widens scope, sources, and interpretive disagreement",
+  "modules": [
+    {
+      "id": "m1", "title": "Hermeneutics & Canon — through the story",
+      "units": [
+        {"from": "c1.christianity", "note": "Start Here; open with the 1 Corinthians 15 central-story lesson"},
+        {"new": "m1.hard-questions", "title": "The questions that worry new readers", "lessons": ["Fact, allegory, and hyperbole: genre decides the claim", "Prophecy: forth-telling before foretelling", "Jonah: satire, history, and the point that holds either way", "Goliath: ancient champion combat and differing manuscripts"], "note": "Brief answers with a promise of depth later"},
+        {"from": "c1.bible", "note": "The Bible as a library: shelf, genres, navigation; include the 'library' lesson from c1.reading"},
+        {"from": "c1.story", "note": "Story in one view, then Genesis through Abraham; reading skills (context, genre) taught inside these lessons"}
+      ]
+    },
+    {
+      "id": "m2", "title": "The Hebrew Scriptures & the Near Eastern World",
+      "units": [
+        {"from": "c2.exodus"}, {"from": "c2.sinai", "note": "Law genre taught here"}, {"from": "c2.tabernacle"}, {"from": "c2.sacrifice"},
+        {"from": "c2.land-kings", "note": "Difficult-texts touchpoint: conquest violence (ethics-difficult-texts decision)"},
+        {"from": "c2.temple-kingdom"},
+        {"new": "m2.wisdom", "title": "Wisdom and worship", "note": "Psalms, Proverbs, Job, Ecclesiastes and Song after the monarchy; poetry genre taught here; source lessons exist in content/vendor/legacy (foundations-units-02-08.js)"},
+        {"from": "c2.prophets-exile", "note": "Prophecy genre taught here"},
+        {"from": "c2.restoration-hope", "note": "Apocalyptic genre introduced with Daniel"}
+      ]
+    },
+    {
+      "id": "m3", "title": "Second Temple Judaism & the Christ Event",
+      "units": [
+        {"from": ["c3.after-exile", "c3.greek-world", "c3.hasmonean-rome"], "note": "Compressed bridge: why Rome, why Pharisees, what messianic hope; Hasmonean lessons get a canonical anchor plus 1 Maccabees as a labeled extra-canonical source"},
+        {"from": "c3.jewish-life"}, {"from": "c3.expectation"},
+        {"from": ["c3.enter-gospels", "c4.gospels", "c1.transmission", "c5.transmission", "c5.translation"], "note": "Where the Gospels begin, manuscripts and translation become real questions"},
+        {"from": "c4.kingdom"}, {"from": "c4.teaching"}, {"from": "c4.israel-story"},
+        {"from": "c4.passion", "note": "Apparatus: Gospel of Judas, Gospel of Peter"},
+        {"from": "c4.pentecost"},
+        {"new": "m3.letters", "title": "Reading somebody else's mail", "note": "Author, audience, crisis, then theology; absorbs c1.reading lessons 'audience', 'context', 'application' whose readings are already Pauline"},
+        {"from": "c4.paul-gentiles", "note": "Difficult-texts touchpoint: restrictions on women"},
+        {"from": "c4.expansion"}, {"from": ["c5.intertext", "c5.gospel-letters"]}
+      ]
+    },
+    {
+      "id": "m4", "title": "Systematic Synthesis, Hard Ethics & Living Practice",
+      "units": [
+        {"from": ["c1.theology", "c6.god-christ"], "note": "Trinity and incarnation per doctrine decision; no 'just accept it' explanations"},
+        {"from": "c6.sin-salvation"},
+        {"from": "c6.providence-life", "note": "Prayer, miracles, healing per decision"},
+        {"from": ["c1.practice", "c6.church-practice"]},
+        {"from": ["c1.traditions", "c6.traditions"]},
+        {"from": "c6.difficult", "note": "Synthesis of touchpoints met earlier; spiritual warfare per decision"},
+        {"from": "c5.interpretation", "note": "Capstone skill: build and defend an interpretation"},
+        {"from": "c6.final-hope", "note": "Resurrection, Revelation, new creation; apparatus: Gospel of Mary at resurrection appearances"}
+      ]
+    },
+    {
+      "id": "x1", "title": "Extra credit: Beyond the canon",
+      "optional": true,
+      "units": [
+        {"new": "x1.apocrypha", "title": "Apocrypha and Deuterocanon: why Bibles differ"},
+        {"new": "x1.canon-history", "title": "How the canon formed: councils, lists, and manuscript selection"},
+        {"new": "x1.excluded-gospels", "title": "The gospels that were left out", "lessons": ["Thomas", "Peter", "Mary", "Judas", "Infancy gospels (James, Thomas)", "Philip and the Nag Hammadi library"]}
+      ]
+    }
+  ],
+  "apparatus_placements": [
+    {"at": "nativity lessons", "source": "Infancy Gospel of James; Infancy Gospel of Thomas"},
+    {"at": "c4.kingdom / c4.teaching", "source": "Gospel of Thomas (sayings)"},
+    {"at": "c4.passion", "source": "Gospel of Judas; Gospel of Peter"},
+    {"at": "resurrection appearances", "source": "Gospel of Mary"},
+    {"at": "Genesis 6 and Jude", "source": "1 Enoch"},
+    {"at": "c3.hasmonean-rome", "source": "1–2 Maccabees"}
+  ],
+  "gaps_found": [
+    "No wisdom-literature unit exists in the current catalog",
+    "c1.synthesis and c5.transmission have zero lessons",
+    "c3-alexander-hellenization, c3-hasmoneans, c3-essenes-qumran have no primary reading",
+    "c4.kingdom and c4.pentecost have one lesson each",
+    "No unit reads Revelation directly"
+  ],
+  "migration": {
+    "ids": "Lesson and activity IDs stay stable; only unit membership and order change",
+    "progress": "Course-level progress and capstones are remapped to modules; lesson progress is untouched",
+    "sequence": "Record-level approval first; then data restructure; then unit rewrites to the unit_pattern, module by module starting with m1"
+  }
+}

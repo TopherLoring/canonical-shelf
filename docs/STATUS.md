@@ -10,6 +10,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Visual direction for the redesign: refine the current scholarly look, one of Gemini's three concepts, or a new reference?** (`visual-direction`, owner: Chris, since 2026-09-25)
 - **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** (`bsb-source-hosting`, owner: Chris, since 2026-09-25)
 - **[proposal] Library metaphor throughout: card-catalog drawers for topics/categories, arcade games in drawers, books checked out into the reader (leave a visible gap on the shelf), a return cart for replaced books, sessions reset the shelf. Adopt?** (`library-metaphor`, owner: Chris, since 2026-09-25)
+- **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** (`curriculum-design`, owner: Chris, since 2026-09-26)
 
 ## Phases
 
