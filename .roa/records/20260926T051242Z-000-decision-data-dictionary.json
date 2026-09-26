@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "data-dictionary",
+  "date": "2026-09-26",
+  "text": "[default, by agent] Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names",
+  "by": "Claude"
+}

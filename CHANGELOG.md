@@ -10,6 +10,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - [decision] Learner-facing content is authored from a basic outline, in lesson sequence; each lesson is written from beginning to end as continuous prose (intro, substance, summary, with checks placed inline where they belong), never assembled from fragments. Metadata and contracts attach to whole lessons for structure, navigation, and validation only
 - [decision] Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. Each entry is tied to a specific outline anchor (lesson and section) and is generated on that same course step, alongside the lesson content it supports
 - [decision] One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
+- [default, by agent] Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names
 
 ## 2026-09-25
 

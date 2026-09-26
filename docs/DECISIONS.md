@@ -5,6 +5,10 @@ Latest decisions first. A decision stays in force until a later record supersede
 
 ## Decisions
 
+### [default, by agent] Internal field names follow docs/v7/data-dictionary.json (one canonical term per concept, aliases mapped from bible.db, concordance.db, crossref shards, catalog, structure.mjs, library-data.js, .src-archived schema and knowledge model, journal keys, D1). The course catalog contract uses these names
+
+- **ID:** `data-dictionary` · **Date:** 2026-09-26 · **Status:** active · **By:** Claude
+
 ### [decision] One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
 
 - **ID:** `universal-anchoring` · **Date:** 2026-09-26 · **Status:** active · **By:** Chris
