@@ -88,6 +88,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theologian.privacy` | undefined | Agent default | undefined |
 | `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
 | `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
+| `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |

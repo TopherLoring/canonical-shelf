@@ -101,6 +101,22 @@ test('Theologian opens as a fixed chat panel with a conversation menu, and close
   await expect(flag.locator('textarea[name=message]')).toHaveAttribute('required','');
 });
 
+test('cross-references are the last, collapsed detail level of the Reading Desk and list plain verse addresses',async({page})=>{
+  await page.goto('/bible?book=43&chapter=3');
+  const desk=page.locator('.library-reader-panel');
+  await expect(desk.locator(':scope > details').last()).toHaveClass(/reader-crossrefs/);
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  const summary=desk.locator('[data-xref-summary]');
+  await expect(summary).toContainText('John 3:16');
+  await expect(desk.locator('details.reader-crossrefs')).not.toHaveAttribute('open','');
+  await summary.click();
+  const links=desk.locator('.xref-link');
+  await expect(links.first()).toBeVisible();
+  await expect(desk.locator('details.reader-crossrefs')).not.toContainText('Citation');
+  expect(Number(await links.first().evaluate(el=>getComputedStyle(el).fontWeight))).toBeLessThanOrEqual(500);
+  await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');

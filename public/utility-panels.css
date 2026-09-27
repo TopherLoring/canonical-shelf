@@ -49,3 +49,9 @@ html[data-mode='dark'] .feedback-open:hover,html[data-mode='dark'] .feedback-ope
 .study-notes__flag{display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:var(--color-gilt);color:var(--chrome);font:700 .68rem/1.4 var(--font-meta)}
 .study-notes__anchor,.study-notes__discuss,.study-notes__row{color:inherit}
 .study-apparatus .study-notes__anchor{opacity:.9}
+
+/* Cross-references: plain verse addresses, regular weight, one per row. */
+.xref-list{list-style:none;margin:.35rem 0 0;padding:0;display:grid;gap:.3rem}
+.xref-link{display:block;padding:.35rem .6rem;border:1px solid var(--color-border-default);border-radius:6px;background:var(--color-surface-subtle);color:var(--color-text-primary);font-weight:400;font-size:.86rem;line-height:1.35;text-decoration:none}
+.xref-link:hover,.xref-link:focus-visible{border-color:var(--color-accent-primary);text-decoration:underline;text-underline-offset:2px}
+.xref-empty{margin:.25rem 0;font-size:.82rem;color:var(--color-text-secondary)}

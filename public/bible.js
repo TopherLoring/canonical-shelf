@@ -78,7 +78,7 @@ function profileDrawer(text,bn,params,esc){
 function bookNotes(book,chapter,esc){
   const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era),themes=(book.threads||[]).map(thread=>THREADS[thread]||thread);
   const module=(title,body,open=false)=>`<details ${open?'open':''}><summary>${esc(title)}</summary><div>${body}</div></details>`;
-  return `<aside class="library-reader-panel" aria-label="Reading Desk"><header><p class="eyebrow">Reading context</p><h2>Reading Desk</h2><p class="session-context-note">Select a verse to attach a note to it; without a selection, notes attach to the chapter.</p><section class="study-notes" data-notes-mount aria-label="Your notes"></section></header>${module('Cross-references',`<div id="v5-crossref-panel" class="reader-crossref-panel"><p class="session-context-note" style="margin:0 0 0.5rem;">Select any verse to inspect parallel citations.</p><div id="v5-crossref-list"></div><p class="session-context-note">Cross-references courtesy of <a href="https://www.openbible.info/labs/cross-references/" rel="noopener">OpenBible.info</a> (CC-BY).</p></div>`,true)}${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}</aside>`;
+  return `<aside class="library-reader-panel" aria-label="Reading Desk"><header><p class="eyebrow">Reading context</p><h2>Reading Desk</h2><p class="session-context-note">Select a verse to attach a note to it; without a selection, notes attach to the chapter.</p><section class="study-notes" data-notes-mount aria-label="Your notes"></section></header>${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}<details class="reader-crossrefs"><summary data-xref-summary>Cross-references</summary><div><div id="v5-crossref-panel" class="reader-crossref-panel"><p class="session-context-note" style="margin:0 0 0.5rem;">Select a verse to see where else Scripture connects to it.</p><div id="v5-crossref-list"></div><p class="session-context-note">Cross-references courtesy of <a href="https://www.openbible.info/labs/cross-references/" rel="noopener">OpenBible.info</a> (CC-BY).</p></div></div></details></aside>`;
 }
 
 function compactReaderShelf(esc){
@@ -149,10 +149,11 @@ if (typeof document !== 'undefined') {
   function _v5RenderPills(refs, targetEl) {
     if (!targetEl) return;
     if (!refs || !refs.length) {
-      targetEl.innerHTML = '<p style="font-size:0.82rem;color:var(--color-muted,#717a84);margin:0.25rem 0;">No direct parallels indexed for this verse.</p>';
+      targetEl.innerHTML = '<p class="xref-empty">No cross-references indexed for this verse.</p>';
       return;
     }
-    targetEl.innerHTML = '<div style="display:flex;flex-direction:column;gap:0.35rem;margin-top:0.35rem;">' +
+    // Verse addresses only: no type badge, regular weight for readability.
+    targetEl.innerHTML = '<ul class="xref-list">' +
       refs.map(function(r) {
         const b = r.ref[0], c = r.ref[1], vs = r.ref[2], ve = r.ref[3];
         const bookObj = typeof bookByNumber === 'function' ? bookByNumber(b) : null;
@@ -160,12 +161,9 @@ if (typeof document !== 'undefined') {
         const isParallel = r.label && r.label.indexOf('Linked from') === 0;
         const label = (r.label && !isParallel) ? r.label : (name + ' ' + c + ':' + vs + (ve && ve !== vs ? '–' + ve : ''));
         const href = '/bible?book=' + b + '&chapter=' + c + '&start=' + vs + (ve && ve !== vs ? '&end=' + ve : '') + '#v' + vs;
-        return '<a href="' + href + '" style="display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0.6rem;background:var(--color-surface-subtle,#f2f3f5);border:1px solid var(--color-border,#d7dbe0);border-radius:4px;text-decoration:none;color:var(--color-ink,#1c2024);font-size:0.84rem;">' +
-          '<span><span style="color:var(--color-accent,#486272);font-weight:700;margin-right:0.35rem;">' + (isParallel ? '⇠' : '↳') + '</span><strong>' + label + '</strong></span>' +
-          '<span style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;padding:0.1rem 0.35rem;background:#e5e9ee;border-radius:3px;font-weight:700;color:#486272;">' + (isParallel ? 'Parallel' : 'Citation') + '</span>' +
-        '</a>';
+        return '<li><a class="xref-link" href="' + href + '">' + label + '</a></li>';
       }).join('') +
-    '</div>';
+    '</ul>';
   }
 
   function _v5AttachReaderAugmentations() {
@@ -214,32 +212,18 @@ if (typeof document !== 'undefined') {
           });
           p.classList.add('v5-active');
 
-          let inspectBox = document.querySelector('#v5-verse-inspect');
-          if (!inspectBox) {
-            inspectBox = document.createElement('div');
-            inspectBox.id = 'v5-verse-inspect';
-            inspectBox.style.cssText = 'margin:1rem 0;padding:1rem;background:#fffaf0;border:1px solid #e6d3a3;border-radius:6px;';
-            const r = document.querySelector('.reader.scripture');
-            if (r) r.prepend(inspectBox);
-          }
-
-          inspectBox.innerHTML = '<span style="font:750 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Verse Deep-Dive · ' + bn + ':' + ch + ':' + vNum + '</span>' +
-            '<p style="font-family:var(--font-display);font-size:1.1rem;margin:0.35rem 0;">' + p.textContent.trim() + '</p>' +
-            '<div id="v5-inspect-crossrefs" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed #e6d3a3;">' +
-              '<span style="font:700 0.72rem var(--font-meta);color:#8c6d1f;text-transform:uppercase;">Parallel Cross-References</span>' +
-              '<div id="v5-inspect-crossrefs-target"></div>' +
-            '</div>';
-
+          // Cross-references live only in the Reading Desk's last detail level; it stays collapsed
+          // until the learner opens it, and its summary names the selected verse and the count.
           const verseRefs = crossRefData && crossRefData.verses ? crossRefData.verses[String(vNum)] : null;
-          _v5RenderPills(verseRefs, document.querySelector('#v5-inspect-crossrefs-target'));
-
           const sidebarTarget = document.querySelector('#v5-crossref-list');
           if (sidebarTarget) {
+            const bookObj = typeof bookByNumber === 'function' ? bookByNumber(bn) : null;
+            const where = (bookObj ? bookObj.name : 'Verse') + ' ' + ch + ':' + vNum;
             const noteHead = document.querySelector('#v5-crossref-panel .session-context-note');
-            if (noteHead) noteHead.innerHTML = 'Cross-references for <strong>Verse ' + vNum + '</strong>:';
+            if (noteHead) noteHead.textContent = 'Connected to ' + where + ':';
+            const summary = document.querySelector('[data-xref-summary]');
+            if (summary) summary.textContent = 'Cross-references · ' + where + ' (' + (verseRefs ? verseRefs.length : 0) + ')';
             _v5RenderPills(verseRefs, sidebarTarget);
-            const parentDetails = sidebarTarget.closest('details');
-            if (parentDetails) parentDetails.open = true;
           }
         });
       });

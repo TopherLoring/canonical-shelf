@@ -411,6 +411,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.bible.feedback-2026-09-25`
   Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole
 
+### `ui.bible.crossrefs`
+
+- **Current** · 2026-09-27 · Owner decision (Chris) · `ui.bible.crossrefs.last-level`
+  Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side panel
+
 ### `ui.bible.notes-panel`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.bible.notes-panel.reading-desk`

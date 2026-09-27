@@ -13,6 +13,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Lesson screen uses the theme's own surfaces: study-chrome, study-chrome-2, study-chrome-text, study-chrome-muted, and study-accent now reference the theme's raised/subtle surfaces, text colors, and primary accent instead of dark graphite (agent default)
 - Keep the Theologian's current contrast
 - The Bible notes panel is named Reading Desk, with a compact 1.15rem title (agent default)
+- Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side panel
 
 ### Changed
 
