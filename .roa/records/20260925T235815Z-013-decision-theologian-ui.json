@@ -1,0 +1,8 @@
+{
+  "type": "decision",
+  "id": "theologian-ui",
+  "date": "2026-09-25",
+  "text": "[decision] Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson",
+  "rationale": "Supersedes the floating pill and the Study Focus side-apparatus placement",
+  "by": "Chris"
+}

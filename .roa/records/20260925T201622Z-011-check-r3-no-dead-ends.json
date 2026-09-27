@@ -1,0 +1,7 @@
+{
+  "type": "check",
+  "check": "r3-no-dead-ends",
+  "status": "open",
+  "date": "2026-09-25",
+  "text": "No broken panels, 404s, or placeholder text"
+}

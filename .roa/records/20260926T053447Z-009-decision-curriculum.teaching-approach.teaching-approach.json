@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.teaching-approach.teaching-approach",
+  "topic": "curriculum.teaching-approach",
+  "date": "2026-09-26",
+  "text": "Audience: adults new to Christianity and the Bible, taught from a personally affirming, open-table stance. Explain doctrine through the biblical story and its internal logic, never with 'that's where faith comes in' or 'you just have to accept it'; avoid analogies that drift into heresy. Welcome questions without requiring assent. Breadth increases as study progresses; content defines the interactions",
+  "rationale": "Chris's Gemini curriculum transcript",
+  "supersedes": [
+    "teaching-approach"
+  ],
+  "by": "Chris"
+}

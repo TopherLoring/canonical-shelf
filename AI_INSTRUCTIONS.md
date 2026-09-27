@@ -18,40 +18,17 @@ Optimize in this order:
 
 ## Current release authority
 
-`main` is the canonical production branch and includes the merged PR #24 convergence work. PR #24 is now historical baseline, not an active release branch.
+Read `.roa/state.json` and `AGENTS.md` first. Project decisions are records in `.roa/records/`, grouped by topic in the generated decision log `docs/v7/DECISION_PRECEDENCE.md`.
 
-The current post-merge cleanup branch is `fix/runtime-style-authority` until its work is merged. It exists to remove superseded visual authority, stabilize the locked design contract, and improve Theologian conversation/runtime behavior without undoing the merged learner experience.
-
-- #20 is superseded as an independent merge candidate; its questions-first curriculum intent is represented in current work.
-- #22 is superseded as an implementation; preserve desired outcomes, never its broad repair-layer architecture.
-- #23 is superseded as an independent merge candidate; learner-corpus intent is represented through current reachability/generation.
-- #24 is merged historical baseline; do not reopen its obsolete parity/restoration assumptions as new requirements.
-
-Do not merge stale PRs wholesale. Deployment remains a separate explicit production action.
-
-Current decision authority: latest explicit owner decision → this file → `docs/VERIFICATION_CONTRACT.md` → `docs/v7/DECISION_PRECEDENCE.md` → current domain/source contracts → generated artifacts → historical docs.
+- Chris's current request outranks every document, including this one. Contradictions are raised explicitly for approve/reject.
+- Per topic, Chris's latest **decision** is current; **defaults** (agent engineering choices, including everything carried over from the old rules document) are enforced but adjustable; **feedback** means adjust, never lock.
+- `main` is the production branch. Do not merge stale pull requests wholesale. Deployment is a separate, explicit owner action.
 
 ## Experience / architecture
 
-`public/canonical-shelf.css` is the single visual-contract authority for the current experience. The application shell marks exactly one stylesheet with `data-visual-contract`. Feature CSS may own feature-specific structure/composition and local interaction mechanics, but must consume the shared contract rather than establish a competing palette, typography system, geometry system, theme hierarchy, or destination-wide visual language. Never add a second visual-contract stylesheet or a compatibility layer that restyles the same destination underneath/above the canonical contract.
+The design-tokens contract is the visual authority (owner decision `design.authority`). Token values live in `.roa/values/design-tokens.json` and generate `public/design-tokens.css`, which loads before `public/canonical-shelf.css`. Change a token only with `node .roa-kit/roa.mjs set design-tokens.<path> <value>`; guards reject hand-declared token variables, duplicated token colors, `!important`, and literal z-index values.
 
-Current locked design direction:
-
-- scholarly serif display/reading typography with restrained sans UI and mono metadata;
-- bookish geometry;
-- bright gilt as a signal, cool graphite/chrome structure, white reader paper, dark reader ink;
-- Bible category colors remain semantic and theme-independent;
-- Home uses a graphite background and is the one destination without the shared global navigation bar;
-- Home is shelf-first: title/summary upper left, destination buttons upper right, separate Old/New Testament shelves sized by relative book length, Revelation ending the New Testament shelf with bookend/empty shelf space, and history-aware continuation surfaces before exploration paths;
-- Course landing is a six-volume shelf while course/unit/activity behavior remains owned by the curriculum engine;
-- lessons use Study Focus with a side Session Notes apparatus; learner-facing terminology is **Glossary**, not “Vocabulary”;
-- when Theologian opens in Study Focus, Session Notes remains visible and usable. On wide screens Theologian opens alongside it as a companion column; medium/narrow layouts may recompose vertically, but Theologian must not replace, hide, or destroy the notes apparatus;
-- Bible is reader-first: compact canonical shelf → Books/Timeline/Maps/Search tools → address controls → contextual reader with visible/expandable book/chapter notes;
-- Topics uses an editorial dossier/reference approach rather than a generic card dashboard;
-- Practice uses the compact due-first dashboard;
-- outside Study Focus, Theologian launches from the lower-right into a bounded chat panel.
-
-Current curated color packages may vary palette/material tone only. They must not change page architecture, Bible category semantics, interaction behavior, accessibility behavior, or learner-state behavior.
+Current layout and styling values are recorded as adjustable defaults (`ui.current-values`), not locks. Open owner feedback covers Home, the shelf, the Bible page, themes, and the Course shelf; see `docs/STATUS.md`. The Theologian placement is the owner decision `theologian.ui`: a vertical tab on the right viewport edge, lower right, on every screen including lessons, sliding a fixed-size chat panel in and out.
 
 Top-level Home, Course, Bible, Topics, Practice, and Search are routes inside a **single-document SPA**. `public/index.html` is the sole application document. Internal app links use clean path-based URLs with History API navigation and bounded `#main` rendering; Back/Forward rerenders through `popstate`. Direct entry and refresh resolve to the same shell through local and Cloudflare SPA fallback. Do not reintroduce generated top-level route HTML documents.
 
@@ -62,11 +39,11 @@ The application employs a **public-first SPA architecture**: the `/public` direc
 
 Current top-level architecture authority: `docs/v7/SPA_ARCHITECTURE_2026-09-24.md`.
 
-Never restore broad MutationObserver repair, duplicate top-level renderers, obsolete-UI-then-relocate flows, stacked compatibility runtimes, generated route-document ownership, `public/library-system.js`, `public/library-system-refinements.css`, `public/locked-home.js`, `public/locked-library-baseline.css`, `public/library-system.css`, or a separate Home visual-authority stylesheet.
+Retired architecture (broad MutationObserver repair, duplicate renderers, route documents, and the retired library-system/locked-* files) is blocked by `roa` guards and `manifest.forbid`, not by this document.
 
 ## Curriculum / learning
 
-The current runtime is a six-course adult Bible-literacy curriculum with guided lessons, mastery/capstone work, Topics outside completion, stable activity identity, and spaced review. Current generated counts are descriptive runtime data, **not long-term verification constants**.
+The runtime currently ships a six-course adult Bible-literacy curriculum; the owner decision `curriculum.structure` moves it to four modules plus an optional extra-credit module (design proposal: `docs/v7/curriculum-design.proposal.json`). It has with guided lessons, mastery/capstone work, Topics outside completion, stable activity identity, and spaced review. Current generated counts are descriptive runtime data, **not long-term verification constants**.
 
 The curriculum uses a questions-first spiral. Difficult doctrinal/interpretive questions appear early enough to motivate adults, recur where evidence naturally appears, and are synthesized after foundations and interpretive tools develop. Score understanding and reasoning, never theological assent. Practice reinforces the curriculum rather than becoming a parallel curriculum.
 

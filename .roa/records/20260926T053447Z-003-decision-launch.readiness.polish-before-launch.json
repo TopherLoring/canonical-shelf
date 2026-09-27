@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "launch.readiness.polish-before-launch",
+  "topic": "launch.readiness",
+  "date": "2026-09-26",
+  "text": "Do not show the tool to the primary learner until the core surfaces are visually polished",
+  "rationale": "Avoid turning him off with a rough first impression",
+  "supersedes": [
+    "polish-before-launch"
+  ],
+  "by": "Chris"
+}

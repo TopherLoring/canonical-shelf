@@ -1,0 +1,7 @@
+{
+  "type": "question",
+  "id": "curriculum-design",
+  "date": "2026-09-26",
+  "text": "Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?",
+  "owner": "Chris"
+}

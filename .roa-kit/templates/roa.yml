@@ -1,0 +1,18 @@
+name: roa
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  roa:
+    name: roa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify project records and generated docs
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: node .roa-kit/roa.mjs verify --base "$BASE"

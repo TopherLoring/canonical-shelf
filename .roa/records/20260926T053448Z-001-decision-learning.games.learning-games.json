@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning.games.learning-games",
+  "topic": "learning.games",
+  "date": "2026-09-26",
+  "text": "Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games",
+  "supersedes": [
+    "learning-games"
+  ],
+  "by": "Chris"
+}

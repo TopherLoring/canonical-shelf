@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "arch.spa-implementation.from-precedence-doc",
+  "topic": "arch.spa-implementation",
+  "date": "2026-09-24",
+  "text": "Single-page app implementation: public/index.html is the only application document; clean path URLs with History API state; Back/Forward re-render through popstate; direct entry and refresh use SPA fallback; views use native <template> elements. Architecture reference: docs/v7/SPA_ARCHITECTURE_2026-09-24.md",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Implements owner decision arch.routing",
+  "by": "Claude"
+}

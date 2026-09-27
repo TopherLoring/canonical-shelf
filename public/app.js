@@ -2,7 +2,6 @@ import {getState,recordResult,recordReview,dueReviews,exportState,importState} f
 import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './learning.js';
 import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
 import {buildTheologianResponse} from './theologian.js';
-import {requestCloudTheologian,cancelCloudTheologian} from './theologian-cloud.js';
 import {topicsView,recentEntryForRoute,recordRecent} from './experience.js';
 import {practiceView,checkPracticeGame} from './practice-experience.js';
 import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
@@ -12,11 +11,9 @@ import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
 import {scriptureResults,searchPage} from './search-engine.js';
-import {theologianAnswer} from './theologian-engine.js';
 
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
-const theologian=document.querySelector('#guide'),theologianBody=document.querySelector('#guide-body');
 const progressPanel=document.querySelector('#progress-panel'),progressBody=document.querySelector('#progress-body');
 let data={courses:[],units:[],topics:[],lessons:[],masteryIds:[],activities:[],byUnit:{},byCourse:{},glossary:[]},corpus='',policy=null,statement='',theologySources=[],state=await getState();
 const reviewSession=new Map(),STUDY_RETURN_KEY='canonical-shelf-study-return-v1';
@@ -73,7 +70,7 @@ function setCurrent(r){nav.forEach(a=>a.toggleAttribute('aria-current',a.dataset
 function shell(title,eye,body){return `<header class="section"><p class="eyebrow">${esc(eye)}</p><h1>${esc(title)}</h1></header>${body}`}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
 function renderInto(target,view){if(!target)return;if(typeof view==='string')target.innerHTML=view;else target.replaceChildren(view)}
-function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden)renderInto(progressBody,progressPanelView({data,state,esc}))}
+function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden){renderInto(progressBody,progressPanelView({data,state,esc}));document.dispatchEvent(new CustomEvent('canonical-progress-rendered'))}}
 
 function courseRouteView(p){
   if(!data.units.length)return shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
@@ -94,7 +91,7 @@ async function render(){
   const main=getMain();
   if(!main)return;
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
-  document.body.classList.toggle('study-focus-active',focus);if(focus)theologian.hidden=true;setCurrent(r);
+  document.body.classList.toggle('study-focus-active',focus);setCurrent(r);
   
   if((r==='bible'||r==='search'||(r==='course'&&(p.has('lesson')||p.has('mastery')||p.has('glossary'))))&&!corpus){
     await ensureCorpus();
@@ -194,7 +191,6 @@ document.addEventListener('click',async e=>{
       e.preventDefault();navigate(u.pathname+u.search+u.hash);return;
     }
   }
-  const ask=e.target.closest('[data-ask]');if(ask)void theologianAnswer(ask.dataset.ask,{data,policy,statement,theologySources,corpus,route,params,esc,theologianBody});
   if(e.target.id==='export'){const blob=new Blob([await exportState()],{type:'application/json'}),x=document.createElement('a');x.href=URL.createObjectURL(blob);x.download='canonical-shelf-progress.json';x.click();URL.revokeObjectURL(x.href)}
   if(e.target.id==='import'){const input=document.createElement('input');input.type='file';input.accept='application/json';input.onchange=async()=>{try{await importState(await input.files[0].text());state=await getState();render()}catch(err){alert(err.message)}};input.click()}
 });
@@ -205,7 +201,6 @@ document.addEventListener('submit',async e=>{
   if(e.target.id==='library-search'){e.preventDefault();const fd=new FormData(e.target),q=String(fd.get('libraryq')||'').trim(),p=params(),view=p.get('view')||'shelf',group=p.get('group')||'';navigate(`/bible?view=${encodeURIComponent(view)}${group?`&group=${encodeURIComponent(group)}`:''}${q?`&libraryq=${encodeURIComponent(q)}`:''}`);return}
   if(e.target.id==='topic-search'){e.preventDefault();const fd=new FormData(e.target),q=String(fd.get('topic-q')||'').trim(),mode=String(fd.get('topic-mode')||'ask');navigate(`/topics?mode=${encodeURIComponent(mode)}${q?`&q=${encodeURIComponent(q)}`:''}`);return}
   if(e.target.matches('.arcade-config')){e.preventDefault();const fd=new FormData(e.target);navigate(`/practice?mode=arcade&game=${encodeURIComponent(fd.get('game')||'sequence')}&scope=${encodeURIComponent(fd.get('scope')||'all')}`);return}
-  if(e.target.id==='guide-form'){e.preventDefault();void theologianAnswer(new FormData(e.target).get('question')||'',{data,policy,statement,theologySources,corpus,route,params,esc,theologianBody});return}
   if(e.target.matches('[data-practice-run]')){e.preventDefault();const result=finishPracticeRun(e.target),feedback=e.target.querySelector('.feedback');feedback.innerHTML=result.html;canonicalizeLinks(feedback);return}
   if(e.target.matches('[data-practice-game]')){e.preventDefault();const result=checkPracticeGame(e.target),feedback=e.target.querySelector('.feedback');feedback.innerHTML=`<p class="notice"><strong>${result.ok?'Correct.':'Keep working.'}</strong> ${esc(result.message)}</p>`;return}
   if(!e.target.matches('.challenge'))return;
@@ -233,9 +228,7 @@ document.addEventListener('submit',async e=>{
 });
 
 document.addEventListener('change',e=>{if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`);if(e.target.id==='translation-select'&&e.target.value!=='bsb')e.target.value='bsb'});
-document.querySelector('#guide-open').addEventListener('click',()=>{void theologianAnswer('What can you help me study?',{data,policy,statement,theologySources,corpus,route,params,esc,theologianBody});document.querySelector('#guide-q')?.focus()});
-document.querySelector('#guide-close').addEventListener('click',()=>{cancelCloudTheologian();theologian.hidden=true;document.querySelector('#guide-open').focus()});
-document.querySelector('#progress-open').addEventListener('click',()=>{renderInto(progressBody,progressPanelView({data,state,esc}));progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
+document.querySelector('#progress-open').addEventListener('click',()=>{renderInto(progressBody,progressPanelView({data,state,esc}));document.dispatchEvent(new CustomEvent('canonical-progress-rendered'));progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
 document.querySelector('#progress-close').addEventListener('click',()=>{progressPanel.hidden=true;document.querySelector('#progress-open').focus()});
 render();
 

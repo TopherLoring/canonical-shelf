@@ -1,0 +1,8 @@
+{
+  "type": "decision",
+  "id": "notes-context",
+  "date": "2026-09-25",
+  "text": "[decision] Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile",
+  "rationale": "Supersedes the floating Journal launcher",
+  "by": "Chris"
+}

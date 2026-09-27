@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "bsb-source-hosting",
+  "date": "2026-09-26",
+  "text": "Fetched from bereanbible.com with pinned hashes; nothing committed",
+  "decision": "bsb-source-hosting-fetch"
+}

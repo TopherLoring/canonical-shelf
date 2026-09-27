@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "content.reachability.from-precedence-doc",
+  "topic": "content.reachability",
+  "date": "2026-09-24",
+  "text": "content/learner-content-reachability.json (v3) owns UI reachability and llms.txt disposition: embed learner-facing curriculum, reference, editorial, legal, privacy, and safety content; link the BSB corpus rather than duplicating it; exclude the supplemental belief document as a standalone authority and all private learner, account, feedback, and governance material. public/llms.txt is generated and freshness-validated",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

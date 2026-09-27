@@ -1,0 +1,11 @@
+{
+  "type": "decision",
+  "id": "spa",
+  "date": "2026-09-24",
+  "text": "The app is a single-page application: one document, History API routing, native DOM templates",
+  "rationale": "One shell, no competing renderers; merged as PR #27",
+  "supersedes": [
+    "document-first-routing"
+  ],
+  "by": "Chris"
+}

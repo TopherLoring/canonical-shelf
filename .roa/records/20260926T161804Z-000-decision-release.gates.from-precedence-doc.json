@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "release.gates.from-precedence-doc",
+  "topic": "release.gates",
+  "date": "2026-09-24",
+  "text": "Production target https://the-canonical-shelf.christopherwonder.workers.dev (Worker the-canonical-shelf, D1 canonical-shelf). Release evidence: current-head bun run verify; browser checks of same-document navigation, deep links, Back/Forward, and key routes; Cloudflare config validation and dry run with SPA fallback; D1 migration validation; release-governance gate; fresh generated outputs including llms.txt; real post-deploy Theologian smoke test; applicable human device, accessibility, editorial/theological, and novice-usability review. FEEDBACK_ADMIN_TOKEN is a secret and never committed",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

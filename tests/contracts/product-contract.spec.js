@@ -24,7 +24,7 @@ test('primary navigation is a same-document SPA transition',async({page})=>{
     await expect(page.locator('#main h1')).toHaveCount(1);
     expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   }
-  await page.locator('main a[href="/course"]').first().click();
+  await page.locator('nav.primary a[href="/course"]').click();
   await expect(page).toHaveURL(/\/course(?:[?#]|$)/);
   expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   await page.goBack();
@@ -38,7 +38,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await page.goto('/home');
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
-  await page.locator('main a[href="/course"]').first().click();
+  await page.locator('nav.primary a[href="/course"]').click();
   await expect(page.locator('.course-volume-landing')).toBeVisible();
   await expect(page.locator('#progress-open')).toBeEnabled();
   await page.locator('#progress-open').click();
@@ -56,32 +56,82 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   expect(errors).toEqual([]);
 });
 
-test('home provides the durable exploration paths and canonical library',async({page})=>{
+test('one navigation bar: destinations are tabs in the masthead; Home keeps the canonical library',async({page})=>{
   await page.goto('/home');
-  for(const route of ['/course','/bible','/topics','/practice']){
-    await expect(page.locator(`main a[href="${route}"]`).first()).toBeVisible();
-  }
+  await expect(page.locator('nav:not(.site-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
+  await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Pathway','Bible','Catalog','Practice']);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
+}); 
+
+test('one inline Feedback link on every screen and the Theologian tab everywhere, including lessons',async({page})=>{
+  for(const route of ['/home','/course','/bible?book=43&chapter=3','/topics','/practice','/course?unit=c1.christianity&lesson=begin']){
+    await page.goto(route);
+    await expect(page.locator('main')).not.toBeEmpty();
+    const visible=await page.locator('[data-feedback-open]').evaluateAll(els=>els.filter(el=>el.offsetParent!==null&&getComputedStyle(el).visibility!=='hidden').map(el=>getComputedStyle(el).position));
+    expect(visible.length,`exactly one visible Feedback link on ${route}`).toBe(1);
+    expect(visible[0],`Feedback link is not floating on ${route}`).not.toBe('fixed');
+    await expect(page.locator('.utility-fab'),`no floating utility buttons on ${route}`).toHaveCount(0);
+    const tab=page.locator('#guide-open');
+    await expect(tab,`Theologian tab visible on ${route}`).toBeVisible();
+    const box=await tab.boundingBox(),width=page.viewportSize().width;
+    expect(Math.round(box.x+box.width),`Theologian tab sits on the right edge on ${route}`).toBeGreaterThanOrEqual(width-1);
+  }
 });
 
-test('global study utilities remain operable',async({page})=>{
+test('Theologian opens as a fixed chat panel with a conversation menu, and closes without losing the chat',async({page})=>{
   await page.goto('/course');
-
-  const theologian=page.locator('#guide-open');
-  await expect(theologian).toBeEnabled();
-  await theologian.click();
+  await page.locator('#guide-open').click();
   await expect(page.locator('#guide')).toBeVisible();
+  await expect(page.locator('#guide-q')).toBeVisible();
+  await page.locator('#guide-menu-button').click();
+  await expect(page.locator('#guide-menu [role=menuitem]')).toHaveText(['New chat','Save to my profile','Download as a text file','Share…']);
+  await page.keyboard.press('Escape');
+  await page.locator('#guide-q').fill('What is the gospel?');
+  await page.locator('#guide-q').press('Enter');
+  await expect(page.locator('#guide .chat-message--assistant').first()).toBeVisible({timeout:20000});
   await page.locator('#guide-close').click();
   await expect(page.locator('#guide')).toBeHidden();
+  await page.locator('#guide-open').click();
+  await expect(page.locator('#guide .chat-message--user').first()).toContainText('What is the gospel?');
+  const answer=page.locator('#guide .chat-message--assistant').first();
+  await expect(answer.locator('[data-theologian-rate="up"]')).toBeVisible();
+  await answer.locator('[data-theologian-flag]').click();
+  const flag=page.locator('#guide [data-flag-form]');
+  await expect(flag.locator('select[name=reason] option')).toHaveText(['Choose a reason','Disagreement','Profound','Very helpful','Misguided','Inappropriate','Contrary to Scripture']);
+  await expect(flag.locator('textarea[name=message]')).toHaveAttribute('required','');
+});
 
-  const feedback=page.locator('[aria-controls="feedback-panel"]');
-  await feedback.click();
-  await expect(page.locator('#feedback-panel')).toBeVisible();
-  await page.locator('#feedback-close').click();
+test('cross-references are the last, collapsed detail level of the Reading Desk and list plain verse addresses',async({page})=>{
+  await page.goto('/bible?book=43&chapter=3');
+  const desk=page.locator('.library-reader-panel');
+  await expect(desk.locator(':scope > details').last()).toHaveClass(/reader-crossrefs/);
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  const summary=desk.locator('[data-xref-summary]');
+  await expect(summary).toContainText('John 3:16');
+  await expect(desk.locator('details.reader-crossrefs')).not.toHaveAttribute('open','');
+  await summary.click();
+  const links=desk.locator('.xref-link');
+  await expect(links.first()).toBeVisible();
+  await expect(desk.locator('details.reader-crossrefs')).not.toContainText('Citation');
+  expect(Number(await links.first().evaluate(el=>getComputedStyle(el).fontWeight))).toBeLessThanOrEqual(500);
+  await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
+});
 
-  const journal=page.locator('[aria-controls="personal-study-panel"]');
-  await journal.click();
-  await expect(page.locator('#personal-study-panel')).toBeVisible();
+test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
+  await page.goto('/bible?book=43&chapter=3');
+  const mount=page.locator('.library-reader-panel [data-notes-mount]');
+  await expect(mount.locator('.study-notes__anchor')).toContainText('John 3');
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  await expect(mount.locator('.study-notes__anchor')).toContainText('John 3:16');
+  await mount.locator('[data-note-text]').fill('God so loved the world: ask about "world".');
+  await mount.locator('[data-note-discuss]').check();
+  await expect(mount.locator('[data-note-status]')).toContainText('Saved',{timeout:5000});
+  await page.reload();
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  await expect(page.locator('.library-reader-panel [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
+  await page.locator('#progress-open').click();
+  await expect(page.locator('[data-my-notes]')).toContainText('To bring up in person (1)');
+  await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 
 test('guided lessons foreground learner copy and keep notes separate from study tools',async({page})=>{
@@ -94,8 +144,8 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   const desk=page.locator('#study-apparatus');
   await expect(desk).toBeVisible();
   await expect(desk.locator('h2')).toHaveText('Study Desk');
-  await expect(desk.locator('[data-inline-lesson-note]')).toBeVisible();
-  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Session Notes');
+  await expect(desk.locator('[data-notes-mount] [data-note-text]')).toBeVisible();
+  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Your notes');
 });
 
 test('desktop and narrow layouts do not create horizontal page overflow',async({page})=>{

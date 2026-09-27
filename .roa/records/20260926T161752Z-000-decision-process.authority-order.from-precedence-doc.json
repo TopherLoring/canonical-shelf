@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "process.authority-order.from-precedence-doc",
+  "topic": "process.authority-order",
+  "date": "2026-09-26",
+  "text": "Authority order: the owner's current request, then owner decision records, then AI_INSTRUCTIONS.md, then domain docs and source contracts, then generated artifacts; historical plans and audits are provenance only",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

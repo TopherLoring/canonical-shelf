@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "process.pull-requests.from-precedence-doc",
+  "topic": "process.pull-requests",
+  "date": "2026-09-24",
+  "text": "Do not merge stale pull requests wholesale; PRs #20, #22, #23 were superseded, #24 was merged and later superseded by the single-page app. Carry forward only named outcomes",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

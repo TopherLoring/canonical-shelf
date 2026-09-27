@@ -1,0 +1,7 @@
+{
+  "type": "check",
+  "check": "r5-stand-in",
+  "status": "open",
+  "date": "2026-09-25",
+  "text": "A stand-in tester completes a session without getting lost"
+}

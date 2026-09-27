@@ -1,6 +1,6 @@
 import {createAuth, type AuthEnv} from './auth';
 import {deleteSync as deleteStoredSync,mergeAndWriteSync,readSync,validSyncBody} from './sync-store';
-import {pruneFeedbackData,readFeedbackAdminQueue,readFeedbackInbox,respondToFeedback,validateFeedbackBody,writeFeedback} from './feedback-store';
+import {feedbackProblem,pruneFeedbackData,readFeedbackAdminQueue,readFeedbackInbox,respondToFeedback,writeFeedback} from './feedback-store';
 import {postTheologian,type TheologianAiEnv} from './theologian-ai';
 import {maybeTheologianCrisisResponse} from './theologian-crisis';
 
@@ -17,7 +17,7 @@ async function deleteSync(request:Request,env:Env,auth:ReturnType<typeof createA
 
 async function postFeedback(request:Request,env:Env,auth:ReturnType<typeof createAuth>){
   let body:unknown;try{body=await request.json()}catch{return bad('Invalid JSON')}
-  if(!validateFeedbackBody(body))return bad('Invalid feedback payload');
+  const problem=feedbackProblem(body);if(problem)return bad(problem);
   await pruneFeedbackData(env.DB);
   const user=await sessionUser(request,auth),result=await writeFeedback(env.DB,body,user?.id||null,feedbackToken(request));
   return json({ok:true,...result},201);

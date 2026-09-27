@@ -1,0 +1,7 @@
+{
+  "type": "question",
+  "id": "bsb-source-hosting",
+  "date": "2026-09-25",
+  "text": "BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?",
+  "owner": "Chris"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "platform.offline.offline-optional",
+  "topic": "platform.offline",
+  "date": "2026-09-26",
+  "text": "Offline access is not a requirement",
+  "supersedes": [
+    "offline-optional"
+  ],
+  "by": "Chris"
+}

@@ -8,10 +8,10 @@ Current scored curriculum: 6 courses, 44 units, 117 guided lessons, 119 mastery/
 
 ## Primary destinations
 
-- [Home](/home): Personalized learner dashboard for orientation, progress, recommendations, and resuming the next relevant activity.
-- [Course](/course): Six-course guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.
+- [Shelf](/home): Personalized learner dashboard for orientation, progress, recommendations, and resuming the next relevant activity.
+- [Pathway](/course): Six-course guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.
 - [Bible](/bible): Interactive 66-book Bible shelf for browsing books, reading biblical text, and accessing book-level historical, literary, and study context.
-- [Topics](/topics): Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward course completion.
+- [Catalog](/topics): Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward course completion.
 - [Practice](/practice): Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.
 
 ## Canonical learning and editorial resources
@@ -40071,7 +40071,7 @@ Source: [/verse-data.js](/verse-data.js)
 Source: [/theme.js](/theme.js)
 
     {
-      "defaultThemeId": "canonical-paper",
+      "defaultThemeId": "scholarly-graphite",
       "themes": [
         {
           "id": "canonical-paper",

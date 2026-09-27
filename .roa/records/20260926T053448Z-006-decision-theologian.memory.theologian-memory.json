@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian.memory.theologian-memory",
+  "topic": "theologian.memory",
+  "date": "2026-09-26",
+  "text": "Theologian chat persists until the user selects New chat, so dismissing never loses it; transcripts are saved to the profile only if the user chooses, and exported/shared through an ellipsis menu",
+  "supersedes": [
+    "theologian-memory"
+  ],
+  "by": "Chris"
+}

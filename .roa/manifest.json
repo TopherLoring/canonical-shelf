@@ -1,0 +1,128 @@
+{
+  "$schema": "../.roa-kit/schema/manifest.schema.json",
+  "name": "The Canonical Shelf",
+  "summary": "A guided Bible-learning library: full BSB reader, questions-first courses, topics, practice, and a grounded Theologian.",
+  "purpose": "Help adults read and understand the Bible in context without being overwhelmed, by pairing a full reader with a map, guided courses, and a Theologian that answers from the passage in front of them.",
+  "audience": [
+    "Primary: a graduate-level adult who recently came to faith and is anxious about navigating Scripture",
+    "Casual adult learners",
+    "Existing Christians and Bible-study groups"
+  ],
+  "status": "active",
+  "owner": {
+    "name": "Chris"
+  },
+  "links": {
+    "repository": "https://github.com/TopherLoring/canonical-shelf",
+    "production": "https://the-canonical-shelf.christopherwonder.workers.dev"
+  },
+  "map": {
+    "public/": "The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/",
+    "content/": "Authored curriculum, topics, theology policy, statement of faith, and vendored data (content/vendor/)",
+    "worker/": "Cloudflare Worker: auth, sync, Theologian, feedback APIs",
+    "scripts/": "Build, data, generation, and verification scripts",
+    "tests/": "Playwright browser tests",
+    "docs/": "Architecture, verification contract, and historical plans (docs/v7/*-graph.json are provenance only)",
+    ".src-archived/": "Archived earlier source; reference only, not built",
+    ".roa/": "Project records and generated state (project-roa-kit)",
+    ".roa-kit/": "Vendored project-roa-kit"
+  },
+  "invariants": [
+    "Protestant 66-book canon; Berean Standard Bible is the default text",
+    "Assess understanding and reasoning, never personal theological assent; agreement with the Statement of Faith is never a condition of use",
+    "The curriculum states its published LGBTQ-affirming position openly while presenting other readings accurately; never claim neutrality",
+    "Stable learner and activity IDs are inherited; never renumber or rename them",
+    "Topics sit outside course completion",
+    "Single-document SPA: public/index.html is the only application document",
+    "The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output",
+    "Pastoral and crisis-adjacent content routes through the Theologian crisis policy",
+    "No streaks, public leaderboards, or peer comparison"
+  ],
+  "agentRules": [
+    "Chris's current request outranks every document; raise any contradiction explicitly for approve/reject. Only records marked [decision] by Chris bind; [default] and [feedback] records are adjustable",
+    "Run `bun run verify` before opening a pull request",
+    "Never deploy to production without explicit owner instruction in the current task",
+    "Do not merge stale pull requests wholesale; carry forward only named outcomes",
+    "Do not show unreviewed AI-generated exegesis to learners"
+  ],
+  "conventions": {
+    "commits": "Conventional prefixes: feat, fix, docs, chore, refactor, test, build, ci",
+    "branches": "Work on a feature branch and open a pull request to main",
+    "verification": "`bun run verify` must pass (build, contracts, BSB integrity, core and browser tests)",
+    "deployment": "Production deploy is a separate, explicit owner action"
+  },
+  "agentDocs": [
+    "AI_INSTRUCTIONS.md",
+    "docs/v7/DECISION_PRECEDENCE.md",
+    "docs/v7/SPA_ARCHITECTURE_2026-09-24.md",
+    "docs/VERIFICATION_CONTRACT.md"
+  ],
+  "guard": {
+    "governed": [
+      "public/",
+      "scripts/",
+      "worker/"
+    ],
+    "allow": [
+      "scripts/build-bsb-json.mjs",
+      "scripts/fetch-bsb-sources.mjs",
+      "public/screen-context.js",
+      "public/bible-books.js",
+      "public/study-notes.js",
+      "scripts/lib/bible-books.mjs"
+    ],
+    "exclude": [
+      "public/data/",
+      "public/generated/"
+    ],
+    "browserTests": {
+      "pages": [
+        "/"
+      ],
+      "dir": "tests/contracts/roa"
+    }
+  },
+  "forbid": [
+    {
+      "file": "public/library-system.js",
+      "message": "retired stacked runtime"
+    },
+    {
+      "file": "public/library-system-refinements.css",
+      "message": "retired override sheet"
+    },
+    {
+      "file": "public/locked-home.js",
+      "message": "retired post-render repair layer"
+    },
+    {
+      "file": "public/locked-library-baseline.css",
+      "message": "retired override sheet"
+    },
+    {
+      "file": "public/home.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/course.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/bible.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/topics.html",
+      "message": "single-page app: no top-level route documents"
+    },
+    {
+      "file": "public/practice.html",
+      "message": "single-page app: no top-level route documents"
+    }
+  ],
+  "outputs": {
+    "decisions": {
+      "path": "docs/v7/DECISION_PRECEDENCE.md"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "doctrine.trinity-incarnation.doctrine-trinity-incarnation",
+  "topic": "doctrine.trinity-incarnation",
+  "date": "2026-09-26",
+  "text": "Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties",
+  "supersedes": [
+    "doctrine-trinity-incarnation"
+  ],
+  "by": "Chris"
+}

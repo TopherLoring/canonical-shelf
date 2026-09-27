@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "safety.crisis.from-precedence-doc",
+  "topic": "safety.crisis",
+  "date": "2026-09-24",
+  "text": "content/theology/crisis-policy.json is the crisis-safety policy. A deterministic crisis layer runs before normal generation for credible first-person suicide or self-harm indicators: immediate danger goes to 911/emergency services; U.S. crisis offers call or text 988; encourage a trusted person present and distance from means; stay conversational. Pastoral response (God's love and presence, prayer alongside human help, referral to trusted clergy, praying on request) is expected, but prayer never replaces or delays urgent help. Prohibited: shame, threats of hell or punishment, implying weak faith, prayer-alone advice, promised healing, silent third-party contact, IP-based identity, permanent risk labels, converting crisis chat into feedback",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

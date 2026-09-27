@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.excluded-gospels.excluded-gospels-coverage",
+  "topic": "curriculum.excluded-gospels",
+  "date": "2026-09-26",
+  "text": "All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus)",
+  "supersedes": [
+    "excluded-gospels-coverage"
+  ],
+  "by": "Chris"
+}

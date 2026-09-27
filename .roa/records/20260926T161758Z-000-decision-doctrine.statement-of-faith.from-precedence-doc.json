@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "doctrine.statement-of-faith.from-precedence-doc",
+  "topic": "doctrine.statement-of-faith",
+  "date": "2026-09-24",
+  "text": "Public doctrinal ceiling is content/statement/statement-of-faith-compact.md; content/statement/statement-of-faith-v3.md is supplemental Theologian context only and must never be presented as the public Statement of Faith or promoted above the compact ceiling",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

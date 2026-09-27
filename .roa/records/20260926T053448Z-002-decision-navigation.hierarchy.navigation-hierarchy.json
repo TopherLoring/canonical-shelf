@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "navigation.hierarchy.navigation-hierarchy",
+  "topic": "navigation.hierarchy",
+  "date": "2026-09-26",
+  "text": "Modules drive the content beneath them (modules, then units, then lessons; names may change). Completed items are visibly identifiable; everything is navigable and skippable in both directions",
+  "supersedes": [
+    "navigation-hierarchy"
+  ],
+  "by": "Chris"
+}

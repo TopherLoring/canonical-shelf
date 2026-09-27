@@ -1,0 +1,8 @@
+{
+  "type": "decision",
+  "id": "feedback-cta",
+  "date": "2026-09-25",
+  "text": "[decision] Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Chris; saved with full state and context; two-way: Chris's replies appear as an unread indicator on the Theologian surface styled as a system message, never as an AI message",
+  "rationale": "Supersedes the fixed bottom-left Feedback link",
+  "by": "Chris"
+}

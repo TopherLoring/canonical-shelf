@@ -160,3 +160,73 @@ Current release authority:
 Current project instructions: `AI_INSTRUCTIONS.md`  
 Verification authority: `docs/VERIFICATION_CONTRACT.md`  
 Decision history: `docs/v7/DECISION_PRECEDENCE.md`
+
+<!-- roa:begin roa-readme — GENERATED, do not edit inside this block -->
+## At a glance
+
+A guided Bible-learning library: full BSB reader, questions-first courses, topics, practice, and a grounded Theologian.
+
+- **Purpose:** Help adults read and understand the Bible in context without being overwhelmed, by pairing a full reader with a map, guided courses, and a Theologian that answers from the passage in front of them.
+- **For:** Primary: a graduate-level adult who recently came to faith and is anxious about navigating Scripture; Casual adult learners; Existing Christians and Bible-study groups
+- **Status:** active · current phase **Anchor the reader: resume, you-are-here, reading path, ask about this passage**
+- **Stack:** node, bun 1.2.15, bun@1.2.15 · CSS, HTML, JavaScript, PowerShell, SQL, TypeScript
+- **repository:** https://github.com/TopherLoring/canonical-shelf
+- **production:** https://the-canonical-shelf.christopherwonder.workers.dev
+
+## Commands
+
+| Command | Runs |
+|---|---|
+| `migrate` | `bun scripts/migrate-vendored.mjs && bun scripts/postprocess-v6.mjs && bun scripts/publish-theology.mjs && bun scripts/apply-curriculum-metadata.mjs` |
+| `generate:auth-migration` | `bun scripts/generate-auth-migration.mjs` |
+| `generate:wrangler` | `bun scripts/write-wrangler.mjs` |
+| `generate:curriculum-reference` | `bun scripts/generate-curriculum-reference.mjs` |
+| `generate:llms` | `bun scripts/generate-llms.mjs` |
+| `prepare:content` | `bun run migrate && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
+| `verify:bsb` | `bun scripts/bsb-integrity.mjs` |
+| `verify:contract` | `bun scripts/verify-product-contract.mjs` |
+| `verify:deployment` | `bun scripts/verify-deployment.mjs` |
+| `validate:cloudflare` | `bun scripts/validate-cloudflare-config.mjs` |
+| `test:assessment` | `bun scripts/test-assessment.mjs` |
+| `test:sync` | `bun scripts/test-sync.mjs` |
+| `test:d1` | `bun scripts/test-d1-sync.mjs` |
+| `test:feedback` | `bun scripts/test-feedback.mjs` |
+| `test:theologian` | `bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs` |
+| `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
+| `test:browser` | `playwright test` |
+| `test` | `bun run test:core && bun run test:browser` |
+| `build:client` | `mkdir -p public/generated && bun build public/account-client.ts --outfile=public/generated/account.js --target=browser --minify` |
+| `build:worker` | `bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser` |
+| `build:runtime` | `bun run build:client && bun run generate:auth-migration && bun build public/bootstrap.js --outdir=.tmp/canonical-shelf-browser --target=browser && bun run build:worker` |
+| `build:app` | `bun run prepare:content && bun run build:runtime` |
+| `build` | `bun run build:app` |
+| `verify` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run test:core && bun run test:browser` |
+| `serve` | `bun run prepare:content && bun run build:client && bun scripts/serve.mjs` |
+| `dev` | `bun run prepare:content && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev` |
+| `deploy` | `bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment` |
+| `db:migrate:local` | `bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --local` |
+| `db:migrate:remote` | `bun run generate:auth-migration && wrangler d1 migrations apply canonical-shelf --remote` |
+| `data:ingest:bsb` | `bun scripts/ingest-bsb-tsv.mjs` |
+| `data:crossref` | `bun scripts/build-crossrefs.mjs` |
+| `data:convert:concordance` | `bun scripts/convert-concordance.mjs` |
+| `data:generate:apparatus` | `bun scripts/generate-exegetical-apparatus.mjs` |
+| `prepare` | `git config core.hooksPath .githooks \|\| true` |
+| `roa` | `node .roa-kit/roa.mjs` |
+| `roa:verify` | `node .roa-kit/roa.mjs verify` |
+| `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
+| `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
+
+## Repository map
+
+- `public/` — The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/
+- `content/` — Authored curriculum, topics, theology policy, statement of faith, and vendored data (content/vendor/)
+- `worker/` — Cloudflare Worker: auth, sync, Theologian, feedback APIs
+- `scripts/` — Build, data, generation, and verification scripts
+- `tests/` — Playwright browser tests
+- `docs/` — Architecture, verification contract, and historical plans (docs/v7/*-graph.json are provenance only)
+- `.src-archived/` — Archived earlier source; reference only, not built
+- `.roa/` — Project records and generated state (project-roa-kit)
+- `.roa-kit/` — Vendored project-roa-kit
+
+Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
+<!-- roa:end roa-readme -->

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.bible.crossrefs.last-level",
+  "topic": "ui.bible.crossrefs",
+  "date": "2026-09-27",
+  "text": "Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side panel",
+  "by": "Chris"
+}

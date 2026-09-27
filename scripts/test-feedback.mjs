@@ -33,12 +33,20 @@ try{
   assert(!otherInbox.some(item=>item.id===ordinary.id),'another browser can retrieve anonymous feedback it does not own');
 
   const review={
-    category:'theology',message:'Please review this interpretation.',route:'/bible?book=45&chapter=1',reviewReason:'interpretive-disagreement',clientCreatedAt:'2026-09-22T21:00:00.000Z',
+    category:'theology',message:'Please review this interpretation.',route:'/bible?book=45&chapter=1',reviewReason:'disagreement',clientCreatedAt:'2026-09-22T21:00:00.000Z',
     context:{kind:'theologian-response',action:'flag',question:'How should I understand this passage?',answer:'A bounded answer.',mode:'cloud',model:'model-under-test',policyVersion:4,validationStatus:'passed',evidence:[{label:'Passage',href:'/bible?book=45&chapter=1',evidenceStatus:'direct',claimDomain:'biblical-text',doctrinalStatus:'descriptive-only',limits:'Interpretation remains necessary.'}]}
   };
   assert(validateFeedbackBody(review),'valid Theologian review payload was rejected');
-  assert(validateFeedbackBody({...review,reviewReason:'custom-reason'}),'custom review reason was rejected');
-  assert(validateFeedbackBody({...review,message:''}),'review without explanation was rejected');
+  assert(!validateFeedbackBody({...review,reviewReason:'custom-reason'}),'a flag with a reason outside the owner-approved list was accepted');
+  assert(!validateFeedbackBody({...review,message:''}),'a flag without a written reason was accepted (owner decision theologian.review)');
+  for(const reason of ['disagreement','profound','very-helpful','misguided','inappropriate','contrary-to-scripture'])assert(validateFeedbackBody({...review,reviewReason:reason}),`flag reason ${reason} was rejected`);
+  const rating={category:'theology',message:'',route:'/bible?book=43&chapter=3',context:{...review.context,action:'rate',rating:'up'}};
+  assert(validateFeedbackBody(rating),'a thumbs rating without a reason was rejected');
+  const withContext=normalizeFeedbackBody({...review,context:{...review.context,prompts:['first','second','third'],priorResponse:'earlier answer',screen:{route:'/bible?book=43&chapter=3',label:'John 3',scripture:'John.3.16',theme:'scholarly-graphite'}}});
+  assert(withContext?.context?.prompts?.length===2&&withContext.context.prompts[0]==='second','flags must keep only the two most recent prompts');
+  assert(withContext?.context?.priorResponse==='earlier answer'&&withContext?.context?.screen?.scripture==='John.3.16','flag context must keep the prior response and screen context');
+  const general=normalizeFeedbackBody({category:'function',message:'',route:'/topics',context:{kind:'screen',screen:{route:'/topics?topic=trinity',label:'Trinity',anchor:'topic:trinity',viewport:'390x844'}}});
+  assert(general?.context?.kind==='screen'&&general.context.screen.anchor==='topic:trinity','general feedback must keep its screen context');
 
   const oversized=normalizeFeedbackBody({...review,context:{...review.context,answer:'x'.repeat(20000),history:['private prior turn']}});
   assert(oversized?.context?.answer.length<20000,'oversized bounded context was not clipped');

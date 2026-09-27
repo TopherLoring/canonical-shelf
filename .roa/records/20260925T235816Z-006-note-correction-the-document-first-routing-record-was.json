@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-09-25",
+  "text": "[correction] The 'document-first-routing' record was agent-era work, not an owner decision; DECISION_PRECEDENCE.md content is agent-written pending provenance triage"
+}

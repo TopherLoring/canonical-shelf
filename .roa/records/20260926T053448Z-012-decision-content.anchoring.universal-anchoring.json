@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "content.anchoring.universal-anchoring",
+  "topic": "content.anchoring",
+  "date": "2026-09-26",
+  "text": "One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back",
+  "supersedes": [
+    "universal-anchoring"
+  ],
+  "by": "Chris"
+}

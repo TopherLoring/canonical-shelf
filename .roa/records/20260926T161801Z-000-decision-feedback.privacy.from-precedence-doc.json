@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "feedback.privacy.from-precedence-doc",
+  "topic": "feedback.privacy",
+  "date": "2026-09-24",
+  "text": "Feedback and review snapshots never automatically attach Journal writing, private reflections, lesson notes, profile or account data, inferred beliefs, or unrelated chat history. Anonymous reply routing uses a random browser-scoped identifier; the server stores only a one-way SHA-256 routing key; IP addresses are never feedback identity; the learner may forget the link at any time. Account deletion de-identifies retained feedback",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification. Snapshot contents and the reason requirement follow owner decision theologian.review",
+  "by": "Claude"
+}

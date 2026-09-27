@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "process.project-state.project-roa-kit",
+  "topic": "process.project-state",
+  "date": "2026-09-26",
+  "text": "Project state is managed with project-roa-kit: append-only records compiled into agent state and human docs",
+  "supersedes": [
+    "project-roa-kit"
+  ],
+  "by": "Chris"
+}

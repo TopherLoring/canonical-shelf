@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "privacy.posture.from-precedence-doc",
+  "topic": "privacy.posture",
+  "date": "2026-09-24",
+  "text": "Local-first guest learning; optional account/passkey sync; no sale of personal data; no targeted advertising; no advertising pixels or behavioral analytics trackers; first-party authentication/security cookies and functional storage only; no cookie banner while no optional tracking exists; disclosure and consent change if nonessential tracking is ever introduced. Public policy pages: /privacy.html, /data-retention.html, /storage.html, /terms.html, /safety.html",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification",
+  "by": "Claude"
+}

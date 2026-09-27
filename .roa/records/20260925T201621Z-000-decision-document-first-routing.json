@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "document-first-routing",
+  "date": "2026-09-22",
+  "text": "Top-level destinations render as separate route documents (document-first)",
+  "by": "Chris"
+}

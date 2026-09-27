@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "doctrine.prayer-miracles-healing.prayer-miracles-healing",
+  "topic": "doctrine.prayer-miracles-healing",
+  "date": "2026-09-26",
+  "text": "Prayer is taught as relationship with God (petition, gratitude, lament, listening); miracles are presented with differing interpretations; never promise healing, blame illness on insufficient faith, or treat prayer as a substitute for medical care",
+  "supersedes": [
+    "prayer-miracles-healing"
+  ],
+  "by": "Chris"
+}

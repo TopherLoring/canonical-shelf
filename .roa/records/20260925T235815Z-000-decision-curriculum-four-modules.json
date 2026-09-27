@@ -1,0 +1,8 @@
+{
+  "type": "decision",
+  "id": "curriculum-four-modules",
+  "date": "2026-09-25",
+  "text": "[decision] Curriculum uses four top-level modules (Hermeneutics & Canon; Hebrew Scriptures & Near Eastern World; Second Temple Judaism & Christ Event; Systematic Synthesis, Hard Ethics & Living Practice), keeping multi-lesson units and stable lesson IDs. Any restructuring rewrites each unit as one flow: introduction, substance, summary, with integrated practice checks and non-repeating content",
+  "rationale": "Supersedes the six-course structure (ledger D015, confirmed 2026-09-25)",
+  "by": "Chris"
+}

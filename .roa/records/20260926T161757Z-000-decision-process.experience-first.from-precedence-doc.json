@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "process.experience-first.from-precedence-doc",
+  "topic": "process.experience-first",
+  "date": "2026-09-24",
+  "text": "End-user experience and learning effectiveness are co-primary; architecture serves the experience",
+  "rationale": "Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it",
+  "by": "Claude"
+}

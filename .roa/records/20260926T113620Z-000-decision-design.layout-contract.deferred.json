@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "design.layout-contract.deferred",
+  "topic": "design.layout-contract",
+  "date": "2026-09-26",
+  "text": "The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile",
+  "by": "Claude"
+}

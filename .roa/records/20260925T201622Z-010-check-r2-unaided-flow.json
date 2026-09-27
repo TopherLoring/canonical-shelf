@@ -1,0 +1,7 @@
+{
+  "type": "check",
+  "check": "r2-unaided-flow",
+  "status": "open",
+  "date": "2026-09-25",
+  "text": "From Home: start a session, read, see where you are, follow a cross-reference, and return without help"
+}

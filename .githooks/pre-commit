@@ -1,0 +1,4 @@
+#!/bin/sh
+# project-roa-kit: regenerate project state and docs before every commit.
+if command -v node >/dev/null 2>&1; then RUN=node; elif command -v bun >/dev/null 2>&1; then RUN=bun; else echo "roa: node or bun not found; skipping sync (CI will flag stale files)"; exit 0; fi
+$RUN .roa-kit/roa.mjs sync --stage || exit 1

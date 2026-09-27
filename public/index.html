@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/experience.css">
   <link rel="stylesheet" href="/course-experience.css">
   <link rel="stylesheet" href="/footer.css">
+  <link rel="stylesheet" href="/design-tokens.css" data-generated="roa design-tokens">
   <link rel="stylesheet" href="/canonical-shelf.css" data-visual-contract="canonical">
   <title>Canonical Shelf</title>
 </head>
@@ -25,29 +26,30 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
     <a class="brand" href="/home" aria-label="Canonical Shelf home"><span aria-hidden="true">✦</span><span>Canonical Shelf</span></a>
+    <nav class="primary" aria-label="Primary">
+      <a href="/home" data-route="home">Shelf</a>
+      <a href="/course" data-route="course">Pathway</a>
+      <a href="/bible" data-route="bible">Bible</a>
+      <a href="/topics" data-route="topics">Catalog</a>
+      <a href="/practice" data-route="practice">Practice</a>
+    </nav>
     <form id="global-search" class="search" role="search">
       <label class="sr-only" for="q">Search Bible, Topics, and Course</label>
       <input id="q" name="q" type="search" placeholder="Search Scripture, topics, glossary, or course…" autocomplete="off">
       <button type="submit">Search</button>
     </form>
     <div class="shell-tools" aria-label="Study utilities">
-      <label class="translation-control">Translation
+      <label class="translation-control"><span class="sr-only">Translation</span>
         <select id="translation-select" aria-label="Bible translation">
           <option value="bsb" selected>BSB</option>
         </select>
       </label>
       <button id="progress-open" class="progress-open" type="button" aria-haspopup="dialog" aria-controls="progress-panel" disabled aria-disabled="true">Progress</button>
       <button id="appearance-open" class="appearance-open" type="button" aria-haspopup="dialog" aria-controls="appearance-panel">Appearance</button>
+      <button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
       <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel" disabled aria-disabled="true">Account &amp; sync</button>
     </div>
   </header>
-  <nav class="primary" aria-label="Primary">
-    <a href="/home" data-route="home">Home</a>
-    <a href="/course" data-route="course">Course</a>
-    <a href="/bible" data-route="bible">Bible</a>
-    <a href="/topics" data-route="topics">Topics</a>
-    <a href="/practice" data-route="practice">Practice</a>
-  </nav>
   <p id="pwa-status" class="pwa-status" role="status" aria-live="polite"></p>
   <main id="main" tabindex="-1" aria-live="polite"></main>
 
@@ -61,48 +63,34 @@
     <div id="account-body"><p>Loading account status…</p></div>
   </aside>
 
-  <aside id="guide" class="guide" hidden aria-labelledby="guide-title">
-    <div class="guide-head"><h2 id="guide-title">Theologian</h2><button id="guide-close" aria-label="Close Theologian">×</button></div>
-    <div id="guide-body">
-      <form id="guide-form">
-        <label for="guide-q">Ask the Theologian a study question</label>
-        <textarea id="guide-q" name="question" rows="3" placeholder="Ask about Scripture, context, interpretation, doctrine, or evidence."></textarea>
-        <button class="button" type="submit">Ask</button>
-      </form>
-      <p class="meta">Answers are grounded in the BSB, Canonical Shelf content, the Statement of Faith, and vetted research. Cloud synthesis falls back to Canonical Shelf’s local evidence mode when unavailable.</p>
+  <aside id="guide" class="guide" hidden aria-labelledby="guide-title" data-open="false">
+    <div class="guide-head">
+      <h2 id="guide-title">Theologian</h2>
+      <div class="guide-head__actions">
+        <button id="guide-menu-button" class="guide-menu-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="guide-menu" aria-label="Conversation options">⋯</button>
+        <div id="guide-menu" class="guide-menu" role="menu" hidden>
+          <button type="button" role="menuitem" data-theologian-new-chat>New chat</button>
+          <button type="button" role="menuitem" data-theologian-save>Save to my profile</button>
+          <button type="button" role="menuitem" data-theologian-export>Download as a text file</button>
+          <button type="button" role="menuitem" data-theologian-share>Share…</button>
+        </div>
+        <button id="guide-close" type="button" aria-label="Close Theologian">×</button>
+      </div>
     </div>
+    <div id="guide-body"></div>
   </aside>
-  <button id="guide-open" class="guide-open" type="button" disabled aria-disabled="true" aria-label="Open Theologian">Theologian</button>
-
-  <button id="feedback-open" class="utility-fab feedback-open" type="button" aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
+  <button id="guide-open" class="theologian-tab" type="button" aria-controls="guide" aria-expanded="false" disabled aria-disabled="true"><span class="theologian-tab__label">Theologian</span><span class="theologian-tab__badge" data-unread-count hidden></span><span class="sr-only" data-unread-label></span></button>
   <aside id="feedback-panel" class="utility-panel" hidden aria-labelledby="feedback-title">
-    <div class="utility-panel__head"><div><p class="eyebrow">Canonical Shelf</p><h2 id="feedback-title">Feedback &amp; reviews</h2><p>Report a problem, suggest an improvement, disagree with an interpretation, or flag anything you want reviewed.</p></div><button id="feedback-close" class="utility-panel__close" type="button" aria-label="Close feedback">×</button></div>
+    <div class="utility-panel__head"><div><p class="eyebrow">Canonical Shelf</p><h2 id="feedback-title">Feedback</h2><p>Tell Chris about content, how something works, an interpretation, an idea, or ask him a question directly.</p></div><button id="feedback-close" class="utility-panel__close" type="button" aria-label="Close feedback">×</button></div>
     <form id="feedback-form" class="utility-form">
-      <div id="feedback-context-preview" class="feedback-context-preview" hidden role="note"></div>
-      <label>Category<select name="category"><option value="product">Product or experience</option><option value="content">Content or source</option><option value="theology">Theology or interpretation</option><option value="bug">Bug</option><option value="accessibility">Accessibility</option><option value="privacy">Privacy or data request</option><option value="other">Other</option></select></label>
-      <label id="feedback-review-reason-row" hidden>Review reason <span class="meta">optional</span><select name="reviewReason"><option value="">No specific reason</option><option value="incorrect-claim">Incorrect or misleading claim</option><option value="source-problem">Source or evidence problem</option><option value="missing-viewpoint">Missing relevant viewpoint</option><option value="translation-issue">Translation or language issue</option><option value="interpretive-disagreement">Interpretive disagreement / another reading</option><option value="too-certain">Too certain for the evidence</option><option value="other">Other</option></select></label>
-      <label>Feedback <span class="meta">optional</span><textarea name="message" maxlength="4000" placeholder="Add as much or as little detail as you want."></textarea></label>
-      <label>Contact information <span class="meta">optional</span><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email or another way to reach you"></label>
-      <p class="privacy-note">The current Canonical Shelf route is attached automatically. For anonymous submissions, this browser receives a random private reply identifier; the server stores only a one-way hash so a response can return here without identifying you. When you review a Theologian response, the specific question, answer, visible evidence metadata, response mode/model, policy version, and validation status are attached. Journal writing, private reflections, inferred beliefs, and unrelated chat history are not attached.</p>
+      <label>About<select name="category"><option value="content">Content</option><option value="function">How something works</option><option value="interpretation">An interpretation</option><option value="suggestion">A suggestion</option><option value="question">A question for Chris</option></select></label>
+      <label>Your message<textarea name="message" maxlength="4000" rows="5" placeholder="Write as much or as little as you like."></textarea></label>
+      <label>Contact information <span class="meta">optional</span><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email, if you want a reply by email too"></label>
+      <p id="feedback-attached" class="privacy-note"></p>
+      <p class="privacy-note">Replies come back to this browser as a message on the Theologian tab, without identifying you. The server keeps only a one-way hash of a random browser code, never your IP address. <button type="button" class="link-button" data-feedback-forget>Forget this browser's feedback link</button></p>
       <div class="utility-form__actions"><button class="button" type="submit">Send feedback</button><span id="feedback-status" class="utility-status" role="status" aria-live="polite"></span></div>
     </form>
-    <section class="feedback-inbox" aria-labelledby="feedback-inbox-title">
-      <div class="feedback-inbox__head"><div><p class="eyebrow">This browser</p><h3 id="feedback-inbox-title">Feedback &amp; review replies</h3></div><button type="button" data-feedback-refresh>Refresh</button></div>
-      <p class="privacy-note">Anonymous replies are linked to this browser, not to an IP address. Clearing site data or forgetting the browser link prevents this browser from retrieving those replies later.</p>
-      <p id="feedback-inbox-status" class="utility-status" role="status" aria-live="polite"></p>
-      <div id="feedback-inbox"><p class="meta">Open this panel while online to check for replies.</p></div>
-      <button type="button" class="button button--secondary" data-feedback-forget>Forget this browser's feedback link</button>
-    </section>
   </aside>
-
-  <button id="personal-study-open" class="utility-fab personal-study-open" type="button" aria-haspopup="dialog" aria-controls="personal-study-panel" aria-expanded="false">Journal</button>
-  <aside id="personal-study-panel" class="utility-panel" hidden aria-labelledby="personal-study-title">
-    <div class="utility-panel__head"><div><p class="eyebrow">Personal study</p><h2 id="personal-study-title">Journal</h2><p id="personal-study-context">Current study activity</p></div><button id="personal-study-close" class="utility-panel__close" type="button" aria-label="Close journal">×</button></div>
-    <label class="utility-form">Private journal entry<textarea id="personal-journal" rows="14" maxlength="12000" placeholder="Write observations, questions, connections, prayers, or personal reflections. Journal writing is never scored or used to determine theological agreement."></textarea></label>
-    <p id="personal-study-status" class="utility-status" role="status" aria-live="polite"></p>
-    <p class="privacy-note">Journal writing is tied to the current learner-facing session or activity, remains local-first and unscored, and can be carried with learner state when optional account sync is enabled.</p>
-  </aside>
-
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="site-footer__brand"><strong>Canonical Shelf</strong><p>Serious Bible learning with context, evidence, and interpretation clearly labeled.</p></div>
@@ -155,9 +143,8 @@
 
   <template id="tpl-home">
     <div class="library-first-home">
-      <section class="library-first-hero"><header class="library-first-homehead"><div class="library-first-copy"><div><span class="home-kicker">66 books · full Bible reader · guided learning</span><h1>The Canonical <em>Shelf</em></h1></div><p class="lede">Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div><nav class="library-first-actions" aria-label="Home destinations"><a href="/course">Course</a><a href="/bible">Bible</a><a href="/topics">Topics</a><a href="/practice">Practice</a><a class="is-primary tpl-home-continue" hidden>Continue</a><button type="button" class="appearance-btn-home" data-open-appearance aria-label="Open appearance settings">Appearance</button></nav></header><div class="library-first-shelf-wrap" aria-label="Canonical bookshelf"><div class="library-first-shelf-row"><div class="library-first-shelf-label">Old Testament</div><div class="library-first-shelf tpl-home-shelf-ot"></div></div><div class="library-first-shelf-row"><div class="library-first-shelf-label">New Testament</div><div class="library-first-shelf tpl-home-shelf-nt"></div></div><span class="library-first-bookend-space" aria-hidden="true"></span><span class="library-first-bookend" aria-hidden="true"></span><p class="library-first-shelf-note">Book height and width follow relative length; color follows canonical category.</p></div></section>
+      <section class="library-first-hero"><header class="library-first-homehead"><div class="library-first-copy"><div><span class="home-kicker">66 books · full Bible reader · guided learning</span><h1>The Canonical <em>Shelf</em></h1></div><p class="lede">Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div><a class="button button--primary library-first-continue tpl-home-continue" hidden>Continue where you left off</a></header><div class="library-first-shelf-wrap" aria-label="Canonical bookshelf"><div class="library-first-shelf-row"><div class="library-first-shelf-label">Old Testament</div><div class="library-first-shelf tpl-home-shelf-ot"></div></div><div class="library-first-shelf-row"><div class="library-first-shelf-label">New Testament</div><div class="library-first-shelf tpl-home-shelf-nt"></div></div><span class="library-first-bookend-space" aria-hidden="true"></span><span class="library-first-bookend" aria-hidden="true"></span><p class="library-first-shelf-note">Book height and width follow relative length; color follows canonical category.</p></div></section>
       <section class="library-first-cards tpl-home-history" aria-label="Continue where you left off" hidden><article class="library-first-card"><p class="eyebrow">Continue learning</p><h2 class="tpl-home-next-title"></h2><p class="tpl-home-next-copy"></p><div class="library-first-progress"><span><strong class="tpl-home-progress-pct"></strong><br><span class="tpl-home-progress-count"></span></span><span><strong class="tpl-home-review-count"></strong><br><span class="tpl-home-review-label"></span></span><span class="tpl-home-course-context" hidden><strong class="tpl-home-course-seq"></strong><br><span class="tpl-home-course-title"></span></span></div></article><article class="library-first-card"><p class="eyebrow">Current context</p><h2><a class="tpl-home-context-title"></a></h2><p class="tpl-home-context-copy"></p></article></section>
-      <nav class="library-entry-map" aria-label="Explore Canonical Shelf"><a href="/bible"><small>Bible</small><strong>Browse books</strong><span>Shelf, profiles, chapters, context.</span></a><a href="/topics"><small>Topics</small><strong>Ask a question</strong><span>Curated evidence and interpretation.</span></a><a href="/course"><small>Course</small><strong>Learn in sequence</strong><span class="tpl-home-course-count"></span></a><a href="/practice"><small>Practice</small><strong>Retain what matters</strong><span>Due review before optional practice.</span></a></nav>
       <section class="library-first-recent tpl-home-recent" hidden><p class="eyebrow">Recent study</p><div class="library-first-recent__items tpl-home-recent-items"></div></section>
     </div>
   </template>

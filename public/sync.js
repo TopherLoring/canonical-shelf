@@ -105,6 +105,7 @@ export function mergeLearnerState(local,remote){
   out.reviews=mapMax(a.reviews,b.reviews);
   out.notes=mergeDatedMap(a.notes,b.notes);
   out.journal=mergeDatedMap(a.journal,b.journal);
+  out.transcripts=mergeDatedMap(a.transcripts,b.transcripts);
 
   out.challengeProgress={};
   const progressIds=new Set([...Object.keys(a.challengeProgress||{}),...Object.keys(b.challengeProgress||{})]);

@@ -1,0 +1,7 @@
+{
+  "type": "decision",
+  "id": "decision-authority",
+  "date": "2026-09-25",
+  "text": "[decision] Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions",
+  "by": "Chris"
+}

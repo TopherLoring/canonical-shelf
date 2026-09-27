@@ -28,9 +28,11 @@ await check('Application shell',async()=>{
   requireContract(/<nav\b[^>]*aria-label=["']Primary["']/i.test(shell),'primary navigation landmark is missing');
   requireContract(/id=["']guide-open["']/i.test(shell)&&/id=["']guide["']/i.test(shell),'Theologian launcher/panel contract is missing');
   requireContract(/aria-controls=["']feedback-panel["']/i.test(shell)&&/id=["']feedback-panel["']/i.test(shell),'feedback launcher/panel contract is missing');
-  requireContract(/aria-controls=["']personal-study-panel["']/i.test(shell)&&/id=["']personal-study-panel["']/i.test(shell),'journal launcher/panel contract is missing');
+  requireContract((shell.match(/data-feedback-open/g)||[]).length===1&&!/utility-fab/.test(shell),'exactly one inline Feedback CTA and no floating utility buttons (owner decision feedback)');
+  requireContract(!/personal-study-panel/.test(shell),'the floating Journal panel is retired (owner decision notes)');
+  for(const file of ['public/bible.js','public/learning.js','public/topics-experience.js'])requireContract((await readFile(file,'utf8')).includes('data-notes-mount'),`${file} must build notes into its side panel (owner decision notes)`);
   requireContract(/id=["']account-panel["']/i.test(shell)&&/id=["']progress-panel["']/i.test(shell),'account/progress utility surfaces are missing');
-  return 'search, navigation, study utilities, feedback, journal, account/progress';
+  return 'search, navigation, Theologian tab, single feedback CTA, built-in notes, account/progress';
 });
 
 await check('Single-document SPA contract',async()=>{

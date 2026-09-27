@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "curriculum.content-review.generated-content-review",
+  "topic": "curriculum.content-review",
+  "date": "2026-09-26",
+  "text": "Generated curriculum content is reviewed before learners see it",
+  "supersedes": [
+    "generated-content-review"
+  ],
+  "by": "Claude"
+}
