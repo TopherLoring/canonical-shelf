@@ -78,3 +78,7 @@
 .chat-system__label{font:800 .68rem/1.2 var(--font-meta);letter-spacing:.06em;text-transform:uppercase}
 .chat-system__message p{margin:.3rem 0}
 .chat-system__message small{opacity:.8}
+/* Compact header so the conversation gets the space; narrower tab where there is no side margin. */
+#guide .guide-head h2{margin:0;font-size:1.05rem;line-height:1.2}
+#guide .guide-head{padding-bottom:6px}
+@media (max-width:560px){#guide-open.theologian-tab{padding:10px 5px;font-size:.66rem;letter-spacing:.06em}}

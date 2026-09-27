@@ -47,3 +47,5 @@ html[data-mode='dark'] .feedback-open:hover,html[data-mode='dark'] .feedback-ope
 .my-notes h4{margin:8px 0 0;font:700 .76rem/1.3 var(--font-meta);text-transform:uppercase;letter-spacing:.05em}
 .my-notes__list li p{margin:.2rem 0 0;font-size:.85rem}
 .study-notes__flag{display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:var(--color-gilt);color:var(--chrome);font:700 .68rem/1.4 var(--font-meta)}
+.study-notes__anchor,.study-notes__discuss,.study-notes__row{color:inherit}
+.study-apparatus .study-notes__anchor{opacity:.9}
