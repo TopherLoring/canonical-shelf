@@ -19,6 +19,7 @@ function boundedLearnerContext(value={}){
   const context={};
   if(value?.route)context.route=clip(value.route,180);
   if(value?.activity)context.activity=clip(value.activity,240);
+  if(value?.passage)context.passage=clip(value.passage,80);
   if(Number.isFinite(value?.completed))context.completed=Number(value.completed);
   if(Number.isFinite(value?.total))context.total=Number(value.total);
   if(Number.isFinite(value?.reviewsDue))context.reviewsDue=Number(value.reviewsDue);

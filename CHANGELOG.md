@@ -3,6 +3,16 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-27
+
+### Decided
+
+- The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text) (agent default)
+
+### Changed
+
+- Theologian is a right-edge tab on every screen with a fixed sliding panel, conversation menu, ratings, required-reason flags, and reply messages; Feedback is one inline link per screen; notes are built into the Bible, lesson, and Topic panels and listed in Your Canonical Shelf; the floating Journal and Feedback buttons are gone
+
 ## 2026-09-26
 
 ### Milestones

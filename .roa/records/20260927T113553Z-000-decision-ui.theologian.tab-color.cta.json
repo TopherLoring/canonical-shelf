@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.theologian.tab-color.cta",
+  "topic": "ui.theologian.tab-color",
+  "date": "2026-09-27",
+  "text": "The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text)",
+  "rationale": "First of Chris's three listed options; inverse or a Theologian-specific scheme remain open",
+  "by": "Claude"
+}

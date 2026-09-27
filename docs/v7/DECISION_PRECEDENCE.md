@@ -437,6 +437,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
 
+### `ui.theologian.tab-color`
+
+- **Current** · 2026-09-27 · Agent default (Claude) · `ui.theologian.tab-color.cta`
+  The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text)
+  *Why:* First of Chris's three listed options; inverse or a Theologian-specific scheme remain open
+
 ## Resolved questions
 
 - 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)

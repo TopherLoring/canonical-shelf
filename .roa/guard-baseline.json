@@ -529,12 +529,6 @@
       "text": "body.study-focus-active>.skip{z-index:80}",
       "count": 1
     },
-    "bf3e2c0c5290a3b0": {
-      "rule": "js-head-inject",
-      "file": "public/theologian-chat.js",
-      "text": "const link=document.createElement('link');link.rel='stylesheet';link.href=STYLE;document.head.append(link);",
-      "count": 1
-    },
     "bf58843c8baf17a5": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",

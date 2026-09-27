@@ -64,24 +64,59 @@ test('home provides the durable exploration paths and canonical library',async({
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
 });
 
-test('global study utilities remain operable',async({page})=>{
-  await page.goto('/course');
+test('one inline Feedback link on every screen and the Theologian tab everywhere, including lessons',async({page})=>{
+  for(const route of ['/home','/course','/bible?book=43&chapter=3','/topics','/practice','/course?unit=c1.christianity&lesson=begin']){
+    await page.goto(route);
+    await expect(page.locator('main')).not.toBeEmpty();
+    const visible=await page.locator('[data-feedback-open]').evaluateAll(els=>els.filter(el=>el.offsetParent!==null&&getComputedStyle(el).visibility!=='hidden').map(el=>getComputedStyle(el).position));
+    expect(visible.length,`exactly one visible Feedback link on ${route}`).toBe(1);
+    expect(visible[0],`Feedback link is not floating on ${route}`).not.toBe('fixed');
+    await expect(page.locator('.utility-fab'),`no floating utility buttons on ${route}`).toHaveCount(0);
+    const tab=page.locator('#guide-open');
+    await expect(tab,`Theologian tab visible on ${route}`).toBeVisible();
+    const box=await tab.boundingBox(),width=page.viewportSize().width;
+    expect(Math.round(box.x+box.width),`Theologian tab sits on the right edge on ${route}`).toBeGreaterThanOrEqual(width-1);
+  }
+});
 
-  const theologian=page.locator('#guide-open');
-  await expect(theologian).toBeEnabled();
-  await theologian.click();
+test('Theologian opens as a fixed chat panel with a conversation menu, and closes without losing the chat',async({page})=>{
+  await page.goto('/course');
+  await page.locator('#guide-open').click();
   await expect(page.locator('#guide')).toBeVisible();
+  await expect(page.locator('#guide-q')).toBeVisible();
+  await page.locator('#guide-menu-button').click();
+  await expect(page.locator('#guide-menu [role=menuitem]')).toHaveText(['New chat','Save to my profile','Download as a text file','Share…']);
+  await page.keyboard.press('Escape');
+  await page.locator('#guide-q').fill('What is the gospel?');
+  await page.locator('#guide-q').press('Enter');
+  await expect(page.locator('#guide .chat-message--assistant').first()).toBeVisible({timeout:20000});
   await page.locator('#guide-close').click();
   await expect(page.locator('#guide')).toBeHidden();
+  await page.locator('#guide-open').click();
+  await expect(page.locator('#guide .chat-message--user').first()).toContainText('What is the gospel?');
+  const answer=page.locator('#guide .chat-message--assistant').first();
+  await expect(answer.locator('[data-theologian-rate="up"]')).toBeVisible();
+  await answer.locator('[data-theologian-flag]').click();
+  const flag=page.locator('#guide [data-flag-form]');
+  await expect(flag.locator('select[name=reason] option')).toHaveText(['Choose a reason','Disagreement','Profound','Very helpful','Misguided','Inappropriate','Contrary to Scripture']);
+  await expect(flag.locator('textarea[name=message]')).toHaveAttribute('required','');
+});
 
-  const feedback=page.locator('[aria-controls="feedback-panel"]');
-  await feedback.click();
-  await expect(page.locator('#feedback-panel')).toBeVisible();
-  await page.locator('#feedback-close').click();
-
-  const journal=page.locator('[aria-controls="personal-study-panel"]');
-  await journal.click();
-  await expect(page.locator('#personal-study-panel')).toBeVisible();
+test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
+  await page.goto('/bible?book=43&chapter=3');
+  const mount=page.locator('.library-reader-panel [data-notes-mount]');
+  await expect(mount.locator('.study-notes__anchor')).toContainText('John 3');
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  await expect(mount.locator('.study-notes__anchor')).toContainText('John 3:16');
+  await mount.locator('[data-note-text]').fill('God so loved the world: ask about "world".');
+  await mount.locator('[data-note-discuss]').check();
+  await expect(mount.locator('[data-note-status]')).toContainText('Saved',{timeout:5000});
+  await page.reload();
+  await page.locator('.reader.scripture .verses p').nth(15).click();
+  await expect(page.locator('.library-reader-panel [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
+  await page.locator('#progress-open').click();
+  await expect(page.locator('[data-my-notes]')).toContainText('To bring up in person (1)');
+  await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 
 test('guided lessons foreground learner copy and keep notes separate from study tools',async({page})=>{
@@ -94,8 +129,8 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   const desk=page.locator('#study-apparatus');
   await expect(desk).toBeVisible();
   await expect(desk.locator('h2')).toHaveText('Study Desk');
-  await expect(desk.locator('[data-inline-lesson-note]')).toBeVisible();
-  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Session Notes');
+  await expect(desk.locator('[data-notes-mount] [data-note-text]')).toBeVisible();
+  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Your notes');
 });
 
 test('desktop and narrow layouts do not create horizontal page overflow',async({page})=>{

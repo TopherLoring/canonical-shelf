@@ -181,7 +181,7 @@ function lessonApparatus(lesson,esc,scene){
   const vocab=vocabEntries(lesson);
   const sources=(lesson.sources||[]).map((source,index)=>`<li><a href="${esc(source)}" target="_blank" rel="noreferrer">Source ${index+1}</a></li>`).join('');
   let modules='';
-  modules+=apparatusModule('Session Notes','private',`<label class="reflection-notes"><span>Lesson notes</span><textarea rows="7" maxlength="12000" data-inline-lesson-note data-activity="${esc(aid)}" placeholder="Capture observations, questions, connections, or references to revisit."></textarea><small data-inline-note-status aria-live="polite">Saved locally and never scored.</small></label>`,{open:true});
+  modules+=apparatusModule('Your notes','private',`<section class="study-notes" data-notes-mount aria-label="Your notes"></section>`,{open:true});
   if(scene)modules+=apparatusModule(`This scene · ${esc(scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use the study tools below for evidence, vocabulary, and interpretive boundaries relevant to this lesson.</p>`);
   modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`);
   if(lesson.id==='begin'){
@@ -217,14 +217,14 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
   return `<section class="study-focus" data-study-focus>
     <header class="study-focus__chrome">
       <div class="study-focus__identity"><span>${esc(hierarchy)}</span><strong>${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" data-study-guide data-ask="What can you help me study in this lesson?">Theologian</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
+      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
     </header>
     <article class="study-folio" aria-labelledby="study-scene-title">
       <header class="study-folio__head"><div class="scene-content-head"><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div></header>
       <div class="study-layout">
         <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Scene ${index+1}: ${esc(item.role)}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><small>${esc(item.role)}</small></a>`).join('')}</nav>
         <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
-        <aside id="study-apparatus" class="study-apparatus" aria-label="Study Desk"><div class="study-apparatus__head"><div><h2>Study Desk</h2><div class="session-pane-actions"><button type="button" data-journal-open aria-haspopup="dialog" aria-controls="personal-study-panel">Journal Notes</button><button type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel">Feedback</button></div></div></div><p class="session-context-note">Session Notes stay with this lesson. Study tools below provide optional evidence, vocabulary, context, and sources.</p>${apparatus}</aside>
+        <aside id="study-apparatus" class="study-apparatus" aria-label="Study Desk"><div class="study-apparatus__head"><div><h2>Study Desk</h2></div></div><p class="session-context-note">Your notes stay with this lesson. Study tools below provide optional evidence, vocabulary, context, and sources.</p>${apparatus}</aside>
       </div>
       <footer class="study-nav" aria-label="Lesson navigation">
         <div>${previous?`<a class="study-nav__button" href="${previous}">← Previous</a>`:'<span class="study-nav__button is-disabled" aria-hidden="true">← Previous</span>'}</div>

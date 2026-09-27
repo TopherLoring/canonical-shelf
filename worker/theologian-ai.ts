@@ -41,7 +41,7 @@ type Evidence={
 };
 type Resources={catalog:Catalog;corpus:string;rows:CorpusRow[];statement:string;beliefContext:string;policy:Policy;sources:Source[]};
 type HistoryTurn={role:'user'|'assistant';text:string};
-type LearnerContext={route?:string;activity?:string;completed?:number;total?:number;reviewsDue?:number;recent?:string[];masteryActive?:boolean};
+type LearnerContext={route?:string;activity?:string;passage?:string;completed?:number;total?:number;reviewsDue?:number;recent?:string[];masteryActive?:boolean};
 
 export const THEOLOGIAN_MODEL='@cf/qwen/qwen3-30b-a3b-fp8';
 const MAX_QUESTION=1400;
@@ -168,7 +168,10 @@ function routeEvidence(path:string,resources:Resources):Evidence[]{
   if(url.pathname==='/bible'){
     const bn=Number(url.searchParams.get('book')||0),chapter=Number(url.searchParams.get('chapter')||0);
     if(bn&&chapter){
-      const rows=resources.rows.filter(row=>row.bn===bn&&row.chapter===chapter).slice(0,40);
+      const start=Number(url.searchParams.get('start')||0),end=Number(url.searchParams.get('end')||start);
+      const chapterRows=resources.rows.filter(row=>row.bn===bn&&row.chapter===chapter);
+      if(start){const selected=chapterRows.filter(row=>row.verse>=start&&row.verse<=end);if(selected.length)out.push(scriptureItem(`${BOOKS[bn-1]} ${chapter}:${start}${end>start?`-${end}`:''}`,selected.map(row=>`${row.verse} ${row.text}`).join(' '),path,'passage the learner selected'))}
+      const rows=chapterRows.slice(0,40);
       if(rows.length)out.push(scriptureItem(`${BOOKS[bn-1]} ${chapter}`,rows.map(row=>`${row.verse} ${row.text}`).join(' '),path,'current Berean Standard Bible reading'));
     }
   }
@@ -217,6 +220,7 @@ function sanitizeLearnerContext(value:any):LearnerContext{
   return {
     route:clean(value?.route,180)||undefined,
     activity:clean(value?.activity,240)||undefined,
+    passage:clean(value?.passage,80)||undefined,
     completed:Number.isFinite(value?.completed)?Number(value.completed):undefined,
     total:Number.isFinite(value?.total)?Number(value.total):undefined,
     reviewsDue:Number.isFinite(value?.reviewsDue)?Number(value.reviewsDue):undefined,
@@ -227,6 +231,7 @@ function sanitizeLearnerContext(value:any):LearnerContext{
 function learnerContextText(context:LearnerContext){
   const parts=[];
   if(context.activity)parts.push(`Current activity: ${context.activity}`);
+  if(context.passage)parts.push(`Passage the learner has selected: ${context.passage}`);
   if(Number.isFinite(context.completed)&&Number.isFinite(context.total))parts.push(`Course progress: ${context.completed}/${context.total}`);
   if(Number.isFinite(context.reviewsDue))parts.push(`Reviews due: ${context.reviewsDue}`);
   if(context.recent?.length)parts.push(`Recent study: ${context.recent.join(' | ')}`);

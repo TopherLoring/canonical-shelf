@@ -1,3 +1,2 @@
-// Protestant 66-book canon in order: index + 1 = book number. OSIS abbreviations match OpenBible cross-references.
-export const OSIS = ['Gen','Exod','Lev','Num','Deut','Josh','Judg','Ruth','1Sam','2Sam','1Kgs','2Kgs','1Chr','2Chr','Ezra','Neh','Esth','Job','Ps','Prov','Eccl','Song','Isa','Jer','Lam','Ezek','Dan','Hos','Joel','Amos','Obad','Jonah','Mic','Nah','Hab','Zeph','Hag','Zech','Mal','Matt','Mark','Luke','John','Acts','Rom','1Cor','2Cor','Gal','Eph','Phil','Col','1Thess','2Thess','1Tim','2Tim','Titus','Phlm','Heb','Jas','1Pet','2Pet','1John','2John','3John','Jude','Rev'];
-export const BOOK_BY_OSIS = new Map(OSIS.map((o, i) => [o, i + 1]));
+// Node-side re-export so build scripts and the browser share one book list.
+export { OSIS, BOOK_BY_OSIS, osisOf, parseOsis } from '../../public/bible-books.js';

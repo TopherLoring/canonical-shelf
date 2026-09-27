@@ -89,6 +89,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.theme.default` | undefined | Agent default | undefined |
+| `ui.theologian.tab-color` | undefined | Agent default | undefined |
 
 ## Open feedback (adjust, not locked)
 

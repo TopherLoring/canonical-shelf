@@ -66,6 +66,9 @@
     "allow": [
       "scripts/build-bsb-json.mjs",
       "scripts/fetch-bsb-sources.mjs",
+      "public/screen-context.js",
+      "public/bible-books.js",
+      "public/study-notes.js",
       "scripts/lib/bible-books.mjs"
     ],
     "exclude": [
