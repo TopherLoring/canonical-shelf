@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.bible.notes-panel.reading-desk",
+  "topic": "ui.bible.notes-panel",
+  "date": "2026-09-27",
+  "text": "The Bible notes panel is named Reading Desk, with a compact 1.15rem title",
+  "by": "Claude"
+}

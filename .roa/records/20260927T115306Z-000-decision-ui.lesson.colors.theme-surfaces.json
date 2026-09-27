@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.lesson.colors.theme-surfaces",
+  "topic": "ui.lesson.colors",
+  "date": "2026-09-27",
+  "text": "Lesson screen uses the theme's own surfaces: study-chrome, study-chrome-2, study-chrome-text, study-chrome-muted, and study-accent now reference the theme's raised/subtle surfaces, text colors, and primary accent instead of dark graphite",
+  "by": "Claude"
+}

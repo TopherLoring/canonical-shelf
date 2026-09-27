@@ -66,6 +66,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
 | `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
 | `platform.offline` | Offline access is not a requirement | Owner decision | undefined |
@@ -87,8 +88,12 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theologian.privacy` | undefined | Agent default | undefined |
 | `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
 | `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
+| `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.lesson.colors` | undefined | Agent default | undefined |
+| `ui.naming` | undefined | Agent default | undefined |
 | `ui.theme.default` | undefined | Agent default | undefined |
+| `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 
 ## Open feedback (adjust, not locked)

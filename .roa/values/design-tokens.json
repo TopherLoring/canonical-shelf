@@ -79,13 +79,13 @@
       "notice-bg": "color-mix(in srgb,var(--color-surface-raised) 82%,transparent)",
       "progress-track": "var(--color-surface-subtle)",
       "progress-fill": "var(--color-accent-primary)",
-      "study-chrome": "var(--chrome)",
-      "study-chrome-2": "var(--chrome-2)",
-      "study-chrome-text": "var(--chrome-text)",
-      "study-chrome-muted": "var(--chrome-muted)",
+      "study-chrome": "var(--color-surface-raised)",
+      "study-chrome-2": "var(--color-surface-subtle)",
+      "study-chrome-text": "var(--color-text-primary)",
+      "study-chrome-muted": "var(--color-text-secondary)",
       "study-folio": "var(--color-surface-raised)",
       "study-rule": "var(--color-border-default)",
-      "study-accent": "var(--color-gilt)",
+      "study-accent": "var(--color-accent-primary)",
       "study-nav-bg": "var(--color-surface-raised)"
     }
   },

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.theologian.contrast.keep",
+  "topic": "ui.theologian.contrast",
+  "date": "2026-09-27",
+  "text": "Keep the Theologian's current contrast",
+  "by": "Chris"
+}

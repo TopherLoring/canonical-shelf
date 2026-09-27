@@ -276,6 +276,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 
 
+### `navigation.bars`
+
+- **Current** · 2026-09-27 · Owner decision (Chris) · `navigation.bars.one-top-bar`
+  Keep one navigation bar at the top of the screen; destinations are tabs in it; remove the other navigation bars (the separate destination bar and Home's button row and path cards)
+
 ### `navigation.hierarchy`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `navigation.hierarchy.navigation-hierarchy`
@@ -406,6 +411,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.bible.feedback-2026-09-25`
   Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole
 
+### `ui.bible.notes-panel`
+
+- **Current** · 2026-09-27 · Agent default (Claude) · `ui.bible.notes-panel.reading-desk`
+  The Bible notes panel is named Reading Desk, with a compact 1.15rem title
+- **Feedback** · 2026-09-27 · Chris · `ui.bible.notes-panel.feedback-2026-09-26`
+  Bible notes panel needs a different name and smaller title typography
+
 ### `ui.course-shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.course-shelf.feedback-2026-09-25`
@@ -422,6 +434,19 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.home.feedback-2026-09-25`
   Home: Prototype B ("Library First") was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded
 
+### `ui.lesson.colors`
+
+- **Current** · 2026-09-27 · Agent default (Claude) · `ui.lesson.colors.theme-surfaces`
+  Lesson screen uses the theme's own surfaces: study-chrome, study-chrome-2, study-chrome-text, study-chrome-muted, and study-accent now reference the theme's raised/subtle surfaces, text colors, and primary accent instead of dark graphite
+- **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
+  Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
+
+### `ui.naming`
+
+- **Current** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+  Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)
+  *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`
@@ -436,6 +461,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
+
+### `ui.theologian.contrast`
+
+- **Current** · 2026-09-27 · Owner decision (Chris) · `ui.theologian.contrast.keep`
+  Keep the Theologian's current contrast
+- **Feedback** · 2026-09-27 · Chris · `ui.theologian.contrast.feedback-2026-09-26`
+  Theologian contrast is right as built
 
 ### `ui.theologian.tab-color`
 

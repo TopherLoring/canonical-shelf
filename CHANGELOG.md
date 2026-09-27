@@ -8,6 +8,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text) (agent default)
+- Keep one navigation bar at the top of the screen; destinations are tabs in it; remove the other navigation bars (the separate destination bar and Home's button row and path cards)
+- Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics) (agent default)
+- Lesson screen uses the theme's own surfaces: study-chrome, study-chrome-2, study-chrome-text, study-chrome-muted, and study-accent now reference the theme's raised/subtle surfaces, text colors, and primary accent instead of dark graphite (agent default)
+- Keep the Theologian's current contrast
+- The Bible notes panel is named Reading Desk, with a compact 1.15rem title (agent default)
 
 ### Changed
 

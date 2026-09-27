@@ -24,7 +24,7 @@ test('primary navigation is a same-document SPA transition',async({page})=>{
     await expect(page.locator('#main h1')).toHaveCount(1);
     expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   }
-  await page.locator('main a[href="/course"]').first().click();
+  await page.locator('nav.primary a[href="/course"]').click();
   await expect(page).toHaveURL(/\/course(?:[?#]|$)/);
   expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   await page.goBack();
@@ -38,7 +38,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await page.goto('/home');
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
-  await page.locator('main a[href="/course"]').first().click();
+  await page.locator('nav.primary a[href="/course"]').click();
   await expect(page.locator('.course-volume-landing')).toBeVisible();
   await expect(page.locator('#progress-open')).toBeEnabled();
   await page.locator('#progress-open').click();
@@ -56,13 +56,12 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   expect(errors).toEqual([]);
 });
 
-test('home provides the durable exploration paths and canonical library',async({page})=>{
+test('one navigation bar: destinations are tabs in the masthead; Home keeps the canonical library',async({page})=>{
   await page.goto('/home');
-  for(const route of ['/course','/bible','/topics','/practice']){
-    await expect(page.locator(`main a[href="${route}"]`).first()).toBeVisible();
-  }
+  await expect(page.locator('nav:not(.site-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
+  await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Pathway','Bible','Catalog','Practice']);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
-});
+}); 
 
 test('one inline Feedback link on every screen and the Theologian tab everywhere, including lessons',async({page})=>{
   for(const route of ['/home','/course','/bible?book=43&chapter=3','/topics','/practice','/course?unit=c1.christianity&lesson=begin']){

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "navigation.bars.one-top-bar",
+  "topic": "navigation.bars",
+  "date": "2026-09-27",
+  "text": "Keep one navigation bar at the top of the screen; destinations are tabs in it; remove the other navigation bars (the separate destination bar and Home's button row and path cards)",
+  "by": "Chris"
+}

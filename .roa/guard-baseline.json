@@ -577,12 +577,6 @@
       "text": "background:color-mix(in srgb,var(--chrome) 80%,#fff);",
       "count": 1
     },
-    "c5ee1eacf4c42207": {
-      "rule": "css-raw-color",
-      "file": "public/canonical-shelf.css",
-      "text": ".study-layout{grid-template-columns:22px minmax(0,1fr)}.study-apparatus{grid-column:1/-1;border-left:0;border-top:1px solid #202329}",
-      "count": 1
-    },
     "c93669d6241fd7a3": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
@@ -660,12 +654,6 @@
       "file": "public/canonical-shelf.css",
       "text": ".theme-card__swatch[data-swatch=\"monastic-cedar\"] i:nth-child(3){background:#c88a24}",
       "count": 1
-    },
-    "e03e52997a9d6c7a": {
-      "rule": "css-raw-color",
-      "file": "public/canonical-shelf.css",
-      "text": ".study-focus__chrome{background:#303742}.study-layout{grid-template-columns:22px minmax(0,1fr) 300px}.study-folio{background:var(--study-folio)}.study-scene{pad",
-      "count": 2
     },
     "e42daaa01a3584d5": {
       "rule": "css-raw-color",

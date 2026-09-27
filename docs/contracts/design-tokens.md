@@ -77,13 +77,13 @@ Visual tokens: base fonts, spacing, radii, shadows, and colors on :root, plus na
 | `base.values.notice-bg` | css-value | color-mix(in srgb,var(--color-surface-raised) 82%,transparent) | — |
 | `base.values.progress-track` | css-value | var(--color-surface-subtle) | — |
 | `base.values.progress-fill` | css-value | var(--color-accent-primary) | — |
-| `base.values.study-chrome` | css-value | var(--chrome) | — |
-| `base.values.study-chrome-2` | css-value | var(--chrome-2) | — |
-| `base.values.study-chrome-text` | css-value | var(--chrome-text) | — |
-| `base.values.study-chrome-muted` | css-value | var(--chrome-muted) | — |
+| `base.values.study-chrome` | css-value | var(--color-surface-raised) | — |
+| `base.values.study-chrome-2` | css-value | var(--color-surface-subtle) | — |
+| `base.values.study-chrome-text` | css-value | var(--color-text-primary) | — |
+| `base.values.study-chrome-muted` | css-value | var(--color-text-secondary) | — |
 | `base.values.study-folio` | css-value | var(--color-surface-raised) | — |
 | `base.values.study-rule` | css-value | var(--color-border-default) | — |
-| `base.values.study-accent` | css-value | var(--color-gilt) | — |
+| `base.values.study-accent` | css-value | var(--color-accent-primary) | — |
 | `base.values.study-nav-bg` | css-value | var(--color-surface-raised) | — |
 | `themes.canonical-paper.name` | text | Canonical Paper | — |
 | `themes.canonical-paper.aliases` | list of id | heritage, slate-linen, canonical-original | unique |

@@ -115,7 +115,7 @@ body:has(.library-first-home)>main{max-width:none;padding:0;background:var(--hom
 
 /* LESSON — side apparatus remains visible without competing with the reading task. */
 .study-focus{background:var(--study-chrome);border-radius:var(--theme-radius);box-shadow:var(--theme-shadow)}
-.study-focus__chrome{background:#303742}.study-layout{grid-template-columns:22px minmax(0,1fr) 300px}.study-folio{background:var(--study-folio)}.study-scene{padding:clamp(30px,4vw,52px);background:var(--study-folio)}.study-scene__inner{width:min(760px,100%)}.study-folio__head{background:var(--study-folio)}.study-scripture{background:var(--chrome-2);border-left-color:var(--color-gilt);padding:18px 20px}.study-scripture .eyebrow{color:var(--color-gilt)}.study-apparatus{background:#343b46;padding:14px}.apparatus-module{padding:13px 0}.apparatus-module summary::after{color:var(--color-gilt)}.scene-rail a[aria-current='step'] span{background:var(--color-gilt);border-color:var(--color-gilt)}.study-nav__track i{background:var(--color-gilt)}
+.study-focus__chrome{background:var(--study-chrome);border-bottom:1px solid var(--study-rule)}.study-layout{grid-template-columns:22px minmax(0,1fr) 300px}.study-folio{background:var(--study-folio)}.study-scene{padding:clamp(30px,4vw,52px);background:var(--study-folio)}.study-scene__inner{width:min(760px,100%)}.study-folio__head{background:var(--study-folio)}.study-scripture{background:var(--chrome-2);border-left-color:var(--color-gilt);padding:18px 20px}.study-scripture .eyebrow{color:var(--color-gilt)}.study-apparatus{background:var(--study-chrome-2);color:var(--color-text-primary);padding:14px}.apparatus-module{padding:13px 0}.apparatus-module summary::after{color:var(--color-gilt)}.scene-rail a[aria-current='step'] span{background:var(--color-gilt);border-color:var(--color-gilt)}.study-nav__track i{background:var(--color-gilt)}
 
 /* BIBLE — reader first. Compact shelf → view links → address → reader. */
 .bible-reader-shell{display:grid;gap:8px;padding-bottom:2rem}.bible-reader-heading{display:flex;justify-content:space-between;gap:24px;align-items:end;padding:.65rem 0 .4rem}.bible-reader-heading h1{font-size:clamp(2.2rem,4vw,3.6rem);margin:.05em 0}.bible-reader-heading p{max-width:62ch;margin:.25rem 0;color:var(--color-text-secondary)}
@@ -145,7 +145,7 @@ body.study-focus-active>.guide-open{display:none}
   .library-first-cards,.library-reader-layout,.topics-dossier__body,.topic-reference-layout{grid-template-columns:1fr}
   .library-reader-panel,.topic-context-panel,.topics-dossier__nav{position:static}
   .practice-dashboard__grid{grid-template-columns:1fr 1fr}.practice-dashboard__due{grid-column:1/-1;grid-row:auto}.practice-dashboard__families{grid-column:1/-1}
-  .study-layout{grid-template-columns:22px minmax(0,1fr)}.study-apparatus{grid-column:1/-1;border-left:0;border-top:1px solid #202329}
+  .study-layout{grid-template-columns:22px minmax(0,1fr)}.study-apparatus{grid-column:1/-1;border-left:0;border-top:1px solid var(--color-border-default)}
 }
 @media(max-width:700px){
   .library-first-home{padding-inline:12px}.library-first-copy{grid-template-columns:1fr}.library-first-copy h1{font-size:clamp(40px,14vw,62px)}
@@ -282,3 +282,19 @@ html[data-mode='dark'] .theme-card strong{
 html[data-mode='dark'] .theme-card span{
   color:var(--chrome-muted);
 }
+
+/* One navigation bar (owner decision 2026-09-26): destinations live in the masthead as tabs. */
+.masthead .primary{display:flex;gap:clamp(.9rem,2vw,1.6rem);padding:0;border:0;background:transparent;overflow-x:auto;white-space:nowrap;position:static;flex:0 1 auto;scrollbar-width:none}
+.masthead .primary::-webkit-scrollbar{display:none}
+.masthead .primary a{padding:.45rem 0;font-size:.74rem}
+.masthead .primary a[aria-current="page"]{color:var(--color-text-primary);border-bottom-color:var(--color-gilt);font-weight:700}
+.masthead .feedback-cta{color:var(--color-text-secondary)}
+@media (max-width:960px){.masthead .primary{order:3;flex:1 1 100%;padding-top:.15rem;border-top:1px solid var(--color-border-default)}}
+.library-first-continue{align-self:flex-start;margin-top:1rem}
+
+/* Desk panel titles: compact, so the notes and tools get the space. */
+.library-reader-panel header h2,.topic-context-panel header h2,.study-apparatus__head h2{margin:.1rem 0 .35rem;font-family:var(--font-display);font-size:1.05rem;line-height:1.2;letter-spacing:0}
+@media (min-width:1180px){.masthead{flex-wrap:nowrap}.masthead .search{flex:1 1 11rem;max-width:22rem}.masthead .shell-tools{flex-wrap:nowrap}}
+.library-first-continue{text-decoration:none}
+.library-reader-panel .session-context-note,.topic-context-panel .session-context-note,.study-apparatus .session-context-note{font-size:.85rem;line-height:1.45}
+.library-reader-panel header h2,.topic-context-panel header h2,.study-apparatus__head h2{font-size:1.15rem}
