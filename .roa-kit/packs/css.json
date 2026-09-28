@@ -5,6 +5,7 @@
   "templates": {
     "vars": ":root {\n{{#each vars}}  {{name}}: {{value}};\n{{/each}}}\n",
     "themed-vars": ":root {\n{{#each base}}  {{name}}: {{value}};\n{{/each}}}\n{{#each blocks}}\n/* {{comment}} */\n{{selectorText}} {\n{{#each vars}}  {{name}}: {{value}};\n{{/each}}}\n{{/each}}",
-    "layout": ":root {\n{{#each vars}}  {{name}}: {{value}};\n{{/each}}}\n{{#each media}}\n/* {{label}} */\n{{open}}{{#each rules}}{{indent}}{{selector}} { {{body}} }\n{{/each}}{{close}}{{/each}}"
+    "layout": ":root {\n{{#each vars}}  {{name}}: {{value}};\n{{/each}}}\n{{#each media}}\n/* {{label}} */\n{{open}}{{#each rules}}{{indent}}{{selector}} { {{body}} }\n{{/each}}{{close}}{{/each}}",
+    "theme-vars": "{{#each imports}}@import url(\"{{url}}\");\n{{/each}}:root {\n{{#each shared}}  {{name}}: {{value}};\n{{/each}}{{#each derived}}  {{name}}: {{value}};\n{{/each}}{{#each aliases}}  {{name}}: {{value}};\n{{/each}}}\n{{#each blocks}}\n/* {{comment}} */\n{{selectorText}} {\n{{#each vars}}  {{name}}: {{value}};\n{{/each}}}\n{{/each}}"
   }
 }

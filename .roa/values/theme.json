@@ -1,0 +1,92 @@
+{
+  "shared": {
+    "typeScale": {
+      "caption": "0.75rem",
+      "small": "0.875rem",
+      "body": "1rem",
+      "lead": "1.15rem",
+      "h3": "1.3rem",
+      "h2": "1.7rem",
+      "h1": "2.3rem"
+    },
+    "lineHeights": {
+      "tight": 1.2,
+      "normal": 1.45,
+      "reading": 1.7
+    },
+    "spacing": {
+      "s1": "4px",
+      "s2": "8px",
+      "s3": "12px",
+      "s4": "16px",
+      "s5": "24px",
+      "s6": "32px",
+      "s7": "48px"
+    },
+    "motion": {
+      "fast": "120ms",
+      "base": "200ms",
+      "easing": "ease"
+    },
+    "bibleCategories": {
+      "law": "#274c8e",
+      "history-ot": "#8b5e34",
+      "wisdom": "#2c7a6b",
+      "major-prophets": "#6a3475",
+      "minor-prophets": "#bc8a1c",
+      "gospel": "#b7362c",
+      "history-nt": "#4f7c2a",
+      "paul": "#a8476b",
+      "general": "#455a75",
+      "apocalypse": "#26292f"
+    }
+  },
+  "themes": {
+    "scholarly-graphite": {
+      "name": "Scholarly Graphite (current)",
+      "description": "The site's current look, mapped onto the 10 color roles as the baseline before new themes.",
+      "style": {
+        "fontDisplay": "Cambria,Charter,Georgia,'Times New Roman',serif",
+        "fontBody": "ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif",
+        "fontLabel": "ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace",
+        "radiusSmall": "7px",
+        "radiusLarge": "15px",
+        "borderWeight": "1px",
+        "shadowRaised": "0 8px 24px #0000000d",
+        "shadowOverlay": "0 18px 48px #0000001a",
+        "texture": "none",
+        "illustrations": "none"
+      },
+      "modes": {
+        "light": {
+          "page": "#f0f2f4",
+          "surface": "#ffffff",
+          "surfaceSunken": "#e4e7ea",
+          "border": "#c5c9ce",
+          "text": "#202428",
+          "textMuted": "#555b62",
+          "action": "#24272d",
+          "onAction": "#f7f7f4",
+          "correct": "#1f6b3a",
+          "incorrect": "#a3262e"
+        },
+        "dark": {
+          "page": "#15171a",
+          "surface": "#1f2226",
+          "surfaceSunken": "#1b1d20",
+          "border": "#4a4f57",
+          "text": "#f5f6f8",
+          "textMuted": "#a2a8af",
+          "action": "#e9ebee",
+          "onAction": "#15171a",
+          "correct": "#7cc796",
+          "incorrect": "#f08a8f"
+        }
+      }
+    }
+  },
+  "default": {
+    "theme": "scholarly-graphite",
+    "mode": "light"
+  }
+}

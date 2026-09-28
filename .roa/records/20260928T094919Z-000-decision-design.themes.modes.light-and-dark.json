@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.themes.modes.light-and-dark",
+  "topic": "design.themes.modes",
+  "date": "2026-09-28",
+  "text": "Every theme has both a light and a dark mode",
+  "by": "Chris"
+}

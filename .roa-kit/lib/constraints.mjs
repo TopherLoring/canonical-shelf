@@ -80,7 +80,8 @@ export const CHECKS = {
     return maps.flatMap(m => { const keys = Object.keys(get(values, m.path) || {}); const missing = all.filter(k => !keys.includes(k)); return missing.length ? [`uniformKeys: ${m.path} is missing ${missing.join(', ')}`] : []; });
   },
   themeContrast(values, c) {
-    const pairs = get(values, c.pairs) || [];
+    // Pairs come from the values (c.pairs) or are fixed by the contract itself (c.fixedPairs).
+    const pairs = c.fixedPairs || get(values, c.pairs) || [];
     const errs = [];
     for (const { path } of expand(values, c.maps)) for (const p of pairs) errs.push(...CHECKS.contrast(values, { fg: `${path}.${p.fg}`, bg: `${path}.${p.bg}`, min: p.min }));
     return errs;

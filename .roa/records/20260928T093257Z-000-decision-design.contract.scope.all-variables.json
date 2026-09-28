@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.contract.scope.all-variables",
+  "topic": "design.contract.scope",
+  "date": "2026-09-28",
+  "text": "The contract defines every appearance variable; nothing outside it may be used",
+  "by": "Chris"
+}
