@@ -40,10 +40,11 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
   await page.locator('nav.primary a[href="/course"]').click();
   await expect(page.locator('.course-volume-landing')).toBeVisible();
-  await expect(page.locator('#progress-open')).toBeEnabled();
-  await page.locator('#progress-open').click();
-  await expect(page.locator('#progress-body .progress-panel__summary')).toBeVisible();
-  await page.locator('#progress-close').click();
+  await page.locator('.profile-link').click();
+  await expect(page).toHaveURL(/\/profile$/);
+  await expect(page.locator('[data-profile-progress] .progress-panel__summary')).toBeVisible();
+  await page.goBack();
+  await expect(page.locator('.course-volume-landing')).toBeVisible();
   const courseHref=await page.locator('.course-volume').first().getAttribute('href');
   expect(courseHref).toBeTruthy();
   await page.locator('.course-volume').first().click();
@@ -169,6 +170,32 @@ test('lesson objectives describe lessons on the unit overview and never appear i
   }
 });
 
+test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full screen with appearance',async({page})=>{
+  await page.goto('/bible');
+  const bar=page.locator('header.masthead');
+  await expect(bar.locator('.brand')).not.toContainText('Canonical Shelf');
+  await expect(bar.locator(':scope > *')).toHaveCount(3);
+  await expect(bar.locator('.masthead-tools > *')).toHaveCount(3);
+  for(const gone of ['#progress-open','#appearance-open','#account-open','#translation-select'])await expect(page.locator(gone)).toHaveCount(0);
+  await bar.locator('.search-toggle').click();
+  await expect(bar.locator('#q')).toBeFocused();
+  await page.keyboard.type('covenant');
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/search\?q=covenant/);
+  await bar.locator('.profile-link').click();
+  await expect(page).toHaveURL(/\/profile$/);
+  await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','');
+  for(const id of ['you','progress','notes','appearance','reading','privacy'])await expect(page.locator(`#${id}.profile-section`)).toBeVisible();
+  await expect(page.locator('#you [data-account-mount]')).not.toContainText('Checking your account');
+  const cards=page.locator('#appearance [data-theme-option]');
+  const target=await cards.nth(2).getAttribute('data-theme-option');
+  await cards.nth(2).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme',target);
+  await page.locator('#appearance [data-mode-choice="dark"]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-mode','dark');
+  await expect(page.locator('#appearance-panel')).toHaveCount(0);
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');
@@ -181,7 +208,8 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await page.reload();
   await page.locator('.reader.scripture .verses p').nth(15).click();
   await expect(page.locator('.library-reader-panel [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
-  await page.locator('#progress-open').click();
+  await page.locator('.library-reader-panel .study-notes__all').click();
+  await expect(page).toHaveURL(/\/profile#notes$/);
   await expect(page.locator('[data-my-notes]')).toContainText('To bring up in person (1)');
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });

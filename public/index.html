@@ -26,7 +26,10 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <a class="brand" href="/home" aria-label="Canonical Shelf home"><span aria-hidden="true">✦</span><span>Canonical Shelf</span></a>
+    <a class="brand" href="/home" aria-label="Canonical Shelf home">
+      <!-- Placeholder mark (three book spines) until Chris chooses a logo. -->
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="5" y="7" width="6" height="19" rx="1.2"/><rect x="13" y="4" width="6" height="22" rx="1.2"/><rect x="21.5" y="9" width="6" height="17" rx="1.2" transform="rotate(8 24.5 17.5)"/><rect x="3" y="27" width="26" height="2" rx="1"/></svg>
+    </a>
     <nav class="primary" aria-label="Primary">
       <a href="/home" data-route="home">Shelf</a>
       <a href="/course" data-route="course">Pathway</a>
@@ -34,36 +37,19 @@
       <a href="/topics" data-route="topics">Catalog</a>
       <a href="/practice" data-route="practice">Practice</a>
     </nav>
-    <form id="global-search" class="search" role="search">
-      <label class="sr-only" for="q">Search Bible, Topics, and Course</label>
-      <input id="q" name="q" type="search" placeholder="Search Scripture, topics, glossary, or course…" autocomplete="off">
-      <button type="submit">Search</button>
-    </form>
-    <div class="shell-tools" aria-label="Study utilities">
-      <label class="translation-control"><span class="sr-only">Translation</span>
-        <select id="translation-select" aria-label="Bible translation">
-          <option value="bsb" selected>BSB</option>
-        </select>
-      </label>
-      <button id="progress-open" class="progress-open" type="button" aria-haspopup="dialog" aria-controls="progress-panel" disabled aria-disabled="true">Progress</button>
-      <button id="appearance-open" class="appearance-open" type="button" aria-haspopup="dialog" aria-controls="appearance-panel">Appearance</button>
+    <div class="masthead-tools">
+      <form id="global-search" class="search" role="search" data-open="false">
+        <button type="button" class="search-toggle" aria-controls="q" aria-expanded="false" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+        <label class="sr-only" for="q">Search the Bible, topics, glossary, and Pathway</label>
+        <input id="q" name="q" type="search" placeholder="Search the Bible, topics, glossary" autocomplete="off">
+        <button type="submit" class="sr-only">Search</button>
+      </form>
       <button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
-      <button id="account-open" class="account-open" type="button" aria-haspopup="dialog" aria-controls="account-panel" disabled aria-disabled="true">Account &amp; sync</button>
+      <a class="profile-link" href="/profile" data-route="profile" aria-label="Your profile"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/></svg></a>
     </div>
   </header>
   <p id="pwa-status" class="pwa-status" role="status" aria-live="polite"></p>
   <main id="main" tabindex="-1" aria-live="polite"></main>
-
-  <aside id="progress-panel" class="progress-panel" hidden aria-labelledby="progress-title">
-    <div class="guide-head"><h2 id="progress-title">Your Canonical Shelf</h2><button id="progress-close" aria-label="Close progress">×</button></div>
-    <div id="progress-body"><p>Loading progress…</p></div>
-  </aside>
-
-  <aside id="account-panel" class="account-panel" hidden aria-labelledby="account-title">
-    <div class="guide-head"><h2 id="account-title">Account &amp; sync</h2><button id="account-close" aria-label="Close account and sync">×</button></div>
-    <div id="account-body"><p>Loading account status…</p></div>
-  </aside>
-
   <aside id="guide" class="guide" hidden aria-labelledby="guide-title" data-open="false">
     <div class="guide-head">
       <h2 id="guide-title">Theologian</h2>

@@ -31,7 +31,7 @@ await check('Application shell',async()=>{
   requireContract((shell.match(/data-feedback-open/g)||[]).length===1&&!/utility-fab/.test(shell),'exactly one inline Feedback CTA and no floating utility buttons (owner decision feedback)');
   requireContract(!/personal-study-panel/.test(shell),'the floating Journal panel is retired (owner decision notes)');
   for(const file of ['public/bible.js','public/learning.js','public/topics-experience.js'])requireContract((await readFile(file,'utf8')).includes('data-notes-mount'),`${file} must build notes into its side panel (owner decision notes)`);
-  requireContract(/id=["']account-panel["']/i.test(shell)&&/id=["']progress-panel["']/i.test(shell),'account/progress utility surfaces are missing');
+  requireContract(/href=["']\/profile["']/i.test(shell)&&!/id=["'](account|progress)-panel["']/i.test(shell),'the profile is a full screen at /profile, not account/progress popups (owner decision ui.profile)');
   return 'search, navigation, Theologian tab, single feedback CTA, built-in notes, account/progress';
 });
 

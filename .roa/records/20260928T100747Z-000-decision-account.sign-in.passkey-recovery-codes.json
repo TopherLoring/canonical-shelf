@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "account.sign-in.passkey-recovery-codes",
+  "topic": "account.sign-in",
+  "date": "2026-09-28",
+  "text": "Accounts use a passkey plus recovery codes; no email for now",
+  "by": "Chris"
+}

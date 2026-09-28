@@ -41,6 +41,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 | Topic | Current | Kind | Since |
 |---|---|---|---|
+| `account.sign-in` | Accounts use a passkey plus recovery codes; | Owner decision | undefined |
 | `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
@@ -118,6 +119,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
+| `ui.topbar.layout` | undefined | Agent default | undefined |
 
 ## Open feedback (adjust, not locked)
 

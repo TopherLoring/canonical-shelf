@@ -5,6 +5,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Topics
 
+### `account.sign-in`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `account.sign-in.passkey-recovery-codes`
+  Accounts use a passkey plus recovery codes; no email for now
+
 ### `arch.duplicate-renderers`
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
@@ -163,6 +168,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.pastel-name.rename`
   The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes)
+- **Overridden default** · 2026-09-28 · Agent default (Claude) · `design.themes.pastel-name.watercolor`
+  ~~The Pastel/Soft theme is named Watercolor~~
 
 ### `design.themes.scope`
 
@@ -581,6 +588,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.topbar.redesign`
   Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo
+
+### `ui.topbar.layout`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
+  Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
 
 ## Resolved questions
 

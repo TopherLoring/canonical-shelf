@@ -109,7 +109,7 @@ async function renderMount(mount) {
     <div class="study-notes__row"><small class="study-notes__status" data-note-status role="status" aria-live="polite"></small><button type="button" class="link-button" data-ask="${esc(`About ${label}: `)}">Ask the Theologian about this</button></div>
   </div>
   ${related.length ? `<details class="study-notes__related"><summary>Other notes in this chapter (${related.length})</summary><ul>${related.map(([k, v]) => `<li><a href="${esc(noteHref(k))}">${esc(v.label || scriptureLabel(k.slice(10)))}</a><span>${esc(noteText(v).slice(0, 90))}${noteText(v).length > 90 ? '…' : ''}</span></li>`).join('')}</ul></details>` : ''}
-  <button type="button" class="link-button study-notes__all" data-open-my-notes>All my notes</button>`;
+  <a class="study-notes__all" href="/profile#notes">All my notes</a>`;
   const text = mount.querySelector('[data-note-text]');
   const discuss = mount.querySelector('[data-note-discuss]');
   const status = mount.querySelector('[data-note-status]');
@@ -128,7 +128,7 @@ export async function renderMounts() {
 
 // "Your notes" and saved Theologian conversations inside Your Canonical Shelf.
 async function renderProfileNotes() {
-  const body = document.querySelector('#progress-body');
+  const body = document.querySelector('[data-profile-notes]');
   if (!body || body.querySelector('[data-my-notes]')) return;
   const state = await load();
   const entries = Object.entries(state.notes || {}).filter(([, v]) => noteText(v).trim()).sort(([, a], [, b]) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
@@ -138,7 +138,7 @@ async function renderProfileNotes() {
   const section = document.createElement('section');
   section.className = 'my-notes';
   section.dataset.myNotes = '';
-  section.innerHTML = `<h3 id="my-notes-title">Your notes</h3>
+  section.innerHTML = `
     ${discuss.length ? `<h4>To bring up in person (${discuss.length})</h4><ul class="my-notes__list">${discuss.map(item).join('')}</ul>` : ''}
     <h4>All notes (${entries.length})</h4>
     ${entries.length ? `<ul class="my-notes__list">${entries.map(item).join('')}</ul>` : '<p class="meta">Notes you write in the Bible, a lesson, or a Topic appear here. Open any note to edit it where it belongs.</p>'}
@@ -148,12 +148,6 @@ async function renderProfileNotes() {
 }
 
 document.addEventListener('click', event => {
-  if (event.target.closest?.('[data-open-my-notes]')) {
-    event.preventDefault();
-    const open = document.querySelector('#progress-open');
-    if (open && !open.disabled) { open.click(); setTimeout(() => document.querySelector('#my-notes-title')?.scrollIntoView({ block: 'start' }), 60); }
-    return;
-  }
   const del = event.target.closest?.('[data-delete-transcript]');
   if (del) {
     event.preventDefault();
@@ -172,5 +166,5 @@ document.addEventListener('click', event => {
   if (verse) { rememberVerse(verse); setTimeout(() => renderMounts().catch(() => {}), 0); }
 });
 document.addEventListener('canonical-route-rendered', () => renderMounts().catch(() => {}));
-document.addEventListener('canonical-progress-rendered', () => renderProfileNotes().catch(() => {}));
+document.addEventListener('canonical-route-rendered', () => { if (document.querySelector('[data-profile-notes]')) renderProfileNotes().catch(() => {}); });
 renderMounts().catch(() => {});

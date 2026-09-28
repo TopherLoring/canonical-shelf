@@ -70,7 +70,9 @@
       "public/bible-books.js",
       "public/study-notes.js",
       "scripts/lib/bible-books.mjs",
-      "scripts/compile-pathway.mjs"
+      "scripts/compile-pathway.mjs",
+      "public/profile.js",
+      "public/topbar.js"
     ],
     "exclude": [
       "public/data/",

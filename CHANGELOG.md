@@ -27,6 +27,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Layout structure is the same in every theme; themes may change lines, colors, and typography
 - Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo
 - The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
+- The Pastel/Soft theme is named Watercolor (agent default)
+- Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile (agent default)
+- Accounts use a passkey plus recovery codes; no email for now
 
 ### Added
 
