@@ -12,6 +12,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
 - The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
 - One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+- Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
+- Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline) (agent default)
 
 ### Added
 

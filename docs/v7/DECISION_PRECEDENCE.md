@@ -472,6 +472,16 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
   Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
 
+### `ui.lesson.progress.color-map`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `ui.lesson.progress.color-map.roles`
+  Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline)
+
+### `ui.lesson.progress.colors`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.colors.three`
+  Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
+
 ### `ui.naming`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
