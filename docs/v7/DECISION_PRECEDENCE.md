@@ -103,6 +103,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
 
+### `design.color.roles`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
+  One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+
 ### `design.color.signal`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.signal.gilt-not-chosen`

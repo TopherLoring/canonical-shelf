@@ -11,6 +11,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them (agent default)
 - Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
 - The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
+- One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
 
 ### Added
 
