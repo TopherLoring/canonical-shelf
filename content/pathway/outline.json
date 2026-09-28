@@ -102,6 +102,19 @@
               ],
               "outcomes": [
                 "m1.o4"
+              ],
+              "authored": true,
+              "sections": [
+                "questions",
+                "not-simple",
+                "map",
+                "provisional",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "order the steps from question to responsible conclusion",
+                "choose what the path promises"
               ]
             }
           ]

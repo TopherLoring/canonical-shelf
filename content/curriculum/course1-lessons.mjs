@@ -76,6 +76,7 @@ export const course1Lessons=[
     model:'A strong response names one of the readings, points to something in the text such as its humor, structure, or ending, and notes that the book’s point about God’s mercy holds either way. This reflection is never scored for which view you hold.',
     questionThreadIds:['q.scripture-trust','q.miracles-history','q.disagreement']
   }),
+  // Content for c1-questions-first is authored in content/pathway/lessons/c1-questions-first.md; this entry only registers the lesson.
   lesson({
     id:'c1-questions-first',unitId:'c1.christianity',title:'Questions worth carrying',reading:'Acts 17:10–12',ref:[44,17,10,12],
     objective:'Explain why Canonical Shelf introduces difficult questions early while delaying stronger conclusions until the learner has enough biblical, historical, and interpretive foundation to evaluate them responsibly.',

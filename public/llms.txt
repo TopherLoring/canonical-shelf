@@ -13537,7 +13537,8 @@ Source: [/data/catalog.json](/data/catalog.json)
             "But an important question is not automatically a simple question. A single verse may sit inside an ancient language, literary genre, covenant, historical conflict, argument, or later doctrinal debate. Answering before learning those layers can produce confidence faster than understanding. Acts praises hearers who receive a claim seriously and also examine the evidence. That combination—openness plus investigation—is the posture this course is designed to build.",
             "Course 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity, Scripture, translation, interpretation, theology, practice, traditions, and the biblical story. Courses 2–4 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church.",
             "Course 5 asks how we know: manuscripts, translation, genre, historical context, lexical evidence, intertextuality, arguments, competing interpretations, and levels of confidence. Course 6 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence.",
-            "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate."
+            "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate.",
+            "You know that your questions belong in this study from the start, and that a question can be important without being simple. The path gives you a first map now and returns to each big question once you have the evidence and context to weigh it. Christians still disagree about many of these questions, and later lessons show where and why. The question to carry forward: which of your own questions do you most want the path to answer?"
           ],
           "simple": "You will meet the big questions early. We will give you a first map now, build the evidence and context you need, and return to the questions later with better tools.",
           "vocab": {
@@ -13584,8 +13585,8 @@ Source: [/data/catalog.json](/data/catalog.json)
                 3,
                 0
               ],
-              "hint": "Use the lesson sequence and textual evidence.",
-              "why": "The curriculum introduces the question first, then increases the evidence and interpretive tools available before asking for synthesis."
+              "why": "The curriculum introduces the question first, then increases the evidence and interpretive tools available before asking for synthesis.",
+              "hint": "Look back at the section just above."
             },
             {
               "kind": "evidence",
@@ -13604,7 +13605,7 @@ Source: [/data/catalog.json](/data/catalog.json)
                 3
               ],
               "why": "The curriculum surfaces questions early, permits provisional understanding, and returns to them with more evidence; disagreement does not make all conclusions equally supported.",
-              "hint": "Choose only claims warranted by the evidence presented."
+              "hint": "Look back at the section just above."
             }
           ],
           "reflect": "Which question most makes you want the stronger foundation rather than a fast answer?",
@@ -13629,7 +13630,107 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.christianity",
           "courseId": "course.foundations",
-          "curriculumOrder": 2
+          "curriculumOrder": 2,
+          "readingOsis": "Acts.17.10-12",
+          "sections": [
+            {
+              "id": "questions",
+              "anchor": "lesson:c1-questions-first#questions",
+              "title": "Bring your questions",
+              "blocks": [
+                {
+                  "type": "callout",
+                  "text": "You will meet the big questions early. We will give you a first map now, build the evidence and context you need, and return to the questions later with better tools."
+                },
+                {
+                  "type": "prose",
+                  "text": "Thoughtful adults rarely begin Bible study without questions. Why does suffering exist? Why did Jesus die? What is sin? Can Scripture be trusted after centuries of copying and translation? Why do Christians disagree about sexuality, women, hell, miracles, predestination, violence, other religions, or which biblical commands still apply? Canonical Shelf will not treat those questions as distractions from the curriculum. They are part of the reason for the curriculum."
+                },
+                {
+                  "type": "reading"
+                }
+              ]
+            },
+            {
+              "id": "not-simple",
+              "anchor": "lesson:c1-questions-first#not-simple",
+              "title": "Important is not the same as simple",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "But an important question is not automatically a simple question. A single verse may sit inside an ancient language, literary genre, covenant, historical conflict, argument, or later doctrinal debate. Answering before learning those layers can produce confidence faster than understanding. Acts praises hearers who receive a claim seriously and also examine the evidence. That combination—openness plus investigation—is the posture this course is designed to build."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "map",
+              "anchor": "lesson:c1-questions-first#map",
+              "title": "How the path answers",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Course 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity, Scripture, translation, interpretation, theology, practice, traditions, and the biblical story. Courses 2–4 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church."
+                },
+                {
+                  "type": "prose",
+                  "text": "Course 5 asks how we know: manuscripts, translation, genre, historical context, lexical evidence, intertextuality, arguments, competing interpretations, and levels of confidence. Course 6 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "provisional",
+              "anchor": "lesson:c1-questions-first#provisional",
+              "title": "Holding an answer lightly",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate."
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c1-questions-first#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You know that your questions belong in this study from the start, and that a question can be important without being simple. The path gives you a first map now and returns to each big question once you have the evidence and context to weigh it. Christians still disagree about many of these questions, and later lessons show where and why. The question to carry forward: which of your own questions do you most want the path to answer?"
+                }
+              ]
+            },
+            {
+              "id": "reflect",
+              "anchor": "lesson:c1-questions-first#reflect",
+              "title": "Reflect",
+              "blocks": [
+                {
+                  "type": "reflect"
+                }
+              ]
+            }
+          ],
+          "teaches": [
+            "provisional-questions"
+          ],
+          "requires": [
+            "understanding-vs-assent"
+          ],
+          "outcomes": [
+            "m1.o4"
+          ],
+          "scriptureRefs": [
+            "Acts.17.10-12"
+          ],
+          "authored": true
         },
         {
           "id": "c1-bible-languages",
