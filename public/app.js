@@ -120,7 +120,8 @@ async function render(){
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   if(bookDrawer)bookDrawer.querySelector('[data-book-drawer-close]')?.focus({preventScroll:true});
   else if(r==='bible'&&p.get('focus'))main.querySelector(`[data-book="${CSS.escape(p.get('focus'))}"]`)?.focus({preventScroll:true});
-  else main.focus({preventScroll:true});
+  // Move focus to the new content, unless the learner is already using the top bar or an open panel.
+  else if(!document.activeElement?.closest?.('.masthead,#guide,#feedback-panel'))main.focus({preventScroll:true});
   refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
 }
 function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}}

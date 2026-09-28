@@ -1,4 +1,3 @@
-import './topbar.js';
 import {migrateLegacy} from './db.js';
 import {initTheme} from './theme.js';
 import './study-controls.js';
