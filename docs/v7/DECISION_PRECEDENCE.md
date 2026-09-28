@@ -457,6 +457,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
 
+### `ui.lesson.progress`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+  Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+
 ### `ui.naming`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`

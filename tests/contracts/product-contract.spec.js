@@ -117,6 +117,27 @@ test('cross-references are the last, collapsed detail level of the Reading Desk 
   await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
 });
 
+test('lesson progress: unlabeled dots (vertical on desktop, centered along the bottom on phones) navigate to any step',async({page})=>{
+  for(const [w,h,dir] of [[1440,900,'column'],[390,844,'row']]){
+    await page.setViewportSize({width:w,height:h});
+    await page.goto('/course?unit=c1.bible&lesson=c1-reading-kinds&scene=3');
+    const rail=page.locator('.scene-rail'),dots=rail.locator('a');
+    await expect(rail).toBeVisible();
+    expect(await rail.evaluate(el=>getComputedStyle(el).flexDirection)).toBe(dir);
+    await expect(rail.locator('.scene-rail__label').first()).toBeHidden();
+    const count=await dots.count();
+    expect(await dots.evaluateAll(a=>a.map(x=>x.dataset.state))).toEqual(Array.from({length:count},(_,i)=>i<2?'complete':i===2?'current':'upcoming'));
+    await expect(dots.first()).toHaveAttribute('aria-label',new RegExp(`Step 1 of ${count}`));
+    if(dir==='row'){const box=await rail.boundingBox();expect(Math.abs(box.x+box.width/2-w/2),'dots centered on phones').toBeLessThan(40)}
+    else{await dots.nth(4).hover();await expect(dots.nth(4).locator('.scene-rail__label'),'step name shows on hover on desktop').toBeVisible()}
+    await dots.nth(count-1).click();
+    await expect(page).toHaveURL(new RegExp(`scene=${count}(?:&|$)`));
+    await expect(rail.locator('a').nth(count-1)).toHaveAttribute('data-state','current');
+    await rail.locator('a').first().click();
+    await expect(rail.locator('a').first()).toHaveAttribute('data-state','current');
+  }
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');

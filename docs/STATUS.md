@@ -94,6 +94,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
+| `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
 | `ui.theme.default` | undefined | Agent default | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
