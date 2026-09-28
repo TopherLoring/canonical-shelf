@@ -21,6 +21,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The contract defines every appearance variable; nothing outside it may be used
 - Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles (agent default)
 - Fun and Illustrated are separate themes: Fun is a whimsical design; Illustrated uses a sketch-artist approach (hand-drawn look)
+- Every theme has both a light and a dark mode
 
 ### Added
 

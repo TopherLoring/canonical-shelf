@@ -68,6 +68,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `design.themes.fun-illustrated` | Fun and Illustrated are separate themes: | Owner decision | undefined |
+| `design.themes.modes` | Every theme has both a light and a dark mode | Owner decision | undefined |
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |

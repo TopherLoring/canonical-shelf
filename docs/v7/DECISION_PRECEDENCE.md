@@ -149,6 +149,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.fun-illustrated.separate`
   Fun and Illustrated are separate themes: Fun is a whimsical design; Illustrated uses a sketch-artist approach (hand-drawn look)
 
+### `design.themes.modes`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.modes.light-and-dark`
+  Every theme has both a light and a dark mode
+
 ### `design.themes.set`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.set.eight`
