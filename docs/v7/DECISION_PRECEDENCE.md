@@ -144,6 +144,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
   The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile
 
+### `design.themes.fun-illustrated`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.fun-illustrated.separate`
+  Fun and Illustrated are separate themes: Fun is a whimsical design; Illustrated uses a sketch-artist approach (hand-drawn look)
+
 ### `design.themes.set`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.set.eight`

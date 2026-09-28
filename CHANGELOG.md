@@ -20,6 +20,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The site will offer 8 very different themes built on the theme contract: Library, Paper, Collegiate, Stained Glass, Fun, Pastel/Soft, Fun and Illustrated, plus one more; themes should dramatically change the visual design
 - The contract defines every appearance variable; nothing outside it may be used
 - Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles (agent default)
+- Fun and Illustrated are separate themes: Fun is a whimsical design; Illustrated uses a sketch-artist approach (hand-drawn look)
 
 ### Added
 
