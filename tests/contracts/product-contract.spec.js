@@ -117,6 +117,58 @@ test('cross-references are the last, collapsed detail level of the Reading Desk 
   await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
 });
 
+test('lesson progress: unlabeled dots (vertical on desktop, centered along the bottom on phones) navigate to any step',async({page})=>{
+  for(const [w,h,dir] of [[1440,900,'column'],[390,844,'row']]){
+    await page.setViewportSize({width:w,height:h});
+    await page.goto('/course?unit=c1.bible&lesson=c1-reading-kinds&scene=3');
+    const rail=page.locator('.scene-rail'),dots=rail.locator('a');
+    await expect(rail).toBeVisible();
+    expect(await rail.evaluate(el=>getComputedStyle(el).flexDirection)).toBe(dir);
+    await expect(rail.locator('.scene-rail__label').first()).toBeHidden();
+    const count=await dots.count();
+    expect(await dots.evaluateAll(a=>a.map(x=>x.dataset.state))).toEqual(Array.from({length:count},(_,i)=>i<2?'complete':i===2?'current':'upcoming'));
+    await expect(dots.first()).toHaveAttribute('aria-label',new RegExp(`Step 1 of ${count}`));
+    if(dir==='row'){const box=await rail.boundingBox();expect(Math.abs(box.x+box.width/2-w/2),'dots centered on phones').toBeLessThan(40)}
+    else{await dots.nth(4).hover();await expect(dots.nth(4).locator('.scene-rail__label'),'step name shows on hover on desktop').toBeVisible()}
+    await dots.nth(count-1).click();
+    await expect(page).toHaveURL(new RegExp(`scene=${count}(?:&|$)`));
+    await expect(rail.locator('a').nth(count-1)).toHaveAttribute('data-state','current');
+    await rail.locator('a').first().click();
+    await expect(rail.locator('a').first()).toHaveAttribute('data-state','current');
+  }
+});
+
+test('authored Lesson 1: one step per section, checks inline where written, readable Scripture in light and dark',async({page})=>{
+  await page.goto('/course?unit=c1.christianity&lesson=begin&scene=2');
+  await expect(page.locator('.scene-rail a')).toHaveCount(7);
+  await expect(page.locator('.scene-rail a').nth(1)).toHaveAttribute('aria-label',/Read the passage/);
+  const scene=page.locator('.study-scene, main').first();
+  await expect(scene.locator('.study-scripture')).toBeVisible();
+  await expect(scene.locator('.inline-check')).toHaveCount(1);
+  const order=await page.evaluate(()=>{const r=document.querySelector('.study-scripture'),c=document.querySelector('.inline-check');return r.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING?'reading-then-check':'check-first'});
+  expect(order).toBe('reading-then-check');
+  for(const mode of ['light','dark']){
+    await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
+    const ratio=await page.locator('.study-scripture p:not(.eyebrow)').first().evaluate(el=>{
+      const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
+      const lum=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+      const f=lum(rgb(getComputedStyle(el).color)),b=lum(rgb(getComputedStyle(el.closest('.study-scripture')).backgroundColor));
+      return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
+    });
+    expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+  }
+});
+
+test('lesson objectives describe lessons on the unit overview and never appear inside the lesson',async({page})=>{
+  const objective='Put the proclamation Paul recalls';
+  await page.goto('/course?unit=c1.christianity');
+  await expect(page.locator('.unit-lesson-objective').first()).toContainText(objective);
+  for(const scene of [1,2,3,7]){
+    await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
+    await expect(page.locator('main')).not.toContainText(objective);
+  }
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');
@@ -139,7 +191,7 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   const scene=page.locator('.study-scene__inner');
   await expect(scene.locator('.scene-objective')).toHaveCount(0);
   await expect(scene.locator('.scene-callout')).toBeVisible();
-  await expect(scene.locator('.scene-prose')).toBeVisible();
+  await expect(scene.locator('.scene-prose').first()).toBeVisible();
 
   const desk=page.locator('#study-apparatus');
   await expect(desk).toBeVisible();

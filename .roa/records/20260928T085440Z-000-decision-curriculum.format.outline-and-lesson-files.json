@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "curriculum.format.outline-and-lesson-files",
+  "topic": "curriculum.format",
+  "date": "2026-09-28",
+  "text": "Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog",
+  "rationale": "Implements owner decisions curriculum.authoring, content.anchoring, and learning.games checks-inline",
+  "by": "Claude"
+}

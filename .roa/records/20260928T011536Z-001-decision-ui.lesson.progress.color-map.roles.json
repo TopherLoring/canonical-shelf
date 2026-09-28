@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.lesson.progress.color-map.roles",
+  "topic": "ui.lesson.progress.color-map",
+  "date": "2026-09-28",
+  "text": "Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline)",
+  "by": "Claude"
+}

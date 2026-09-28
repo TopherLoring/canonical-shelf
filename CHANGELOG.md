@@ -3,6 +3,30 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-28
+
+### Decided
+
+- The first path's second unit opens with two lessons: 'Meet the library: nine kinds of books' (high-level overviews of the nine groups: what each contains, how to read it, where to begin) and 'How to read what you're reading' (kinds of biblical writing and the claim each makes; contested passages shown with the views side by side; 'not literal' never means 'not true')
+- The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them (agent default)
+- Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+- The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
+- One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+- Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
+- Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline) (agent default)
+- Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog (agent default)
+- A lesson's objective is not shown inside the lesson; it describes the lesson on overview screens (the unit's lesson list)
+- The unit page's lesson list in learning.js (courseView) is not what learners see; course-experience.js renders the unit page from the tpl-unit-activity-step template. Remove the unused learning.js renderer during the CSS/JS consolidation (agent default)
+
+### Added
+
+- First path, unit 2: 'Meet the library: nine kinds of books' and 'How to read what you're reading'
+
+### Changed
+
+- Lesson 1 'Begin with the central story' rewritten in the final format: 7 sections, 3 inline checks, readable Scripture block in light and dark
+- The first path's opening lessons ('Begin with the central story', 'Meet the library', 'How to read what you're reading') are all in the final format with inline checks
+
 ## 2026-09-27
 
 ### Decided

@@ -182,7 +182,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `generate:wrangler` | `bun scripts/write-wrangler.mjs` |
 | `generate:curriculum-reference` | `bun scripts/generate-curriculum-reference.mjs` |
 | `generate:llms` | `bun scripts/generate-llms.mjs` |
-| `prepare:content` | `bun run migrate && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
+| `prepare:content` | `bun run migrate && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
 | `verify:bsb` | `bun scripts/bsb-integrity.mjs` |
 | `verify:contract` | `bun scripts/verify-product-contract.mjs` |
 | `verify:deployment` | `bun scripts/verify-deployment.mjs` |
@@ -215,6 +215,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `roa:verify` | `node .roa-kit/roa.mjs verify` |
 | `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
 | `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
+| `compile:pathway` | `bun scripts/compile-pathway.mjs` |
 
 ## Repository map
 

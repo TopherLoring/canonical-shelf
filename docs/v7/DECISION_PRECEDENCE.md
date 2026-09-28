@@ -5,6 +5,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Topics
 
+### `arch.duplicate-renderers`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
+  The unit page's lesson list in learning.js (courseView) is not what learners see; course-experience.js renders the unit page from the tpl-unit-activity-step template. Remove the unused learning.js renderer during the CSS/JS consolidation
+
 ### `arch.routing`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `arch.routing.spa`
@@ -53,6 +58,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.extra-credit.extra-credit-module`
   Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary)
 
+### `curriculum.format`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `curriculum.format.outline-and-lesson-files`
+  Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog
+  *Why:* Implements owner decisions curriculum.authoring, content.anchoring, and learning.games checks-inline
+
 ### `curriculum.invariants`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `curriculum.invariants.from-precedence-doc`
@@ -63,6 +74,22 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
   Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
+
+### `curriculum.objective-display`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `curriculum.objective-display.overview-only`
+  A lesson's objective is not shown inside the lesson; it describes the lesson on overview screens (the unit's lesson list)
+
+### `curriculum.path1.library`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `curriculum.path1.library-lessons`
+  The first path's second unit opens with two lessons: 'Meet the library: nine kinds of books' (high-level overviews of the nine groups: what each contains, how to read it, where to begin) and 'How to read what you're reading' (kinds of biblical writing and the claim each makes; contested passages shown with the views side by side; 'not literal' never means 'not true')
+  *Why:* The primary learner asked for a basic book-by-book overview of what the books are and how to read them; category overviews suffice
+
+### `curriculum.path1.overlap`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `curriculum.path1.overlap-kept`
+  The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them
 
 ### `curriculum.structure`
 
@@ -91,6 +118,16 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `design.authority.visual-authority`
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
+
+### `design.color.roles`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
+  One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+
+### `design.color.signal`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.signal.gilt-not-chosen`
+  The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
 
 ### `design.layout-contract`
 
@@ -445,6 +482,21 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Lesson screen uses the theme's own surfaces: study-chrome, study-chrome-2, study-chrome-text, study-chrome-muted, and study-accent now reference the theme's raised/subtle surfaces, text colors, and primary accent instead of dark graphite
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
+
+### `ui.lesson.progress`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+  Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+
+### `ui.lesson.progress.color-map`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `ui.lesson.progress.color-map.roles`
+  Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline)
+
+### `ui.lesson.progress.colors`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.colors.three`
+  Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
 
 ### `ui.naming`
 

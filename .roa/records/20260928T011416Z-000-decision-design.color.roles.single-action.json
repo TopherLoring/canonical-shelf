@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.color.roles.single-action",
+  "topic": "design.color.roles",
+  "date": "2026-09-28",
+  "text": "One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles",
+  "by": "Chris"
+}

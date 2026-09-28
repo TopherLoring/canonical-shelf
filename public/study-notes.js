@@ -4,7 +4,7 @@
 // and all of them are listed, editable, under Your Canonical Shelf (the progress panel).
 import { getState, putState } from './db.js';
 import { recordMutation } from './sync.js';
-import { currentPassage, outlineAnchor, screenLabel } from './screen-context.js';
+import { currentPassage, outlineAnchor, screenLabel, rememberVerse } from './screen-context.js';
 import { OSIS, parseOsis } from './bible-books.js';
 import { LIBRARY_BOOKS } from './library-data.js';
 
@@ -168,7 +168,8 @@ document.addEventListener('click', event => {
     return;
   }
   // Selecting a verse in the reader re-targets the note to that verse.
-  if (event.target.closest?.('.reader.scripture .verses p')) setTimeout(() => renderMounts().catch(() => {}), 0);
+  const verse = event.target.closest?.('.reader.scripture .verses p');
+  if (verse) { rememberVerse(verse); setTimeout(() => renderMounts().catch(() => {}), 0); }
 });
 document.addEventListener('canonical-route-rendered', () => renderMounts().catch(() => {}));
 document.addEventListener('canonical-progress-rendered', () => renderProfileNotes().catch(() => {}));

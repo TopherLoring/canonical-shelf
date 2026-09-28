@@ -4,7 +4,7 @@
 
 This file is generated from Canonical Shelf’s learner-facing learning, Bible-reference, Practice, editorial, institutional, legal/privacy, safety, and theology content. It is a derived machine-readable corpus, not an independent authority. The complete Berean Standard Bible corpus is intentionally linked rather than duplicated verbatim; curated Scripture excerpts intentionally used by Canonical Shelf remain included.
 
-Current scored curriculum: 6 courses, 44 units, 117 guided lessons, 119 mastery/capstone activities, and 236 scored activities. Current reference library: 45 Topics and 268 glossary terms.
+Current scored curriculum: 6 courses, 44 units, 119 guided lessons, 119 mastery/capstone activities, and 238 scored activities. Current reference library: 45 Topics and 273 glossary terms.
 
 ## Primary destinations
 
@@ -419,11 +419,11 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     - **6 courses**
     - **44 scored units**
-    - **117 guided lessons**
+    - **119 guided lessons**
     - **119 mastery/capstone activities**
-    - **236 scored activities total**
+    - **238 scored activities total**
     - **45 curated Topics** outside course completion
-    - **268 glossary terms** generated from lesson vocabulary
+    - **273 glossary terms** generated from lesson vocabulary
     - **12 recurring question threads** that connect foundations, biblical/historical encounters, interpretation, and later synthesis
     
     The curriculum uses a questions-first spiral. Important doctrinal and difficult questions are introduced early, revisited where their biblical and historical evidence naturally appears, investigated with stronger interpretive tools, and synthesized later. Course 6 is therefore not the first exposure to theology or difficult questions.
@@ -2212,7 +2212,7 @@ Source: [/data/catalog.json](/data/catalog.json)
         {
           "id": "begin",
           "title": "Begin with the central story",
-          "objective": "Distinguish the Christian proclamation from a demand that you already believe it.",
+          "objective": "Put the proclamation Paul recalls into your own words, define its key terms, and tell the difference between understanding Christianity's claim and agreeing with it.",
           "ref": [
             46,
             15,
@@ -2221,27 +2221,34 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "reading": "1 Corinthians 15:1–5",
           "body": [
-            "Christianity centers on Jesus Christ: his life, death, and resurrection, and the relationship with God made possible through him. Christ is a title meaning anointed one, not Jesus’ surname. Gospel means good news; it can refer to the Christian message or to one of the four Gospel books.",
-            "Paul’s letter to the Corinthians addresses an existing community with questions and disagreements. Here he recalls a message he received and passed on: Christ died for sins, was buried, was raised, and appeared to witnesses. This is a compact proclamation inside a letter, not a complete biography of Jesus.",
-            "This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective influenced by Metropolitan Community Churches and the Christian Church (Disciples of Christ). It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.",
-            "The first goal is orientation. Notice what the passage actually says before trying to settle every question about how salvation works. Later lessons distinguish the saving work of Christ, receiving grace through faith and repentance, and living in response to that grace.",
-            "Paul writes to a community in Roman Corinth, not to isolated readers. Patron-client relationships exchanged resources and assistance for loyalty and public honor; gifts could create obligations. That social setting helps us ask who had influence and whose needs went unheard. It does not establish the motive of every Corinthian. Read 1 Corinthians 11:17–22 alongside this opening lesson: the gospel Paul recalls in chapter 15 also concerns the community’s shared life."
+            "Christianity centers on Jesus of Nazareth: his life, his death, and what his first followers said happened after it. Everything else in this guide, from the shape of the Bible to the arguments Christians still have, connects back to that center. So this path begins there, with the shortest summary of it we have, written by someone who knew the people involved.",
+            "You do not need to believe it to study it. You only need to read carefully and ask good questions, which is what this lesson will help you do.",
+            "Around twenty years after Jesus' death, Paul wrote a letter to a young church in the Greek city of Corinth. Near the end of that letter he reminded them of the message he had first brought them. Read it slowly, and watch for the things Paul says happened.",
+            "Notice the four verbs in a row: Christ died, was buried, was raised, and appeared. Paul presents them as events, in an order, with witnesses. He also says he “received” this message and “passed it on,” which tells you it was already a set summary when he wrote it down.",
+            "Three words in this passage carry a lot of weight, and each is easy to misread.",
+            "Gospel means good news. Paul calls this message “the gospel,” and the same word later became the name for the four books that tell Jesus' story: Matthew, Mark, Luke, and John. Christ is not Jesus' last name. It is a title meaning “anointed one,” the Greek form of the Hebrew word Messiah, the one Israel hoped God would send. Resurrection does not mean coming back as a ghost, returning to the old life, or being reborn as someone else. It means being raised from death to a new, bodily life.",
+            "Paul was not writing a biography of Jesus. He was writing to people he knew, who were arguing among themselves, and he reminded them of the message they had all started from. That is why this summary is so short: it assumes his readers already know the story and need to remember what matters most about it.",
+            "This matters for how you read the rest of the Bible too. Most of it was written to particular people in particular situations. Asking who wrote a passage, to whom, and why is one of the most useful habits you can build, and you will use it on every page from here on.",
+            "This guide teaches Christianity from an openly LGBTQ-affirming, open-table perspective, influenced by the Metropolitan Community Churches and the Christian Church (Disciples of Christ). It takes historic Christian teaching seriously, says plainly where it stands, and shows you where Christians disagree instead of hiding it.",
+            "You are free to explore, question, and disagree. Every check asks whether you understood what a passage or a tradition says, never whether you agree with it.",
+            "You have read the earliest summary of the Christian message: Christ died for sins, was buried, was raised, and appeared to witnesses. You know that gospel means good news, that Christ is a title, and that resurrection means new, bodily life. You know that Paul was reminding a real community of something they already shared.",
+            "Christians have long agreed on this center, and they still debate a great deal around it: what “died for sins” means and how it works, what kind of body the resurrection involves, and how the appearances should be understood. Later lessons take those questions up one at a time. The question to carry forward is simple: if this is the center, how does the rest of the library connect to it?"
           ],
-          "simple": "Start with a person and a story: Christians proclaim that Jesus died for sins and rose from the dead. You can learn what that claim means before deciding what you believe.",
+          "simple": "Christianity begins with a person and a story. You can learn what that story claims before you decide what you believe about it.",
           "vocab": {
-            "Gospel": "Good news; also the name for a narrative book about Jesus.",
-            "Christ": "Anointed one; the Greek title corresponding to Messiah.",
-            "Resurrection": "Being raised from death, not repeatedly returning in new earthly lives.",
-            "Patronage": "Relationships in which assistance and resources could carry expectations of loyalty, honor, and reciprocal obligations."
+            "Gospel": "Good news. It names the Christian message, and it is also the name for the four books that tell Jesus' story.",
+            "Christ": "Anointed one; the Greek title that corresponds to the Hebrew Messiah. It is a title, not Jesus' surname.",
+            "Resurrection": "Being raised from death to new, bodily life; not a return to the old life, and not coming back in another earthly life.",
+            "Proclamation": "A public announcement of news; here, the message the first Christians handed on."
           },
-          "deeper": "Paul distinguishes the proclamation from his own role as its messenger. Ask what changes when we read this as a reminder to a community rather than as a modern individual conversion script. Modern individualistic habits may reduce Paul’s letters to “my beliefs” or “my spiritual success.” Ask instead how status, dependence, and public reputation shape a congregation. New Testament scholar Theodore W. Jennings examines patronage—resource relationships shaped by loyalty, honor, and reciprocal obligation—especially in 2 Corinthians 8–9; applying that lens elsewhere is an interpretive proposal, to be checked against each passage. In 1 Corinthians 11, hunger and humiliation are explicit evidence; a precise seating plan or each host’s intention is a reconstruction. Paul’s critique reaches communal conduct, not simply private sincerity.",
-          "reflect": "What would you need to understand before explaining Christianity’s central claim to someone else?",
-          "model": "I would separate who Jesus is, what Christians say happened, and why they believe those events matter.",
+          "deeper": "Paul writes to a community in Roman Corinth, where relationships of patronage traded help for loyalty and public honor. In 1 Corinthians 11:17–22 he rebukes a shared meal at which some go hungry while others have plenty. Reading chapter 15 alongside chapter 11 shows that the message Paul recalls was meant to shape how a community lives together, not only what each person privately believes. How far the patronage lens explains a given passage is an interpretive question to test against each text.",
+          "reflect": "If a friend asked you what Christianity claims at its center, what would you say in two or three sentences, using what you read today?",
+          "model": "A strong answer names Jesus, says what Christians claim happened (he died, was buried, was raised, and appeared to people), and makes clear that this is a claim you can study and weigh. It does not need to say whether you believe it. This reflection is never scored.",
           "challenges": [
             {
               "kind": "sequence",
-              "title": "Reconstruct the proclamation",
-              "prompt": "Arrange the events in the order Paul recounts them.",
+              "title": "Put the proclamation in order",
+              "prompt": "Arrange the four events in the order Paul recalls them.",
               "items": [
                 "Christ was buried",
                 "Christ appeared to witnesses",
@@ -2254,77 +2261,47 @@ Source: [/data/catalog.json](/data/catalog.json)
                 3,
                 1
               ],
-              "hint": "Follow the verbs in verses 3–5.",
-              "why": "Paul connects death, burial, resurrection, and appearances. Sequence does not explain every theological mechanism; it establishes the proclamation."
+              "why": "Paul's summary moves from death to burial to resurrection to appearances. The order matters: the burial confirms the death, and the appearances are offered as evidence for the resurrection.",
+              "hint": "Look back at the section just above."
             },
             {
               "kind": "match",
-              "title": "Decode the vocabulary",
-              "prompt": "Assign the correct meaning to each term.",
+              "title": "Match the words to their meanings",
+              "prompt": "Match each word to what it means.",
               "items": [
                 "Gospel",
                 "Christ",
                 "Resurrection"
+              ],
+              "options": [
+                "Raised from death to new, bodily life",
+                "Good news",
+                "Anointed one"
               ],
               "answer": [
                 1,
                 2,
                 0
               ],
-              "hint": "A title, a message, and an event are different categories.",
-              "why": "Christ is a title, gospel is good news, and resurrection concerns being raised from death.",
-              "options": [
-                "Being raised from death",
-                "Good news",
-                "Anointed one"
-              ]
+              "why": "Gospel is good news, Christ is a title meaning anointed one, and resurrection is being raised to new life, not a return or a rebirth.",
+              "hint": "Look back at the section just above."
             },
             {
-              "kind": "argument-map",
-              "title": "Connect gospel and shared life",
-              "prompt": "Use 1 Corinthians 11:17–22, the additional reading. Build three links from the two observations through the supported interpretation to its application.",
+              "kind": "evidence",
+              "title": "Understanding, not agreement",
+              "prompt": "Choose the two statements that describe how this guide works.",
               "items": [
-                "Observation: some go hungry while others have excess (11:21).",
-                "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-                "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-                "Application: arrange the meal so people with fewer resources are included.",
-                "Alternative interpretation: we know every host’s private motive."
+                "You can study what Christians claim before deciding whether you believe it.",
+                "The checks score whether you agree with Christianity.",
+                "Paul's summary is a complete biography of Jesus.",
+                "The guide states its own position openly and shows where Christians disagree."
               ],
               "answer": [
-                2,
-                2,
+                0,
                 3
               ],
-              "hint": "Connect each observation to the claim it supports, then connect that claim to the justified application. Leave unsupported claims unconnected.",
-              "why": "The reported conduct supports a critique of the gathering and a practical response. Patronage raises useful background questions but cannot disclose every individual motive.",
-              "fields": [
-                "Observation: some go hungry while others have excess (11:21).",
-                "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-                "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal."
-              ],
-              "options": [
-                [
-                  "Observation: some go hungry while others have excess (11:21).",
-                  "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-                  "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-                  "Application: arrange the meal so people with fewer resources are included.",
-                  "Alternative interpretation: we know every host’s private motive."
-                ],
-                [
-                  "Observation: some go hungry while others have excess (11:21).",
-                  "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-                  "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-                  "Application: arrange the meal so people with fewer resources are included.",
-                  "Alternative interpretation: we know every host’s private motive."
-                ],
-                [
-                  "Observation: some go hungry while others have excess (11:21).",
-                  "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-                  "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-                  "Application: arrange the meal so people with fewer resources are included.",
-                  "Alternative interpretation: we know every host’s private motive."
-                ]
-              ]
+              "why": "The guide assesses understanding, never agreement, and it is open about its own position while presenting disagreements fairly. Paul's summary is a short reminder, not a biography.",
+              "hint": "Look back at the section just above."
             }
           ],
           "unit": 1,
@@ -2348,7 +2325,158 @@ Source: [/data/catalog.json](/data/catalog.json)
           "unitId": "c1.christianity",
           "courseId": "course.foundations",
           "legacyGuided": true,
-          "legacyOrder": 0
+          "legacyOrder": 0,
+          "readingOsis": "1Cor.15.1-5",
+          "drawers": [
+            {
+              "title": "Do I have to believe this to keep going?",
+              "body": "No. Every check in this guide asks whether you understood, never whether you agree. You can study the claim, question it, and decide for yourself.",
+              "tag": "Explore"
+            },
+            {
+              "title": "Why start with Paul and not with Genesis?",
+              "body": "Because this short passage is the earliest written summary of what the first Christians proclaimed. Knowing the center first gives the rest of the library a place to connect.",
+              "tag": "Explore"
+            }
+          ],
+          "sections": [
+            {
+              "id": "start",
+              "anchor": "lesson:begin#start",
+              "title": "Start with a person and a story",
+              "blocks": [
+                {
+                  "type": "callout",
+                  "text": "Christianity begins with a person and a story. You can learn what that story claims before you decide what you believe about it."
+                },
+                {
+                  "type": "prose",
+                  "text": "Christianity centers on Jesus of Nazareth: his life, his death, and what his first followers said happened after it. Everything else in this guide, from the shape of the Bible to the arguments Christians still have, connects back to that center. So this path begins there, with the shortest summary of it we have, written by someone who knew the people involved."
+                },
+                {
+                  "type": "prose",
+                  "text": "You do not need to believe it to study it. You only need to read carefully and ask good questions, which is what this lesson will help you do."
+                }
+              ]
+            },
+            {
+              "id": "read",
+              "anchor": "lesson:begin#read",
+              "title": "Read the passage",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Around twenty years after Jesus' death, Paul wrote a letter to a young church in the Greek city of Corinth. Near the end of that letter he reminded them of the message he had first brought them. Read it slowly, and watch for the things Paul says happened."
+                },
+                {
+                  "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the four verbs in a row: Christ died, was buried, was raised, and appeared. Paul presents them as events, in an order, with witnesses. He also says he “received” this message and “passed it on,” which tells you it was already a set summary when he wrote it down."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "words",
+              "anchor": "lesson:begin#words",
+              "title": "What the words mean",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Three words in this passage carry a lot of weight, and each is easy to misread."
+                },
+                {
+                  "type": "prose",
+                  "text": "Gospel means good news. Paul calls this message “the gospel,” and the same word later became the name for the four books that tell Jesus' story: Matthew, Mark, Luke, and John. Christ is not Jesus' last name. It is a title meaning “anointed one,” the Greek form of the Hebrew word Messiah, the one Israel hoped God would send. Resurrection does not mean coming back as a ghost, returning to the old life, or being reborn as someone else. It means being raised from death to a new, bodily life."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "letter",
+              "anchor": "lesson:begin#letter",
+              "title": "A message inside a letter",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Paul was not writing a biography of Jesus. He was writing to people he knew, who were arguing among themselves, and he reminded them of the message they had all started from. That is why this summary is so short: it assumes his readers already know the story and need to remember what matters most about it."
+                },
+                {
+                  "type": "prose",
+                  "text": "This matters for how you read the rest of the Bible too. Most of it was written to particular people in particular situations. Asking who wrote a passage, to whom, and why is one of the most useful habits you can build, and you will use it on every page from here on."
+                }
+              ]
+            },
+            {
+              "id": "stance",
+              "anchor": "lesson:begin#stance",
+              "title": "How this guide teaches",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "This guide teaches Christianity from an openly LGBTQ-affirming, open-table perspective, influenced by the Metropolitan Community Churches and the Christian Church (Disciples of Christ). It takes historic Christian teaching seriously, says plainly where it stands, and shows you where Christians disagree instead of hiding it."
+                },
+                {
+                  "type": "prose",
+                  "text": "You are free to explore, question, and disagree. Every check asks whether you understood what a passage or a tradition says, never whether you agree with it."
+                },
+                {
+                  "type": "check",
+                  "index": 2
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:begin#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You have read the earliest summary of the Christian message: Christ died for sins, was buried, was raised, and appeared to witnesses. You know that gospel means good news, that Christ is a title, and that resurrection means new, bodily life. You know that Paul was reminding a real community of something they already shared."
+                },
+                {
+                  "type": "prose",
+                  "text": "Christians have long agreed on this center, and they still debate a great deal around it: what “died for sins” means and how it works, what kind of body the resurrection involves, and how the appearances should be understood. Later lessons take those questions up one at a time. The question to carry forward is simple: if this is the center, how does the rest of the library connect to it?"
+                }
+              ]
+            },
+            {
+              "id": "reflect",
+              "anchor": "lesson:begin#reflect",
+              "title": "Reflect",
+              "blocks": [
+                {
+                  "type": "reflect"
+                }
+              ]
+            }
+          ],
+          "teaches": [
+            "central-proclamation",
+            "key-terms",
+            "understanding-vs-assent",
+            "read-before-concluding"
+          ],
+          "requires": [],
+          "outcomes": [
+            "m1.o1",
+            "m1.o2",
+            "m1.o3"
+          ],
+          "scriptureRefs": [
+            "1Cor.15.1-8",
+            "1Cor.11.17-22"
+          ],
+          "authored": true
         },
         {
           "id": "library",
@@ -12919,6 +13047,480 @@ Source: [/data/catalog.json](/data/catalog.json)
           "legacyOrder": 69
         },
         {
+          "id": "c1-library-groups",
+          "unitId": "c1.bible",
+          "title": "Meet the library: nine kinds of books",
+          "reading": "Luke 24:44–45",
+          "ref": [
+            42,
+            24,
+            44,
+            45
+          ],
+          "objective": "Name the nine groups of the 66-book Protestant Bible, say what each group contains, and choose a sensible place to start reading in each.",
+          "body": [
+            "The Bible is not one book written in one style. It is a library of 66 books, written over many centuries by many authors, and gathered in two collections: the Old Testament, Israel’s scriptures, and the New Testament, the writings of the first Christians. Jesus himself describes Israel’s scriptures in groups: “the Law of Moses, the Prophets, and the Psalms.” Knowing which shelf a book sits on is the first step to reading it well.",
+            "The Law, Genesis through Deuteronomy, tells Israel’s founding story: creation, the ancestors, the Exodus from Egypt, and the covenant given at Sinai. The stories frame the laws. The laws show what a covenant community was meant to look like in its own world, not a rulebook to copy item by item. Begin with Genesis 1–3 and 12, then Exodus 1–3 and 20.",
+            "The History books, Joshua through Esther, follow Israel in the land: judges, kings, a divided kingdom, exile, and return. This is theological history. The writers are asking why things happened, not only reporting that they did, so expect repeated patterns of faithfulness and failure. Begin with 1 Samuel 16–17, 2 Kings 17, and Nehemiah 8.",
+            "Wisdom and Poetry, Job through Song of Songs, gathers prayers, songs, sayings, and reflections on suffering, love, and how life works. Read these slowly and listen for images. Hebrew poetry often pairs lines so the second deepens the first. It expresses and wrestles more than it reports. Begin with Psalms 1, 23, and 139, Proverbs 1, and Job 38.",
+            "The Major Prophets, Isaiah through Daniel, are long books addressing Israel before, during, and after the exile. The Minor Prophets, Hosea through Malachi, are twelve shorter books; “minor” means short, not less important. Prophets mostly speak to their own time: warning, pleading, and promising. Look for who is being addressed and what injustice is named before looking for predictions. Begin with Isaiah 1 and 40, Jeremiah 31, Amos 5, Micah 6, and all four chapters of Jonah.",
+            "In the New Testament, the Gospels and Acts tell the life, death, and resurrection of Jesus and the story of the early church. Each Gospel tells the same story for a different audience, so notice what each one emphasizes; Acts continues Luke. Begin with Mark, the shortest Gospel, then Luke 15 and Acts 2.",
+            "Paul’s Letters, Romans through Philemon, and the General Letters, Hebrews through Jude, were written to specific churches and wider Christian audiences dealing with real problems. You are reading someone else’s mail: find the writer, the readers, and the situation first, then the teaching. Begin with Philippians, Romans 5–8, James 1–2, and 1 John 4.",
+            "Revelation stands on its own shelf. It is apocalyptic writing, a symbolic vision about suffering, empire, and God making all things new. Ask what its images meant to its first readers before asking what they say about the future. Begin with Revelation 1 and 21–22.",
+            "These nine groups are shelf labels, not strict categories. A history book can contain a poem, a prophet can tell a story, and a letter can quote a hymn. The next lesson looks closely at those kinds of writing and what each one is claiming.",
+            "You can now name the nine shelves of the library and say what kind of book sits on each one, how to read it, and where to begin. Christians arrange these books in more than one way: Jewish Bibles group the same Hebrew books into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. The question to carry forward is how each kind of writing makes its claims, which is the next lesson."
+          ],
+          "simple": "The Bible is a library of 66 books on nine shelves: Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. Each shelf is read a little differently.",
+          "vocab": {
+            "Old Testament": "The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.",
+            "New Testament": "The 27 books written by the first Christians about Jesus and the early church, written in Greek.",
+            "Pentateuch": "The first five books of the Bible, also called the Law or the Torah.",
+            "Canon": "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books."
+          },
+          "deeper": "The group names used here follow common Protestant arrangement. Jewish Bibles arrange the same Hebrew books differently, into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. Each book’s profile on the Bible page shows its themes, people, setting, and where to begin.",
+          "drawers": [
+            {
+              "title": "Why nine groups and not two?",
+              "body": "Old and New Testament tell you which collection a book belongs to. The nine groups tell you what kind of book you are holding, which changes how you read it.",
+              "tag": "Explore"
+            },
+            {
+              "title": "Do I have to read the Bible in order?",
+              "body": "No. Many readers start with a Gospel, then Genesis and Exodus, then the Psalms. The shelf helps you know where you are wherever you begin.",
+              "tag": "Explore"
+            },
+            {
+              "title": "Are the Apocrypha missing?",
+              "body": "Protestant Bibles do not include the additional books found in Catholic and Orthodox Bibles. The extra-credit module covers them, along with how the canon took shape.",
+              "tag": "Explore"
+            }
+          ],
+          "visual": {
+            "text": "Old Testament: Law · History · Wisdom and Poetry · Major Prophets · Minor Prophets | New Testament: Gospels and Acts · Paul’s Letters · General Letters · Revelation",
+            "title": "The nine shelves of the library"
+          },
+          "challenges": [
+            {
+              "kind": "match",
+              "title": "Shelve the book",
+              "prompt": "Match each book to its group.",
+              "items": [
+                "Leviticus",
+                "Psalms",
+                "Amos",
+                "Galatians",
+                "Acts"
+              ],
+              "options": [
+                "Paul’s Letters",
+                "Law",
+                "Gospels and Acts",
+                "Minor Prophets",
+                "Wisdom and Poetry"
+              ],
+              "answer": [
+                1,
+                4,
+                3,
+                0,
+                2
+              ],
+              "why": "Leviticus belongs to the Law, Psalms to Wisdom and Poetry, Amos to the Minor Prophets, Galatians to Paul’s Letters, and Acts to the Gospels and Acts.",
+              "hint": "Look back at the section just above."
+            },
+            {
+              "kind": "evidence",
+              "title": "Read the shelf, not just the book",
+              "prompt": "Which two statements follow from this lesson?",
+              "items": [
+                "Knowing a book’s group helps you choose how to read it.",
+                "A “minor” prophet is less important than a major one.",
+                "A letter is best read by first finding its writer, readers, and situation.",
+                "Every book fits exactly one pure genre."
+              ],
+              "answer": [
+                0,
+                2
+              ],
+              "why": "Groups guide reading, “minor” means short, and books often mix forms, so the group is a starting point rather than a rule.",
+              "hint": "Look back at the section just above."
+            }
+          ],
+          "reflect": "Which shelf feels least familiar to you, and where will you start reading it?",
+          "model": "A strong response names one group, says what makes it unfamiliar, and picks one of the suggested starting places.",
+          "sources": [],
+          "extraReadings": [],
+          "questionThreadIds": [
+            "q.scripture-trust"
+          ],
+          "newCurriculum": true,
+          "reviewChallenges": [],
+          "v6Unit": "c1.bible",
+          "courseId": "course.foundations",
+          "curriculumOrder": 0,
+          "readingOsis": "Luke.24.44-45",
+          "sections": [
+            {
+              "id": "library",
+              "anchor": "lesson:c1-library-groups#library",
+              "title": "A library, not a book",
+              "blocks": [
+                {
+                  "type": "callout",
+                  "text": "The Bible is a library of 66 books on nine shelves: Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. Each shelf is read a little differently."
+                },
+                {
+                  "type": "prose",
+                  "text": "The Bible is not one book written in one style. It is a library of 66 books, written over many centuries by many authors, and gathered in two collections: the Old Testament, Israel’s scriptures, and the New Testament, the writings of the first Christians. Jesus himself describes Israel’s scriptures in groups: “the Law of Moses, the Prophets, and the Psalms.” Knowing which shelf a book sits on is the first step to reading it well."
+                },
+                {
+                  "type": "reading"
+                }
+              ]
+            },
+            {
+              "id": "old-testament",
+              "anchor": "lesson:c1-library-groups#old-testament",
+              "title": "The Old Testament shelves",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Law, Genesis through Deuteronomy, tells Israel’s founding story: creation, the ancestors, the Exodus from Egypt, and the covenant given at Sinai. The stories frame the laws. The laws show what a covenant community was meant to look like in its own world, not a rulebook to copy item by item. Begin with Genesis 1–3 and 12, then Exodus 1–3 and 20."
+                },
+                {
+                  "type": "prose",
+                  "text": "The History books, Joshua through Esther, follow Israel in the land: judges, kings, a divided kingdom, exile, and return. This is theological history. The writers are asking why things happened, not only reporting that they did, so expect repeated patterns of faithfulness and failure. Begin with 1 Samuel 16–17, 2 Kings 17, and Nehemiah 8."
+                },
+                {
+                  "type": "prose",
+                  "text": "Wisdom and Poetry, Job through Song of Songs, gathers prayers, songs, sayings, and reflections on suffering, love, and how life works. Read these slowly and listen for images. Hebrew poetry often pairs lines so the second deepens the first. It expresses and wrestles more than it reports. Begin with Psalms 1, 23, and 139, Proverbs 1, and Job 38."
+                },
+                {
+                  "type": "prose",
+                  "text": "The Major Prophets, Isaiah through Daniel, are long books addressing Israel before, during, and after the exile. The Minor Prophets, Hosea through Malachi, are twelve shorter books; “minor” means short, not less important. Prophets mostly speak to their own time: warning, pleading, and promising. Look for who is being addressed and what injustice is named before looking for predictions. Begin with Isaiah 1 and 40, Jeremiah 31, Amos 5, Micah 6, and all four chapters of Jonah."
+                }
+              ]
+            },
+            {
+              "id": "new-testament",
+              "anchor": "lesson:c1-library-groups#new-testament",
+              "title": "The New Testament shelves",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "In the New Testament, the Gospels and Acts tell the life, death, and resurrection of Jesus and the story of the early church. Each Gospel tells the same story for a different audience, so notice what each one emphasizes; Acts continues Luke. Begin with Mark, the shortest Gospel, then Luke 15 and Acts 2."
+                },
+                {
+                  "type": "prose",
+                  "text": "Paul’s Letters, Romans through Philemon, and the General Letters, Hebrews through Jude, were written to specific churches and wider Christian audiences dealing with real problems. You are reading someone else’s mail: find the writer, the readers, and the situation first, then the teaching. Begin with Philippians, Romans 5–8, James 1–2, and 1 John 4."
+                },
+                {
+                  "type": "prose",
+                  "text": "Revelation stands on its own shelf. It is apocalyptic writing, a symbolic vision about suffering, empire, and God making all things new. Ask what its images meant to its first readers before asking what they say about the future. Begin with Revelation 1 and 21–22."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "labels",
+              "anchor": "lesson:c1-library-groups#labels",
+              "title": "Labels, not boxes",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "These nine groups are shelf labels, not strict categories. A history book can contain a poem, a prophet can tell a story, and a letter can quote a hymn. The next lesson looks closely at those kinds of writing and what each one is claiming."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c1-library-groups#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You can now name the nine shelves of the library and say what kind of book sits on each one, how to read it, and where to begin. Christians arrange these books in more than one way: Jewish Bibles group the same Hebrew books into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. The question to carry forward is how each kind of writing makes its claims, which is the next lesson."
+                }
+              ]
+            },
+            {
+              "id": "reflect",
+              "anchor": "lesson:c1-library-groups#reflect",
+              "title": "Reflect",
+              "blocks": [
+                {
+                  "type": "reflect"
+                }
+              ]
+            }
+          ],
+          "teaches": [
+            "nine-groups"
+          ],
+          "requires": [],
+          "outcomes": [
+            "m1.o5"
+          ],
+          "scriptureRefs": [
+            "Luke.24.44-45"
+          ],
+          "authored": true
+        },
+        {
+          "id": "c1-reading-kinds",
+          "unitId": "c1.bible",
+          "title": "How to read what you’re reading",
+          "reading": "Nehemiah 8:8",
+          "ref": [
+            16,
+            8,
+            8,
+            8
+          ],
+          "objective": "Recognize the main kinds of biblical writing, explain what kind of claim each makes, and describe the views Christians hold where they read a passage differently.",
+          "body": [
+            "When the scriptures were read aloud in Nehemiah’s day, the teachers “read from the Book of the Law of God, explaining it and giving it meaning.” Understanding a passage starts with recognizing what kind of writing it is. A news report, a love song, and a parable can all tell the truth, but they do not make the same kind of claim.",
+            "Historical narrative names people and places and moves through events: “and then.” It claims that these things happened, told to show their meaning. The writers select and emphasize, as every historian does; selection is not distortion. Samuel, Kings, and Acts are examples. Close to it is summary and compressed history: genealogies, “in those days,” centuries covered in a sentence. Genesis 5 and 11, Chronicles, and Judges 2 give the shape of a period, not a complete record, so treating their numbers as a full timeline asks more of them than they offer.",
+            "Law uses commands and cases, such as “if a man…”. It describes how a covenant community should live in its world. Copying every ancient rule directly and dismissing them all are both mistakes. Poetry uses paired lines, images, and strong feeling. It tells the truth about God and life by expressing it rather than reporting it, so when a psalm says the hills clap their hands, it is not describing geology. Wisdom sayings, like Proverbs, observe how life usually works; a proverb is a general truth, not a promise.",
+            "Prophecy begins “thus says the LORD” and carries warnings, oaths, and promises. It is mainly God’s verdict on present injustice and hope beyond it, not a set of coded predictions. Apocalyptic writing, in Daniel 7–12 and Revelation, uses beasts, numbers, and cosmic symbols to show the deep reality behind history: evil is real, and God wins. Decoding each symbol as a news headline misreads it.",
+            "A parable is a story Jesus tells, such as “a man had two sons.” It is made up on purpose to carry a true point, so asking whether the prodigal son was a real person misses what it is. Allegory, where each detail stands for something else, is rare in the Bible; Paul uses the word himself in Galatians 4:24. Turning every story into allegory is a common mistake. Letters teach real people facing a real crisis, and Gospels are ancient biographies: true events, deliberately arranged, not modern day-by-day chronicles.",
+            "For some passages, serious Christian readers disagree about the kind of writing. Genesis 1–11 is read by some as literal history in detail, by others as true history told in stylized and symbolic form, and by others as theological story using ancient forms to make claims about God and people. Jonah is read as a historical account, as a historically based story shaped as satire, or as a parable-like prophetic story; its point about God’s mercy stands under every reading. Job is read as the story of a historical person or as a wisdom debate built around one. Daniel is dated by some to the 500s BCE and by others to visions compiled in the 100s BCE. Revelation is read as future events, as symbols for every era, as mainly about the first century, or as a mix of these.",
+            "The key line is simple: “not literal” never means “not true.” A parable, a psalm, or a vision can tell the truth as fully as a report does. It just is not a report. Where Christians disagree, Canonical Shelf shows the views side by side and leaves the decision with you.",
+            "You can recognize the main kinds of biblical writing and say what kind of claim each makes, and you have seen where serious readers disagree about a passage’s kind. The question to carry forward: when you open any passage from here on, ask first what kind of writing it is."
+          ],
+          "simple": "Every passage is a kind of writing: history, summary, law, poetry, wisdom, prophecy, apocalyptic vision, parable, letter, or Gospel. Knowing the kind tells you what the passage is claiming. “Not literal” never means “not true.”",
+          "vocab": {
+            "Historical narrative": "Writing that tells events as having happened, selected and shaped to show their meaning.",
+            "Parable": "A story told to make a point; it is not presented as a report of real events.",
+            "Allegory": "Writing in which details stand for other things; rare in the Bible and usually signaled by the text.",
+            "Apocalyptic": "Writing that uses symbolic visions to reveal the reality behind history, as in Daniel and Revelation.",
+            "Genre": "The kind of writing a text is, which shapes the kind of claim it makes."
+          },
+          "deeper": "Genre recognition is not a way to avoid hard passages. It is how every careful reader, ancient and modern, decides what a text is asking of them. Later units return to each form in depth, and the extra-credit module covers debates about dating and authorship.",
+          "drawers": [
+            {
+              "title": "If Genesis 1 is not literal, is it made up?",
+              "body": "No. Christians who read Genesis 1 as stylized or theological still read it as true: it claims that God made the world good and gave people dignity and responsibility. The disagreement is about what kind of account it is, not whether it tells the truth.",
+              "tag": "Explore"
+            },
+            {
+              "title": "Did Jesus think the parables were real events?",
+              "body": "Parables were a known teaching form in Jesus’ world. Their power comes from their point, which is why they begin like stories rather than reports.",
+              "tag": "Explore"
+            },
+            {
+              "title": "Who decides which reading is right?",
+              "body": "You do, with evidence. Canonical Shelf states its own positions where it has them, shows the strongest alternatives fairly, and never scores agreement.",
+              "tag": "Explore"
+            }
+          ],
+          "visual": {
+            "text": "History · Summary · Law · Poetry · Wisdom · Prophecy · Apocalyptic · Parable · Allegory · Letter · Gospel",
+            "title": "Kinds of biblical writing"
+          },
+          "challenges": [
+            {
+              "kind": "match",
+              "title": "Name the kind of writing",
+              "prompt": "Match each passage to its kind of writing.",
+              "items": [
+                "“A man had two sons…” (Luke 15:11)",
+                "“Trust in the LORD with all your heart” (Proverbs 3:5)",
+                "“Paul, an apostle… to the churches in Galatia” (Galatians 1:1–2)",
+                "“A beast rising out of the sea, with ten horns” (Revelation 13:1)",
+                "“The mountains skipped like rams” (Psalm 114:4)"
+              ],
+              "options": [
+                "Poetry",
+                "Letter",
+                "Parable",
+                "Apocalyptic vision",
+                "Wisdom saying"
+              ],
+              "answer": [
+                2,
+                4,
+                1,
+                3,
+                0
+              ],
+              "why": "Recognizing the form tells you what each passage is doing: a teaching story, a general truth, correspondence, a symbolic vision, and poetic imagery.",
+              "hint": "Look back at the section just above."
+            },
+            {
+              "kind": "evidence",
+              "title": "What is it claiming?",
+              "prompt": "Choose the two statements that read these passages well.",
+              "items": [
+                "Psalm 114 expresses the awe of the Exodus through images; it does not report moving mountains.",
+                "The parable of the prodigal son fails if no such family existed.",
+                "A proverb states a general truth about life rather than a guarantee.",
+                "Poetry cannot tell the truth because it is not literal."
+              ],
+              "answer": [
+                0,
+                2
+              ],
+              "why": "Poetry expresses truth through images, parables carry their point without being reports, and proverbs describe how life usually works.",
+              "hint": "Look back at the section just above."
+            }
+          ],
+          "reflect": "Which reading of Jonah do you lean toward right now, and what in the text points you there?",
+          "model": "A strong response names one of the readings, points to something in the text such as its humor, structure, or ending, and notes that the book’s point about God’s mercy holds either way. This reflection is never scored for which view you hold.",
+          "sources": [],
+          "extraReadings": [],
+          "questionThreadIds": [
+            "q.scripture-trust",
+            "q.miracles-history",
+            "q.disagreement"
+          ],
+          "newCurriculum": true,
+          "reviewChallenges": [],
+          "v6Unit": "c1.bible",
+          "courseId": "course.foundations",
+          "curriculumOrder": 1,
+          "readingOsis": "Neh.8.8",
+          "sections": [
+            {
+              "id": "kinds",
+              "anchor": "lesson:c1-reading-kinds#kinds",
+              "title": "Every passage is a kind of writing",
+              "blocks": [
+                {
+                  "type": "callout",
+                  "text": "Every passage is a kind of writing: history, summary, law, poetry, wisdom, prophecy, apocalyptic vision, parable, letter, or Gospel. Knowing the kind tells you what the passage is claiming. “Not literal” never means “not true.”"
+                },
+                {
+                  "type": "prose",
+                  "text": "When the scriptures were read aloud in Nehemiah’s day, the teachers “read from the Book of the Law of God, explaining it and giving it meaning.” Understanding a passage starts with recognizing what kind of writing it is. A news report, a love song, and a parable can all tell the truth, but they do not make the same kind of claim."
+                },
+                {
+                  "type": "reading"
+                }
+              ]
+            },
+            {
+              "id": "history",
+              "anchor": "lesson:c1-reading-kinds#history",
+              "title": "History and summary",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Historical narrative names people and places and moves through events: “and then.” It claims that these things happened, told to show their meaning. The writers select and emphasize, as every historian does; selection is not distortion. Samuel, Kings, and Acts are examples. Close to it is summary and compressed history: genealogies, “in those days,” centuries covered in a sentence. Genesis 5 and 11, Chronicles, and Judges 2 give the shape of a period, not a complete record, so treating their numbers as a full timeline asks more of them than they offer."
+                }
+              ]
+            },
+            {
+              "id": "law-poetry-wisdom",
+              "anchor": "lesson:c1-reading-kinds#law-poetry-wisdom",
+              "title": "Law, poetry, and wisdom",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Law uses commands and cases, such as “if a man…”. It describes how a covenant community should live in its world. Copying every ancient rule directly and dismissing them all are both mistakes. Poetry uses paired lines, images, and strong feeling. It tells the truth about God and life by expressing it rather than reporting it, so when a psalm says the hills clap their hands, it is not describing geology. Wisdom sayings, like Proverbs, observe how life usually works; a proverb is a general truth, not a promise."
+                }
+              ]
+            },
+            {
+              "id": "prophecy-vision",
+              "anchor": "lesson:c1-reading-kinds#prophecy-vision",
+              "title": "Prophecy and vision",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Prophecy begins “thus says the LORD” and carries warnings, oaths, and promises. It is mainly God’s verdict on present injustice and hope beyond it, not a set of coded predictions. Apocalyptic writing, in Daniel 7–12 and Revelation, uses beasts, numbers, and cosmic symbols to show the deep reality behind history: evil is real, and God wins. Decoding each symbol as a news headline misreads it."
+                }
+              ]
+            },
+            {
+              "id": "stories-letters",
+              "anchor": "lesson:c1-reading-kinds#stories-letters",
+              "title": "Parables, allegory, letters, and Gospels",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "A parable is a story Jesus tells, such as “a man had two sons.” It is made up on purpose to carry a true point, so asking whether the prodigal son was a real person misses what it is. Allegory, where each detail stands for something else, is rare in the Bible; Paul uses the word himself in Galatians 4:24. Turning every story into allegory is a common mistake. Letters teach real people facing a real crisis, and Gospels are ancient biographies: true events, deliberately arranged, not modern day-by-day chronicles."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "contested",
+              "anchor": "lesson:c1-reading-kinds#contested",
+              "title": "Where Christians read differently",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "For some passages, serious Christian readers disagree about the kind of writing. Genesis 1–11 is read by some as literal history in detail, by others as true history told in stylized and symbolic form, and by others as theological story using ancient forms to make claims about God and people. Jonah is read as a historical account, as a historically based story shaped as satire, or as a parable-like prophetic story; its point about God’s mercy stands under every reading. Job is read as the story of a historical person or as a wisdom debate built around one. Daniel is dated by some to the 500s BCE and by others to visions compiled in the 100s BCE. Revelation is read as future events, as symbols for every era, as mainly about the first century, or as a mix of these."
+                }
+              ]
+            },
+            {
+              "id": "not-literal",
+              "anchor": "lesson:c1-reading-kinds#not-literal",
+              "title": "Not literal never means not true",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The key line is simple: “not literal” never means “not true.” A parable, a psalm, or a vision can tell the truth as fully as a report does. It just is not a report. Where Christians disagree, Canonical Shelf shows the views side by side and leaves the decision with you."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c1-reading-kinds#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You can recognize the main kinds of biblical writing and say what kind of claim each makes, and you have seen where serious readers disagree about a passage’s kind. The question to carry forward: when you open any passage from here on, ask first what kind of writing it is."
+                }
+              ]
+            },
+            {
+              "id": "reflect",
+              "anchor": "lesson:c1-reading-kinds#reflect",
+              "title": "Reflect",
+              "blocks": [
+                {
+                  "type": "reflect"
+                }
+              ]
+            }
+          ],
+          "teaches": [
+            "kinds-of-writing",
+            "not-literal-not-false"
+          ],
+          "requires": [
+            "nine-groups"
+          ],
+          "outcomes": [
+            "m1.o6"
+          ],
+          "scriptureRefs": [
+            "Neh.8.8",
+            "Gal.4.24",
+            "Ps.114.4",
+            "Luke.15.11"
+          ],
+          "authored": true
+        },
+        {
           "id": "c1-questions-first",
           "unitId": "c1.christianity",
           "title": "Questions worth carrying",
@@ -12935,7 +13537,8 @@ Source: [/data/catalog.json](/data/catalog.json)
             "But an important question is not automatically a simple question. A single verse may sit inside an ancient language, literary genre, covenant, historical conflict, argument, or later doctrinal debate. Answering before learning those layers can produce confidence faster than understanding. Acts praises hearers who receive a claim seriously and also examine the evidence. That combination—openness plus investigation—is the posture this course is designed to build.",
             "Course 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity, Scripture, translation, interpretation, theology, practice, traditions, and the biblical story. Courses 2–4 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church.",
             "Course 5 asks how we know: manuscripts, translation, genre, historical context, lexical evidence, intertextuality, arguments, competing interpretations, and levels of confidence. Course 6 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence.",
-            "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate."
+            "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate.",
+            "You know that your questions belong in this study from the start, and that a question can be important without being simple. The path gives you a first map now and returns to each big question once you have the evidence and context to weigh it. Christians still disagree about many of these questions, and later lessons show where and why. The question to carry forward: which of your own questions do you most want the path to answer?"
           ],
           "simple": "You will meet the big questions early. We will give you a first map now, build the evidence and context you need, and return to the questions later with better tools.",
           "vocab": {
@@ -12982,8 +13585,8 @@ Source: [/data/catalog.json](/data/catalog.json)
                 3,
                 0
               ],
-              "hint": "Use the lesson sequence and textual evidence.",
-              "why": "The curriculum introduces the question first, then increases the evidence and interpretive tools available before asking for synthesis."
+              "why": "The curriculum introduces the question first, then increases the evidence and interpretive tools available before asking for synthesis.",
+              "hint": "Look back at the section just above."
             },
             {
               "kind": "evidence",
@@ -13002,7 +13605,7 @@ Source: [/data/catalog.json](/data/catalog.json)
                 3
               ],
               "why": "The curriculum surfaces questions early, permits provisional understanding, and returns to them with more evidence; disagreement does not make all conclusions equally supported.",
-              "hint": "Choose only claims warranted by the evidence presented."
+              "hint": "Look back at the section just above."
             }
           ],
           "reflect": "Which question most makes you want the stronger foundation rather than a fast answer?",
@@ -13027,7 +13630,107 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.christianity",
           "courseId": "course.foundations",
-          "curriculumOrder": 0
+          "curriculumOrder": 2,
+          "readingOsis": "Acts.17.10-12",
+          "sections": [
+            {
+              "id": "questions",
+              "anchor": "lesson:c1-questions-first#questions",
+              "title": "Bring your questions",
+              "blocks": [
+                {
+                  "type": "callout",
+                  "text": "You will meet the big questions early. We will give you a first map now, build the evidence and context you need, and return to the questions later with better tools."
+                },
+                {
+                  "type": "prose",
+                  "text": "Thoughtful adults rarely begin Bible study without questions. Why does suffering exist? Why did Jesus die? What is sin? Can Scripture be trusted after centuries of copying and translation? Why do Christians disagree about sexuality, women, hell, miracles, predestination, violence, other religions, or which biblical commands still apply? Canonical Shelf will not treat those questions as distractions from the curriculum. They are part of the reason for the curriculum."
+                },
+                {
+                  "type": "reading"
+                }
+              ]
+            },
+            {
+              "id": "not-simple",
+              "anchor": "lesson:c1-questions-first#not-simple",
+              "title": "Important is not the same as simple",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "But an important question is not automatically a simple question. A single verse may sit inside an ancient language, literary genre, covenant, historical conflict, argument, or later doctrinal debate. Answering before learning those layers can produce confidence faster than understanding. Acts praises hearers who receive a claim seriously and also examine the evidence. That combination—openness plus investigation—is the posture this course is designed to build."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "map",
+              "anchor": "lesson:c1-questions-first#map",
+              "title": "How the path answers",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Course 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity, Scripture, translation, interpretation, theology, practice, traditions, and the biblical story. Courses 2–4 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church."
+                },
+                {
+                  "type": "prose",
+                  "text": "Course 5 asks how we know: manuscripts, translation, genre, historical context, lexical evidence, intertextuality, arguments, competing interpretations, and levels of confidence. Course 6 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "provisional",
+              "anchor": "lesson:c1-questions-first#provisional",
+              "title": "Holding an answer lightly",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You are allowed to hold a provisional answer while learning. You are also allowed to change your mind. The goal is not to postpone every conclusion or imply that every question has an equally uncertain answer. The goal is to keep the strength of a conclusion proportional to the evidence you have actually learned to evaluate."
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c1-questions-first#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You know that your questions belong in this study from the start, and that a question can be important without being simple. The path gives you a first map now and returns to each big question once you have the evidence and context to weigh it. Christians still disagree about many of these questions, and later lessons show where and why. The question to carry forward: which of your own questions do you most want the path to answer?"
+                }
+              ]
+            },
+            {
+              "id": "reflect",
+              "anchor": "lesson:c1-questions-first#reflect",
+              "title": "Reflect",
+              "blocks": [
+                {
+                  "type": "reflect"
+                }
+              ]
+            }
+          ],
+          "teaches": [
+            "provisional-questions"
+          ],
+          "requires": [
+            "understanding-vs-assent"
+          ],
+          "outcomes": [
+            "m1.o4"
+          ],
+          "scriptureRefs": [
+            "Acts.17.10-12"
+          ],
+          "authored": true
         },
         {
           "id": "c1-bible-languages",
@@ -13123,7 +13826,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.transmission",
           "courseId": "course.foundations",
-          "curriculumOrder": 1
+          "curriculumOrder": 3
         },
         {
           "id": "c1-theology-map",
@@ -13221,7 +13924,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.theology",
           "courseId": "course.foundations",
-          "curriculumOrder": 2
+          "curriculumOrder": 4
         },
         {
           "id": "c1-practice-map",
@@ -13310,7 +14013,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.practice",
           "courseId": "course.foundations",
-          "curriculumOrder": 3
+          "curriculumOrder": 5
         },
         {
           "id": "c1-traditions-map",
@@ -13405,7 +14108,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c1.traditions",
           "courseId": "course.foundations",
-          "curriculumOrder": 4
+          "curriculumOrder": 6
         },
         {
           "id": "c2-passover",
@@ -13495,7 +14198,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.exodus",
           "courseId": "course.israel",
-          "curriculumOrder": 5
+          "curriculumOrder": 7
         },
         {
           "id": "c2-sea-wilderness",
@@ -13580,7 +14283,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.exodus",
           "courseId": "course.israel",
-          "curriculumOrder": 6
+          "curriculumOrder": 8
         },
         {
           "id": "c2-sinai-covenant",
@@ -13665,7 +14368,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.sinai",
           "courseId": "course.israel",
-          "curriculumOrder": 7
+          "curriculumOrder": 9
         },
         {
           "id": "c2-golden-calf",
@@ -13747,7 +14450,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.sinai",
           "courseId": "course.israel",
-          "curriculumOrder": 8
+          "curriculumOrder": 10
         },
         {
           "id": "c2-tabernacle",
@@ -13842,7 +14545,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.tabernacle",
           "courseId": "course.israel",
-          "curriculumOrder": 9
+          "curriculumOrder": 11
         },
         {
           "id": "c2-ark",
@@ -13935,7 +14638,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.tabernacle",
           "courseId": "course.israel",
-          "curriculumOrder": 10
+          "curriculumOrder": 12
         },
         {
           "id": "c2-priesthood-sacrifice",
@@ -14023,7 +14726,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.sacrifice",
           "courseId": "course.israel",
-          "curriculumOrder": 11
+          "curriculumOrder": 13
         },
         {
           "id": "c2-day-atonement",
@@ -14108,7 +14811,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.sacrifice",
           "courseId": "course.israel",
-          "curriculumOrder": 12
+          "curriculumOrder": 14
         },
         {
           "id": "c2-sacred-calendar",
@@ -14196,7 +14899,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.sacrifice",
           "courseId": "course.israel",
-          "curriculumOrder": 13
+          "curriculumOrder": 15
         },
         {
           "id": "c2-davidic-covenant",
@@ -14278,7 +14981,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.land-kings",
           "courseId": "course.israel",
-          "curriculumOrder": 14
+          "curriculumOrder": 16
         },
         {
           "id": "c2-temple-presence",
@@ -14363,7 +15066,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.temple-kingdom",
           "courseId": "course.israel",
-          "curriculumOrder": 15
+          "curriculumOrder": 17
         },
         {
           "id": "c2-exile-temple-loss",
@@ -14448,7 +15151,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.prophets-exile",
           "courseId": "course.israel",
-          "curriculumOrder": 16
+          "curriculumOrder": 18
         },
         {
           "id": "c2-restoration-temple",
@@ -14530,7 +15233,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.restoration-hope",
           "courseId": "course.israel",
-          "curriculumOrder": 17
+          "curriculumOrder": 19
         },
         {
           "id": "c2-new-covenant",
@@ -14615,7 +15318,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.restoration-hope",
           "courseId": "course.israel",
-          "curriculumOrder": 18
+          "curriculumOrder": 20
         },
         {
           "id": "c2-prophetic-hope",
@@ -14703,7 +15406,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c2.restoration-hope",
           "courseId": "course.israel",
-          "curriculumOrder": 19
+          "curriculumOrder": 21
         },
         {
           "id": "c3-persian-judea",
@@ -14788,7 +15491,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.after-exile",
           "courseId": "course.second-temple",
-          "curriculumOrder": 20
+          "curriculumOrder": 22
         },
         {
           "id": "c3-torah-public-life",
@@ -14873,7 +15576,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.after-exile",
           "courseId": "course.second-temple",
-          "curriculumOrder": 21
+          "curriculumOrder": 23
         },
         {
           "id": "c3-alexander-hellenization",
@@ -14956,7 +15659,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.greek-world",
           "courseId": "course.second-temple",
-          "curriculumOrder": 22
+          "curriculumOrder": 24
         },
         {
           "id": "c3-antiochus-maccabees",
@@ -15043,7 +15746,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.greek-world",
           "courseId": "course.second-temple",
-          "curriculumOrder": 23
+          "curriculumOrder": 25
         },
         {
           "id": "c3-hasmoneans",
@@ -15118,7 +15821,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.hasmonean-rome",
           "courseId": "course.second-temple",
-          "curriculumOrder": 24
+          "curriculumOrder": 26
         },
         {
           "id": "c3-rome-judea",
@@ -15203,7 +15906,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.hasmonean-rome",
           "courseId": "course.second-temple",
-          "curriculumOrder": 25
+          "curriculumOrder": 27
         },
         {
           "id": "c3-herod",
@@ -15295,7 +15998,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.hasmonean-rome",
           "courseId": "course.second-temple",
-          "curriculumOrder": 26
+          "curriculumOrder": 28
         },
         {
           "id": "c3-temple-priesthood",
@@ -15380,7 +16083,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.jewish-life",
           "courseId": "course.second-temple",
-          "curriculumOrder": 27
+          "curriculumOrder": 29
         },
         {
           "id": "c3-synagogue-diaspora",
@@ -15465,7 +16168,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.jewish-life",
           "courseId": "course.second-temple",
-          "curriculumOrder": 28
+          "curriculumOrder": 30
         },
         {
           "id": "c3-pharisees-sadducees",
@@ -15547,7 +16250,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.jewish-life",
           "courseId": "course.second-temple",
-          "curriculumOrder": 29
+          "curriculumOrder": 31
         },
         {
           "id": "c3-essenes-qumran",
@@ -15625,7 +16328,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.jewish-life",
           "courseId": "course.second-temple",
-          "curriculumOrder": 30
+          "curriculumOrder": 32
         },
         {
           "id": "c3-revolutionary-currents",
@@ -15710,7 +16413,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.jewish-life",
           "courseId": "course.second-temple",
-          "curriculumOrder": 31
+          "curriculumOrder": 33
         },
         {
           "id": "c3-apocalyptic-resurrection",
@@ -15795,7 +16498,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.expectation",
           "courseId": "course.second-temple",
-          "curriculumOrder": 32
+          "curriculumOrder": 34
         },
         {
           "id": "c3-messianic-diversity",
@@ -15880,7 +16583,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.expectation",
           "courseId": "course.second-temple",
-          "curriculumOrder": 33
+          "curriculumOrder": 35
         },
         {
           "id": "c3-enter-gospels",
@@ -15973,7 +16676,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c3.enter-gospels",
           "courseId": "course.second-temple",
-          "curriculumOrder": 34
+          "curriculumOrder": 36
         },
         {
           "id": "c4-sermon-mount",
@@ -16063,7 +16766,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c4.teaching",
           "courseId": "course.jesus-church",
-          "curriculumOrder": 35
+          "curriculumOrder": 37
         },
         {
           "id": "c4-scripture-fulfillment",
@@ -16148,7 +16851,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c4.israel-story",
           "courseId": "course.jesus-church",
-          "curriculumOrder": 36
+          "curriculumOrder": 38
         },
         {
           "id": "c4-passion-passover",
@@ -16233,7 +16936,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c4.passion",
           "courseId": "course.jesus-church",
-          "curriculumOrder": 37
+          "curriculumOrder": 39
         },
         {
           "id": "c4-ascension",
@@ -16315,7 +17018,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c4.passion",
           "courseId": "course.jesus-church",
-          "curriculumOrder": 38
+          "curriculumOrder": 40
         },
         {
           "id": "c4-pentecost",
@@ -16405,7 +17108,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c4.pentecost",
           "courseId": "course.jesus-church",
-          "curriculumOrder": 39
+          "curriculumOrder": 41
         },
         {
           "id": "c5-equivalence",
@@ -16490,7 +17193,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c5.translation",
           "courseId": "course.interpretation",
-          "curriculumOrder": 40
+          "curriculumOrder": 42
         },
         {
           "id": "c5-hebrew-poetry",
@@ -16575,7 +17278,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c5.genre",
           "courseId": "course.interpretation",
-          "curriculumOrder": 41
+          "curriculumOrder": 43
         },
         {
           "id": "c5-typology-allusion",
@@ -16660,7 +17363,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c5.intertext",
           "courseId": "course.interpretation",
-          "curriculumOrder": 42
+          "curriculumOrder": 44
         },
         {
           "id": "c5-synoptic-problem",
@@ -16745,7 +17448,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c5.gospel-letters",
           "courseId": "course.interpretation",
-          "curriculumOrder": 43
+          "curriculumOrder": 45
         },
         {
           "id": "c5-authorship-composition",
@@ -16830,7 +17533,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c5.gospel-letters",
           "courseId": "course.interpretation",
-          "curriculumOrder": 44
+          "curriculumOrder": 46
         },
         {
           "id": "c6-end-times-frameworks",
@@ -16916,7 +17619,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c6.final-hope",
           "courseId": "course.theology",
-          "curriculumOrder": 45
+          "curriculumOrder": 47
         },
         {
           "id": "c6-covenant-frameworks",
@@ -17001,7 +17704,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "reviewChallenges": [],
           "v6Unit": "c6.traditions",
           "courseId": "course.theology",
-          "curriculumOrder": 46
+          "curriculumOrder": 48
         }
       ],
       "mastery": {
@@ -23740,6 +24443,24 @@ Source: [/data/catalog.json](/data/catalog.json)
           "legacy": true
         },
         {
+          "id": "lesson:c1-library-groups",
+          "type": "lesson",
+          "unitId": "c1.bible",
+          "courseId": "course.foundations",
+          "title": "Meet the library: nine kinds of books",
+          "sourceId": "c1-library-groups",
+          "legacy": false
+        },
+        {
+          "id": "lesson:c1-reading-kinds",
+          "type": "lesson",
+          "unitId": "c1.bible",
+          "courseId": "course.foundations",
+          "title": "How to read what you’re reading",
+          "sourceId": "c1-reading-kinds",
+          "legacy": false
+        },
+        {
           "id": "lesson:c1-questions-first",
           "type": "lesson",
           "unitId": "c1.christianity",
@@ -25301,6 +26022,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "mastery:unit-c1-christianity-mastery"
         ],
         "c1.bible": [
+          "lesson:c1-library-groups",
+          "lesson:c1-reading-kinds",
           "lesson:shelf-skills",
           "lesson:genre",
           "mastery:g.map",
@@ -27588,6 +28311,21 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
+          "id": "term.allegory",
+          "term": "Allegory",
+          "quick": "Writing in which details stand for other things; rare in the Bible and usually signaled by the text.",
+          "definitions": [
+            "Writing in which details stand for other things; rare in the Bible and usually signaled by the text."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-reading-kinds"
+            }
+          ]
+        },
+        {
           "id": "term.allusion",
           "term": "Allusion",
           "quick": "A reference or echo connecting a text with another passage or image.",
@@ -27710,6 +28448,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "quick": "Writing that uses revelatory visions and symbols to address judgment, crisis, and hope.",
           "definitions": [
             "Writing that uses revelatory visions and symbols to address judgment, crisis, and hope.",
+            "Writing that uses symbolic visions to reveal the reality behind history, as in Daniel and Revelation.",
             "Visionary literature that unveils earthly conflict in relation to heavenly realities, divine judgment, and hope."
           ],
           "occurrences": [
@@ -27717,6 +28456,11 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.foundations",
               "unitId": "c1.bible",
               "lessonId": "genre"
+            },
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-reading-kinds"
             },
             {
               "courseId": "course.second-temple",
@@ -28078,13 +28822,19 @@ Source: [/data/catalog.json](/data/catalog.json)
           "term": "Canon",
           "quick": "A community’s recognized collection of Scripture.",
           "definitions": [
-            "A community’s recognized collection of Scripture."
+            "A community’s recognized collection of Scripture.",
+            "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books."
           ],
           "occurrences": [
             {
               "courseId": "course.foundations",
               "unitId": "c1.reading",
               "lessonId": "library"
+            },
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-library-groups"
             }
           ]
         },
@@ -29113,7 +29863,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "quick": "A kind of writing with recognizable purposes and conventions.",
           "definitions": [
             "A kind of writing with recognizable purposes and conventions.",
-            "The kind of writing and the expectations it creates."
+            "The kind of writing and the expectations it creates.",
+            "The kind of writing a text is, which shapes the kind of claim it makes."
           ],
           "occurrences": [
             {
@@ -29125,6 +29876,11 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.foundations",
               "unitId": "c1.bible",
               "lessonId": "genre"
+            },
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-reading-kinds"
             }
           ]
         },
@@ -29414,6 +30170,21 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.second-temple",
               "unitId": "c3.enter-gospels",
               "lessonId": "c3-enter-gospels"
+            }
+          ]
+        },
+        {
+          "id": "term.historical-narrative",
+          "term": "Historical narrative",
+          "quick": "Writing that tells events as having happened, selected and shaped to show their meaning.",
+          "definitions": [
+            "Writing that tells events as having happened, selected and shaped to show their meaning."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-reading-kinds"
             }
           ]
         },
@@ -30319,6 +31090,21 @@ Source: [/data/catalog.json](/data/catalog.json)
           ]
         },
         {
+          "id": "term.new-testament",
+          "term": "New Testament",
+          "quick": "The 27 books written by the first Christians about Jesus and the early church, written in Greek.",
+          "definitions": [
+            "The 27 books written by the first Christians about Jesus and the early church, written in Greek."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-library-groups"
+            }
+          ]
+        },
+        {
           "id": "term.observation",
           "term": "Observation",
           "quick": "Identifying what the passage says or does.",
@@ -30351,6 +31137,21 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.israel",
               "unitId": "c2.sacrifice",
               "lessonId": "c2-priesthood-sacrifice"
+            }
+          ]
+        },
+        {
+          "id": "term.old-testament",
+          "term": "Old Testament",
+          "quick": "The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.",
+          "definitions": [
+            "The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-library-groups"
             }
           ]
         },
@@ -30405,7 +31206,8 @@ Source: [/data/catalog.json](/data/catalog.json)
           "quick": "A story used to provoke insight and response.",
           "definitions": [
             "A story used to provoke insight and response.",
-            "A story or comparison that invites insight through a familiar situation."
+            "A story or comparison that invites insight through a familiar situation.",
+            "A story told to make a point; it is not presented as a report of real events."
           ],
           "occurrences": [
             {
@@ -30417,6 +31219,11 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.jesus-church",
               "unitId": "c4.kingdom",
               "lessonId": "parables-welcome"
+            },
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-reading-kinds"
             }
           ]
         },
@@ -30512,6 +31319,21 @@ Source: [/data/catalog.json](/data/catalog.json)
               "courseId": "course.theology",
               "unitId": "c6.sin-salvation",
               "lessonId": "atonement-images"
+            }
+          ]
+        },
+        {
+          "id": "term.pentateuch",
+          "term": "Pentateuch",
+          "quick": "The first five books of the Bible, also called the Law or the Torah.",
+          "definitions": [
+            "The first five books of the Bible, also called the Law or the Torah."
+          ],
+          "occurrences": [
+            {
+              "courseId": "course.foundations",
+              "unitId": "c1.bible",
+              "lessonId": "c1-library-groups"
             }
           ]
         },
