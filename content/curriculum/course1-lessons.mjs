@@ -2,6 +2,7 @@ import {lesson,sequence,match,evidence,drawer} from './helpers.mjs';
 
 export const course1Lessons=[
 
+  // Content for c1-library-groups is authored in content/pathway/lessons/c1-library-groups.md; this entry only registers the lesson.
   lesson({
     id:'c1-library-groups',unitId:'c1.bible',title:'Meet the library: nine kinds of books',reading:'Luke 24:44–45',ref:[42,24,44,45],
     objective:'Name the nine groups of the 66-book Protestant Bible, say what each group contains, and choose a sensible place to start reading in each.',
@@ -39,6 +40,7 @@ export const course1Lessons=[
     questionThreadIds:['q.scripture-trust']
   }),
 
+  // Content for c1-reading-kinds is authored in content/pathway/lessons/c1-reading-kinds.md; this entry only registers the lesson.
   lesson({
     id:'c1-reading-kinds',unitId:'c1.bible',title:'How to read what you’re reading',reading:'Nehemiah 8:8',ref:[16,8,8,8],
     objective:'Recognize the main kinds of biblical writing, explain what kind of claim each makes, and describe the views Christians hold where they read a passage differently.',

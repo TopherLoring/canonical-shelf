@@ -23,6 +23,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - Lesson 1 'Begin with the central story' rewritten in the final format: 7 sections, 3 inline checks, readable Scripture block in light and dark
+- The first path's opening lessons ('Begin with the central story', 'Meet the library', 'How to read what you're reading') are all in the final format with inline checks
 
 ## 2026-09-27
 

@@ -130,4 +130,4 @@
   .response-status,.lesson-complete strong{color:CanvasText}.response-status>span,.lesson-complete>span{background:Highlight;color:HighlightText}
 }
 /* Inline checks sit inside the lesson prose, set apart just enough to read as a pause. */
-.inline-check{margin:1.4rem 0;padding:1rem 1.1rem;border:1px solid var(--study-rule);border-radius:var(--theme-radius);background:var(--study-folio)}
+.inline-check{margin:1.4rem 0}
