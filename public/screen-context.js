@@ -12,7 +12,19 @@ const bookName = n => LIBRARY_BOOKS.find(b => b.n === n)?.name || `Book ${n}`;
 export function selectedVerse() {
   const el = document.querySelector('.reader.scripture .verses p.v5-active');
   const n = el ? Number(String(el.id || '').replace(/^v/, '')) : 0;
-  return n || null;
+  if (n) return n;
+  // A verse clicked before the reader finished loading is remembered on the reader itself.
+  const remembered = Number(document.querySelector('.reader.scripture')?.dataset.selectedVerse || 0);
+  return remembered || null;
+}
+
+// Record the clicked verse immediately, independent of the reader's own (asynchronous) setup.
+export function rememberVerse(p) {
+  const reader = p?.closest?.('.reader.scripture');
+  if (!reader) return;
+  const list = [...reader.querySelectorAll('.verses p')];
+  const n = Number(String(p.id || '').replace(/^v/, '')) || list.indexOf(p) + 1;
+  if (n) reader.dataset.selectedVerse = String(n);
 }
 
 export function currentPassage() {
