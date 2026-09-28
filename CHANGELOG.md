@@ -22,6 +22,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles (agent default)
 - Fun and Illustrated are separate themes: Fun is a whimsical design; Illustrated uses a sketch-artist approach (hand-drawn look)
 - Every theme has both a light and a dark mode
+- The eighth theme is Midnight Study
+- The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes)
+- Layout structure is the same in every theme; themes may change lines, colors, and typography
+- Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo
+- The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
 ### Added
 

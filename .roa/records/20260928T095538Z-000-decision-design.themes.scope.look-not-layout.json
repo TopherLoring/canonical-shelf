@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.themes.scope.look-not-layout",
+  "topic": "design.themes.scope",
+  "date": "2026-09-28",
+  "text": "Layout structure is the same in every theme; themes may change lines, colors, and typography",
+  "by": "Chris"
+}

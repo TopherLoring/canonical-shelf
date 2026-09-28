@@ -67,8 +67,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
+| `design.themes.eighth` | The eighth theme is Midnight Study | Owner decision | undefined |
 | `design.themes.fun-illustrated` | Fun and Illustrated are separate themes: | Owner decision | undefined |
 | `design.themes.modes` | Every theme has both a light and a dark mode | Owner decision | undefined |
+| `design.themes.pastel-name` | The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes) | Owner decision | undefined |
+| `design.themes.scope` | Layout structure is the same in every theme; | Owner decision | undefined |
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
@@ -110,9 +113,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
+| `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.theme.default` | undefined | Agent default | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
+| `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 
 ## Open feedback (adjust, not locked)
 

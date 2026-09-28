@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.profile.full-screen",
+  "topic": "ui.profile",
+  "date": "2026-09-28",
+  "text": "The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out",
+  "by": "Chris"
+}
