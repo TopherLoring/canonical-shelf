@@ -159,6 +159,16 @@ test('authored Lesson 1: one step per section, checks inline where written, read
   }
 });
 
+test('lesson objectives describe lessons on the unit overview and never appear inside the lesson',async({page})=>{
+  const objective='Put the proclamation Paul recalls';
+  await page.goto('/course?unit=c1.christianity');
+  await expect(page.locator('.unit-lesson-objective').first()).toContainText(objective);
+  for(const scene of [1,2,3,7]){
+    await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
+    await expect(page.locator('main')).not.toContainText(objective);
+  }
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');

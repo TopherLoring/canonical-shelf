@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.objective-display.overview-only",
+  "topic": "curriculum.objective-display",
+  "date": "2026-09-28",
+  "text": "A lesson's objective is not shown inside the lesson; it describes the lesson on overview screens (the unit's lesson list)",
+  "by": "Chris"
+}

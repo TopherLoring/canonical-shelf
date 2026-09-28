@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "arch.duplicate-renderers.unit-list",
+  "topic": "arch.duplicate-renderers",
+  "date": "2026-09-28",
+  "text": "The unit page's lesson list in learning.js (courseView) is not what learners see; course-experience.js renders the unit page from the tpl-unit-activity-step template. Remove the unused learning.js renderer during the CSS/JS consolidation",
+  "by": "Claude"
+}

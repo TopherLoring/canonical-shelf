@@ -5,6 +5,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Topics
 
+### `arch.duplicate-renderers`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
+  The unit page's lesson list in learning.js (courseView) is not what learners see; course-experience.js renders the unit page from the tpl-unit-activity-step template. Remove the unused learning.js renderer during the CSS/JS consolidation
+
 ### `arch.routing`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `arch.routing.spa`
@@ -69,6 +74,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
   Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
+
+### `curriculum.objective-display`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `curriculum.objective-display.overview-only`
+  A lesson's objective is not shown inside the lesson; it describes the lesson on overview screens (the unit's lesson list)
 
 ### `curriculum.path1.library`
 

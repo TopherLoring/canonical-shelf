@@ -131,3 +131,4 @@
 }
 /* Inline checks sit inside the lesson prose, set apart just enough to read as a pause. */
 .inline-check{margin:1.4rem 0}
+.unit-lesson-objective{margin:.25rem 0 0;max-width:60ch;color:var(--color-text-secondary);font-size:.92rem;line-height:1.45}

@@ -40,6 +40,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 | Topic | Current | Kind | Since |
 |---|---|---|---|
+| `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
@@ -52,6 +53,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.format` | undefined | Agent default | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
+| `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
 | `curriculum.path1.overlap` | undefined | Agent default | undefined |
 | `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
