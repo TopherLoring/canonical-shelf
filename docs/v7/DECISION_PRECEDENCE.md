@@ -53,6 +53,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.extra-credit.extra-credit-module`
   Add an optional extra-credit module for in-depth coverage: the Apocrypha/Deuterocanon, canon history and manuscript selection, and the excluded gospels (including the Gospel of Judas and the Gospel of Mary)
 
+### `curriculum.format`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `curriculum.format.outline-and-lesson-files`
+  Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog
+  *Why:* Implements owner decisions curriculum.authoring, content.anchoring, and learning.games checks-inline
+
 ### `curriculum.invariants`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `curriculum.invariants.from-precedence-doc`

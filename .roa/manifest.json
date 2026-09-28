@@ -69,7 +69,8 @@
       "public/screen-context.js",
       "public/bible-books.js",
       "public/study-notes.js",
-      "scripts/lib/bible-books.mjs"
+      "scripts/lib/bible-books.mjs",
+      "scripts/compile-pathway.mjs"
     ],
     "exclude": [
       "public/data/",

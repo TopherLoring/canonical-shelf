@@ -11,6 +11,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **[proposal] Library metaphor throughout: card-catalog drawers for topics/categories, arcade games in drawers, books checked out into the reader (leave a visible gap on the shelf), a return cart for replaced books, sessions reset the shelf. Adopt?** (`library-metaphor`, owner: Chris, since 2026-09-25)
 - **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** (`curriculum-design`, owner: Chris, since 2026-09-26)
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
+- **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** (`approve-module1-outcomes`, owner: Chris, since 2026-09-28)
 
 ## Phases
 
@@ -48,6 +49,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.content-review` | undefined | Agent default | undefined |
 | `curriculum.excluded-gospels` | All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus) | Owner decision | undefined |
 | `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: | Owner decision | undefined |
+| `curriculum.format` | undefined | Agent default | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |

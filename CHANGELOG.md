@@ -14,10 +14,15 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
 - Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
 - Dot colors map to the color contract roles: completed = text-muted (filled), current = action (filled, slightly larger), new = border (hollow outline) (agent default)
+- Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog (agent default)
 
 ### Added
 
 - First path, unit 2: 'Meet the library: nine kinds of books' and 'How to read what you're reading'
+
+### Changed
+
+- Lesson 1 'Begin with the central story' rewritten in the final format: 7 sections, 3 inline checks, readable Scripture block in light and dark
 
 ## 2026-09-27
 

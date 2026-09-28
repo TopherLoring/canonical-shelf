@@ -138,6 +138,27 @@ test('lesson progress: unlabeled dots (vertical on desktop, centered along the b
   }
 });
 
+test('authored Lesson 1: one step per section, checks inline where written, readable Scripture in light and dark',async({page})=>{
+  await page.goto('/course?unit=c1.christianity&lesson=begin&scene=2');
+  await expect(page.locator('.scene-rail a')).toHaveCount(7);
+  await expect(page.locator('.scene-rail a').nth(1)).toHaveAttribute('aria-label',/Read the passage/);
+  const scene=page.locator('.study-scene, main').first();
+  await expect(scene.locator('.study-scripture')).toBeVisible();
+  await expect(scene.locator('.inline-check')).toHaveCount(1);
+  const order=await page.evaluate(()=>{const r=document.querySelector('.study-scripture'),c=document.querySelector('.inline-check');return r.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING?'reading-then-check':'check-first'});
+  expect(order).toBe('reading-then-check');
+  for(const mode of ['light','dark']){
+    await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
+    const ratio=await page.locator('.study-scripture p:not(.eyebrow)').first().evaluate(el=>{
+      const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
+      const lum=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+      const f=lum(rgb(getComputedStyle(el).color)),b=lum(rgb(getComputedStyle(el.closest('.study-scripture')).backgroundColor));
+      return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
+    });
+    expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+  }
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');
@@ -160,7 +181,7 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   const scene=page.locator('.study-scene__inner');
   await expect(scene.locator('.scene-objective')).toHaveCount(0);
   await expect(scene.locator('.scene-callout')).toBeVisible();
-  await expect(scene.locator('.scene-prose')).toBeVisible();
+  await expect(scene.locator('.scene-prose').first()).toBeVisible();
 
   const desk=page.locator('#study-apparatus');
   await expect(desk).toBeVisible();

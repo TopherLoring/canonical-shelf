@@ -138,7 +138,24 @@ const beginBodyHeadings=[
   ['Context','Corinth: community, status, and shared life']
 ];
 
+// Authored lessons (content/pathway): one step per section; checks appear exactly where they are written.
+function authoredScenes(lesson,corpus,esc){
+  const aid=`lesson:${lesson.id}`;
+  return lesson.sections.map(section=>{
+    const html=section.blocks.map(block=>{
+      if(block.type==='prose')return proseMarkup([block.text],corpus,esc);
+      if(block.type==='callout')return `<aside class="scene-callout"><p>${esc(block.text)}</p></aside>`;
+      if(block.type==='reading')return scriptureMarkup(lesson,corpus,esc);
+      if(block.type==='check')return `<div class="inline-check" id="check-${block.index+1}">${challengeForm(lesson.challenges[block.index],aid,block.index,esc)}</div>`;
+      if(block.type==='reflect')return `<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}`;
+      return '';
+    }).join('');
+    return {role:lesson.title,label:section.title,title:section.title,anchor:section.anchor,html};
+  });
+}
+
 function lessonScenes(lesson,corpus,esc){
+  if(Array.isArray(lesson.sections)&&lesson.sections.length)return authoredScenes(lesson,corpus,esc);
   const aid=`lesson:${lesson.id}`;
   const body=[...(lesson.body||[])];
   const defaults=[['Explain','Read closely'],['Context','Locate the claim in context'],['Explain','Follow the relationship'],['Context','Keep the setting visible'],['Interpret','Distinguish what follows from the evidence']];
@@ -182,7 +199,7 @@ function lessonApparatus(lesson,esc,scene){
   const sources=(lesson.sources||[]).map((source,index)=>`<li><a href="${esc(source)}" target="_blank" rel="noreferrer">Source ${index+1}</a></li>`).join('');
   let modules='';
   modules+=apparatusModule('Your notes','private',`<section class="study-notes" data-notes-mount aria-label="Your notes"></section>`,{open:true});
-  if(scene)modules+=apparatusModule(`This scene · ${esc(scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use the study tools below for evidence, vocabulary, and interpretive boundaries relevant to this lesson.</p>`);
+  if(scene)modules+=apparatusModule(`This step · ${esc(scene.label||scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use the study tools below for evidence, vocabulary, and interpretive boundaries relevant to this lesson.</p>`);
   modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`);
   if(lesson.id==='begin'){
     modules+=apparatusModule('Transmission','evidence',`<p>Paul says he “received” and “passed on” the proclamation. This supports discussion of transmitted tradition; it does not by itself reconstruct the exact date or wording of every earlier form.</p>`);
@@ -222,7 +239,7 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
     <article class="study-folio" aria-labelledby="study-scene-title">
       <header class="study-folio__head"><div class="scene-content-head"><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div></header>
       <div class="study-layout">
-        <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Step ${index+1} of ${scenes.length}: ${esc(item.role)}${index<sceneIndex?' (completed)':''}" data-state="${index<sceneIndex?'complete':index===sceneIndex?'current':'upcoming'}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><em class="scene-rail__label" aria-hidden="true">${esc(item.role)}</em></a>`).join('')}</nav>
+        <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Step ${index+1} of ${scenes.length}: ${esc(item.label||item.role)}${index<sceneIndex?' (completed)':''}" data-state="${index<sceneIndex?'complete':index===sceneIndex?'current':'upcoming'}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><em class="scene-rail__label" aria-hidden="true">${esc(item.label||item.role)}</em></a>`).join('')}</nav>
         <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
         <aside id="study-apparatus" class="study-apparatus" aria-label="Study Desk"><div class="study-apparatus__head"><div><h2>Study Desk</h2></div></div><p class="session-context-note">Your notes stay with this lesson. Study tools below provide optional evidence, vocabulary, context, and sources.</p>${apparatus}</aside>
       </div>

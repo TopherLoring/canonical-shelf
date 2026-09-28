@@ -1,0 +1,70 @@
+{
+  "pathway": "The Canonical Understanding Pathway",
+  "status": "Module 1 goals and outcomes drafted by Claude 2026-09-28 for Chris's approval; lesson 'begin' authored in the final format",
+  "goals": [
+    { "id": "m1.g1", "module": "m1", "text": "Know what Christianity claims at its center, and know that you can learn it before deciding whether you believe it." },
+    { "id": "m1.g2", "module": "m1", "text": "Know what the Bible is and find your way around it." },
+    { "id": "m1.g3", "module": "m1", "text": "Read any passage by first recognizing what kind of writing it is and what it claims." }
+  ],
+  "outcomes": [
+    { "id": "m1.o1", "goal": "m1.g1", "text": "Put the proclamation Paul recalls in 1 Corinthians 15:1–5 into your own words, in its order." },
+    { "id": "m1.o2", "goal": "m1.g1", "text": "Explain the difference between understanding a claim and agreeing with it." },
+    { "id": "m1.o3", "goal": "m1.g1", "text": "Define gospel, Christ, and resurrection in plain words." },
+    { "id": "m1.o4", "goal": "m1.g1", "text": "Hold a question provisionally while you build the knowledge to answer it well." },
+    { "id": "m1.o5", "goal": "m1.g2", "text": "Name the nine groups of books and what each contains." },
+    { "id": "m1.o6", "goal": "m1.g3", "text": "Identify the kind of writing in a passage and the kind of claim it makes." }
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Hermeneutics & Canon — through the story",
+      "units": [
+        {
+          "unitId": "c1.christianity",
+          "lessons": [
+            {
+              "id": "begin",
+              "authored": true,
+              "purpose": "Meet the central Christian claim through Paul's own summary, learn its key words, and learn how this guide teaches: understanding is assessed, agreement never is.",
+              "reading": "1Cor.15.1-5",
+              "teaches": ["central-proclamation", "key-terms", "understanding-vs-assent", "read-before-concluding"],
+              "requires": [],
+              "outcomes": ["m1.o1", "m1.o2", "m1.o3"],
+              "sections": ["start", "read", "words", "letter", "stance", "summary", "reflect"],
+              "checks": ["order the four events Paul recalls", "match gospel, Christ, and resurrection to their meanings", "separate understanding from agreement"]
+            },
+            {
+              "id": "c1-questions-first",
+              "purpose": "Hold big questions provisionally while the path builds the knowledge to answer them.",
+              "reading": "Acts.17.10-12",
+              "teaches": ["provisional-questions"],
+              "requires": ["understanding-vs-assent"],
+              "outcomes": ["m1.o4"]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.bible",
+          "lessons": [
+            {
+              "id": "c1-library-groups",
+              "purpose": "Meet the nine groups of books: what each contains, how to read it, where to begin.",
+              "reading": "Luke.24.44-45",
+              "teaches": ["nine-groups"],
+              "requires": [],
+              "outcomes": ["m1.o5"]
+            },
+            {
+              "id": "c1-reading-kinds",
+              "purpose": "Recognize the kinds of biblical writing and the claim each makes; see contested readings side by side.",
+              "reading": "Neh.8.8",
+              "teaches": ["kinds-of-writing", "not-literal-not-false"],
+              "requires": ["nine-groups"],
+              "outcomes": ["m1.o6"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
