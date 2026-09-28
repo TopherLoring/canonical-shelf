@@ -17,6 +17,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog (agent default)
 - A lesson's objective is not shown inside the lesson; it describes the lesson on overview screens (the unit's lesson list)
 - The unit page's lesson list in learning.js (courseView) is not what learners see; course-experience.js renders the unit page from the tpl-unit-activity-step template. Remove the unused learning.js renderer during the CSS/JS consolidation (agent default)
+- The site will offer 8 very different themes built on the theme contract: Library, Paper, Collegiate, Stained Glass, Fun, Pastel/Soft, Fun and Illustrated, plus one more; themes should dramatically change the visual design
+- The contract defines every appearance variable; nothing outside it may be used
+- Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles (agent default)
 
 ### Added
 

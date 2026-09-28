@@ -22,7 +22,7 @@ function balanced(s) {
 function fontStack(s) {
   const parts = s.split(',').map(p => p.trim());
   if (!parts.length || parts.some(p => !p)) return false;
-  return parts.every(p => /^(["'])[^"']+\1$/.test(p) || /^[A-Za-z][A-Za-z0-9-]*$/.test(p));
+  return parts.every(p => /^(["'])[^"']+\1$/.test(p) || /^-?[A-Za-z][A-Za-z0-9-]*$/.test(p)); // leading hyphen: vendor keywords such as -apple-system
 }
 
 export const SCALARS = {

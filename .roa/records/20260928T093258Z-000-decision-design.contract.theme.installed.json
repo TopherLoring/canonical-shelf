@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "design.contract.theme.installed",
+  "topic": "design.contract.theme",
+  "date": "2026-09-28",
+  "text": "Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles",
+  "by": "Claude"
+}

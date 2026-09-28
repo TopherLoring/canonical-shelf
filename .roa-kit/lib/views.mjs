@@ -43,6 +43,37 @@ export const VIEWS = {
     }
     return { base, blocks };
   },
+  // Theme contract: font imports, shared values, derived colors, migration aliases, then one block per
+  // theme for its style and light palette and one for its dark palette. camelCase keys become kebab-case.
+  'theme-vars'({ resolved }) {
+    const kebab = k => k.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
+    const sh = resolved.shared || {};
+    const shared = [];
+    for (const [k, v] of Object.entries(sh.typeScale || {})) shared.push({ name: `--type-${kebab(k)}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.lineHeights || {})) shared.push({ name: `--leading-${kebab(k)}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.spacing || {})) shared.push({ name: `--space-${kebab(k).replace(/^s/, '')}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.motion || {})) shared.push({ name: `--motion-${kebab(k)}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.bibleCategories || {})) shared.push({ name: `--bible-${k}`, value: String(v) });
+    const derived = [
+      ['--color-action-hover', 'color-mix(in srgb, var(--color-action) 82%, var(--color-text))'],
+      ['--color-action-subtle', 'color-mix(in srgb, var(--color-action) 12%, var(--color-surface))'],
+      ['--color-selection', 'color-mix(in srgb, var(--color-action) 16%, var(--color-surface))'],
+      ['--color-disabled', 'color-mix(in srgb, var(--color-text-muted) 55%, var(--color-surface))'],
+      ['--focus-ring', 'var(--color-action)']
+    ].map(([name, value]) => ({ name, value }));
+    const aliases = Object.entries(resolved.aliases || {}).map(([k, v]) => ({ name: `--${k}`, value: String(v) }));
+    const imports = [...new Set(Object.values(resolved.themes || {}).flatMap(t => t.fontImports || []))].map(url => ({ url }));
+    const blocks = [];
+    for (const [id, theme] of Object.entries(resolved.themes || {})) {
+      const isDefault = resolved.default?.theme === id;
+      const sel = mode => [`html[data-theme='${id}']${mode === 'dark' ? "[data-mode='dark']" : ''}`, ...(isDefault ? [`html:not([data-theme])${mode === 'dark' ? "[data-mode='dark']" : ''}`] : [])].join(',\n');
+      const style = Object.entries(theme.style || {}).filter(([k]) => k !== 'illustrations').map(([k, v]) => ({ name: `--${kebab(k)}`, value: String(v) }));
+      const colors = mode => Object.entries(theme.modes[mode]).map(([k, v]) => ({ name: `--color-${kebab(k)}`, value: String(v) }));
+      blocks.push({ comment: `${theme.name} — style and light palette`, selectorText: sel('light'), vars: [...style, ...colors('light')] });
+      blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: colors('dark') });
+    }
+    return { imports, shared, derived, aliases, blocks };
+  },
   // Layout: container and layer variables, then grid rules per screen and breakpoint.
   layout({ resolved }) {
     const bps = Object.entries(resolved.breakpoints || {});
