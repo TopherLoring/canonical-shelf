@@ -52,3 +52,5 @@ async function backgroundSync() { if (localStorage.getItem('canon.sync.enabled')
 window.addEventListener('online', () => void backgroundSync());
 window.addEventListener('canonical-state-changed', () => { clearTimeout(syncTimer); syncTimer = setTimeout(() => void backgroundSync(), 800); });
 if (localStorage.getItem('canon.sync.enabled') === '1') void backgroundSync();
+// The profile may have rendered before this module loaded; fill the section now if it is on screen.
+if (mount()) void renderAccount();

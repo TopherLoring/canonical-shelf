@@ -168,3 +168,4 @@ document.addEventListener('click', event => {
 document.addEventListener('canonical-route-rendered', () => renderMounts().catch(() => {}));
 document.addEventListener('canonical-route-rendered', () => { if (document.querySelector('[data-profile-notes]')) renderProfileNotes().catch(() => {}); });
 renderMounts().catch(() => {});
+if (document.querySelector('[data-profile-notes]')) renderProfileNotes().catch(() => {});
