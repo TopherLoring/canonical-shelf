@@ -50,6 +50,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: | Owner decision | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
+| `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
+| `curriculum.path1.overlap` | undefined | Agent default | undefined |
 | `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
 | `curriculum.teaching-approach` | Audience: | Owner decision | undefined |
 | `data.bsb-source` | undefined | Agent default | undefined |

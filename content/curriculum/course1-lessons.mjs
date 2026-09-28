@@ -1,6 +1,79 @@
 import {lesson,sequence,match,evidence,drawer} from './helpers.mjs';
 
 export const course1Lessons=[
+
+  lesson({
+    id:'c1-library-groups',unitId:'c1.bible',title:'Meet the library: nine kinds of books',reading:'Luke 24:44–45',ref:[42,24,44,45],
+    objective:'Name the nine groups of the 66-book Protestant Bible, say what each group contains, and choose a sensible place to start reading in each.',
+    body:[
+      'The Bible is not one book written in one style. It is a library of 66 books, written over many centuries by many authors, and gathered in two collections: the Old Testament, Israel’s scriptures, and the New Testament, the writings of the first Christians. Jesus himself describes Israel’s scriptures in groups: “the Law of Moses, the Prophets, and the Psalms.” Knowing which shelf a book sits on is the first step to reading it well.',
+      'The Law, Genesis through Deuteronomy, tells Israel’s founding story: creation, the ancestors, the Exodus from Egypt, and the covenant given at Sinai. The stories frame the laws. The laws show what a covenant community was meant to look like in its own world, not a rulebook to copy item by item. Begin with Genesis 1–3 and 12, then Exodus 1–3 and 20.',
+      'The History books, Joshua through Esther, follow Israel in the land: judges, kings, a divided kingdom, exile, and return. This is theological history. The writers are asking why things happened, not only reporting that they did, so expect repeated patterns of faithfulness and failure. Begin with 1 Samuel 16–17, 2 Kings 17, and Nehemiah 8.',
+      'Wisdom and Poetry, Job through Song of Songs, gathers prayers, songs, sayings, and reflections on suffering, love, and how life works. Read these slowly and listen for images. Hebrew poetry often pairs lines so the second deepens the first. It expresses and wrestles more than it reports. Begin with Psalms 1, 23, and 139, Proverbs 1, and Job 38.',
+      'The Major Prophets, Isaiah through Daniel, are long books addressing Israel before, during, and after the exile. The Minor Prophets, Hosea through Malachi, are twelve shorter books; “minor” means short, not less important. Prophets mostly speak to their own time: warning, pleading, and promising. Look for who is being addressed and what injustice is named before looking for predictions. Begin with Isaiah 1 and 40, Jeremiah 31, Amos 5, Micah 6, and all four chapters of Jonah.',
+      'In the New Testament, the Gospels and Acts tell the life, death, and resurrection of Jesus and the story of the early church. Each Gospel tells the same story for a different audience, so notice what each one emphasizes; Acts continues Luke. Begin with Mark, the shortest Gospel, then Luke 15 and Acts 2.',
+      'Paul’s Letters, Romans through Philemon, and the General Letters, Hebrews through Jude, were written to specific churches and wider Christian audiences dealing with real problems. You are reading someone else’s mail: find the writer, the readers, and the situation first, then the teaching. Begin with Philippians, Romans 5–8, James 1–2, and 1 John 4.',
+      'Revelation stands on its own shelf. It is apocalyptic writing, a symbolic vision about suffering, empire, and God making all things new. Ask what its images meant to its first readers before asking what they say about the future. Begin with Revelation 1 and 21–22.',
+      'These nine groups are shelf labels, not strict categories. A history book can contain a poem, a prophet can tell a story, and a letter can quote a hymn. The next lesson looks closely at those kinds of writing and what each one is claiming.'
+    ],
+    simple:'The Bible is a library of 66 books on nine shelves: Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. Each shelf is read a little differently.',
+    vocab:{
+      'Old Testament':'The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.',
+      'New Testament':'The 27 books written by the first Christians about Jesus and the early church, written in Greek.',
+      'Pentateuch':'The first five books of the Bible, also called the Law or the Torah.',
+      'Canon':'The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books.'
+    },
+    deeper:'The group names used here follow common Protestant arrangement. Jewish Bibles arrange the same Hebrew books differently, into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. Each book’s profile on the Bible page shows its themes, people, setting, and where to begin.',
+    drawers:[
+      drawer('Why nine groups and not two?','Old and New Testament tell you which collection a book belongs to. The nine groups tell you what kind of book you are holding, which changes how you read it.'),
+      drawer('Do I have to read the Bible in order?','No. Many readers start with a Gospel, then Genesis and Exodus, then the Psalms. The shelf helps you know where you are wherever you begin.'),
+      drawer('Are the Apocrypha missing?','Protestant Bibles do not include the additional books found in Catholic and Orthodox Bibles. The extra-credit module covers them, along with how the canon took shape.')
+    ],
+    visual:{text:'Old Testament: Law · History · Wisdom and Poetry · Major Prophets · Minor Prophets | New Testament: Gospels and Acts · Paul’s Letters · General Letters · Revelation',title:'The nine shelves of the library'},
+    challenges:[
+      match('Shelve the book','Match each book to its group.',['Leviticus','Psalms','Amos','Galatians','Acts'],['Paul’s Letters','Law','Gospels and Acts','Minor Prophets','Wisdom and Poetry'],[1,4,3,0,2],'Leviticus belongs to the Law, Psalms to Wisdom and Poetry, Amos to the Minor Prophets, Galatians to Paul’s Letters, and Acts to the Gospels and Acts.'),
+      evidence('Read the shelf, not just the book','Which two statements follow from this lesson?',['Knowing a book’s group helps you choose how to read it.','A “minor” prophet is less important than a major one.','A letter is best read by first finding its writer, readers, and situation.','Every book fits exactly one pure genre.'],[0,2],'Groups guide reading, “minor” means short, and books often mix forms, so the group is a starting point rather than a rule.')
+    ],
+    reflect:'Which shelf feels least familiar to you, and where will you start reading it?',
+    model:'A strong response names one group, says what makes it unfamiliar, and picks one of the suggested starting places.',
+    questionThreadIds:['q.scripture-trust']
+  }),
+
+  lesson({
+    id:'c1-reading-kinds',unitId:'c1.bible',title:'How to read what you’re reading',reading:'Nehemiah 8:8',ref:[16,8,8,8],
+    objective:'Recognize the main kinds of biblical writing, explain what kind of claim each makes, and describe the views Christians hold where they read a passage differently.',
+    body:[
+      'When the scriptures were read aloud in Nehemiah’s day, the teachers “read from the Book of the Law of God, explaining it and giving it meaning.” Understanding a passage starts with recognizing what kind of writing it is. A news report, a love song, and a parable can all tell the truth, but they do not make the same kind of claim.',
+      'Historical narrative names people and places and moves through events: “and then.” It claims that these things happened, told to show their meaning. The writers select and emphasize, as every historian does; selection is not distortion. Samuel, Kings, and Acts are examples. Close to it is summary and compressed history: genealogies, “in those days,” centuries covered in a sentence. Genesis 5 and 11, Chronicles, and Judges 2 give the shape of a period, not a complete record, so treating their numbers as a full timeline asks more of them than they offer.',
+      'Law uses commands and cases, such as “if a man…”. It describes how a covenant community should live in its world. Copying every ancient rule directly and dismissing them all are both mistakes. Poetry uses paired lines, images, and strong feeling. It tells the truth about God and life by expressing it rather than reporting it, so when a psalm says the hills clap their hands, it is not describing geology. Wisdom sayings, like Proverbs, observe how life usually works; a proverb is a general truth, not a promise.',
+      'Prophecy begins “thus says the LORD” and carries warnings, oaths, and promises. It is mainly God’s verdict on present injustice and hope beyond it, not a set of coded predictions. Apocalyptic writing, in Daniel 7–12 and Revelation, uses beasts, numbers, and cosmic symbols to show the deep reality behind history: evil is real, and God wins. Decoding each symbol as a news headline misreads it.',
+      'A parable is a story Jesus tells, such as “a man had two sons.” It is made up on purpose to carry a true point, so asking whether the prodigal son was a real person misses what it is. Allegory, where each detail stands for something else, is rare in the Bible; Paul uses the word himself in Galatians 4:24. Turning every story into allegory is a common mistake. Letters teach real people facing a real crisis, and Gospels are ancient biographies: true events, deliberately arranged, not modern day-by-day chronicles.',
+      'For some passages, serious Christian readers disagree about the kind of writing. Genesis 1–11 is read by some as literal history in detail, by others as true history told in stylized and symbolic form, and by others as theological story using ancient forms to make claims about God and people. Jonah is read as a historical account, as a historically based story shaped as satire, or as a parable-like prophetic story; its point about God’s mercy stands under every reading. Job is read as the story of a historical person or as a wisdom debate built around one. Daniel is dated by some to the 500s BCE and by others to visions compiled in the 100s BCE. Revelation is read as future events, as symbols for every era, as mainly about the first century, or as a mix of these.',
+      'The key line is simple: “not literal” never means “not true.” A parable, a psalm, or a vision can tell the truth as fully as a report does. It just is not a report. Where Christians disagree, Canonical Shelf shows the views side by side and leaves the decision with you.'
+    ],
+    simple:'Every passage is a kind of writing: history, summary, law, poetry, wisdom, prophecy, apocalyptic vision, parable, letter, or Gospel. Knowing the kind tells you what the passage is claiming. “Not literal” never means “not true.”',
+    vocab:{
+      'Historical narrative':'Writing that tells events as having happened, selected and shaped to show their meaning.',
+      Parable:'A story told to make a point; it is not presented as a report of real events.',
+      Allegory:'Writing in which details stand for other things; rare in the Bible and usually signaled by the text.',
+      Apocalyptic:'Writing that uses symbolic visions to reveal the reality behind history, as in Daniel and Revelation.',
+      Genre:'The kind of writing a text is, which shapes the kind of claim it makes.'
+    },
+    deeper:'Genre recognition is not a way to avoid hard passages. It is how every careful reader, ancient and modern, decides what a text is asking of them. Later units return to each form in depth, and the extra-credit module covers debates about dating and authorship.',
+    drawers:[
+      drawer('If Genesis 1 is not literal, is it made up?','No. Christians who read Genesis 1 as stylized or theological still read it as true: it claims that God made the world good and gave people dignity and responsibility. The disagreement is about what kind of account it is, not whether it tells the truth.'),
+      drawer('Did Jesus think the parables were real events?','Parables were a known teaching form in Jesus’ world. Their power comes from their point, which is why they begin like stories rather than reports.'),
+      drawer('Who decides which reading is right?','You do, with evidence. Canonical Shelf states its own positions where it has them, shows the strongest alternatives fairly, and never scores agreement.')
+    ],
+    visual:{text:'History · Summary · Law · Poetry · Wisdom · Prophecy · Apocalyptic · Parable · Allegory · Letter · Gospel',title:'Kinds of biblical writing'},
+    challenges:[
+      match('Name the kind of writing','Match each passage to its kind of writing.',['“A man had two sons…” (Luke 15:11)','“Trust in the LORD with all your heart” (Proverbs 3:5)','“Paul, an apostle… to the churches in Galatia” (Galatians 1:1–2)','“A beast rising out of the sea, with ten horns” (Revelation 13:1)','“The mountains skipped like rams” (Psalm 114:4)'],['Poetry','Letter','Parable','Apocalyptic vision','Wisdom saying'],[2,4,1,3,0],'Recognizing the form tells you what each passage is doing: a teaching story, a general truth, correspondence, a symbolic vision, and poetic imagery.'),
+      evidence('What is it claiming?','Choose the two statements that read these passages well.',['Psalm 114 expresses the awe of the Exodus through images; it does not report moving mountains.','The parable of the prodigal son fails if no such family existed.','A proverb states a general truth about life rather than a guarantee.','Poetry cannot tell the truth because it is not literal.'],[0,2],'Poetry expresses truth through images, parables carry their point without being reports, and proverbs describe how life usually works.')
+    ],
+    reflect:'Which reading of Jonah do you lean toward right now, and what in the text points you there?',
+    model:'A strong response names one of the readings, points to something in the text such as its humor, structure, or ending, and notes that the book’s point about God’s mercy holds either way. This reflection is never scored for which view you hold.',
+    questionThreadIds:['q.scripture-trust','q.miracles-history','q.disagreement']
+  }),
   lesson({
     id:'c1-questions-first',unitId:'c1.christianity',title:'Questions worth carrying',reading:'Acts 17:10–12',ref:[44,17,10,12],
     objective:'Explain why Canonical Shelf introduces difficult questions early while delaying stronger conclusions until the learner has enough biblical, historical, and interpretive foundation to evaluate them responsibly.',

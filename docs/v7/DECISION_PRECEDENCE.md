@@ -64,6 +64,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
   Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
 
+### `curriculum.path1.library`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `curriculum.path1.library-lessons`
+  The first path's second unit opens with two lessons: 'Meet the library: nine kinds of books' (high-level overviews of the nine groups: what each contains, how to read it, where to begin) and 'How to read what you're reading' (kinds of biblical writing and the claim each makes; contested passages shown with the views side by side; 'not literal' never means 'not true')
+  *Why:* The primary learner asked for a basic book-by-book overview of what the books are and how to read them; category overviews suffice
+
+### `curriculum.path1.overlap`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `curriculum.path1.overlap-kept`
+  The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them
+
 ### `curriculum.structure`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.structure.curriculum-four-modules`

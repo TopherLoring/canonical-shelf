@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "curriculum.path1.overlap-kept",
+  "topic": "curriculum.path1.overlap",
+  "date": "2026-09-28",
+  "text": "The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them",
+  "by": "Claude"
+}

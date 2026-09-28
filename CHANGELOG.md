@@ -3,6 +3,17 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-28
+
+### Decided
+
+- The first path's second unit opens with two lessons: 'Meet the library: nine kinds of books' (high-level overviews of the nine groups: what each contains, how to read it, where to begin) and 'How to read what you're reading' (kinds of biblical writing and the claim each makes; contested passages shown with the views side by side; 'not literal' never means 'not true')
+- The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them (agent default)
+
+### Added
+
+- First path, unit 2: 'Meet the library: nine kinds of books' and 'How to read what you're reading'
+
 ## 2026-09-27
 
 ### Decided
