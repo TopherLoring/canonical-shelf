@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.color.signal.gilt-not-chosen",
+  "topic": "design.color.signal",
+  "date": "2026-09-28",
+  "text": "The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris",
+  "by": "Chris"
+}

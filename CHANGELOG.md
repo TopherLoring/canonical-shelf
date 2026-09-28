@@ -10,6 +10,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The first path's second unit opens with two lessons: 'Meet the library: nine kinds of books' (high-level overviews of the nine groups: what each contains, how to read it, where to begin) and 'How to read what you're reading' (kinds of biblical writing and the claim each makes; contested passages shown with the views side by side; 'not literal' never means 'not true')
 - The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them (agent default)
 - Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+- The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
 
 ### Added
 

@@ -103,6 +103,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
 
+### `design.color.signal`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.signal.gilt-not-chosen`
+  The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
+
 ### `design.layout-contract`
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`

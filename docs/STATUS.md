@@ -57,6 +57,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
+| `design.color.signal` | The gold/gilt color is agent filler, not an owner choice; | Owner decision | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
