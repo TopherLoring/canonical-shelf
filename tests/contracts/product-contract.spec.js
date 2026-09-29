@@ -103,6 +103,8 @@ test('Theologian opens as a fixed chat panel with a conversation menu, and close
 });
 
 test('cross-references are the last, collapsed detail level of the Reading Desk and list plain verse addresses',async({page})=>{
+  // Slow the chapter's cross-reference download so the verse is clicked before the data arrives (as on slow connections).
+  await page.route('**/data/crossref/**',async route=>{await new Promise(r=>setTimeout(r,1500));await route.continue()});
   await page.goto('/bible?book=43&chapter=3');
   const desk=page.locator('.library-reader-panel');
   await expect(desk.locator(':scope > details').last()).toHaveClass(/reader-crossrefs/);
