@@ -1,3 +1,4 @@
+import {profileView} from './profile.js';
 import {getState,recordResult,recordReview,dueReviews,exportState,importState} from './db.js';
 import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './learning.js';
 import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
@@ -14,7 +15,6 @@ import {scriptureResults,searchPage} from './search-engine.js';
 
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
-const progressPanel=document.querySelector('#progress-panel'),progressBody=document.querySelector('#progress-body');
 let data={courses:[],units:[],topics:[],lessons:[],masteryIds:[],activities:[],byUnit:{},byCourse:{},glossary:[]},corpus='',policy=null,statement='',theologySources=[],state=await getState();
 const reviewSession=new Map(),STUDY_RETURN_KEY='canonical-shelf-study-return-v1';
 const FALLBACK={authority:{normativeCeiling:'Canonical Shelf Statement of Faith',rule:'The Theologian may explain positions beyond the Statement of Faith but may not establish them as Canonical Shelf doctrine.'},lgbtq:{claims:['LGBTQ people possess equal dignity and belonging.','Homosexual or bisexual orientation is not inherently sinful.','Faithful same-sex relationships and marriage may embody Christian virtue.','LGBTQ identity does not disqualify worship, service, teaching, leadership, or spiritual gifts.']},interpretiveRules:['Distinguish biblical text, historical context, lexical evidence, interpretation, reception history, doctrine, and application.','Do not render contested evidence as scholarly consensus.'],queerReception:{ruthNaomi:{allowed:'Some Christian and biblical interpreters read Ruth and Naomi through lesbian, homoerotic, female-same-sex-love, or queer-kinship lenses.',boundary:'The biblical narrator does not explicitly identify Ruth and Naomi as sexual partners; present this as reception history or interpretation, not uncontested textual fact.'}},prohibitedOverstatements:[]};
@@ -47,7 +47,7 @@ async function load(){
 await load();policy||=FALLBACK;
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
-const roots=new Set(['home','course','bible','topics','practice','search']);
+const roots=new Set(['home','course','bible','topics','practice','search','profile']);
 const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/')[0].replace(/\.html$/,'')||'home';
 const appRouteFromPath=pathname=>{const r=pathRoot(pathname);return roots.has(r)?r:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
@@ -70,7 +70,7 @@ function setCurrent(r){nav.forEach(a=>a.toggleAttribute('aria-current',a.dataset
 function shell(title,eye,body){return `<header class="section"><p class="eyebrow">${esc(eye)}</p><h1>${esc(title)}</h1></header>${body}`}
 function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)return'/course';return a.type==='lesson'?`/course?unit=${encodeURIComponent(a.unitId)}&lesson=${encodeURIComponent(a.sourceId)}`:`/course?unit=${encodeURIComponent(a.unitId)}&mastery=${encodeURIComponent(a.sourceId)}`}
 function renderInto(target,view){if(!target)return;if(typeof view==='string')target.innerHTML=view;else target.replaceChildren(view)}
-function refreshProgressPanel(){if(progressPanel&&!progressPanel.hidden){renderInto(progressBody,progressPanelView({data,state,esc}));document.dispatchEvent(new CustomEvent('canonical-progress-rendered'))}}
+function refreshProgressPanel(){}
 
 function courseRouteView(p){
   if(!data.units.length)return shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
@@ -103,6 +103,7 @@ async function render(){
   else if(r==='bible')view=bibleView(corpus,p,esc);
   else if(r==='topics')view=topicsView({data,params:p,esc});
   else if(r==='practice')view=practiceView({data,state,params:p,esc,dueReviews,activityHref});
+  else if(r==='profile')view=profileView({data,state,esc,progressNode:progressPanelView({data,state,esc})});
   else view=homeView({data,state,esc});
 
   if(typeof view==='string'){
@@ -119,7 +120,8 @@ async function render(){
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   if(bookDrawer)bookDrawer.querySelector('[data-book-drawer-close]')?.focus({preventScroll:true});
   else if(r==='bible'&&p.get('focus'))main.querySelector(`[data-book="${CSS.escape(p.get('focus'))}"]`)?.focus({preventScroll:true});
-  else main.focus({preventScroll:true});
+  // Move focus to the new content, unless the learner is already using the top bar or an open panel.
+  else if(!document.activeElement?.closest?.('.masthead,#guide,#feedback-panel'))main.focus({preventScroll:true});
   refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
 }
 function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}}
@@ -228,8 +230,6 @@ document.addEventListener('submit',async e=>{
 });
 
 document.addEventListener('change',e=>{if(e.target.id==='chapter-jump')navigate(`/bible?book=${encodeURIComponent(e.target.dataset.book)}&chapter=${encodeURIComponent(e.target.value)}`);if(e.target.id==='translation-select'&&e.target.value!=='bsb')e.target.value='bsb'});
-document.querySelector('#progress-open').addEventListener('click',()=>{renderInto(progressBody,progressPanelView({data,state,esc}));document.dispatchEvent(new CustomEvent('canonical-progress-rendered'));progressPanel.hidden=false;progressPanel.querySelector('a,button')?.focus({preventScroll:true})});
-document.querySelector('#progress-close').addEventListener('click',()=>{progressPanel.hidden=true;document.querySelector('#progress-open').focus()});
 render();
 
 document.addEventListener('canonical:canonicalize',e=>canonicalizeLinks(e.detail));
@@ -280,3 +280,4 @@ document.addEventListener("click", e => {
     grid.dataset.initialized = "true";
   }
 });
+

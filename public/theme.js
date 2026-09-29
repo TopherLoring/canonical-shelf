@@ -149,20 +149,8 @@ function panelMarkup(){
   </aside>`;
 }
 
-function ensureControls(){
-  const account=document.querySelector('#account-open');
-  if(account&&!document.querySelector('#appearance-open')){
-    const button=document.createElement('button');
-    button.id='appearance-open';
-    button.className='appearance-open';
-    button.type='button';
-    button.setAttribute('aria-haspopup','dialog');
-    button.setAttribute('aria-controls','appearance-panel');
-    button.textContent='Appearance';
-    account.before(button);
-  }
-  if(!document.querySelector('#appearance-panel'))document.body.insertAdjacentHTML('beforeend',panelMarkup());
-}
+// Appearance lives on the profile screen (owner decision ui.profile); nothing is injected into the page.
+function ensureControls(){}
 
 function openPanel(){
   const panel=document.querySelector('#appearance-panel');

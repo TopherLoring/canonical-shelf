@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.topbar.redesign",
+  "topic": "ui.topbar",
+  "date": "2026-09-28",
+  "text": "Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo",
+  "by": "Chris"
+}

@@ -26,8 +26,6 @@ for(const id of ['guide-open','progress-open']){
 
 try{
   await import('./account-ui.js');
-  const accountOpen=document.querySelector('#account-open');
-  if(accountOpen){accountOpen.disabled=false;accountOpen.removeAttribute('aria-disabled')}
 }catch(err){
   console.warn('Account controls unavailable',err);
 }

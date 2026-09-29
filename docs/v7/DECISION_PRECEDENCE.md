@@ -5,6 +5,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Topics
 
+### `account.sign-in`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `account.sign-in.passkey-recovery-codes`
+  Accounts use a passkey plus recovery codes; no email for now
+
 ### `arch.duplicate-renderers`
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
@@ -144,6 +149,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
   The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile
 
+### `design.themes.eighth`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.eighth.midnight-study`
+  The eighth theme is Midnight Study
+
 ### `design.themes.fun-illustrated`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.fun-illustrated.separate`
@@ -153,6 +163,18 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.modes.light-and-dark`
   Every theme has both a light and a dark mode
+
+### `design.themes.pastel-name`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.pastel-name.rename`
+  The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes)
+- **Overridden default** · 2026-09-28 · Agent default (Claude) · `design.themes.pastel-name.watercolor`
+  ~~The Pastel/Soft theme is named Watercolor~~
+
+### `design.themes.scope`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.scope.look-not-layout`
+  Layout structure is the same in every theme; themes may change lines, colors, and typography
 
 ### `design.themes.set`
 
@@ -529,6 +551,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
 
+### `ui.profile`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
+  The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`
@@ -556,6 +583,16 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.theologian.tab-color.cta`
   The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text)
   *Why:* First of Chris's three listed options; inverse or a Theologian-specific scheme remain open
+
+### `ui.topbar`
+
+- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.topbar.redesign`
+  Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo
+
+### `ui.topbar.layout`
+
+- **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
+  Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
 
 ## Resolved questions
 

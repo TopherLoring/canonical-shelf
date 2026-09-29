@@ -234,7 +234,7 @@ function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,less
   return `<section class="study-focus" data-study-focus>
     <header class="study-focus__chrome">
       <div class="study-focus__identity"><span>${esc(hierarchy)}</span><strong>${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" data-open-appearance>Appearance</button><button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
+      <div class="study-focus__utilities"><button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
     </header>
     <article class="study-folio" aria-labelledby="study-scene-title">
       <header class="study-folio__head"><div class="scene-content-head"><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div></header>

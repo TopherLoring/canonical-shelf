@@ -327,3 +327,42 @@ body.study-focus-active .study-layout:not(.study-layout--theologian)>.scene-rail
   .scene-rail a:hover .scene-rail__label,.scene-rail a:focus-visible .scene-rail__label{display:block;position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:.2rem .55rem;border:1px solid var(--study-rule);border-radius:6px;background:var(--color-surface-raised);color:var(--color-text-primary);font:600 .72rem/1.3 var(--font-meta);font-style:normal;letter-spacing:.02em;box-shadow:var(--theme-shadow);z-index:var(--layer-tooltip,5);pointer-events:none}
 }
 .scene-rail a[data-state="current"] span{background:var(--study-accent);border-color:var(--study-accent)}
+
+/* ---- Top bar (owner decision ui.topbar): logo mark · tabs · search, Feedback, profile ---- */
+.masthead{display:flex;align-items:center;flex-wrap:nowrap;gap:clamp(12px,2.2vw,32px)}
+.masthead .brand{display:inline-grid;place-items:center;flex:0 0 auto;padding:4px;color:inherit}
+.brand-mark{width:30px;height:30px;fill:currentColor}
+.masthead .primary{flex:1 1 auto;justify-content:center}
+.masthead-tools{display:flex;align-items:center;gap:14px;flex:0 0 auto;margin-left:auto}
+.masthead .search{display:flex;align-items:center;gap:6px;flex:0 0 auto;max-width:none;margin:0}
+.masthead .search input{width:0;min-width:0;padding:0;border:0;opacity:0;transition:width var(--motion-base,200ms) var(--motion-easing,ease),opacity var(--motion-fast,120ms)}
+.masthead .search[data-open="true"] input{width:min(18rem,42vw);padding:.45rem .7rem;border:1px solid var(--color-border);border-radius:var(--radius-small,7px);background:var(--color-surface);color:var(--color-text);opacity:1}
+.search-toggle,.profile-link{display:inline-grid;place-items:center;width:38px;height:38px;padding:0;border:1px solid transparent;border-radius:50%;background:transparent;color:inherit;cursor:pointer}
+.search-toggle svg,.profile-link svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.search-toggle:hover,.profile-link:hover,.profile-link[aria-current]{border-color:currentColor}
+.search-toggle:focus-visible,.profile-link:focus-visible,.masthead .brand:focus-visible{outline:2px solid var(--focus-ring,currentColor);outline-offset:2px}
+@media (max-width:960px){.masthead{flex-wrap:wrap}.masthead .primary{order:3;flex:1 1 100%;justify-content:flex-start}}
+
+/* ---- Profile screen (owner decision ui.profile) — built on the theme contract's roles ---- */
+.profile-page{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,48px) clamp(16px,4vw,32px) 64px;color:var(--color-text)}
+.profile-head h1{margin:.2rem 0 .4rem;font-family:var(--font-display);font-size:var(--type-h1,2.3rem);line-height:var(--leading-tight,1.2)}
+.profile-head .lede{max-width:62ch;color:var(--color-text-muted)}
+.profile-sections{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 8px;padding:10px 0;border-block:1px solid var(--color-border)}
+.profile-sections a{color:var(--color-text);text-decoration:none;font:600 var(--type-small,.875rem)/1.3 var(--font-body)}
+.profile-sections a:hover{color:var(--color-action);text-decoration:underline}
+.profile-section{padding:26px 0;border-bottom:1px solid var(--color-border);scroll-margin-top:90px}
+.profile-section h2{margin:0 0 12px;font-family:var(--font-display);font-size:var(--type-h2,1.7rem)}
+.profile-section .section-note{color:var(--color-text-muted);font-size:var(--type-small,.875rem)}
+.profile-actions{display:flex;flex-wrap:wrap;gap:10px}
+.button--quiet{background:transparent;color:var(--color-text);border:1px solid var(--color-border)}
+.button--danger{background:var(--color-incorrect);color:var(--color-on-action);border-color:var(--color-incorrect)}
+.profile-danger{margin-top:14px}
+.profile-danger summary{cursor:pointer;color:var(--color-text-muted)}
+.profile-theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:14px}
+.profile-theme-grid .theme-card{display:grid;gap:4px;text-align:left;padding:14px;border:1px solid var(--color-border);border-radius:var(--radius-large,15px);background:var(--color-surface);color:var(--color-text);cursor:pointer}
+.profile-theme-grid .theme-card span{color:var(--color-text-muted);font-size:var(--type-small,.875rem)}
+.profile-theme-grid .theme-card.is-selected{border:2px solid var(--color-action)}
+.profile-field{display:grid;gap:6px;max-width:26rem;font-weight:600}
+.profile-links{list-style:none;padding:0;display:grid;gap:8px}
+.masthead .search .search-toggle{background:transparent;border-color:transparent;box-shadow:none}
+.masthead .search .search-toggle:hover{border-color:currentColor}
