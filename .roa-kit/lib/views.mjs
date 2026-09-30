@@ -69,10 +69,11 @@ export const VIEWS = {
       const sel = mode => [`html[data-theme='${id}']${mode === 'dark' ? "[data-mode='dark']" : ''}`, ...(isDefault ? [`html:not([data-theme])${mode === 'dark' ? "[data-mode='dark']" : ''}`] : [])].join(',\n');
       const style = Object.entries(theme.style || {}).filter(([k]) => k !== 'illustrations').map(([k, v]) => ({ name: `--${kebab(k)}`, value: String(v) }));
       const colors = mode => Object.entries(theme.modes[mode]).map(([k, v]) => ({ name: `--color-${kebab(k)}`, value: String(v) }));
-      blocks.push({ comment: `${theme.name} — style and light palette`, selectorText: sel('light'), vars: [...style, ...colors('light')] });
-      blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: colors('dark') });
+      // Aliases repeat in both blocks so they outrank older theme-specific definitions of the same names.
+      blocks.push({ comment: `${theme.name} — style and light palette`, selectorText: sel('light'), vars: [...style, ...colors('light'), ...aliases] });
+      blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: [...colors('dark'), ...aliases] });
     }
-    return { imports, shared, derived, aliases, blocks };
+    return { imports, shared, derived, aliases: [], blocks };
   },
   // Layout: container and layer variables, then grid rules per screen and breakpoint.
   layout({ resolved }) {

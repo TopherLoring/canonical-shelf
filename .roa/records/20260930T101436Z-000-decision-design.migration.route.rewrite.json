@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.migration.route.rewrite",
+  "topic": "design.migration.route",
+  "date": "2026-09-30",
+  "text": "Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); delete the old names and retire the design-tokens contract when done",
+  "by": "Chris"
+}

@@ -68,6 +68,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
+| `design.migration.route` | Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); | Owner decision | undefined |
 | `design.themes.eighth` | The eighth theme is Midnight Study | Owner decision | undefined |
 | `design.themes.fun-illustrated` | Fun and Illustrated are separate themes: | Owner decision | undefined |
 | `design.themes.modes` | Every theme has both a light and a dark mode | Owner decision | undefined |
@@ -94,6 +95,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.decision-authority` | Chris's current request outranks every document. | Owner decision | undefined |
 | `process.experience-first` | undefined | Agent default | undefined |
 | `process.guards` | undefined | Agent default | undefined |
+| `process.kit.starter` | Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards o... | Owner decision | undefined |
 | `process.project-state` | Project state is managed with project-roa-kit: | Owner decision | undefined |
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |

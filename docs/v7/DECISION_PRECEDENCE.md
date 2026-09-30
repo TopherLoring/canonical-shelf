@@ -149,6 +149,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
   The layout contract is not installed yet: the current CSS uses 10+ inconsistent breakpoints (520, 560, 700, 760, 820, 960, 980, 1100px...) and 20+ unnamed z-index values. Recording them would lock in the inconsistency; the layout contract is filled during the CSS consolidation and redesign, and the guard baseline blocks new literal z-index values meanwhile
 
+### `design.migration.route`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.migration.route.rewrite`
+  Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); delete the old names and retire the design-tokens contract when done
+
 ### `design.themes.eighth`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.eighth.midnight-study`
@@ -419,6 +424,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `process.guards.adopted`
   Guards are on for public/, scripts/, and worker/ with a shrink-only baseline; the retired files from the old rules document are forbidden as engineering defaults
+
+### `process.kit.starter`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `process.kit.starter-template`
+  Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit
 
 ### `process.project-state`
 

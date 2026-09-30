@@ -3,6 +3,13 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-30
+
+### Decided
+
+- Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); delete the old names and retire the design-tokens contract when done
+- Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit
+
 ## 2026-09-28
 
 ### Decided
