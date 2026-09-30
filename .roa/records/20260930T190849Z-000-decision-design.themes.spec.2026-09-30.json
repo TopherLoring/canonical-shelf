@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.themes.spec.2026-09-30",
+  "topic": "design.themes.spec",
+  "date": "2026-09-30",
+  "text": "The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used",
+  "by": "Chris"
+}

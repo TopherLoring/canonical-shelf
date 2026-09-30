@@ -11,6 +11,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit
 - Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only (agent default)
 - Paper is the default theme for new visitors (agent default)
+- Themes may use more than one accent color: action marks what is clickable; a second accent (with its own text color) marks non-clickable emphasis such as badges, highlights, and decorative rules
+- The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 
 ### Changed
 

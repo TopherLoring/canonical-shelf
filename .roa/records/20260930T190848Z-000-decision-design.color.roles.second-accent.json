@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.color.roles.second-accent",
+  "topic": "design.color.roles",
+  "date": "2026-09-30",
+  "text": "Themes may use more than one accent color: action marks what is clickable; a second accent (with its own text color) marks non-clickable emphasis such as badges, highlights, and decorative rules",
+  "by": "Chris"
+}

@@ -126,8 +126,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `design.color.roles`
 
-- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
-  One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.roles.second-accent`
+  Themes may use more than one accent color: action marks what is clickable; a second accent (with its own text color) marks non-clickable emphasis such as badges, highlights, and decorative rules
+- **Previous** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
+  ~~One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles~~
 
 ### `design.color.signal`
 
@@ -191,6 +193,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.set.eight`
   The site will offer 8 very different themes built on the theme contract: Library, Paper, Collegiate, Stained Glass, Fun, Pastel/Soft, Fun and Illustrated, plus one more; themes should dramatically change the visual design
+
+### `design.themes.spec`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.spec.2026-09-30`
+  The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 
 ### `doctrine.difficult-texts`
 
