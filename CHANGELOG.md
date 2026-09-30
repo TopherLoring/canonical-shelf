@@ -15,6 +15,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 - Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)
 - Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)
+- The service worker's cache version is a fingerprint of the files it serves, stamped at every build, and shell files load network-first (cache only when offline), so visitors never keep stale files after a deploy (agent default)
 
 ### Changed
 

@@ -75,7 +75,8 @@
       "public/topbar.js",
       "public/theme-list.js",
       "public/fonts/",
-      "scripts/fetch-fonts.mjs"
+      "scripts/fetch-fonts.mjs",
+      "scripts/stamp-sw.mjs"
     ],
     "exclude": [
       "public/data/",
