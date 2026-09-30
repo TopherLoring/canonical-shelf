@@ -11,10 +11,15 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit
 - Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only (agent default)
 - Paper is the default theme for new visitors (agent default)
+- Themes may use more than one accent color: action marks what is clickable; a second accent (with its own text color) marks non-clickable emphasis such as badges, highlights, and decorative rules
+- The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
+- Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)
+- Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)
 
 ### Changed
 
 - 8 themes (Library, Paper, Collegiate, Stained Glass, Fun, Watercolor, Illustrated, Midnight Study) in light and dark, built on the theme contract; all old appearance variables rewritten onto roles and the old design-tokens contract retired; fonts self-hosted
+- Themes rebuilt from Chris's theme specification (theme contract v7): translucent glass and watercolor surfaces, double borders, hand-drawn corners, filters, native dark modes; profile theme picker with contract-generated swatches; profile section links and light/dark toggle fixed
 
 ## 2026-09-28
 

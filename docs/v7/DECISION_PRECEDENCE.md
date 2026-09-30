@@ -126,13 +126,20 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `design.color.roles`
 
-- **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
-  One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.roles.second-accent`
+  Themes may use more than one accent color: action marks what is clickable; a second accent (with its own text color) marks non-clickable emphasis such as badges, highlights, and decorative rules
+- **Previous** · 2026-09-28 · Owner decision (Chris) · `design.color.roles.single-action`
+  ~~One interactive color: the action color marks what can be clicked, including the current step. The progress control shows 'you are here' through its own position and state, so no separate signal color exists; the color contract has 10 roles~~
 
 ### `design.color.signal`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.signal.gilt-not-chosen`
   The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
+
+### `design.color.text-tiers`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.text-tiers.three`
+  Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)
 
 ### `design.contract.scope`
 
@@ -182,6 +189,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Overridden default** · 2026-09-28 · Agent default (Claude) · `design.themes.pastel-name.watercolor`
   ~~The Pastel/Soft theme is named Watercolor~~
 
+### `design.themes.rules`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.rules.spec-wins`
+  Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)
+  *Why:* Chris: if the themes conflict with an existing rule, update the rule. Claude kept the WCAG AA minimum for text and controls as an accessibility floor and listed the 6 affected values
+
 ### `design.themes.scope`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.scope.look-not-layout`
@@ -191,6 +204,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.set.eight`
   The site will offer 8 very different themes built on the theme contract: Library, Paper, Collegiate, Stained Glass, Fun, Pastel/Soft, Fun and Illustrated, plus one more; themes should dramatically change the visual design
+
+### `design.themes.spec`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.spec.2026-09-30`
+  The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 
 ### `doctrine.difficult-texts`
 

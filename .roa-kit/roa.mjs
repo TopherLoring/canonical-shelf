@@ -590,7 +590,8 @@ for (const c of CASES) {
     for (const [id, t] of Object.entries(themeC.themes)) for (const mode of ['light', 'dark']) {
       const expected = {};
       for (const [k, v] of Object.entries(t.style || {})) if (k !== 'illustrations') expected[`--${kebab(k)}`] = String(v);
-      for (const [k, v] of Object.entries(t.modes[mode])) expected[`--color-${kebab(k)}`] = String(v);
+      // Same naming as the theme-vars view: palette roles are --color-*, per-mode shadows are --shadow-*.
+      for (const [k, v] of Object.entries(t.modes[mode])) expected[k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`] = String(v);
       cases.push({ theme: id, mode, expected });
     }
     files.push([`${dir}/theme.spec.mjs`, `${header}
@@ -910,10 +911,13 @@ function contractCmd(positional, flags) {
     const cur = JSON.parse(readFileSync(pinned, 'utf8'));
     if (def.version <= cur.version) fail(`${name} is already at version ${cur.version}`);
     const cl = loadProjectContracts(ROOT, KIT_DIR);
-    const ev = evaluate({ ...cl.contracts, [name]: { def, values: cl.contracts[name].values } });
+    // --values supplies replacement values for the new version (for upgrades that add required fields).
+    const newValues = typeof flags.values === 'string' ? JSON.parse(readFileSync(resolve(ROOT, flags.values), 'utf8')) : cl.contracts[name].values;
+    const ev = evaluate({ ...cl.contracts, [name]: { def, values: newValues } });
     if (ev.errors.length) fail(`Current values do not satisfy ${name}@${def.version}; nothing changed:\n  - ${ev.errors.join('\n  - ')}`);
     writeFileSync(pinned, readFileSync(src, 'utf8'));
-    console.log(`roa: upgraded ${name} ${cur.version} -> ${def.version}`);
+    if (typeof flags.values === 'string') writeFileSync(join(ROA, 'values', `${name}.json`), JSON.stringify(newValues, null, 2) + '\n');
+    console.log(`roa: upgraded ${name} ${cur.version} -> ${def.version}${typeof flags.values === 'string' ? ' with new values' : ''}`);
     sync({ stage: flags['no-stage'] !== true });
     return;
   }
@@ -1038,7 +1042,7 @@ Contracts and typed edits:
   remove <contract|manifest>.<path>
   impact <contract>.<path>                    what depends on a value and which outputs it reaches
   guard [--baseline]                          scan for workarounds; --baseline adopts existing violations once
-  contract upgrade <name>                     move a pinned contract to the kit's newer version
+  contract upgrade <name> [--values <f>]      move a pinned contract to the kit's newer version (optionally with new values)
   import design-tokens --from-css <f> --out <values.json>   extract tokens from an existing stylesheet
 
 Maintenance:

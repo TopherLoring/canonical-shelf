@@ -27,7 +27,7 @@ export function profileView({ data, state, esc, progressNode }) {
       <div class="mode-toggle-group" role="radiogroup" aria-label="Light or dark">
         ${[['light', 'Light'], ['dark', 'Dark'], ['system', 'Match my device']].map(([id, label]) => `<button class="mode-toggle-btn ${mode === id ? 'is-selected' : ''}" type="button" role="radio" data-mode-choice="${id}" aria-checked="${mode === id}">${label}</button>`).join('')}
       </div>
-      <div class="profile-theme-grid" role="list">${THEMES.map(t => `<button class="theme-card ${t.id === theme ? 'is-selected' : ''}" type="button" role="listitem" data-theme-option="${esc(t.id)}" aria-pressed="${t.id === theme}"><strong>${esc(t.name)}</strong><span>${esc(t.summary || '')}</span></button>`).join('')}</div>
+      <div class="profile-theme-grid" role="list">${THEMES.map(t => `<button class="theme-choice ${t.id === theme ? 'is-selected' : ''}" type="button" role="listitem" data-theme-option="${esc(t.id)}" aria-pressed="${t.id === theme}"><span class="theme-choice__swatch" data-theme-swatch="${esc(t.id)}" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="theme-choice__text"><strong>${esc(t.name)}</strong><span>${esc(t.summary || '')}</span>${t.nativeMode ? `<small>Opens in ${t.nativeMode} mode</small>` : ''}</span></button>`).join('')}</div>
     </section>
     <section id="reading" class="profile-section" aria-labelledby="reading-title">
       <h2 id="reading-title">Reading</h2>

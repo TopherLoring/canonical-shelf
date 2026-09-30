@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-09-30",
+  "text": "Themes rebuilt from Chris's theme specification (theme contract v7): translucent glass and watercolor surfaces, double borders, hand-drawn corners, filters, native dark modes; profile theme picker with contract-generated swatches; profile section links and light/dark toggle fixed"
+}

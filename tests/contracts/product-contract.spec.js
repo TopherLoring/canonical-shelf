@@ -196,6 +196,22 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await page.locator('#appearance [data-mode-choice="dark"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-mode','dark');
   await expect(page.locator('#appearance-panel')).toHaveCount(0);
+  // the selected mode button is readable (text on the action color)
+  const sel=page.locator('#appearance .mode-toggle-btn.is-selected');
+  const ratio=await sel.evaluate(el=>{const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);const L=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);const f=L(rgb(getComputedStyle(el).color)),b=L(rgb(getComputedStyle(el).backgroundColor));return (Math.max(f,b)+.05)/(Math.min(f,b)+.05)});
+  expect(ratio,'selected light/dark button text contrast').toBeGreaterThanOrEqual(4.5);
+  // arriving with a section in the address scrolls to it
+  await page.goto('/profile#appearance');
+  await expect(page.locator('#appearance')).toBeInViewport();
+  // section links scroll to the section instead of re-rendering the page
+  await page.locator('.profile-sections a[href="#privacy"]').click();
+  await expect(page).toHaveURL(/\/profile#privacy$/);
+  await expect(page.locator('#privacy')).toBeInViewport();
+  // theme cards: name and description do not overlap and stay readable in dark mode
+  const card=page.locator('#appearance .theme-choice').first();
+  const gap=await card.evaluate(el=>{const n=el.querySelector('strong').getBoundingClientRect(),d=el.querySelector('.theme-choice__text > span').getBoundingClientRect();return d.top-n.bottom});
+  expect(gap,'description starts below the theme name').toBeGreaterThanOrEqual(0);
+  await expect(card.locator('.theme-choice__swatch i')).toHaveCount(4);
 });
 
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{

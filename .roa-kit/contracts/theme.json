@@ -1,7 +1,7 @@
 {
   "contract": "theme",
-  "version": 5,
-  "description": "Every themeable value on the site. Shared values (type scale, line heights, spacing, motion, Bible category colors) are set once; each theme sets 10 color roles for light and dark plus its style (display, body, reading, and label fonts; corners, border weight, shadows, texture, illustration set). Hover, subtle, selection, disabled, and focus colors are derived, never authored. aliases maps older variable names onto roles during migration. fontSources lists where font files are fetched from at build time; fontImports lists the stylesheets the site loads (self-hosted paths keep visitor data private).",
+  "version": 7,
+  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, Bible category colors, layout measures) are set once. Each theme sets 14 color roles for light and dark (page; surface, raised and sunken surfaces; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; correct; incorrect), optional per-mode shadows, and its style (display, body, reading, and label fonts; small, medium, and large corners, which may be free-form; border weight and style; shadows; backdrop; surface and border filters; texture; illustration set). Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark.",
   "schema": {
     "type": "object",
     "props": {
@@ -146,10 +146,10 @@
                   "type": "font"
                 },
                 "radiusSmall": {
-                  "type": "length"
+                  "type": "css-value"
                 },
                 "radiusLarge": {
-                  "type": "length"
+                  "type": "css-value"
                 },
                 "borderWeight": {
                   "type": "length"
@@ -169,6 +169,29 @@
                 "fontReading": {
                   "type": "font",
                   "optional": true
+                },
+                "borderStyle": {
+                  "type": "enum",
+                  "options": [
+                    "solid",
+                    "double",
+                    "dashed"
+                  ]
+                },
+                "backdrop": {
+                  "type": "css-value",
+                  "optional": true
+                },
+                "radiusMedium": {
+                  "type": "css-value"
+                },
+                "surfaceFilter": {
+                  "type": "css-value",
+                  "optional": true
+                },
+                "borderFilter": {
+                  "type": "css-value",
+                  "optional": true
                 }
               }
             },
@@ -184,6 +207,9 @@
                     "surface": {
                       "type": "color"
                     },
+                    "surfaceRaised": {
+                      "type": "color"
+                    },
                     "surfaceSunken": {
                       "type": "color"
                     },
@@ -191,6 +217,9 @@
                       "type": "color"
                     },
                     "text": {
+                      "type": "color"
+                    },
+                    "textSecondary": {
                       "type": "color"
                     },
                     "textMuted": {
@@ -202,11 +231,25 @@
                     "onAction": {
                       "type": "color"
                     },
+                    "accent": {
+                      "type": "color"
+                    },
+                    "onAccent": {
+                      "type": "color"
+                    },
                     "correct": {
                       "type": "color"
                     },
                     "incorrect": {
                       "type": "color"
+                    },
+                    "shadowRaised": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowOverlay": {
+                      "type": "css-value",
+                      "optional": true
                     }
                   }
                 },
@@ -219,6 +262,9 @@
                     "surface": {
                       "type": "color"
                     },
+                    "surfaceRaised": {
+                      "type": "color"
+                    },
                     "surfaceSunken": {
                       "type": "color"
                     },
@@ -226,6 +272,9 @@
                       "type": "color"
                     },
                     "text": {
+                      "type": "color"
+                    },
+                    "textSecondary": {
                       "type": "color"
                     },
                     "textMuted": {
@@ -237,11 +286,25 @@
                     "onAction": {
                       "type": "color"
                     },
+                    "accent": {
+                      "type": "color"
+                    },
+                    "onAccent": {
+                      "type": "color"
+                    },
                     "correct": {
                       "type": "color"
                     },
                     "incorrect": {
                       "type": "color"
+                    },
+                    "shadowRaised": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowOverlay": {
+                      "type": "css-value",
+                      "optional": true
                     }
                   }
                 }
@@ -256,6 +319,14 @@
               "of": {
                 "type": "url"
               },
+              "optional": true
+            },
+            "nativeMode": {
+              "type": "enum",
+              "options": [
+                "light",
+                "dark"
+              ],
               "optional": true
             }
           }
@@ -309,13 +380,28 @@
         },
         {
           "fg": "text",
+          "bg": "surfaceRaised",
+          "min": 4.5
+        },
+        {
+          "fg": "text",
           "bg": "surfaceSunken",
+          "min": 4.5
+        },
+        {
+          "fg": "textSecondary",
+          "bg": "surface",
+          "min": 4.5
+        },
+        {
+          "fg": "textSecondary",
+          "bg": "page",
           "min": 4.5
         },
         {
           "fg": "textMuted",
           "bg": "surface",
-          "min": 4.5
+          "min": 3
         },
         {
           "fg": "onAction",
@@ -328,6 +414,11 @@
           "min": 3
         },
         {
+          "fg": "onAccent",
+          "bg": "accent",
+          "min": 4.5
+        },
+        {
           "fg": "correct",
           "bg": "surface",
           "min": 3
@@ -336,11 +427,6 @@
           "fg": "incorrect",
           "bg": "surface",
           "min": 3
-        },
-        {
-          "fg": "border",
-          "bg": "surface",
-          "min": 1.3
         }
       ],
       "maps": "themes.*.modes.*"

@@ -40896,108 +40896,172 @@ Source: [/theme.js](/theme.js)
       "defaultThemeId": "paper",
       "themes": [
         {
-          "id": "library",
-          "name": "Library",
-          "summary": "Wood, leather, and lamplit shelves.",
-          "themeColor": "#efe6d6",
-          "darkThemeColor": "#1b140f",
-          "swatch": [
-            "#efe6d6",
-            "#2b1d12",
-            "#6b2f1f"
-          ],
-          "illustrations": "none"
-        },
-        {
           "id": "paper",
           "name": "Paper",
-          "summary": "A warm cream page and ink, flat and quiet.",
-          "themeColor": "#f7f3ea",
-          "darkThemeColor": "#1a1815",
+          "summary": "Folded broadsheet and stationery on a drafting table: crisp, archival, analog.",
+          "themeColor": "#F4EFE6",
+          "darkThemeColor": "#161514",
           "swatch": [
-            "#f7f3ea",
-            "#1c1a17",
-            "#1d3b6e"
+            "#F4EFE6",
+            "#2B2927",
+            "#847365",
+            "#D8CBB5"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#161514",
+            "#ECE5DA",
+            "#D8CBB5",
+            "#8C7A6B"
+          ],
+          "illustrations": "none",
+          "nativeMode": null
+        },
+        {
+          "id": "library",
+          "name": "Library",
+          "summary": "An Oxford reading room after hours: timber, green baize, brass, and lamplight.",
+          "themeColor": "#F5EFEB",
+          "darkThemeColor": "#120C08",
+          "swatch": [
+            "#F5EFEB",
+            "#2B1D14",
+            "#825E2A",
+            "#2C4230"
+          ],
+          "darkSwatch": [
+            "#120C08",
+            "#E6D8BA",
+            "#C5A059",
+            "#2C4230"
+          ],
+          "illustrations": "none",
+          "nativeMode": "dark"
         },
         {
           "id": "collegiate",
           "name": "Collegiate",
-          "summary": "Navy and crimson, slab headings, crisp rules.",
-          "themeColor": "#f3f1ec",
-          "darkThemeColor": "#0f1726",
+          "summary": "An Ivy League prospectus: limestone, navy blazers, crimson ribbons, athletic gold.",
+          "themeColor": "#F4F5F8",
+          "darkThemeColor": "#070E1A",
           "swatch": [
-            "#f3f1ec",
-            "#14213d",
-            "#1d3264"
+            "#F4F5F8",
+            "#0A192F",
+            "#8B1E2D",
+            "#D4AF37"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#070E1A",
+            "#F0F4FC",
+            "#b73648",
+            "#E5BE42"
+          ],
+          "illustrations": "none",
+          "nativeMode": null
         },
         {
           "id": "stained-glass",
           "name": "Stained Glass",
-          "summary": "Jewel tones in dark leading, sharp and luminous.",
-          "themeColor": "#f4f1f7",
-          "darkThemeColor": "#0e0b14",
+          "summary": "A cathedral rose window: jewel panes held in dark lead.",
+          "themeColor": "#EBF1F5",
+          "darkThemeColor": "#050608",
           "swatch": [
-            "#f4f1f7",
-            "#1d1628",
-            "#6b21a8"
+            "#EBF1F5",
+            "#121A24",
+            "#0066CC",
+            "#C71F37"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#050608",
+            "#F0F4FC",
+            "#0051FF",
+            "#C41535"
+          ],
+          "illustrations": "none",
+          "nativeMode": "dark"
         },
         {
           "id": "fun",
           "name": "Fun",
-          "summary": "Whimsical and bright: rounded type, pill shapes, a little bounce.",
-          "themeColor": "#fff8ef",
-          "darkThemeColor": "#1d1326",
+          "summary": "A toy box and sticker sheet: bouncy pills, comic outlines, pop-art shadows.",
+          "themeColor": "#FFFEEA",
+          "darkThemeColor": "#1B1424",
           "swatch": [
-            "#fff8ef",
-            "#2d1b3d",
-            "#c2255c"
+            "#FFFEEA",
+            "#1E1B18",
+            "#cf4360",
+            "#36D1DC"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#1B1424",
+            "#FFF9F2",
+            "#FF5B89",
+            "#2BE4D2"
+          ],
+          "illustrations": "none",
+          "nativeMode": null
         },
         {
           "id": "watercolor",
           "name": "Watercolor",
-          "summary": "Soft pastel washes and gentle shapes.",
-          "themeColor": "#f6f4fb",
-          "darkThemeColor": "#1a1c24",
+          "summary": "A wet-media pad: soft washes, feathered edges, organic shapes.",
+          "themeColor": "#FCFAF6",
+          "darkThemeColor": "#121820",
           "swatch": [
-            "#f6f4fb",
-            "#2a2f3a",
-            "#4f6db8"
+            "#FCFAF6",
+            "#324147",
+            "#5b7b8a",
+            "#DE9395"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#121820",
+            "#E2ECF0",
+            "#8FB4C4",
+            "#E39EA0"
+          ],
+          "illustrations": "none",
+          "nativeMode": null
         },
         {
           "id": "illustrated",
           "name": "Illustrated",
-          "summary": "A sketchbook: pencil lines, hand-lettered headings, ink.",
-          "themeColor": "#fbfaf6",
-          "darkThemeColor": "#1c1c1a",
+          "summary": "A Moleskine sketchbook: pencil lines, hand lettering, taped-down cards.",
+          "themeColor": "#F6F3EC",
+          "darkThemeColor": "#1A1A1A",
           "swatch": [
-            "#fbfaf6",
-            "#22211e",
-            "#1f5f8b"
+            "#F6F3EC",
+            "#212121",
+            "#2B2B2B",
+            "#E07A5F"
           ],
-          "illustrations": "sketch"
+          "darkSwatch": [
+            "#1A1A1A",
+            "#EDEDED",
+            "#EDEDED",
+            "#E58C73"
+          ],
+          "illustrations": "sketch",
+          "nativeMode": null
         },
         {
           "id": "midnight-study",
           "name": "Midnight Study",
-          "summary": "A lamp-lit reading room after dark; a bright study by day.",
-          "themeColor": "#eceae4",
-          "darkThemeColor": "#0d1017",
+          "summary": "3 a.m. at the desk: deep navy, clean technical lines, one warm lamp.",
+          "themeColor": "#EAEEF5",
+          "darkThemeColor": "#0A0E17",
           "swatch": [
-            "#eceae4",
-            "#1b1d24",
-            "#7a4b12"
+            "#EAEEF5",
+            "#121A28",
+            "#2563EB",
+            "#D97706"
           ],
-          "illustrations": "none"
+          "darkSwatch": [
+            "#0A0E17",
+            "#DCE3F0",
+            "#4A90E2",
+            "#F5A623"
+          ],
+          "illustrations": "none",
+          "nativeMode": "dark"
         }
       ]
     }

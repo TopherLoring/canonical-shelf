@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.color.text-tiers.three",
+  "topic": "design.color.text-tiers",
+  "date": "2026-09-30",
+  "text": "Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)",
+  "by": "Chris"
+}

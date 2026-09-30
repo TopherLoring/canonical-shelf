@@ -74,18 +74,25 @@ export const VIEWS = {
     for (const [id, theme] of Object.entries(resolved.themes || {})) {
       const isDefault = resolved.default?.theme === id;
       const sel = mode => [`html[data-theme='${id}']${mode === 'dark' ? "[data-mode='dark']" : ''}`, ...(isDefault ? [`html:not([data-theme])${mode === 'dark' ? "[data-mode='dark']" : ''}`] : [])].join(',\n');
-      const style = Object.entries(theme.style || {}).filter(([k]) => k !== 'illustrations').map(([k, v]) => ({ name: `--${kebab(k)}`, value: String(v) }));
-      const colors = mode => Object.entries(theme.modes[mode]).map(([k, v]) => ({ name: `--color-${kebab(k)}`, value: String(v) }));
+      const style = Object.entries(theme.style || {}).filter(([k]) => !['illustrations'].includes(k)).map(([k, v]) => ({ name: `--${kebab(k)}`, value: String(v) }));
+      // Palette roles become --color-*; optional per-mode shadows override the style's shadows.
+      const colors = mode => Object.entries(theme.modes[mode]).map(([k, v]) => ({ name: k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`, value: String(v) }));
       // Aliases repeat in both blocks so they outrank older theme-specific definitions of the same names.
       blocks.push({ comment: `${theme.name} — style and light palette`, selectorText: sel('light'), vars: [...style, ...colors('light'), ...aliases] });
       blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: [...colors('dark'), ...aliases] });
+    }
+    // Swatch colors for every theme, so a picker can preview all themes at once (no inline styles needed).
+    for (const [id, t] of Object.entries(resolved.themes || {})) {
+      const sw = mode => ['page', 'surface', 'text', 'action', 'accent'].map(k => ({ name: `--swatch-${k}`, value: String(t.modes[mode][k] || t.modes[mode].action) }));
+      blocks.push({ comment: `${t.name} — swatch`, selectorText: `[data-theme-swatch='${id}']`, vars: sw('light') });
+      blocks.push({ comment: `${t.name} — swatch, dark`, selectorText: `html[data-mode='dark'] [data-theme-swatch='${id}']`, vars: sw('dark') });
     }
     return { imports, shared, derived, aliases: [], blocks };
   },
   // Theme list for the app's picker: id, name, summary, browser theme colors, and a 3-color swatch.
   'theme-list'({ resolved }) {
     const themes = Object.entries(resolved.themes || {}).filter(([, t]) => !t.hidden).map(([id, t]) => ({
-      json: JSON.stringify({ id, name: t.name, summary: t.description, themeColor: t.modes.light.page, darkThemeColor: t.modes.dark.page, swatch: [t.modes.light.page, t.modes.light.text, t.modes.light.action], illustrations: t.style?.illustrations || 'none' })
+      json: JSON.stringify({ id, name: t.name, summary: t.description, themeColor: t.modes.light.page, darkThemeColor: t.modes.dark.page, swatch: [t.modes.light.page, t.modes.light.text, t.modes.light.action, t.modes.light.accent || t.modes.light.action], darkSwatch: [t.modes.dark.page, t.modes.dark.text, t.modes.dark.action, t.modes.dark.accent || t.modes.dark.action], illustrations: t.style?.illustrations || 'none', nativeMode: t.nativeMode || null })
     }));
     return { themes, defaultTheme: JSON.stringify(resolved.default?.theme || ''), defaultMode: JSON.stringify(resolved.default?.mode || 'system') };
   },

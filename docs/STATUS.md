@@ -63,8 +63,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
-| `design.color.roles` | One interactive color: | Owner decision | undefined |
+| `design.color.roles` | Themes may use more than one accent color: | Owner decision | undefined |
 | `design.color.signal` | The gold/gilt color is agent filler, not an owner choice; | Owner decision | undefined |
+| `design.color.text-tiers` | Text has three tiers: | Owner decision | undefined |
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.fonts.hosting` | undefined | Agent default | undefined |
@@ -74,8 +75,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.themes.fun-illustrated` | Fun and Illustrated are separate themes: | Owner decision | undefined |
 | `design.themes.modes` | Every theme has both a light and a dark mode | Owner decision | undefined |
 | `design.themes.pastel-name` | The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes) | Owner decision | undefined |
+| `design.themes.rules` | Where the theme specification conflicts with an existing rule, the rule changes. | Owner decision | undefined |
 | `design.themes.scope` | Layout structure is the same in every theme; | Owner decision | undefined |
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
+| `design.themes.spec` | The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
 | `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |

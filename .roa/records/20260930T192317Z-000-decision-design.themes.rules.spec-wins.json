@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.themes.rules.spec-wins",
+  "topic": "design.themes.rules",
+  "date": "2026-09-30",
+  "text": "Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)",
+  "rationale": "Chris: if the themes conflict with an existing rule, update the rule. Claude kept the WCAG AA minimum for text and controls as an accessibility floor and listed the 6 affected values",
+  "by": "Chris"
+}
