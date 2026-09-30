@@ -216,8 +216,8 @@ if (typeof document !== 'undefined') {
           if (existing) existing.remove();
           const box = document.createElement('div');
           box.className = 'v5-course-inject';
-          box.style.cssText = 'margin:0.75rem 1rem;padding:0.85rem;background:var(--color-surface-subtle,#f2f3f5);border-left:3px solid var(--color-gilt,#c59b27);border-radius:4px;';
-          box.innerHTML = '<p style="font:750 0.72rem var(--font-meta);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent,#486272);margin:0 0 0.25rem;">Course Insights · Ch. ' + ch + '</p>' +
+          box.style.cssText = 'margin:0.75rem 1rem;padding:0.85rem;background:var(--color-surface-sunken,#f2f3f5);border-left:3px solid var(--color-action,#c59b27);border-radius:4px;';
+          box.innerHTML = '<p style="font:750 0.72rem var(--font-label);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent,#486272);margin:0 0 0.25rem;">Course Insights · Ch. ' + ch + '</p>' +
             matches.map(function(l) {
               return '<p style="margin:0 0 0.35rem;font-size:0.88rem;"><strong>' + l.title + ':</strong> ' + l.plainSummary + '</p>' +
                 '<a href="/course?unit=' + encodeURIComponent(l.unitId) + '&lesson=' + encodeURIComponent(l.id) + '" style="font-size:0.75rem;font-weight:700;color:var(--color-ink,#1c2024);">Open Lesson Deck →</a>';

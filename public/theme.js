@@ -1,51 +1,13 @@
 const STORAGE_THEME_KEY='canonical-shelf-theme-v2';
 const STORAGE_MODE_KEY='canonical-shelf-mode-v1';
 const LEGACY_KEY='canonical-shelf-theme-v1';
-export const DEFAULT_THEME_ID='scholarly-graphite';
+export {DEFAULT_THEME_ID} from './theme-list.js';
+import {DEFAULT_THEME_ID} from './theme-list.js';
 export const DEFAULT_MODE='light';
 
-export const THEMES=[
-  {
-    id:'canonical-paper',
-    name:'Canonical Paper',
-    summary:'Authentic warm archival parchment, carbon ink, and antique gold.',
-    themeColor:'#E6E7E2',
-    darkThemeColor:'#181B1E',
-    swatch:['#E6E7E2','#454A53','#C9A227']
-  },
-  {
-    id:'scholarly-graphite',
-    name:'Scholarly Graphite',
-    summary:'Cool alabaster paper, graphite chrome, and bright gilt signals.',
-    themeColor:'#F0F2F4',
-    darkThemeColor:'#15171A',
-    swatch:['#F0F2F4','#505862','#FFC800']
-  },
-  {
-    id:'oxford-scriptorium',
-    name:'Oxford Scriptorium',
-    summary:'Collegiate navy structure, warm linen surfaces, and heraldic bronze.',
-    themeColor:'#F4F2EB',
-    darkThemeColor:'#111822',
-    swatch:['#F4F2EB','#233B58','#D4A838']
-  },
-  {
-    id:'monastic-cedar',
-    name:'Monastic Cedar',
-    summary:'Rich aged cedar leather, warm sand surfaces, and luminous amber.',
-    themeColor:'#F4EFE6',
-    darkThemeColor:'#1A1513',
-    swatch:['#F4EFE6','#614B3F','#C88A24']
-  },
-  {
-    id:'cambridge-stone',
-    name:'Cambridge Stone',
-    summary:'Limestone archival paper, muted moss accents, and understated bronze.',
-    themeColor:'#ECEFEA',
-    darkThemeColor:'#141A17',
-    swatch:['#ECEFEA','#4B5E55','#B89738']
-  }
-];
+// Themes come from the theme contract (public/theme-list.js is generated; do not edit it by hand).
+export {THEMES} from './theme-list.js';
+import {THEMES} from './theme-list.js';
 
 export const MODES=[
   {id:'light',name:'Light',icon:'☀'},
@@ -56,17 +18,8 @@ export const MODES=[
 const themeIds=new Set(THEMES.map(theme=>theme.id));
 const byId=id=>THEMES.find(theme=>theme.id===id)||THEMES.find(theme=>theme.id===DEFAULT_THEME_ID);
 
-const LEGACY_MAP={
-  'canonical-original':'canonical-paper',
-  heritage:'canonical-paper',
-  oxblood:'monastic-cedar',
-  'illuminated-jewel':'monastic-cedar',
-  'slate-linen':'canonical-paper',
-  'bookshelf-spectrum':'oxford-scriptorium',
-  'cool-archive':'scholarly-graphite',
-  'blue-stone':'oxford-scriptorium',
-  'quiet-jewel':'monastic-cedar'
-};
+// Earlier theme IDs map to the closest current theme.
+const LEGACY_MAP={'canonical-paper':'paper','scholarly-graphite':'paper','oxford-scriptorium':'collegiate','monastic-cedar':'library','cambridge-stone':'paper','cool-archive':'paper','blue-stone':'collegiate','quiet-jewel':'stained-glass'};
 
 export function currentTheme(){
   const current=document.documentElement.dataset.theme;
@@ -173,7 +126,10 @@ export function initTheme(){
   try{
     const currentThemeVal=localStorage.getItem(STORAGE_THEME_KEY);
     const legacyThemeVal=localStorage.getItem(LEGACY_KEY);
-    savedTheme=currentThemeVal||LEGACY_MAP[legacyThemeVal]||savedTheme;
+    // A saved ID from an earlier theme set is moved to its closest current theme.
+    const mapped=currentThemeVal&&!themeIds.has(currentThemeVal)?LEGACY_MAP[currentThemeVal]:currentThemeVal;
+    if(mapped&&mapped!==currentThemeVal)localStorage.setItem(STORAGE_THEME_KEY,mapped);
+    savedTheme=mapped||LEGACY_MAP[legacyThemeVal]||savedTheme;
     if(!currentThemeVal&&legacyThemeVal)localStorage.setItem(STORAGE_THEME_KEY,LEGACY_MAP[legacyThemeVal]||DEFAULT_THEME_ID);
 
     const currentModeVal=localStorage.getItem(STORAGE_MODE_KEY);

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.theme.default.paper",
+  "topic": "ui.theme.default",
+  "date": "2026-09-30",
+  "text": "Paper is the default theme for new visitors",
+  "by": "Claude"
+}

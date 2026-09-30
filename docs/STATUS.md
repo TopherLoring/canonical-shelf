@@ -67,6 +67,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.color.signal` | The gold/gilt color is agent filler, not an owner choice; | Owner decision | undefined |
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
+| `design.fonts.hosting` | undefined | Agent default | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `design.migration.route` | Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); | Owner decision | undefined |
 | `design.themes.eighth` | The eighth theme is Midnight Study | Owner decision | undefined |

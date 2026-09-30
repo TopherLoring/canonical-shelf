@@ -65,4 +65,5 @@ None declared in an env example file.
 | `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
 | `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
 | `compile:pathway` | `bun scripts/compile-pathway.mjs` |
+| `fonts:fetch` | `bun scripts/fetch-fonts.mjs` |
 <!-- roa:end roa-contributing -->

@@ -72,7 +72,10 @@
       "scripts/lib/bible-books.mjs",
       "scripts/compile-pathway.mjs",
       "public/profile.js",
-      "public/topbar.js"
+      "public/topbar.js",
+      "public/theme-list.js",
+      "public/fonts/",
+      "scripts/fetch-fonts.mjs"
     ],
     "exclude": [
       "public/data/",

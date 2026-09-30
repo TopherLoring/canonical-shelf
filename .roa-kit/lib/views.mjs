@@ -54,12 +54,19 @@ export const VIEWS = {
     for (const [k, v] of Object.entries(sh.spacing || {})) shared.push({ name: `--space-${kebab(k).replace(/^s/, '')}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.motion || {})) shared.push({ name: `--motion-${kebab(k)}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.bibleCategories || {})) shared.push({ name: `--bible-${k}`, value: String(v) });
+    // Layout measurements shared by every theme (until the layout contract owns them).
+    for (const [k, v] of Object.entries(sh.measures || {})) shared.push({ name: `--${k}`, value: String(v) });
     const derived = [
       ['--color-action-hover', 'color-mix(in srgb, var(--color-action) 82%, var(--color-text))'],
       ['--color-action-subtle', 'color-mix(in srgb, var(--color-action) 12%, var(--color-surface))'],
       ['--color-selection', 'color-mix(in srgb, var(--color-action) 16%, var(--color-surface))'],
       ['--color-disabled', 'color-mix(in srgb, var(--color-text-muted) 55%, var(--color-surface))'],
-      ['--focus-ring', 'var(--color-action)']
+      ['--focus-ring', 'var(--color-action)'],
+      // Inverse surfaces (the Theologian panel and other high-contrast chrome) swap text and page roles.
+      ['--color-inverse', 'var(--color-text)'],
+      ['--color-inverse-2', 'color-mix(in srgb, var(--color-text) 88%, var(--color-page))'],
+      ['--color-on-inverse', 'var(--color-page)'],
+      ['--color-on-inverse-muted', 'color-mix(in srgb, var(--color-page) 74%, var(--color-text))']
     ].map(([name, value]) => ({ name, value }));
     const aliases = Object.entries(resolved.aliases || {}).map(([k, v]) => ({ name: `--${k}`, value: String(v) }));
     const imports = [...new Set(Object.values(resolved.themes || {}).flatMap(t => t.fontImports || []))].map(url => ({ url }));
@@ -74,6 +81,13 @@ export const VIEWS = {
       blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: [...colors('dark'), ...aliases] });
     }
     return { imports, shared, derived, aliases: [], blocks };
+  },
+  // Theme list for the app's picker: id, name, summary, browser theme colors, and a 3-color swatch.
+  'theme-list'({ resolved }) {
+    const themes = Object.entries(resolved.themes || {}).filter(([, t]) => !t.hidden).map(([id, t]) => ({
+      json: JSON.stringify({ id, name: t.name, summary: t.description, themeColor: t.modes.light.page, darkThemeColor: t.modes.dark.page, swatch: [t.modes.light.page, t.modes.light.text, t.modes.light.action], illustrations: t.style?.illustrations || 'none' })
+    }));
+    return { themes, defaultTheme: JSON.stringify(resolved.default?.theme || ''), defaultMode: JSON.stringify(resolved.default?.mode || 'system') };
   },
   // Layout: container and layer variables, then grid rules per screen and breakpoint.
   layout({ resolved }) {

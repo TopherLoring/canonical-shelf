@@ -216,6 +216,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data:fetch` | `bun scripts/fetch-bsb-sources.mjs` |
 | `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
 | `compile:pathway` | `bun scripts/compile-pathway.mjs` |
+| `fonts:fetch` | `bun scripts/fetch-fonts.mjs` |
 
 ## Repository map
 

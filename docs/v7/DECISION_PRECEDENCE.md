@@ -144,6 +144,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Agent default (Claude) · `design.contract.theme.installed`
   Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles
 
+### `design.fonts.hosting`
+
+- **Current** · 2026-09-30 · Agent default (Claude) · `design.fonts.hosting.self-hosted`
+  Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only
+  *Why:* Google Fonts was blocked by the site's CSP and would share visitor IPs with Google, against the privacy posture
+
 ### `design.layout-contract`
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
@@ -573,8 +579,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.theme.default`
 
-- **Current** · 2026-09-26 · Agent default (Claude) · `ui.theme.default.default-theme-scholarly-graphite`
-  Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts
+- **Current** · 2026-09-30 · Agent default (Claude) · `ui.theme.default.paper`
+  Paper is the default theme for new visitors
+- **Previous** · 2026-09-26 · Agent default (Claude) · `ui.theme.default.default-theme-scholarly-graphite`
+  ~~Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts~~
 
 ### `ui.theme.palettes`
 
