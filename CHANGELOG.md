@@ -3,6 +3,19 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-09-30
+
+### Decided
+
+- Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); delete the old names and retire the design-tokens contract when done
+- Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit
+- Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only (agent default)
+- Paper is the default theme for new visitors (agent default)
+
+### Changed
+
+- 8 themes (Library, Paper, Collegiate, Stained Glass, Fun, Watercolor, Illustrated, Midnight Study) in light and dark, built on the theme contract; all old appearance variables rewritten onto roles and the old design-tokens contract retired; fonts self-hosted
+
 ## 2026-09-28
 
 ### Decided

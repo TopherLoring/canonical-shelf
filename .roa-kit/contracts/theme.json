@@ -1,7 +1,7 @@
 {
   "contract": "theme",
-  "version": 1,
-  "description": "Every themeable value on the site. Shared values (type scale, line heights, spacing, motion, Bible category colors) are set once; each theme sets 10 color roles for light and dark plus its style (fonts, corners, border weight, shadows, texture, illustration set). Hover, subtle, selection, disabled, and focus colors are derived, never authored. aliases maps older variable names onto roles during migration.",
+  "version": 5,
+  "description": "Every themeable value on the site. Shared values (type scale, line heights, spacing, motion, Bible category colors) are set once; each theme sets 10 color roles for light and dark plus its style (display, body, reading, and label fonts; corners, border weight, shadows, texture, illustration set). Hover, subtle, selection, disabled, and focus colors are derived, never authored. aliases maps older variable names onto roles during migration. fontSources lists where font files are fetched from at build time; fontImports lists the stylesheets the site loads (self-hosted paths keep visitor data private).",
   "schema": {
     "type": "object",
     "props": {
@@ -101,6 +101,14 @@
             },
             "keyPattern": "^[a-z][a-z0-9-]*$",
             "minItems": 1
+          },
+          "measures": {
+            "type": "map",
+            "of": {
+              "type": "css-value"
+            },
+            "keyPattern": "^[a-z][a-z0-9-]*$",
+            "optional": true
           }
         }
       },
@@ -120,7 +128,8 @@
             "fontImports": {
               "type": "list",
               "of": {
-                "type": "url"
+                "type": "string",
+                "pattern": "^(/[^\\s\"]+|https://[^\\s\"]+)$"
               },
               "optional": true
             },
@@ -156,6 +165,10 @@
                 },
                 "illustrations": {
                   "type": "id"
+                },
+                "fontReading": {
+                  "type": "font",
+                  "optional": true
                 }
               }
             },
@@ -233,6 +246,17 @@
                   }
                 }
               }
+            },
+            "hidden": {
+              "type": "bool",
+              "optional": true
+            },
+            "fontSources": {
+              "type": "list",
+              "of": {
+                "type": "url"
+              },
+              "optional": true
             }
           }
         }
@@ -327,6 +351,11 @@
       "target": "css",
       "view": "theme-vars",
       "path": "public/theme.css"
+    },
+    "list": {
+      "target": "js",
+      "view": "theme-list",
+      "path": "public/theme-list.js"
     }
   }
 }

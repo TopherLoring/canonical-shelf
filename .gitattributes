@@ -7,9 +7,8 @@ public/data/corpus.txt text eol=lf
 .roa-kit/** text eol=lf
 CHANGELOG.md text eol=lf
 docs/STATUS.md text eol=lf
-docs/contracts/design-tokens.md text eol=lf
 docs/contracts/theme.md text eol=lf
 docs/v7/DECISION_PRECEDENCE.md text eol=lf
-public/design-tokens.css text eol=lf
+public/theme-list.js text eol=lf
 public/theme.css text eol=lf
 # roa:end eol

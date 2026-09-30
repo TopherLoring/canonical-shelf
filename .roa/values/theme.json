@@ -39,11 +39,16 @@
       "paul": "#a8476b",
       "general": "#455a75",
       "apocalypse": "#26292f"
+    },
+    "measures": {
+      "measure-reading": "72ch",
+      "home-shelf-height": "111px",
+      "home-shelf-depth": "10px"
     }
   },
   "themes": {
     "scholarly-graphite": {
-      "name": "Scholarly Graphite (current)",
+      "name": "Baseline (migration only)",
       "description": "The site's current look, mapped onto the 10 color roles as the baseline before new themes.",
       "style": {
         "fontDisplay": "Cambria,Charter,Georgia,'Times New Roman',serif",
@@ -53,9 +58,10 @@
         "radiusLarge": "15px",
         "borderWeight": "1px",
         "shadowRaised": "0 8px 24px #0000000d",
-        "shadowOverlay": "0 18px 48px #0000001a",
+        "shadowOverlay": "0 22px 58px #0005",
         "texture": "none",
-        "illustrations": "none"
+        "illustrations": "none",
+        "fontReading": "Cambria,Charter,Georgia,'Times New Roman',serif"
       },
       "modes": {
         "light": {
@@ -82,11 +88,404 @@
           "correct": "#7cc796",
           "incorrect": "#f08a8f"
         }
-      }
+      },
+      "hidden": true
+    },
+    "library": {
+      "name": "Library",
+      "description": "Wood, leather, and lamplit shelves.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "'Libre Baskerville',Georgia,serif",
+        "fontBody": "'IBM Plex Sans',system-ui,sans-serif",
+        "fontLabel": "'IBM Plex Sans',system-ui,sans-serif",
+        "radiusSmall": "4px",
+        "radiusLarge": "8px",
+        "borderWeight": "1px",
+        "shadowRaised": "0 2px 0 #2b1d1226, 0 6px 18px #2b1d121f",
+        "shadowOverlay": "0 18px 44px #2b1d1233",
+        "texture": "none",
+        "illustrations": "none",
+        "fontReading": "'Source Serif 4',Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#efe6d6",
+          "surface": "#fbf6ec",
+          "surfaceSunken": "#e6dac4",
+          "border": "#a8927a",
+          "text": "#2b1d12",
+          "textMuted": "#5d4a38",
+          "action": "#6b2f1f",
+          "onAction": "#fbf6ec",
+          "correct": "#2f6b3a",
+          "incorrect": "#9e2a2b"
+        },
+        "dark": {
+          "page": "#1b140f",
+          "surface": "#261c15",
+          "surfaceSunken": "#20180f",
+          "border": "#6a5440",
+          "text": "#f1e6d6",
+          "textMuted": "#c9b59c",
+          "action": "#e0a476",
+          "onAction": "#1b140f",
+          "correct": "#86c79a",
+          "incorrect": "#f08c7e"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      ]
+    },
+    "paper": {
+      "name": "Paper",
+      "description": "A warm cream page and ink, flat and quiet.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "Newsreader,Georgia,serif",
+        "fontBody": "Inter,system-ui,sans-serif",
+        "fontLabel": "Inter,system-ui,sans-serif",
+        "radiusSmall": "2px",
+        "radiusLarge": "6px",
+        "borderWeight": "1px",
+        "shadowRaised": "none",
+        "shadowOverlay": "0 14px 36px #1c1a1726",
+        "texture": "radial-gradient(#1c1a1709 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
+        "fontReading": "'Source Serif 4',Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#f7f3ea",
+          "surface": "#fffdf8",
+          "surfaceSunken": "#efe9dc",
+          "border": "#b9af9c",
+          "text": "#1c1a17",
+          "textMuted": "#5a554c",
+          "action": "#1d3b6e",
+          "onAction": "#fffdf8",
+          "correct": "#2a6b3d",
+          "incorrect": "#a02a2a"
+        },
+        "dark": {
+          "page": "#1a1815",
+          "surface": "#23201c",
+          "surfaceSunken": "#1e1b18",
+          "border": "#5c554a",
+          "text": "#efe8da",
+          "textMuted": "#bdb4a3",
+          "action": "#a9c1ea",
+          "onAction": "#14161b",
+          "correct": "#86c79a",
+          "incorrect": "#f0928a"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600&display=swap"
+      ]
+    },
+    "collegiate": {
+      "name": "Collegiate",
+      "description": "Navy and crimson, slab headings, crisp rules.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "'Roboto Slab',Georgia,serif",
+        "fontBody": "Barlow,system-ui,sans-serif",
+        "fontLabel": "Barlow,system-ui,sans-serif",
+        "radiusSmall": "3px",
+        "radiusLarge": "6px",
+        "borderWeight": "1.5px",
+        "shadowRaised": "0 1px 0 #14213d26",
+        "shadowOverlay": "0 16px 40px #14213d2e",
+        "texture": "linear-gradient(#8c1d2c, #8c1d2c) top / 100% 4px no-repeat",
+        "illustrations": "none",
+        "fontReading": "'Source Serif 4',Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#f3f1ec",
+          "surface": "#ffffff",
+          "surfaceSunken": "#e8e4db",
+          "border": "#9d978b",
+          "text": "#14213d",
+          "textMuted": "#4a5568",
+          "action": "#1d3264",
+          "onAction": "#ffffff",
+          "correct": "#1f6b3a",
+          "incorrect": "#a3262e"
+        },
+        "dark": {
+          "page": "#0f1726",
+          "surface": "#172238",
+          "surfaceSunken": "#131c2e",
+          "border": "#4a5a7a",
+          "text": "#eef1f7",
+          "textMuted": "#aab4c8",
+          "action": "#a9c3f5",
+          "onAction": "#0f1726",
+          "correct": "#86c79a",
+          "incorrect": "#f08a8f"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Barlow:wght@500;600&display=swap"
+      ]
+    },
+    "stained-glass": {
+      "name": "Stained Glass",
+      "description": "Jewel tones in dark leading, sharp and luminous.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "Cinzel,Georgia,serif",
+        "fontBody": "Inter,system-ui,sans-serif",
+        "fontLabel": "Inter,system-ui,sans-serif",
+        "radiusSmall": "0px",
+        "radiusLarge": "2px",
+        "borderWeight": "2px",
+        "shadowRaised": "0 0 0 1px #2a2238, 0 8px 24px #6b21a82e",
+        "shadowOverlay": "0 0 0 2px #2a2238, 0 20px 50px #6b21a840",
+        "texture": "linear-gradient(135deg, #6b21a80d 25%, transparent 25%) 0 0 / 28px 28px",
+        "illustrations": "none",
+        "fontReading": "'EB Garamond',Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#f4f1f7",
+          "surface": "#ffffff",
+          "surfaceSunken": "#ece6f2",
+          "border": "#2a2238",
+          "text": "#1d1628",
+          "textMuted": "#4f4560",
+          "action": "#6b21a8",
+          "onAction": "#ffffff",
+          "correct": "#0f7a4f",
+          "incorrect": "#b4232f"
+        },
+        "dark": {
+          "page": "#0e0b14",
+          "surface": "#17121f",
+          "surfaceSunken": "#120e19",
+          "border": "#8b78a8",
+          "text": "#f3eefa",
+          "textMuted": "#c3b8d6",
+          "action": "#cfa8ff",
+          "onAction": "#140f1d",
+          "correct": "#5fd6a0",
+          "incorrect": "#ff8f9a"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;600&family=Inter:wght@400;600&display=swap"
+      ]
+    },
+    "fun": {
+      "name": "Fun",
+      "description": "Whimsical and bright: rounded type, pill shapes, a little bounce.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "Fredoka,'Trebuchet MS',sans-serif",
+        "fontBody": "Nunito,system-ui,sans-serif",
+        "fontLabel": "Nunito,system-ui,sans-serif",
+        "radiusSmall": "12px",
+        "radiusLarge": "22px",
+        "borderWeight": "2px",
+        "shadowRaised": "0 4px 0 #d6336c40",
+        "shadowOverlay": "0 18px 40px #2d1b3d2e",
+        "texture": "radial-gradient(#d6336c14 1.5px, transparent 1.5px) 0 0 / 22px 22px",
+        "illustrations": "none",
+        "fontReading": "Nunito,system-ui,sans-serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#fff8ef",
+          "surface": "#ffffff",
+          "surfaceSunken": "#fff0dc",
+          "border": "#e0a878",
+          "text": "#2d1b3d",
+          "textMuted": "#5e4a70",
+          "action": "#c2255c",
+          "onAction": "#ffffff",
+          "correct": "#2b8a3e",
+          "incorrect": "#c92a2a"
+        },
+        "dark": {
+          "page": "#1d1326",
+          "surface": "#281a34",
+          "surfaceSunken": "#22162d",
+          "border": "#7a5a96",
+          "text": "#fff3e6",
+          "textMuted": "#d8c4e8",
+          "action": "#ff8fb8",
+          "onAction": "#1d1326",
+          "correct": "#69db7c",
+          "incorrect": "#ff8787"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap"
+      ]
+    },
+    "watercolor": {
+      "name": "Watercolor",
+      "description": "Soft pastel washes and gentle shapes.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "Lora,Georgia,serif",
+        "fontBody": "'Nunito Sans',system-ui,sans-serif",
+        "fontLabel": "'Nunito Sans',system-ui,sans-serif",
+        "radiusSmall": "10px",
+        "radiusLarge": "18px",
+        "borderWeight": "1px",
+        "shadowRaised": "0 6px 20px #4f6db81a",
+        "shadowOverlay": "0 20px 48px #2a2f3a26",
+        "texture": "radial-gradient(circle at 18% 8%, #aebff02e, transparent 42%), radial-gradient(circle at 86% 28%, #f0a3b024, transparent 46%)",
+        "illustrations": "none",
+        "fontReading": "Lora,Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#f6f4fb",
+          "surface": "#ffffff",
+          "surfaceSunken": "#eef3f7",
+          "border": "#aeb8cc",
+          "text": "#2a2f3a",
+          "textMuted": "#5c6475",
+          "action": "#4f6db8",
+          "onAction": "#ffffff",
+          "correct": "#2f7a55",
+          "incorrect": "#b04a5a"
+        },
+        "dark": {
+          "page": "#1a1c24",
+          "surface": "#22252f",
+          "surfaceSunken": "#1e2029",
+          "border": "#5a6075",
+          "text": "#eef0f7",
+          "textMuted": "#b9bfd0",
+          "action": "#aebff0",
+          "onAction": "#1a1c24",
+          "correct": "#8fd3ae",
+          "incorrect": "#f0a3b0"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Nunito+Sans:wght@400;600;700&display=swap"
+      ]
+    },
+    "illustrated": {
+      "name": "Illustrated",
+      "description": "A sketchbook: pencil lines, hand-lettered headings, ink.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "Caveat,'Comic Sans MS',cursive",
+        "fontBody": "'Atkinson Hyperlegible',system-ui,sans-serif",
+        "fontLabel": "'Patrick Hand','Comic Sans MS',cursive",
+        "radiusSmall": "3px",
+        "radiusLarge": "6px",
+        "borderWeight": "1.5px",
+        "shadowRaised": "2px 3px 0 #22211e2e",
+        "shadowOverlay": "4px 6px 0 #22211e33",
+        "texture": "repeating-linear-gradient(0deg, #3a38330a 0 1px, transparent 1px 28px)",
+        "illustrations": "sketch",
+        "fontReading": "'Atkinson Hyperlegible',system-ui,sans-serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#fbfaf6",
+          "surface": "#ffffff",
+          "surfaceSunken": "#f1efe8",
+          "border": "#3a3833",
+          "text": "#22211e",
+          "textMuted": "#55534c",
+          "action": "#1f5f8b",
+          "onAction": "#ffffff",
+          "correct": "#2f6b3a",
+          "incorrect": "#a3262e"
+        },
+        "dark": {
+          "page": "#1c1c1a",
+          "surface": "#262623",
+          "surfaceSunken": "#20201e",
+          "border": "#9a978c",
+          "text": "#f2f0ea",
+          "textMuted": "#c4c1b6",
+          "action": "#9cc7e8",
+          "onAction": "#16181a",
+          "correct": "#8fd3a3",
+          "incorrect": "#f29a93"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Patrick+Hand&display=swap"
+      ]
+    },
+    "midnight-study": {
+      "name": "Midnight Study",
+      "description": "A lamp-lit reading room after dark; a bright study by day.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": "'Cormorant Garamond',Georgia,serif",
+        "fontBody": "'IBM Plex Sans',system-ui,sans-serif",
+        "fontLabel": "'IBM Plex Sans',system-ui,sans-serif",
+        "radiusSmall": "6px",
+        "radiusLarge": "12px",
+        "borderWeight": "1px",
+        "shadowRaised": "0 10px 30px #0000004d",
+        "shadowOverlay": "0 24px 60px #00000073",
+        "texture": "radial-gradient(ellipse at 50% -10%, #e8b25c1a, transparent 55%)",
+        "illustrations": "none",
+        "fontReading": "'Source Serif 4',Georgia,serif"
+      },
+      "modes": {
+        "light": {
+          "page": "#eceae4",
+          "surface": "#f8f6f0",
+          "surfaceSunken": "#e2dfd6",
+          "border": "#a19b8e",
+          "text": "#1b1d24",
+          "textMuted": "#4d5160",
+          "action": "#7a4b12",
+          "onAction": "#ffffff",
+          "correct": "#2f6b3a",
+          "incorrect": "#a3262e"
+        },
+        "dark": {
+          "page": "#0d1017",
+          "surface": "#151a24",
+          "surfaceSunken": "#11151d",
+          "border": "#48526a",
+          "text": "#e9e4d8",
+          "textMuted": "#aeb4c2",
+          "action": "#e8b25c",
+          "onAction": "#0d1017",
+          "correct": "#86c79a",
+          "incorrect": "#f08a8f"
+        }
+      },
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      ]
     }
   },
   "default": {
-    "theme": "scholarly-graphite",
+    "theme": "paper",
     "mode": "light"
   }
 }

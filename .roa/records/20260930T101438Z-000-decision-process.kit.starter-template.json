@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "process.kit.starter-template",
+  "topic": "process.kit.starter",
+  "date": "2026-09-30",
+  "text": "Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards on from the first commit",
+  "by": "Chris"
+}

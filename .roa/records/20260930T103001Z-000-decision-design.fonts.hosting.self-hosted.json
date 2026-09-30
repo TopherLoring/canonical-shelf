@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "design.fonts.hosting.self-hosted",
+  "topic": "design.fonts.hosting",
+  "date": "2026-09-30",
+  "text": "Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only",
+  "rationale": "Google Fonts was blocked by the site's CSP and would share visitor IPs with Google, against the privacy posture",
+  "by": "Claude"
+}

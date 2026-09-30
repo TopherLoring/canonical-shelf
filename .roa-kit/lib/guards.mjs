@@ -1,6 +1,5 @@
 // Guards: static rules that stop workarounds from overriding contract-owned surfaces.
 // Violations present when guards were adopted live in .roa/guard-baseline.json and may only shrink.
-import { createHash } from 'node:crypto';
 
 // Replace comments (and optionally string/template contents) with spaces, keeping line structure.
 export function stripJs(src, { strings = false } = {}) {
@@ -79,12 +78,14 @@ export function scanFile(path, src, ctx) {
   return out;
 }
 
-export const fingerprint = v => createHash('sha256').update(`${v.rule}\0${v.file}\0${v.text}`).digest('hex').slice(0, 16);
+// Violations are counted per rule per file, so editing a line that already had a violation (or moving it)
+// is not a "new" violation; a file can only keep or lower its count for each rule.
+export const fingerprint = v => `${v.rule}|${v.file}`;
 
 // Count violations per fingerprint; compare against baseline counts.
 export function tally(violations) {
   const m = new Map();
-  for (const v of violations) { const k = fingerprint(v); const e = m.get(k) || { rule: v.rule, file: v.file, text: v.text, count: 0 }; e.count++; m.set(k, e); }
+  for (const v of violations) { const k = fingerprint(v); const e = m.get(k) || { rule: v.rule, file: v.file, text: v.text, count: 0 }; e.count++; e.text = v.text; m.set(k, e); }
   return m;
 }
 
