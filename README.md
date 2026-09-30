@@ -195,12 +195,12 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
 | `test:browser` | `playwright test` |
 | `test` | `bun run test:core && bun run test:browser` |
-| `build:client` | `mkdir -p public/generated && bun build public/account-client.ts --outfile=public/generated/account.js --target=browser --minify` |
+| `build:client` | `bun run sw:stamp && mkdir -p public/generated && bun build public/account-client.ts --outfile=public/generated/account.js --target=browser --minify` |
 | `build:worker` | `bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser` |
 | `build:runtime` | `bun run build:client && bun run generate:auth-migration && bun build public/bootstrap.js --outdir=.tmp/canonical-shelf-browser --target=browser && bun run build:worker` |
 | `build:app` | `bun run prepare:content && bun run build:runtime` |
 | `build` | `bun run build:app` |
-| `verify` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run test:core && bun run test:browser` |
+| `verify` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run verify:sw && bun run test:core && bun run test:browser` |
 | `serve` | `bun run prepare:content && bun run build:client && bun scripts/serve.mjs` |
 | `dev` | `bun run prepare:content && bun run build:client && bun run generate:wrangler && bun run db:migrate:local && wrangler dev` |
 | `deploy` | `bun run verify && bun run generate:wrangler && bun run validate:cloudflare && wrangler d1 migrations apply canonical-shelf --remote && wrangler deploy && bun run verify:deployment` |
@@ -217,6 +217,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data:build:bsb` | `bun scripts/build-bsb-json.mjs` |
 | `compile:pathway` | `bun scripts/compile-pathway.mjs` |
 | `fonts:fetch` | `bun scripts/fetch-fonts.mjs` |
+| `sw:stamp` | `bun scripts/stamp-sw.mjs` |
+| `verify:sw` | `bun scripts/stamp-sw.mjs --check` |
 
 ## Repository map
 

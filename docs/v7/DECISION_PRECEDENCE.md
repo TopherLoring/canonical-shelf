@@ -415,6 +415,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `platform.offline.offline-optional`
   Offline access is not a requirement
 
+### `platform.sw.caching`
+
+- **Current** · 2026-09-30 · Agent default (Claude) · `platform.sw.caching.fingerprint-network-first`
+  The service worker's cache version is a fingerprint of the files it serves, stamped at every build, and shell files load network-first (cache only when offline), so visitors never keep stale files after a deploy
+  *Why:* Visitors kept seeing old themes: the cache version had not changed since 2026-09-24 and shell files were served cache-first
+
 ### `privacy.posture`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `privacy.posture.from-precedence-doc`

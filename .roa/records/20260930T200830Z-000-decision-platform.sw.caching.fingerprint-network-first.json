@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "platform.sw.caching.fingerprint-network-first",
+  "topic": "platform.sw.caching",
+  "date": "2026-09-30",
+  "text": "The service worker's cache version is a fingerprint of the files it serves, stamped at every build, and shell files load network-first (cache only when offline), so visitors never keep stale files after a deploy",
+  "rationale": "Visitors kept seeing old themes: the cache version had not changed since 2026-09-24 and shell files were served cache-first",
+  "by": "Claude"
+}
