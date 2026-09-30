@@ -157,6 +157,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Fonts are self-hosted from the site (downloaded at build time from each theme's fontSources); visitors' browsers never contact a font provider, and the security policy stays self-only
   *Why:* Google Fonts was blocked by the site's CSP and would share visitor IPs with Google, against the privacy posture
 
+### `design.fonts.set`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.fonts.set.title-three`
+  The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable
+
 ### `design.layout-contract`
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `design.layout-contract.deferred`
@@ -166,6 +171,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.migration.route.rewrite`
   Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); delete the old names and retire the design-tokens contract when done
+
+### `design.themes.color-character`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.color-character.polychrome-vs-mono`
+  Stained Glass is polychrome: many very different jewel colors held together by dark lead lines. Paper and Library are cohesive and almost (not quite) monochromatic: one hue family with a slight variation
 
 ### `design.themes.eighth`
 
@@ -189,6 +199,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Overridden default** · 2026-09-28 · Agent default (Claude) · `design.themes.pastel-name.watercolor`
   ~~The Pastel/Soft theme is named Watercolor~~
 
+### `design.themes.redesign`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.redesign.intent-preserved`
+  Redesign all eight themes, preserving each theme's intent and how different the themes are from one another
+
 ### `design.themes.rules`
 
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.rules.spec-wins`
@@ -209,6 +224,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.spec.2026-09-30`
   The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
+
+### `design.typography.no-all-caps`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.typography.no-all-caps`
+  No all caps anywhere: no text styled or written in capitals (acronyms such as BSB stay as they are)
 
 ### `doctrine.difficult-texts`
 
@@ -563,6 +583,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.home.feedback-2026-09-25`
   Home: Prototype B ("Library First") was an aesthetic preference among three options for the Home screen only; very few layout choices should be hard-coded
 
+### `ui.home.kicker`
+
+- **Current** · 2026-09-30 · Agent default (Claude) · `ui.home.kicker.removed`
+  The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar
+  *Why:* Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered
+
 ### `ui.lesson.colors`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.lesson.colors.theme-surfaces`
@@ -603,9 +629,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.theme.default`
 
-- **Current** · 2026-09-30 · Agent default (Claude) · `ui.theme.default.paper`
-  Paper is the default theme for new visitors
-- **Previous** · 2026-09-26 · Agent default (Claude) · `ui.theme.default.default-theme-scholarly-graphite`
+- **Current** · 2026-09-30 · Owner decision (Chris) · `ui.theme.default.paper-chris`
+  Paper is the default theme
+- **Previous** · 2026-09-30 · Agent default (Claude) · `ui.theme.default.paper`
+  ~~Paper is the default theme for new visitors~~
+- **Prior** · 2026-09-26 · Agent default (Claude) · `ui.theme.default.default-theme-scholarly-graphite`
   ~~Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts~~
 
 ### `ui.theme.palettes`

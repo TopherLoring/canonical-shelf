@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.typography.no-all-caps",
+  "topic": "design.typography.no-all-caps",
+  "date": "2026-09-30",
+  "text": "No all caps anywhere: no text styled or written in capitals (acronyms such as BSB stay as they are)",
+  "by": "Chris"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.fonts.set.title-three",
+  "topic": "design.fonts.set",
+  "date": "2026-09-30",
+  "text": "The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable",
+  "by": "Chris"
+}

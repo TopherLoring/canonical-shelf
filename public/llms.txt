@@ -40899,19 +40899,19 @@ Source: [/theme.js](/theme.js)
           "id": "paper",
           "name": "Paper",
           "summary": "Folded broadsheet and stationery on a drafting table: crisp, archival, analog.",
-          "themeColor": "#F4EFE6",
-          "darkThemeColor": "#161514",
+          "themeColor": "#F6F2EA",
+          "darkThemeColor": "#171614",
           "swatch": [
-            "#F4EFE6",
-            "#2B2927",
-            "#847365",
-            "#D8CBB5"
+            "#F6F2EA",
+            "#1F1D1A",
+            "#5A4632",
+            "#B89A6A"
           ],
           "darkSwatch": [
-            "#161514",
-            "#ECE5DA",
-            "#D8CBB5",
-            "#8C7A6B"
+            "#171614",
+            "#ECE6DA",
+            "#D8C3A0",
+            "#B89A6A"
           ],
           "illustrations": "none",
           "nativeMode": null
@@ -40920,19 +40920,19 @@ Source: [/theme.js](/theme.js)
           "id": "library",
           "name": "Library",
           "summary": "An Oxford reading room after hours: timber, green baize, brass, and lamplight.",
-          "themeColor": "#F5EFEB",
-          "darkThemeColor": "#120C08",
+          "themeColor": "#F3ECE1",
+          "darkThemeColor": "#16100C",
           "swatch": [
-            "#F5EFEB",
-            "#2B1D14",
-            "#825E2A",
-            "#2C4230"
+            "#F3ECE1",
+            "#2A1D14",
+            "#7A5520",
+            "#5E6B4E"
           ],
           "darkSwatch": [
-            "#120C08",
-            "#E6D8BA",
-            "#C5A059",
-            "#2C4230"
+            "#16100C",
+            "#EADCC2",
+            "#C9A45C",
+            "#7D8A68"
           ],
           "illustrations": "none",
           "nativeMode": "dark"
@@ -40941,19 +40941,19 @@ Source: [/theme.js](/theme.js)
           "id": "collegiate",
           "name": "Collegiate",
           "summary": "An Ivy League prospectus: limestone, navy blazers, crimson ribbons, athletic gold.",
-          "themeColor": "#F4F5F8",
-          "darkThemeColor": "#070E1A",
+          "themeColor": "#F5F5F2",
+          "darkThemeColor": "#0A1322",
           "swatch": [
-            "#F4F5F8",
-            "#0A192F",
+            "#F5F5F2",
+            "#0C1B33",
             "#8B1E2D",
-            "#D4AF37"
+            "#C9A227"
           ],
           "darkSwatch": [
-            "#070E1A",
-            "#F0F4FC",
-            "#b73648",
-            "#E5BE42"
+            "#0A1322",
+            "#EEF2F8",
+            "#cc4758",
+            "#E2BF4F"
           ],
           "illustrations": "none",
           "nativeMode": null
@@ -40962,19 +40962,19 @@ Source: [/theme.js](/theme.js)
           "id": "stained-glass",
           "name": "Stained Glass",
           "summary": "A cathedral rose window: jewel panes held in dark lead.",
-          "themeColor": "#EBF1F5",
-          "darkThemeColor": "#050608",
+          "themeColor": "#EEF2F6",
+          "darkThemeColor": "#07080C",
           "swatch": [
-            "#EBF1F5",
-            "#121A24",
-            "#0066CC",
-            "#C71F37"
+            "#EEF2F6",
+            "#111A26",
+            "#0A5BC4",
+            "#B8263D"
           ],
           "darkSwatch": [
-            "#050608",
-            "#F0F4FC",
-            "#0051FF",
-            "#C41535"
+            "#07080C",
+            "#EEF2FB",
+            "#3970e8",
+            "#D23A52"
           ],
           "illustrations": "none",
           "nativeMode": "dark"
@@ -40983,19 +40983,19 @@ Source: [/theme.js](/theme.js)
           "id": "fun",
           "name": "Fun",
           "summary": "A toy box and sticker sheet: bouncy pills, comic outlines, pop-art shadows.",
-          "themeColor": "#FFFEEA",
-          "darkThemeColor": "#1B1424",
+          "themeColor": "#FFFBEA",
+          "darkThemeColor": "#1A1322",
           "swatch": [
-            "#FFFEEA",
-            "#1E1B18",
-            "#cf4360",
-            "#36D1DC"
+            "#FFFBEA",
+            "#1C1A17",
+            "#d63a65",
+            "#1FBFB8"
           ],
           "darkSwatch": [
-            "#1B1424",
-            "#FFF9F2",
-            "#FF5B89",
-            "#2BE4D2"
+            "#1A1322",
+            "#FFF7EE",
+            "#FF6D95",
+            "#3DE0D2"
           ],
           "illustrations": "none",
           "nativeMode": null
@@ -41004,19 +41004,19 @@ Source: [/theme.js](/theme.js)
           "id": "watercolor",
           "name": "Watercolor",
           "summary": "A wet-media pad: soft washes, feathered edges, organic shapes.",
-          "themeColor": "#FCFAF6",
-          "darkThemeColor": "#121820",
+          "themeColor": "#FBF9F5",
+          "darkThemeColor": "#111820",
           "swatch": [
-            "#FCFAF6",
-            "#324147",
-            "#5b7b8a",
-            "#DE9395"
+            "#FBF9F5",
+            "#2F3D43",
+            "#4F7486",
+            "#d99193"
           ],
           "darkSwatch": [
-            "#121820",
-            "#E2ECF0",
-            "#8FB4C4",
-            "#E39EA0"
+            "#111820",
+            "#E3ECF0",
+            "#93B8C8",
+            "#E6A3A5"
           ],
           "illustrations": "none",
           "nativeMode": null
@@ -41025,19 +41025,19 @@ Source: [/theme.js](/theme.js)
           "id": "illustrated",
           "name": "Illustrated",
           "summary": "A Moleskine sketchbook: pencil lines, hand lettering, taped-down cards.",
-          "themeColor": "#F6F3EC",
-          "darkThemeColor": "#1A1A1A",
+          "themeColor": "#F7F4EC",
+          "darkThemeColor": "#1B1B1A",
           "swatch": [
-            "#F6F3EC",
-            "#212121",
-            "#2B2B2B",
-            "#E07A5F"
+            "#F7F4EC",
+            "#232220",
+            "#2F5D85",
+            "#E3826A"
           ],
           "darkSwatch": [
-            "#1A1A1A",
-            "#EDEDED",
-            "#EDEDED",
-            "#E58C73"
+            "#1B1B1A",
+            "#EFECE5",
+            "#A9C9E6",
+            "#EB967F"
           ],
           "illustrations": "sketch",
           "nativeMode": null
@@ -41046,19 +41046,19 @@ Source: [/theme.js](/theme.js)
           "id": "midnight-study",
           "name": "Midnight Study",
           "summary": "3 a.m. at the desk: deep navy, clean technical lines, one warm lamp.",
-          "themeColor": "#EAEEF5",
-          "darkThemeColor": "#0A0E17",
+          "themeColor": "#ECEFF5",
+          "darkThemeColor": "#0A0E16",
           "swatch": [
-            "#EAEEF5",
-            "#121A28",
-            "#2563EB",
-            "#D97706"
+            "#ECEFF5",
+            "#131A27",
+            "#2A5FD6",
+            "#a5690f"
           ],
           "darkSwatch": [
-            "#0A0E17",
-            "#DCE3F0",
-            "#4A90E2",
-            "#F5A623"
+            "#0A0E16",
+            "#DDE4F0",
+            "#5A9CF0",
+            "#F2A93B"
           ],
           "illustrations": "none",
           "nativeMode": "dark"

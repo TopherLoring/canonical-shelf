@@ -69,16 +69,20 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.fonts.hosting` | undefined | Agent default | undefined |
+| `design.fonts.set` | The site uses only the three fonts of the original Home title area (serif: | Owner decision | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `design.migration.route` | Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); | Owner decision | undefined |
+| `design.themes.color-character` | Stained Glass is polychrome: | Owner decision | undefined |
 | `design.themes.eighth` | The eighth theme is Midnight Study | Owner decision | undefined |
 | `design.themes.fun-illustrated` | Fun and Illustrated are separate themes: | Owner decision | undefined |
 | `design.themes.modes` | Every theme has both a light and a dark mode | Owner decision | undefined |
 | `design.themes.pastel-name` | The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes) | Owner decision | undefined |
+| `design.themes.redesign` | Redesign all eight themes, preserving each theme's intent and how different the themes are from one another | Owner decision | undefined |
 | `design.themes.rules` | Where the theme specification conflicts with an existing rule, the rule changes. | Owner decision | undefined |
 | `design.themes.scope` | Layout structure is the same in every theme; | Owner decision | undefined |
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
 | `design.themes.spec` | The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; | Owner decision | undefined |
+| `design.typography.no-all-caps` | No all caps anywhere: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
 | `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |
@@ -116,13 +120,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
-| `ui.theme.default` | undefined | Agent default | undefined |
+| `ui.theme.default` | Paper is the default theme | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |

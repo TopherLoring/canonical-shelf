@@ -591,13 +591,16 @@ for (const c of CASES) {
       const expected = {};
       for (const [k, v] of Object.entries(t.style || {})) if (k !== 'illustrations') expected[`--${kebab(k)}`] = String(v);
       // Same naming as the theme-vars view: palette roles are --color-*, per-mode shadows are --shadow-*.
-      for (const [k, v] of Object.entries(t.modes[mode])) expected[k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`] = String(v);
+      for (const [k, v] of Object.entries(t.modes[mode])) if (k !== 'ornaments') expected[k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`] = String(v);
+      (t.modes[mode].ornaments || []).forEach((c, i) => { expected[`--ornament-${i + 1}`] = String(c); });
       cases.push({ theme: id, mode, expected });
     }
     files.push([`${dir}/theme.spec.mjs`, `${header}
 const PAGE = ${JSON.stringify(bt.pages[0])};
 const CASES = ${JSON.stringify(cases)};
 const norm = v => v.trim().replace(/\\s+/g, ' ');
+// Values that reference other variables compute to the substituted text, so resolve var() the same way.
+const resolveVars = (v, map, depth = 0) => depth > 20 ? v : v.replace(/var\\(\\s*(--[a-zA-Z0-9-]+)\\s*(?:,\\s*([^()]*))?\\)/g, (_, n, fb) => resolveVars(map[n] !== undefined ? map[n] : (fb ?? ''), map, depth + 1));
 for (const c of CASES) {
   test(\`theme: \${c.theme} / \${c.mode}\`, async ({ page }) => {
     await page.goto(PAGE);
@@ -608,7 +611,7 @@ for (const c of CASES) {
       const cs = getComputedStyle(html);
       return Object.fromEntries(names.map(n => [n, cs.getPropertyValue(n)]));
     }, { theme: c.theme, mode: c.mode, names: Object.keys(c.expected) });
-    const mismatches = Object.entries(c.expected).filter(([n, v]) => norm(actual[n]) !== norm(v)).map(([n, v]) => \`\${n}: expected \${v}, rendered \${actual[n] || '(unset)'}\`);
+    const mismatches = Object.entries(c.expected).filter(([n, v]) => norm(actual[n]) !== norm(resolveVars(v, c.expected))).map(([n, v]) => \`\${n}: expected \${v}, rendered \${actual[n] || '(unset)'}\`);
     expect(mismatches, 'computed values must match the theme contract').toEqual([]);
   });
 }
