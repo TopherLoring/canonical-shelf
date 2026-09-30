@@ -146,6 +146,40 @@ if (typeof document !== 'undefined') {
     return null;
   }
 
+  // One click handler for the whole page, attached once. Cross-references always reflect the selected
+  // verse, whichever finishes first: the click, the chapter's data download, or a repeated setup run.
+  let _v5State = null;
+  function _v5VerseNumber(p) {
+    const list = Array.from(document.querySelectorAll('.reader.scripture .verses p'));
+    return Number(p.id ? p.id.replace(/^v/, '') : (list.indexOf(p) + 1));
+  }
+  function _v5SelectedVerse() {
+    return document.querySelector('.reader.scripture .verses p.v5-active');
+  }
+  function _v5ShowVerse(p) {
+    const params = new URLSearchParams(location.search);
+    const bn = Number(params.get('book')), ch = Number(params.get('chapter'));
+    if (!_v5State || _v5State.bn !== bn || _v5State.ch !== ch) return; // data for this chapter not loaded yet; shown when it arrives
+    const vNum = _v5VerseNumber(p);
+    const verseRefs = _v5State.data && _v5State.data.verses ? _v5State.data.verses[String(vNum)] : null;
+    const sidebarTarget = document.querySelector('#v5-crossref-list');
+    if (!sidebarTarget) return;
+    const bookObj = typeof bookByNumber === 'function' ? bookByNumber(bn) : null;
+    const where = (bookObj ? bookObj.name : 'Verse') + ' ' + ch + ':' + vNum;
+    const noteHead = document.querySelector('#v5-crossref-panel .session-context-note');
+    if (noteHead) noteHead.textContent = 'Connected to ' + where + ':';
+    const summary = document.querySelector('[data-xref-summary]');
+    if (summary) summary.textContent = 'Cross-references · ' + where + ' (' + (verseRefs ? verseRefs.length : 0) + ')';
+    _v5RenderPills(verseRefs, sidebarTarget);
+  }
+  document.addEventListener('click', function(event) {
+    const p = event.target.closest && event.target.closest('.reader.scripture .verses p');
+    if (!p) return;
+    document.querySelectorAll('.reader.scripture .verses p.v5-active').forEach(function(el) { el.classList.remove('v5-active'); });
+    p.classList.add('v5-active');
+    _v5ShowVerse(p);
+  });
+
   function _v5RenderPills(refs, targetEl) {
     if (!targetEl) return;
     if (!refs || !refs.length) {
@@ -194,39 +228,18 @@ if (typeof document !== 'undefined') {
 
       const crossRefData = await _v5LoadCrossrefs(bn, ch);
 
+      _v5State = { bn: bn, ch: ch, data: crossRefData };
       const crossrefListEl = document.querySelector('#v5-crossref-list');
-      if (crossrefListEl && crossRefData && crossRefData.verses) {
+      if (crossrefListEl && crossRefData && crossRefData.verses && !_v5SelectedVerse()) {
         const count = Object.keys(crossRefData.verses).length;
         if (count > 0) {
           crossrefListEl.innerHTML = '<p style="font-size:0.82rem;color:var(--color-ink,#1c2024);margin:0;"><strong>' + count + '</strong> verses in this chapter have parallel cross-references. Click any verse to view citations.</p>';
         }
       }
 
-      const verses = document.querySelectorAll('.reader.scripture .verses p');
-      verses.forEach(function(p, idx) {
-        const vNum = Number(p.id ? p.id.replace(/^v/, '') : (idx + 1));
-        p.style.cursor = 'pointer';
-        p.addEventListener('click', function() {
-          document.querySelectorAll('.reader.scripture .verses p.v5-active').forEach(function(el) {
-            el.classList.remove('v5-active');
-          });
-          p.classList.add('v5-active');
-
-          // Cross-references live only in the Reading Desk's last detail level; it stays collapsed
-          // until the learner opens it, and its summary names the selected verse and the count.
-          const verseRefs = crossRefData && crossRefData.verses ? crossRefData.verses[String(vNum)] : null;
-          const sidebarTarget = document.querySelector('#v5-crossref-list');
-          if (sidebarTarget) {
-            const bookObj = typeof bookByNumber === 'function' ? bookByNumber(bn) : null;
-            const where = (bookObj ? bookObj.name : 'Verse') + ' ' + ch + ':' + vNum;
-            const noteHead = document.querySelector('#v5-crossref-panel .session-context-note');
-            if (noteHead) noteHead.textContent = 'Connected to ' + where + ':';
-            const summary = document.querySelector('[data-xref-summary]');
-            if (summary) summary.textContent = 'Cross-references · ' + where + ' (' + (verseRefs ? verseRefs.length : 0) + ')';
-            _v5RenderPills(verseRefs, sidebarTarget);
-          }
-        });
-      });
+      document.querySelectorAll('.reader.scripture .verses p').forEach(function(p) { p.style.cursor = 'pointer'; });
+      const selected = _v5SelectedVerse();
+      if (selected) _v5ShowVerse(selected);
     }, 100);
   }
   document.addEventListener('catalog:loaded', _v5AttachReaderAugmentations);
