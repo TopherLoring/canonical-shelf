@@ -119,6 +119,5 @@ html[data-mode="dark"] .theme-card__swatch[data-swatch="midnight-study"] i:nth-c
 
 // 4. Re-sync ROA and verify
 console.log('[4/4] Synchronizing ROA tokens and running verification...');
-execSync('bun .roa-kit/roa.mjs sync', { stdio: 'inherit' });
 execSync('bun run verify', { stdio: 'inherit' });
 console.log('\n[SUCCESS] Verification passed.');
