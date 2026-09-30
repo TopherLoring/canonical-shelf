@@ -21,6 +21,22 @@ export function luminance([r, g, b]) {
   return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 }
 
+// Alpha channel (0..1) of a color, 1 when opaque or unknown.
+export function alphaOf(c) {
+  const s = String(c).trim();
+  let m = s.match(/^#([0-9a-f]{4}|[0-9a-f]{8})$/i);
+  if (m) { const h = m[1].length === 4 ? m[1][3].repeat(2) : m[1].slice(6, 8); return parseInt(h, 16) / 255; }
+  m = s.match(/^rgba\(\s*\d+[\s,]+\d+[\s,]+\d+[\s,/]+([\d.]+)(%?)\s*\)/i);
+  return m ? (m[2] ? Number(m[1]) / 100 : Number(m[1])) : 1;
+}
+// A translucent color as actually seen over an opaque background.
+export function composite(top, under) {
+  const a = alphaOf(top), t = parseColor(top), u = parseColor(under);
+  if (!t || !u) return null;
+  const rgb = t.map((v, i) => Math.round(v * a + u[i] * (1 - a)));
+  return '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
 export function contrastRatio(a, b) {
   const ca = parseColor(a), cb = parseColor(b);
   if (!ca || !cb) return null;
@@ -83,7 +99,17 @@ export const CHECKS = {
     // Pairs come from the values (c.pairs) or are fixed by the contract itself (c.fixedPairs).
     const pairs = c.fixedPairs || get(values, c.pairs) || [];
     const errs = [];
-    for (const { path } of expand(values, c.maps)) for (const p of pairs) errs.push(...CHECKS.contrast(values, { fg: `${path}.${p.fg}`, bg: `${path}.${p.bg}`, min: p.min }));
+    // Translucent colors are measured as seen: the background over the page, the foreground over that.
+    for (const { path } of expand(values, c.maps)) for (const p of pairs) {
+      const page = get(values, `${path}.page`);
+      let bg = get(values, `${path}.${p.bg}`), fg = get(values, `${path}.${p.fg}`);
+      if (bg === undefined || fg === undefined) continue;
+      if (alphaOf(bg) < 1 && page) bg = composite(bg, page);
+      if (alphaOf(fg) < 1) fg = composite(fg, bg);
+      const ratio = contrastRatio(fg, bg);
+      if (ratio === null) errs.push(`contrast ${path}.${p.fg} on ${path}.${p.bg}: cannot compute`);
+      else if (ratio + 1e-9 < p.min) errs.push(`contrast ${path}.${p.fg} (${get(values, `${path}.${p.fg}`)}) on ${path}.${p.bg} (${get(values, `${path}.${p.bg}`)}) is ${Math.round(ratio * 100) / 100}:1, needs ${p.min}:1`);
+    }
     return errs;
   },
   ascending(values, c) {

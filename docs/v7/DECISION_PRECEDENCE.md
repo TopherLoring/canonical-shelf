@@ -136,6 +136,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.color.signal.gilt-not-chosen`
   The gold/gilt color is agent filler, not an owner choice; the value for the signal role is open and will be chosen with Chris
 
+### `design.color.text-tiers`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.text-tiers.three`
+  Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)
+
 ### `design.contract.scope`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.contract.scope.all-variables`
@@ -183,6 +188,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The Pastel/Soft theme keeps its concept but needs a better name (Claude proposes)
 - **Overridden default** · 2026-09-28 · Agent default (Claude) · `design.themes.pastel-name.watercolor`
   ~~The Pastel/Soft theme is named Watercolor~~
+
+### `design.themes.rules`
+
+- **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.rules.spec-wins`
+  Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)
+  *Why:* Chris: if the themes conflict with an existing rule, update the rule. Claude kept the WCAG AA minimum for text and controls as an accessibility floor and listed the 6 affected values
 
 ### `design.themes.scope`
 

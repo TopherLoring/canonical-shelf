@@ -123,6 +123,8 @@ async function render(){
   // Move focus to the new content, unless the learner is already using the top bar or an open panel.
   else if(!document.activeElement?.closest?.('.masthead,#guide,#feedback-panel'))main.focus({preventScroll:true});
   refreshProgressPanel();activatePracticeRun(main);document.dispatchEvent(new CustomEvent('canonical-route-rendered',{detail:{route:r}}));
+  // Arriving at a page with a section in the address (e.g. /profile#notes) scrolls to that section.
+  if(location.hash.length>1){const section=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(section)requestAnimationFrame(()=>section.scrollIntoView({block:'start'}))}
 }
 function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}}
 function exitStudy(button){
@@ -186,6 +188,11 @@ document.addEventListener('click',async e=>{
   if(e.target.closest('[data-toggle-apparatus]')){e.preventDefault();toggleApparatus();return}
   if(e.target.closest('[data-close-apparatus]')){e.preventDefault();toggleApparatus(false);return}
   const link=e.target.closest('a[href]');
+  // Section links on the same page (e.g. #notes on the profile) scroll there instead of re-rendering.
+  if(link&&link.getAttribute('href')?.startsWith('#')&&link.getAttribute('href').length>1){
+    const target=document.getElementById(decodeURIComponent(link.getAttribute('href').slice(1)));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});history.replaceState(history.state,'',link.getAttribute('href'));target.setAttribute('tabindex','-1');target.focus({preventScroll:true});return}
+  }
   if(link&&!e.defaultPrevented&&e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'&&!link.hasAttribute('download')){
     const u=new URL(link.href,location.href),targetRoute=u.origin===location.origin?appRouteFromPath(u.pathname):null;
     if(targetRoute){

@@ -64,6 +64,9 @@ export function applyMode(pref,{persist=true}={}){
 export function applyTheme(id,{persist=true}={}){
   const theme=byId(id);
   document.documentElement.dataset.theme=theme.id;
+  // A theme's native mode applies until the learner has chosen light, dark, or device themselves.
+  let chosenMode=null;try{chosenMode=localStorage.getItem(STORAGE_MODE_KEY)}catch{}
+  if(!chosenMode&&theme.nativeMode)applyMode(theme.nativeMode,{persist:false});
   if(persist){
     try{localStorage.setItem(STORAGE_THEME_KEY,theme.id)}catch{}
   }
@@ -134,6 +137,7 @@ export function initTheme(){
 
     const currentModeVal=localStorage.getItem(STORAGE_MODE_KEY);
     if(currentModeVal)savedMode=currentModeVal;
+    else if(byId(savedTheme)?.nativeMode)savedMode=byId(savedTheme).nativeMode;
   }catch{}
 
   applyTheme(themeIds.has(savedTheme)?savedTheme:DEFAULT_THEME_ID,{persist:false});
