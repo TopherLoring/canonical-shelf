@@ -13,6 +13,7 @@ const ROUTE_DESCRIPTIONS={
 const ABOUT_SECTION_LABELS={
   faith:'Statement of Faith disclosure',
   about:'About Canonical Shelf',
+  name:'Why the name Canonical Shelf',
   approach:'How Canonical Shelf approaches Scripture',
   sources:'Sources & methodology',
   translations:'Translation information',

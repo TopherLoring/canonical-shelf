@@ -11,6 +11,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
 - Resolved "Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?": Approved by Chris 2026-10-01
 - Resolved "Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)": Approved by Chris 2026-10-01
+- Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; background on the project (what it is for, why it is called Canonical Shelf) lives on the About page
 
 ### Changed
 
@@ -18,6 +19,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist
 - The Theologian's crisis policy is now internal: the raw policy file, the Theologian Safety page, and their footer, llms.txt, and offline-cache entries are gone; the crisis response itself is unchanged, and About keeps a short 988/911 crisis-help line
 - The Pathway now has four modules instead of six courses: Hermeneutics & Canon, Hebrew Scriptures, Second Temple & Christ Event, and Synthesis & Practice. Every unit, lesson, and activity keeps its ID, so saved progress carries over and old course links open the module that now holds the material; Wisdom and Worship and Reading Somebody Else's Mail are former units in their new places
+- Orientation is now 'How Canonical Shelf works': seven screens on using the site, the kinds of material it holds, and why the Pathway goes in its order, linked from the Pathway page and About. The project's purpose and the meaning of the name moved to About; the screens that repeated Module 1 lessons, and the old ten-group list, are gone
 
 ### Fixed
 

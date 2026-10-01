@@ -47,9 +47,19 @@ You are not asked to agree with this statement to use Canonical Shelf. It publis
 
 **A Bible-learning environment, reference library, and study tool.**
 
-Canonical Shelf combines a guided Pathway, the biblical text, a visual canonical shelf, book profiles, curated Topics, active Practice, and deeper study tools. The product is built for an adult learner who may begin with little biblical background but should not be limited to shallow explanations.
+Canonical Shelf combines a guided Pathway, the biblical text, a visual canonical shelf, book profiles, a reference Catalog, active Practice, and deeper study tools. It is built for an adult who may begin with little biblical background but should not be limited to shallow explanations.
 
-The five primary destinations are Shelf, Pathway, Bible, Catalog, and Practice. Institutional disclosures live here rather than competing with those learning and study modes.
+The goal is not permanent dependence on lessons. At the start, the question is often “What should I learn next?” Over time it becomes “I know how to look into this responsibly”: finding the relevant texts, telling evidence from interpretation, comparing credible readings, and seeing what remains uncertain. The Pathway shows you what to notice first, then hands more of that work to you.
+
+How Canonical Shelf works walks through using the site, the kinds of material it holds, and why the Pathway is ordered the way it is.
+
+### Why the name Canonical Shelf
+
+**Why “Canonical Shelf”?**
+
+Canon comes through the Greek kanōn , a measuring rod or standard. Christians came to use it for the collection of writings a community recognizes as Scripture. So the biblical canon is not simply every ancient religious book; it is the particular collection a community receives as its Bible.
+
+Canonical Shelf uses the 66-book Protestant canon: 39 books in the Old Testament and 27 in the New. Roman Catholic and Eastern Orthodox Bibles include additional Old Testament books, and Orthodox churches differ among themselves. The shelf is the picture this site is built around: a library you can see whole, where each book has its place.
 
 ### How Canonical Shelf approaches Scripture
 
@@ -32722,172 +32732,91 @@ Source: [/orientation.js](/orientation.js)
       "unitSequence": 0,
       "unitTitle": "Orientation",
       "lessonSequence": 1,
-      "title": "Welcome to Canonical Shelf",
-      "objective": "Learn what Canonical Shelf is, how its study tools work, and how to move from guided learning toward independent biblical study.",
+      "title": "How Canonical Shelf works",
+      "objective": "Learn how to use the site, what kinds of material it holds, and why the Pathway is ordered the way it is.",
       "scored": false,
       "scenes": [
         {
-          "role": "Orient",
-          "title": "A guided way into Scripture",
+          "role": "Navigate",
+          "title": "Five places and a guide",
           "paragraphs": [
-            "Canonical Shelf is a Bible-learning and study environment for thoughtful adults. It combines a guided Pathway, the biblical text itself, curated reference material, active Practice, and deeper study tools so that learning does not stop at remembering isolated facts.",
-            "The goal is not permanent dependence on lessons. The guided Pathway provides scaffolding: first showing you what to notice, then helping you practice how to investigate a text, question, or claim for yourself."
-          ],
-          "callout": "Learn → Study → Remember → Investigate independently."
-        },
-        {
-          "role": "Orient",
-          "title": "Why is it called Canonical Shelf?",
-          "paragraphs": [
-            "The word canon comes through Greek kanōn, a word associated with a measuring rod, rule, or standard. Over time, Christians used canon for the collection of writings recognized as Scripture—books regarded by a particular religious community as belonging to its authoritative biblical collection.",
-            "So the biblical canon is not simply “all ancient religious books.” It is the particular collection a community recognizes as its Bible. Canonical Shelf uses the 66-book Protestant canon: 39 books in the Old Testament and 27 in the New Testament. Roman Catholic and Eastern Orthodox traditions recognize somewhat different Old Testament collections, and Orthodox canons also vary."
-          ],
-          "callout": "Like a library, the Bible is grouped by category, not chronology."
-        },
-        {
-          "role": "Visualize",
-          "title": "A library, not one ordinary book",
-          "paragraphs": [
-            "A printed Bible binds dozens of distinct writings between two covers. Those writings come from different periods, circumstances, communities, authorship traditions, and literary forms. Books next to one another on the shelf are often related by literary type or traditional canonical placement rather than by the historical sequence of the events they describe.",
-            "Many prophets, for example, lived during periods narrated in Kings and Chronicles even though the prophetic books appear later in the shelf order. Canonical Shelf therefore keeps four questions distinct: where a book sits on the shelf, what kind of writing it is, when its narrated events occur, and when or how the text was composed or compiled."
+            "Everything on the site lives in five places, named along the top of every screen. The Theologian tab on the right edge goes with you to all of them."
           ],
           "bullets": [
-            "Law / Torah",
-            "History",
-            "Poetry and Wisdom",
-            "Major Prophets",
-            "Minor Prophets",
-            "Gospels",
-            "Acts",
-            "Pauline Letters",
-            "General Letters",
-            "Revelation / Apocalypse"
-          ],
-          "callout": "Shelf order ≠ story chronology ≠ composition history."
-        },
-        {
-          "role": "Explain",
-          "title": "Start with the questions, then build better answers",
-          "paragraphs": [
-            "Adults often arrive with questions already in mind: why Jesus died, what sin means, why suffering exists, whether Scripture can be trusted, why Christians disagree, how to read violent or morally difficult texts, what Christians mean by judgment and resurrection, or how to evaluate disputed questions about law, gender, sexuality, miracles, and other religions.",
-            "Canonical Shelf introduces those questions early instead of pretending they do not exist. It also resists giving a confident answer before the learner has the evidence and context needed to evaluate it. The four modules deliberately return to important questions after building biblical history, first-century context, primary-text familiarity, and stronger interpretive tools."
-          ],
-          "callout": "Question → foundation → context → evidence → interpretation → synthesis."
-        },
-        {
-          "role": "Explain",
-          "title": "What the Pathway will teach",
-          "paragraphs": [
-            "The curriculum develops the biblical library, larger story, chronology, people, places, genres, themes, key passages, historical context, translation, relevant Hebrew and Greek, interpretation, Christian doctrine, contested questions, evidence evaluation, and independent synthesis.",
-            "The learning progression is deliberate. You will move from recognition and location toward interpretation, evaluating evidence, transferring a method to unfamiliar material, and eventually synthesizing a responsible conclusion."
-          ],
-          "bullets": [
-            "Remember",
-            "Locate",
-            "Distinguish",
-            "Relate",
-            "Interpret",
-            "Evaluate evidence",
-            "Transfer",
-            "Synthesize"
+            "Shelf: all 66 books at a glance, and where you left off.",
+            "Pathway: the guided course, in four modules.",
+            "Bible: the full text, chapter by chapter, with a profile for every book.",
+            "Catalog: reference topics, the glossary, and book profiles you can search.",
+            "Practice: games and review that keep what you learned from fading.",
+            "Theologian: a chat you can open from any screen to ask about what is in front of you."
           ]
         },
         {
           "role": "Navigate",
-          "title": "Pathway — the guided path",
+          "title": "Reading the Bible here",
           "paragraphs": [
-            "Pathway is a sequence of four modules containing 44 scored units. Guided lessons, integrated mastery, unit mastery, and capstones keep explanation, retrieval, reasoning, and synthesis inside one coherent learning path.",
-            "Module 1 starts with what Christianity claims, the questions that worry new readers, and how the Bible works as a library. Module 2 reads Israel’s Scriptures in their ancient world. Module 3 enters the world of Jesus, the Gospels, and Paul’s letters. Module 4 brings theology, traditions, and difficult questions back together using the foundation already built.",
-            "Progress distinguishes completion, retention, mastery, and review-due states. You may leave the path to investigate something elsewhere and return without losing your place."
+            "The Bible reader shows one chapter at a time. Pick a book from the shelf or search for a reference like John 3:16. Each book has a profile that tells you what it is before you start reading.",
+            "The study desk beside the text holds your notes for the verse or lesson you are on, plus optional help: word meanings, background, and sources. You can change the translation in your profile."
           ],
           "actions": [
             {
-              "label": "Open the Pathway",
-              "href": "/course"
-            }
-          ]
-        },
-        {
-          "role": "Navigate",
-          "title": "Bible — the library itself",
-          "paragraphs": [
-            "Bible owns the bookshelf, book navigation, chapters, reader, book profiles, and the study affordances that belong closest to the biblical text. Use it when you want to read a passage directly, locate a book, compare its canonical setting with chronology, or follow references from a lesson or Topic.",
-            "You do not need to memorize the shelf before beginning. The Pathway teaches the groups progressively while the Bible remains available as a reference environment at any time."
-          ],
-          "actions": [
-            {
-              "label": "Open Bible",
+              "label": "Open the Bible",
               "href": "/bible"
             }
           ]
         },
         {
-          "role": "Context",
-          "title": "Where deeper study and evidence live",
-          "paragraphs": [
-            "Within lessons, look for vocabulary, deeper explanation, passage notes, challenge feedback, interpretive boundaries, and source trails. Passage-level study can surface translation choices, manuscript or textual notes when relevant, original-language observations, historical and literary context, evidence strength, competing interpretations, reception history, doctrine, and application.",
-            "Across the site, use Topics, book profiles, maps, timelines, search, cross-references, and the Theologian. The Guide uses Canonical Shelf-controlled Scripture, content, doctrinal boundaries, and vetted sources rather than treating generated prose as an independent authority."
-          ],
-          "callout": "Canonical Shelf should show what kind of claim you are looking at: text → evidence/history → interpretation → reception → doctrine → application."
-        },
-        {
           "role": "Navigate",
-          "title": "Topics and the Theologian — follow a question",
+          "title": "How a lesson works",
           "paragraphs": [
-            "Topics is a curated reference layer rather than a second curriculum. Use it for doctrine, biblical concepts, Christian practice, difficult questions, glossary material, and links back into Scripture or Pathway content.",
-            "The Theologian can connect material already available in Canonical Shelf and, when cloud synthesis is available, make that evidence conversational. Its responses remain bounded by the Berean Standard Bible, Canonical Shelf content, the Statement of Faith, theology policy, and vetted research. The deterministic evidence-aware path remains available when cloud generation is unavailable."
-          ],
-          "actions": [
-            {
-              "label": "Browse Topics",
-              "href": "/topics"
-            }
+            "A lesson teaches one idea and then checks it right away with a short activity, before moving to the next idea. The dots down the side show where you are.",
+            "Checks ask whether you understood, never whether you agree. Each unit ends with a mastery activity, and capstones ask you to use a whole stretch of the course at once. Your progress is saved in this browser, and in your account if you sign in."
           ]
         },
         {
-          "role": "Practice",
-          "title": "Practice — make learning durable",
+          "role": "Understand",
+          "title": "What kind of material is here",
           "paragraphs": [
-            "Practice is reinforcement, not a second course. It returns you to material you have already encountered through retrieval, ordering, matching, classification, reconstruction, comparison, evidence work, argument mapping, scenarios, and other task-appropriate interactions.",
-            "Spaced review makes forgetting visible before it becomes permanent. The review schedule grows as material is successfully retained, so “complete” and “still remembered later” remain different states."
+            "The site keeps different kinds of material separate, so you always know what you are reading."
           ],
-          "callout": "Practice rewards retrieval, delayed retention, improvement, transfer, and mastery—not theological assent.",
-          "actions": [
-            {
-              "label": "Open Practice",
-              "href": "/practice"
-            }
+          "bullets": [
+            "The Bible text itself: the Berean Standard Bible by default.",
+            "Book profiles: four separate facts about each book, where it sits on the shelf, what kind of writing it is, when its events happen, and when it was written. These often differ: many prophets lived during events told in Kings, though their books sit later on the shelf.",
+            "Lessons and Catalog topics: explanation written for this site. Where Christians disagree, they say so and show the main readings.",
+            "Sources: named scholarly and historical works, so claims can be traced.",
+            "Texts that are not in the Bible, such as other ancient gospels, appear only where they help, and are always labeled as outside the canon."
+          ],
+          "callout": "Text, context, and interpretation are kept apart on every page."
+        },
+        {
+          "role": "Understand",
+          "title": "What the Theologian draws on",
+          "paragraphs": [
+            "The Theologian answers from the Bible text, the material on this site, the published Statement of Faith, and a set of vetted sources. It can explain positions the site does not hold, but it labels them as positions, not as the site’s teaching.",
+            "During a scored check it will help you reason but will not pick the answer. If the service cannot be reached, it says so and gives a shorter answer from the site’s own material. Your notes, feedback, and account details are never sent to it."
           ]
         },
         {
-          "role": "Personalize",
-          "title": "Choose the visual environment that works for you",
+          "role": "Understand",
+          "title": "Why the Pathway goes in this order",
           "paragraphs": [
-            "Canonical Shelf supports complete aesthetic packages rather than a single mandatory palette. The default library system uses flat charcoal, light reading surfaces, cool-neutral structure, and restrained gilt. Alternate themes can change palette and surface character while leaving curriculum meaning, progress, assessment, and theological interpretation unchanged.",
-            "You can change the theme at any time from your Profile / Account appearance controls."
-          ],
-          "themeDemo": true
-        },
-        {
-          "role": "Explore",
-          "title": "The Pathway is a path, not a locked hallway",
-          "paragraphs": [
-            "You may skip ahead, open another unit, browse the Bible, investigate a Topic, practice learned material, follow a cross-reference, or return to the guided path. The curriculum supplies a recommended learning sequence, not a restriction on curiosity.",
-            "When a lesson raises a question that matters to you, following that question is part of learning. Canonical Shelf is designed to help you return with better context rather than punish exploration. You are also allowed to hold a provisional answer and revise it as your evidence and understanding improve."
+            "Module 1 starts with the center: the earliest summary of what Christians proclaimed, so everything after has something to connect to. Then it takes the questions that worry new readers, shows the Bible as a library of different kinds of writing, and starts the story at Genesis.",
+            "Module 2 reads Israel’s Scriptures, because Jesus and the New Testament speak in their words: covenant, law, temple, exile, hope. Module 3 enters the world Jesus lived in, then the Gospels and Paul’s letters, which make sense once that world is familiar. Module 4 comes last because it brings back questions you met earlier, now with the evidence to weigh them.",
+            "Hard questions appear early on purpose, with honest first answers and fuller ones later. The order is a recommendation, not a lock: you can open any unit, read anywhere in the Bible, and come back."
           ]
         },
         {
           "role": "Continue",
-          "title": "The destination is independent study",
+          "title": "Practice, review, and your settings",
           "paragraphs": [
-            "At the beginning, the question may be “What should I learn next?” Over time, the goal becomes “I know how to investigate this responsibly.” Independent study means being increasingly able to locate relevant texts, distinguish evidence from interpretation, compare credible readings, identify what remains uncertain, and decide what further evidence you need.",
-            "Unit 1 begins the scored curriculum with Christianity’s central proclamation, then explicitly introduces the major questions the curriculum will keep returning to. The tutorial remains available whenever you want to revisit how Canonical Shelf works."
+            "Practice brings back what you have already learned, at growing intervals, so finishing something and still remembering it later are tracked separately. Games there never change your Pathway progress.",
+            "You can change the look of the site at any time in your profile. The order and meaning of everything stay the same whichever look you choose."
           ],
-          "callout": "Next: Unit 1 · Begin with the central story, then Questions worth carrying",
+          "themeDemo": true,
           "actions": [
             {
-              "label": "Begin Unit 1",
-              "href": "/course?unit=unit.start&lesson=begin"
+              "label": "Begin Module 1",
+              "href": "/course?unit=c1.christianity&lesson=begin"
             }
           ]
         }

@@ -435,6 +435,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
 
+### `orientation.scope`
+
+- **Current** · 2026-10-01 · Owner decision (Chris) · `orientation-scope`
+  Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; background on the project (what it is for, why it is called Canonical Shelf) lives on the About page
+
 ### `plan.autonomy`
 
 - **Approval** · 2026-09-26 · Chris · `plan.autonomy.2026-09-26` · scope: roa-kit-v1.1-dag and the Canonical Shelf plans discussed on 2026-09-25/26

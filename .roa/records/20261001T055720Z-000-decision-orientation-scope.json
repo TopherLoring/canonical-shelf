@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "orientation-scope",
+  "topic": "orientation.scope",
+  "date": "2026-10-01",
+  "text": "Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; background on the project (what it is for, why it is called Canonical Shelf) lives on the About page",
+  "by": "Chris"
+}
