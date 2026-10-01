@@ -11,9 +11,11 @@ test('Theologian reply opens at its first line and stays put when rated',async({
   await page.locator('#guide-open').click();
   const stream=page.locator('#guide [data-theologian-messages]');
   for(const question of ['First question about Genesis?','Second question about Exodus?']){
+    await expect(page.locator('#guide-q')).toBeEditable();
     await page.locator('#guide-q').fill(question);
     await page.locator('#guide-q').press('Enter');
     await expect(page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)')).toHaveCount(question.startsWith('First')?1:2,{timeout:15000});
+    await expect(page.locator('#guide .chat-message--thinking')).toHaveCount(0,{timeout:15000});
   }
   const offset=async()=>page.evaluate(()=>{
     const stream=document.querySelector('#guide [data-theologian-messages]');

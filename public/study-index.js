@@ -24,7 +24,9 @@ export function queryStudyIndex({query,data,corpus='',limits={}}){
     topics:rank(data.topics||[],terms,topicIndexText,max('topics',10)),
     lessons:rank(data.lessons||[],terms,lessonIndexText,max('lessons',10)),
     glossary:rank(data.glossary||[],terms,item=>`${item.term} ${item.quick||''} ${(item.definitions||[]).join(' ')}`,max('glossary',10)),
-    books:rank(LIBRARY_BOOKS,terms,bookIndexText,max('books',10)),
+    // A book named in the question comes first; ranking by shared words alone buries it under books that merely mention it.
+    books:(()=>{const lower=q.toLowerCase(),named=LIBRARY_BOOKS.filter(book=>new RegExp(`\\b${book.name.toLowerCase().replace(/\s+/g,'\\s+')}\\b`).test(lower));
+      const rest=rank(LIBRARY_BOOKS,terms,bookIndexText,max('books',10)).filter(book=>!named.includes(book));return [...named,...rest].slice(0,max('books',10))})(),
     verses:rank(VERSES,terms,verseIndexText,max('verses',10))
   };
 }
@@ -38,7 +40,8 @@ export function lessonEvidenceDetail(lesson){
   return [lesson.objective||'',lesson.simple||'',(lesson.body||[])[0]||''].filter(Boolean).join(' ').slice(0,620);
 }
 export function bookEvidenceDetail(book){
-  return [book.hook||'',book.syn||'',book.who?`Authorship/source note: ${book.who}`:''].filter(Boolean).join(' ').slice(0,620);
+  const end=text=>{const value=String(text||'').trim();return value&&!/[.!?…]$/.test(value)?`${value}.`:value};
+  return [end(book.hook),end(book.syn),book.who?end(`Authorship/source note: ${book.who}`):''].filter(Boolean).join(' ').slice(0,620);
 }
 export function verseEvidenceDetail(verse){
   return [verse.bsb||'',verse.note||'',verse.speaker?`Speaker: ${verse.speaker}`:'',verse.recipient?`Recipient: ${verse.recipient}`:''].filter(Boolean).join(' ').slice(0,620);

@@ -147,7 +147,7 @@ async function learnerContext(){
   return {route:`${location.pathname}${location.search}`,activity:activityLabel(data),passage:passage?.label,completed,total,reviewsDue:dueReviews(state).length,recent:recentActivity().slice(0,4).map(item=>`${item.kind||'Study'}: ${item.title}`),masteryActive:location.pathname==='/course'&&new URLSearchParams(location.search).has('mastery')};
 }
 function deterministicAnswer(question,resources){
-  const result=buildTheologianResponse({question,data:resources.data,policy:resources.policy,statement:resources.statement,sources:resources.sources,corpus:resources.corpus,context:{scored:location.pathname==='/course'&&new URLSearchParams(location.search).has('mastery')}});
+  const result=buildTheologianResponse({question,data:resources.data,policy:resources.policy,statement:resources.statement,sources:resources.sources,corpus:resources.corpus,context:{scored:location.pathname==='/course'&&new URLSearchParams(location.search).has('mastery'),page:{route:location.pathname,label:resources.pageLabel}}});
   const text=[result.position,...(result.warnings||[])].filter(Boolean).join('\n\n');
   return {mode:'local',model:'local-deterministic',policyVersion:resources.policy?.version||'',answer:text,evidence:result.evidence||[],guardrails:['Berean Standard Bible quotation integrity','Compact Canonical Shelf Statement of Faith doctrinal ceiling','Canonical Shelf theology/evidence policy','Published Canonical Shelf content','Attributed vetted sources'],validation:{status:'passed',doctrinalCeiling:resources.policy?.authority?.normativeCeiling||'Canonical Shelf Statement of Faith',masteryProtected:Boolean(result.masteryProtected)},fallback:true};
 }
@@ -166,8 +166,8 @@ async function ask(question){
   }catch(error){
     if(error?.name==='AbortError'){sending=false;render();return}
     try{
-      const resources=await assets(),fallback=deterministicAnswer(text,resources);
-      messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',model:fallback.model,policyVersion:fallback.policyVersion,evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
+      const resources=await assets(),fallback=deterministicAnswer(text,{...resources,pageLabel:activityLabel(resources.data)});
+      messages.push(normalizeMessage({role:'assistant',text:`The Theologian service isn't reachable right now, so this is a shorter answer from the site's own material.\n\n${fallback.answer}`,at:now(),mode:'local',model:fallback.model,policyVersion:fallback.policyVersion,evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
     }catch{
       messages.push(normalizeMessage({role:'assistant',text:'I could not build a reliable answer from the available evidence. Try rephrasing the question or open the relevant Bible, Pathway, or Catalog material and ask again.',at:now(),mode:'local',model:'local-unavailable',fallback:true}));
     }
