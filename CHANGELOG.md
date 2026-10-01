@@ -8,6 +8,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it (agent default)
+- Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
 
 ### Changed
 

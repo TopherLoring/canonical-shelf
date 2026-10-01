@@ -108,9 +108,77 @@ html[data-theme='scholarly-graphite'][data-mode='dark'] {
   --ornament-6: #e9ebee;
 }
 
-/* Paper — style and light palette */
-html[data-theme='paper'],
+/* Reading Room — style and light palette */
+html[data-theme='reading-room'],
 html:not([data-theme]) {
+  --font-display: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
+  --font-body: ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --font-reading: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
+  --font-label: ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace;
+  --radius-small: 3px;
+  --radius-medium: 4px;
+  --radius-large: 6px;
+  --border-weight: 1px;
+  --border-style: solid;
+  --shadow-raised: 0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a;
+  --shadow-overlay: 0 6px 18px #141b2d1f;
+  --backdrop: none;
+  --texture: radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px;
+  --surface-filter: none;
+  --border-filter: none;
+  --color-page: #F7F7F5;
+  --color-surface: #FCFCFB;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-sunken: #EDEEF0;
+  --color-border: #D6D9DF;
+  --color-text: #141B2D;
+  --color-text-secondary: #3D4657;
+  --color-text-muted: #5F6778;
+  --color-action: #1F3A6E;
+  --color-on-action: #FFFFFF;
+  --color-accent: #A04E68;
+  --color-on-accent: #FFFFFF;
+  --color-correct: #2F6B4F;
+  --color-incorrect: #A3283B;
+  --shadow-raised: 0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a;
+  --shadow-overlay: 0 6px 18px #141b2d1f;
+  --ornament-1: #1F3A6E;
+  --ornament-2: #A04E68;
+  --ornament-3: #5F6778;
+  --ornament-4: #3E5B8F;
+  --ornament-5: #C98AA0;
+  --ornament-6: #8A93A6;
+}
+
+/* Reading Room — dark palette */
+html[data-theme='reading-room'][data-mode='dark'],
+html:not([data-theme])[data-mode='dark'] {
+  --color-page: #0D1321;
+  --color-surface: #141B2D;
+  --color-surface-raised: #1B2338;
+  --color-surface-sunken: #0A0F1A;
+  --color-border: #2A344C;
+  --color-text: #EEF0F4;
+  --color-text-secondary: #C3C9D5;
+  --color-text-muted: #949CAE;
+  --color-action: #A9C1EC;
+  --color-on-action: #0D1321;
+  --color-accent: #E2A3B5;
+  --color-on-accent: #0D1321;
+  --color-correct: #86C79A;
+  --color-incorrect: #F08A9A;
+  --shadow-raised: 0 1px 2px #00000059;
+  --shadow-overlay: 0 8px 22px #00000080;
+  --ornament-1: #A9C1EC;
+  --ornament-2: #E2A3B5;
+  --ornament-3: #949CAE;
+  --ornament-4: #7E9BD1;
+  --ornament-5: #C77F96;
+  --ornament-6: #6B7590;
+}
+
+/* Paper — style and light palette */
+html[data-theme='paper'] {
   --font-display: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
   --font-body: ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --font-reading: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
@@ -151,8 +219,7 @@ html:not([data-theme]) {
 }
 
 /* Paper — dark palette */
-html[data-theme='paper'][data-mode='dark'],
-html:not([data-theme])[data-mode='dark'] {
+html[data-theme='paper'][data-mode='dark'] {
   --color-page: #171614;
   --color-surface: #1F1D1A;
   --color-surface-raised: #282522;
@@ -662,6 +729,24 @@ html[data-mode='dark'] [data-theme-swatch='scholarly-graphite'] {
   --swatch-text: #f5f6f8;
   --swatch-action: #e9ebee;
   --swatch-accent: #e9ebee;
+}
+
+/* Reading Room — swatch */
+[data-theme-swatch='reading-room'] {
+  --swatch-page: #F7F7F5;
+  --swatch-surface: #FCFCFB;
+  --swatch-text: #141B2D;
+  --swatch-action: #1F3A6E;
+  --swatch-accent: #A04E68;
+}
+
+/* Reading Room — swatch, dark */
+html[data-mode='dark'] [data-theme-swatch='reading-room'] {
+  --swatch-page: #0D1321;
+  --swatch-surface: #141B2D;
+  --swatch-text: #EEF0F4;
+  --swatch-action: #A9C1EC;
+  --swatch-accent: #E2A3B5;
 }
 
 /* Paper — swatch */

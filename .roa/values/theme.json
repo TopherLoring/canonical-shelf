@@ -120,6 +120,96 @@
         "/fonts/fonts.css"
       ]
     },
+    "reading-room": {
+      "name": "Reading Room",
+      "description": "Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose.",
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "style": {
+        "fontDisplay": {
+          "$ref": "shared.fonts.serif"
+        },
+        "fontBody": {
+          "$ref": "shared.fonts.sans"
+        },
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "fontLabel": {
+          "$ref": "shared.fonts.mono"
+        },
+        "radiusSmall": "3px",
+        "radiusMedium": "4px",
+        "radiusLarge": "6px",
+        "borderWeight": "1px",
+        "borderStyle": "solid",
+        "shadowRaised": "0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a",
+        "shadowOverlay": "0 6px 18px #141b2d1f",
+        "backdrop": "none",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none"
+      },
+      "modes": {
+        "light": {
+          "page": "#F7F7F5",
+          "surface": "#FCFCFB",
+          "surfaceRaised": "#FFFFFF",
+          "surfaceSunken": "#EDEEF0",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
+          "onAction": "#FFFFFF",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "shadowRaised": "0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a",
+          "shadowOverlay": "0 6px 18px #141b2d1f",
+          "ornaments": [
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ]
+        },
+        "dark": {
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "shadowRaised": "0 1px 2px #00000059",
+          "shadowOverlay": "0 8px 22px #00000080",
+          "ornaments": [
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ]
+        }
+      }
+    },
     "paper": {
       "name": "Paper",
       "description": "Folded broadsheet and stationery on a drafting table: crisp, archival, analog.",
@@ -819,7 +909,7 @@
     }
   },
   "default": {
-    "theme": "paper",
+    "theme": "reading-room",
     "mode": "light"
   }
 }

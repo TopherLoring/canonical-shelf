@@ -40796,8 +40796,29 @@ Source: [/verse-data.js](/verse-data.js)
 Source: [/theme.js](/theme.js)
 
     {
-      "defaultThemeId": "paper",
+      "defaultThemeId": "reading-room",
       "themes": [
+        {
+          "id": "reading-room",
+          "name": "Reading Room",
+          "summary": "Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose.",
+          "themeColor": "#F7F7F5",
+          "darkThemeColor": "#0D1321",
+          "swatch": [
+            "#F7F7F5",
+            "#141B2D",
+            "#1F3A6E",
+            "#A04E68"
+          ],
+          "darkSwatch": [
+            "#0D1321",
+            "#EEF0F4",
+            "#A9C1EC",
+            "#E2A3B5"
+          ],
+          "illustrations": "none",
+          "nativeMode": null
+        },
         {
           "id": "paper",
           "name": "Paper",

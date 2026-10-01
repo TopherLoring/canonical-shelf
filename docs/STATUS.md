@@ -112,6 +112,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
+| `theme.default` | Reading Room is the default theme: | Owner decision | undefined |
 | `theologian.learner-agency` | undefined | Agent default | undefined |
 | `theologian.length` | undefined | Agent default | undefined |
 | `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; | Owner decision | undefined |

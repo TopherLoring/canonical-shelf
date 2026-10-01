@@ -521,6 +521,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   content/theology/crisis-policy.json is the crisis-safety policy. A deterministic crisis layer runs before normal generation for credible first-person suicide or self-harm indicators: immediate danger goes to 911/emergency services; U.S. crisis offers call or text 988; encourage a trusted person present and distance from means; stay conversational. Pastoral response (God's love and presence, prayer alongside human help, referral to trusted clergy, praying on request) is expected, but prayer never replaces or delays urgent help. Prohibited: shame, threats of hell or punishment, implying weak faith, prayer-alone advice, promised healing, silent third-party contact, IP-based identity, permanent risk labels, converting crisis chat into feedback
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification
 
+### `theme.default`
+
+- **Current** · 2026-10-01 · Owner decision (Chris) · `reading-room`
+  Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
+  *Why:* Chris: paper, whites, light greys, deep blues, a hint of pink, library
+
 ### `theologian.learner-agency`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `theologian.learner-agency.from-precedence-doc`
