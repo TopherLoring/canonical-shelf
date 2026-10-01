@@ -28,7 +28,7 @@ export const PRACTICE_ACHIEVEMENTS=[
 ];
 
 export const PRACTICE_STAGES=[
-  {id:'order',tag:'Stage 1',name:'The Order',description:'Longer drills on canonical order. Course teaches the structure; Practice turns it into quick retrieval.',levels:[
+  {id:'order',tag:'Stage 1',name:'The Order',description:'Longer drills on canonical order. The Pathway teaches the structure; Practice turns it into quick retrieval.',levels:[
     {id:'o1',name:'The Law',sub:'Books 1–5',game:'sequence',engines:['sequence'],count:8,size:5,scope:{cat:'law'},mode:'run'},
     {id:'o2',name:'Conquest & Kings',sub:'Books 6–12',game:'sequence',engines:['sequence','gap'],count:8,size:5,scope:{from:6,to:12},mode:'run'},
     {id:'o3',name:'Chronicles to Esther',sub:'Books 13–17',game:'sequence',engines:['sequence','gap'],count:8,size:5,scope:{from:13,to:17},mode:'run'},

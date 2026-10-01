@@ -22,7 +22,7 @@
     },
     {
       "title": "Does “later” mean “no answer now”?",
-      "body": "No. Course 1 gives the central Christian claims, essential distinctions, and responsible first-pass explanations. Later courses deepen or qualify those answers where additional biblical history, cultural context, textual evidence, or competing interpretations materially matter.",
+      "body": "No. Module 1 gives the central Christian claims, essential distinctions, and responsible first-pass explanations. Later modules deepen or qualify those answers where additional biblical history, cultural context, textual evidence, or competing interpretations materially matter.",
       "tag": "Explore"
     },
     {
@@ -65,9 +65,9 @@ But an important question is not automatically a simple question. A single verse
 ```
 
 ## How the path answers {#map}
-Course 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity, Scripture, translation, interpretation, theology, practice, traditions, and the biblical story. Courses 2–4 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church.
+Module 1 therefore gives you the map and responsible first-pass answers. It introduces Christianity's central claim, the questions that worry new readers, the Bible as a library, and the story from creation to Abraham. Modules 2 and 3 then supply much of the biblical and historical evidence: covenant and law, sacrifice and temple, wisdom, exile and hope, the Second Temple world, Jesus, the cross and resurrection, Acts, Paul, and the early Church, with manuscripts and translation taught where the Gospels make them matter.
 
-Course 5 asks how we know: manuscripts, translation, genre, historical context, lexical evidence, intertextuality, arguments, competing interpretations, and levels of confidence. Course 6 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence.
+Along the way you learn how we know: genre, historical context, word meanings, how later texts use earlier ones, competing interpretations, and levels of confidence. Module 4 then brings the strands together. It does not suddenly reveal a set of difficult questions that were hidden until the end; it asks you to synthesize questions you have already encountered using better tools and a larger body of evidence.
 
 ```check
 {
@@ -78,7 +78,7 @@ Course 5 asks how we know: manuscripts, translation, genre, historical context, 
     "Important questions may appear before their full treatment.",
     "Every difficult question should be settled from the first verse that mentions it.",
     "A learner may hold a provisional conclusion while continuing to investigate.",
-    "Course 6 synthesizes earlier work rather than introducing theology for the first time.",
+    "Module 4 synthesizes earlier work rather than introducing theology for the first time.",
     "If Christians disagree, no conclusion can ever be stronger than another."
   ],
   "answer": [

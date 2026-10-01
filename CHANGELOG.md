@@ -9,17 +9,24 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it (agent default)
 - Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
+- Resolved "Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?": Approved by Chris 2026-10-01
+- Resolved "Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)": Approved by Chris 2026-10-01
+- Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; background on the project (what it is for, why it is called Canonical Shelf) lives on the About page
 
 ### Changed
 
 - Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
 - The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist
 - The Theologian's crisis policy is now internal: the raw policy file, the Theologian Safety page, and their footer, llms.txt, and offline-cache entries are gone; the crisis response itself is unchanged, and About keeps a short 988/911 crisis-help line
+- The Pathway now has four modules instead of six courses: Hermeneutics & Canon, Hebrew Scriptures, Second Temple & Christ Event, and Synthesis & Practice. Every unit, lesson, and activity keeps its ID, so saved progress carries over and old course links open the module that now holds the material; Wisdom and Worship and Reading Somebody Else's Mail are former units in their new places
+- Orientation is now 'How Canonical Shelf works': seven screens on using the site, the kinds of material it holds, and why the Pathway goes in its order, linked from the Pathway page and About. The project's purpose and the meaning of the name moved to About; the screens that repeated Module 1 lessons, and the old ten-group list, are gone
 
 ### Fixed
 
 - Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
 - Theologian replies now open at their first line instead of scrolling to the bottom of the chat, and rating, flagging, or status messages no longer move the reader
+- Lesson headers no longer print the module, unit, and lesson names in capital letters, and a test now fails if any screen shows text written in capitals; the static pages' navigation now matches the app (Shelf, Pathway, Bible, Catalog, Practice); search text with em dashes and quotes displays correctly
+- The 'Questions worth carrying' lesson now describes the four modules instead of the old six courses, including its scored check
 
 ## 2026-09-30
 

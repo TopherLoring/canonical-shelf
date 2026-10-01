@@ -1,5 +1,5 @@
 import {readFile,writeFile} from 'node:fs/promises';
-import {courses,units,questionThreads} from '../content/curriculum/structure.mjs';
+import {courses,units,questionThreads,legacyCourseAliases} from '../content/curriculum/structure.mjs';
 
 const path='public/data/catalog.json';
 const catalog=JSON.parse(await readFile(path,'utf8'));
@@ -34,6 +34,7 @@ for(const thread of questionThreads){
 catalog.courses=courses;
 catalog.units=units;
 catalog.questionThreads=questionThreads;
+catalog.legacyCourseAliases=legacyCourseAliases;
 catalog.curriculumGuidance={
   model:'questions-first-spiral',
   completionTiming:'active-study estimate only',
@@ -42,4 +43,4 @@ catalog.curriculumGuidance={
 };
 
 await writeFile(path,JSON.stringify(catalog,null,2));
-console.log(`applied curriculum metadata: ${courses.length} courses, ${questionThreads.length} question threads`);
+console.log(`applied curriculum metadata: ${courses.length} modules, ${questionThreads.length} question threads`);

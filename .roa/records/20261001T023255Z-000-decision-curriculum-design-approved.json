@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "curriculum-design-approved",
+  "topic": "curriculum.design",
+  "date": "2026-10-01",
+  "text": "Approved the curriculum design: four modules plus the optional extra-credit module, the unit pattern (intro, substance with immediate checks, summary, apparatus, skip-by-placement), apparatus placements, and the migration sequence (approval, then data restructure with stable lesson IDs, then unit rewrites module by module starting with Module 1)",
+  "scope": "docs/v7/curriculum-design.proposal.json",
+  "by": "Chris"
+}

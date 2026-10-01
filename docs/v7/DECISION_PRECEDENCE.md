@@ -53,6 +53,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Agent default (Claude) · `curriculum.content-review.generated-content-review`
   Generated curriculum content is reviewed before learners see it
 
+### `curriculum.design`
+
+- **Approval** · 2026-10-01 · Chris · `curriculum-design-approved` · scope: docs/v7/curriculum-design.proposal.json
+  Approved the curriculum design: four modules plus the optional extra-credit module, the unit pattern (intro, substance with immediate checks, summary, apparatus, skip-by-placement), apparatus placements, and the migration sequence (approval, then data restructure with stable lesson IDs, then unit rewrites module by module starting with Module 1)
+
 ### `curriculum.excluded-gospels`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.excluded-gospels.excluded-gospels-coverage`
@@ -79,6 +84,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
   Module 1 opens like the original v4 sequence: Start Here (open with the 1 Corinthians 15 central-story lesson) -> the questions that worry new believers (fact vs allegory, prophecy, Jonah, Goliath) -> the Bible as a library -> the story in one view -> Genesis onward, teaching each reading skill the first time a passage needs it. Textual criticism and canon history move to Module 3; theology map, practice, and traditions move to Module 4 or become touchpoints. One visual anchor per unit; practice checks placed by subject fit
+
+### `curriculum.module1.outcomes`
+
+- **Approval** · 2026-10-01 · Chris · `module1-outcomes-approved` · scope: content/pathway/outline.json goals and outcomes (drafted 2026-09-28)
+  Approved the Module 1 goals and outcomes
 
 ### `curriculum.objective-display`
 
@@ -425,6 +435,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
 
+### `orientation.scope`
+
+- **Current** · 2026-10-01 · Owner decision (Chris) · `orientation-scope`
+  Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; background on the project (what it is for, why it is called Canonical Shelf) lives on the About page
+
 ### `plan.autonomy`
 
 - **Approval** · 2026-09-26 · Chris · `plan.autonomy.2026-09-26` · scope: roa-kit-v1.1-dag and the Canonical Shelf plans discussed on 2026-09-25/26
@@ -678,6 +693,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-01: **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** → Approved by Chris 2026-10-01 (decision `module1-outcomes-approved`)
+- 2026-10-01: **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** → Approved by Chris 2026-10-01 (decision `curriculum-design-approved`)
 - 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)
 - 2026-09-25: **Which theme is the site-wide default: dark (Home) or light (inner pages)?** → Recorded as an agent default (scholarly-graphite, light) pending Chris's visual redesign; not an owner decision (decision `default-theme-scholarly-graphite`)
 

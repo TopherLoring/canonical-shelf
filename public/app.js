@@ -73,7 +73,7 @@ function renderInto(target,view){if(!target)return;if(typeof view==='string')tar
 function refreshProgressPanel(){}
 
 function courseRouteView(p){
-  if(!data.units.length)return shell('Course','Migration required','<p class="notice">Run bun run migrate.</p>');
+  if(!data.units.length)return shell('Pathway','Migration required','<p class="notice">Run bun run migrate.</p>');
   if(p.has('lesson')||p.has('mastery')||p.has('glossary'))return courseView(data,state,p,esc,corpus);
   const rawUnit=p.get('unit');
   if(rawUnit){
@@ -83,7 +83,7 @@ function courseRouteView(p){
     return unitExperienceView({data,state,unit,course:data.courses.find(c=>c.id===unit.courseId),esc});
   }
   const courseId=p.get('course');
-  if(courseId){const course=data.courses.find(c=>c.id===courseId);return course?courseDetailView({data,state,course,esc}):'<p class="notice">Course not found.</p>'}
+  if(courseId){const course=data.courses.find(c=>c.id===(data.legacyCourseAliases?.[courseId]||courseId));return course?courseDetailView({data,state,course,esc}):'<p class="notice">Module not found.</p>'}
   return courseLandingView({data,state,esc});
 }
 

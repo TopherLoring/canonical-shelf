@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "module1-outcomes-approved",
+  "topic": "curriculum.module1.outcomes",
+  "date": "2026-10-01",
+  "text": "Approved the Module 1 goals and outcomes",
+  "scope": "content/pathway/outline.json goals and outcomes (drafted 2026-09-28)",
+  "by": "Chris"
+}

@@ -231,6 +231,10 @@ test('no all caps anywhere: no visible element is styled in capitals',async({pag
     await expect(page.locator('main')).not.toBeEmpty();
     const caps=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(el=>el.offsetParent!==null&&el.textContent.trim()).filter(el=>{const cs=getComputedStyle(el);return cs.textTransform==='uppercase'||/small-caps|all-small-caps|petite-caps/.test(cs.fontVariantCaps)}).slice(0,3).map(el=>`${el.tagName.toLowerCase()}.${el.className}`));
     expect(caps,`all-caps styling on ${u}`).toEqual([]);
+    const shouting=await page.evaluate(()=>{const keep=/^(BSB|KJV|NLT|NIV|ESV|NRSV|NASB|LORD|YHWH|LGBTQ|AD|BC|BCE|CE|XP|II|III|IV)$/;
+      return [...document.querySelectorAll('body *')].filter(el=>el.offsetParent!==null).flatMap(el=>[...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent))
+        .filter(text=>(text.match(/\b[A-Z]{3,}\b/g)||[]).filter(word=>!keep.test(word)).length>=2).slice(0,3)});
+    expect(shouting,`text written in capitals on ${u}`).toEqual([]);
   }
 });
 

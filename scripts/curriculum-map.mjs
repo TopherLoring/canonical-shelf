@@ -3,7 +3,7 @@ import {courses,units,unitById,courseById} from '../content/curriculum/structure
 export {courses,units,unitById,courseById};
 
 // v4/v7 semantic units are preserved here only as migration inputs. Existing mastery IDs
-// remain stable while their placement moves into the approved six-course hierarchy.
+// remain stable while their placement moves into the approved four-module hierarchy.
 const legacyUnitMap={
   1:'c1.christianity',        // Start Here
   2:'c1.reading',             // How to Read a Bible
@@ -49,6 +49,7 @@ export function mapLesson(lesson){
   }
 
   if(old===2){
+    if(lesson.id==='library')return'c1.bible';
     if(lesson.id==='translation'||has(lesson,/translation difference|manuscript witness|textual variant|textual apparatus/))return'c1.transmission';
     return'c1.reading';
   }
