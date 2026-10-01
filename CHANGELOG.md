@@ -8,6 +8,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
+- The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist
 
 ### Fixed
 
