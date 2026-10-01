@@ -9,6 +9,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it (agent default)
 - Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
+- Resolved "Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?": Approved by Chris 2026-10-01
+- Resolved "Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)": Approved by Chris 2026-10-01
 
 ### Changed
 

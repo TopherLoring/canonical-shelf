@@ -9,9 +9,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 - **Visual direction for the redesign: refine the current scholarly look, one of Gemini's three concepts, or a new reference?** (`visual-direction`, owner: Chris, since 2026-09-25)
 - **[proposal] Library metaphor throughout: card-catalog drawers for topics/categories, arcade games in drawers, books checked out into the reader (leave a visible gap on the shelf), a return cart for replaced books, sessions reset the shelf. Adopt?** (`library-metaphor`, owner: Chris, since 2026-09-25)
-- **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** (`curriculum-design`, owner: Chris, since 2026-09-26)
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
-- **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** (`approve-module1-outcomes`, owner: Chris, since 2026-09-28)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 
 ## Phases
