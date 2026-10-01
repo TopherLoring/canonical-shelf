@@ -3,6 +3,17 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-01
+
+### Changed
+
+- Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
+- The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist
+
+### Fixed
+
+- Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
+
 ## 2026-09-30
 
 ### Decided
@@ -16,11 +27,18 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Text has three tiers: primary and secondary (both at least 4.5:1, for anything a learner needs to read) and muted (at least 3:1, only for large text, placeholders, and disabled items)
 - Where the theme specification conflicts with an existing rule, the rule changes. Borders and accents are decorative (not contrast-checked); translucent surfaces, surface and border filters, three corner sizes, and native modes are allowed. WCAG AA text and button contrast is kept (6 values adjusted slightly)
 - The service worker's cache version is a fingerprint of the files it serves, stamped at every build, and shell files load network-first (cache only when offline), so visitors never keep stale files after a deploy (agent default)
+- The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable
+- Paper is the default theme
+- Redesign all eight themes, preserving each theme's intent and how different the themes are from one another
+- Stained Glass is polychrome: many very different jewel colors held together by dark lead lines. Paper and Library are cohesive and almost (not quite) monochromatic: one hue family with a slight variation
+- No all caps anywhere: no text styled or written in capitals (acronyms such as BSB stay as they are)
+- The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar (agent default)
 
 ### Changed
 
 - 8 themes (Library, Paper, Collegiate, Stained Glass, Fun, Watercolor, Illustrated, Midnight Study) in light and dark, built on the theme contract; all old appearance variables rewritten onto roles and the old design-tokens contract retired; fonts self-hosted
 - Themes rebuilt from Chris's theme specification (theme contract v7): translucent glass and watercolor surfaces, double borders, hand-drawn corners, filters, native dark modes; profile theme picker with contract-generated swatches; profile section links and light/dark toggle fixed
+- Themes redesigned with each intent preserved; fonts limited to the original title's serif, sans, and mono (self-hosted, 240 KB); Stained Glass polychrome, Paper and Library near-monochrome via ornament colors; theme lab at /theme-lab.html; tighter space under the top bar
 
 ## 2026-09-28
 

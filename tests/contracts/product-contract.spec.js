@@ -214,6 +214,26 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await expect(card.locator('.theme-choice__swatch i')).toHaveCount(4);
 });
 
+test('each page starts close under the top bar (no large blank band); Home has no 66-books line',async({page})=>{
+  for(const u of ['/home','/course','/bible','/topics','/practice','/profile']){
+    await page.goto(u);
+    await expect(page.locator('main')).not.toBeEmpty();
+    const gap=await page.evaluate(()=>{const bar=document.querySelector('header.masthead').getBoundingClientRect().bottom;const w=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT,{acceptNode:n=>n.textContent.trim()&&n.parentElement.offsetParent!==null?1:3});const t=w.nextNode();return t.parentElement.getBoundingClientRect().top-bar});
+    expect(gap,`space above the first text on ${u}`).toBeLessThanOrEqual(48);
+  }
+  await page.goto('/home');
+  await expect(page.locator('main')).not.toContainText('66 books');
+});
+
+test('no all caps anywhere: no visible element is styled in capitals',async({page})=>{
+  for(const u of ['/home','/course','/course?unit=c1.christianity&lesson=begin&scene=2','/bible?book=43&chapter=3','/topics','/practice','/profile']){
+    await page.goto(u);
+    await expect(page.locator('main')).not.toBeEmpty();
+    const caps=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(el=>el.offsetParent!==null&&el.textContent.trim()).filter(el=>{const cs=getComputedStyle(el);return cs.textTransform==='uppercase'||/small-caps|all-small-caps|petite-caps/.test(cs.fontVariantCaps)}).slice(0,3).map(el=>`${el.tagName.toLowerCase()}.${el.className}`));
+    expect(caps,`all-caps styling on ${u}`).toEqual([]);
+  }
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');

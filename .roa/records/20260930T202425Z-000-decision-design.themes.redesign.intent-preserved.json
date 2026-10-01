@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.themes.redesign.intent-preserved",
+  "topic": "design.themes.redesign",
+  "date": "2026-09-30",
+  "text": "Redesign all eight themes, preserving each theme's intent and how different the themes are from one another",
+  "by": "Chris"
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-theme="paper" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Theme lab — Canonical Shelf</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/theme-lab.css">
+  <script type="module" src="/theme-lab.js"></script>
+</head>
+<body>
+  <header class="lab-head">
+    <h1>Theme lab</h1>
+    <p>Every theme on the same sample, built from the site's real components. Generated from the theme contract: any change to a theme appears here on reload.</p>
+    <div class="lab-controls" role="radiogroup" aria-label="Mode">
+      <button type="button" data-lab-mode="both" aria-pressed="true">Light and dark</button>
+      <button type="button" data-lab-mode="light" aria-pressed="false">Light</button>
+      <button type="button" data-lab-mode="dark" aria-pressed="false">Dark</button>
+    </div>
+  </header>
+  <main id="lab" class="lab-grid" aria-live="polite"></main>
+</body>
+</html>

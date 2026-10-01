@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.home.kicker.removed",
+  "topic": "ui.home.kicker",
+  "date": "2026-09-30",
+  "text": "The \"66 books · full Bible reader · guided learning\" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar",
+  "rationale": "Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered",
+  "by": "Claude"
+}

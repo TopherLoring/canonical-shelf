@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-01",
+  "text": "The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist"
+}

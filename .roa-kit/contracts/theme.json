@@ -1,7 +1,7 @@
 {
   "contract": "theme",
-  "version": 7,
-  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, Bible category colors, layout measures) are set once. Each theme sets 14 color roles for light and dark (page; surface, raised and sunken surfaces; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; correct; incorrect), optional per-mode shadows, and its style (display, body, reading, and label fonts; small, medium, and large corners, which may be free-form; border weight and style; shadows; backdrop; surface and border filters; texture; illustration set). Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark.",
+  "version": 9,
+  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, Bible category colors, layout measures) are set once. Each theme sets 14 color roles for light and dark (page; surface, raised and sunken surfaces; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; correct; incorrect), optional per-mode shadows, and its style (display, body, reading, and label fonts; small, medium, and large corners, which may be free-form; border weight and style; shadows; backdrop; surface and border filters; texture; illustration set). Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark. Shared fonts (serif, sans, mono) are defined once; themes choose among them by reference, so a theme cannot introduce another font. Ornaments are up to six decorative colors per mode (never used for text; not contrast-checked) that let a theme be polychrome or near-monochrome.",
   "schema": {
     "type": "object",
     "props": {
@@ -109,6 +109,20 @@
             },
             "keyPattern": "^[a-z][a-z0-9-]*$",
             "optional": true
+          },
+          "fonts": {
+            "type": "object",
+            "props": {
+              "serif": {
+                "type": "font"
+              },
+              "sans": {
+                "type": "font"
+              },
+              "mono": {
+                "type": "font"
+              }
+            }
           }
         }
       },
@@ -250,6 +264,14 @@
                     "shadowOverlay": {
                       "type": "css-value",
                       "optional": true
+                    },
+                    "ornaments": {
+                      "type": "list",
+                      "of": {
+                        "type": "color"
+                      },
+                      "maxItems": 6,
+                      "optional": true
                     }
                   }
                 },
@@ -304,6 +326,14 @@
                     },
                     "shadowOverlay": {
                       "type": "css-value",
+                      "optional": true
+                    },
+                    "ornaments": {
+                      "type": "list",
+                      "of": {
+                        "type": "color"
+                      },
+                      "maxItems": 6,
                       "optional": true
                     }
                   }

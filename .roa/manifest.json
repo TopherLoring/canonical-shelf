@@ -76,7 +76,16 @@
       "public/theme-list.js",
       "public/fonts/",
       "scripts/fetch-fonts.mjs",
-      "scripts/stamp-sw.mjs"
+      "scripts/stamp-sw.mjs",
+      "public/theme-lab.html",
+      "public/theme-sample.html",
+      "public/theme-lab.js",
+      "public/theme-lab.css",
+      "public/theme-sample.html",
+      "public/theme-sample.js",
+      "public/theme-lab.html",
+      "public/theme-lab.js",
+      "public/theme-lab.css"
     ],
     "exclude": [
       "public/data/",
@@ -125,6 +134,20 @@
     {
       "file": "public/practice.html",
       "message": "single-page app: no top-level route documents"
+    },
+    {
+      "pattern": "text-transform\\s*:\\s*uppercase",
+      "paths": [
+        "public/"
+      ],
+      "message": "No all caps anywhere (owner decision design.typography.no-all-caps)"
+    },
+    {
+      "pattern": "font-variant(-caps)?\\s*:\\s*(all-)?(small|petite)-caps",
+      "paths": [
+        "public/"
+      ],
+      "message": "No all caps anywhere (owner decision design.typography.no-all-caps)"
     }
   ],
   "outputs": {

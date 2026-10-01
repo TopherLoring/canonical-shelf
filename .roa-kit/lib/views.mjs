@@ -54,6 +54,7 @@ export const VIEWS = {
     for (const [k, v] of Object.entries(sh.spacing || {})) shared.push({ name: `--space-${kebab(k).replace(/^s/, '')}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.motion || {})) shared.push({ name: `--motion-${kebab(k)}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.bibleCategories || {})) shared.push({ name: `--bible-${k}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.fonts || {})) shared.push({ name: `--font-${k}`, value: String(v) });
     // Layout measurements shared by every theme (until the layout contract owns them).
     for (const [k, v] of Object.entries(sh.measures || {})) shared.push({ name: `--${k}`, value: String(v) });
     const derived = [
@@ -76,7 +77,14 @@ export const VIEWS = {
       const sel = mode => [`html[data-theme='${id}']${mode === 'dark' ? "[data-mode='dark']" : ''}`, ...(isDefault ? [`html:not([data-theme])${mode === 'dark' ? "[data-mode='dark']" : ''}`] : [])].join(',\n');
       const style = Object.entries(theme.style || {}).filter(([k]) => !['illustrations'].includes(k)).map(([k, v]) => ({ name: `--${kebab(k)}`, value: String(v) }));
       // Palette roles become --color-*; optional per-mode shadows override the style's shadows.
-      const colors = mode => Object.entries(theme.modes[mode]).map(([k, v]) => ({ name: k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`, value: String(v) }));
+      const colors = mode => {
+        const m = theme.modes[mode];
+        const vars = Object.entries(m).filter(([k]) => k !== 'ornaments').map(([k, v]) => ({ name: k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`, value: String(v) }));
+        // Ornaments: six decorative slots; a theme with fewer repeats them, one with none falls back to action/accent.
+        const orn = (m.ornaments && m.ornaments.length ? m.ornaments : [m.action, m.accent || m.action]).map(String);
+        for (let i = 0; i < 6; i++) vars.push({ name: `--ornament-${i + 1}`, value: orn[i % orn.length] });
+        return vars;
+      };
       // Aliases repeat in both blocks so they outrank older theme-specific definitions of the same names.
       blocks.push({ comment: `${theme.name} — style and light palette`, selectorText: sel('light'), vars: [...style, ...colors('light'), ...aliases] });
       blocks.push({ comment: `${theme.name} — dark palette`, selectorText: sel('dark'), vars: [...colors('dark'), ...aliases] });
