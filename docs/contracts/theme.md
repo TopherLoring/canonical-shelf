@@ -87,6 +87,60 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.scholarly-graphite.modes.dark.incorrect` | color | #f08a8f | — |
 | `themes.scholarly-graphite.hidden` | bool | true | — |
 | `themes.scholarly-graphite.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap | — |
+| `themes.reading-room.name` | text | Reading Room | — |
+| `themes.reading-room.description` | text | Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose. | — |
+| `themes.reading-room.fontImports` | list of string | /fonts/fonts.css | — |
+| `themes.reading-room.style.fontDisplay` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
+| `themes.reading-room.style.fontBody` | font | ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif | — |
+| `themes.reading-room.style.fontLabel` | font | ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace | — |
+| `themes.reading-room.style.radiusSmall` | css-value | 3px | — |
+| `themes.reading-room.style.radiusLarge` | css-value | 6px | — |
+| `themes.reading-room.style.borderWeight` | length | 1px | — |
+| `themes.reading-room.style.shadowRaised` | css-value | 0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a | — |
+| `themes.reading-room.style.shadowOverlay` | css-value | 0 6px 18px #141b2d1f | — |
+| `themes.reading-room.style.texture` | css-value | radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px | — |
+| `themes.reading-room.style.illustrations` | id | none | — |
+| `themes.reading-room.style.fontReading` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
+| `themes.reading-room.style.borderStyle` | enum | solid | one of solid, double, dashed |
+| `themes.reading-room.style.backdrop` | css-value | none | — |
+| `themes.reading-room.style.radiusMedium` | css-value | 4px | — |
+| `themes.reading-room.style.surfaceFilter` | css-value | none | — |
+| `themes.reading-room.style.borderFilter` | css-value | none | — |
+| `themes.reading-room.modes.light.page` | color | #F7F7F5 | — |
+| `themes.reading-room.modes.light.surface` | color | #FCFCFB | — |
+| `themes.reading-room.modes.light.surfaceRaised` | color | #FFFFFF | — |
+| `themes.reading-room.modes.light.surfaceSunken` | color | #EDEEF0 | — |
+| `themes.reading-room.modes.light.border` | color | #D6D9DF | — |
+| `themes.reading-room.modes.light.text` | color | #141B2D | — |
+| `themes.reading-room.modes.light.textSecondary` | color | #3D4657 | — |
+| `themes.reading-room.modes.light.textMuted` | color | #5F6778 | — |
+| `themes.reading-room.modes.light.action` | color | #1F3A6E | — |
+| `themes.reading-room.modes.light.onAction` | color | #FFFFFF | — |
+| `themes.reading-room.modes.light.accent` | color | #A04E68 | — |
+| `themes.reading-room.modes.light.onAccent` | color | #FFFFFF | — |
+| `themes.reading-room.modes.light.correct` | color | #2F6B4F | — |
+| `themes.reading-room.modes.light.incorrect` | color | #A3283B | — |
+| `themes.reading-room.modes.light.shadowRaised` | css-value | 0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a | — |
+| `themes.reading-room.modes.light.shadowOverlay` | css-value | 0 6px 18px #141b2d1f | — |
+| `themes.reading-room.modes.light.ornaments` | list of color | #1F3A6E, #A04E68, #5F6778, #3E5B8F, #C98AA0, #8A93A6 | maxItems 6 |
+| `themes.reading-room.modes.dark.page` | color | #0D1321 | — |
+| `themes.reading-room.modes.dark.surface` | color | #141B2D | — |
+| `themes.reading-room.modes.dark.surfaceRaised` | color | #1B2338 | — |
+| `themes.reading-room.modes.dark.surfaceSunken` | color | #0A0F1A | — |
+| `themes.reading-room.modes.dark.border` | color | #2A344C | — |
+| `themes.reading-room.modes.dark.text` | color | #EEF0F4 | — |
+| `themes.reading-room.modes.dark.textSecondary` | color | #C3C9D5 | — |
+| `themes.reading-room.modes.dark.textMuted` | color | #949CAE | — |
+| `themes.reading-room.modes.dark.action` | color | #A9C1EC | — |
+| `themes.reading-room.modes.dark.onAction` | color | #0D1321 | — |
+| `themes.reading-room.modes.dark.accent` | color | #E2A3B5 | — |
+| `themes.reading-room.modes.dark.onAccent` | color | #0D1321 | — |
+| `themes.reading-room.modes.dark.correct` | color | #86C79A | — |
+| `themes.reading-room.modes.dark.incorrect` | color | #F08A9A | — |
+| `themes.reading-room.modes.dark.shadowRaised` | css-value | 0 1px 2px #00000059 | — |
+| `themes.reading-room.modes.dark.shadowOverlay` | css-value | 0 8px 22px #00000080 | — |
+| `themes.reading-room.modes.dark.ornaments` | list of color | #A9C1EC, #E2A3B5, #949CAE, #7E9BD1, #C77F96, #6B7590 | maxItems 6 |
+| `themes.reading-room.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap | — |
 | `themes.paper.name` | text | Paper | — |
 | `themes.paper.description` | text | Folded broadsheet and stationery on a drafting table: crisp, archival, analog. | — |
 | `themes.paper.fontImports` | list of string | /fonts/fonts.css | — |
@@ -522,7 +576,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.midnight-study.modes.dark.ornaments` | list of color | #5A9CF0, #F2A93B | maxItems 6 |
 | `themes.midnight-study.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap | — |
 | `themes.midnight-study.nativeMode` | enum | dark | one of light, dark |
-| `default.theme` | id | paper | — |
+| `default.theme` | id | reading-room | — |
 | `default.mode` | enum | light | one of light, dark, system |
 
 ## Checks

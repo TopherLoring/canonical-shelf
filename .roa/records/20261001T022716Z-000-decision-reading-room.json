@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "reading-room",
+  "topic": "theme.default",
+  "date": "2026-10-01",
+  "text": "Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it",
+  "rationale": "Chris: paper, whites, light greys, deep blues, a hint of pink, library",
+  "by": "Chris"
+}
