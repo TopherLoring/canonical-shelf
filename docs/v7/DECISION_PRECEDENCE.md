@@ -527,6 +527,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Learner agency is a hard requirement: the learner remains the decision-maker. The Theologian informs, compares, contextualizes, challenges reasoning, and labels Canonical Shelf's own position; it never pressures agreement on genuinely contested issues. Viewpoint, translation, and evidence-strength differences stay visible
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification
 
+### `theologian.length`
+
+- **Current** · 2026-10-01 · Agent default (Claude) · `concise-default`
+  Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it
+  *Why:* Chris: replies were too verbose and needed reining in a little
+
 ### `theologian.memory`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `theologian.memory.theologian-memory`

@@ -113,6 +113,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
 | `theologian.learner-agency` | undefined | Agent default | undefined |
+| `theologian.length` | undefined | Agent default | undefined |
 | `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; | Owner decision | undefined |
 | `theologian.privacy` | undefined | Agent default | undefined |
 | `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
