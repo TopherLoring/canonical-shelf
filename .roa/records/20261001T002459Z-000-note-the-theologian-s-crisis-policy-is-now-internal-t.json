@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-01",
+  "text": "The Theologian's crisis policy is now internal: the raw policy file, the Theologian Safety page, and their footer, llms.txt, and offline-cache entries are gone; the crisis response itself is unchanged, and About keeps a short 988/911 crisis-help line"
+}

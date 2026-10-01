@@ -101,7 +101,7 @@ Retention must be enforced in code and disclosed publicly, but verification shou
 
 ## Crisis / pastoral safety
 
-`content/theology/crisis-policy.json` is current authority. A deterministic crisis layer runs before ordinary AI generation for credible first-person suicide/self-harm indicators.
+`content/theology/crisis-policy.json` is current authority. It is internal: never publish it under `public/`, link it, or embed it in `llms.txt` (owner decision 2026-10-01). The only learner-facing crisis surfaces are the crisis response itself and the 988/911 line at `/about.html#help`. A deterministic crisis layer runs before ordinary AI generation for credible first-person suicide/self-harm indicators.
 
 When warranted:
 
@@ -120,7 +120,6 @@ Current learner-facing policy surfaces include:
 - `/data-retention.html`
 - `/storage.html`
 - `/terms.html`
-- `/safety.html`
 
 Current posture: local-first guest use; optional account/passkey sync; no personal-data sale; no targeted advertising; no advertising pixels/behavioral analytics trackers; first-party auth/security cookies and functional browser storage.
 

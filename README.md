@@ -60,7 +60,6 @@ Canonical theology files:
 public/data/statement-of-faith.md
 public/data/theologian-belief-context.md
 public/data/theology-policy.json
-public/data/theologian-crisis-policy.json
 public/data/theology-sources.json
 ```
 
@@ -86,7 +85,7 @@ Anonymous users can receive reviewer responses without providing identity. A bro
 
 The deterministic crisis layer precedes normal Workers AI generation. Credible risk can route the learner to emergency care and U.S. 988 support while remaining conversational, encouraging nearby trusted human help, and allowing pastoral support or prayer without substituting them for urgent safety action.
 
-Public disclosure: `/safety.html`.
+The policy is internal: the Worker reads it from `content/` at build time and it is never published. Learners get the crisis response itself and the 988/911 line on About (`/about.html#help`).
 
 ## Privacy / policy surfaces
 
@@ -96,7 +95,6 @@ Public policy surfaces:
 - `/data-retention.html` — Data Retention Policy
 - `/storage.html` — Cookies & Local Storage
 - `/terms.html` — Terms of Use
-- `/safety.html` — Theologian Safety
 
 Current posture includes local-first guest use, optional account/passkey sync, no personal-data sale, no targeted advertising, and no advertising pixels or behavioral analytics trackers.
 

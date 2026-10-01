@@ -16,8 +16,8 @@ const requireContract=(condition,message)=>{if(!condition)throw new Error(messag
 // It must not freeze copy, line numbers, styling classes, CSS values, themes,
 // DOM nesting that is irrelevant to function, or a historical visual version.
 const routes=['home','course','bible','topics','practice','search'];
-const legalFiles=['about.html','privacy.html','data-retention.html','storage.html','terms.html','safety.html'];
-const durableAssets=['manifest.webmanifest','sw.js','llms.txt','data/catalog.json','data/corpus.txt','data/theology-policy.json','data/theologian-crisis-policy.json'];
+const legalFiles=['about.html','privacy.html','data-retention.html','storage.html','terms.html'];
+const durableAssets=['manifest.webmanifest','sw.js','llms.txt','data/catalog.json','data/corpus.txt','data/theology-policy.json'];
 const viewTemplates=['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'];
 
 const shell=await read(`${PUBLIC}/index.html`);
@@ -102,11 +102,17 @@ await check('PWA template',async()=>{
 });
 
 await check('Theology/safety policy data',async()=>{
-  for(const path of ['data/theology-policy.json','data/theologian-crisis-policy.json']){
-    const value=JSON.parse(await read(`${PUBLIC}/${path}`));
-    requireContract(value&&typeof value==='object'&&!Array.isArray(value),`${path} must publish structured policy data`);
-  }
-  return 'interpretation policy + crisis policy';
+  const theology=JSON.parse(await read(`${PUBLIC}/data/theology-policy.json`));
+  requireContract(theology&&typeof theology==='object'&&!Array.isArray(theology),'data/theology-policy.json must publish structured policy data');
+  const crisis=JSON.parse(await read('content/theology/crisis-policy.json'));
+  requireContract(Number(crisis?.version)>=1&&crisis?.status==='approved','content/theology/crisis-policy.json must be an approved policy');
+  requireContract(JSON.stringify(crisis).includes('988'),'crisis policy must route to 988');
+  requireContract(!(await exists(`${PUBLIC}/data/theologian-crisis-policy.json`))&&!(await exists(`${PUBLIC}/safety.html`)),'the crisis policy is internal: it must not be published under public/ (owner decision)');
+  requireContract(!/safety\.html|theologian-crisis-policy/.test(shell),'the app shell must not link the retired safety page or crisis policy');
+  const about=await read(`${PUBLIC}/about.html`);
+  const help=about.match(/<section\b[^>]*id=["']help["'][^>]*>([\s\S]*?)<\/section>/i)?.[1]||'';
+  requireContract(help.includes('988')&&help.includes('911'),'About must keep the crisis-help line with 988 and 911');
+  return 'interpretation policy published; crisis policy internal; 988/911 line on About';
 });
 
 console.log('\nCanonical Shelf durable product contract');
