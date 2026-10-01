@@ -95,22 +95,33 @@ function systemMarkup(){
 function suggestionsMarkup(){return `<div class="theologian-chat__suggestions"><button type="button" data-theologian-suggest="What is the Decalogue, and how does it relate to the rest of Mosaic law?">Decalogue &amp; Mosaic law</button><button type="button" data-theologian-suggest="How should I distinguish what a passage says from later interpretation?">Text vs. interpretation</button><button type="button" data-theologian-suggest="What can you help me understand on this page?">Use this page</button></div>`}
 function emptyMarkup(){return `<div class="theologian-chat__empty"><p class="eyebrow">Study conversation</p><h3>Ask, follow up, and inspect the evidence.</h3><p>Ask naturally. Theologian uses Canonical Shelf Scripture, course material, theology boundaries, and vetted sources behind the scenes; evidence remains available without turning the answer into a policy report.</p>${suggestionsMarkup()}</div>`}
 function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask a question or continue the conversation…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">This chat stays in this browser until you start a new chat. A bounded recent conversation and minimal study context may be sent to answer follow-ups; your notes, feedback, and account data are never included.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
-// scroll: 'keep' preserves the reader's position (ratings, flags, status, route changes);
+// scroll: 'keep' preserves the reader's position (ratings, flags, status, background refreshes);
 // 'bottom' shows the learner's own message and the thinking indicator;
 // 'answer' puts the start of the latest Theologian reply at the top of the stream so it reads from its first line.
-function render({thinking=false,status='',scroll='keep'}={}){
+// 'bottom' and 'answer' run on the next frame. A background re-render before that frame (for example the reply-inbox
+// refresh) must not cancel them, so the pending request carries over and the frame always targets the live stream.
+let pendingScroll=null;
+function render({thinking=sending,status=sending?'Thinking…':'',scroll='keep'}={}){
   const previousTop=body.querySelector('[data-theologian-messages]')?.scrollTop??0;
+  if(scroll==='keep'&&pendingScroll)scroll=pendingScroll;
+  // Re-rendering replaces the composer, so carry over whatever the learner is typing, the caret, and focus.
+  const oldInput=body.querySelector('#guide-q'),draft=oldInput?.value||'',hadFocus=!!oldInput&&document.activeElement===oldInput,caret=[oldInput?.selectionStart??draft.length,oldInput?.selectionEnd??draft.length];
   const ctx=screenContext();
   body.innerHTML=`<section class="theologian-chat" aria-label="Theologian conversation">${systemMarkup()}<p class="theologian-chat__context">Looking at: <strong>${esc(ctx.label)}</strong></p><div class="theologian-chat__stream" data-theologian-messages>${messages.length?messages.map(messageMarkup).join(''):emptyMarkup()}${thinking?'<div class="chat-message chat-message--assistant chat-message--thinking"><div class="chat-message__label">Theologian</div><div class="chat-message__bubble"><p>Thinking…</p></div></div>':''}</div>${composerMarkup()}</section>`;
   const statusNode=body.querySelector('#theologian-chat-status');if(statusNode)statusNode.textContent=status;
+  const newInput=body.querySelector('#guide-q');if(newInput&&draft){newInput.value=draft;if(hadFocus){newInput.focus({preventScroll:true});newInput.setSelectionRange(caret[0],caret[1])}}else if(newInput&&hadFocus)newInput.focus({preventScroll:true});
   const stream=body.querySelector('[data-theologian-messages]');if(!stream)return;
   if(scroll==='keep'){stream.scrollTop=previousTop;return}
+  const firstRequest=!pendingScroll;pendingScroll=scroll;
+  if(!firstRequest)return;
   requestAnimationFrame(()=>{
-    if(scroll==='bottom'){stream.scrollTop=stream.scrollHeight;return}
-    const replies=stream.querySelectorAll('.chat-message--assistant:not(.chat-message--thinking)');
+    const target=pendingScroll;pendingScroll=null;
+    const live=body.querySelector('[data-theologian-messages]');if(!live)return;
+    if(target==='bottom'){live.scrollTop=live.scrollHeight;return}
+    const replies=live.querySelectorAll('.chat-message--assistant:not(.chat-message--thinking)');
     const latest=replies[replies.length-1];
-    if(!latest){stream.scrollTop=stream.scrollHeight;return}
-    stream.scrollTop+=latest.getBoundingClientRect().top-stream.getBoundingClientRect().top;
+    if(!latest){live.scrollTop=live.scrollHeight;return}
+    live.scrollTop+=latest.getBoundingClientRect().top-live.getBoundingClientRect().top;
   });
 }
 
@@ -260,7 +271,11 @@ document.addEventListener('click',event=>{
 document.addEventListener('submit',event=>{
   const flagForm=event.target?.closest?.('[data-flag-form]');if(flagForm){event.preventDefault();event.stopImmediatePropagation();void submitFlag(flagForm);return}
   if(event.target?.id!=='guide-form')return;
-  event.preventDefault();event.stopImmediatePropagation();void ask(new FormData(event.target).get('question')||'');
+  event.preventDefault();event.stopImmediatePropagation();
+  const question=new FormData(event.target).get('question')||'',input=event.target.querySelector('#guide-q');
+  if(sending)return;
+  if(input)input.value='';
+  void ask(question);
 },true);
 
 document.addEventListener('keydown',event=>{

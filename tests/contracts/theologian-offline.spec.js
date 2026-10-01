@@ -13,3 +13,17 @@ test('offline Theologian answers page-help questions about the page and says the
   await expect(reply).toContainText('This is the Shelf');
   await expect(reply).not.toContainText('Genesis 49');
 });
+
+// Re-rendering the chat (rating a reply, background refreshes) must not wipe what the learner is typing.
+test('a half-typed Theologian message survives a re-render of the chat',async({page})=>{
+  await page.route('**/api/theologian',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({mode:'cloud',model:'test',answer:'A short answer.',evidence:[],guardrails:[],validation:{status:'passed'}})}));
+  await page.goto('/home');
+  await page.locator('#guide-open').click();
+  await page.locator('#guide-q').fill('First question?');
+  await page.locator('#guide-q').press('Enter');
+  await expect(page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)')).toHaveCount(1,{timeout:15000});
+  await expect(page.locator('#guide-q')).toHaveValue('');
+  await page.locator('#guide-q').fill('A follow-up I am still writing');
+  await page.locator('#guide .chat-message--assistant').last().locator('[data-theologian-rate="up"]').click();
+  await expect(page.locator('#guide-q')).toHaveValue('A follow-up I am still writing');
+});
