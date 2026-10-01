@@ -157,11 +157,12 @@ async function ask(question){
   messages.push({role:'user',text,at:now()});messages=messages.slice(-MAX_STORED_MESSAGES);saveMessages(messages);
   sending=true;flagOpen=null;render({thinking:true,status:'Thinking…',scroll:'bottom'});showPanel();
   try{
-    const context=await learnerContext();
+    // Study context and policy lookups are extras: if loading them fails, still ask the service rather than dropping to the offline answer.
+    const context=await learnerContext().catch(()=>({route:`${location.pathname}${location.search}`}));
     const passage=currentPassage(),params=new URLSearchParams(location.search);
     if(passage?.address.verseStart){params.set('start',passage.address.verseStart);params.set('end',passage.address.verseEnd||passage.address.verseStart)}
     const result=await requestCloudTheologian(text,{path:`${location.pathname}${params.toString()?`?${params}`:''}`,history,learnerContext:context});
-    const policyVersion=(await assets()).policy?.version||'';
+    const policyVersion=result.policyVersion?'':await assets().then(value=>value.policy?.version||'').catch(()=>'');
     messages.push(normalizeMessage({role:'assistant',text:result.answer,at:now(),mode:result.mode||'cloud',model:result.model||'',policyVersion:result.policyVersion||policyVersion,evidence:result.evidence||[],guardrails:result.guardrails||[],validation:result.validation||null,lgbtqResearchApplied:result.lgbtqResearchApplied}));
   }catch(error){
     if(error?.name==='AbortError'){sending=false;render();return}

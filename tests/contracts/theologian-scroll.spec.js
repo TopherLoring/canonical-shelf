@@ -17,6 +17,8 @@ test('Theologian reply opens at its first line and stays put when rated',async({
     await expect(page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)')).toHaveCount(question.startsWith('First')?1:2,{timeout:15000});
     await expect(page.locator('#guide .chat-message--thinking')).toHaveCount(0,{timeout:15000});
   }
+  // Both replies must be the service's long answer, not the short offline fallback, or the scroll measurements mean nothing.
+  await expect(page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)').last()).toContainText('Paragraph 14.');
   const offset=async()=>page.evaluate(()=>{
     const stream=document.querySelector('#guide [data-theologian-messages]');
     const replies=stream.querySelectorAll('.chat-message--assistant:not(.chat-message--thinking)');
