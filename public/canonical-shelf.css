@@ -421,3 +421,6 @@ main#main :is(.course-volume-heading,.bible-reader-heading,.topics-dossier__head
 .profile-section:nth-of-type(6n+6){border-bottom-color:var(--ornament-6)}
 /* Labels were letter-spaced for capitals; in sentence case they read best with near-normal spacing. */
 .eyebrow,.masthead .primary a,.theologian-tab__label,.home-kicker,.study-apparatus summary,.apparatus-module summary,.scene-eyebrow,[class*="eyebrow"]{letter-spacing:.01em}
+/* Buttons never look like links, even when built from an <a>. */
+a.button,.button{text-decoration:none}
+a.button:hover,a.button:focus-visible{text-decoration:none}
