@@ -24,6 +24,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
 - Theologian replies now open at their first line instead of scrolling to the bottom of the chat, and rating, flagging, or status messages no longer move the reader
 - Lesson headers no longer print the module, unit, and lesson names in capital letters, and a test now fails if any screen shows text written in capitals; the static pages' navigation now matches the app (Shelf, Pathway, Bible, Catalog, Practice); search text with em dashes and quotes displays correctly
+- The 'Questions worth carrying' lesson now describes the four modules instead of the old six courses, including its scored check
 
 ## 2026-09-30
 
