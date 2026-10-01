@@ -17,7 +17,8 @@ const ABOUT_SECTION_LABELS={
   sources:'Sources & methodology',
   translations:'Translation information',
   accessibility:'Accessibility',
-  privacy:'Privacy'
+  privacy:'Privacy',
+  help:'Crisis help'
 };
 
 const PUBLIC_RESOURCES=[
@@ -26,12 +27,10 @@ const PUBLIC_RESOURCES=[
   {label:'Data Retention Policy',url:'/data-retention.html',description:'Current retention schedule for browser-local data, accounts, synchronized state, feedback/reviews, Theologian processing, crisis conversations, and operational records.',embed:true,html:true,reachabilityIds:['data-retention-policy']},
   {label:'Cookies & Local Storage',url:'/storage.html',description:'Current first-party cookie, browser-storage, PWA/cache, anonymous-feedback identifier, and storage-control disclosure.',embed:true,html:true,reachabilityIds:['storage-disclosure']},
   {label:'Terms of Use',url:'/terms.html',description:'Terms governing Canonical Shelf learning, learner agency, Theologian and pastoral-style guidance, emergency use, accounts, submissions, acceptable use, and service limitations.',embed:true,html:true,reachabilityIds:['terms-of-use']},
-  {label:'Theologian Safety',url:'/safety.html',description:'Public crisis and pastoral safety disclosure covering 988/911 routing, prayer, faith-community support, privacy, and learner agency.',embed:true,html:true,reachabilityIds:['theologian-safety']},
   {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true,reachabilityIds:['curriculum']},
   {label:'Runtime catalog',url:'/data/catalog.json',description:'Canonical curriculum, lesson, mastery, Topic, glossary, question-thread, challenge, stable-ID, and learning metadata. Its learner-facing substantive content is embedded below.',embed:false,reachabilityIds:['curriculum','topics','glossary']},
   {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's compact public Statement of Faith and doctrinal ceiling for Canonical Shelf doctrinal claims.",embed:true,reachabilityIds:['statement-of-faith']},
   {label:'Theology policy',url:'/data/theology-policy.json',description:'Machine-readable evidence, interpretation, learner-agency, doctrinal-boundary, and response rules used by the Theologian and theology layer.',embed:true,reachabilityIds:['theology-policy']},
-  {label:'Theologian crisis policy',url:'/data/theologian-crisis-policy.json',description:'Machine-readable suicide/self-harm crisis routing, pastoral reassurance, prayer, human-help escalation, and crisis privacy rules.',embed:true,reachabilityIds:['crisis-policy']},
   {label:'Theology sources',url:'/data/theology-sources.json',description:'Canonical metadata for public biblical, historical, scholarly, denominational, and theological sources available to the bounded evidence layer.',embed:true,reachabilityIds:['theology-sources']}
 ];
 

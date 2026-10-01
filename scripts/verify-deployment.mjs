@@ -40,7 +40,7 @@ const rootType=rootResponse.headers.get('content-type')||'';
 const rootBody=await rootResponse.text();
 if(!rootType.includes('text/html')||!/<html[\s>]/i.test(rootBody)||!/Canonical Shelf/i.test(rootBody))throw new Error('/ did not return the Canonical Shelf compatibility shell');
 assertNativeShell(rootBody,'/');
-for(const required of ['/privacy.html','/data-retention.html','/storage.html','/terms.html','/safety.html'])if(!rootBody.includes(required))throw new Error(`/ is missing policy navigation to ${required}`);
+for(const required of ['/privacy.html','/data-retention.html','/storage.html','/terms.html'])if(!rootBody.includes(required))throw new Error(`/ is missing policy navigation to ${required}`);
 
 for(const route of ['home','course','bible','topics','practice','search']){
   const path=`/${route}`;
@@ -60,13 +60,11 @@ for(const [route,needle] of [
   ['/data-retention.html','Data Retention Policy'],
   ['/storage.html','Cookies &amp; Local Storage'],
   ['/terms.html','Learner agency is a hard requirement. The learner remains the decision-maker.'],
-  ['/safety.html','988'],
+  ['/about.html','988'],
   ['/llms.txt','Complete learner-facing content'],
   ['/llms.txt','Privacy Policy'],
-  ['/llms.txt','Theologian Safety'],
   ['/data/statement-of-faith.md','Statement'],
   ['/data/theology-policy.json','learnerAgency'],
-  ['/data/theologian-crisis-policy.json','Pastoral reassurance'],
   ['/data/catalog.json','courses']
 ]){
   const response=await fetchWithRetry(route);
@@ -80,10 +78,13 @@ if(Number(policy?.version)<4)throw new Error('deployed theology policy is older 
 if(policy?.interpretiveFoundation?.status!=='approved')throw new Error('deployed theology policy is missing the approved interpretive foundation');
 if(!/learner is the decision-maker/i.test(String(policy?.learnerAgency?.rule||'')))throw new Error('deployed theology policy is missing the learner-agency rule');
 
-const crisisPolicyResponse=await fetchWithRetry('/data/theologian-crisis-policy.json');
-const crisisPolicy=await crisisPolicyResponse.json().catch(()=>null);
-if(Number(crisisPolicy?.version)<1||crisisPolicy?.status!=='approved')throw new Error('deployed crisis policy is missing or unapproved');
-if(!JSON.stringify(crisisPolicy).includes('Call or text 988'))throw new Error('deployed crisis policy is missing 988 routing');
+// The crisis policy is internal. Unknown paths fall back to the SPA shell, so check that no policy content is served.
+for(const path of ['/data/theologian-crisis-policy.json','/safety.html']){
+  const body=await (await fetchWithRetry(path)).text();
+  if(/"pastoralCare"|"responseContract"|What crisis mode does/.test(body))throw new Error(`${path} still serves the internal crisis policy`);
+}
+const llmsBody=await (await fetchWithRetry('/llms.txt')).text();
+if(/theologian-crisis-policy|"pastoralCare"/.test(llmsBody))throw new Error('/llms.txt still exposes the internal crisis policy');
 
 const crisisResponse=await fetchWithRetry('/api/theologian',{
   attempts:2,delay:1000,
@@ -110,4 +111,4 @@ if(!Array.isArray(theologian?.guardrails)||!theologian.guardrails.some(item=>/Be
 if(!Array.isArray(theologian?.evidence)||theologian.evidence.length===0)throw new Error('live Theologian smoke returned no grounding evidence');
 if(theologian?.validation?.status!=='passed')throw new Error('live Theologian smoke did not report passed guardrail validation');
 
-console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: SPA route fallback, legal/privacy/safety surfaces, crisis policy/mode, generated content, bindings, and live cloud Theologian verified`);
+console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: SPA route fallback, legal/privacy surfaces, crisis policy kept internal, crisis mode, generated content, bindings, and live cloud Theologian verified`);
