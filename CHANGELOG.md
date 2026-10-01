@@ -3,6 +3,12 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-01
+
+### Changed
+
+- Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
+
 ## 2026-09-30
 
 ### Decided
