@@ -9,6 +9,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
 
+### Fixed
+
+- Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
+
 ## 2026-09-30
 
 ### Decided
