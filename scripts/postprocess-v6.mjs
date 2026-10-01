@@ -129,18 +129,19 @@ for(const lesson of cat.lessons){
 }
 cat.glossary=[...glossaryMap.values()].sort((a,b)=>a.term.localeCompare(b.term));
 
-if(courses.length!==6)throw new Error(`expected six courses, got ${courses.length}`);
+if(courses.length!==4)throw new Error(`expected four modules, got ${courses.length}`);
 if(cat.legacyLessonIds.length!==70)throw new Error(`legacy guided lesson preservation failed: ${cat.legacyLessonIds.length}`);
 if(cat.legacyMasteryIds.length!==69)throw new Error(`legacy mastery preservation failed: ${cat.legacyMasteryIds.length}`);
 if(!cat.legacyLessonIds.includes('begin'))throw new Error('stable legacy lesson begin missing');
 if(!cat.activities.some(activity=>activity.id==='lesson:begin'))throw new Error('stable lesson:begin activity missing');
 if(!cat.activities.every(activity=>units.some(unit=>unit.id===activity.unitId)))throw new Error('activity references unknown unit');
 if(units.some(unit=>!(newMasteryPlacement[unit.id]||[]).some(id=>newMastery[id]?.type==='unit-mastery')))throw new Error('a scored unit is missing authored unit mastery');
-if(courses.some(course=>!courseCapstoneIds.some(id=>newMastery[id]?.courseId===course.id)))throw new Error('a course is missing its capstone');
+if(courses.some(course=>!courseCapstoneIds.some(id=>newMastery[id]?.courseId===course.id)))throw new Error('a module is missing its capstone');
+if(cat.lessons.find(lesson=>lesson.id==='library')?.unitId!=='c1.bible')throw new Error('the library lesson belongs in c1.bible');
 for(const required of ['c2-passover','c2-tabernacle','c2-ark','c2-day-atonement','c2-new-covenant','c3-alexander-hellenization','c3-pharisees-sadducees','c3-messianic-diversity','c4-pentecost'])if(!cat.lessons.some(lesson=>lesson.id===required))throw new Error(`required bridge lesson missing: ${required}`);
 
 await writeFile(path,JSON.stringify(cat,null,2));
 await writeFile('public/data/statement-of-faith.md',await readFile('content/statement/statement-of-faith-compact.md','utf8'));
 await writeFile('public/data/theologian-belief-context.md',await readFile('content/statement/statement-of-faith-v3.md','utf8'));
 await writeFile('public/data/theology-sources.json',await readFile('content/theology/sources.json','utf8'));
-console.log(`multi-course catalog: ${cat.courses.length} courses, ${cat.units.length} units, ${cat.lessons.length} guided lessons, ${cat.masteryIds.length} mastery/capstone activities, ${cat.activities.length} scored activities, ${cat.glossary.length} glossary terms`);
+console.log(`module catalog: ${cat.courses.length} modules, ${cat.units.length} units, ${cat.lessons.length} guided lessons, ${cat.masteryIds.length} mastery/capstone activities, ${cat.activities.length} scored activities, ${cat.glossary.length} glossary terms`);

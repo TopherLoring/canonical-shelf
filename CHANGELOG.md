@@ -17,11 +17,13 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
 - The service worker's release fingerprint now lives in a build-generated file instead of sw.js, so pull requests no longer conflict over it; stamping fails if the worker's cache list names a file that does not exist
 - The Theologian's crisis policy is now internal: the raw policy file, the Theologian Safety page, and their footer, llms.txt, and offline-cache entries are gone; the crisis response itself is unchanged, and About keeps a short 988/911 crisis-help line
+- The Pathway now has four modules instead of six courses: Hermeneutics & Canon, Hebrew Scriptures, Second Temple & Christ Event, and Synthesis & Practice. Every unit, lesson, and activity keeps its ID, so saved progress carries over and old course links open the module that now holds the material; Wisdom and Worship and Reading Somebody Else's Mail are former units in their new places
 
 ### Fixed
 
 - Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
 - Theologian replies now open at their first line instead of scrolling to the bottom of the chat, and rating, flagging, or status messages no longer move the reader
+- Lesson headers no longer print the module, unit, and lesson names in capital letters, and a test now fails if any screen shows text written in capitals; the static pages' navigation now matches the app (Shelf, Pathway, Bible, Catalog, Practice); search text with em dashes and quotes displays correctly
 
 ## 2026-09-30
 

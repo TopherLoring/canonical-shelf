@@ -4,9 +4,9 @@ import {pathToFileURL} from 'node:url';
 
 const ROUTE_DESCRIPTIONS={
   home:'Personalized learner dashboard for orientation, progress, recommendations, and resuming the next relevant activity.',
-  course:'Six-course guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.',
+  course:'Four-module guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.',
   bible:'Interactive 66-book Bible shelf for browsing books, reading biblical text, and accessing book-level historical, literary, and study context.',
-  topics:'Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward course completion.',
+  topics:'Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward module completion.',
   practice:'Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.'
 };
 
@@ -27,7 +27,7 @@ const PUBLIC_RESOURCES=[
   {label:'Data Retention Policy',url:'/data-retention.html',description:'Current retention schedule for browser-local data, accounts, synchronized state, feedback/reviews, Theologian processing, crisis conversations, and operational records.',embed:true,html:true,reachabilityIds:['data-retention-policy']},
   {label:'Cookies & Local Storage',url:'/storage.html',description:'Current first-party cookie, browser-storage, PWA/cache, anonymous-feedback identifier, and storage-control disclosure.',embed:true,html:true,reachabilityIds:['storage-disclosure']},
   {label:'Terms of Use',url:'/terms.html',description:'Terms governing Canonical Shelf learning, learner agency, Theologian and pastoral-style guidance, emergency use, accounts, submissions, acceptable use, and service limitations.',embed:true,html:true,reachabilityIds:['terms-of-use']},
-  {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current six-course guided curriculum, including its course, unit, lesson, and mastery structure.',embed:true,reachabilityIds:['curriculum']},
+  {label:'Curriculum reference',url:'/data/curriculum.md',description:'Human-readable reference for the current four-module guided curriculum, including its module, unit, lesson, and mastery structure.',embed:true,reachabilityIds:['curriculum']},
   {label:'Runtime catalog',url:'/data/catalog.json',description:'Canonical curriculum, lesson, mastery, Topic, glossary, question-thread, challenge, stable-ID, and learning metadata. Its learner-facing substantive content is embedded below.',embed:false,reachabilityIds:['curriculum','topics','glossary']},
   {label:'Statement of Faith',url:'/data/statement-of-faith.md',description:"Canonical Shelf's compact public Statement of Faith and doctrinal ceiling for Canonical Shelf doctrinal claims.",embed:true,reachabilityIds:['statement-of-faith']},
   {label:'Theology policy',url:'/data/theology-policy.json',description:'Machine-readable evidence, interpretation, learner-agency, doctrinal-boundary, and response rules used by the Theologian and theology layer.',embed:true,reachabilityIds:['theology-policy']},
@@ -246,9 +246,9 @@ function verifyReachabilityCoverage({manifest,aboutSections,embeddedResources,le
 export function renderLlms({routes,counts,aboutSections=[],embeddedResources=[],learnerDatasets=[],linkedResources=[]}){
   const lines=[
     '# Canonical Shelf','',
-    '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining six progressive guided courses, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware Theologian.','',
+    '> Canonical Shelf is an offline-capable Bible-learning and scholarly reference application combining four progressive guided modules, Scripture study, curated Topics, Practice, glossaries, and an evidence-aware Theologian.','',
     'This file is generated from Canonical Shelf’s learner-facing learning, Bible-reference, Practice, editorial, institutional, legal/privacy, safety, and theology content. It is a derived machine-readable corpus, not an independent authority. The complete Berean Standard Bible corpus is intentionally linked rather than duplicated verbatim; curated Scripture excerpts intentionally used by Canonical Shelf remain included.','',
-    `Current scored curriculum: ${counts.courses} courses, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
+    `Current scored curriculum: ${counts.courses} modules, ${counts.units} units, ${counts.guidedLessons} guided lessons, ${counts.masteryActivities} mastery/capstone activities, and ${counts.scoredActivities} scored activities. Current reference library: ${counts.topics} Topics and ${counts.glossaryTerms} glossary terms.`,'',
     '## Primary destinations',''
   ];
   for(const route of routes)lines.push(`- [${route.label}](${route.href}): ${route.description}`);

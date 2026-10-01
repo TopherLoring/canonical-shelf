@@ -9,7 +9,7 @@
 Primary destinations:
 
 1. **Home** — shelf-first orientation, continuation, and routes into the rest of the product.
-2. **Course** — six-course guided curriculum and scored learning.
+2. **Pathway** — four-module guided curriculum and scored learning.
 3. **Bible** — 66-book shelf, book profiles, chapters, BSB reader, and Bible-specific context.
 4. **Topics** — curated reference and question-driven investigation outside completion.
 5. **Practice** — retrieval, spaced review, mastery reinforcement, and learning games; not a second curriculum.

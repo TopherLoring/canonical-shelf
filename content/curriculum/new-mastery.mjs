@@ -96,12 +96,22 @@ const capstoneSpecs={
   ],'The capstone tests fair representation, theological reasoning, and interpretive restraint.')
 };
 
+// Capstone IDs predate the four modules and stay stable so saved progress carries over. Each capstone sits at the end
+// of the material it tests: two modules hold two capstones because they absorbed two former courses.
+const capstonePlacement=[
+  {id:'course-1-capstone',spec:'course.foundations',courseId:'module.canon',unitId:'c1.synthesis'},
+  {id:'course-2-capstone',spec:'course.israel',courseId:'module.hebrew-scriptures',unitId:'c2.restoration-hope'},
+  {id:'course-3-capstone',spec:'course.second-temple',courseId:'module.christ-event',unitId:'c3.enter-gospels'},
+  {id:'course-4-capstone',spec:'course.jesus-church',courseId:'module.christ-event',unitId:'c5.gospel-letters'},
+  {id:'course-5-capstone',spec:'course.interpretation',courseId:'module.synthesis',unitId:'c5.interpretation'},
+  {id:'course-6-capstone',spec:'course.theology',courseId:'module.synthesis',unitId:'c6.final-hope'}
+];
 const courseCapstones={};
-for(const course of courses){
-  const lastUnit=units.filter(unit=>unit.courseId===course.id).at(-1);
-  const id=`course-${course.sequence}-capstone`;
-  courseCapstones[id]={id,type:'course-capstone',unitId:lastUnit.id,courseId:course.id,title:`${course.shortTitle} · Course Capstone`,dek:'Transfer the course’s knowledge into a cumulative problem.',body:['This capstone asks you to reconstruct and use the course, not merely recognize isolated terms.'],challenge:capstoneSpecs[course.id]};
-  placement[lastUnit.id].push(id);
+for(const {id,spec,courseId,unitId} of capstonePlacement){
+  const challenge=capstoneSpecs[spec],unit=units.find(item=>item.id===unitId);
+  if(!challenge||!unit||unit.courseId!==courseId)throw new Error(`capstone ${id}: bad placement`);
+  courseCapstones[id]={id,type:'course-capstone',unitId,courseId,title:challenge.title,dek:'Use what you have learned on a cumulative problem.',body:['This capstone asks you to reconstruct and use what you have learned, not merely recognize isolated terms.'],challenge};
+  placement[unitId].push(id);
 }
 
 export const newMastery={...unitMastery,...courseCapstones};

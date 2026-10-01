@@ -1,3 +1,5 @@
+> **History.** This six-course plan was superseded on 2026-10-01 by the approved four-module design (`docs/v7/curriculum-design.proposal.json`). Kept for provenance only.
+
 # Canonical Shelf — Multi-Course Curriculum Architecture
 
 Status: **current structural reference; questions-first refinements are authoritative in `PLAN_DELTA_QUESTIONS_FIRST_SPIRAL.md`**

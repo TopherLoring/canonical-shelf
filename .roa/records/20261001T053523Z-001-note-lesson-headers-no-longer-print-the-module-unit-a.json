@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-01",
+  "text": "Lesson headers no longer print the module, unit, and lesson names in capital letters, and a test now fails if any screen shows text written in capitals; the static pages' navigation now matches the app (Shelf, Pathway, Bible, Catalog, Practice); search text with em dashes and quotes displays correctly"
+}

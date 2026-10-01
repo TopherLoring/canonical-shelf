@@ -15,8 +15,8 @@ export const ORIENTATION_LESSON={
       role:'Orient',
       title:'A guided way into Scripture',
       paragraphs:[
-        'Canonical Shelf is a Bible-learning and study environment for thoughtful adults. It combines a guided Course, the biblical text itself, curated reference material, active Practice, and deeper study tools so that learning does not stop at remembering isolated facts.',
-        'The goal is not permanent dependence on lessons. The guided course provides scaffolding: first showing you what to notice, then helping you practice how to investigate a text, question, or claim for yourself.'
+        'Canonical Shelf is a Bible-learning and study environment for thoughtful adults. It combines a guided Pathway, the biblical text itself, curated reference material, active Practice, and deeper study tools so that learning does not stop at remembering isolated facts.',
+        'The goal is not permanent dependence on lessons. The guided Pathway provides scaffolding: first showing you what to notice, then helping you practice how to investigate a text, question, or claim for yourself.'
       ],
       callout:'Learn → Study → Remember → Investigate independently.'
     },
@@ -44,13 +44,13 @@ export const ORIENTATION_LESSON={
       title:'Start with the questions, then build better answers',
       paragraphs:[
         'Adults often arrive with questions already in mind: why Jesus died, what sin means, why suffering exists, whether Scripture can be trusted, why Christians disagree, how to read violent or morally difficult texts, what Christians mean by judgment and resurrection, or how to evaluate disputed questions about law, gender, sexuality, miracles, and other religions.',
-        'Canonical Shelf introduces those questions early instead of pretending they do not exist. It also resists giving a confident answer before the learner has the evidence and context needed to evaluate it. The six courses deliberately return to important questions after building biblical history, first-century context, primary-text familiarity, and stronger interpretive tools.'
+        'Canonical Shelf introduces those questions early instead of pretending they do not exist. It also resists giving a confident answer before the learner has the evidence and context needed to evaluate it. The four modules deliberately return to important questions after building biblical history, first-century context, primary-text familiarity, and stronger interpretive tools.'
       ],
       callout:'Question → foundation → context → evidence → interpretation → synthesis.'
     },
     {
       role:'Explain',
-      title:'What the course will teach',
+      title:'What the Pathway will teach',
       paragraphs:[
         'The curriculum develops the biblical library, larger story, chronology, people, places, genres, themes, key passages, historical context, translation, relevant Hebrew and Greek, interpretation, Christian doctrine, contested questions, evidence evaluation, and independent synthesis.',
         'The learning progression is deliberate. You will move from recognition and location toward interpretation, evaluating evidence, transferring a method to unfamiliar material, and eventually synthesizing a responsible conclusion.'
@@ -59,20 +59,20 @@ export const ORIENTATION_LESSON={
     },
     {
       role:'Navigate',
-      title:'Course — the guided path',
+      title:'Pathway — the guided path',
       paragraphs:[
-        'Course is a six-course sequence containing 44 scored units. Guided lessons, integrated mastery, unit mastery, and course capstones keep explanation, retrieval, reasoning, and synthesis inside one coherent learning path.',
-        'Course 1 gives the complete introductory map and names the major questions. Courses 2–4 build the biblical and historical foundation. Course 5 focuses on interpretation and evidence. Course 6 synthesizes theology, traditions, and difficult questions using the foundation already developed.',
+        'Pathway is a sequence of four modules containing 44 scored units. Guided lessons, integrated mastery, unit mastery, and capstones keep explanation, retrieval, reasoning, and synthesis inside one coherent learning path.',
+        'Module 1 starts with what Christianity claims, the questions that worry new readers, and how the Bible works as a library. Module 2 reads Israel’s Scriptures in their ancient world. Module 3 enters the world of Jesus, the Gospels, and Paul’s letters. Module 4 brings theology, traditions, and difficult questions back together using the foundation already built.',
         'Progress distinguishes completion, retention, mastery, and review-due states. You may leave the path to investigate something elsewhere and return without losing your place.'
       ],
-      actions:[{label:'Open Course overview',href:'/course'}]
+      actions:[{label:'Open the Pathway',href:'/course'}]
     },
     {
       role:'Navigate',
       title:'Bible — the library itself',
       paragraphs:[
         'Bible owns the bookshelf, book navigation, chapters, reader, book profiles, and the study affordances that belong closest to the biblical text. Use it when you want to read a passage directly, locate a book, compare its canonical setting with chronology, or follow references from a lesson or Topic.',
-        'You do not need to memorize the shelf before beginning. The Course teaches the groups progressively while the Bible remains available as a reference environment at any time.'
+        'You do not need to memorize the shelf before beginning. The Pathway teaches the groups progressively while the Bible remains available as a reference environment at any time.'
       ],
       actions:[{label:'Open Bible',href:'/bible'}]
     },
@@ -89,7 +89,7 @@ export const ORIENTATION_LESSON={
       role:'Navigate',
       title:'Topics and the Theologian — follow a question',
       paragraphs:[
-        'Topics is a curated reference layer rather than a second curriculum. Use it for doctrine, biblical concepts, Christian practice, difficult questions, glossary material, and links back into Scripture or Course content.',
+        'Topics is a curated reference layer rather than a second curriculum. Use it for doctrine, biblical concepts, Christian practice, difficult questions, glossary material, and links back into Scripture or Pathway content.',
         'The Theologian can connect material already available in Canonical Shelf and, when cloud synthesis is available, make that evidence conversational. Its responses remain bounded by the Berean Standard Bible, Canonical Shelf content, the Statement of Faith, theology policy, and vetted research. The deterministic evidence-aware path remains available when cloud generation is unavailable.'
       ],
       actions:[{label:'Browse Topics',href:'/topics'}]
@@ -115,7 +115,7 @@ export const ORIENTATION_LESSON={
     },
     {
       role:'Explore',
-      title:'The course is a path, not a locked hallway',
+      title:'The Pathway is a path, not a locked hallway',
       paragraphs:[
         'You may skip ahead, open another unit, browse the Bible, investigate a Topic, practice learned material, follow a cross-reference, or return to the guided path. The curriculum supplies a recommended learning sequence, not a restriction on curiosity.',
         'When a lesson raises a question that matters to you, following that question is part of learning. Canonical Shelf is designed to help you return with better context rather than punish exploration. You are also allowed to hold a provisional answer and revise it as your evidence and understanding improve.'

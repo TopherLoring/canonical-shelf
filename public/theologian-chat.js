@@ -131,7 +131,7 @@ function activityLabel(data){
     const lesson=params.get('lesson');if(lesson){const item=(data.lessons||[]).find(value=>value.id===lesson);return item?.title||`Lesson ${lesson}`}
     const mastery=params.get('mastery');if(mastery){const item=(data.activities||[]).find(value=>value.type==='mastery'&&value.sourceId===mastery);return item?.title||`Mastery ${mastery}`}
     const unit=params.get('unit');if(unit)return (data.units||[]).find(value=>value.id===unit)?.title||`Unit ${unit}`;
-    const course=params.get('course');if(course)return (data.courses||[]).find(value=>value.id===course)?.title||`Course ${course}`;
+    const course=params.get('course');if(course)return (data.courses||[]).find(value=>value.id===course)?.title||`Module ${course}`;
   }
   if(location.pathname==='/bible')return document.querySelector('.reader.scripture h1')?.textContent?.trim()||document.querySelector('[data-book-drawer] h2')?.textContent?.trim()||'Bible';
   if(location.pathname==='/topics')return document.querySelector('.topic-reference-page h1')?.textContent?.trim()||'Topics';
@@ -169,7 +169,7 @@ async function ask(question){
       const resources=await assets(),fallback=deterministicAnswer(text,resources);
       messages.push(normalizeMessage({role:'assistant',text:fallback.answer,at:now(),mode:'local',model:fallback.model,policyVersion:fallback.policyVersion,evidence:fallback.evidence,guardrails:fallback.guardrails,validation:fallback.validation,fallback:true}));
     }catch{
-      messages.push(normalizeMessage({role:'assistant',text:'I could not build a reliable answer from the available evidence. Try rephrasing the question or open the relevant Bible, Course, or Topic material and ask again.',at:now(),mode:'local',model:'local-unavailable',fallback:true}));
+      messages.push(normalizeMessage({role:'assistant',text:'I could not build a reliable answer from the available evidence. Try rephrasing the question or open the relevant Bible, Pathway, or Catalog material and ask again.',at:now(),mode:'local',model:'local-unavailable',fallback:true}));
     }
   }finally{
     sending=false;messages=messages.filter(Boolean).slice(-MAX_STORED_MESSAGES);saveMessages(messages);render({scroll:'answer'});body.querySelector('#guide-q')?.focus({preventScroll:true});
