@@ -95,11 +95,23 @@ function systemMarkup(){
 function suggestionsMarkup(){return `<div class="theologian-chat__suggestions"><button type="button" data-theologian-suggest="What is the Decalogue, and how does it relate to the rest of Mosaic law?">Decalogue &amp; Mosaic law</button><button type="button" data-theologian-suggest="How should I distinguish what a passage says from later interpretation?">Text vs. interpretation</button><button type="button" data-theologian-suggest="What can you help me understand on this page?">Use this page</button></div>`}
 function emptyMarkup(){return `<div class="theologian-chat__empty"><p class="eyebrow">Study conversation</p><h3>Ask, follow up, and inspect the evidence.</h3><p>Ask naturally. Theologian uses Canonical Shelf Scripture, course material, theology boundaries, and vetted sources behind the scenes; evidence remains available without turning the answer into a policy report.</p>${suggestionsMarkup()}</div>`}
 function composerMarkup(){return `<form id="guide-form" class="theologian-chat__composer"><div class="theologian-chat__composer-row"><label class="sr-only" for="guide-q">Message Theologian</label><textarea id="guide-q" name="question" rows="2" maxlength="1400" placeholder="Ask a question or continue the conversation…"></textarea><button type="submit" ${sending?'disabled':''}>${sending?'Thinking…':'Send'}</button></div><p class="theologian-chat__privacy">This chat stays in this browser until you start a new chat. A bounded recent conversation and minimal study context may be sent to answer follow-ups; your notes, feedback, and account data are never included.</p><p id="theologian-chat-status" class="theologian-chat__status" role="status" aria-live="polite"></p></form>`}
-function render({thinking=false,status=''}={}){
+// scroll: 'keep' preserves the reader's position (ratings, flags, status, route changes);
+// 'bottom' shows the learner's own message and the thinking indicator;
+// 'answer' puts the start of the latest Theologian reply at the top of the stream so it reads from its first line.
+function render({thinking=false,status='',scroll='keep'}={}){
+  const previousTop=body.querySelector('[data-theologian-messages]')?.scrollTop??0;
   const ctx=screenContext();
   body.innerHTML=`<section class="theologian-chat" aria-label="Theologian conversation">${systemMarkup()}<p class="theologian-chat__context">Looking at: <strong>${esc(ctx.label)}</strong></p><div class="theologian-chat__stream" data-theologian-messages>${messages.length?messages.map(messageMarkup).join(''):emptyMarkup()}${thinking?'<div class="chat-message chat-message--assistant chat-message--thinking"><div class="chat-message__label">Theologian</div><div class="chat-message__bubble"><p>Thinking…</p></div></div>':''}</div>${composerMarkup()}</section>`;
   const statusNode=body.querySelector('#theologian-chat-status');if(statusNode)statusNode.textContent=status;
-  const stream=body.querySelector('[data-theologian-messages]');if(stream)requestAnimationFrame(()=>{stream.scrollTop=stream.scrollHeight});
+  const stream=body.querySelector('[data-theologian-messages]');if(!stream)return;
+  if(scroll==='keep'){stream.scrollTop=previousTop;return}
+  requestAnimationFrame(()=>{
+    if(scroll==='bottom'){stream.scrollTop=stream.scrollHeight;return}
+    const replies=stream.querySelectorAll('.chat-message--assistant:not(.chat-message--thinking)');
+    const latest=replies[replies.length-1];
+    if(!latest){stream.scrollTop=stream.scrollHeight;return}
+    stream.scrollTop+=latest.getBoundingClientRect().top-stream.getBoundingClientRect().top;
+  });
 }
 
 async function assets(){
@@ -143,7 +155,7 @@ async function ask(question){
   const text=clip(question,1400);if(!text||sending)return;
   const history=messages.slice(-8).map(({role,text})=>({role,text}));
   messages.push({role:'user',text,at:now()});messages=messages.slice(-MAX_STORED_MESSAGES);saveMessages(messages);
-  sending=true;flagOpen=null;render({thinking:true,status:'Thinking…'});showPanel();
+  sending=true;flagOpen=null;render({thinking:true,status:'Thinking…',scroll:'bottom'});showPanel();
   try{
     const context=await learnerContext();
     const passage=currentPassage(),params=new URLSearchParams(location.search);
@@ -160,7 +172,7 @@ async function ask(question){
       messages.push(normalizeMessage({role:'assistant',text:'I could not build a reliable answer from the available evidence. Try rephrasing the question or open the relevant Bible, Course, or Topic material and ask again.',at:now(),mode:'local',model:'local-unavailable',fallback:true}));
     }
   }finally{
-    sending=false;messages=messages.filter(Boolean).slice(-MAX_STORED_MESSAGES);saveMessages(messages);render();body.querySelector('#guide-q')?.focus({preventScroll:true});
+    sending=false;messages=messages.filter(Boolean).slice(-MAX_STORED_MESSAGES);saveMessages(messages);render({scroll:'answer'});body.querySelector('#guide-q')?.focus({preventScroll:true});
   }
 }
 function userPromptsBefore(index,count){const out=[];for(let i=index-1;i>=0&&out.length<count;i--)if(messages[i]?.role==='user')out.unshift(messages[i].text);return out}
@@ -219,7 +231,7 @@ async function refreshReplies(){try{replies=await fetchReplies()}catch{replies=[
 function markRepliesRead(){for(const r of replies)seenReplies.add(r.id);try{localStorage.setItem(SEEN_KEY,JSON.stringify([...seenReplies]))}catch{}updateBadge();render()}
 function showPanel(){panel.hidden=false;requestAnimationFrame(()=>{panel.dataset.open='true'});openButton.setAttribute('aria-expanded','true')}
 function openChat(trigger=openButton,{draft=''}={}){
-  lastTrigger=trigger||openButton;render();showPanel();
+  lastTrigger=trigger||openButton;render({scroll:'answer'});showPanel();
   const input=body.querySelector('#guide-q');if(input){input.value=draft;input.focus({preventScroll:true})}
   void refreshReplies();
 }

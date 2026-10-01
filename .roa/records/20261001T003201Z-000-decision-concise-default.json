@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "concise-default",
+  "topic": "theologian.length",
+  "date": "2026-10-01",
+  "text": "Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it",
+  "rationale": "Chris: replies were too verbose and needed reining in a little",
+  "by": "Claude"
+}

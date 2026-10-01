@@ -5,6 +5,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ## 2026-10-01
 
+### Decided
+
+- Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it (agent default)
+
 ### Changed
 
 - Themes redesigned in the theme lab (/theme-lab.html): three title fonts only, Paper default, Stained Glass polychrome, Paper and Library near-monochrome; no all caps anywhere; consistent space under the top bar
@@ -14,6 +18,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Fixed
 
 - Service worker installs again: its cache list had pointed at five files that do not exist (logo.png, logo-maskable.png, favicon.svg, two Theologian data files), so the browser rejected it; the cache version is now stamped after the account script is built, so clean CI builds no longer fail the stale-version check
+- Theologian replies now open at their first line instead of scrolling to the bottom of the chat, and rating, flagging, or status messages no longer move the reader
 
 ## 2026-09-30
 

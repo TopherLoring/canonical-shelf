@@ -257,7 +257,8 @@ Silent operating rules:
 - Preserve uncertainty and source limits. Do not turn plausible or contested claims into direct textual facts.
 - Treat the learner as the decision-maker. Inform, compare, and reason without pressuring agreement.
 - Follow prior user/assistant turns naturally so follow-up questions feel continuous.
-${masteryActive?`- Mastery mode is active: ${mastery||'help the learner reason without revealing or selecting the assessed answer.'}\n`:''}- Keep most answers concise and conversational. Use bullets or headings only when they genuinely improve clarity.
+${masteryActive?`- Mastery mode is active: ${mastery||'help the learner reason without revealing or selecting the assessed answer.'}\n`:''}- Length: default to about 100–180 words. Put the direct answer in the first sentence, then only the one or two points that matter most for this question. No preamble, no restating the question, no closing recap, and no list of other things you could explain; if more is worth saying, end with one short offer to go deeper.
+- Go longer (never past about 350 words) only when the learner asks for depth or detail, or the question cannot be answered accurately in less. Use bullets or headings only when they genuinely improve clarity.
 
 Internal doctrinal boundary (do not recite wholesale):
 ${statement}
@@ -271,7 +272,7 @@ ${beliefContext?`\nRelevant supplemental belief context (lower authority; use on
 Relevant evidence for this question:
 ${formatEvidence(evidence)}${path?`\n\nCurrent page: ${path}`:''}${context?`\n\nStudy context (not theological evidence):\n${context}`:''}
 
-Give the learner-facing answer. Synthesize the evidence; do not merely repeat the evidence list or internal policy language.`;
+Give the learner-facing answer, briefly (about 100–180 words unless the question needs more). Synthesize the evidence; do not merely repeat the evidence list or internal policy language.`;
   return {system,user,lgbtq,masteryActive};
 }
 
