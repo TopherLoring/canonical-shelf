@@ -33,7 +33,7 @@ const verseExists = a => a && verses.has(`${a.book}:${a.chapter}:${a.verseStart 
 const CHECK_KINDS = { sequence: ['items', 'answer'], match: ['items', 'options', 'answer'], evidence: ['items', 'answer'], 'argument-map': ['items', 'options', 'answer', 'fields'], scenario: ['items', 'answer', 'stages'] };
 
 export function parseLesson(text, file) {
-  const m = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!m) { fail(`${file}: missing --- JSON frontmatter ---`); return null; }
   let meta;
   try { meta = JSON.parse(m[1]); } catch (e) { fail(`${file}: frontmatter is not valid JSON (${e.message})`); return null; }
@@ -41,7 +41,7 @@ export function parseLesson(text, file) {
   const checks = [];
   let reflection = null, cur = null, para = [];
   const flush = () => { if (para.length && cur) cur.blocks.push({ type: 'prose', text: para.join(' ').trim() }); para = []; };
-  const lines = m[2].split('\n');
+  const lines = m[2].split(/\r?\n/);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const h = line.match(/^## (.+?) \{#([a-z0-9][a-z0-9-]*)\}\s*$/);
