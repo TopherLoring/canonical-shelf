@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#f5f2ea">
+  <title>Feedback Inbox · Canonical Shelf</title>
+  <link rel="stylesheet" href="/admin-feedback.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div><p class="eyebrow">Canonical Shelf · Private</p><h1>Feedback Inbox</h1></div>
+      <button id="sign-out" class="quiet" type="button" hidden>Sign out</button>
+    </header>
+
+    <section id="login" class="login-card" aria-labelledby="login-title">
+      <h2 id="login-title">Admin access</h2>
+      <p>Enter the feedback admin token. It is exchanged for a secure browser session and is not stored in page storage.</p>
+      <form id="login-form">
+        <label for="token">Admin token</label>
+        <input id="token" name="token" type="password" autocomplete="current-password" required>
+        <button type="submit">Open inbox</button>
+        <p id="login-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="summary" aria-label="Feedback summary">
+        <div><strong id="count-new">0</strong><span>New</span></div>
+        <div><strong id="count-reviewed">0</strong><span>Reviewed</span></div>
+        <div><strong id="count-resolved">0</strong><span>Resolved</span></div>
+        <div><strong id="count-total">0</strong><span>Loaded</span></div>
+      </div>
+      <div class="controls">
+        <label>Status
+          <select id="status-filter">
+            <option value="">All</option><option value="new">New</option><option value="reviewed">Reviewed</option><option value="responded">Responded</option><option value="resolved">Resolved</option><option value="closed">Closed</option>
+          </select>
+        </label>
+        <label class="search">Search
+          <input id="search" type="search" placeholder="Message, route, category…">
+        </label>
+        <button id="refresh" class="quiet" type="button">Refresh</button>
+      </div>
+      <p id="dashboard-status" class="status" role="status" aria-live="polite"></p>
+      <div id="feedback-list" class="feedback-list"></div>
+    </section>
+  </main>
+  <script type="module" src="/admin-feedback.js"></script>
+</body>
+</html>
