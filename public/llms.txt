@@ -4933,11 +4933,15 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Connect Israel’s leadership stories with the costs of power, the experience of exile, and the work of return.",
           "body": [
+            "This lesson closes the unit and the long story from the land to the exile. It steps back over the whole arc: power and its costs, the fall of Jerusalem, the grief of exile, and the first steps of return.",
             "Joshua, Judges, Samuel, and Kings tell stories of land, leadership, conflict, and faithfulness. These writings do more than list rulers. They invite judgments about how power is used and whose suffering it produces. A leader’s place in a biblical narrative does not make every action an example to follow.",
+            "The reading returns to Samuel’s warning, now as a lens for everything that followed. As you reread it, think of the kings you have met and how the warning played out.",
             "In 1 Samuel 8, the demand for a king meets a warning about what royal power can take: labor, land, goods, and people’s freedom. Later stories contain both hopes attached to kingship and failures of kings. Read those tensions together. A passage about leadership should not be turned automatically into endorsement of any modern ruler or political arrangement.",
             "Second Kings portrays the destruction of Jerusalem and displacement of people. Exile includes loss of homeland, institutions, and a familiar way of life. Psalm 137 gives voice to grief and memory in that situation. Reading lament alongside narrative helps keep historical summaries from erasing the human experience of catastrophe.",
             "Ezra begins with permission to return and rebuild. Return does not make every conflict disappear or restore a world exactly as it was. Biblical narratives of rebuilding raise questions about identity, worship, neighbors, and communal responsibility. Hope can include difficult practical work as well as relief.",
-            "Conquest and violence in these books require direct ethical attention. Historical context can explain a setting without making harm good. Distinguish reported acts, attributed divine commands, and later interpretations; some passages remain morally difficult. Our present-day application is examined through Jesus’ teaching, love of neighbor, and human dignity rather than by copying ancient violence."
+            "Conquest and violence in these books require direct ethical attention. Historical context can explain a setting without making harm good. Distinguish reported acts, attributed divine commands, and later interpretations; some passages remain morally difficult. Our present-day application is examined through Jesus’ teaching, love of neighbor, and human dignity rather than by copying ancient violence.",
+            "Joshua through Kings tell the story of land, leadership, and their costs, ending with the destruction of Jerusalem and exile; Psalm 137 gives that loss a voice, and Ezra begins a demanding return. Conquest and violence in these books call for direct ethical attention; context can explain a setting without making harm good.",
+            "Historians reconstruct the period with different degrees of confidence in the biblical accounts; the exile and return are well attested. The question to carry forward: how do Israel’s poets and sages speak about God when life does not go as promised? The next unit turns to wisdom and worship."
           ],
           "simple": "These books examine what leadership does to people. Exile brings devastating loss; return begins a demanding work of rebuilding.",
           "vocab": {
@@ -5046,6 +5050,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson closes the unit and the long story from the land to the exile. It steps back over the whole arc: power and its costs, the fall of Jerusalem, the grief of exile, and the first steps of return."
+                },
+                {
+                  "type": "prose",
                   "text": "Joshua, Judges, Samuel, and Kings tell stories of land, leadership, conflict, and faithfulness. These writings do more than list rulers. They invite judgments about how power is used and whose suffering it produces. A leader’s place in a biblical narrative does not make every action an example to follow."
                 }
               ]
@@ -5057,18 +5065,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "The reading returns to Samuel’s warning, now as a lens for everything that followed. As you reread it, think of the kings you have met and how the warning played out."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:kingdom-exile#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "power-and-hope",
+              "anchor": "lesson:kingdom-exile#power-and-hope",
+              "title": "Power, hope, and failure",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "In 1 Samuel 8, the demand for a king meets a warning about what royal power can take: labor, land, goods, and people’s freedom. Later stories contain both hopes attached to kingship and failures of kings. Read those tensions together. A passage about leadership should not be turned automatically into endorsement of any modern ruler or political arrangement."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "exile",
+              "anchor": "lesson:kingdom-exile#exile",
+              "title": "Exile and lament",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Second Kings portrays the destruction of Jerusalem and displacement of people. Exile includes loss of homeland, institutions, and a familiar way of life. Psalm 137 gives voice to grief and memory in that situation. Reading lament alongside narrative helps keep historical summaries from erasing the human experience of catastrophe."
@@ -5076,25 +5099,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:kingdom-exile#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "return",
+              "anchor": "lesson:kingdom-exile#return",
+              "title": "Return and rebuilding",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Ezra begins with permission to return and rebuild. Return does not make every conflict disappear or restore a world exactly as it was. Biblical narratives of rebuilding raise questions about identity, worship, neighbors, and communal responsibility. Hope can include difficult practical work as well as relief."
                 },
                 {
-                  "type": "prose",
-                  "text": "Conquest and violence in these books require direct ethical attention. Historical context can explain a setting without making harm good. Distinguish reported acts, attributed divine commands, and later interpretations; some passages remain morally difficult. Our present-day application is examined through Jesus’ teaching, love of neighbor, and human dignity rather than by copying ancient violence."
-                },
-                {
-                  "type": "check",
-                  "index": 0
-                },
-                {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "violence",
+              "anchor": "lesson:kingdom-exile#violence",
+              "title": "The ethics of conquest and violence",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Conquest and violence in these books require direct ethical attention. Historical context can explain a setting without making harm good. Distinguish reported acts, attributed divine commands, and later interpretations; some passages remain morally difficult. Our present-day application is examined through Jesus’ teaching, love of neighbor, and human dignity rather than by copying ancient violence."
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:kingdom-exile#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Joshua through Kings tell the story of land, leadership, and their costs, ending with the destruction of Jerusalem and exile; Psalm 137 gives that loss a voice, and Ezra begins a demanding return. Conquest and violence in these books call for direct ethical attention; context can explain a setting without making harm good."
+                },
+                {
+                  "type": "prose",
+                  "text": "Historians reconstruct the period with different degrees of confidence in the biblical accounts; the exile and return are well attested. The question to carry forward: how do Israel’s poets and sages speak about God when life does not go as promised? The next unit turns to wisdom and worship."
                 }
               ]
             },
@@ -5157,11 +5198,15 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Distinguish lament, practical wisdom, and reflection on suffering without turning them into guarantees.",
           "body": [
+            "This lesson surveys the whole wisdom and worship collection before the unit reads its books one at a time: Psalms, Proverbs, Job, Ecclesiastes, and Song of Songs.",
             "The Psalms give language for praise, gratitude, confession, grief, and protest. Psalm 13 begins with a painful question about God’s apparent absence and moves toward trust. A prayer can contain distress and faith together. Lament is not necessarily a failure of belief or something a learner must rush past to sound religious.",
+            "Psalm 13 is short. Read it once for its movement, from “how long?” to a request to trust and song, and keep that movement in mind as you meet the other books.",
             "Proverbs teaches discernment through compact sayings. Proverbs 26:4–5 places different advice about answering a fool side by side. The reader must consider circumstances rather than apply every saying as an identical instruction for every situation. Wisdom involves judgment, not merely retrieving a sentence that appears to settle a problem.",
             "Job challenges easy links between suffering and personal wrongdoing. In the selected scene, his friends initially sit with him in grief. Their later arguments should not be confused with the book’s unquestioned final voice. A biblical character can speak confidently and still need correction within the larger work.",
             "Ecclesiastes reflects on time, limits, work, and what humans cannot control. Song of Songs adds poetry about love and desire to the wisdom collection’s range. Together these books resist a narrow picture in which faithful life means relentless certainty, predictable success, or freedom from embodied experience.",
-            "When someone suffers, these writings can support listening, honest prayer, and practical presence. They should not be used to diagnose weak faith or insist that a tragedy was inflicted to teach a lesson. A proverb may guide action; a lament may give words; a story may unsettle a false explanation. Choose the tool appropriate to the need."
+            "When someone suffers, these writings can support listening, honest prayer, and practical presence. They should not be used to diagnose weak faith or insist that a tragedy was inflicted to teach a lesson. A proverb may guide action; a lament may give words; a story may unsettle a false explanation. Choose the tool appropriate to the need.",
+            "The wisdom and worship books give language for praise, grief, protest, and discernment. Proverbs needs judgment about circumstances; Job refuses to read suffering as proof of guilt; Ecclesiastes faces limits; Song of Songs celebrates love. None of them supports diagnosing someone’s faith from their pain.",
+            "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: what does an honest prayer sound like?"
           ],
           "simple": "Wisdom is thoughtful discernment, not a guarantee of easy outcomes. The Bible includes honest grief as well as praise.",
           "vocab": {
@@ -5273,6 +5318,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson surveys the whole wisdom and worship collection before the unit reads its books one at a time: Psalms, Proverbs, Job, Ecclesiastes, and Song of Songs."
+                },
+                {
+                  "type": "prose",
                   "text": "The Psalms give language for praise, gratitude, confession, grief, and protest. Psalm 13 begins with a painful question about God’s apparent absence and moves toward trust. A prayer can contain distress and faith together. Lament is not necessarily a failure of belief or something a learner must rush past to sound religious."
                 }
               ]
@@ -5284,44 +5333,77 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Psalm 13 is short. Read it once for its movement, from “how long?” to a request to trust and song, and keep that movement in mind as you meet the other books."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:wisdom#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "proverbs",
+              "anchor": "lesson:wisdom#proverbs",
+              "title": "Proverbs: sayings that need judgment",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Proverbs teaches discernment through compact sayings. Proverbs 26:4–5 places different advice about answering a fool side by side. The reader must consider circumstances rather than apply every saying as an identical instruction for every situation. Wisdom involves judgment, not merely retrieving a sentence that appears to settle a problem."
-                },
-                {
-                  "type": "prose",
-                  "text": "Job challenges easy links between suffering and personal wrongdoing. In the selected scene, his friends initially sit with him in grief. Their later arguments should not be confused with the book’s unquestioned final voice. A biblical character can speak confidently and still need correction within the larger work."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:wisdom#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "job",
+              "anchor": "lesson:wisdom#job",
+              "title": "Job: suffering without easy answers",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Job challenges easy links between suffering and personal wrongdoing. In the selected scene, his friends initially sit with him in grief. Their later arguments should not be confused with the book’s unquestioned final voice. A biblical character can speak confidently and still need correction within the larger work."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "ecclesiastes-song",
+              "anchor": "lesson:wisdom#ecclesiastes-song",
+              "title": "Ecclesiastes and Song of Songs",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Ecclesiastes reflects on time, limits, work, and what humans cannot control. Song of Songs adds poetry about love and desire to the wisdom collection’s range. Together these books resist a narrow picture in which faithful life means relentless certainty, predictable success, or freedom from embodied experience."
-                },
+                }
+              ]
+            },
+            {
+              "id": "using-them-well",
+              "anchor": "lesson:wisdom#using-them-well",
+              "title": "Using these books when someone suffers",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "When someone suffers, these writings can support listening, honest prayer, and practical presence. They should not be used to diagnose weak faith or insist that a tragedy was inflicted to teach a lesson. A proverb may guide action; a lament may give words; a story may unsettle a false explanation. Choose the tool appropriate to the need."
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:wisdom#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The wisdom and worship books give language for praise, grief, protest, and discernment. Proverbs needs judgment about circumstances; Job refuses to read suffering as proof of guilt; Ecclesiastes faces limits; Song of Songs celebrates love. None of them supports diagnosing someone’s faith from their pain."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: what does an honest prayer sound like?"
                 }
               ]
             },
@@ -9588,10 +9670,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             19
           ],
           "body": [
+            "Unit 5 follows Israel into the land, from the generation after Joshua through the first kings. This lesson reads the pattern that organizes the book of Judges, and faces the violence of the land narratives directly instead of looking away.",
             "The passage looks back to Joshua’s generation and then describes a changed situation after it. Forgetting, wrongdoing, distress, and deliverance form a recurring pattern. The sequence gives beginners a way to locate the book between settlement and the monarchy.",
+            "Trace the cycle as you read: the people forget, do what is evil, fall into distress, cry out, and are rescued by a judge, and then the pattern begins again, a little worse each time.",
             "Judges are portrayed as figures of deliverance, but the book does not present an uncomplicated gallery of moral heroes. Read each action within the narrative’s evaluation. A person’s role in a rescue does not make every action they take exemplary.",
             "The larger land narratives contain conquest, attributed divine commands, and serious violence. Naming genre or ancient setting does not eliminate the moral difficulty. Distinguish what a narrator reports, what is attributed to God, and what a later interpreter argues should follow.",
-            "The guide evaluates present conduct through Jesus’ teaching, love, and human dignity; it does not authorize copying ancient violence. The Story lab connects this stage with the books carrying the arc, while Chronology distinguishes its narrative setting from the order of books on the shelf."
+            "The guide evaluates present conduct through Jesus’ teaching, love, and human dignity; it does not authorize copying ancient violence. The Story lab connects this stage with the books carrying the arc, while Chronology distinguishes its narrative setting from the order of books on the shelf.",
+            "Judges is organized by a repeating cycle of forgetting, oppression, crying out, and rescue. Its deliverers are not moral models, and the land narratives’ conquest and violence are moral problems the reader must face, not explain away; the guide judges present conduct by Jesus’ teaching, love, and human dignity.",
+            "Scholars debate how much of the conquest narrative is historical and how it was shaped later; Christians differ on how to read the commands attributed to God. Every view the guide presents keeps those questions open rather than excusing harm. The question to carry forward: when the people ask for a king, what are they really asking for?"
           ],
           "simple": "The cycle explains a pattern of crisis and rescue. It does not turn every participant into a moral example.",
           "vocab": {
@@ -9604,7 +9690,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "sequence",
-              "title": "Reconstruct: Land and Judges: learning from a disturbing narrative",
+              "title": "Reconstruct the cycle in Judges 2",
               "prompt": "Reconstruct the recurring pattern described in this passage.",
               "items": [
                 "The people experience distress.",
@@ -9623,7 +9709,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put land and judges: learning from a disturbing narrative to work",
+              "title": "Apply the Judges narrative to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -9748,6 +9834,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 5 follows Israel into the land, from the generation after Joshua through the first kings. This lesson reads the pattern that organizes the book of Judges, and faces the violence of the land narratives directly instead of looking away."
+                },
+                {
+                  "type": "prose",
                   "text": "The passage looks back to Joshua’s generation and then describes a changed situation after it. Forgetting, wrongdoing, distress, and deliverance form a recurring pattern. The sequence gives beginners a way to locate the book between settlement and the monarchy."
                 }
               ]
@@ -9759,18 +9849,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Trace the cycle as you read: the people forget, do what is evil, fall into distress, cry out, and are rescued by a judge, and then the pattern begins again, a little worse each time."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:land-judges#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "not-heroes",
+              "anchor": "lesson:land-judges#not-heroes",
+              "title": "Deliverers, not a gallery of heroes",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Judges are portrayed as figures of deliverance, but the book does not present an uncomplicated gallery of moral heroes. Read each action within the narrative’s evaluation. A person’s role in a rescue does not make every action they take exemplary."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "violence",
+              "anchor": "lesson:land-judges#violence",
+              "title": "Facing the violence directly",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The larger land narratives contain conquest, attributed divine commands, and serious violence. Naming genre or ancient setting does not eliminate the moral difficulty. Distinguish what a narrator reports, what is attributed to God, and what a later interpreter argues should follow."
@@ -9778,9 +9883,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:land-judges#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "today",
+              "anchor": "lesson:land-judges#today",
+              "title": "How the guide applies these stories",
               "blocks": [
                 {
                   "type": "prose",
@@ -9788,11 +9893,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:land-judges#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Judges is organized by a repeating cycle of forgetting, oppression, crying out, and rescue. Its deliverers are not moral models, and the land narratives’ conquest and violence are moral problems the reader must face, not explain away; the guide judges present conduct by Jesus’ teaching, love, and human dignity."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Scholars debate how much of the conquest narrative is historical and how it was shaped later; Christians differ on how to read the commands attributed to God. Every view the guide presents keeps those questions open rather than excusing harm. The question to carry forward: when the people ask for a king, what are they really asking for?"
                 }
               ]
             },
@@ -9826,10 +9942,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             22
           ],
           "body": [
+            "At the end of the judges period the people ask for a king. This lesson reads Samuel’s answer, one of the Bible’s sharpest warnings about what concentrated power takes from ordinary people.",
             "Samuel’s warning repeatedly describes what a king will take. People, produce, and land become resources for royal purposes. The repetition directs attention to the costs of concentrated power rather than only to its promises of stability or prestige.",
+            "Count the times Samuel says “he will take”, and notice what is taken: sons, daughters, fields, harvests, servants, flocks, and finally the people themselves.",
             "The people still ask for a king, including the desire to resemble other nations and have leadership in battle. The narrative lets competing desires remain visible. A request can be understandable while carrying consequences its supporters would prefer not to notice.",
             "Later biblical accounts include hopes for righteous kings as well as severe criticism of rulers. This warning should be read within that tension. It does not turn every modern institution into a biblical equivalent, nor does a ruler’s appearance in Scripture certify their conduct.",
-            "Apply the reading by asking concrete questions about power: who benefits, who supplies the labor, who bears the loss, and how decisions can be challenged. Evaluating a leader requires more than admiration for strength or identification with a favored group."
+            "Apply the reading by asking concrete questions about power: who benefits, who supplies the labor, who bears the loss, and how decisions can be challenged. Evaluating a leader requires more than admiration for strength or identification with a favored group.",
+            "Samuel’s warning lists what a king will take, and the people ask anyway, for understandable reasons. Scripture holds hopes for righteous kings and severe criticism of rulers side by side, and it never certifies a ruler’s conduct simply because the ruler appears in the story.",
+            "Readers differ on whether the request for a king is rejected or reluctantly accommodated; the narrative supports both emphases. The question to carry forward: if kings so often fail, why does God make a lasting promise to David?"
           ],
           "simple": "The warning asks what power takes from people. Evaluate consequences as well as promises.",
           "vocab": {},
@@ -9839,7 +9959,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Kingship: evaluating power rather than admiring it",
+              "title": "Separate what 1 Samuel 8 supports from overreach",
               "prompt": "Build an evidence board from 1 Samuel 8:10–22. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "Samuel describes resources a king will take.",
@@ -9856,7 +9976,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put kingship: evaluating power rather than admiring it to work",
+              "title": "Apply Samuel’s warning to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -9981,6 +10101,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "At the end of the judges period the people ask for a king. This lesson reads Samuel’s answer, one of the Bible’s sharpest warnings about what concentrated power takes from ordinary people."
+                },
+                {
+                  "type": "prose",
                   "text": "Samuel’s warning repeatedly describes what a king will take. People, produce, and land become resources for royal purposes. The repetition directs attention to the costs of concentrated power rather than only to its promises of stability or prestige."
                 }
               ]
@@ -9992,18 +10116,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Count the times Samuel says “he will take”, and notice what is taken: sons, daughters, fields, harvests, servants, flocks, and finally the people themselves."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:kings-accountability#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "competing-desires",
+              "anchor": "lesson:kings-accountability#competing-desires",
+              "title": "Why the people still ask",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The people still ask for a king, including the desire to resemble other nations and have leadership in battle. The narrative lets competing desires remain visible. A request can be understandable while carrying consequences its supporters would prefer not to notice."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "hope-and-critique",
+              "anchor": "lesson:kings-accountability#hope-and-critique",
+              "title": "Hope and critique in the same Bible",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Later biblical accounts include hopes for righteous kings as well as severe criticism of rulers. This warning should be read within that tension. It does not turn every modern institution into a biblical equivalent, nor does a ruler’s appearance in Scripture certify their conduct."
@@ -10011,9 +10150,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:kings-accountability#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "questions-about-power",
+              "anchor": "lesson:kings-accountability#questions-about-power",
+              "title": "Questions to ask about power",
               "blocks": [
                 {
                   "type": "prose",
@@ -10021,11 +10160,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:kings-accountability#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Samuel’s warning lists what a king will take, and the people ask anyway, for understandable reasons. Scripture holds hopes for righteous kings and severe criticism of rulers side by side, and it never certifies a ruler’s conduct simply because the ruler appears in the story."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers differ on whether the request for a king is rejected or reluctantly accommodated; the narrative supports both emphases. The question to carry forward: if kings so often fail, why does God make a lasting promise to David?"
                 }
               ]
             },
@@ -10059,10 +10209,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             6
           ],
           "body": [
+            "This lesson closes the unit by hearing the exile from inside: a psalm sung by displaced people beside the rivers of Babylon.",
             "The psalm remembers weeping away from Zion. Place and memory matter: exile is not simply movement on a map. It can involve the loss of worship, belonging, familiar institutions, and a way of locating oneself within a shared story.",
+            "Read Psalm 137:1–6 and notice the setting (rivers, poplars, hung-up harps), the captors’ demand, and the vow that follows. The psalm continues past verse 6; the lesson faces those verses too.",
             "The demand for songs places the displaced community’s grief under pressure from others. The psalm asks how a sacred song can be sung in a foreign setting. Read that question as part of the emotional and communal situation, not as a rule forbidding worship outside one location.",
             "The pledge to remember Jerusalem gives language to loyalty and loss. Reading it beside the destruction narrated in 2 Kings 25 adds a voice that a chronology alone cannot supply. Narrative and poetry offer different kinds of evidence about a catastrophe.",
-            "The full psalm ends with disturbing vengeance language. Do not hide it or treat every cry of pain as an ethical instruction. Lament can make anger speakable while Christian application remains accountable to Jesus’ teaching and the dignity of other people."
+            "The full psalm ends with disturbing vengeance language. Do not hide it or treat every cry of pain as an ethical instruction. Lament can make anger speakable while Christian application remains accountable to Jesus’ teaching and the dignity of other people.",
+            "Psalm 137 gives the exile a voice that a timeline cannot: the loss of place, worship, and belonging, the pressure of captors demanding songs, and a vow to remember. Its final verses cry out for terrible vengeance; the guide neither hides them nor treats them as instruction, and reads them as anger made speakable.",
+            "Christian traditions differ on how to pray or sing the vengeance psalms; all read them alongside Jesus’ teaching on enemies. The question to carry forward: the last unit of this module turns to hope; what do the prophets promise after the loss?"
           ],
           "simple": "A timeline records displacement; a lament voices what it feels like. Hearing grief does not require endorsing every action grief imagines.",
           "vocab": {
@@ -10076,7 +10230,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Exile: history heard alongside grief",
+              "title": "Separate what Psalm 137 supports from overreach",
               "prompt": "Build an evidence board from Psalm 137:1–6. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The speakers remember Zion with tears.",
@@ -10093,7 +10247,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put exile: history heard alongside grief to work",
+              "title": "Apply Psalm 137 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -10218,6 +10372,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson closes the unit by hearing the exile from inside: a psalm sung by displaced people beside the rivers of Babylon."
+                },
+                {
+                  "type": "prose",
                   "text": "The psalm remembers weeping away from Zion. Place and memory matter: exile is not simply movement on a map. It can involve the loss of worship, belonging, familiar institutions, and a way of locating oneself within a shared story."
                 }
               ]
@@ -10229,18 +10387,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read Psalm 137:1–6 and notice the setting (rivers, poplars, hung-up harps), the captors’ demand, and the vow that follows. The psalm continues past verse 6; the lesson faces those verses too."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:exile-lament#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "songs-demanded",
+              "anchor": "lesson:exile-lament#songs-demanded",
+              "title": "“Sing us one of the songs of Zion”",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The demand for songs places the displaced community’s grief under pressure from others. The psalm asks how a sacred song can be sung in a foreign setting. Read that question as part of the emotional and communal situation, not as a rule forbidding worship outside one location."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "memory",
+              "anchor": "lesson:exile-lament#memory",
+              "title": "Memory as loyalty",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The pledge to remember Jerusalem gives language to loyalty and loss. Reading it beside the destruction narrated in 2 Kings 25 adds a voice that a chronology alone cannot supply. Narrative and poetry offer different kinds of evidence about a catastrophe."
@@ -10248,9 +10421,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:exile-lament#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "vengeance",
+              "anchor": "lesson:exile-lament#vengeance",
+              "title": "The disturbing ending",
               "blocks": [
                 {
                   "type": "prose",
@@ -10258,11 +10431,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:exile-lament#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Psalm 137 gives the exile a voice that a timeline cannot: the loss of place, worship, and belonging, the pressure of captors demanding songs, and a vow to remember. Its final verses cry out for terrible vengeance; the guide neither hides them nor treats them as instruction, and reads them as anger made speakable."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Christian traditions differ on how to pray or sing the vengeance psalms; all read them alongside Jesus’ teaching on enemies. The question to carry forward: the last unit of this module turns to hope; what do the prophets promise after the loss?"
                 }
               ]
             },
@@ -10532,10 +10716,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             6
           ],
           "body": [
+            "This lesson reads one lament slowly, so you can learn the shape of a prayer that does not pretend.",
             "Psalm 13 begins by asking how long the speaker must endure apparent abandonment. The prayer does not conceal its distress. A beginner need not manufacture certainty before encountering this kind of biblical language; the question itself is addressed to God.",
+            "Read Psalm 13 aloud if you can. Notice the four “how long”s, the requests in the middle, and the turn in the last two verses.",
             "The middle of the psalm asks for attention and help. Lament can involve a specific appeal rather than only a general statement that life is difficult. Naming what is feared or needed gives prayer a concrete relationship with the speaker’s circumstances.",
             "The ending turns toward trust and song. Read that movement without assuming every person must reach the same emotional place after six verses or six minutes. The literary shape offers language for prayer; it does not set a deadline for another person’s grief.",
-            "Practice by writing an address, an honest concern, and a request. A statement of hope may follow if it can be spoken honestly. Prayer can accompany practical support and professional care; it should not become pressure to hide symptoms or stop seeking help."
+            "Practice by writing an address, an honest concern, and a request. A statement of hope may follow if it can be spoken honestly. Prayer can accompany practical support and professional care; it should not become pressure to hide symptoms or stop seeking help.",
+            "Lament addresses God honestly: complaint, specific request, and, where it can be spoken truthfully, trust. The psalm’s movement offers language for prayer; it is not a deadline for anyone’s grief, and prayer goes alongside practical support and professional care, never instead of them.",
+            "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: if prayer gives words for distress, what do the sages offer for decisions?"
           ],
           "simple": "Honest distress can be part of prayer. A psalm’s movement is an invitation, not a stopwatch for healing.",
           "vocab": {},
@@ -10545,7 +10733,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "sequence",
-              "title": "Reconstruct: Psalms: learning to pray without pretending",
+              "title": "Reconstruct the movement of Psalm 13",
               "prompt": "Rebuild the movement of this psalm without treating it as a timetable for everyone.",
               "items": [
                 "A request asks God to attend and help.",
@@ -10562,7 +10750,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put psalms: learning to pray without pretending to work",
+              "title": "Practice lament in two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -10687,6 +10875,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson reads one lament slowly, so you can learn the shape of a prayer that does not pretend."
+                },
+                {
+                  "type": "prose",
                   "text": "Psalm 13 begins by asking how long the speaker must endure apparent abandonment. The prayer does not conceal its distress. A beginner need not manufacture certainty before encountering this kind of biblical language; the question itself is addressed to God."
                 }
               ]
@@ -10698,28 +10890,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read Psalm 13 aloud if you can. Notice the four “how long”s, the requests in the middle, and the turn in the last two verses."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:psalms-lament#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "the-request",
+              "anchor": "lesson:psalms-lament#the-request",
+              "title": "A specific appeal",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The middle of the psalm asks for attention and help. Lament can involve a specific appeal rather than only a general statement that life is difficult. Naming what is feared or needed gives prayer a concrete relationship with the speaker’s circumstances."
-                },
-                {
-                  "type": "prose",
-                  "text": "The ending turns toward trust and song. Read that movement without assuming every person must reach the same emotional place after six verses or six minutes. The literary shape offers language for prayer; it does not set a deadline for another person’s grief."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:psalms-lament#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "the-turn",
+              "anchor": "lesson:psalms-lament#the-turn",
+              "title": "The turn toward trust",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The ending turns toward trust and song. Read that movement without assuming every person must reach the same emotional place after six verses or six minutes. The literary shape offers language for prayer; it does not set a deadline for another person’s grief."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "anchor": "lesson:psalms-lament#practice",
+              "title": "Practicing lament",
               "blocks": [
                 {
                   "type": "prose",
@@ -10727,11 +10934,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:psalms-lament#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Lament addresses God honestly: complaint, specific request, and, where it can be spoken truthfully, trust. The psalm’s movement offers language for prayer; it is not a deadline for anyone’s grief, and prayer goes alongside practical support and professional care, never instead of them."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: if prayer gives words for distress, what do the sages offer for decisions?"
                 }
               ]
             },
@@ -10765,10 +10983,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             5
           ],
           "body": [
+            "Proverbs is often read as a book of rules. This lesson reads two sayings placed side by side that give opposite advice, and shows why that is the point.",
             "These adjacent sayings give different directions about answering a fool. Reading only one as an absolute rule misses the deliberate pressure created by their placement together. The reader has to ask what danger each saying addresses.",
+            "Read verses 4 and 5 together. They seem to contradict each other; before deciding, notice the reason each one gives.",
             "One warns against becoming like the person being answered. The other warns against allowing that person to remain wise in their own eyes. Both are concerned with the effect of a response, but they highlight different possible effects.",
             "Wisdom therefore requires attention to audience, purpose, and likely consequences. Silence might avoid an unproductive quarrel; a calm correction might protect people who would otherwise be misled. Neither move is automatically right in every situation.",
-            "The term fool in wisdom writing should not become an excuse to dismiss anyone who disagrees. Test the claim and the proposed response. A wise reply can acknowledge uncertainty, correct a false statement, and refuse the invitation to exchange contempt."
+            "The term fool in wisdom writing should not become an excuse to dismiss anyone who disagrees. Test the claim and the proposed response. A wise reply can acknowledge uncertainty, correct a false statement, and refuse the invitation to exchange contempt.",
+            "Proverbs teaches discernment, not formulas. The two sayings about answering a fool name two different dangers, and the reader has to judge which one the situation presents; “fool” in wisdom writing is never a license to dismiss people who disagree.",
+            "Readers broadly agree that proverbs describe what usually happens rather than guaranteeing outcomes. The question to carry forward: what happens when life breaks the pattern a proverb describes?"
           ],
           "simple": "One saying warns about joining a quarrel; the other warns about leaving error unchallenged. Choose with the situation in view.",
           "vocab": {
@@ -10780,7 +11002,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Proverbs: wisdom is more than a slogan",
+              "title": "Separate what Proverbs 26:4–5 supports from overreach",
               "prompt": "Build an evidence board from Proverbs 26:4–5. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "One saying warns against becoming like the fool.",
@@ -10797,7 +11019,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put proverbs: wisdom is more than a slogan to work",
+              "title": "Apply the two sayings to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -10922,6 +11144,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Proverbs is often read as a book of rules. This lesson reads two sayings placed side by side that give opposite advice, and shows why that is the point."
+                },
+                {
+                  "type": "prose",
                   "text": "These adjacent sayings give different directions about answering a fool. Reading only one as an absolute rule misses the deliberate pressure created by their placement together. The reader has to ask what danger each saying addresses."
                 }
               ]
@@ -10933,18 +11159,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read verses 4 and 5 together. They seem to contradict each other; before deciding, notice the reason each one gives."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:proverbs-discernment#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "two-dangers",
+              "anchor": "lesson:proverbs-discernment#two-dangers",
+              "title": "Two dangers, two sayings",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "One warns against becoming like the person being answered. The other warns against allowing that person to remain wise in their own eyes. Both are concerned with the effect of a response, but they highlight different possible effects."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "judgment",
+              "anchor": "lesson:proverbs-discernment#judgment",
+              "title": "Wisdom as judgment",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Wisdom therefore requires attention to audience, purpose, and likely consequences. Silence might avoid an unproductive quarrel; a calm correction might protect people who would otherwise be misled. Neither move is automatically right in every situation."
@@ -10952,9 +11193,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:proverbs-discernment#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "the-word-fool",
+              "anchor": "lesson:proverbs-discernment#the-word-fool",
+              "title": "Using the word “fool” carefully",
               "blocks": [
                 {
                   "type": "prose",
@@ -10962,11 +11203,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:proverbs-discernment#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Proverbs teaches discernment, not formulas. The two sayings about answering a fool name two different dangers, and the reader has to judge which one the situation presents; “fool” in wisdom writing is never a license to dismiss people who disagree."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers broadly agree that proverbs describe what usually happens rather than guaranteeing outcomes. The question to carry forward: what happens when life breaks the pattern a proverb describes?"
                 }
               ]
             },
@@ -11000,10 +11252,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             13
           ],
           "body": [
+            "Job is the Bible’s longest argument about suffering. This lesson reads the moment before the arguing starts, when Job’s friends simply come and sit with him.",
             "Job’s friends come after hearing of his suffering. Their first response includes grief, physical presence, and silence. The scene recognizes that another person’s pain may be too great for a quick explanation or a polished religious answer.",
+            "Read verses 11–13 and notice everything the friends do before they say a word, and how long they stay silent.",
             "The friends’ later speeches complicate this beginning. Read the complete book before treating any speaker’s confident statement as its final teaching. A dialogue can include a view in order to expose its limitations; quotation alone does not establish endorsement.",
             "Job’s story challenges easy equations between suffering and personal wrongdoing. This does not mean actions never have consequences. It means another person’s suffering is not sufficient evidence to diagnose their guilt or God’s hidden intention.",
-            "Compassionate presence may include listening, bringing food, or helping arrange support. Silence is useful when it makes room for another person, not when it avoids necessary action. Ask what would help and remain willing to hear a response that differs from your own expectation."
+            "Compassionate presence may include listening, bringing food, or helping arrange support. Silence is useful when it makes room for another person, not when it avoids necessary action. Ask what would help and remain willing to hear a response that differs from your own expectation.",
+            "Job’s friends begin well: they grieve, come close, and stay silent. Their later speeches, which explain Job’s suffering as punishment, are exposed by the book rather than endorsed; another person’s suffering is never enough evidence to diagnose their guilt or God’s hidden purpose.",
+            "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. Readers differ on how the book’s ending answers Job’s questions, and many conclude that it deliberately does not explain his suffering. The question to carry forward: how do the sages speak about time, limits, and delight?"
           ],
           "simple": "The friends begin by showing up. Understanding a person’s pain matters more than winning an argument about why it happened.",
           "vocab": {
@@ -11015,7 +11271,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Job and the limits of easy explanations",
+              "title": "Separate what Job 2 supports from overreach",
               "prompt": "Build an evidence board from Job 2:11–13. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The friends come to express sympathy and comfort.",
@@ -11032,7 +11288,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put job and the limits of easy explanations to work",
+              "title": "Apply the friends’ example to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -11157,6 +11413,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Job is the Bible’s longest argument about suffering. This lesson reads the moment before the arguing starts, when Job’s friends simply come and sit with him."
+                },
+                {
+                  "type": "prose",
                   "text": "Job’s friends come after hearing of his suffering. Their first response includes grief, physical presence, and silence. The scene recognizes that another person’s pain may be too great for a quick explanation or a polished religious answer."
                 }
               ]
@@ -11168,28 +11428,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read verses 11–13 and notice everything the friends do before they say a word, and how long they stay silent."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:job-listening#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "the-speeches",
+              "anchor": "lesson:job-listening#the-speeches",
+              "title": "When the friends start talking",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The friends’ later speeches complicate this beginning. Read the complete book before treating any speaker’s confident statement as its final teaching. A dialogue can include a view in order to expose its limitations; quotation alone does not establish endorsement."
-                },
-                {
-                  "type": "prose",
-                  "text": "Job’s story challenges easy equations between suffering and personal wrongdoing. This does not mean actions never have consequences. It means another person’s suffering is not sufficient evidence to diagnose their guilt or God’s hidden intention."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:job-listening#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "suffering-and-guilt",
+              "anchor": "lesson:job-listening#suffering-and-guilt",
+              "title": "Suffering is not evidence of guilt",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Job’s story challenges easy equations between suffering and personal wrongdoing. This does not mean actions never have consequences. It means another person’s suffering is not sufficient evidence to diagnose their guilt or God’s hidden intention."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "presence",
+              "anchor": "lesson:job-listening#presence",
+              "title": "What helps",
               "blocks": [
                 {
                   "type": "prose",
@@ -11197,11 +11472,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:job-listening#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Job’s friends begin well: they grieve, come close, and stay silent. Their later speeches, which explain Job’s suffering as punishment, are exposed by the book rather than endorsed; another person’s suffering is never enough evidence to diagnose their guilt or God’s hidden purpose."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. Readers differ on how the book’s ending answers Job’s questions, and many conclude that it deliberately does not explain his suffering. The question to carry forward: how do the sages speak about time, limits, and delight?"
                 }
               ]
             },
@@ -11235,10 +11521,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             8
           ],
           "body": [
+            "This lesson closes the unit with two of the Bible’s most surprising books: Ecclesiastes, which questions what lasts, and Song of Songs, which celebrates love and desire.",
             "Ecclesiastes arranges contrasting times in pairs. The poem directs attention to the range of human experience and the limits of control. Its list is not a command that every person must initiate every named action.",
+            "Read the poem of times in Ecclesiastes 3:1–8 as pairs, and notice that the poem describes the range of life rather than telling you what to do.",
             "The book asks difficult questions about work, gain, loss, and what endures. Read its observations within the larger inquiry rather than using one line to declare every action pointless. Wisdom can unsettle easy promises of control while still directing attention to the life actually available.",
             "Song of Songs gives biblical space to desire, delight, and the voices of lovers. Read Song 2:8–13 in the additional passage. Its springtime imagery works poetically; the reading need not choose between denying embodied affection and turning each flower into a separate secret code.",
-            "Jewish and Christian readers have also developed allegorical readings of Song. These should be identified as interpretations rather than quietly substituted for the poem’s language. Together, these wisdom books widen an introduction beyond rules and timelines to include limitation, affection, beauty, and attentive reading."
+            "Jewish and Christian readers have also developed allegorical readings of Song. These should be identified as interpretations rather than quietly substituted for the poem’s language. Together, these wisdom books widen an introduction beyond rules and timelines to include limitation, affection, beauty, and attentive reading.",
+            "Ecclesiastes names the range of human experience and the limits of control without declaring life pointless; Song of Songs gives Scripture room for embodied love and delight. Both widen the Bible beyond rules and certainties.",
+            "Jewish and Christian traditions have long read Song of Songs allegorically, of God and Israel or Christ and the Church; most modern scholars read it first as love poetry. The guide presents both and labels the allegorical readings as interpretation. The question to carry forward: in the next unit the prophets speak into crisis; how do they combine judgment and hope?"
           ],
           "simple": "Wisdom poetry can explore what we cannot control and what we can delight in. An image or listed season is not automatically an instruction.",
           "vocab": {
@@ -11261,7 +11551,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Ecclesiastes and Song: limits, delight, and poetry",
+              "title": "Separate what Ecclesiastes 3 supports from overreach",
               "prompt": "Build an evidence board from Ecclesiastes 3:1–8. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "Ecclesiastes pairs contrasting times and actions.",
@@ -11278,7 +11568,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put ecclesiastes and song: limits, delight, and poetry to work",
+              "title": "Apply the poem of times to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -11403,6 +11693,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson closes the unit with two of the Bible’s most surprising books: Ecclesiastes, which questions what lasts, and Song of Songs, which celebrates love and desire."
+                },
+                {
+                  "type": "prose",
                   "text": "Ecclesiastes arranges contrasting times in pairs. The poem directs attention to the range of human experience and the limits of control. Its list is not a command that every person must initiate every named action."
                 }
               ]
@@ -11414,18 +11708,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read the poem of times in Ecclesiastes 3:1–8 as pairs, and notice that the poem describes the range of life rather than telling you what to do."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:wisdom-time-love#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "what-endures",
+              "anchor": "lesson:wisdom-time-love#what-endures",
+              "title": "Questions about what endures",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The book asks difficult questions about work, gain, loss, and what endures. Read its observations within the larger inquiry rather than using one line to declare every action pointless. Wisdom can unsettle easy promises of control while still directing attention to the life actually available."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "song",
+              "anchor": "lesson:wisdom-time-love#song",
+              "title": "Song of Songs: delight and desire",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Song of Songs gives biblical space to desire, delight, and the voices of lovers. Read Song 2:8–13 in the additional passage. Its springtime imagery works poetically; the reading need not choose between denying embodied affection and turning each flower into a separate secret code."
@@ -11433,9 +11742,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:wisdom-time-love#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "allegory",
+              "anchor": "lesson:wisdom-time-love#allegory",
+              "title": "Allegorical readings",
               "blocks": [
                 {
                   "type": "prose",
@@ -11443,11 +11752,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:wisdom-time-love#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Ecclesiastes names the range of human experience and the limits of control without declaring life pointless; Song of Songs gives Scripture room for embodied love and delight. Both widen the Bible beyond rules and certainties."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Jewish and Christian traditions have long read Song of Songs allegorically, of God and Israel or Christ and the Church; most modern scholars read it first as love poetry. The guide presents both and labels the allegorical readings as interpretation. The question to carry forward: in the next unit the prophets speak into crisis; how do they combine judgment and hope?"
                 }
               ]
             },
@@ -11481,10 +11801,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             24
           ],
           "body": [
+            "Unit 8 reads the prophets who spoke into Israel’s and Judah’s crises, and then the catastrophe they warned of. It begins with Amos, a herdsman from Judah sent to the prosperous northern kingdom in the 700s BCE.",
             "Amos uses an uncompromising rejection of festivals, offerings, and songs. The shock matters: activities associated with religious devotion are not accepted as substitutes for justice. The passage challenges a separation between public worship and the way a community treats people.",
+            "Read God’s rejection of festivals, offerings, and songs in verses 21–23, then the single demand in verse 24, and ask what the shock of the first part is for.",
             "The contrast culminates in flowing water imagery for justice and righteousness. Read the image as a demand for sustained communal conduct, not merely an attractive line about nature. The rhetorical force depends on what the passage places against the religious activity.",
             "The critique does not require the claim that singing or ritual is always meaningless. Its target is worship severed from the concern expressed in the final demand. An interpretation should account for that contrast instead of selecting either the ritual rejection or the water image alone.",
-            "A contemporary community can examine whether its celebrations conceal unfair practices. Ask about access, treatment of workers, use of money, and attention to those who are harmed. The prophetic text gives the examination moral urgency; specific accusations still require evidence."
+            "A contemporary community can examine whether its celebrations conceal unfair practices. Ask about access, treatment of workers, use of money, and attention to those who are harmed. The prophetic text gives the examination moral urgency; specific accusations still require evidence.",
+            "Amos rejects worship that sits comfortably beside injustice, and demands justice and righteousness that keep flowing. The target is not ritual itself but ritual cut off from how people are treated, and the text gives today’s communities an urgent question to ask about themselves.",
+            "Readers agree on this core; they differ on how directly prophetic critique translates into modern economic policy. The question to carry forward: if offerings cannot buy favor, what does God ask for?"
           ],
           "simple": "Religious activity cannot substitute for treating people justly. The point is to reconnect worship and conduct.",
           "vocab": {
@@ -11496,7 +11820,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Amos: when worship and conduct collide",
+              "title": "Separate what Amos 5 supports from overreach",
               "prompt": "Build an evidence board from Amos 5:21–24. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The passage rejects religious activities within its critique.",
@@ -11513,7 +11837,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put amos: when worship and conduct collide to work",
+              "title": "Apply Amos 5 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -11638,6 +11962,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 8 reads the prophets who spoke into Israel’s and Judah’s crises, and then the catastrophe they warned of. It begins with Amos, a herdsman from Judah sent to the prosperous northern kingdom in the 700s BCE."
+                },
+                {
+                  "type": "prose",
                   "text": "Amos uses an uncompromising rejection of festivals, offerings, and songs. The shock matters: activities associated with religious devotion are not accepted as substitutes for justice. The passage challenges a separation between public worship and the way a community treats people."
                 }
               ]
@@ -11649,18 +11977,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read God’s rejection of festivals, offerings, and songs in verses 21–23, then the single demand in verse 24, and ask what the shock of the first part is for."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:amos-worship#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "justice-like-water",
+              "anchor": "lesson:amos-worship#justice-like-water",
+              "title": "Justice like flowing water",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The contrast culminates in flowing water imagery for justice and righteousness. Read the image as a demand for sustained communal conduct, not merely an attractive line about nature. The rhetorical force depends on what the passage places against the religious activity."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "not-against-worship",
+              "anchor": "lesson:amos-worship#not-against-worship",
+              "title": "Not against worship, against worship without justice",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The critique does not require the claim that singing or ritual is always meaningless. Its target is worship severed from the concern expressed in the final demand. An interpretation should account for that contrast instead of selecting either the ritual rejection or the water image alone."
@@ -11668,9 +12011,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:amos-worship#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "examination",
+              "anchor": "lesson:amos-worship#examination",
+              "title": "Examining a community today",
               "blocks": [
                 {
                   "type": "prose",
@@ -11678,11 +12021,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:amos-worship#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Amos rejects worship that sits comfortably beside injustice, and demands justice and righteousness that keep flowing. The target is not ritual itself but ritual cut off from how people are treated, and the text gives today’s communities an urgent question to ask about themselves."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers agree on this core; they differ on how directly prophetic critique translates into modern economic policy. The question to carry forward: if offerings cannot buy favor, what does God ask for?"
                 }
               ]
             },
@@ -11716,10 +12070,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             8
           ],
           "body": [
+            "Micah, a contemporary of Isaiah, preached to Judah in the same century as Amos. This lesson reads his best-known answer to the question every worshiper asks: what does God want from me?",
             "The questions begin with what someone might bring before God and escalate toward increasingly extreme offerings. Read the sequence carefully: the rhetorical questions create a problem, and the response redirects attention. Not every possibility named in a question is endorsed.",
+            "Follow the questions in verses 6–7 as they escalate, from calves to rivers of oil to a firstborn child, and then notice how verse 8 answers by changing the question.",
             "The answer names doing justice, loving mercy, and walking humbly with God. These are relational actions and dispositions rather than a price list. The passage challenges the assumption that the right quantity of an offering can bypass responsibility for how one lives.",
             "Humility matters for the reader as well as for the ancient audience. Applying a prophetic text does not give us infallible knowledge of everyone else’s motives. We need honest evidence, attention to those affected, and willingness to examine our own conduct.",
-            "This text can guide a practical response without becoming a technique for purchasing salvation. Within this course, grace is God’s gift and ethical action is a response. Keep that distinction while allowing the prophet’s demand to retain its force."
+            "This text can guide a practical response without becoming a technique for purchasing salvation. Within this course, grace is God’s gift and ethical action is a response. Keep that distinction while allowing the prophet’s demand to retain its force.",
+            "Micah answers the escalating question of what to offer by redirecting it: do justice, love mercy, and walk humbly with God. These are ways of living in relationship, not a price list, and humility applies to the reader’s judgments of others as well.",
+            "Canonical Shelf’s Statement of Faith holds that grace is God’s gift and that ethical action responds to it rather than earning it; Micah’s demand keeps its full force within that frame. The question to carry forward: the prophets warned of judgment; what happened when it came?"
           ],
           "simple": "The passage turns from “How much can I offer?” to “How should I live with God and others?”",
           "vocab": {},
@@ -11729,7 +12087,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Micah: justice, mercy, and humility",
+              "title": "Separate what Micah 6:6–8 supports from overreach",
               "prompt": "Build an evidence board from Micah 6:6–8. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The questions escalate the proposed offerings.",
@@ -11746,7 +12104,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put micah: justice, mercy, and humility to work",
+              "title": "Apply Micah 6:8 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -11871,6 +12229,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Micah, a contemporary of Isaiah, preached to Judah in the same century as Amos. This lesson reads his best-known answer to the question every worshiper asks: what does God want from me?"
+                },
+                {
+                  "type": "prose",
                   "text": "The questions begin with what someone might bring before God and escalate toward increasingly extreme offerings. Read the sequence carefully: the rhetorical questions create a problem, and the response redirects attention. Not every possibility named in a question is endorsed."
                 }
               ]
@@ -11882,18 +12244,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Follow the questions in verses 6–7 as they escalate, from calves to rivers of oil to a firstborn child, and then notice how verse 8 answers by changing the question."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:micah-mercy#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "the-answer",
+              "anchor": "lesson:micah-mercy#the-answer",
+              "title": "Justice, mercy, and a humble walk",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The answer names doing justice, loving mercy, and walking humbly with God. These are relational actions and dispositions rather than a price list. The passage challenges the assumption that the right quantity of an offering can bypass responsibility for how one lives."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "humility",
+              "anchor": "lesson:micah-mercy#humility",
+              "title": "Humility for the reader too",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Humility matters for the reader as well as for the ancient audience. Applying a prophetic text does not give us infallible knowledge of everyone else’s motives. We need honest evidence, attention to those affected, and willingness to examine our own conduct."
@@ -11901,9 +12278,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:micah-mercy#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "grace-and-response",
+              "anchor": "lesson:micah-mercy#grace-and-response",
+              "title": "A demand, not a price",
               "blocks": [
                 {
                   "type": "prose",
@@ -11911,11 +12288,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:micah-mercy#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Micah answers the escalating question of what to offer by redirecting it: do justice, love mercy, and walk humbly with God. These are ways of living in relationship, not a price list, and humility applies to the reader’s judgments of others as well."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s Statement of Faith holds that grace is God’s gift and that ethical action responds to it rather than earning it; Micah’s demand keeps its full force within that frame. The question to carry forward: the prophets warned of judgment; what happened when it came?"
                 }
               ]
             },
@@ -21144,10 +21532,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain why the tabernacle matters in the Exodus story and locate its major zones as a model of ordered sacred space.",
           "body": [
+            "Unit 3 turns from the covenant to the place where Israel meets God. This lesson reads the opening of the tabernacle instructions: a sanctuary built so that God can dwell among a people still on the move.",
             "After Sinai, Exodus devotes substantial attention to a portable sanctuary. The tabernacle is not an unrelated architectural appendix. Its stated purpose is connected with God dwelling among the people who have been brought out of Egypt.",
+            "Notice the purpose stated in verse 8, “that I may dwell among them”, and that the materials come from what the people freely give.",
             "The sanctuary has graded spaces: an outer courtyard, a tent with a Holy Place, and an inner Most Holy Place or Holy of Holies. Objects and priestly actions are located within those spaces. The arrangement teaches that presence, holiness, access, and worship are related ideas.",
             "Because the sanctuary is portable, divine presence is not yet tied to a permanent royal capital. The tabernacle travels with Israel. Later, the temple in Jerusalem will inherit and transform many of these spatial and ritual patterns.",
-            "A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement."
+            "A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement.",
+            "The tabernacle exists so that God may dwell among Israel. Its graded spaces, from the open courtyard to the innermost room, teach that presence, holiness, access, and worship belong together, and its portability ties presence to a traveling people rather than a capital city.",
+            "Scholars debate how the tabernacle descriptions relate to later temple practice and when they took their present form; the relationships they teach are not in dispute. The question to carry forward: what sits in the innermost room, and why?"
           ],
           "simple": "The tabernacle is a portable sanctuary representing God dwelling among Israel, with increasingly restricted sacred zones.",
           "vocab": {
@@ -21238,6 +21630,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 3 turns from the covenant to the place where Israel meets God. This lesson reads the opening of the tabernacle instructions: a sanctuary built so that God can dwell among a people still on the move."
+                },
+                {
+                  "type": "prose",
                   "text": "After Sinai, Exodus devotes substantial attention to a portable sanctuary. The tabernacle is not an unrelated architectural appendix. Its stated purpose is connected with God dwelling among the people who have been brought out of Egypt."
                 }
               ]
@@ -21249,18 +21645,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the purpose stated in verse 8, “that I may dwell among them”, and that the materials come from what the people freely give."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-tabernacle#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "graded-space",
+              "anchor": "lesson:c2-tabernacle#graded-space",
+              "title": "Graded space: courtyard, Holy Place, Most Holy Place",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The sanctuary has graded spaces: an outer courtyard, a tent with a Holy Place, and an inner Most Holy Place or Holy of Holies. Objects and priestly actions are located within those spaces. The arrangement teaches that presence, holiness, access, and worship are related ideas."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "on-the-move",
+              "anchor": "lesson:c2-tabernacle#on-the-move",
+              "title": "A sanctuary on the move",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Because the sanctuary is portable, divine presence is not yet tied to a permanent royal capital. The tabernacle travels with Israel. Later, the temple in Jerusalem will inherit and transform many of these spatial and ritual patterns."
@@ -21268,31 +21679,32 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-tabernacle#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "diagrams",
+              "anchor": "lesson:c2-tabernacle#diagrams",
+              "title": "Reading descriptions, not blueprints",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement."
-                }
-              ]
-            },
-            {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-tabernacle#see-the-relationship",
-              "title": "See the relationship",
-              "blocks": [
-                {
-                  "type": "visual"
-                },
-                {
-                  "type": "check",
-                  "index": 0
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-tabernacle#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The tabernacle exists so that God may dwell among Israel. Its graded spaces, from the open courtyard to the innermost room, teach that presence, holiness, access, and worship belong together, and its portability ties presence to a traveling people rather than a capital city."
+                },
+                {
+                  "type": "prose",
+                  "text": "Scholars debate how the tabernacle descriptions relate to later temple practice and when they took their present form; the relationships they teach are not in dispute. The question to carry forward: what sits in the innermost room, and why?"
                 }
               ]
             }
@@ -21316,10 +21728,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain the Ark’s relationship to covenant testimony, the mercy seat, and divine presence without turning it into a magical object.",
           "body": [
+            "The previous lesson walked inward through the tabernacle. This one stops at the innermost room and the object placed there: the Ark of the Covenant.",
             "The Ark is a sacred chest placed in the tabernacle’s innermost space. Exodus connects it with the covenant testimony and describes a cover often translated “mercy seat” or “atonement cover,” above which divine meeting and speech are described.",
+            "Notice what goes inside the Ark (the covenant testimony) and what sits on top of it (the cover and the cherubim), and where God promises to meet and speak.",
             "The Ark therefore joins covenant memory and presence. Its significance is not that the box mechanically controls God. Later narratives actually warn against treating sacred objects as guarantees of military success or divine manipulation.",
             "The Ark travels through Israel’s story: wilderness traditions, crossing into the land, Shiloh, capture by the Philistines, recovery, David’s Jerusalem, and Solomon’s Temple. The later biblical record does not provide a simple account of its final fate after the temple’s destruction.",
-            "Later Jewish and Christian traditions develop additional stories and interpretations. Those should be labeled as later reception rather than silently inserted into the biblical narrative."
+            "Later Jewish and Christian traditions develop additional stories and interpretations. Those should be labeled as later reception rather than silently inserted into the biblical narrative.",
+            "The Ark holds the covenant testimony in the sanctuary’s innermost space, where God promises to meet the people. It joins covenant memory with presence, and the biblical story itself warns against treating it as a tool for controlling God or guaranteeing victory.",
+            "The Bible does not say what finally became of the Ark, and later Jewish and Christian traditions fill that gap in different ways; those are reception, not the biblical narrative. The question to carry forward: if the Ark is not magic, what does worship at the tabernacle actually involve?"
           ],
           "simple": "The Ark links covenant testimony, the sanctuary’s innermost space, and divine presence; it is not a magical guarantee of success.",
           "vocab": {
@@ -21346,6 +21762,23 @@ Source: [/data/catalog.json](/data/catalog.json)
           },
           "challenges": [
             {
+              "kind": "evidence",
+              "title": "Reject magical thinking",
+              "prompt": "Which two claims are warranted?",
+              "items": [
+                "The Ark is associated with covenant testimony.",
+                "Possessing the Ark guarantees victory regardless of covenant faithfulness.",
+                "The Ark is located in the innermost sanctuary.",
+                "The Bible clearly reports where the Ark is today."
+              ],
+              "answer": [
+                0,
+                2
+              ],
+              "why": "The text supports covenant and location claims, not magical control or a known modern location.",
+              "hint": "Choose only claims warranted by the evidence presented."
+            },
+            {
               "kind": "match",
               "title": "Ark relationships",
               "prompt": "Match the Ark with the relationship emphasized in the lesson.",
@@ -21366,23 +21799,6 @@ Source: [/data/catalog.json](/data/catalog.json)
               ],
               "hint": "Match each item to the distinction established in the lesson.",
               "why": "The Ark’s meaning emerges through covenant, cover, and location together."
-            },
-            {
-              "kind": "evidence",
-              "title": "Reject magical thinking",
-              "prompt": "Which two claims are warranted?",
-              "items": [
-                "The Ark is associated with covenant testimony.",
-                "Possessing the Ark guarantees victory regardless of covenant faithfulness.",
-                "The Ark is located in the innermost sanctuary.",
-                "The Bible clearly reports where the Ark is today."
-              ],
-              "answer": [
-                0,
-                2
-              ],
-              "why": "The text supports covenant and location claims, not magical control or a known modern location.",
-              "hint": "Choose only claims warranted by the evidence presented."
             }
           ],
           "reflect": "",
@@ -21408,6 +21824,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The previous lesson walked inward through the tabernacle. This one stops at the innermost room and the object placed there: the Ark of the Covenant."
+                },
+                {
+                  "type": "prose",
                   "text": "The Ark is a sacred chest placed in the tabernacle’s innermost space. Exodus connects it with the covenant testimony and describes a cover often translated “mercy seat” or “atonement cover,” above which divine meeting and speech are described."
                 }
               ]
@@ -21419,28 +21839,47 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice what goes inside the Ark (the covenant testimony) and what sits on top of it (the cover and the cherubim), and where God promises to meet and speak."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-ark#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "not-magic",
+              "anchor": "lesson:c2-ark#not-magic",
+              "title": "Presence, not control",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The Ark therefore joins covenant memory and presence. Its significance is not that the box mechanically controls God. Later narratives actually warn against treating sacred objects as guarantees of military success or divine manipulation."
                 },
                 {
-                  "type": "prose",
-                  "text": "The Ark travels through Israel’s story: wilderness traditions, crossing into the land, Shiloh, capture by the Philistines, recovery, David’s Jerusalem, and Solomon’s Temple. The later biblical record does not provide a simple account of its final fate after the temple’s destruction."
+                  "type": "check",
+                  "index": 0
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-ark#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "its-journey",
+              "anchor": "lesson:c2-ark#its-journey",
+              "title": "The Ark’s journey through the story",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Ark travels through Israel’s story: wilderness traditions, crossing into the land, Shiloh, capture by the Philistines, recovery, David’s Jerusalem, and Solomon’s Temple. The later biblical record does not provide a simple account of its final fate after the temple’s destruction."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "later-traditions",
+              "anchor": "lesson:c2-ark#later-traditions",
+              "title": "Later traditions about the Ark",
               "blocks": [
                 {
                   "type": "prose",
@@ -21449,20 +21888,17 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-ark#see-the-relationship",
-              "title": "See the relationship",
+              "id": "summary",
+              "anchor": "lesson:c2-ark#summary",
+              "title": "What you now know",
               "blocks": [
                 {
-                  "type": "visual"
+                  "type": "prose",
+                  "text": "The Ark holds the covenant testimony in the sanctuary’s innermost space, where God promises to meet the people. It joins covenant memory with presence, and the biblical story itself warns against treating it as a tool for controlling God or guaranteeing victory."
                 },
                 {
-                  "type": "check",
-                  "index": 0
-                },
-                {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "The Bible does not say what finally became of the Ark, and later Jewish and Christian traditions fill that gap in different ways; those are reception, not the biblical narrative. The question to carry forward: if the Ark is not magic, what does worship at the tabernacle actually involve?"
                 }
               ]
             }
@@ -21486,10 +21922,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Distinguish priestly mediation, sacrifice, and several possible ritual purposes instead of reducing every offering to the same mechanism.",
           "body": [
+            "Unit 4 moves from sacred space to what happens in it. This lesson opens Leviticus, where worship has roles, purposes, and many kinds of offering.",
             "Leviticus assumes the tabernacle world established in Exodus and describes worship carried out through priests, offerings, purity practices, sacred times, and communal responsibilities. The system has structure; “sacrifice” is not one single undifferentiated action.",
+            "Notice how much the passage assumes: a worshiper who brings an offering, a priest who handles it, and a specific reason for this kind of offering. Leviticus 1 is the first of several kinds.",
             "Different offerings have different functions and features. Some emphasize gift, dedication, fellowship, purification, reparation, or atonement. Blood is important in several rites, but not every offering works in exactly the same way or addresses the same circumstance.",
             "Priests perform particular ritual responsibilities on behalf of the community, but Israel’s worship also involves households, worshipers, Levites, sacred space, and ordinary ethical life. Ritual and ethics should not be separated as if one matters to God and the other does not.",
-            "Later Christian texts use priestly and sacrificial language for Jesus in multiple ways. Understanding Israel’s worship first prevents later theology from turning biblical sacrificial imagery into a vague synonym for “something costly happened.”"
+            "Later Christian texts use priestly and sacrificial language for Jesus in multiple ways. Understanding Israel’s worship first prevents later theology from turning biblical sacrificial imagery into a vague synonym for “something costly happened.”",
+            "Israel’s worship is a structured system: priests, offerings, purity, sacred times, and everyday ethics. “Sacrifice” covers several distinct offerings with distinct purposes, from gift and fellowship to purification and reparation, and ritual is never separated from how people treat one another.",
+            "Scholars debate the exact meaning of several offerings and of the blood rites; Christians differ on how sacrificial language applies to Jesus. Knowing the Levitical system first keeps those later discussions precise. The question to carry forward: what happens on the one day each year when the high priest enters the innermost room?"
           ],
           "simple": "Israel’s sacrificial system includes different offerings and priestly roles. Not every sacrifice has the same purpose.",
           "vocab": {
@@ -21573,6 +22013,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 4 moves from sacred space to what happens in it. This lesson opens Leviticus, where worship has roles, purposes, and many kinds of offering."
+                },
+                {
+                  "type": "prose",
                   "text": "Leviticus assumes the tabernacle world established in Exodus and describes worship carried out through priests, offerings, purity practices, sacred times, and communal responsibilities. The system has structure; “sacrifice” is not one single undifferentiated action."
                 }
               ]
@@ -21584,28 +22028,47 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice how much the passage assumes: a worshiper who brings an offering, a priest who handles it, and a specific reason for this kind of offering. Leviticus 1 is the first of several kinds."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-priesthood-sacrifice#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "kinds-of-offering",
+              "anchor": "lesson:c2-priesthood-sacrifice#kinds-of-offering",
+              "title": "Different offerings, different purposes",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Different offerings have different functions and features. Some emphasize gift, dedication, fellowship, purification, reparation, or atonement. Blood is important in several rites, but not every offering works in exactly the same way or addresses the same circumstance."
                 },
                 {
-                  "type": "prose",
-                  "text": "Priests perform particular ritual responsibilities on behalf of the community, but Israel’s worship also involves households, worshipers, Levites, sacred space, and ordinary ethical life. Ritual and ethics should not be separated as if one matters to God and the other does not."
+                  "type": "check",
+                  "index": 0
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-priesthood-sacrifice#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "priests-and-people",
+              "anchor": "lesson:c2-priesthood-sacrifice#priests-and-people",
+              "title": "Priests, households, and ordinary ethics",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Priests perform particular ritual responsibilities on behalf of the community, but Israel’s worship also involves households, worshipers, Levites, sacred space, and ordinary ethical life. Ritual and ethics should not be separated as if one matters to God and the other does not."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "later-language",
+              "anchor": "lesson:c2-priesthood-sacrifice#later-language",
+              "title": "Later Christian language about sacrifice",
               "blocks": [
                 {
                   "type": "prose",
@@ -21614,20 +22077,17 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-priesthood-sacrifice#see-the-relationship",
-              "title": "See the relationship",
+              "id": "summary",
+              "anchor": "lesson:c2-priesthood-sacrifice#summary",
+              "title": "What you now know",
               "blocks": [
                 {
-                  "type": "visual"
+                  "type": "prose",
+                  "text": "Israel’s worship is a structured system: priests, offerings, purity, sacred times, and everyday ethics. “Sacrifice” covers several distinct offerings with distinct purposes, from gift and fellowship to purification and reparation, and ritual is never separated from how people treat one another."
                 },
                 {
-                  "type": "check",
-                  "index": 0
-                },
-                {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Scholars debate the exact meaning of several offerings and of the blood rites; Christians differ on how sacrificial language applies to Jesus. Knowing the Levitical system first keeps those later discussions precise. The question to carry forward: what happens on the one day each year when the high priest enters the innermost room?"
                 }
               ]
             }
@@ -21651,10 +22111,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain the Day of Atonement as a coordinated set of rites involving priest, sanctuary, impurity/sin, and communal restoration.",
           "body": [
+            "This lesson reads the most solemn day in Israel’s calendar, when the sanctuary itself is cleansed and the community’s wrongs are carried away.",
             "Leviticus 16 describes an annual rite centered on the high priest and the sanctuary. The chapter links human wrongdoing and impurity with the need to cleanse or purify sacred space and maintain the community’s relationship with God.",
+            "Read the chapter as a sequence of actions and notice who does each one, where, and with which animal. Keep the two goats separate in your mind; the chapter does.",
             "Two goats play different roles: one is involved in sanctuary rites, while another symbolically bears Israel’s wrongs away into the wilderness. Treating both actions as if they were one identical sacrifice misses the chapter’s internal distinctions.",
             "The high priest’s entry into the innermost space is exceptional rather than routine. The ritual therefore joins access, danger, cleansing, confession, removal, and restored order.",
-            "Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms."
+            "Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms.",
+            "The Day of Atonement cleanses the sanctuary and addresses the community’s wrongdoing through an annual sequence of rites: the high priest’s rare entry into the innermost room, one goat in the sanctuary rites, and another carrying Israel’s wrongs into the wilderness.",
+            "The day remains the holiest in Jewish life (Yom Kippur). Christians read it through Hebrews in several ways, and the guide encourages reading Leviticus on its own terms first. The question to carry forward: how does Israel’s worship shape the way time itself is kept?"
           ],
           "simple": "The Day of Atonement is an annual complex of rites dealing with sanctuary cleansing, communal wrongdoing, removal, and restored relationship.",
           "vocab": {
@@ -21735,6 +22199,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson reads the most solemn day in Israel’s calendar, when the sanctuary itself is cleansed and the community’s wrongs are carried away."
+                },
+                {
+                  "type": "prose",
                   "text": "Leviticus 16 describes an annual rite centered on the high priest and the sanctuary. The chapter links human wrongdoing and impurity with the need to cleanse or purify sacred space and maintain the community’s relationship with God."
                 }
               ]
@@ -21746,21 +22214,21 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read the chapter as a sequence of actions and notice who does each one, where, and with which animal. Keep the two goats separate in your mind; the chapter does."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-day-atonement#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "two-goats",
+              "anchor": "lesson:c2-day-atonement#two-goats",
+              "title": "Two goats, two roles",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Two goats play different roles: one is involved in sanctuary rites, while another symbolically bears Israel’s wrongs away into the wilderness. Treating both actions as if they were one identical sacrifice misses the chapter’s internal distinctions."
-                },
-                {
-                  "type": "prose",
-                  "text": "The high priest’s entry into the innermost space is exceptional rather than routine. The ritual therefore joins access, danger, cleansing, confession, removal, and restored order."
                 },
                 {
                   "type": "check",
@@ -21769,17 +22237,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-day-atonement#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "the-innermost-room",
+              "anchor": "lesson:c2-day-atonement#the-innermost-room",
+              "title": "Entering the innermost room",
               "blocks": [
                 {
                   "type": "prose",
-                  "text": "Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms."
+                  "text": "The high priest’s entry into the innermost space is exceptional rather than routine. The ritual therefore joins access, danger, cleansing, confession, removal, and restored order."
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "hebrews",
+              "anchor": "lesson:c2-day-atonement#hebrews",
+              "title": "How Hebrews reads this day",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms."
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-day-atonement#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Day of Atonement cleanses the sanctuary and addresses the community’s wrongdoing through an annual sequence of rites: the high priest’s rare entry into the innermost room, one goat in the sanctuary rites, and another carrying Israel’s wrongs into the wilderness."
+                },
+                {
+                  "type": "prose",
+                  "text": "The day remains the holiest in Jewish life (Yom Kippur). Christians read it through Hebrews in several ways, and the guide encourages reading Leviticus on its own terms first. The question to carry forward: how does Israel’s worship shape the way time itself is kept?"
                 }
               ]
             }
@@ -21803,10 +22297,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Relate Sabbath, Passover/Unleavened Bread, Weeks, and Booths to Israel’s worship, memory, agriculture, and communal calendar.",
           "body": [
+            "Israel keeps time as well as space. This lesson closes the unit with the Sabbath and the annual festivals, the rhythms that hold Israel’s memory and that later frame much of the New Testament.",
             "Israel’s worship is organized not only through sacred places but also through sacred time. Sabbath establishes a recurring rhythm of work and rest, while annual festivals connect worship with memory, harvest, pilgrimage, and communal identity.",
+            "Notice that the list starts with the weekly Sabbath before the yearly festivals, and that each festival is tied to a time of year and to something remembered.",
             "Passover and Unleavened Bread remember Exodus; Weeks is associated with harvest and later Jewish traditions develop additional associations; Booths or Tabernacles combines harvest celebration with wilderness memory. Biblical descriptions vary across legal corpora and later practice develops further.",
             "The calendar helps explain Gospel and Acts narratives. Jesus travels to festivals, Passover frames passion traditions, and Pentecost in Acts belongs to the festival of Weeks. These later texts assume a rhythm a beginner can otherwise miss.",
-            "A festival is not merely a date label. It can organize travel, crowds, sacrifice, Scripture, memory, identity, and expectation. Historical practice also changes, so one biblical festival list should not be treated as a complete description of every period."
+            "A festival is not merely a date label. It can organize travel, crowds, sacrifice, Scripture, memory, identity, and expectation. Historical practice also changes, so one biblical festival list should not be treated as a complete description of every period.",
+            "The Sabbath gives a weekly rhythm of work and rest; the annual festivals tie worship to harvest and to memory, especially of the Exodus and the wilderness. Knowing them explains why Jesus travels when he does, why the passion is set at Passover, and why Pentecost falls when it does in Acts.",
+            "The biblical calendars differ somewhat between books, and practice changed over time; scholars reconstruct the details differently. The question to carry forward: in the next unit Israel enters the land; what happens to a covenant people once it has a place of its own?"
           ],
           "simple": "Israel’s calendar teaches memory and identity through recurring rest and festivals; those rhythms later shape Gospel and Acts settings.",
           "vocab": {
@@ -21890,6 +22388,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Israel keeps time as well as space. This lesson closes the unit with the Sabbath and the annual festivals, the rhythms that hold Israel’s memory and that later frame much of the New Testament."
+                },
+                {
+                  "type": "prose",
                   "text": "Israel’s worship is organized not only through sacred places but also through sacred time. Sabbath establishes a recurring rhythm of work and rest, while annual festivals connect worship with memory, harvest, pilgrimage, and communal identity."
                 }
               ]
@@ -21901,18 +22403,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice that the list starts with the weekly Sabbath before the yearly festivals, and that each festival is tied to a time of year and to something remembered."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-sacred-calendar#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "the-festivals",
+              "anchor": "lesson:c2-sacred-calendar#the-festivals",
+              "title": "Passover, Weeks, and Booths",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Passover and Unleavened Bread remember Exodus; Weeks is associated with harvest and later Jewish traditions develop additional associations; Booths or Tabernacles combines harvest celebration with wilderness memory. Biblical descriptions vary across legal corpora and later practice develops further."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "in-the-gospels",
+              "anchor": "lesson:c2-sacred-calendar#in-the-gospels",
+              "title": "The calendar behind the Gospels and Acts",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The calendar helps explain Gospel and Acts narratives. Jesus travels to festivals, Passover frames passion traditions, and Pentecost in Acts belongs to the festival of Weeks. These later texts assume a rhythm a beginner can otherwise miss."
@@ -21920,31 +22437,32 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-sacred-calendar#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "more-than-dates",
+              "anchor": "lesson:c2-sacred-calendar#more-than-dates",
+              "title": "More than dates",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "A festival is not merely a date label. It can organize travel, crowds, sacrifice, Scripture, memory, identity, and expectation. Historical practice also changes, so one biblical festival list should not be treated as a complete description of every period."
-                }
-              ]
-            },
-            {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-sacred-calendar#see-the-relationship",
-              "title": "See the relationship",
-              "blocks": [
-                {
-                  "type": "visual"
-                },
-                {
-                  "type": "check",
-                  "index": 0
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-sacred-calendar#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Sabbath gives a weekly rhythm of work and rest; the annual festivals tie worship to harvest and to memory, especially of the Exodus and the wilderness. Knowing them explains why Jesus travels when he does, why the passion is set at Passover, and why Pentecost falls when it does in Acts."
+                },
+                {
+                  "type": "prose",
+                  "text": "The biblical calendars differ somewhat between books, and practice changed over time; scholars reconstruct the details differently. The question to carry forward: in the next unit Israel enters the land; what happens to a covenant people once it has a place of its own?"
                 }
               ]
             }
@@ -21968,10 +22486,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain how the promise to David links dynasty, kingdom, temple, discipline, and later messianic hope.",
           "body": [
+            "The monarchy has begun, with all the warnings attached. This lesson reads the promise to David that turns kingship into a line of hope long after particular kings have failed.",
             "Second Samuel 7 turns from David’s desire to build a house for God toward God’s promise to build a “house” or dynasty for David. The wordplay connects temple ambition with royal succession while keeping divine initiative central.",
+            "Notice the reversal at the center: David wants to build God a house, and God promises to build David a house, a dynasty instead of a building.",
             "The promise speaks of descendants, throne, kingdom, discipline, and enduring commitment. It does not say that every Davidic king will rule justly. Later narratives repeatedly expose royal failure while preserving the memory of the promise.",
             "After the monarchy collapses and exile disrupts Davidic rule, prophetic and later Jewish hopes can return to Davidic language. “Messiah” does not mean only one fixed expectation in every period, but royal-Davidic hope becomes one important stream.",
-            "The New Testament later presents Jesus with Davidic titles and genealogical claims. Course 3 studies the diversity of messianic expectation; Course 4 studies how the Gospels use Davidic language."
+            "The New Testament later presents Jesus with Davidic titles and genealogical claims. Module 3 studies the diversity of messianic expectation and how the Gospels use Davidic language.",
+            "God promises David a lasting dynasty and kingdom, with discipline but enduring commitment. The promise survives the failure of individual kings and the collapse of the monarchy, and becomes one important stream of later messianic hope.",
+            "Jewish and Christian readers both draw on this promise; they differ on its fulfillment, and the New Testament presents Jesus with Davidic titles. The question to carry forward: what happens to a promise of a lasting throne when the kingdom falls?"
           ],
           "simple": "God’s promise to David links dynasty and kingdom with an enduring line of hope even though individual kings can fail.",
           "vocab": {
@@ -22048,6 +22570,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The monarchy has begun, with all the warnings attached. This lesson reads the promise to David that turns kingship into a line of hope long after particular kings have failed."
+                },
+                {
+                  "type": "prose",
                   "text": "Second Samuel 7 turns from David’s desire to build a house for God toward God’s promise to build a “house” or dynasty for David. The wordplay connects temple ambition with royal succession while keeping divine initiative central."
                 }
               ]
@@ -22059,40 +22585,66 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the reversal at the center: David wants to build God a house, and God promises to build David a house, a dynasty instead of a building."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-davidic-covenant#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "promise-and-failure",
+              "anchor": "lesson:c2-davidic-covenant#promise-and-failure",
+              "title": "A promise without idealizing kings",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The promise speaks of descendants, throne, kingdom, discipline, and enduring commitment. It does not say that every Davidic king will rule justly. Later narratives repeatedly expose royal failure while preserving the memory of the promise."
                 },
                 {
-                  "type": "prose",
-                  "text": "After the monarchy collapses and exile disrupts Davidic rule, prophetic and later Jewish hopes can return to Davidic language. “Messiah” does not mean only one fixed expectation in every period, but royal-Davidic hope becomes one important stream."
+                  "type": "check",
+                  "index": 0
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-davidic-covenant#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "messianic-hope",
+              "anchor": "lesson:c2-davidic-covenant#messianic-hope",
+              "title": "After the monarchy: a line of hope",
               "blocks": [
                 {
                   "type": "prose",
-                  "text": "The New Testament later presents Jesus with Davidic titles and genealogical claims. Course 3 studies the diversity of messianic expectation; Course 4 studies how the Gospels use Davidic language."
-                },
-                {
-                  "type": "check",
-                  "index": 0
+                  "text": "After the monarchy collapses and exile disrupts Davidic rule, prophetic and later Jewish hopes can return to Davidic language. “Messiah” does not mean only one fixed expectation in every period, but royal-Davidic hope becomes one important stream."
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "jesus-and-david",
+              "anchor": "lesson:c2-davidic-covenant#jesus-and-david",
+              "title": "Jesus and the line of David",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The New Testament later presents Jesus with Davidic titles and genealogical claims. Module 3 studies the diversity of messianic expectation and how the Gospels use Davidic language."
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-davidic-covenant#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "God promises David a lasting dynasty and kingdom, with discipline but enduring commitment. The promise survives the failure of individual kings and the collapse of the monarchy, and becomes one important stream of later messianic hope."
+                },
+                {
+                  "type": "prose",
+                  "text": "Jewish and Christian readers both draw on this promise; they differ on its fulfillment, and the New Testament presents Jesus with Davidic titles. The question to carry forward: what happens to a promise of a lasting throne when the kingdom falls?"
                 }
               ]
             }
@@ -22116,10 +22668,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Connect Solomon’s Temple with tabernacle traditions while recognizing that the prayer itself refuses to confine God to a building.",
           "body": [
+            "Unit 6 follows the kingdom from its high point to its fall. This lesson reads Solomon’s prayer at the dedication of the Temple, where the tabernacle’s portable presence becomes a building in a capital city.",
             "Solomon’s Temple gives Israel’s central sanctuary a permanent monumental form in Jerusalem. Its spatial logic and furnishings draw on tabernacle traditions while the building also becomes entangled with monarchy, capital, pilgrimage, sacrifice, and national identity.",
+            "Notice Solomon’s question in verse 27, “will God really dwell on earth?”, and that most of the prayer asks God to hear prayers offered toward this place from somewhere else.",
             "In Solomon’s dedication prayer, the Temple is a focus of prayer and divine name/presence, yet the prayer also asks whether heaven itself can contain God. That tension matters: sacred space is meaningful without shrinking God to sacred architecture.",
             "The Temple becomes a major biblical symbol, but prophets can criticize confidence in the building when worship is detached from justice and covenant faithfulness. Sacred institutions can be honored and judged within the same scriptural tradition.",
-            "The destruction of the Temple will therefore become both a political catastrophe and a theological crisis. Later restoration, Second Temple Judaism, Jesus’ Temple actions, and New Testament presence imagery all depend on this background."
+            "The destruction of the Temple will therefore become both a political catastrophe and a theological crisis. Later restoration, Second Temple Judaism, Jesus’ Temple actions, and New Testament presence imagery all depend on this background.",
+            "The Temple gives Israel’s worship a permanent center tied to the monarchy, while Solomon’s own prayer insists that no building can contain God. Prophets later honor the Temple and judge confidence in it when worship is cut off from justice.",
+            "Scholars debate the size and dating of Solomon’s Temple; its role in the biblical story is not in dispute. The question to carry forward: what happens to a people’s faith when its central sanctuary is destroyed?"
           ],
           "simple": "Jerusalem’s Temple centralizes worship and presence language, but Scripture does not portray God as physically confined to the building.",
           "vocab": {
@@ -22139,6 +22695,23 @@ Source: [/data/catalog.json](/data/catalog.json)
           },
           "challenges": [
             {
+              "kind": "evidence",
+              "title": "Temple without confinement",
+              "prompt": "Which two statements fit 1 Kings 8 and the lesson?",
+              "items": [
+                "The Temple becomes a focus of prayer.",
+                "God is described as contained by the building in every sense.",
+                "The dedication prayer acknowledges that heaven cannot contain God.",
+                "Temple importance makes prophetic criticism impossible."
+              ],
+              "answer": [
+                0,
+                2
+              ],
+              "why": "The text holds meaningful sacred space together with divine transcendence.",
+              "hint": "Choose only claims warranted by the evidence presented."
+            },
+            {
               "kind": "sequence",
               "title": "Trace the sacred-space development",
               "prompt": "Order these broad stages.",
@@ -22156,23 +22729,6 @@ Source: [/data/catalog.json](/data/catalog.json)
               ],
               "hint": "Use the lesson sequence and textual evidence.",
               "why": "The temple story grows out of tabernacle traditions, passes through destruction, and later restoration."
-            },
-            {
-              "kind": "evidence",
-              "title": "Temple without confinement",
-              "prompt": "Which two statements fit 1 Kings 8 and the lesson?",
-              "items": [
-                "The Temple becomes a focus of prayer.",
-                "God is described as contained by the building in every sense.",
-                "The dedication prayer acknowledges that heaven cannot contain God.",
-                "Temple importance makes prophetic criticism impossible."
-              ],
-              "answer": [
-                0,
-                2
-              ],
-              "why": "The text holds meaningful sacred space together with divine transcendence.",
-              "hint": "Choose only claims warranted by the evidence presented."
             }
           ],
           "reflect": "",
@@ -22198,6 +22754,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 6 follows the kingdom from its high point to its fall. This lesson reads Solomon’s prayer at the dedication of the Temple, where the tabernacle’s portable presence becomes a building in a capital city."
+                },
+                {
+                  "type": "prose",
                   "text": "Solomon’s Temple gives Israel’s central sanctuary a permanent monumental form in Jerusalem. Its spatial logic and furnishings draw on tabernacle traditions while the building also becomes entangled with monarchy, capital, pilgrimage, sacrifice, and national identity."
                 }
               ]
@@ -22209,28 +22769,47 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice Solomon’s question in verse 27, “will God really dwell on earth?”, and that most of the prayer asks God to hear prayers offered toward this place from somewhere else."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-temple-presence#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "cannot-contain",
+              "anchor": "lesson:c2-temple-presence#cannot-contain",
+              "title": "A house that cannot contain God",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "In Solomon’s dedication prayer, the Temple is a focus of prayer and divine name/presence, yet the prayer also asks whether heaven itself can contain God. That tension matters: sacred space is meaningful without shrinking God to sacred architecture."
                 },
                 {
-                  "type": "prose",
-                  "text": "The Temple becomes a major biblical symbol, but prophets can criticize confidence in the building when worship is detached from justice and covenant faithfulness. Sacred institutions can be honored and judged within the same scriptural tradition."
+                  "type": "check",
+                  "index": 0
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-temple-presence#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "honored-and-judged",
+              "anchor": "lesson:c2-temple-presence#honored-and-judged",
+              "title": "Honored and judged",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Temple becomes a major biblical symbol, but prophets can criticize confidence in the building when worship is detached from justice and covenant faithfulness. Sacred institutions can be honored and judged within the same scriptural tradition."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "crisis-ahead",
+              "anchor": "lesson:c2-temple-presence#crisis-ahead",
+              "title": "The crisis ahead",
               "blocks": [
                 {
                   "type": "prose",
@@ -22239,20 +22818,17 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-temple-presence#see-the-relationship",
-              "title": "See the relationship",
+              "id": "summary",
+              "anchor": "lesson:c2-temple-presence#summary",
+              "title": "What you now know",
               "blocks": [
                 {
-                  "type": "visual"
+                  "type": "prose",
+                  "text": "The Temple gives Israel’s worship a permanent center tied to the monarchy, while Solomon’s own prayer insists that no building can contain God. Prophets later honor the Temple and judge confidence in it when worship is cut off from justice."
                 },
                 {
-                  "type": "check",
-                  "index": 0
-                },
-                {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Scholars debate the size and dating of Solomon’s Temple; its role in the biblical story is not in dispute. The question to carry forward: what happens to a people’s faith when its central sanctuary is destroyed?"
                 }
               ]
             }
@@ -22276,10 +22852,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain why Jerusalem’s destruction and exile create political, communal, liturgical, and theological crises.",
           "body": [
+            "The warnings came true. This lesson reads the fall of Jerusalem to Babylon, the event that reshaped everything the Hebrew Scriptures say afterward about covenant, temple, kingship, and hope.",
             "Second Kings narrates Babylon’s destruction of Jerusalem and the Temple and the forced displacement of part of Judah’s population. The catastrophe is conventionally dated to 586 BCE, though ancient chronological reconstruction deserves appropriate precision rather than false certainty about every detail.",
+            "Read 2 Kings 25:8–21 as a list of losses: the Temple burned, the walls torn down, the bronze carried away, officials executed, people taken. Notice how much is institutional as well as personal.",
             "The loss is simultaneously political and religious: monarchy collapses, the sanctuary is burned, land is lost, communities are displaced, and inherited promises appear difficult to reconcile with events. Biblical responses include lament, confession, protest, reinterpretation, and hope.",
             "Exile does not mean that every Judean person is deported or that Jewish life exists only in Babylon. Populations remain in the land, communities develop in multiple locations, and later return does not simply reverse displacement for everyone.",
-            "The crisis reshapes how later texts speak about covenant, temple, kingship, presence, restoration, and identity. Understanding exile is therefore essential preparation for both prophetic hope and Second Temple Judaism."
+            "The crisis reshapes how later texts speak about covenant, temple, kingship, presence, restoration, and identity. Understanding exile is therefore essential preparation for both prophetic hope and Second Temple Judaism.",
+            "Babylon’s destruction of Jerusalem in 586 BCE ended the monarchy, burned the Temple, and displaced much of Judah’s leadership at once, creating a political and religious crisis. Exile was not total: people remained in the land and communities formed in several places, and later return did not simply undo the loss.",
+            "Historians debate the scale of the deportations and the exact dates; the event itself is well attested, including in Babylonian records. The question to carry forward: what does grief sound like when the history becomes personal?"
           ],
           "simple": "Jerusalem’s fall destroys political and religious institutions at once, creating a crisis that reshapes later biblical hope and identity.",
           "vocab": {
@@ -22360,6 +22940,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The warnings came true. This lesson reads the fall of Jerusalem to Babylon, the event that reshaped everything the Hebrew Scriptures say afterward about covenant, temple, kingship, and hope."
+                },
+                {
+                  "type": "prose",
                   "text": "Second Kings narrates Babylon’s destruction of Jerusalem and the Temple and the forced displacement of part of Judah’s population. The catastrophe is conventionally dated to 586 BCE, though ancient chronological reconstruction deserves appropriate precision rather than false certainty about every detail."
                 }
               ]
@@ -22371,18 +22955,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read 2 Kings 25:8–21 as a list of losses: the Temple burned, the walls torn down, the bronze carried away, officials executed, people taken. Notice how much is institutional as well as personal."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-exile-temple-loss#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "layers",
+              "anchor": "lesson:c2-exile-temple-loss#layers",
+              "title": "The layers of the crisis",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The loss is simultaneously political and religious: monarchy collapses, the sanctuary is burned, land is lost, communities are displaced, and inherited promises appear difficult to reconcile with events. Biblical responses include lament, confession, protest, reinterpretation, and hope."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "not-everyone",
+              "anchor": "lesson:c2-exile-temple-loss#not-everyone",
+              "title": "Who was taken, and who stayed",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Exile does not mean that every Judean person is deported or that Jewish life exists only in Babylon. Populations remain in the land, communities develop in multiple locations, and later return does not simply reverse displacement for everyone."
@@ -22390,9 +22989,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-exile-temple-loss#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "reshaped",
+              "anchor": "lesson:c2-exile-temple-loss#reshaped",
+              "title": "A crisis that reshaped the Bible",
               "blocks": [
                 {
                   "type": "prose",
@@ -22400,11 +22999,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-exile-temple-loss#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Babylon’s destruction of Jerusalem in 586 BCE ended the monarchy, burned the Temple, and displaced much of Judah’s leadership at once, creating a political and religious crisis. Exile was not total: people remained in the land and communities formed in several places, and later return did not simply undo the loss."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Historians debate the scale of the deportations and the exact dates; the event itself is well attested, including in Babylonian records. The question to carry forward: what does grief sound like when the history becomes personal?"
                 }
               ]
             }
@@ -26092,10 +26702,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Use parallelism, imagery, repetition, and line relationships to read biblical poetry without treating each line as isolated prose.",
           "body": [
+            "Unit 7 turns from Israel’s story to Israel’s poetry and wisdom: the prayers, songs, sayings, and arguments that ask how to live and speak to God when life is uneven. It begins with the skill everything else depends on: reading Hebrew poetry as poetry.",
             "Biblical Hebrew poetry often creates meaning through relationships between lines: repetition, development, contrast, intensification, image, sound, and structure. “Parallelism” is a useful entry point, but not every pair of lines fits one rigid category.",
+            "Read Psalm 19:1–6 line by line, and after each second line ask one question: what does this line add to the one before it?",
             "Psalm 19 begins with cosmic imagery in which heavens, sky, day, and night communicate without ordinary speech. Reading the imagery as poetry does not make the theological claim meaningless; it asks what the image does rather than whether the sky literally uses vocal cords.",
             "A second line may restate the first, sharpen it, extend it, contrast with it, or shift perspective. The reader should ask what changes between lines instead of simply deleting the second as repetition.",
-            "Poetic structure also matters in prophets, wisdom, songs, laments, and many embedded speeches. Recognizing poetry changes how claims, metaphors, hyperbole, and emotional language are interpreted."
+            "Poetic structure also matters in prophets, wisdom, songs, laments, and many embedded speeches. Recognizing poetry changes how claims, metaphors, hyperbole, and emotional language are interpreted.",
+            "Hebrew poetry makes meaning between lines: a second line restates, sharpens, extends, contrasts, or shifts the first. Reading imagery as poetry asks what the image does, not whether the sky literally talks, and the same skill applies across prophets, wisdom, songs, and laments.",
+            "Scholars describe parallelism in different ways and no single system fits every pair of lines; the practice of asking what changes between lines is widely shared. The question to carry forward: what does this poetry let people say to God that prose would not?"
           ],
           "simple": "In Hebrew poetry, meaning often lives between lines. Ask how the next line repeats, develops, contrasts, or intensifies the first.",
           "vocab": {
@@ -26174,6 +26788,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 7 turns from Israel’s story to Israel’s poetry and wisdom: the prayers, songs, sayings, and arguments that ask how to live and speak to God when life is uneven. It begins with the skill everything else depends on: reading Hebrew poetry as poetry."
+                },
+                {
+                  "type": "prose",
                   "text": "Biblical Hebrew poetry often creates meaning through relationships between lines: repetition, development, contrast, intensification, image, sound, and structure. “Parallelism” is a useful entry point, but not every pair of lines fits one rigid category."
                 }
               ]
@@ -26185,28 +26803,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read Psalm 19:1–6 line by line, and after each second line ask one question: what does this line add to the one before it?"
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c5-hebrew-poetry#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "cosmic-imagery",
+              "anchor": "lesson:c5-hebrew-poetry#cosmic-imagery",
+              "title": "The heavens speak without words",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Psalm 19 begins with cosmic imagery in which heavens, sky, day, and night communicate without ordinary speech. Reading the imagery as poetry does not make the theological claim meaningless; it asks what the image does rather than whether the sky literally uses vocal cords."
-                },
-                {
-                  "type": "prose",
-                  "text": "A second line may restate the first, sharpen it, extend it, contrast with it, or shift perspective. The reader should ask what changes between lines instead of simply deleting the second as repetition."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c5-hebrew-poetry#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "second-lines",
+              "anchor": "lesson:c5-hebrew-poetry#second-lines",
+              "title": "What the second line does",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "A second line may restate the first, sharpen it, extend it, contrast with it, or shift perspective. The reader should ask what changes between lines instead of simply deleting the second as repetition."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "poetry-everywhere",
+              "anchor": "lesson:c5-hebrew-poetry#poetry-everywhere",
+              "title": "Poetry beyond the Psalms",
               "blocks": [
                 {
                   "type": "prose",
@@ -26214,11 +26847,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c5-hebrew-poetry#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Hebrew poetry makes meaning between lines: a second line restates, sharpens, extends, contrasts, or shifts the first. Reading imagery as poetry asks what the image does, not whether the sky literally talks, and the same skill applies across prophets, wisdom, songs, and laments."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Scholars describe parallelism in different ways and no single system fits every pair of lines; the practice of asking what changes between lines is widely shared. The question to carry forward: what does this poetry let people say to God that prose would not?"
                 }
               ]
             }
@@ -35358,9 +36002,9 @@ Source: [/data/catalog.json](/data/catalog.json)
           "mastery:unit-c2-sacrifice-mastery"
         ],
         "c2.land-kings": [
-          "lesson:c2-davidic-covenant",
           "lesson:land-judges",
           "lesson:kings-accountability",
+          "lesson:c2-davidic-covenant",
           "mastery:s.4",
           "mastery:o.hist1",
           "mastery:g.hist",
@@ -35387,10 +36031,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "mastery:unit-c5-genre-mastery"
         ],
         "c2.prophets-exile": [
-          "lesson:c2-exile-temple-loss",
-          "lesson:exile-lament",
           "lesson:amos-worship",
           "lesson:micah-mercy",
+          "lesson:c2-exile-temple-loss",
+          "lesson:exile-lament",
           "mastery:s.6",
           "mastery:s.7",
           "mastery:o.minor1",

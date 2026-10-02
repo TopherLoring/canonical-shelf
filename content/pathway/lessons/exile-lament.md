@@ -18,23 +18,22 @@
 ## Exile: history heard alongside grief {#orient}
 > A timeline records displacement; a lament voices what it feels like. Hearing grief does not require endorsing every action grief imagines.
 
+This lesson closes the unit by hearing the exile from inside: a psalm sung by displaced people beside the rivers of Babylon.
+
 The psalm remembers weeping away from Zion. Place and memory matter: exile is not simply movement on a map. It can involve the loss of worship, belonging, familiar institutions, and a way of locating oneself within a shared story.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read Psalm 137:1–6 and notice the setting (rivers, poplars, hung-up harps), the captors’ demand, and the vow that follows. The psalm continues past verse 6; the lesson faces those verses too.
+
+## “Sing us one of the songs of Zion” {#songs-demanded}
 The demand for songs places the displaced community’s grief under pressure from others. The psalm asks how a sacred song can be sung in a foreign setting. Read that question as part of the emotional and communal situation, not as a rule forbidding worship outside one location.
-
-The pledge to remember Jerusalem gives language to loyalty and loss. Reading it beside the destruction narrated in 2 Kings 25 adds a voice that a chronology alone cannot supply. Narrative and poetry offer different kinds of evidence about a catastrophe.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The full psalm ends with disturbing vengeance language. Do not hide it or treat every cry of pain as an ethical instruction. Lament can make anger speakable while Christian application remains accountable to Jesus’ teaching and the dignity of other people.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Exile: history heard alongside grief",
+  "title": "Separate what Psalm 137 supports from overreach",
   "prompt": "Build an evidence board from Psalm 137:1–6. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The speakers remember Zion with tears.",
@@ -51,10 +50,16 @@ The full psalm ends with disturbing vengeance language. Do not hide it or treat 
 }
 ```
 
+## Memory as loyalty {#memory}
+The pledge to remember Jerusalem gives language to loyalty and loss. Reading it beside the destruction narrated in 2 Kings 25 adds a voice that a chronology alone cannot supply. Narrative and poetry offer different kinds of evidence about a catastrophe.
+
+## The disturbing ending {#vengeance}
+The full psalm ends with disturbing vengeance language. Do not hide it or treat every cry of pain as an ethical instruction. Lament can make anger speakable while Christian application remains accountable to Jesus’ teaching and the dignity of other people.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put exile: history heard alongside grief to work",
+  "title": "Apply Psalm 137 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ The full psalm ends with disturbing vengeance language. Do not hide it or treat 
   "why": "Make room for the account of loss before offering explanations or demanding optimism."
 }
 ```
+
+## What you now know {#summary}
+Psalm 137 gives the exile a voice that a timeline cannot: the loss of place, worship, and belonging, the pressure of captors demanding songs, and a vow to remember. Its final verses cry out for terrible vengeance; the guide neither hides them nor treats them as instruction, and reads them as anger made speakable.
+
+Christian traditions differ on how to pray or sing the vengeance psalms; all read them alongside Jesus’ teaching on enemies. The question to carry forward: the last unit of this module turns to hope; what do the prophets promise after the loss?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

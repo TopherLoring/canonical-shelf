@@ -966,50 +966,8 @@
           "unitId": "c2.prophets-exile",
           "lessons": [
             {
-              "id": "c2-exile-temple-loss",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Explain why Jerusalem’s destruction and exile create political, communal, liturgical, and theological crises.",
-              "reading": "2Kgs.25.8-21",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible"
-              ],
-              "checks": [
-                "Name the layers of the crisis",
-                "Loss and question"
-              ]
-            },
-            {
-              "id": "exile-lament",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Read communal lament as evidence of displacement without turning it into a universal diagnosis.",
-              "reading": "Ps.137.1-6",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
-              ],
-              "checks": [
-                "Investigate: Exile: history heard alongside grief",
-                "Put exile: history heard alongside grief to work"
-              ]
-            },
-            {
               "id": "amos-worship",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain the force of prophetic criticism without concluding all worship is worthless.",
               "reading": "Amos.5.21-24",
               "teaches": [],
@@ -1018,19 +976,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "justice-like-water",
+                "not-against-worship",
+                "examination",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Amos: when worship and conduct collide",
-                "Put amos: when worship and conduct collide to work"
-              ]
+                "Separate what Amos 5 supports from overreach",
+                "Apply Amos 5 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "micah-mercy",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Distinguish escalating religious offerings from the ethical response the passage names.",
               "reading": "Mic.6.6-8",
               "teaches": [],
@@ -1039,14 +999,62 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "the-answer",
+                "humility",
+                "grace-and-response",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Micah: justice, mercy, and humility",
-                "Put micah: justice, mercy, and humility to work"
-              ]
+                "Separate what Micah 6:6–8 supports from overreach",
+                "Apply Micah 6:8 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "c2-exile-temple-loss",
+              "authored": true,
+              "purpose": "Explain why Jerusalem’s destruction and exile create political, communal, liturgical, and theological crises.",
+              "reading": "2Kgs.25.8-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "layers",
+                "not-everyone",
+                "reshaped",
+                "summary"
+              ],
+              "checks": [
+                "Name the layers of the crisis",
+                "Loss and question"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "exile-lament",
+              "authored": true,
+              "purpose": "Read communal lament as evidence of displacement without turning it into a universal diagnosis.",
+              "reading": "Ps.137.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "songs-demanded",
+                "memory",
+                "vengeance",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "Separate what Psalm 137 supports from overreach",
+                "Apply Psalm 137 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },

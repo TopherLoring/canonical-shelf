@@ -24,18 +24,17 @@
 ## 586 BCE: exile means more than losing a war {#orient}
 > Jerusalem’s fall destroys political and religious institutions at once, creating a crisis that reshapes later biblical hope and identity.
 
+The warnings came true. This lesson reads the fall of Jerusalem to Babylon, the event that reshaped everything the Hebrew Scriptures say afterward about covenant, temple, kingship, and hope.
+
 Second Kings narrates Babylon’s destruction of Jerusalem and the Temple and the forced displacement of part of Judah’s population. The catastrophe is conventionally dated to 586 BCE, though ancient chronological reconstruction deserves appropriate precision rather than false certainty about every detail.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read 2 Kings 25:8–21 as a list of losses: the Temple burned, the walls torn down, the bronze carried away, officials executed, people taken. Notice how much is institutional as well as personal.
+
+## The layers of the crisis {#layers}
 The loss is simultaneously political and religious: monarchy collapses, the sanctuary is burned, land is lost, communities are displaced, and inherited promises appear difficult to reconcile with events. Biblical responses include lament, confession, protest, reinterpretation, and hope.
-
-Exile does not mean that every Judean person is deported or that Jewish life exists only in Babylon. Populations remain in the land, communities develop in multiple locations, and later return does not simply reverse displacement for everyone.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The crisis reshapes how later texts speak about covenant, temple, kingship, presence, restoration, and identity. Understanding exile is therefore essential preparation for both prophetic hope and Second Temple Judaism.
 
 ```check
 {
@@ -56,6 +55,12 @@ The crisis reshapes how later texts speak about covenant, temple, kingship, pres
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## Who was taken, and who stayed {#not-everyone}
+Exile does not mean that every Judean person is deported or that Jewish life exists only in Babylon. Populations remain in the land, communities develop in multiple locations, and later return does not simply reverse displacement for everyone.
+
+## A crisis that reshaped the Bible {#reshaped}
+The crisis reshapes how later texts speak about covenant, temple, kingship, presence, restoration, and identity. Understanding exile is therefore essential preparation for both prophetic hope and Second Temple Judaism.
 
 ```check
 {
@@ -81,3 +86,8 @@ The crisis reshapes how later texts speak about covenant, temple, kingship, pres
   "why": "Exile creates several interconnected theological questions."
 }
 ```
+
+## What you now know {#summary}
+Babylon’s destruction of Jerusalem in 586 BCE ended the monarchy, burned the Temple, and displaced much of Judah’s leadership at once, creating a political and religious crisis. Exile was not total: people remained in the land and communities formed in several places, and later return did not simply undo the loss.
+
+Historians debate the scale of the deportations and the exact dates; the event itself is well attested, including in Babylonian records. The question to carry forward: what does grief sound like when the history becomes personal?
