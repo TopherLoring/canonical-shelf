@@ -18,23 +18,22 @@
 ## Micah: justice, mercy, and humility {#orient}
 > The passage turns from “How much can I offer?” to “How should I live with God and others?”
 
+Micah, a contemporary of Isaiah, preached to Judah in the same century as Amos. This lesson reads his best-known answer to the question every worshiper asks: what does God want from me?
+
 The questions begin with what someone might bring before God and escalate toward increasingly extreme offerings. Read the sequence carefully: the rhetorical questions create a problem, and the response redirects attention. Not every possibility named in a question is endorsed.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Follow the questions in verses 6–7 as they escalate, from calves to rivers of oil to a firstborn child, and then notice how verse 8 answers by changing the question.
+
+## Justice, mercy, and a humble walk {#the-answer}
 The answer names doing justice, loving mercy, and walking humbly with God. These are relational actions and dispositions rather than a price list. The passage challenges the assumption that the right quantity of an offering can bypass responsibility for how one lives.
-
-Humility matters for the reader as well as for the ancient audience. Applying a prophetic text does not give us infallible knowledge of everyone else’s motives. We need honest evidence, attention to those affected, and willingness to examine our own conduct.
-
-## Keep the setting visible {#keep-the-setting-visible}
-This text can guide a practical response without becoming a technique for purchasing salvation. Within this course, grace is God’s gift and ethical action is a response. Keep that distinction while allowing the prophet’s demand to retain its force.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Micah: justice, mercy, and humility",
+  "title": "Separate what Micah 6:6–8 supports from overreach",
   "prompt": "Build an evidence board from Micah 6:6–8. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The questions escalate the proposed offerings.",
@@ -51,10 +50,16 @@ This text can guide a practical response without becoming a technique for purcha
 }
 ```
 
+## Humility for the reader too {#humility}
+Humility matters for the reader as well as for the ancient audience. Applying a prophetic text does not give us infallible knowledge of everyone else’s motives. We need honest evidence, attention to those affected, and willingness to examine our own conduct.
+
+## A demand, not a price {#grace-and-response}
+This text can guide a practical response without becoming a technique for purchasing salvation. Within this course, grace is God’s gift and ethical action is a response. Keep that distinction while allowing the prophet’s demand to retain its force.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put micah: justice, mercy, and humility to work",
+  "title": "Apply Micah 6:8 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ This text can guide a practical response without becoming a technique for purcha
   "why": "Choose an action that combines fair dealing, compassion, and willingness to be corrected."
 }
 ```
+
+## What you now know {#summary}
+Micah answers the escalating question of what to offer by redirecting it: do justice, love mercy, and walk humbly with God. These are ways of living in relationship, not a price list, and humility applies to the reader’s judgments of others as well.
+
+Canonical Shelf’s Statement of Faith holds that grace is God’s gift and that ethical action responds to it rather than earning it; Micah’s demand keeps its full force within that frame. The question to carry forward: the prophets warned of judgment; what happened when it came?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

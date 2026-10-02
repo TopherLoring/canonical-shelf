@@ -18,20 +18,20 @@
 ## Prayer and wisdom for an uneven life {#orient}
 > Wisdom is thoughtful discernment, not a guarantee of easy outcomes. The Bible includes honest grief as well as praise.
 
+This lesson surveys the whole wisdom and worship collection before the unit reads its books one at a time: Psalms, Proverbs, Job, Ecclesiastes, and Song of Songs.
+
 The Psalms give language for praise, gratitude, confession, grief, and protest. Psalm 13 begins with a painful question about God’s apparent absence and moves toward trust. A prayer can contain distress and faith together. Lament is not necessarily a failure of belief or something a learner must rush past to sound religious.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Psalm 13 is short. Read it once for its movement, from “how long?” to a request to trust and song, and keep that movement in mind as you meet the other books.
+
+## Proverbs: sayings that need judgment {#proverbs}
 Proverbs teaches discernment through compact sayings. Proverbs 26:4–5 places different advice about answering a fool side by side. The reader must consider circumstances rather than apply every saying as an identical instruction for every situation. Wisdom involves judgment, not merely retrieving a sentence that appears to settle a problem.
 
+## Job: suffering without easy answers {#job}
 Job challenges easy links between suffering and personal wrongdoing. In the selected scene, his friends initially sit with him in grief. Their later arguments should not be confused with the book’s unquestioned final voice. A biblical character can speak confidently and still need correction within the larger work.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Ecclesiastes reflects on time, limits, work, and what humans cannot control. Song of Songs adds poetry about love and desire to the wisdom collection’s range. Together these books resist a narrow picture in which faithful life means relentless certainty, predictable success, or freedom from embodied experience.
-
-When someone suffers, these writings can support listening, honest prayer, and practical presence. They should not be used to diagnose weak faith or insist that a tragedy was inflicted to teach a lesson. A proverb may guide action; a lament may give words; a story may unsettle a false explanation. Choose the tool appropriate to the need.
 
 ```check
 {
@@ -52,6 +52,12 @@ When someone suffers, these writings can support listening, honest prayer, and p
   "why": "The selected claims stay within the evidence and the guide’s stated interpretive boundaries."
 }
 ```
+
+## Ecclesiastes and Song of Songs {#ecclesiastes-song}
+Ecclesiastes reflects on time, limits, work, and what humans cannot control. Song of Songs adds poetry about love and desire to the wisdom collection’s range. Together these books resist a narrow picture in which faithful life means relentless certainty, predictable success, or freedom from embodied experience.
+
+## Using these books when someone suffers {#using-them-well}
+When someone suffers, these writings can support listening, honest prayer, and practical presence. They should not be used to diagnose weak faith or insist that a tragedy was inflicted to teach a lesson. A proverb may guide action; a lament may give words; a story may unsettle a false explanation. Choose the tool appropriate to the need.
 
 ```check
 {
@@ -77,6 +83,11 @@ When someone suffers, these writings can support listening, honest prayer, and p
   "why": "A correct connection explains the role of the example in context. These categories help organize reasoning; they do not measure personal assent."
 }
 ```
+
+## What you now know {#summary}
+The wisdom and worship books give language for praise, grief, protest, and discernment. Proverbs needs judgment about circumstances; Job refuses to read suffering as proof of guilt; Ecclesiastes faces limits; Song of Songs celebrates love. None of them supports diagnosing someone’s faith from their pain.
+
+Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: what does an honest prayer sound like?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

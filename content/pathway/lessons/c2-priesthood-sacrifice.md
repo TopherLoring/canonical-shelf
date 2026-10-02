@@ -24,21 +24,17 @@
 ## Priesthood and sacrifice: worship has roles and purposes {#orient}
 > Israel’s sacrificial system includes different offerings and priestly roles. Not every sacrifice has the same purpose.
 
+Unit 4 moves from sacred space to what happens in it. This lesson opens Leviticus, where worship has roles, purposes, and many kinds of offering.
+
 Leviticus assumes the tabernacle world established in Exodus and describes worship carried out through priests, offerings, purity practices, sacred times, and communal responsibilities. The system has structure; “sacrifice” is not one single undifferentiated action.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice how much the passage assumes: a worshiper who brings an offering, a priest who handles it, and a specific reason for this kind of offering. Leviticus 1 is the first of several kinds.
+
+## Different offerings, different purposes {#kinds-of-offering}
 Different offerings have different functions and features. Some emphasize gift, dedication, fellowship, purification, reparation, or atonement. Blood is important in several rites, but not every offering works in exactly the same way or addresses the same circumstance.
-
-Priests perform particular ritual responsibilities on behalf of the community, but Israel’s worship also involves households, worshipers, Levites, sacred space, and ordinary ethical life. Ritual and ethics should not be separated as if one matters to God and the other does not.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Later Christian texts use priestly and sacrificial language for Jesus in multiple ways. Understanding Israel’s worship first prevents later theology from turning biblical sacrificial imagery into a vague synonym for “something costly happened.”
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -59,6 +55,9 @@ Later Christian texts use priestly and sacrificial language for Jesus in multipl
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## Priests, households, and ordinary ethics {#priests-and-people}
+Priests perform particular ritual responsibilities on behalf of the community, but Israel’s worship also involves households, worshipers, Levites, sacred space, and ordinary ethical life. Ritual and ethics should not be separated as if one matters to God and the other does not.
 
 ```check
 {
@@ -84,3 +83,11 @@ Later Christian texts use priestly and sacrificial language for Jesus in multipl
   "why": "Separating roles, actions, and space prevents the system from becoming a blur of religious terms."
 }
 ```
+
+## Later Christian language about sacrifice {#later-language}
+Later Christian texts use priestly and sacrificial language for Jesus in multiple ways. Understanding Israel’s worship first prevents later theology from turning biblical sacrificial imagery into a vague synonym for “something costly happened.”
+
+## What you now know {#summary}
+Israel’s worship is a structured system: priests, offerings, purity, sacred times, and everyday ethics. “Sacrifice” covers several distinct offerings with distinct purposes, from gift and fellowship to purification and reparation, and ritual is never separated from how people treat one another.
+
+Scholars debate the exact meaning of several offerings and of the blood rites; Christians differ on how sacrificial language applies to Jesus. Knowing the Levitical system first keeps those later discussions precise. The question to carry forward: what happens on the one day each year when the high priest enters the innermost room?

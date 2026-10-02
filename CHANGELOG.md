@@ -12,10 +12,64 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Glossary review approved: keep 164 of 273 terms; remove 109 (everyday words, skill phrases, site mechanics, duplicates) as listed in content/pathway/glossary-removed.json
 - The Illustrated theme is named Sketch Book
 - Reading Room is the default theme (decided 2026-10-01; supersedes Paper)
+- God is affirmed as the ultimate source of existence in principle, but this must not imply that God directly causes or controls every creaturely choice or every thing humans make or do. Human choices are genuinely their own and can produce real outcomes without being individually controlled by God.
+- Affirmed: God is Love; Love is foundational to God's nature and creation's purpose; God does not ultimately abandon what God loves.
+- Revised: One God, one divine consciousness. Father/Son/Spirit are not three separate divine consciousnesses or literal divine genealogy. This differs from classical three-person formulation.
+- Affirmed: God may physically manifest in multiple forms/places; lack of physical manifestation does not mean absence.
+- Affirmed: Divine reality embodied as Jesus existed eternally within God and participated in creation; precise pre-incarnate mode is unknown.
+- Revised: Jesus fully divine/human without encompassing entirety of God; incarnation gave God deeper experiential understanding of human decision. God can learn/respond/change action. Major classical departure.
+- Affirmed: Jesus was beaten, crucified, truly died, defeated death, bodily rose, appeared, ascended, and will physically return.
+- Left open: Ascension affirmed; mechanics, current physical location, and present bodily state not defined.
+- Revised: No one comes to Father except through Jesus means reconciliation rests on what God revealed/accomplished through Jesus, not mandatory conscious Christian profession.
+- Revised: Spirit is God's nonphysical presence/Love/will/influence, not a separate consciousness.
+- Revised: God knows every possible path and consequence and perfectly understands choosers; which genuinely free choice becomes actual remains open until chosen.
+- Affirmed: God may influence people/circumstances and prepare paths without controlling response; influence can be resisted.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Affirmed: Prophecy may concern God's determined actions, human behavior under established circumstances, conditional outcomes, and fulfillment misunderstood by interpreters.
+- Affirmed: Free choice requires conscious decision; coercion can constrain choices without necessarily eliminating them; voluntary surrender to God may be withdrawn.
+- Revised: Scripture divinely inspired and providentially maintained; human transmission/translation introduces possible fallibility without defeating overall purpose.
+- Affirmed: Distinguish text, transmission, translation, interpretation, doctrine, reception, and application; context/genre/language matter; contested claims labeled.
+- Affirmed: Jesus established new covenant and Love as governing law; Mosaic covenant remains important but is not simply the governing Christian covenant.
+- Revised: Original sin introduced death; humans inherit mortality/consequences, not predecessors' personal guilt; human nature eventually leads each person to personal sin.
+- Revised: Sin is whatever contradicts God's loving will/purpose; harm alone does not define sin.
+- Affirmed: Objective sin and personal culpability differ; knowledge, intention, understanding, and agency affect responsibility.
+- Affirmed: It is not humanity's role to determine whether an action ultimately serves or contradicts God's larger purpose; judgment belongs to God.
+- Affirmed: Recognition → ownership without blame/condemnation → apology → genuine intent to change outcome. Successful future behavior is not required for repentance to have been genuine.
+- Revised: Forgiveness is for humanity; verbal asking does not cause God to forgive. Guilt is internal confession; shame can obstruct asking but does not make a person unworthy.
+- Affirmed: Faith is conscious decision to believe what cannot presently be seen, particularly that God exists and is what God claims to be. Trust can follow from faith.
+- Affirmed: Grace/salvation are gifts, not earned by works, rituals, prescribed words, or faith as payment. Works may follow/evidence faith.
+- Affirmed: Christ has already saved humanity from death; universal resurrection follows from Christ's victory over death.
+- Affirmed: Universal resurrection/salvation from death is distinct from reconciliation with God.
+- Affirmed: At judgment God reveals God's existence, nature as Love, and what God accomplished through Jesus. Knowledge is not identical to understanding.
+- Affirmed: People respond personally; God exercises judicial role by determining whether repentance is genuine.
+- Affirmed: All eventually freely seek Source of Love, genuinely repent, and reconcile; freedom is not overridden; evil ultimately ceases.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Rejected: Do not use reincarnation as part of the reconciled doctrinal model. Final collective resurrection/judgment supplies the needed framework.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Affirmed: Church is body of Christ actively transmitting Christ's message; not defined by denomination, institution, building, or clergy structure.
+- Affirmed: Table open to all; each reflects and chooses; participation/abstention respected without argument; equal treatment regardless.
+- Affirmed: Public profession of faith; burial/washing/rising symbolic and personally significant; not required for salvation.
+- Affirmed: LGBTQ+ identity and faithful same-sex relationships compatible with Christian faith/law of Love; full inclusion.
+- Affirmed: Women may serve equally in every form of ministry and leadership.
+- Affirmed: Every person has inherent dignity and is worthy of love/respect.
+- Left open: Biblical language affirmed; no definitive interpretation of what image of God consists of.
+- Left open: No definitive belief about ultimate physical renewal/state of creation; do not make renewal of creation a binding claim.
+- Affirmed: Prayer is relationship, not leverage; no guaranteed healing; illness not proof of insufficient faith/sin.
+- Affirmed: Address conquest, slavery, violence, women, sexuality, punishment, exclusion, etc. directly/contextually without using context to excuse harm.
+- Affirmed: Remove MCC and Christian Church (Disciples of Christ) references as doctrinal identity/authority/proxy. Canonical Shelf stands on its own Statement and method.
+- Superseded by the 2026-10-02 reconciliation: one God with one divine consciousness (theology.god.one-consciousness); Jesus fully divine and fully human without encompassing the entirety of God (theology.christ.incarnation). The classical three-person formulation is taught as a historic interpretation, not as Canonical Shelf's position
+- Canonical Shelf names no denomination as its doctrinal identity, authority, or proxy; references to the Metropolitan Community Churches and the Christian Church (Disciples of Christ) are removed (theology.institutional-independence)
+- Remove every reference to the Metropolitan Community Churches (MCC) and the Christian Church (Disciples of Christ) from Canonical Shelf, including descriptive mentions in tradition comparisons
+- Lessons teach Canonical Shelf's view. Where it differs from the mainstream and Scripture supports it, teach it with more evidence than usual (at least three supporting passages, historic Christian precedent, and the strongest opposing texts stated fairly) and present the mainstream view alongside. Where it differs significantly and is not backed by Scripture, teach the mainstream view with Canonical Shelf's view as a labeled note. Where Scripture directly conflicts with Canonical Shelf's view, raise it with Chris before writing
 
 ### Changed
 
 - All 119 lessons are in the final lesson format; a frozen content ledger (1,776 items) and a no-condensing floor verify every lesson; Lesson 1's original content restored; glossary trimmed to 164 terms for adults
+- Doctrinal reconciliation (2026-10-02) applied: reconciled Statement of Faith and internal belief context published; 47 doctrinal decisions recorded; 11 lessons aligned (own-position paragraphs for Trinity, providence, original sin, repentance, judgment and reconciliation, John 14:6; superseded statements traced to their decisions); denominational identity references removed
+- Every reference to MCC and the Christian Church (Disciples of Christ) removed from lessons, Topics, the Theologian's belief context and vetted sources, the curriculum reference, llms.txt, the content ledger, and the doctrinal decisions document
+- Every reference to MCC and the Christian Church (Disciples of Christ) removed (lessons, Topics, Theologian context and sources, source documents, llms.txt); tradition comparison now covers five traditions
 
 ### Fixed
 

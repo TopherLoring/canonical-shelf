@@ -31,6 +31,8 @@ Christians also differ in how they understand final punishment. Eternal consciou
 ## Keep the setting visible {#keep-the-setting-visible}
 The guide teaches salvation through Christ and the seriousness of judgment without declaring the final destiny of particular individuals. Its practical direction is attentive care, repentance, and hope. Avoid using speculation about the future to evade a need directly in front of you.
 
+**Canonical Shelf’s own position.** The guide’s Statement of Faith holds that Christ has already saved humanity from death, so all will be raised, but that resurrection is not the same as reconciliation. At judgment God reveals who God is and what God accomplished through Jesus, and each person remains free to respond; God, who knows the heart, recognizes whether repentance and response are genuine rather than merely outward or coerced. The Statement expects that all will eventually, freely and genuinely, seek the Source of Love and be reconciled, until evil itself ceases. That is a form of the universal-reconciliation view described above. It is the guide’s position, not a consensus, and the passages the other views rely on are taught here as well.
+
 ```check
 {
   "kind": "evidence",

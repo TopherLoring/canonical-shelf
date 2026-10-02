@@ -24,21 +24,40 @@
 ## Temple: presence, prayer, kingship, and limits {#orient}
 > Jerusalem’s Temple centralizes worship and presence language, but Scripture does not portray God as physically confined to the building.
 
+Unit 6 follows the kingdom from its high point to its fall. This lesson reads Solomon’s prayer at the dedication of the Temple, where the tabernacle’s portable presence becomes a building in a capital city.
+
 Solomon’s Temple gives Israel’s central sanctuary a permanent monumental form in Jerusalem. Its spatial logic and furnishings draw on tabernacle traditions while the building also becomes entangled with monarchy, capital, pilgrimage, sacrifice, and national identity.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice Solomon’s question in verse 27, “will God really dwell on earth?”, and that most of the prayer asks God to hear prayers offered toward this place from somewhere else.
+
+## A house that cannot contain God {#cannot-contain}
 In Solomon’s dedication prayer, the Temple is a focus of prayer and divine name/presence, yet the prayer also asks whether heaven itself can contain God. That tension matters: sacred space is meaningful without shrinking God to sacred architecture.
 
+```check
+{
+  "kind": "evidence",
+  "title": "Temple without confinement",
+  "prompt": "Which two statements fit 1 Kings 8 and the lesson?",
+  "items": [
+    "The Temple becomes a focus of prayer.",
+    "God is described as contained by the building in every sense.",
+    "The dedication prayer acknowledges that heaven cannot contain God.",
+    "Temple importance makes prophetic criticism impossible."
+  ],
+  "answer": [
+    0,
+    2
+  ],
+  "why": "The text holds meaningful sacred space together with divine transcendence.",
+  "hint": "Choose only claims warranted by the evidence presented."
+}
+```
+
+## Honored and judged {#honored-and-judged}
 The Temple becomes a major biblical symbol, but prophets can criticize confidence in the building when worship is detached from justice and covenant faithfulness. Sacred institutions can be honored and judged within the same scriptural tradition.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The destruction of the Temple will therefore become both a political catastrophe and a theological crisis. Later restoration, Second Temple Judaism, Jesus’ Temple actions, and New Testament presence imagery all depend on this background.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -62,22 +81,10 @@ The destruction of the Temple will therefore become both a political catastrophe
 }
 ```
 
-```check
-{
-  "kind": "evidence",
-  "title": "Temple without confinement",
-  "prompt": "Which two statements fit 1 Kings 8 and the lesson?",
-  "items": [
-    "The Temple becomes a focus of prayer.",
-    "God is described as contained by the building in every sense.",
-    "The dedication prayer acknowledges that heaven cannot contain God.",
-    "Temple importance makes prophetic criticism impossible."
-  ],
-  "answer": [
-    0,
-    2
-  ],
-  "why": "The text holds meaningful sacred space together with divine transcendence.",
-  "hint": "Choose only claims warranted by the evidence presented."
-}
-```
+## The crisis ahead {#crisis-ahead}
+The destruction of the Temple will therefore become both a political catastrophe and a theological crisis. Later restoration, Second Temple Judaism, Jesus’ Temple actions, and New Testament presence imagery all depend on this background.
+
+## What you now know {#summary}
+The Temple gives Israel’s worship a permanent center tied to the monarchy, while Solomon’s own prayer insists that no building can contain God. Prophets later honor the Temple and judge confidence in it when worship is cut off from justice.
+
+Scholars debate the size and dating of Solomon’s Temple; its role in the biblical story is not in dispute. The question to carry forward: what happens to a people’s faith when its central sanctuary is destroyed?

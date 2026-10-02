@@ -2,7 +2,7 @@
 {
   "id": "traditions-welcome",
   "title": "Seven traditions: compare claims and local practice",
-  "objective": "Use a fair comparison method for the seven traditions considered in this course.",
+  "objective": "Use a fair comparison method for the five traditions considered in this course.",
   "reading": "Romans 14:1–6",
   "readingOsis": "Rom.14.1-6",
   "scriptureRefs": [],
@@ -12,13 +12,19 @@
     "Sanctification": "Growth in holiness and transformed life, understood differently among traditions."
   },
   "deeper": "Receiving others in Romans 14 should not be used to erase harmful conduct or all doctrinal distinctions. Identify what the ancient dispute is before drawing a modern comparison.",
-  "drawers": []
+  "drawers": [],
+  "carries": {
+    "p4": "superseded:curriculum.no-mcc-disciples-references",
+    "p1": "superseded:curriculum.no-mcc-disciples-references",
+    "p3": "superseded:curriculum.no-mcc-disciples-references",
+    "check:2": "superseded:curriculum.no-mcc-disciples-references"
+  }
 }
 ---
 ## Seven traditions: compare claims and local practice {#orient}
 > Compare official beliefs, local practice, and your actual questions. A denomination’s label is a starting point, not a complete description.
 
-The seven traditions considered here are ELCA Lutheran, United Church of Christ, United Methodist, Metropolitan Community Churches, Episcopal, Christian Church (Disciples of Christ), and Alliance of Baptists. They are not interchangeable, and a national statement does not automatically describe every local practice.
+The five traditions considered here are ELCA Lutheran, United Church of Christ, United Methodist, Episcopal, and Alliance of Baptists. They are not interchangeable, and a national statement does not automatically describe every local practice.
 
 ## Read the passage with the question in view {#read}
 ::reading
@@ -26,10 +32,10 @@ The seven traditions considered here are ELCA Lutheran, United Church of Christ,
 ## Locate the claim in context {#locate-the-claim-in-context}
 ELCA teaching gives particular attention to justification and law/gospel; Methodist teaching to grace and sanctification; Episcopal identity to Anglican worship and a tradition of common prayer. These are starting emphases rather than exclusive possessions. Each community also speaks about Scripture, discipleship, and shared life.
 
-United Church of Christ, Disciples, and Alliance communities give significant room to local congregational life while relating through wider structures. MCC’s public identity gives particular attention to inclusive Christian community and LGBTQ people. Use official statements to examine the details rather than turning an emphasis into a stereotype.
+United Church of Christ and Alliance communities give significant room to local congregational life while relating through wider structures. When two traditions use the same word, such as “welcome” or “inclusion”, check what each one’s official statement actually commits a congregation to, and how much room its local congregations have to differ. Use official statements to examine the details rather than turning an emphasis into a stereotype.
 
 ## Keep the setting visible {#keep-the-setting-visible}
-The guide’s own approved perspective is explicitly LGBTQ-affirming and open-table, with MCC and Disciples influences. Romans 14 supplies a practice of receiving others without making every difference a reason for contempt; it does not settle every modern controversy. Ask a local congregation directly about welcome, leadership, sacraments, and how questions are handled.
+The guide’s own approved perspective is explicitly LGBTQ-affirming and open-table, grounded in its own Statement of Faith rather than in any one of these traditions. Romans 14 supplies a practice of receiving others without making every difference a reason for contempt; it does not settle every modern controversy. Ask a local congregation directly about welcome, leadership, sacraments, and how questions are handled.
 
 ```check
 {
@@ -54,7 +60,7 @@ The guide’s own approved perspective is explicitly LGBTQ-affirming and open-ta
 ```check
 {
   "kind": "scenario",
-  "title": "Put seven traditions: compare claims and local practice to work",
+  "title": "Put five traditions: compare claims and local practice to work",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],

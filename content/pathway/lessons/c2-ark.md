@@ -29,21 +29,40 @@
 ## Ark of the Covenant: covenant and presence {#orient}
 > The Ark links covenant testimony, the sanctuary’s innermost space, and divine presence; it is not a magical guarantee of success.
 
+The previous lesson walked inward through the tabernacle. This one stops at the innermost room and the object placed there: the Ark of the Covenant.
+
 The Ark is a sacred chest placed in the tabernacle’s innermost space. Exodus connects it with the covenant testimony and describes a cover often translated “mercy seat” or “atonement cover,” above which divine meeting and speech are described.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice what goes inside the Ark (the covenant testimony) and what sits on top of it (the cover and the cherubim), and where God promises to meet and speak.
+
+## Presence, not control {#not-magic}
 The Ark therefore joins covenant memory and presence. Its significance is not that the box mechanically controls God. Later narratives actually warn against treating sacred objects as guarantees of military success or divine manipulation.
 
+```check
+{
+  "kind": "evidence",
+  "title": "Reject magical thinking",
+  "prompt": "Which two claims are warranted?",
+  "items": [
+    "The Ark is associated with covenant testimony.",
+    "Possessing the Ark guarantees victory regardless of covenant faithfulness.",
+    "The Ark is located in the innermost sanctuary.",
+    "The Bible clearly reports where the Ark is today."
+  ],
+  "answer": [
+    0,
+    2
+  ],
+  "why": "The text supports covenant and location claims, not magical control or a known modern location.",
+  "hint": "Choose only claims warranted by the evidence presented."
+}
+```
+
+## The Ark’s journey through the story {#its-journey}
 The Ark travels through Israel’s story: wilderness traditions, crossing into the land, Shiloh, capture by the Philistines, recovery, David’s Jerusalem, and Solomon’s Temple. The later biblical record does not provide a simple account of its final fate after the temple’s destruction.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Later Jewish and Christian traditions develop additional stories and interpretations. Those should be labeled as later reception rather than silently inserted into the biblical narrative.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -70,22 +89,10 @@ Later Jewish and Christian traditions develop additional stories and interpretat
 }
 ```
 
-```check
-{
-  "kind": "evidence",
-  "title": "Reject magical thinking",
-  "prompt": "Which two claims are warranted?",
-  "items": [
-    "The Ark is associated with covenant testimony.",
-    "Possessing the Ark guarantees victory regardless of covenant faithfulness.",
-    "The Ark is located in the innermost sanctuary.",
-    "The Bible clearly reports where the Ark is today."
-  ],
-  "answer": [
-    0,
-    2
-  ],
-  "why": "The text supports covenant and location claims, not magical control or a known modern location.",
-  "hint": "Choose only claims warranted by the evidence presented."
-}
-```
+## Later traditions about the Ark {#later-traditions}
+Later Jewish and Christian traditions develop additional stories and interpretations. Those should be labeled as later reception rather than silently inserted into the biblical narrative.
+
+## What you now know {#summary}
+The Ark holds the covenant testimony in the sanctuary’s innermost space, where God promises to meet the people. It joins covenant memory with presence, and the biblical story itself warns against treating it as a tool for controlling God or guaranteeing victory.
+
+The Bible does not say what finally became of the Ark, and later Jewish and Christian traditions fill that gap in different ways; those are reception, not the biblical narrative. The question to carry forward: if the Ark is not magic, what does worship at the tabernacle actually involve?

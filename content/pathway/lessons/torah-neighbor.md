@@ -18,23 +18,22 @@
 ## Torah: holiness in everyday relationships {#orient}
 > These laws place care and honesty inside everyday life. Applying them today requires understanding both the original arrangement and its concern.
 
+This lesson closes the unit with Leviticus 19.
+
 The selected instructions include farming, wages, truthful dealing, impartial judgment, and treatment of neighbors. Holiness is not limited to ritual activity. Economic decisions and ordinary speech belong within the community’s response to God.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read Leviticus 19:9–18 as a list of situations: a field at harvest, a worker at the end of the day, a courtroom, a grudge. Each instruction ends with the same reason: “I am the LORD.”
+
+## Leaving the edges of the field {#harvest}
 The harvest instructions leave access to food for poor people and foreigners. They address a particular agricultural arrangement. A present-day reader must distinguish that arrangement from the concern for access and protection it expresses before choosing a modern response.
-
-Commands concerning justice resist favoritism, whether motivated by poverty or power. The passage also links rebuke, resentment, and love of neighbor. Love is not simply a pleasant feeling; it can require honest speech and changes in conduct that make another person less vulnerable.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Christians disagree about the continuing application of particular Torah laws. This lesson practices a method rather than settling every disputed case: identify the original instruction, examine its purpose and setting, read it in the wider scriptural conversation, and explain the reasoning behind a contemporary application.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Torah: holiness in everyday relationships",
+  "title": "Separate what Leviticus 19 supports from overreach",
   "prompt": "Build an evidence board from Leviticus 19:9–18. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "Harvest instructions provide access for poor people and foreigners.",
@@ -51,10 +50,16 @@ Christians disagree about the continuing application of particular Torah laws. T
 }
 ```
 
+## Justice without favoritism, love with honesty {#justice-and-love}
+Commands concerning justice resist favoritism, whether motivated by poverty or power. The passage also links rebuke, resentment, and love of neighbor. Love is not simply a pleasant feeling; it can require honest speech and changes in conduct that make another person less vulnerable.
+
+## A method for applying Torah {#method}
+Christians disagree about the continuing application of particular Torah laws. This lesson practices a method rather than settling every disputed case: identify the original instruction, examine its purpose and setting, read it in the wider scriptural conversation, and explain the reasoning behind a contemporary application.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put torah: holiness in everyday relationships to work",
+  "title": "Apply Leviticus 19 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ Christians disagree about the continuing application of particular Torah laws. T
   "why": "Choose a practice that improves access or honest dealing in your setting, and explain the connection."
 }
 ```
+
+## What you now know {#summary}
+Holiness reaches into economics, justice, and speech. The harvest laws protect the poor and the foreigner within a particular agricultural world, and applying them today means first understanding that world and the concern behind the instruction. “Love your neighbor as yourself” first appears here, inside concrete obligations.
+
+Canonical Shelf understands these laws through Jesus’ new covenant and its governing law of Love while keeping Torah essential to the biblical story. Later modules compare other Christian views. The question to carry forward: where would you need to understand the original arrangement before applying an instruction today?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

@@ -24,18 +24,20 @@
 ## Hebrew poetry: lines speak to each other {#orient}
 > In Hebrew poetry, meaning often lives between lines. Ask how the next line repeats, develops, contrasts, or intensifies the first.
 
+Unit 7 turns from Israel’s story to Israel’s poetry and wisdom: the prayers, songs, sayings, and arguments that ask how to live and speak to God when life is uneven. It begins with the skill everything else depends on: reading Hebrew poetry as poetry.
+
 Biblical Hebrew poetry often creates meaning through relationships between lines: repetition, development, contrast, intensification, image, sound, and structure. “Parallelism” is a useful entry point, but not every pair of lines fits one rigid category.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read Psalm 19:1–6 line by line, and after each second line ask one question: what does this line add to the one before it?
+
+## The heavens speak without words {#cosmic-imagery}
 Psalm 19 begins with cosmic imagery in which heavens, sky, day, and night communicate without ordinary speech. Reading the imagery as poetry does not make the theological claim meaningless; it asks what the image does rather than whether the sky literally uses vocal cords.
 
+## What the second line does {#second-lines}
 A second line may restate the first, sharpen it, extend it, contrast with it, or shift perspective. The reader should ask what changes between lines instead of simply deleting the second as repetition.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Poetic structure also matters in prophets, wisdom, songs, laments, and many embedded speeches. Recognizing poetry changes how claims, metaphors, hyperbole, and emotional language are interpreted.
 
 ```check
 {
@@ -62,6 +64,9 @@ Poetic structure also matters in prophets, wisdom, songs, laments, and many embe
 }
 ```
 
+## Poetry beyond the Psalms {#poetry-everywhere}
+Poetic structure also matters in prophets, wisdom, songs, laments, and many embedded speeches. Recognizing poetry changes how claims, metaphors, hyperbole, and emotional language are interpreted.
+
 ```check
 {
   "kind": "evidence",
@@ -81,3 +86,8 @@ Poetic structure also matters in prophets, wisdom, songs, laments, and many embe
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## What you now know {#summary}
+Hebrew poetry makes meaning between lines: a second line restates, sharpens, extends, contrasts, or shifts the first. Reading imagery as poetry asks what the image does, not whether the sky literally talks, and the same skill applies across prophets, wisdom, songs, and laments.
+
+Scholars describe parallelism in different ways and no single system fits every pair of lines; the practice of asking what changes between lines is widely shared. The question to carry forward: what does this poetry let people say to God that prose would not?

@@ -18,23 +18,25 @@
 ## Rupture, mortality, and the tree of life {#orient}
 > The story explains damaged trust and lost access to life. Receiving a broken world is not identical to personally committing another person’s act.
 
-The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged.
+The previous lesson showed what the garden held. This one reads what happens next: hiding, blame, consequence, and the closed way to the tree of life. It is one of the most interpreted passages in Christian history, so the guide’s own position is stated first and the text is then read closely.
+
+**Canonical Shelf’s own position.** The first human sin brought mortality into the human condition. We inherit its consequences, including a damaged condition and mortality, but not the personal guilt of those who came before us. In the condition humanity inherits, each person eventually sins through choices of their own and is responsible for those choices. Many Western Christian traditions, especially those shaped by Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Follow the conversation: God’s questions, the answers that point somewhere else, and the consequences that reach into work, relationships, and life itself.
+
+## Hiding and blame {#hiding}
+The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged.
+
+## Consequences, not commands {#consequences}
 The consequences extend through shared life: painful labor, strained relationships, and return to dust. These descriptions do not instruct readers to create suffering or preserve domination. Reporting a broken condition is different from commanding that condition as a moral ideal.
-
-The expulsion closes access to the tree of life. This guide understands humanity as intended for enduring life with God, with mortality and a damaged condition inherited after sin. It does not treat inherited personal guilt as a settled conclusion or extend this claim to the absence of animal death.
-
-## Keep the setting visible {#keep-the-setting-visible}
-God’s provision of clothing remains within the scene of judgment. Read judgment, consequence, and care together without pretending the rupture is trivial. Later Christian teaching connects this story with Christ’s saving work; that connection should preserve the details of Genesis rather than replace them.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Rupture, mortality, and the tree of life",
+  "title": "Separate what Genesis 3 supports from overreach",
   "prompt": "Build an evidence board from Genesis 3:8–24. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The humans hide and shift attention toward others.",
@@ -51,10 +53,16 @@ God’s provision of clothing remains within the scene of judgment. Read judgmen
 }
 ```
 
+## The closed way to the tree of life {#tree-of-life}
+The expulsion closes access to the tree of life. This guide understands humanity as intended for enduring life with God, with mortality and a damaged condition inherited after sin. It does not treat inherited personal guilt as a settled conclusion or extend this claim to the absence of animal death.
+
+## Judgment and care together {#judgment-and-care}
+God’s provision of clothing remains within the scene of judgment. Read judgment, consequence, and care together without pretending the rupture is trivial. Later Christian teaching connects this story with Christ’s saving work; that connection should preserve the details of Genesis rather than replace them.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put rupture, mortality, and the tree of life to work",
+  "title": "Apply Genesis 3 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +96,11 @@ God’s provision of clothing remains within the scene of judgment. Read judgmen
   "why": "Take responsibility for harm you can address without attributing another person’s act to everyone affected."
 }
 ```
+
+## What you now know {#summary}
+Genesis 3 portrays sin as damaged trust and relationship, describes its consequences without commanding them, and ends with lost access to the tree of life and with God clothing the humans. The guide’s position: mortality and a damaged condition are inherited; personal guilt is not.
+
+Christians differ sharply here. Many Western traditions shaped by Augustine teach inherited guilt; Eastern traditions and others emphasize inherited mortality instead. The question to carry forward: when later writers connect this story with Christ, which details of Genesis are they relying on?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

@@ -18,23 +18,22 @@
 ## Amos: when worship and conduct collide {#orient}
 > Religious activity cannot substitute for treating people justly. The point is to reconnect worship and conduct.
 
+Unit 8 reads the prophets who spoke into Israel’s and Judah’s crises, and then the catastrophe they warned of. It begins with Amos, a herdsman from Judah sent to the prosperous northern kingdom in the 700s BCE.
+
 Amos uses an uncompromising rejection of festivals, offerings, and songs. The shock matters: activities associated with religious devotion are not accepted as substitutes for justice. The passage challenges a separation between public worship and the way a community treats people.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read God’s rejection of festivals, offerings, and songs in verses 21–23, then the single demand in verse 24, and ask what the shock of the first part is for.
+
+## Justice like flowing water {#justice-like-water}
 The contrast culminates in flowing water imagery for justice and righteousness. Read the image as a demand for sustained communal conduct, not merely an attractive line about nature. The rhetorical force depends on what the passage places against the religious activity.
-
-The critique does not require the claim that singing or ritual is always meaningless. Its target is worship severed from the concern expressed in the final demand. An interpretation should account for that contrast instead of selecting either the ritual rejection or the water image alone.
-
-## Keep the setting visible {#keep-the-setting-visible}
-A contemporary community can examine whether its celebrations conceal unfair practices. Ask about access, treatment of workers, use of money, and attention to those who are harmed. The prophetic text gives the examination moral urgency; specific accusations still require evidence.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Amos: when worship and conduct collide",
+  "title": "Separate what Amos 5 supports from overreach",
   "prompt": "Build an evidence board from Amos 5:21–24. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The passage rejects religious activities within its critique.",
@@ -51,10 +50,16 @@ A contemporary community can examine whether its celebrations conceal unfair pra
 }
 ```
 
+## Not against worship, against worship without justice {#not-against-worship}
+The critique does not require the claim that singing or ritual is always meaningless. Its target is worship severed from the concern expressed in the final demand. An interpretation should account for that contrast instead of selecting either the ritual rejection or the water image alone.
+
+## Examining a community today {#examination}
+A contemporary community can examine whether its celebrations conceal unfair practices. Ask about access, treatment of workers, use of money, and attention to those who are harmed. The prophetic text gives the examination moral urgency; specific accusations still require evidence.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put amos: when worship and conduct collide to work",
+  "title": "Apply Amos 5 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ A contemporary community can examine whether its celebrations conceal unfair pra
   "why": "Examine a concrete practice instead of treating visible religious success as sufficient evidence of faithfulness."
 }
 ```
+
+## What you now know {#summary}
+Amos rejects worship that sits comfortably beside injustice, and demands justice and righteousness that keep flowing. The target is not ritual itself but ritual cut off from how people are treated, and the text gives today’s communities an urgent question to ask about themselves.
+
+Readers agree on this core; they differ on how directly prophetic critique translates into modern economic policy. The question to carry forward: if offerings cannot buy favor, what does God ask for?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

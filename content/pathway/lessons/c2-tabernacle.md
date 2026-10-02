@@ -29,21 +29,17 @@
 ## Tabernacle: sacred space on the move {#orient}
 > The tabernacle is a portable sanctuary representing God dwelling among Israel, with increasingly restricted sacred zones.
 
+Unit 3 turns from the covenant to the place where Israel meets God. This lesson reads the opening of the tabernacle instructions: a sanctuary built so that God can dwell among a people still on the move.
+
 After Sinai, Exodus devotes substantial attention to a portable sanctuary. The tabernacle is not an unrelated architectural appendix. Its stated purpose is connected with God dwelling among the people who have been brought out of Egypt.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice the purpose stated in verse 8, “that I may dwell among them”, and that the materials come from what the people freely give.
+
+## Graded space: courtyard, Holy Place, Most Holy Place {#graded-space}
 The sanctuary has graded spaces: an outer courtyard, a tent with a Holy Place, and an inner Most Holy Place or Holy of Holies. Objects and priestly actions are located within those spaces. The arrangement teaches that presence, holiness, access, and worship are related ideas.
-
-Because the sanctuary is portable, divine presence is not yet tied to a permanent royal capital. The tabernacle travels with Israel. Later, the temple in Jerusalem will inherit and transform many of these spatial and ritual patterns.
-
-## Keep the setting visible {#keep-the-setting-visible}
-A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -66,6 +62,12 @@ A diagram is useful, but biblical descriptions are not modern architectural blue
   "why": "The tabernacle organizes movement from the wider camp through courtyard and sanctuary to the innermost space."
 }
 ```
+
+## A sanctuary on the move {#on-the-move}
+Because the sanctuary is portable, divine presence is not yet tied to a permanent royal capital. The tabernacle travels with Israel. Later, the temple in Jerusalem will inherit and transform many of these spatial and ritual patterns.
+
+## Reading descriptions, not blueprints {#diagrams}
+A diagram is useful, but biblical descriptions are not modern architectural blueprints. Reconstructions make interpretive decisions. The core learning goal is the relationship among sacred space, presence, access, worship, and movement.
 
 ```check
 {
@@ -91,3 +93,8 @@ A diagram is useful, but biblical descriptions are not modern architectural blue
   "why": "Location helps make the sanctuary’s ordered access visible."
 }
 ```
+
+## What you now know {#summary}
+The tabernacle exists so that God may dwell among Israel. Its graded spaces, from the open courtyard to the innermost room, teach that presence, holiness, access, and worship belong together, and its portability ties presence to a traveling people rather than a capital city.
+
+Scholars debate how the tabernacle descriptions relate to later temple practice and when they took their present form; the relationships they teach are not in dispute. The question to carry forward: what sits in the innermost room, and why?

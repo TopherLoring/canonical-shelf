@@ -133,6 +133,18 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Audience: adults new to Christianity and the Bible, taught from a personally affirming, open-table stance. Explain doctrine through the biblical story and its internal logic, never with 'that's where faith comes in' or 'you just have to accept it'; avoid analogies that drift into heresy. Welcome questions without requiring assent. Breadth increases as study progresses; content defines the interactions
   *Why:* Chris's Gemini curriculum transcript
 
+### `curriculum.teaching-approach.identity`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.no-mcc-disciples-references`
+  Remove every reference to the Metropolitan Community Churches (MCC) and the Christian Church (Disciples of Christ) from Canonical Shelf, including descriptive mentions in tradition comparisons
+- **Previous** · 2026-10-02 · Owner decision (Chris) · `curriculum.teaching-approach.independent-2026-10-02`
+  ~~Canonical Shelf names no denomination as its doctrinal identity, authority, or proxy; references to the Metropolitan Community Churches and the Christian Church (Disciples of Christ) are removed (theology.institutional-independence)~~
+
+### `curriculum.teaching-rule.view`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.teaching-rule.cs-view-with-evidence`
+  Lessons teach Canonical Shelf's view. Where it differs from the mainstream and Scripture supports it, teach it with more evidence than usual (at least three supporting passages, historic Christian precedent, and the strongest opposing texts stated fairly) and present the mainstream view alongside. Where it differs significantly and is not backed by Scripture, teach the mainstream view with Canonical Shelf's view as a labeled note. Where Scripture directly conflicts with Canonical Shelf's view, raise it with Chris before writing
+
 ### `data.bsb-source`
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `data.bsb-source.bsb-source-hosting-fetch`
@@ -289,8 +301,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `doctrine.trinity-incarnation`
 
-- **Current** · 2026-09-26 · Owner decision (Chris) · `doctrine.trinity-incarnation.doctrine-trinity-incarnation`
-  Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties
+- **Current** · 2026-10-02 · Owner decision (Chris) · `doctrine.trinity-incarnation.reconciled-2026-10-02`
+  Superseded by the 2026-10-02 reconciliation: one God with one divine consciousness (theology.god.one-consciousness); Jesus fully divine and fully human without encompassing the entirety of God (theology.christ.incarnation). The classical three-person formulation is taught as a historic interpretation, not as Canonical Shelf's position
+- **Previous** · 2026-09-26 · Owner decision (Chris) · `doctrine.trinity-incarnation.doctrine-trinity-incarnation`
+  ~~Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties~~
 
 ### `feedback`
 
@@ -596,6 +610,287 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `theologian.ui.theologian-ui`
   Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson
   *Why:* Supersedes the floating pill and the Study Focus side-apparatus placement
+
+### `theology.agency.free-choice`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.agency.free-choice.2026-10-02`
+  Affirmed: Free choice requires conscious decision; coercion can constrain choices without necessarily eliminating them; voluntary surrender to God may be withdrawn.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.baptism`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.baptism.2026-10-02`
+  Affirmed: Public profession of faith; burial/washing/rising symbolic and personally significant; not required for salvation.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.christ.ascension`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.christ.ascension.2026-10-02`
+  Left open: Ascension affirmed; mechanics, current physical location, and present bodily state not defined.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.christ.death-resurrection`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.christ.death-resurrection.2026-10-02`
+  Affirmed: Jesus was beaten, crucified, truly died, defeated death, bodily rose, appeared, ascended, and will physically return.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.christ.incarnation`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.christ.incarnation.2026-10-02`
+  Revised: Jesus fully divine/human without encompassing entirety of God; incarnation gave God deeper experiential understanding of human decision. God can learn/respond/change action. Major classical departure.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.christ.preexistence`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.christ.preexistence.2026-10-02`
+  Affirmed: Divine reality embodied as Jesus existed eternally within God and participated in creation; precise pre-incarnate mode is unknown.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.christ.way`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.christ.way.2026-10-02`
+  Revised: No one comes to Father except through Jesus means reconciliation rests on what God revealed/accomplished through Jesus, not mandatory conscious Christian profession.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.church`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.church.2026-10-02`
+  Affirmed: Church is body of Christ actively transmitting Christ's message; not defined by denomination, institution, building, or clergy structure.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.communion`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.communion.2026-10-02`
+  Affirmed: Table open to all; each reflects and chooses; participation/abstention respected without argument; equal treatment regardless.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.covenant.love`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.covenant.love.2026-10-02`
+  Affirmed: Jesus established new covenant and Love as governing law; Mosaic covenant remains important but is not simply the governing Christian covenant.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.creation.final-state`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.creation.final-state.2026-10-02`
+  Left open: No definitive belief about ultimate physical renewal/state of creation; do not make renewal of creation a binding claim.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.difficult-texts`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.difficult-texts.2026-10-02`
+  Affirmed: Address conquest, slavery, violence, women, sexuality, punishment, exclusion, etc. directly/contextually without using context to excuse harm.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.faith`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.faith.2026-10-02`
+  Affirmed: Faith is conscious decision to believe what cannot presently be seen, particularly that God exists and is what God claims to be. Trust can follow from faith.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.forgiveness`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.forgiveness.2026-10-02`
+  Revised: Forgiveness is for humanity; verbal asking does not cause God to forgive. Guilt is internal confession; shame can obstruct asking but does not make a person unworthy.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.god.love`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.god.love.2026-10-02`
+  Affirmed: God is Love; Love is foundational to God's nature and creation's purpose; God does not ultimately abandon what God loves.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.god.manifestation`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.god.manifestation.2026-10-02`
+  Affirmed: God may physically manifest in multiple forms/places; lack of physical manifestation does not mean absence.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.god.one-consciousness`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.god.one-consciousness.2026-10-02`
+  Revised: One God, one divine consciousness. Father/Son/Spirit are not three separate divine consciousnesses or literal divine genealogy. This differs from classical three-person formulation.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.god.source-agency`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology-god-source-agency`
+  God is affirmed as the ultimate source of existence in principle, but this must not imply that God directly causes or controls every creaturely choice or every thing humans make or do. Human choices are genuinely their own and can produce real outcomes without being individually controlled by God.
+
+### `theology.grace.works`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.grace.works.2026-10-02`
+  Affirmed: Grace/salvation are gifts, not earned by works, rituals, prescribed words, or faith as payment. Works may follow/evidence faith.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.human-dignity`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.human-dignity.2026-10-02`
+  Affirmed: Every person has inherent dignity and is worthy of love/respect.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.image-of-god`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.image-of-god.2026-10-02`
+  Left open: Biblical language affirmed; no definitive interpretation of what image of God consists of.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.inclusion.lgbtq`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.inclusion.lgbtq.2026-10-02`
+  Affirmed: LGBTQ+ identity and faithful same-sex relationships compatible with Christian faith/law of Love; full inclusion.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.institutional-independence`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.institutional-independence.2026-10-02`
+  Affirmed: Remove MCC and Christian Church (Disciples of Christ) references as doctrinal identity/authority/proxy. Canonical Shelf stands on its own Statement and method.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.1`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.1.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.2`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.2.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.3`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.3.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.4`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.4.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.5`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.5.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.judgment.repented`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.judgment.repented.2026-10-02`
+  Affirmed: People respond personally; God exercises judicial role by determining whether repentance is genuine.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.judgment.revelation`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.judgment.revelation.2026-10-02`
+  Affirmed: At judgment God reveals God's existence, nature as Love, and what God accomplished through Jesus. Knowledge is not identical to understanding.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.knowledge.open-future`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.knowledge.open-future.2026-10-02`
+  Revised: God knows every possible path and consequence and perfectly understands choosers; which genuinely free choice becomes actual remains open until chosen.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.ministry.women`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.ministry.women.2026-10-02`
+  Affirmed: Women may serve equally in every form of ministry and leadership.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.original-sin`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.original-sin.2026-10-02`
+  Revised: Original sin introduced death; humans inherit mortality/consequences, not predecessors' personal guilt; human nature eventually leads each person to personal sin.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.prayer-healing`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.prayer-healing.2026-10-02`
+  Affirmed: Prayer is relationship, not leverage; no guaranteed healing; illness not proof of insufficient faith/sin.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.prophecy`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.prophecy.2026-10-02`
+  Affirmed: Prophecy may concern God's determined actions, human behavior under established circumstances, conditional outcomes, and fulfillment misunderstood by interpreters.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.providence`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.providence.2026-10-02`
+  Affirmed: God may influence people/circumstances and prepare paths without controlling response; influence can be resisted.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.reincarnation`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.reincarnation.2026-10-02`
+  Rejected: Do not use reincarnation as part of the reconciled doctrinal model. Final collective resurrection/judgment supplies the needed framework.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.repentance`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.repentance.2026-10-02`
+  Affirmed: Recognition → ownership without blame/condemnation → apology → genuine intent to change outcome. Successful future behavior is not required for repentance to have been genuine.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.restoration.universal`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.restoration.universal.2026-10-02`
+  Affirmed: All eventually freely seek Source of Love, genuinely repent, and reconcile; freedom is not overridden; evil ultimately ceases.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.salvation.death`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.salvation.death.2026-10-02`
+  Affirmed: Christ has already saved humanity from death; universal resurrection follows from Christ's victory over death.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.salvation.reconciliation-distinction`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.salvation.reconciliation-distinction.2026-10-02`
+  Affirmed: Universal resurrection/salvation from death is distinct from reconciliation with God.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.scripture.inspiration`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.scripture.inspiration.2026-10-02`
+  Revised: Scripture divinely inspired and providentially maintained; human transmission/translation introduces possible fallibility without defeating overall purpose.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.scripture.method`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.scripture.method.2026-10-02`
+  Affirmed: Distinguish text, transmission, translation, interpretation, doctrine, reception, and application; context/genre/language matter; contested claims labeled.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.sin.culpability`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.sin.culpability.2026-10-02`
+  Affirmed: Objective sin and personal culpability differ; knowledge, intention, understanding, and agency affect responsibility.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.sin.definition`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.sin.definition.2026-10-02`
+  Revised: Sin is whatever contradicts God's loving will/purpose; harm alone does not define sin.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.sin.human-judgment`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.sin.human-judgment.2026-10-02`
+  Affirmed: It is not humanity's role to determine whether an action ultimately serves or contradicts God's larger purpose; judgment belongs to God.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.spirit`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.spirit.2026-10-02`
+  Revised: Spirit is God's nonphysical presence/Love/will/influence, not a separate consciousness.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
 ### `ui.bible`
 

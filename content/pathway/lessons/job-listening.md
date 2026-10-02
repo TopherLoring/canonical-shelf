@@ -18,23 +18,25 @@
 ## Job and the limits of easy explanations {#orient}
 > The friends begin by showing up. Understanding a person’s pain matters more than winning an argument about why it happened.
 
+Job is the Bible’s longest argument about suffering. This lesson reads the scene just before the arguing starts.
+
 Job’s friends come after hearing of his suffering. Their first response includes grief, physical presence, and silence. The scene recognizes that another person’s pain may be too great for a quick explanation or a polished religious answer.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read verses 11–13 and notice everything the friends do before they say a word, and how long they stay silent.
+
+## When the friends start talking {#the-speeches}
 The friends’ later speeches complicate this beginning. Read the complete book before treating any speaker’s confident statement as its final teaching. A dialogue can include a view in order to expose its limitations; quotation alone does not establish endorsement.
 
+## Suffering is not evidence of guilt {#suffering-and-guilt}
 Job’s story challenges easy equations between suffering and personal wrongdoing. This does not mean actions never have consequences. It means another person’s suffering is not sufficient evidence to diagnose their guilt or God’s hidden intention.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Compassionate presence may include listening, bringing food, or helping arrange support. Silence is useful when it makes room for another person, not when it avoids necessary action. Ask what would help and remain willing to hear a response that differs from your own expectation.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Job and the limits of easy explanations",
+  "title": "Separate what Job 2 supports from overreach",
   "prompt": "Build an evidence board from Job 2:11–13. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The friends come to express sympathy and comfort.",
@@ -51,10 +53,13 @@ Compassionate presence may include listening, bringing food, or helping arrange 
 }
 ```
 
+## What helps {#presence}
+Compassionate presence may include listening, bringing food, or helping arrange support. Silence is useful when it makes room for another person, not when it avoids necessary action. Ask what would help and remain willing to hear a response that differs from your own expectation.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put job and the limits of easy explanations to work",
+  "title": "Apply the friends’ example to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ Compassionate presence may include listening, bringing food, or helping arrange 
   "why": "Ask what support is useful without assigning an unverified cause to another person’s suffering."
 }
 ```
+
+## What you now know {#summary}
+Job’s friends begin well: they grieve, come close, and stay silent. Their later speeches, which explain Job’s suffering as punishment, are exposed by the book rather than endorsed; another person’s suffering is never enough evidence to diagnose their guilt or God’s hidden purpose.
+
+Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. Readers differ on how the book’s ending answers Job’s questions, and many conclude that it deliberately does not explain his suffering. The question to carry forward: how do the sages speak about time, limits, and delight?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

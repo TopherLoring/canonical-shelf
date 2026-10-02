@@ -24,21 +24,17 @@
 ## Sea and wilderness: freedom becomes dependence {#orient}
 > Exodus is not finished when Israel leaves Egypt. The sea and wilderness show rescue followed by dependence, testing, and formation.
 
+This lesson follows the people through the sea and into the wilderness, where freedom has to be learned.
+
 Leaving Egypt does not end the Exodus story. At the sea, the people face the possibility of renewed domination and fear that escape has failed. The narrative presents deliverance as a movement through danger rather than a single political announcement.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read the scene at the sea as a sequence: fear, a word to stand firm, a path through the water, and a people who see and trust. Then notice that the next chapters begin with thirst.
+
+## Wilderness: daily dependence {#wilderness}
 After the crossing, wilderness stories repeatedly focus on food, water, fear, trust, complaint, leadership, and dependence. Manna becomes a daily provision rather than a stockpile that removes the need to trust tomorrow.
-
-These stories resist a romantic picture of liberation. A people can be freed from an oppressive system and still need habits, institutions, memory, and trust for life beyond that system. The biblical narrative does not portray the liberated community as instantly mature.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Later Scripture repeatedly returns to sea and wilderness imagery. Those later uses depend on knowing the original narrative movement: danger, rescue, testing, provision, failure, and continuing presence.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -62,6 +58,9 @@ Later Scripture repeatedly returns to sea and wilderness imagery. Those later us
 }
 ```
 
+## Freedom is not instant maturity {#not-instant}
+These stories resist a romantic picture of liberation. A people can be freed from an oppressive system and still need habits, institutions, memory, and trust for life beyond that system. The biblical narrative does not portray the liberated community as instantly mature.
+
 ```check
 {
   "kind": "evidence",
@@ -81,3 +80,11 @@ Later Scripture repeatedly returns to sea and wilderness imagery. Those later us
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## Echoes in later Scripture {#echoes}
+Later Scripture repeatedly returns to sea and wilderness imagery. Those later uses depend on knowing the original narrative movement: danger, rescue, testing, provision, failure, and continuing presence.
+
+## What you now know {#summary}
+Deliverance moves through danger; the wilderness then forms a freed people through daily provision, testing, complaint, and continuing presence. Liberation from a system is not the same as maturity, and the story does not pretend otherwise.
+
+The historical details of the crossing and the journey are debated; the narrative itself moves through danger, rescue, testing, provision, failure, and continuing presence, and later Scripture repeatedly returns to that movement. The question to carry forward: what does a freed community need in order to live well?

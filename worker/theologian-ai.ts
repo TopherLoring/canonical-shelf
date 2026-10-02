@@ -1,3 +1,4 @@
+import {BELIEF_CONTEXT} from './generated/belief-context';
 import type {ClaimDomain,DoctrinalStatus,EvidenceStatus,InterpretationType} from '../src/knowledge/model.ts';
 
 type AssetBinding={fetch(request:Request):Promise<Response>};
@@ -86,7 +87,7 @@ async function loadResources(env:TheologianAiEnv,requestUrl:string):Promise<Reso
       assetText(env,requestUrl,'/data/catalog.json'),
       assetText(env,requestUrl,'/data/corpus.txt'),
       assetText(env,requestUrl,'/data/statement-of-faith.md'),
-      assetText(env,requestUrl,'/data/theologian-belief-context.md'),
+      Promise.resolve(BELIEF_CONTEXT),
       assetText(env,requestUrl,'/data/theology-policy.json'),
       assetText(env,requestUrl,'/data/theology-sources.json')
     ]);

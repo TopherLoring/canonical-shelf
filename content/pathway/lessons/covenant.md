@@ -23,15 +23,13 @@ God’s call to Abram links a particular family with blessing beyond itself. A c
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Begin where the movement begins, with the promise to Abram, and listen for the word “blessing”. It is the thread that ties the promise to everything that follows.
+
+## From promise to liberation {#liberation}
 Exodus portrays God hearing the suffering of an enslaved people and calling Moses into a work of liberation. Moses’ questions and limitations remain in the story. Deliverance is not described as the result of Israel already having built a perfect society. The narrative moves from oppression toward freedom and then toward the task of living together.
 
+## A communal vocation at Sinai {#vocation}
 At Sinai, Israel receives a communal vocation within a covenant. Instructions about worship and social conduct belong to that setting. Leviticus 19 connects holiness with concrete practices: leaving produce for vulnerable people, dealing honestly, paying attention to justice, and loving the neighbor. Worship and treatment of others are not unrelated spheres.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Ancient laws require historical and literary interpretation. Distinguish their original community and social arrangements from principles and applications drawn by later readers. Christians differ over how particular Torah commands apply through Christ; this lesson does not flatten the whole Torah into either an unchanged modern rulebook or an irrelevant relic.
-
-Christianity’s reading of covenant must preserve respect for Judaism as a living tradition. Israel’s scriptures have significance beyond serving as clues for Christians. In this unit, follow the movement from promise to liberation to responsibility, and identify how a community’s gratitude can become care for people with less power.
 
 ```check
 {
@@ -52,6 +50,12 @@ Christianity’s reading of covenant must preserve respect for Judaism as a livi
   "why": "The selected claims stay within the evidence and the guide’s stated interpretive boundaries."
 }
 ```
+
+## Reading ancient laws {#ancient-laws}
+Ancient laws require historical and literary interpretation. Distinguish their original community and social arrangements from principles and applications drawn by later readers. Christians differ over how particular Torah commands apply through Christ; this lesson does not flatten the whole Torah into either an unchanged modern rulebook or an irrelevant relic.
+
+## Covenant and living Judaism {#judaism}
+Christianity’s reading of covenant must preserve respect for Judaism as a living tradition. Israel’s scriptures have significance beyond serving as clues for Christians. In this unit, follow the movement from promise to liberation to responsibility, and identify how a community’s gratitude can become care for people with less power.
 
 ```check
 {
@@ -74,6 +78,11 @@ Christianity’s reading of covenant must preserve respect for Judaism as a livi
   "why": "Follow the broad narrative movement; do not confuse it with the dates when texts were composed."
 }
 ```
+
+## What you now know {#summary}
+Promise, liberation, and covenant form one movement: a particular family blessed for the sake of others, a people freed from slavery, and a covenant that joins belonging with responsibility in worship and everyday justice.
+
+Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: how does gratitude for rescue become a way of life?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

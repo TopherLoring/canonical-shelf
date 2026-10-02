@@ -12,7 +12,10 @@
     "Renewed creation": "The world’s restoration under God’s life-giving presence."
   },
   "deeper": "Compare the tree-of-life imagery in Genesis and Revelation. Notice the narrative connection without assuming that every image defines the physical mechanics of the future.",
-  "drawers": []
+  "drawers": [],
+  "carries": {
+    "p5": "superseded:theology.restoration.universal.2026-10-02"
+  }
 }
 ---
 ## Resurrection, judgment, and renewed creation {#orient}
@@ -31,7 +34,7 @@ Revelation’s visions culminate in renewed creation, divine presence, and the e
 ## Keep the setting visible {#keep-the-setting-visible}
 Judgment, salvation through Christ, and eternal life are substantive Christian teachings. Christians disagree about the nature and duration of hell, the fate of the unevangelized, and detailed timelines of final events. This guide explains principal interpretations and their arguments without claiming certainty about the destiny of particular individuals.
 
-Resurrection is distinct from reincarnation or repeated earthly lives. This curriculum does not assert personal theories of recurring lives or guarantee opportunities after death. Its practical emphasis is hope that encourages faithfulness, care, and justice now rather than speculation that distracts from present responsibilities.
+Resurrection is distinct from reincarnation or repeated earthly lives. This curriculum does not teach recurring earthly lives. Its own Statement of Faith does hold that God’s Love remains available after death: all will be raised, and the guide expects that all will eventually, through genuine repentance and their own free choice, be reconciled to God. Canonical Shelf takes no definitive position on the final physical state of creation. Many Christians believe instead that a person’s choice is final at death; the guide presents that view accurately too. Its practical emphasis is hope that encourages faithfulness, care, and justice now rather than speculation that distracts from present responsibilities.
 
 ```check
 {

@@ -14,7 +14,7 @@ window.FOUNDATIONS_DATA = {
       "body": [
         "Christianity centers on Jesus Christ: his life, death, and resurrection, and the relationship with God made possible through him. Christ is a title meaning anointed one, not Jesus’ surname. Gospel means good news; it can refer to the Christian message or to one of the four Gospel books.",
         "Paul’s letter to the Corinthians addresses an existing community with questions and disagreements. Here he recalls a message he received and passed on: Christ died for sins, was buried, was raised, and appeared to witnesses. This is a compact proclamation inside a letter, not a complete biography of Jesus.",
-        "This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective influenced by Metropolitan Community Churches and the Christian Church (Disciples of Christ). It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.",
+        "This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective grounded in its own published Statement of Faith rather than in any denomination. It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.",
         "The first goal is orientation. Notice what the passage actually says before trying to settle every question about how salvation works. Later lessons distinguish the saving work of Christ, receiving grace through faith and repentance, and living in response to that grace.",
         "Paul writes to a community in Roman Corinth, not to isolated readers. Patron-client relationships exchanged resources and assistance for loyalty and public honor; gifts could create obligations. That social setting helps us ask who had influence and whose needs went unheard. It does not establish the motive of every Corinthian. Read 1 Corinthians 11:17–22 alongside this opening lesson: the gospel Paul recalls in chapter 15 also concerns the community’s shared life."
       ],
@@ -2444,7 +2444,7 @@ window.FOUNDATIONS_DATA = {
         "Christianity includes many communities with shared texts and substantial disagreements. Creeds express central formulations about God and Christ; confessions and other statements articulate further teaching. Historical divisions involve theology, authority, worship, culture, and institutions. A single label rarely explains every congregation or individual.",
         "Catholic, Orthodox, and Protestant traditions relate Scripture, tradition, and church authority in different ways. Their understandings of ministry and sacraments also differ. Some churches organize through bishops, some through councils of elders, and some emphasize congregational autonomy. These descriptions are starting points for comparison, not a ranking of sincerity.",
         "The Reformation and other reform movements raised questions about authority, grace, faith, and church life. Protestant traditions themselves differ: Lutheran teaching emphasizes justification and law/gospel; Wesleyan teaching emphasizes grace and sanctification; Baptist traditions emphasize religious liberty and local church freedom. These summaries identify emphases rather than claiming each concern belongs to only one group.",
-        "This guide draws particularly on Metropolitan Community Churches and the Christian Church (Disciples of Christ). Its editorial commitments include an open table, explicit LGBTQ affirmation, Christian unity, contextual reading, and freedom of inquiry. It teaches historic doctrine substantively without making assent a prerequisite to learning. It does not claim to speak officially for every congregation in either movement.",
+        "This guide is grounded in its own published Statement of Faith rather than in any denomination. Its editorial commitments include an open table, explicit LGBTQ affirmation, Christian unity, contextual reading, and freedom of inquiry. It teaches historic doctrine substantively without making assent a prerequisite to learning, and it does not claim to speak for any church or movement.",
         "Ecumenism seeks relationship and cooperation among Christians without pretending disagreements do not exist. A fair comparison asks what a tradition affirms, why its adherents find it persuasive, and where differences affect practice. Learners should be able to represent a position accurately even when they reject it. Understanding another account is not an obligation to adopt it."
       ],
       "simple": "Christian traditions share much while disagreeing about authority and practice. Learn their reasons and identify this guide’s perspective openly.",
@@ -3094,7 +3094,7 @@ window.FOUNDATIONS_DATA = {
     },
     {
       "title": "LGBTQ dignity and belonging",
-      "body": "LGBTQ people, their relationships and marriages, and their equal participation in leadership and ministry are explicitly affirmed. The guide’s MCC and Disciples-inspired direction makes inclusion an editorial commitment.",
+      "body": "LGBTQ people, their relationships and marriages, and their equal participation in leadership and ministry are explicitly affirmed. The guide’s own Statement of Faith makes inclusion an editorial commitment.",
       "deeper": "Explain opposing readings and affirming responses in context. Learners should understand interpretive arguments without being asked to debate whether another person has dignity or deserves care.",
       "reading": "Genesis 1:27; Matthew 22:34–40; Acts 10; Galatians 3:28"
     },
@@ -3192,7 +3192,7 @@ window.FOUNDATIONS_DATA = {
     },
     {
       "title": "Christian traditions",
-      "scope": "Early creeds; major divisions; MCC and Disciples; ecumenical understanding",
+      "scope": "Early creeds; major divisions; ecumenical understanding",
       "id": 13
     },
     {
@@ -3227,14 +3227,6 @@ window.FOUNDATIONS_DATA = {
     {
       "title": "Bethel University, Mishawaka: BIBL 201 (2023–2024)",
       "url": "https://betheluniversity.smartcatalogiq.com/en/2023-2024/catalog/undergraduate-courses/bibl-biblical-studies/200/bibl-201"
-    },
-    {
-      "title": "MCC: faith and core values",
-      "url": "https://insidemcc.org/about-mcc/what-we-believe/"
-    },
-    {
-      "title": "Christian Church (Disciples of Christ): identity",
-      "url": "https://disciples.org/our-identity/"
     },
     {
       "title": "Spacing learning over time: Carpenter and Agarwal",

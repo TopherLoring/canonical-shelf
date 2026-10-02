@@ -18,23 +18,22 @@
 ## Proverbs: wisdom is more than a slogan {#orient}
 > One saying warns about joining a quarrel; the other warns about leaving error unchallenged. Choose with the situation in view.
 
+Proverbs is often read as a book of rules. This lesson reads two sayings placed side by side that give opposite advice, and shows why that is the point.
+
 These adjacent sayings give different directions about answering a fool. Reading only one as an absolute rule misses the deliberate pressure created by their placement together. The reader has to ask what danger each saying addresses.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read verses 4 and 5 together. They seem to contradict each other; before deciding, notice the reason each one gives.
+
+## Two dangers, two sayings {#two-dangers}
 One warns against becoming like the person being answered. The other warns against allowing that person to remain wise in their own eyes. Both are concerned with the effect of a response, but they highlight different possible effects.
-
-Wisdom therefore requires attention to audience, purpose, and likely consequences. Silence might avoid an unproductive quarrel; a calm correction might protect people who would otherwise be misled. Neither move is automatically right in every situation.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The term fool in wisdom writing should not become an excuse to dismiss anyone who disagrees. Test the claim and the proposed response. A wise reply can acknowledge uncertainty, correct a false statement, and refuse the invitation to exchange contempt.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: Proverbs: wisdom is more than a slogan",
+  "title": "Separate what Proverbs 26:4–5 supports from overreach",
   "prompt": "Build an evidence board from Proverbs 26:4–5. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "One saying warns against becoming like the fool.",
@@ -51,10 +50,16 @@ The term fool in wisdom writing should not become an excuse to dismiss anyone wh
 }
 ```
 
+## Wisdom as judgment {#judgment}
+Wisdom therefore requires attention to audience, purpose, and likely consequences. Silence might avoid an unproductive quarrel; a calm correction might protect people who would otherwise be misled. Neither move is automatically right in every situation.
+
+## Using the word “fool” carefully {#the-word-fool}
+The term fool in wisdom writing should not become an excuse to dismiss anyone who disagrees. Test the claim and the proposed response. A wise reply can acknowledge uncertainty, correct a false statement, and refuse the invitation to exchange contempt.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put proverbs: wisdom is more than a slogan to work",
+  "title": "Apply the two sayings to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ The term fool in wisdom writing should not become an excuse to dismiss anyone wh
   "why": "Decide whether a response will correct harm or merely reproduce the quarrel."
 }
 ```
+
+## What you now know {#summary}
+Proverbs teaches discernment, not formulas. The two sayings about answering a fool name two different dangers, and the reader has to judge which one the situation presents; “fool” in wisdom writing is never a license to dismiss people who disagree.
+
+Readers broadly agree that proverbs describe what usually happens rather than guaranteeing outcomes. The question to carry forward: what happens when life breaks the pattern a proverb describes?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

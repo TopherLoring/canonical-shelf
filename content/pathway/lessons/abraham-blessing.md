@@ -18,23 +18,22 @@
 ## Abraham: a promise that reaches beyond one family {#orient}
 > Abram receives a calling whose blessing reaches outward. A chosen role is not proof that every action of its holder is right.
 
+With Abraham the story narrows from all of humanity to one family, without losing sight of everyone else. This lesson closes the unit by reading the call that begins Israel’s story.
+
 God calls Abram to leave a familiar setting for a destination yet to be shown. The story begins with initiative and promise, followed by a response. It introduces a particular family within a larger account of humanity rather than beginning with a claim that this family has earned every blessing.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice the three parts: a command to leave, a promise in several layers, and Abram’s response in journeys and altars.
+
+## A blessing that reaches outward {#blessing}
 The promise reaches beyond Abram. The language of blessing connects a particular calling with other families of the earth. Particularity and outward purpose belong together: the story follows real relationships, while refusing to make the gift simply private possession.
-
-Abram travels and builds altars. These actions locate the response in places and practices, not only in inward agreement. Later episodes also expose failures and conflict. Being called does not make a biblical character’s every subsequent choice morally exemplary.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Read Christian applications with respect for the story’s place in Jewish Scripture and living Jewish interpretation. A modern reader may learn about trust and responsibility without claiming to replace Israel or treating a personal ambition as an identical divine promise.
 
 ```check
 {
   "kind": "sequence",
-  "title": "Reconstruct: Abraham: a promise that reaches beyond one family",
+  "title": "Reconstruct the promise to Abram",
   "prompt": "Arrange the movement of Genesis 12:1–9.",
   "items": [
     "Abram leaves with his household.",
@@ -53,10 +52,16 @@ Read Christian applications with respect for the story’s place in Jewish Scrip
 }
 ```
 
+## Response in places and practices {#response}
+Abram travels and builds altars. These actions locate the response in places and practices, not only in inward agreement. Later episodes also expose failures and conflict. Being called does not make a biblical character’s every subsequent choice morally exemplary.
+
+## Reading with Jewish Scripture in view {#jewish-scripture}
+Read Christian applications with respect for the story’s place in Jewish Scripture and living Jewish interpretation. A modern reader may learn about trust and responsibility without claiming to replace Israel or treating a personal ambition as an identical divine promise.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put abraham: a promise that reaches beyond one family to work",
+  "title": "Apply the call of Abram to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -90,6 +95,11 @@ Read Christian applications with respect for the story’s place in Jewish Scrip
   "why": "Identify a way a benefit you have received can serve people beyond yourself."
 }
 ```
+
+## What you now know {#summary}
+A particular calling carries an outward purpose: the blessing given to Abram is meant to reach other families of the earth. Response takes shape in journeys and worship, and being called does not make every later choice right.
+
+Jewish and Christian readers both look to Abraham as an ancestor in faith, in different ways. Christians differ on how the promise relates to the Church and to Israel; this guide does not teach that the Church replaces Israel. The question to carry forward: the covenant with Abraham returns throughout the Bible; watch for it in the next module.
 
 ## Reflect on the lesson {#reflect}
 ```reflect

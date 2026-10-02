@@ -20,6 +20,8 @@
 
 Christian doctrine gathers and interprets biblical testimony in a disciplined way. The Trinity names the historic confession of one God in three persons: Father, Son, and Holy Spirit. It does not mean three separate gods or one person merely switching roles. The language aims to preserve unity and real distinction together.
 
+**Canonical Shelf’s own position.** God is the loving Creator and source of all existence. God is Love and cannot act contrary to Love. Created beings possess genuine agency, so God does not determine every choice or directly cause every action. The guide uses this conviction about Love and freedom as a governing principle when it discusses providence, forgiveness, judgment, and reconciliation. Historic Christian formulations are taught alongside this position for literacy.
+
 ## Read the passage with the question in view {#read}
 ::reading
 

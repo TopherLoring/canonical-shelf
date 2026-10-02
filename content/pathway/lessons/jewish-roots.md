@@ -28,6 +28,8 @@ Jesus, Paul, and the earliest Christian movement belong within Jewish history. J
 
 Christian teaching about salvation through Christ raises real questions about covenant and those of other faiths. Christians answer those questions differently. This guide teaches Christ’s saving significance without assigning a known final destiny to particular people or presenting personal speculation about repeated lives as doctrine.
 
+**Canonical Shelf’s own position** reads Jesus’s words “no one comes to the Father except through me” (John 14:6) as meaning that reconciliation with God rests on what God revealed and accomplished through Jesus, not on a conscious Christian profession made in this life. Many Christians read the verse as requiring that profession; the guide names that reading as well and teaches both from the text.
+
 ## Keep the setting visible {#keep-the-setting-visible}
 Respectful witness includes accurate description, listening, and rejection of collective Jewish blame for Jesus’ death. A disagreement about truth does not authorize contempt or the erasure of a community’s own account of itself. Begin by learning what another person actually believes.
 
