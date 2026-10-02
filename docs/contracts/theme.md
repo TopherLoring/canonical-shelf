@@ -467,7 +467,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.watercolor.modes.dark.shadowOverlay` | css-value | 0 14px 36px #93b8c81f | — |
 | `themes.watercolor.modes.dark.ornaments` | list of color | #93B8C8, #E6A3A5, #9CC2AE, #C6B6E3 | maxItems 6 |
 | `themes.watercolor.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap | — |
-| `themes.illustrated.name` | text | Illustrated | — |
+| `themes.illustrated.name` | text | Sketch Book | — |
 | `themes.illustrated.description` | text | A Moleskine sketchbook: pencil lines, hand lettering, taped-down cards. | — |
 | `themes.illustrated.fontImports` | list of string | /fonts/fonts.css | — |
 | `themes.illustrated.style.fontDisplay` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |

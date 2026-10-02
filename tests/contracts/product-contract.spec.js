@@ -143,7 +143,7 @@ test('lesson progress: unlabeled dots (vertical on desktop, centered along the b
 
 test('authored Lesson 1: one step per section, checks inline where written, readable Scripture in light and dark',async({page})=>{
   await page.goto('/course?unit=c1.christianity&lesson=begin&scene=2');
-  await expect(page.locator('.scene-rail a')).toHaveCount(7);
+  await expect(page.locator('.scene-rail a')).toHaveCount(8);
   await expect(page.locator('.scene-rail a').nth(1)).toHaveAttribute('aria-label',/Read the passage/);
   const scene=page.locator('.study-scene, main').first();
   await expect(scene.locator('.study-scripture')).toBeVisible();

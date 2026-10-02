@@ -80,6 +80,7 @@
                 "read",
                 "words",
                 "letter",
+                "community",
                 "stance",
                 "summary",
                 "reflect"
@@ -87,6 +88,7 @@
               "checks": [
                 "order the four events Paul recalls",
                 "match gospel, Christ, and resurrection to their meanings",
+                "connect the gospel Paul recalls to the community's shared life (1 Corinthians 11)",
                 "separate understanding from agreement"
               ]
             },
@@ -176,6 +178,2623 @@
               "checks": [
                 "match five passages to their kind of writing",
                 "choose the readings that respect each kind"
+              ]
+            },
+            {
+              "id": "library",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read a Bible reference and distinguish canon, translation, and genre.",
+              "reading": "Luke.1.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Sort the library labels",
+                "Find the passage"
+              ]
+            },
+            {
+              "id": "shelf-skills",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use the seven original learning tracks to connect book knowledge with responsible interpretation.",
+              "reading": "Luke.24.44-49",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: The shelf, the timeline, and seven Bible skills",
+                "Put the shelf, the timeline, and seven bible skills to work"
+              ]
+            },
+            {
+              "id": "genre",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use literary clues to interpret imagery without dismissing the passage’s claim.",
+              "reading": "Ps.23.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "read-closely",
+                "reflect"
+              ],
+              "checks": [
+                "Sort the reading tools",
+                "Build a reading of the psalm",
+                "Three genres, three reading moves"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.story",
+          "lessons": [
+            {
+              "id": "story",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Jesus’ proclamation to Israel’s story without erasing Judaism.",
+              "reading": "Mark.1.14-15",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the story map",
+                "Connect the themes"
+              ]
+            },
+            {
+              "id": "garden-trust",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish humanity’s vocation, freedom, and dependence in the garden narrative.",
+              "reading": "Gen.2.15-25",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: The garden: freedom, trust, and limits",
+                "Put the garden: freedom, trust, and limits to work"
+              ]
+            },
+            {
+              "id": "sin-mortality",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace the consequences of sin while distinguishing mortality from inherited personal guilt.",
+              "reading": "Gen.3.8-24",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Rupture, mortality, and the tree of life",
+                "Put rupture, mortality, and the tree of life to work"
+              ]
+            },
+            {
+              "id": "creation-care",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read creation poetry and reason from creaturely dependence to responsible care.",
+              "reading": "Ps.104.24-30",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: A living world entrusted to our care",
+                "Put a living world entrusted to our care to work"
+              ]
+            },
+            {
+              "id": "abraham-blessing",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Identify the direction of the promise and distinguish calling from moral superiority.",
+              "reading": "Gen.12.1-9",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Abraham: a promise that reaches beyond one family",
+                "Put abraham: a promise that reaches beyond one family to work"
+              ]
+            },
+            {
+              "id": "creation",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect creation, human dignity, responsibility, and mortality without confusing theological claims with a scientific timeline.",
+              "reading": "Gen.1.26-31",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.synthesis",
+          "lessons": []
+        }
+      ],
+      "courseId": "module.canon"
+    },
+    {
+      "id": "module.hebrew-scriptures",
+      "title": "The Hebrew Scriptures & the Near Eastern World",
+      "courseId": "module.hebrew-scriptures",
+      "units": [
+        {
+          "unitId": "c2.exodus",
+          "lessons": [
+            {
+              "id": "exodus-call",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how the call of Moses connects divine concern with human participation.",
+              "reading": "Exod.3.7-15",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Exodus: hearing suffering and answering a call",
+                "Put exodus: hearing suffering and answering a call to work"
+              ]
+            },
+            {
+              "id": "c2-passover",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how Passover connects deliverance from Egypt with ritual memory and communal identity.",
+              "reading": "Exod.12.1-14",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Place Passover in the Exodus movement",
+                "What does Exodus 12 establish?"
+              ]
+            },
+            {
+              "id": "c2-sea-wilderness",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace the movement from escape through the sea into wilderness dependence rather than treating Exodus as complete at departure.",
+              "reading": "Exod.14.10-31",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Follow the movement",
+                "Avoid a shallow liberation story"
+              ]
+            },
+            {
+              "id": "covenant",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace how promise and liberation lead to covenant responsibilities and concern for neighbors.",
+              "reading": "Gen.12.1-3",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Build the covenant story"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.sinai",
+          "lessons": [
+            {
+              "id": "c2-sinai-covenant",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Sinai covenant with the Exodus that precedes it and distinguish covenant identity from earning liberation.",
+              "reading": "Exod.19.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Reconstruct the logic",
+                "Read covenant without superiority"
+              ]
+            },
+            {
+              "id": "c2-golden-calf",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the golden-calf episode as covenant rupture within the Sinai story and identify the roles of judgment, intercession, and renewal.",
+              "reading": "Exod.32.1-14",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Trace rupture and renewal",
+                "What does failure mean here?"
+              ]
+            },
+            {
+              "id": "torah-neighbor",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect covenant instruction with concrete care while avoiding mechanical transfer of ancient law.",
+              "reading": "Lev.19.9-18",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Torah: holiness in everyday relationships",
+                "Put torah: holiness in everyday relationships to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.tabernacle",
+          "lessons": [
+            {
+              "id": "c2-tabernacle",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain why the tabernacle matters in the Exodus story and locate its major zones as a model of ordered sacred space.",
+              "reading": "Exod.25.1-9",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Move inward through sacred space",
+                "Place the objects"
+              ]
+            },
+            {
+              "id": "c2-ark",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the Ark’s relationship to covenant testimony, the mercy seat, and divine presence without turning it into a magical object.",
+              "reading": "Exod.25.10-22",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Ark relationships",
+                "Reject magical thinking"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.sacrifice",
+          "lessons": [
+            {
+              "id": "c2-priesthood-sacrifice",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish priestly mediation, sacrifice, and several possible ritual purposes instead of reducing every offering to the same mechanism.",
+              "reading": "Lev.1.1-9",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Do not flatten sacrifice",
+                "Separate the categories"
+              ]
+            },
+            {
+              "id": "c2-day-atonement",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the Day of Atonement as a coordinated set of rites involving priest, sanctuary, impurity/sin, and communal restoration.",
+              "reading": "Lev.16.1-34",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Two goats, different roles",
+                "What makes the day distinctive?"
+              ]
+            },
+            {
+              "id": "c2-sacred-calendar",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Relate Sabbath, Passover/Unleavened Bread, Weeks, and Booths to Israel’s worship, memory, agriculture, and communal calendar.",
+              "reading": "Lev.23.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Festival and memory",
+                "Use the calendar historically"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.land-kings",
+          "lessons": [
+            {
+              "id": "c2-davidic-covenant",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how the promise to David links dynasty, kingdom, temple, discipline, and later messianic hope.",
+              "reading": "2Sam.7.8-17",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Read the wordplay",
+                "Promise without idealizing kings"
+              ]
+            },
+            {
+              "id": "land-judges",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace the Judges cycle while refusing to equate a narrated act with a model to imitate.",
+              "reading": "Judg.2.6-19",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Land and Judges: learning from a disturbing narrative",
+                "Put land and judges: learning from a disturbing narrative to work"
+              ]
+            },
+            {
+              "id": "kings-accountability",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Identify the costs of royal power and distinguish biblical description from endorsement.",
+              "reading": "1Sam.8.10-22",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Kingship: evaluating power rather than admiring it",
+                "Put kingship: evaluating power rather than admiring it to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.temple-kingdom",
+          "lessons": [
+            {
+              "id": "c2-temple-presence",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Solomon’s Temple with tabernacle traditions while recognizing that the prayer itself refuses to confine God to a building.",
+              "reading": "1Kgs.8.22-30",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Trace the sacred-space development",
+                "Temple without confinement"
+              ]
+            },
+            {
+              "id": "kingdom-exile",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Israel’s leadership stories with the costs of power, the experience of exile, and the work of return.",
+              "reading": "1Sam.8.10-18",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Reconstruct loss and return"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c5.genre",
+          "lessons": [
+            {
+              "id": "c5-hebrew-poetry",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use parallelism, imagery, repetition, and line relationships to read biblical poetry without treating each line as isolated prose.",
+              "reading": "Ps.19.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Read line relationships",
+                "Poetry is not failed prose"
+              ]
+            },
+            {
+              "id": "wisdom",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish lament, practical wisdom, and reflection on suffering without turning them into guarantees.",
+              "reading": "Ps.13.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            },
+            {
+              "id": "psalms-lament",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace lament’s movement without making it a required emotional timetable.",
+              "reading": "Ps.13.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Psalms: learning to pray without pretending",
+                "Put psalms: learning to pray without pretending to work"
+              ]
+            },
+            {
+              "id": "proverbs-discernment",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain why contrasting proverbs call for judgment about circumstances.",
+              "reading": "Prov.26.4-5",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Proverbs: wisdom is more than a slogan",
+                "Put proverbs: wisdom is more than a slogan to work"
+              ]
+            },
+            {
+              "id": "job-listening",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish compassionate presence from unwarranted explanations of suffering.",
+              "reading": "Job.2.11-13",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Job and the limits of easy explanations",
+                "Put job and the limits of easy explanations to work"
+              ]
+            },
+            {
+              "id": "wisdom-time-love",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read wisdom poetry about time and love without turning every image into a universal command.",
+              "reading": "Eccl.3.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Ecclesiastes and Song: limits, delight, and poetry",
+                "Put ecclesiastes and song: limits, delight, and poetry to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.prophets-exile",
+          "lessons": [
+            {
+              "id": "c2-exile-temple-loss",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain why Jerusalem’s destruction and exile create political, communal, liturgical, and theological crises.",
+              "reading": "2Kgs.25.8-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the layers of the crisis",
+                "Loss and question"
+              ]
+            },
+            {
+              "id": "exile-lament",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read communal lament as evidence of displacement without turning it into a universal diagnosis.",
+              "reading": "Ps.137.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Exile: history heard alongside grief",
+                "Put exile: history heard alongside grief to work"
+              ]
+            },
+            {
+              "id": "amos-worship",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the force of prophetic criticism without concluding all worship is worthless.",
+              "reading": "Amos.5.21-24",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Amos: when worship and conduct collide",
+                "Put amos: when worship and conduct collide to work"
+              ]
+            },
+            {
+              "id": "micah-mercy",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish escalating religious offerings from the ethical response the passage names.",
+              "reading": "Mic.6.6-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Micah: justice, mercy, and humility",
+                "Put micah: justice, mercy, and humility to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c2.restoration-hope",
+          "lessons": [
+            {
+              "id": "c2-restoration-temple",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain Persian-period return and temple rebuilding as restoration that also leaves unresolved political and theological hopes.",
+              "reading": "Ezra.3.10-13",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "From destruction to Second Temple",
+                "Restoration without pretending completion"
+              ]
+            },
+            {
+              "id": "c2-new-covenant",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Interpret Jeremiah’s new-covenant promise in its Israel/Judah restoration setting before tracing later Christian use.",
+              "reading": "Jer.31.31-34",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Start with Jeremiah’s audience",
+                "Original context and later use"
+              ]
+            },
+            {
+              "id": "c2-prophetic-hope",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Identify several streams of prophetic hope without collapsing them into one prediction checklist.",
+              "reading": "Isa.11.1-10",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Name the stream",
+                "Avoid the checklist trap"
+              ]
+            },
+            {
+              "id": "prophets",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Relate prophetic speech to worship, justice, crisis, and hope before using it as a prediction or slogan.",
+              "reading": "Amos.5.21-24",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Construct a prophetic reading"
+              ]
+            },
+            {
+              "id": "return-rebuilding",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace how permission, participation, and material support shape a return narrative.",
+              "reading": "Ezra.1.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Return: hope becomes the work of rebuilding",
+                "Put return: hope becomes the work of rebuilding to work"
+              ]
+            },
+            {
+              "id": "jeremiah-hope",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read a familiar promise within its communal audience and extended time horizon.",
+              "reading": "Jer.29.4-14",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Jeremiah: hope addressed to a displaced community",
+                "Put jeremiah: hope addressed to a displaced community to work"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module.christ-event",
+      "title": "Second Temple Judaism & the Christ Event",
+      "courseId": "module.christ-event",
+      "units": [
+        {
+          "unitId": "c3.after-exile",
+          "lessons": [
+            {
+              "id": "c3-persian-judea",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Locate postexilic Judah within the Persian Empire and distinguish return, rebuilding, and communal restoration from political independence.",
+              "reading": "Ezra.1.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Place the imperial transition",
+                "Return without oversimplifying"
+              ]
+            },
+            {
+              "id": "c3-torah-public-life",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how public reading, interpretation, worship, and communal identity become visible in postexilic biblical narratives.",
+              "reading": "Neh.8.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Separate the elements",
+                "Diversity without fragmentation"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c3.greek-world",
+          "lessons": [
+            {
+              "id": "c3-alexander-hellenization",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how Alexander’s conquests and Hellenistic culture reshape the eastern Mediterranean without imagining that local Jewish identity simply disappears.",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Define Hellenization carefully",
+                "Place the broad transition"
+              ]
+            },
+            {
+              "id": "c3-antiochus-maccabees",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Describe the second-century BCE crisis around Antiochus IV, Jewish resistance, and Temple rededication while distinguishing history from later literary interpretation.",
+              "reading": "Dan.11.29-35",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "From crisis to rededication",
+                "Avoid a cartoon history"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c3.hasmonean-rome",
+          "lessons": [
+            {
+              "id": "c3-hasmoneans",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how the Maccabean revolt develops into Hasmonean political and priestly rule and why that history matters for later Jewish politics.",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Resistance to Roman intervention",
+                "Dynasty without romanticizing"
+              ]
+            },
+            {
+              "id": "c3-rome-judea",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Locate Judea and Galilee within Roman imperial power and explain why rulers, taxes, armies, and client kings matter for Gospel reading.",
+              "reading": "Luke.2.1-3",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Who holds what kind of power?",
+                "Read empire without flattening life"
+              ]
+            },
+            {
+              "id": "c3-herod",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain Herod’s place between Rome and Judea and recognize how his rule reshapes the Temple and the political background of Gospel birth traditions.",
+              "reading": "Matt.2.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Separate the Herodian setting",
+                "Avoid collapsing offices"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c3.jewish-life",
+          "lessons": [
+            {
+              "id": "c3-temple-priesthood",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Describe the Second Temple as a religious center embedded in pilgrimage, priesthood, economy, and political authority.",
+              "reading": "Luke.2.41-49",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Temple dimensions",
+                "Critique without supersessionism"
+              ]
+            },
+            {
+              "id": "c3-synagogue-diaspora",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how synagogue and diaspora settings broaden the learner’s picture of Jewish life beyond Jerusalem sacrifice.",
+              "reading": "Luke.4.16-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Temple, synagogue, diaspora",
+                "Do not make Jerusalem the only Jewish world"
+              ]
+            },
+            {
+              "id": "c3-pharisees-sadducees",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish Pharisees and Sadducees historically and refuse the stereotype that “Pharisee” simply means hypocrite or legalist.",
+              "reading": "Acts.23.6-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Distinguish the groups",
+                "Reject the stereotype"
+              ]
+            },
+            {
+              "id": "c3-essenes-qumran",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain what the Dead Sea Scrolls reveal about Jewish textual and communal diversity while keeping the Qumran-Essene identification appropriately qualified.",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "What do the Scrolls establish?",
+                "Evidence and inference"
+              ]
+            },
+            {
+              "id": "c3-revolutionary-currents",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Recognize anti-imperial resistance and revolutionary movements without projecting the later organized Zealot movement backward onto every opponent of Rome.",
+              "reading": "Acts.5.34-39",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Use “Zealot” carefully",
+                "Claim and caution"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c3.expectation",
+          "lessons": [
+            {
+              "id": "c3-apocalyptic-resurrection",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Recognize resurrection and apocalyptic hope as developments within Jewish Scripture and Second Temple Judaism rather than concepts appearing from nowhere in Christianity.",
+              "reading": "Dan.12.1-3",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Locate resurrection historically",
+                "Read apocalyptic signals"
+              ]
+            },
+            {
+              "id": "c3-messianic-diversity",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish royal-Davidic messianic hope from other Second Temple expectations and avoid assuming one universal checklist awaited Jesus.",
+              "reading": "Ps.2.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Reject the single-checklist model",
+                "Different kinds of hope"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c3.enter-gospels",
+          "lessons": [
+            {
+              "id": "c3-enter-gospels",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Integrate empire, Temple, Jewish diversity, apocalyptic hope, and messianic expectation into a usable context for beginning the Gospels.",
+              "reading": "Mark.1.14-15",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Put the context back",
+                "Context without overreach"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.gospels",
+          "lessons": [
+            {
+              "id": "gospel-comparison",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain how a Gospel’s purpose and arrangement shape its presentation of Jesus.",
+              "reading": "Luke.1.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Four Gospels: compare without flattening",
+                "Put four gospels: compare without flattening to work"
+              ]
+            },
+            {
+              "id": "jesus-world",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Jesus’ kingdom announcement, teaching, and discipleship with his Jewish setting.",
+              "reading": "Luke.4.16-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Rebuild the parable’s conversation"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.transmission",
+          "lessons": [
+            {
+              "id": "c1-bible-languages",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Recognize Hebrew, Aramaic, and Greek as the principal biblical languages and explain why translation is a normal part of reading Scripture.",
+              "reading": "Luke.4.16-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship",
+                "reflect"
+              ],
+              "checks": [
+                "Match language and role",
+                "Keep translation conclusions proportional"
+              ]
+            },
+            {
+              "id": "translation",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish wording, manuscript evidence, and interpretation without assuming corruption.",
+              "reading": "1Cor.13.1-7",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "read-closely",
+                "reflect"
+              ],
+              "checks": [
+                "Sort the investigation",
+                "Evaluate the translation claim",
+                "Investigate a manuscript note"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c5.transmission",
+          "lessons": []
+        },
+        {
+          "unitId": "c5.translation",
+          "lessons": [
+            {
+              "id": "c5-equivalence",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Compare formal and functional translation strategies without ranking an entire Bible by one slogan.",
+              "reading": "1Cor.13.4-7",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the priority",
+                "Use the spectrum responsibly"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.kingdom",
+          "lessons": [
+            {
+              "id": "parables-welcome",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Interpret parables through their surrounding conversation and central comparison.",
+              "reading": "Luke.15.1-10",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Parables: hearing the question behind the story",
+                "Put parables: hearing the question behind the story to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.teaching",
+          "lessons": [
+            {
+              "id": "c4-sermon-mount",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Locate the Beatitudes and major Sermon themes within Jesus’ kingdom teaching rather than treating isolated sayings as unrelated rules.",
+              "reading": "Matt.5.1-12",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Reconstruct the Sermon’s broad movement",
+                "Read sayings inside the whole"
+              ]
+            },
+            {
+              "id": "prayer-practice",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use the Lord’s Prayer as a pattern of attention while rejecting prayer as performance or a guaranteed outcome mechanism.",
+              "reading": "Matt.6.5-15",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Prayer: a sustainable practice without performance",
+                "Put prayer: a sustainable practice without performance to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.israel-story",
+          "lessons": [
+            {
+              "id": "c4-scripture-fulfillment",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish direct prediction from typology, quotation, allusion, and narrative rereading when New Testament writers connect Jesus with Israel’s Scriptures.",
+              "reading": "Matt.2.13-18",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the relationship",
+                "Preserve both contexts"
+              ]
+            },
+            {
+              "id": "kingdom-following",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Jesus’ announcement of God’s reign with repentance and discipleship.",
+              "reading": "Mark.1.14-20",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: God’s kingdom and the call to follow",
+                "Put god’s kingdom and the call to follow to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.passion",
+          "lessons": [
+            {
+              "id": "c4-passion-passover",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect the Last Supper traditions with Passover and covenant language while preserving the Exodus and Jeremiah backgrounds.",
+              "reading": "Luke.22.14-20",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Bring the earlier courses forward",
+                "Connect without erasing"
+              ]
+            },
+            {
+              "id": "communion-table",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect Communion’s meaning with the treatment of those who gather.",
+              "reading": "1Cor.11.23-34",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Communion: remembering Christ at a shared table",
+                "Put communion: remembering christ at a shared table to work"
+              ]
+            },
+            {
+              "id": "c4-ascension",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the Ascension as a transition between resurrection appearances, divine reign, Spirit expectation, and the Church’s mission.",
+              "reading": "Acts.1.1-11",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "From resurrection to mission",
+                "Timetable or commission?"
+              ]
+            },
+            {
+              "id": "practices",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain baptism, Communion, prayer, and loving action as practices of Christian life without turning them into a merit system.",
+              "reading": "Rom.6.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.pentecost",
+          "lessons": [
+            {
+              "id": "c4-pentecost",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Interpret Pentecost within the Jewish festival of Weeks and trace how Spirit, languages, diaspora, and mission converge in Acts 2.",
+              "reading": "Acts.2.1-13",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Connect the layers",
+                "Narrative before system"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.reading",
+          "lessons": [
+            {
+              "id": "context",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use surrounding evidence to distinguish an interpretation from a slogan.",
+              "reading": "Phil.4.10-13",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build an evidence case",
+                "Separate the reading moves"
+              ]
+            },
+            {
+              "id": "audience",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Identify audience, argument, and missing information before applying a passage.",
+              "reading": "1Cor.11.17-22",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "read-closely",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct the problem",
+                "Build the case before applying it"
+              ]
+            },
+            {
+              "id": "application",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect a passage to a concrete response while keeping observation, interpretation, and application distinct.",
+              "reading": "Jas.1.19-27",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "read-closely",
+                "reflect"
+              ],
+              "checks": [
+                "Assemble the reading chain",
+                "From reading to response",
+                "Build James’s argument"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.paul-gentiles",
+          "lessons": [
+            {
+              "id": "acts-discernment",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Trace testimony, Scripture, and communal reasoning in a dispute about Gentile belonging.",
+              "reading": "Acts.15.1-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Acts 15: a community works through disagreement",
+                "Put acts 15: a community works through disagreement to work"
+              ]
+            },
+            {
+              "id": "early-church",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read Acts and letters as accounts of communities learning to practice belonging amid disagreement.",
+              "reading": "Acts.2.42-47",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c4.expansion",
+          "lessons": [
+            {
+              "id": "body-belonging",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain Paul’s body image as an argument for interdependence and care.",
+              "reading": "1Cor.12.12-27",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: One body: difference without disposable people",
+                "Put one body: difference without disposable people to work"
+              ]
+            },
+            {
+              "id": "letters-favoritism",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish the behavior a letter reports from the behavior it endorses.",
+              "reading": "Jas.2.1-9",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Letters: reading a correction as a correction",
+                "Put letters: reading a correction as a correction to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c5.intertext",
+          "lessons": [
+            {
+              "id": "c5-typology-allusion",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Classify major ways later biblical texts reuse earlier Scripture and explain why those relationships require two-context reading.",
+              "reading": "Matt.2.13-18",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Classify the relationship",
+                "Use two contexts"
+              ]
+            },
+            {
+              "id": "project-interpret",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Construct an interpretation from evidence and compare a plausible alternative.",
+              "reading": "Phlm.1.8-16",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Project lab 2: trace an argument and a theme",
+                "Put project lab 2: trace an argument and a theme to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c5.gospel-letters",
+          "lessons": [
+            {
+              "id": "c5-synoptic-problem",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain the basic Synoptic Problem and distinguish literary dependence hypotheses from claims about fraud or theological unreliability.",
+              "reading": "Mark.1.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the model piece",
+                "Hypothesis versus evidence"
+              ]
+            },
+            {
+              "id": "c5-authorship-composition",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish a text’s internal claims, traditional attribution, scholarly reconstruction, use of sources, and ancient compositional practices.",
+              "reading": "Luke.1.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Separate evidence layers",
+                "Avoid modern-category shortcuts"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module.synthesis",
+      "title": "Systematic Synthesis, Hard Ethics & Living Practice",
+      "courseId": "module.synthesis",
+      "units": [
+        {
+          "unitId": "c1.theology",
+          "lessons": [
+            {
+              "id": "c1-theology-map",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Build an introductory map of the central Christian claims that later courses examine in depth.",
+              "reading": "Matt.28.16-20",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "see-the-relationship"
+              ],
+              "checks": [
+                "Name the question",
+                "Distinguish text and doctrine"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.god-christ",
+          "lessons": [
+            {
+              "id": "trinity-language",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish the historic Trinity from three gods, three parts, and one person changing roles.",
+              "reading": "Matt.28.16-20",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Trinity: one God, real distinction",
+                "Put trinity: one god, real distinction to work"
+              ]
+            },
+            {
+              "id": "spirit-discernment",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect teaching about the Spirit with observable character while avoiding certainty based only on intensity of feeling.",
+              "reading": "Gal.5.16-26",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: The Spirit: help, character, and discernment",
+                "Put the spirit: help, character, and discernment to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.sin-salvation",
+          "lessons": [
+            {
+              "id": "atonement-images",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish reconciliation, substitution, and victory without reducing the cross to a moral example.",
+              "reading": "2Cor.5.18-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Atonement: several images of one saving work",
+                "Put atonement: several images of one saving work to work"
+              ]
+            },
+            {
+              "id": "receiving-grace",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish receiving salvation from earning it and human dependence from lack of human value.",
+              "reading": "Eph.2.1-10",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Receiving grace: repentance and trust",
+                "Put receiving grace: repentance and trust to work"
+              ]
+            },
+            {
+              "id": "grace-repair",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish a response to grace from payment for welcome and salvation.",
+              "reading": "Luke.19.1-10",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: After forgiveness: love takes practical form",
+                "Put after forgiveness: love takes practical form to work"
+              ]
+            },
+            {
+              "id": "cross-grace",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish Christ’s saving work, receiving grace, and the response of discipleship.",
+              "reading": "1Cor.15.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Trace the proclamation"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.providence-life",
+          "lessons": [
+            {
+              "id": "providence-freedom",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish providence, foreknowledge, and determinism within the guide’s account of meaningful response.",
+              "reading": "Rom.8.26-30",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Providence: purpose without erasing response",
+                "Put providence: purpose without erasing response to work"
+              ]
+            },
+            {
+              "id": "doctrine",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish Trinity, incarnation, and providence while recognizing the limits of explanatory models.",
+              "reading": "Matt.28.16-20",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            },
+            {
+              "id": "incarnation-humanity",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain incarnation without reducing Jesus to a divine disguise or a half-human mixture.",
+              "reading": "John.1.1-18",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Incarnation: fully divine and fully human",
+                "Put incarnation: fully divine and fully human to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.practice",
+          "lessons": [
+            {
+              "id": "c1-practice-map",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Recognize worship, baptism, Communion, prayer, formation, generosity, and community as practices connected with Christian belief.",
+              "reading": "Acts.2.42-47",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Practice and purpose",
+                "Read Acts as a community portrait"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.church-practice",
+          "lessons": [
+            {
+              "id": "baptism-belonging",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain baptism’s connection with Christ and fairly distinguish infant and believer practices.",
+              "reading": "Rom.6.1-4",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Baptism: sign, participation, and community",
+                "Put baptism: sign, participation, and community to work"
+              ]
+            },
+            {
+              "id": "neighbor",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read a parable in context and connect mercy with concrete action.",
+              "reading": "Luke.10.25-37",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "The neighbor mission",
+                "Support your interpretation"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c1.traditions",
+          "lessons": [
+            {
+              "id": "c1-traditions-map",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish shared Christian identity from real differences among traditions and learn a fair method for comparison.",
+              "reading": "1Cor.12.4-13",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Compare fairly",
+                "Avoid caricature"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.traditions",
+          "lessons": [
+            {
+              "id": "traditions-welcome",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Use a fair comparison method for the seven traditions considered in this course.",
+              "reading": "Rom.14.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Seven traditions: compare claims and local practice",
+                "Put seven traditions: compare claims and local practice to work"
+              ]
+            },
+            {
+              "id": "c6-covenant-frameworks",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Compare major Christian ways of relating biblical covenants, Israel, Church, and fulfillment while rejecting simplistic supersessionism.",
+              "reading": "Rom.11.17-29",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the broad emphasis",
+                "Theological framework with ethical limits"
+              ]
+            },
+            {
+              "id": "traditions",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Compare shared Christian claims and differing structures while identifying this guide’s own commitments.",
+              "reading": "Eph.4.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            },
+            {
+              "id": "creeds-reading",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish early proclamation, later creedal synthesis, and personal assent.",
+              "reading": "1Cor.15.1-8",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Creeds: learning a shared confession",
+                "Put creeds: learning a shared confession to work"
+              ]
+            },
+            {
+              "id": "authority-unity",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Compare sources of authority and forms of church life without equating unity with uniformity.",
+              "reading": "Eph.4.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Authority and unity across Christian traditions",
+                "Put authority and unity across christian traditions to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.difficult",
+          "lessons": [
+            {
+              "id": "ethical-texts",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish a text’s explicit appeal, historical setting, and unresolved ethical questions.",
+              "reading": "Phlm.1.8-21",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Difficult ethical texts: neither avoidance nor easy excuses",
+                "Put difficult ethical texts: neither avoidance nor easy excuses to work"
+              ]
+            },
+            {
+              "id": "hard-questions",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Address suffering, difficult ethical texts, and religious difference with evidence and care.",
+              "reading": "Luke.13.1-5",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Respond to a harmful explanation"
+              ]
+            },
+            {
+              "id": "inclusion-reading",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Connect the guide’s affirming commitments with a transparent method of ethical interpretation.",
+              "reading": "Matt.22.34-40",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Inclusion: explain disagreement without putting dignity on trial",
+                "Put inclusion: explain disagreement without putting dignity on trial to work"
+              ]
+            },
+            {
+              "id": "jewish-roots",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Reject a simple abandonment account of Israel while distinguishing Christian witness from certainty about individuals.",
+              "reading": "Rom.11.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Jewish roots and respectful religious difference",
+                "Put jewish roots and respectful religious difference to work"
+              ]
+            },
+            {
+              "id": "suffering-discernment",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish theological questions from unsupported judgments about victims or illness.",
+              "reading": "Luke.13.1-5",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Suffering, miracles, and spiritual discernment",
+                "Put suffering, miracles, and spiritual discernment to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c5.interpretation",
+          "lessons": [
+            {
+              "id": "independent",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Build and explain a contextual reading that distinguishes evidence, interpretation, disagreement, and application.",
+              "reading": "Jude.1.20-25",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Construct your study project",
+                "Defend and revise your reading"
+              ]
+            },
+            {
+              "id": "project-observe",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Build a book profile that separates observations from assumed background.",
+              "reading": "Phlm.1.1-7",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Project lab 1: observe a whole book",
+                "Put project lab 1: observe a whole book to work"
+              ]
+            },
+            {
+              "id": "project-apply",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Complete a five-part study brief and evaluate a proportionate application.",
+              "reading": "Phlm.1.17-25",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct: Project lab 3: explain, apply, and revisit",
+                "Put project lab 3: explain, apply, and revisit to work"
+              ]
+            }
+          ]
+        },
+        {
+          "unitId": "c6.final-hope",
+          "lessons": [
+            {
+              "id": "apocalypse-hope",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Read renewed-creation imagery in relation to divine presence rather than headline prediction.",
+              "reading": "Rev.21.1-5",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Apocalypse: symbols directed toward hope",
+                "Put apocalypse: symbols directed toward hope to work"
+              ]
+            },
+            {
+              "id": "c6-end-times-frameworks",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish major millennial frameworks and locate rapture/dispensational readings within Christian interpretive history without making one timeline the course’s doctrinal center.",
+              "reading": "Rev.20.1-6",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible"
+              ],
+              "checks": [
+                "Name the framework",
+                "Keep the center and the dispute distinct"
+              ]
+            },
+            {
+              "id": "final-hope",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Distinguish resurrection and renewed creation from disputed end-times timelines and repeated earthly lives.",
+              "reading": "1Cor.15.20-28",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Build the evidence case",
+                "Connect meaning with practice"
+              ]
+            },
+            {
+              "id": "resurrection-body",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Explain Paul’s continuity-and-transformation imagery without reducing resurrection to a ghostly existence.",
+              "reading": "1Cor.15.35-49",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Resurrection: transformed life rather than escape",
+                "Put resurrection: transformed life rather than escape to work"
+              ]
+            },
+            {
+              "id": "judgment-mercy",
+              "authored": true,
+              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
+              "purpose": "Take judgment and mercy seriously while distinguishing the text from certainty about particular people.",
+              "reading": "Matt.25.31-46",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "locate-the-claim-in-context",
+                "keep-the-setting-visible",
+                "reflect"
+              ],
+              "checks": [
+                "Investigate: Judgment: serious teaching with interpretive limits",
+                "Put judgment: serious teaching with interpretive limits to work"
               ]
             }
           ]

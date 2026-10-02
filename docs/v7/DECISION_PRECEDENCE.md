@@ -74,6 +74,16 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Curriculum content is authored as an outline (content/pathway/outline.json: goals, outcomes, modules, units, lesson entries with purpose, reading, teaches, requires, outcomes, sections, check intents) and whole-lesson files (content/pathway/lessons/<id>.md) with section anchors and checks inline; scripts/compile-pathway.mjs validates both and merges them into the runtime catalog
   *Why:* Implements owner decisions curriculum.authoring, content.anchoring, and learning.games checks-inline
 
+### `curriculum.glossary.list`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.glossary.list-approved`
+  Glossary review approved: keep 164 of 273 terms; remove 109 (everyday words, skill phrases, site mechanics, duplicates) as listed in content/pathway/glossary-removed.json
+
+### `curriculum.glossary.selective`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.glossary.selective-adults`
+  The glossary should be selective for an adult audience: keep terms an educated adult could reasonably not know or would misread in their biblical sense; everyday words, site mechanics, duplicates, and skill phrases come out of the glossary (still explained in lessons where used)
+
 ### `curriculum.invariants`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `curriculum.invariants.from-precedence-doc`
@@ -105,6 +115,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `curriculum.path1.overlap-kept`
   The older lessons 'The shelf, the timeline, and seven Bible skills' and 'Read the kind of writing in front of you' now overlap the two new lessons; they stay in place (stable IDs) until the Module 1 rewrite merges or retires them
+
+### `curriculum.rewrite.preservation`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.rewrite.no-loss-no-condense`
+  The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
 
 ### `curriculum.structure`
 
@@ -229,6 +244,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `design.themes.set.eight`
   The site will offer 8 very different themes built on the theme contract: Library, Paper, Collegiate, Stained Glass, Fun, Pastel/Soft, Fun and Illustrated, plus one more; themes should dramatically change the visual design
+
+### `design.themes.sketch-book-name`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `design.themes.sketch-book-name`
+  The Illustrated theme is named Sketch Book
 
 ### `design.themes.spec`
 
@@ -656,12 +676,15 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.theme.default`
 
-- **Current** · 2026-09-30 · Owner decision (Chris) · `ui.theme.default.paper-chris`
-  Paper is the default theme
-- **Previous** · 2026-09-30 · Agent default (Claude) · `ui.theme.default.paper`
-  ~~Paper is the default theme for new visitors~~
+- **Current** · 2026-10-02 · Owner decision (Chris) · `ui.theme.default.reading-room`
+  Reading Room is the default theme (decided 2026-10-01; supersedes Paper)
+  *Why:* Same decision as record reading-room, filed under the default-theme topic so the state no longer lists Paper
+- **Previous** · 2026-09-30 · Owner decision (Chris) · `ui.theme.default.paper-chris`
+  ~~Paper is the default theme~~
 - **Prior** · 2026-09-26 · Agent default (Claude) · `ui.theme.default.default-theme-scholarly-graphite`
   ~~Default theme is scholarly-graphite (source: Antigravity audit and theme.js before commit ad97f21); default mode light until Chris adjusts~~
+- **Prior** · 2026-09-30 · Agent default (Claude) · `ui.theme.default.paper`
+  ~~Paper is the default theme for new visitors~~
 
 ### `ui.theme.palettes`
 

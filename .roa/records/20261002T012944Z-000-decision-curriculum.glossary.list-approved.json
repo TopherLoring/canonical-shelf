@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.glossary.list-approved",
+  "topic": "curriculum.glossary.list",
+  "date": "2026-10-02",
+  "text": "Glossary review approved: keep 164 of 273 terms; remove 109 (everyday words, skill phrases, site mechanics, duplicates) as listed in content/pathway/glossary-removed.json",
+  "by": "Chris"
+}

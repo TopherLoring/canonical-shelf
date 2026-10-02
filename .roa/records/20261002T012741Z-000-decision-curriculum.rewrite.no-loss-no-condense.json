@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.rewrite.no-loss-no-condense",
+  "topic": "curriculum.rewrite.preservation",
+  "date": "2026-10-02",
+  "text": "The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text",
+  "by": "Chris"
+}

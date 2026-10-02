@@ -3,6 +3,20 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-02
+
+### Decided
+
+- The glossary should be selective for an adult audience: keep terms an educated adult could reasonably not know or would misread in their biblical sense; everyday words, site mechanics, duplicates, and skill phrases come out of the glossary (still explained in lessons where used)
+- The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
+- Glossary review approved: keep 164 of 273 terms; remove 109 (everyday words, skill phrases, site mechanics, duplicates) as listed in content/pathway/glossary-removed.json
+- The Illustrated theme is named Sketch Book
+- Reading Room is the default theme (decided 2026-10-01; supersedes Paper)
+
+### Changed
+
+- All 119 lessons are in the final lesson format; a frozen content ledger (1,776 items) and a no-condensing floor verify every lesson; Lesson 1's original content restored; glossary trimmed to 164 terms for adults
+
 ## 2026-10-01
 
 ### Decided
