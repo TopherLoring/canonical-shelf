@@ -48,7 +48,7 @@ async function postAdminFeedbackResponse(request:Request,env:Env){
   if(!result.ok)return bad(result.reason==='not-found'?'Feedback not found':result.reason==='invalid-status'?'Invalid feedback status':'Feedback id is required',result.reason==='not-found'?404:400);return json(result);
 }
 function health(env:Env){return json({ok:true,service:'the-canonical-shelf',release:env.RELEASE_SHA||null,origin:env.CANONICAL_ORIGIN||null,bindings:{assets:!!env.ASSETS,db:!!env.DB,ai:!!env.AI}})}
-async function adminDashboard(request:Request,env:Env){if(!env.ASSETS)return new Response('Not found',{status:404});const assetUrl=new URL('/admin-feedback.html',request.url);const response=await env.ASSETS.fetch(new Request(assetUrl,request));const out=new Response(response.body,response);out.headers.set('cache-control','no-store');out.headers.set('x-robots-tag','noindex, nofollow, noarchive');return out}
+async function adminDashboard(request:Request,env:Env){if(!env.ASSETS)return new Response('Not found',{status:404});const assetUrl=new URL('/admin-feedback.html',request.url);const response=await env.ASSETS.fetch(new Request(assetUrl,{method:'GET',headers:request.headers}));const out=new Response(response.body,response);out.headers.set('cache-control','no-store');out.headers.set('x-robots-tag','noindex, nofollow, noarchive');return out}
 
 export default {async fetch(request:Request,env:Env):Promise<Response>{
   const url=new URL(request.url),auth=createAuth(env);
