@@ -18,23 +18,25 @@
 ## Psalms: learning to pray without pretending {#orient}
 > Honest distress can be part of prayer. A psalm’s movement is an invitation, not a stopwatch for healing.
 
+This lesson reads one lament slowly, so you can learn the shape of a prayer that does not pretend.
+
 Psalm 13 begins by asking how long the speaker must endure apparent abandonment. The prayer does not conceal its distress. A beginner need not manufacture certainty before encountering this kind of biblical language; the question itself is addressed to God.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read Psalm 13 aloud if you can. Notice the four “how long”s, the requests in the middle, and the turn in the last two verses.
+
+## A specific appeal {#the-request}
 The middle of the psalm asks for attention and help. Lament can involve a specific appeal rather than only a general statement that life is difficult. Naming what is feared or needed gives prayer a concrete relationship with the speaker’s circumstances.
 
+## The turn toward trust {#the-turn}
 The ending turns toward trust and song. Read that movement without assuming every person must reach the same emotional place after six verses or six minutes. The literary shape offers language for prayer; it does not set a deadline for another person’s grief.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Practice by writing an address, an honest concern, and a request. A statement of hope may follow if it can be spoken honestly. Prayer can accompany practical support and professional care; it should not become pressure to hide symptoms or stop seeking help.
 
 ```check
 {
   "kind": "sequence",
-  "title": "Reconstruct: Psalms: learning to pray without pretending",
+  "title": "Reconstruct the movement of Psalm 13",
   "prompt": "Rebuild the movement of this psalm without treating it as a timetable for everyone.",
   "items": [
     "A request asks God to attend and help.",
@@ -51,10 +53,13 @@ Practice by writing an address, an honest concern, and a request. A statement of
 }
 ```
 
+## Practicing lament {#practice}
+Practice by writing an address, an honest concern, and a request. A statement of hope may follow if it can be spoken honestly. Prayer can accompany practical support and professional care; it should not become pressure to hide symptoms or stop seeking help.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put psalms: learning to pray without pretending to work",
+  "title": "Practice lament in two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ Practice by writing an address, an honest concern, and a request. A statement of
   "why": "Give a person room for honest prayer without imposing a deadline for recovery."
 }
 ```
+
+## What you now know {#summary}
+Lament addresses God honestly: complaint, specific request, and, where it can be spoken truthfully, trust. The psalm’s movement offers language for prayer; it is not a deadline for anyone’s grief, and prayer goes alongside practical support and professional care, never instead of them.
+
+Canonical Shelf’s Statement of Faith holds that prayer is relationship, not leverage: it guarantees no particular outcome, and illness or suffering is never proof of weak faith or hidden sin. The question to carry forward: if prayer gives words for distress, what do the sages offer for decisions?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

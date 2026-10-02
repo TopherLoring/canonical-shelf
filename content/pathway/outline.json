@@ -825,7 +825,6 @@
             {
               "id": "c5-hebrew-poetry",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Use parallelism, imagery, repetition, and line relationships to read biblical poetry without treating each line as isolated prose.",
               "reading": "Ps.19.1-6",
               "teaches": [],
@@ -834,18 +833,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible"
+                "cosmic-imagery",
+                "second-lines",
+                "poetry-everywhere",
+                "summary"
               ],
               "checks": [
                 "Read line relationships",
                 "Poetry is not failed prose"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "wisdom",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Distinguish lament, practical wisdom, and reflection on suffering without turning them into guarantees.",
               "reading": "Ps.13.1-6",
               "teaches": [],
@@ -854,19 +855,22 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "proverbs",
+                "job",
+                "ecclesiastes-song",
+                "using-them-well",
+                "summary",
                 "reflect"
               ],
               "checks": [
                 "Build the evidence case",
                 "Connect meaning with practice"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "psalms-lament",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Trace lament’s movement without making it a required emotional timetable.",
               "reading": "Ps.13.1-6",
               "teaches": [],
@@ -875,19 +879,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "the-request",
+                "the-turn",
+                "practice",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Reconstruct: Psalms: learning to pray without pretending",
-                "Put psalms: learning to pray without pretending to work"
-              ]
+                "Reconstruct the movement of Psalm 13",
+                "Practice lament in two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "proverbs-discernment",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain why contrasting proverbs call for judgment about circumstances.",
               "reading": "Prov.26.4-5",
               "teaches": [],
@@ -896,19 +902,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "two-dangers",
+                "judgment",
+                "the-word-fool",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Proverbs: wisdom is more than a slogan",
-                "Put proverbs: wisdom is more than a slogan to work"
-              ]
+                "Separate what Proverbs 26:4–5 supports from overreach",
+                "Apply the two sayings to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "job-listening",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Distinguish compassionate presence from unwarranted explanations of suffering.",
               "reading": "Job.2.11-13",
               "teaches": [],
@@ -917,19 +925,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "the-speeches",
+                "suffering-and-guilt",
+                "presence",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Job and the limits of easy explanations",
-                "Put job and the limits of easy explanations to work"
-              ]
+                "Separate what Job 2 supports from overreach",
+                "Apply the friends’ example to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "wisdom-time-love",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Read wisdom poetry about time and love without turning every image into a universal command.",
               "reading": "Eccl.3.1-8",
               "teaches": [],
@@ -938,14 +948,17 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "what-endures",
+                "song",
+                "allegory",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Ecclesiastes and Song: limits, delight, and poetry",
-                "Put ecclesiastes and song: limits, delight, and poetry to work"
-              ]
+                "Separate what Ecclesiastes 3 supports from overreach",
+                "Apply the poem of times to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
