@@ -18,23 +18,22 @@
 ## Land and Judges: learning from a disturbing narrative {#orient}
 > The cycle explains a pattern of crisis and rescue. It does not turn every participant into a moral example.
 
+Unit 5 follows Israel into the land, from the generation after Joshua through the first kings. This lesson reads the pattern that organizes the book of Judges, and faces the violence of the land narratives directly instead of looking away.
+
 The passage looks back to Joshua’s generation and then describes a changed situation after it. Forgetting, wrongdoing, distress, and deliverance form a recurring pattern. The sequence gives beginners a way to locate the book between settlement and the monarchy.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Trace the cycle as you read: the people forget, do what is evil, fall into distress, cry out, and are rescued by a judge, and then the pattern begins again, a little worse each time.
+
+## Deliverers, not a gallery of heroes {#not-heroes}
 Judges are portrayed as figures of deliverance, but the book does not present an uncomplicated gallery of moral heroes. Read each action within the narrative’s evaluation. A person’s role in a rescue does not make every action they take exemplary.
-
-The larger land narratives contain conquest, attributed divine commands, and serious violence. Naming genre or ancient setting does not eliminate the moral difficulty. Distinguish what a narrator reports, what is attributed to God, and what a later interpreter argues should follow.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The guide evaluates present conduct through Jesus’ teaching, love, and human dignity; it does not authorize copying ancient violence. The Story lab connects this stage with the books carrying the arc, while Chronology distinguishes its narrative setting from the order of books on the shelf.
 
 ```check
 {
   "kind": "sequence",
-  "title": "Reconstruct: Land and Judges: learning from a disturbing narrative",
+  "title": "Reconstruct the cycle in Judges 2",
   "prompt": "Reconstruct the recurring pattern described in this passage.",
   "items": [
     "The people experience distress.",
@@ -53,10 +52,16 @@ The guide evaluates present conduct through Jesus’ teaching, love, and human d
 }
 ```
 
+## Facing the violence directly {#violence}
+The larger land narratives contain conquest, attributed divine commands, and serious violence. Naming genre or ancient setting does not eliminate the moral difficulty. Distinguish what a narrator reports, what is attributed to God, and what a later interpreter argues should follow.
+
+## How the guide applies these stories {#today}
+The guide evaluates present conduct through Jesus’ teaching, love, and human dignity; it does not authorize copying ancient violence. The Story lab connects this stage with the books carrying the arc, while Chronology distinguishes its narrative setting from the order of books on the shelf.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put land and judges: learning from a disturbing narrative to work",
+  "title": "Apply the Judges narrative to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -90,6 +95,11 @@ The guide evaluates present conduct through Jesus’ teaching, love, and human d
   "why": "Evaluate a narrated action in context before proposing it as a present-day example."
 }
 ```
+
+## What you now know {#summary}
+Judges is organized by a repeating cycle of forgetting, oppression, crying out, and rescue. Its deliverers are not moral models, and the land narratives’ conquest and violence are moral problems the reader must face, not explain away; the guide judges present conduct by Jesus’ teaching, love, and human dignity.
+
+Scholars debate how much of the conquest narrative is historical and how it was shaped later; Christians differ on how to read the commands attributed to God. Every view the guide presents keeps those questions open rather than excusing harm. The question to carry forward: when the people ask for a king, what are they really asking for?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

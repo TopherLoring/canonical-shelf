@@ -24,15 +24,17 @@
 ## Day of Atonement: cleansing sacred space and community {#orient}
 > The Day of Atonement is an annual complex of rites dealing with sanctuary cleansing, communal wrongdoing, removal, and restored relationship.
 
+This lesson reads the most solemn day in Israel’s calendar, when the sanctuary itself is cleansed and the community’s wrongs are carried away.
+
 Leviticus 16 describes an annual rite centered on the high priest and the sanctuary. The chapter links human wrongdoing and impurity with the need to cleanse or purify sacred space and maintain the community’s relationship with God.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
-Two goats play different roles: one is involved in sanctuary rites, while another symbolically bears Israel’s wrongs away into the wilderness. Treating both actions as if they were one identical sacrifice misses the chapter’s internal distinctions.
+Read the chapter as a sequence of actions and notice who does each one, where, and with which animal. Keep the two goats separate in your mind; the chapter does.
 
-The high priest’s entry into the innermost space is exceptional rather than routine. The ritual therefore joins access, danger, cleansing, confession, removal, and restored order.
+## Two goats, two roles {#two-goats}
+Two goats play different roles: one is involved in sanctuary rites, while another symbolically bears Israel’s wrongs away into the wilderness. Treating both actions as if they were one identical sacrifice misses the chapter’s internal distinctions.
 
 ```check
 {
@@ -59,8 +61,8 @@ The high priest’s entry into the innermost space is exceptional rather than ro
 }
 ```
 
-## Keep the setting visible {#keep-the-setting-visible}
-Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms.
+## Entering the innermost room {#the-innermost-room}
+The high priest’s entry into the innermost space is exceptional rather than routine. The ritual therefore joins access, danger, cleansing, confession, removal, and restored order.
 
 ```check
 {
@@ -81,3 +83,11 @@ Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imag
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## How Hebrews reads this day {#hebrews}
+Later Christian interpretation, especially Hebrews, reuses Day-of-Atonement imagery. That later argument becomes easier to follow once the learner first understands the Levitical ritual on its own terms.
+
+## What you now know {#summary}
+The Day of Atonement cleanses the sanctuary and addresses the community’s wrongdoing through an annual sequence of rites: the high priest’s rare entry into the innermost room, one goat in the sanctuary rites, and another carrying Israel’s wrongs into the wilderness.
+
+The day remains the holiest in Jewish life (Yom Kippur). Christians read it through Hebrews in several ways, and the guide encourages reading Leviticus on its own terms first. The question to carry forward: how does Israel’s worship shape the way time itself is kept?

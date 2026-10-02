@@ -24,21 +24,17 @@
 ## Sabbath and festivals: Israel learns time as well as space {#orient}
 > Israel’s calendar teaches memory and identity through recurring rest and festivals; those rhythms later shape Gospel and Acts settings.
 
+Israel keeps time as well as space. This lesson closes the unit with the Sabbath and the annual festivals, the rhythms that hold Israel’s memory and that later frame much of the New Testament.
+
 Israel’s worship is organized not only through sacred places but also through sacred time. Sabbath establishes a recurring rhythm of work and rest, while annual festivals connect worship with memory, harvest, pilgrimage, and communal identity.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice that the list starts with the weekly Sabbath before the yearly festivals, and that each festival is tied to a time of year and to something remembered.
+
+## Passover, Weeks, and Booths {#the-festivals}
 Passover and Unleavened Bread remember Exodus; Weeks is associated with harvest and later Jewish traditions develop additional associations; Booths or Tabernacles combines harvest celebration with wilderness memory. Biblical descriptions vary across legal corpora and later practice develops further.
-
-The calendar helps explain Gospel and Acts narratives. Jesus travels to festivals, Passover frames passion traditions, and Pentecost in Acts belongs to the festival of Weeks. These later texts assume a rhythm a beginner can otherwise miss.
-
-## Keep the setting visible {#keep-the-setting-visible}
-A festival is not merely a date label. It can organize travel, crowds, sacrifice, Scripture, memory, identity, and expectation. Historical practice also changes, so one biblical festival list should not be treated as a complete description of every period.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -65,6 +61,12 @@ A festival is not merely a date label. It can organize travel, crowds, sacrifice
 }
 ```
 
+## The calendar behind the Gospels and Acts {#in-the-gospels}
+The calendar helps explain Gospel and Acts narratives. Jesus travels to festivals, Passover frames passion traditions, and Pentecost in Acts belongs to the festival of Weeks. These later texts assume a rhythm a beginner can otherwise miss.
+
+## More than dates {#more-than-dates}
+A festival is not merely a date label. It can organize travel, crowds, sacrifice, Scripture, memory, identity, and expectation. Historical practice also changes, so one biblical festival list should not be treated as a complete description of every period.
+
 ```check
 {
   "kind": "evidence",
@@ -84,3 +86,8 @@ A festival is not merely a date label. It can organize travel, crowds, sacrifice
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## What you now know {#summary}
+The Sabbath gives a weekly rhythm of work and rest; the annual festivals tie worship to harvest and to memory, especially of the Exodus and the wilderness. Knowing them explains why Jesus travels when he does, why the passion is set at Passover, and why Pentecost falls when it does in Acts.
+
+The biblical calendars differ somewhat between books, and practice changed over time; scholars reconstruct the details differently. The question to carry forward: in the next unit Israel enters the land; what happens to a covenant people once it has a place of its own?

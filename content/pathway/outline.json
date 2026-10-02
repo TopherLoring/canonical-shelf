@@ -581,7 +581,6 @@
             {
               "id": "c2-tabernacle",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain why the tabernacle matters in the Exodus story and locate its major zones as a model of ordered sacred space.",
               "reading": "Exod.25.1-9",
               "teaches": [],
@@ -590,19 +589,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "graded-space",
+                "on-the-move",
+                "diagrams",
+                "summary"
               ],
               "checks": [
                 "Move inward through sacred space",
                 "Place the objects"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-ark",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain the Ark’s relationship to covenant testimony, the mercy seat, and divine presence without turning it into a magical object.",
               "reading": "Exod.25.10-22",
               "teaches": [],
@@ -611,14 +611,16 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "not-magic",
+                "its-journey",
+                "later-traditions",
+                "summary"
               ],
               "checks": [
                 "Ark relationships",
                 "Reject magical thinking"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
@@ -628,7 +630,6 @@
             {
               "id": "c2-priesthood-sacrifice",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Distinguish priestly mediation, sacrifice, and several possible ritual purposes instead of reducing every offering to the same mechanism.",
               "reading": "Lev.1.1-9",
               "teaches": [],
@@ -637,19 +638,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "kinds-of-offering",
+                "priests-and-people",
+                "later-language",
+                "summary"
               ],
               "checks": [
                 "Do not flatten sacrifice",
                 "Separate the categories"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-day-atonement",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain the Day of Atonement as a coordinated set of rites involving priest, sanctuary, impurity/sin, and communal restoration.",
               "reading": "Lev.16.1-34",
               "teaches": [],
@@ -658,18 +660,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible"
+                "two-goats",
+                "the-innermost-room",
+                "hebrews",
+                "summary"
               ],
               "checks": [
                 "Two goats, different roles",
                 "What makes the day distinctive?"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-sacred-calendar",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Relate Sabbath, Passover/Unleavened Bread, Weeks, and Booths to Israel’s worship, memory, agriculture, and communal calendar.",
               "reading": "Lev.23.1-8",
               "teaches": [],
@@ -678,14 +682,16 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "the-festivals",
+                "in-the-gospels",
+                "more-than-dates",
+                "summary"
               ],
               "checks": [
                 "Festival and memory",
                 "Use the calendar historically"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
@@ -693,29 +699,8 @@
           "unitId": "c2.land-kings",
           "lessons": [
             {
-              "id": "c2-davidic-covenant",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Explain how the promise to David links dynasty, kingdom, temple, discipline, and later messianic hope.",
-              "reading": "2Sam.7.8-17",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible"
-              ],
-              "checks": [
-                "Read the wordplay",
-                "Promise without idealizing kings"
-              ]
-            },
-            {
               "id": "land-judges",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Trace the Judges cycle while refusing to equate a narrated act with a model to imitate.",
               "reading": "Judg.2.6-19",
               "teaches": [],
@@ -724,19 +709,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "not-heroes",
+                "violence",
+                "today",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Reconstruct: Land and Judges: learning from a disturbing narrative",
-                "Put land and judges: learning from a disturbing narrative to work"
-              ]
+                "Reconstruct the cycle in Judges 2",
+                "Apply the Judges narrative to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "kings-accountability",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Identify the costs of royal power and distinguish biblical description from endorsement.",
               "reading": "1Sam.8.10-22",
               "teaches": [],
@@ -745,14 +732,39 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "competing-desires",
+                "hope-and-critique",
+                "questions-about-power",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Kingship: evaluating power rather than admiring it",
-                "Put kingship: evaluating power rather than admiring it to work"
-              ]
+                "Separate what 1 Samuel 8 supports from overreach",
+                "Apply Samuel’s warning to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "c2-davidic-covenant",
+              "authored": true,
+              "purpose": "Explain how the promise to David links dynasty, kingdom, temple, discipline, and later messianic hope.",
+              "reading": "2Sam.7.8-17",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "promise-and-failure",
+                "messianic-hope",
+                "jesus-and-david",
+                "summary"
+              ],
+              "checks": [
+                "Read the wordplay",
+                "Promise without idealizing kings"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
@@ -762,7 +774,6 @@
             {
               "id": "c2-temple-presence",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect Solomon’s Temple with tabernacle traditions while recognizing that the prayer itself refuses to confine God to a building.",
               "reading": "1Kgs.8.22-30",
               "teaches": [],
@@ -771,19 +782,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "cannot-contain",
+                "honored-and-judged",
+                "crisis-ahead",
+                "summary"
               ],
               "checks": [
                 "Trace the sacred-space development",
                 "Temple without confinement"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "kingdom-exile",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect Israel’s leadership stories with the costs of power, the experience of exile, and the work of return.",
               "reading": "1Sam.8.10-18",
               "teaches": [],
@@ -792,14 +804,18 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "power-and-hope",
+                "exile",
+                "return",
+                "violence",
+                "summary",
                 "reflect"
               ],
               "checks": [
                 "Build the evidence case",
                 "Reconstruct loss and return"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
