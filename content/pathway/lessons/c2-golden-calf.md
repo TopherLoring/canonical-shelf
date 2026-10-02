@@ -24,18 +24,20 @@
 ## Golden calf: covenant can be broken and renewed {#orient}
 > Israel breaks covenant loyalty soon after Sinai; the story holds failure, judgment, intercession, and renewal together.
 
+The covenant is barely made when it is broken. This lesson reads the golden calf, a story that refuses to present covenant life as a community without failure.
+
 The golden-calf story interrupts the Sinai material almost immediately. That placement is important: covenant instruction does not produce an idealized community without failure. The people’s anxiety and the making of an image become a crisis of loyalty and worship.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice the speed of the story, the people’s fear when Moses is delayed, and how Moses argues with God on the people’s behalf.
+
+## Intercession inside the relationship {#intercession}
 Moses’ intercession appeals to God’s relationship with the people and to promises associated with the ancestors. The narrative therefore places judgment and intercession inside covenant relationship rather than treating failure as if the prior relationship never existed.
 
+## Consequence and renewal {#renewal}
 The chapters that follow include consequences and covenant renewal. Renewal does not make the rupture imaginary. Biblical covenant life can include real failure, accountability, mercy, and a restored path forward.
-
-## Keep the setting visible {#keep-the-setting-visible}
-Later readers often use “idolatry” as a label for anything they dislike. This story should first be understood in its own setting before the term is generalized to modern attachments or loyalties.
 
 ```check
 {
@@ -59,6 +61,9 @@ Later readers often use “idolatry” as a label for anything they dislike. Thi
 }
 ```
 
+## Using the word idolatry carefully {#idolatry}
+Later readers often use “idolatry” as a label for anything they dislike. This story should first be understood in its own setting before the term is generalized to modern attachments or loyalties.
+
 ```check
 {
   "kind": "evidence",
@@ -78,3 +83,8 @@ Later readers often use “idolatry” as a label for anything they dislike. Thi
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## What you now know {#summary}
+Covenant life includes real failure. The story holds judgment, intercession, consequence, mercy, and renewal together, and renewal never pretends the rupture did not happen.
+
+Readers agree on that movement; they differ on details such as what the calf represented. The question to carry forward: what does holiness look like in ordinary life, not only in worship?

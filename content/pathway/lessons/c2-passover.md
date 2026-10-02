@@ -23,27 +23,26 @@
       "body": "Course 4 will distinguish Exodus itself, Gospel Passover settings, the Last Supper traditions and later Christian interpretation rather than treating them as identical.",
       "tag": "Explore"
     }
-  ]
+  ],
+  "carries": {
+    "p4": "#later"
+  }
 }
 ---
 ## Passover: liberation remembered at a table {#orient}
 > Passover remembers Israel’s deliverance from Egypt through a shared meal tied to the night of departure.
+
+The previous lesson heard the call; this one reads the night of departure. Passover is the meal Israel was told to keep so that every later generation would remember that night as its own.
 
 Exodus places Passover inside the final confrontation with Pharaoh. The meal is not an abstract religious exercise detached from history: it is tied to danger, departure, deliverance, and the formation of a people leaving slavery.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice how much of the passage is instruction for a household: a lamb, a doorpost, clothing for travel, and a command to keep the day as a festival for all generations.
+
+## The first Passover {#the-night}
 Households prepare a lamb, mark their doors, eat in readiness, and remember the night as a lasting observance. The details belong to Israel’s story before they become symbols in later Jewish or Christian interpretation. Responsible reading begins with that first setting.
-
-Passover becomes one of Israel’s major practices of memory. Later biblical books can recall Exodus language when speaking about rescue, covenant, worship, and identity. Remembering is therefore more than thinking about the past; ritual can locate a later generation inside a received story.
-
-## Keep the setting visible {#keep-the-setting-visible}
-The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Course 4 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events.
-
-## See the relationship {#see-the-relationship}
-::visual
 
 ```check
 {
@@ -67,6 +66,12 @@ The New Testament later places important Jesus traditions in Passover settings a
 }
 ```
 
+## A practice of memory {#memory}
+Passover becomes one of Israel’s major practices of memory. Later biblical books can recall Exodus language when speaking about rescue, covenant, worship, and identity. Remembering is therefore more than thinking about the past; ritual can locate a later generation inside a received story.
+
+## Later readings of Passover {#later}
+The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Module 3 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events.
+
 ```check
 {
   "kind": "evidence",
@@ -86,3 +91,8 @@ The New Testament later places important Jesus traditions in Passover settings a
   "hint": "Choose only claims warranted by the evidence presented."
 }
 ```
+
+## What you now know {#summary}
+Passover belongs first to Israel’s deliverance from Egypt: a meal eaten in readiness on the night of departure, kept afterward as a practice that places each generation inside the story.
+
+Jewish tradition keeps Passover to this day, and the New Testament sets key moments of Jesus’ life in Passover settings. Christians differ in how they draw that connection; the guide insists it never erase Passover’s Jewish meaning. The question to carry forward: what does a ritual of memory do that a history lesson cannot?

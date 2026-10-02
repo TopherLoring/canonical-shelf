@@ -413,7 +413,6 @@
             {
               "id": "exodus-call",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain how the call of Moses connects divine concern with human participation.",
               "reading": "Exod.3.7-15",
               "teaches": [],
@@ -422,19 +421,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "called-with-questions",
+                "presence-and-name",
+                "today",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Exodus: hearing suffering and answering a call",
-                "Put exodus: hearing suffering and answering a call to work"
-              ]
+                "Separate what Exodus 3 supports from overreach",
+                "Apply the call of Moses to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-passover",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain how Passover connects deliverance from Egypt with ritual memory and communal identity.",
               "reading": "Exod.12.1-14",
               "teaches": [],
@@ -443,19 +444,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "the-night",
+                "memory",
+                "later",
+                "summary"
               ],
               "checks": [
                 "Place Passover in the Exodus movement",
                 "What does Exodus 12 establish?"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-sea-wilderness",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Trace the movement from escape through the sea into wilderness dependence rather than treating Exodus as complete at departure.",
               "reading": "Exod.14.10-31",
               "teaches": [],
@@ -464,19 +466,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "wilderness",
+                "not-instant",
+                "echoes",
+                "summary"
               ],
               "checks": [
                 "Follow the movement",
                 "Avoid a shallow liberation story"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "covenant",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Trace how promise and liberation lead to covenant responsibilities and concern for neighbors.",
               "reading": "Gen.12.1-3",
               "teaches": [],
@@ -485,14 +488,18 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "liberation",
+                "vocation",
+                "ancient-laws",
+                "judaism",
+                "summary",
                 "reflect"
               ],
               "checks": [
                 "Build the evidence case",
                 "Build the covenant story"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
@@ -502,7 +509,6 @@
             {
               "id": "c2-sinai-covenant",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect Sinai covenant with the Exodus that precedes it and distinguish covenant identity from earning liberation.",
               "reading": "Exod.19.1-8",
               "teaches": [],
@@ -511,19 +517,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "see-the-relationship"
+                "covenant-language",
+                "torah",
+                "later-debates",
+                "summary"
               ],
               "checks": [
                 "Reconstruct the logic",
                 "Read covenant without superiority"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "c2-golden-calf",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Explain the golden-calf episode as covenant rupture within the Sinai story and identify the roles of judgment, intercession, and renewal.",
               "reading": "Exod.32.1-14",
               "teaches": [],
@@ -532,18 +539,20 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible"
+                "intercession",
+                "renewal",
+                "idolatry",
+                "summary"
               ],
               "checks": [
                 "Trace rupture and renewal",
                 "What does failure mean here?"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "torah-neighbor",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect covenant instruction with concrete care while avoiding mechanical transfer of ancient law.",
               "reading": "Lev.19.9-18",
               "teaches": [],
@@ -552,14 +561,17 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "harvest",
+                "justice-and-love",
+                "method",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Investigate: Torah: holiness in everyday relationships",
-                "Put torah: holiness in everyday relationships to work"
-              ]
+                "Separate what Leviticus 19 supports from overreach",
+                "Apply Leviticus 19 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },
