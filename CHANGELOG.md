@@ -3,6 +3,13 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-02
+
+### Decided
+
+- The glossary should be selective for an adult audience: keep terms an educated adult could reasonably not know or would misread in their biblical sense; everyday words, site mechanics, duplicates, and skill phrases come out of the glossary (still explained in lessons where used)
+- The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
+
 ## 2026-10-01
 
 ### Decided

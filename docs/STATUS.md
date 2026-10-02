@@ -11,6 +11,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **[proposal] Library metaphor throughout: card-catalog drawers for topics/categories, arcade games in drawers, books checked out into the reader (leave a visible gap on the shelf), a return cart for replaced books, sessions reset the shelf. Adopt?** (`library-metaphor`, owner: Chris, since 2026-09-25)
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
+- **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 
 ## Phases
 
@@ -51,11 +52,13 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.excluded-gospels` | All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus) | Owner decision | undefined |
 | `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: | Owner decision | undefined |
 | `curriculum.format` | undefined | Agent default | undefined |
+| `curriculum.glossary.selective` | The glossary should be selective for an adult audience: | Owner decision | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
 | `curriculum.path1.overlap` | undefined | Agent default | undefined |
+| `curriculum.rewrite.preservation` | The curriculum rewrite must not lose content and must not condense or summarize it: | Owner decision | undefined |
 | `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
 | `curriculum.teaching-approach` | Audience: | Owner decision | undefined |
 | `data.bsb-source` | undefined | Agent default | undefined |
