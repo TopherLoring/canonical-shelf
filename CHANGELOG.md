@@ -24,7 +24,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Revised: Spirit is God's nonphysical presence/Love/will/influence, not a separate consciousness.
 - Revised: God knows every possible path and consequence and perfectly understands choosers; which genuinely free choice becomes actual remains open until chosen.
 - Affirmed: God may influence people/circumstances and prepare paths without controlling response; influence can be resisted.
-- Internal context only (not public doctrine): Theology does not depend on multiverse/branching physics but is compatible with future evidence for such models.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
 - Affirmed: Prophecy may concern God's determined actions, human behavior under established circumstances, conditional outcomes, and fulfillment misunderstood by interpreters.
 - Affirmed: Free choice requires conscious decision; coercion can constrain choices without necessarily eliminating them; voluntary surrender to God may be withdrawn.
 - Revised: Scripture divinely inspired and providentially maintained; human transmission/translation introduces possible fallibility without defeating overall purpose.
@@ -43,11 +43,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Affirmed: At judgment God reveals God's existence, nature as Love, and what God accomplished through Jesus. Knowledge is not identical to understanding.
 - Affirmed: People respond personally; God exercises judicial role by determining whether repentance is genuine.
 - Affirmed: All eventually freely seek Source of Love, genuinely repent, and reconcile; freedom is not overridden; evil ultimately ceases.
-- Internal context only (not public doctrine): Even Satan retains possibility of return through genuine repentance; Scripture does not explicitly teach Satan's repentance and Rev 20:10 is a countertext.
-- Internal context only (not public doctrine): Jesus's Gehenna language does not by itself establish later eternal-torture ontology; can ≠ does ≠ will.
-- Internal context only (not public doctrine): Death-as-sleep language is compatible with dormancy/reversibility under God's power.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
 - Rejected: Do not use reincarnation as part of the reconciled doctrinal model. Final collective resurrection/judgment supplies the needed framework.
-- Internal context only (not public doctrine): Personal interpretive idea only; not biblical terminology and not public doctrine.
+- Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
 - Affirmed: Church is body of Christ actively transmitting Christ's message; not defined by denomination, institution, building, or clergy structure.
 - Affirmed: Table open to all; each reflects and chooses; participation/abstention respected without argument; equal treatment regardless.
 - Affirmed: Public profession of faith; burial/washing/rising symbolic and personally significant; not required for salvation.
@@ -62,6 +62,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Superseded by the 2026-10-02 reconciliation: one God with one divine consciousness (theology.god.one-consciousness); Jesus fully divine and fully human without encompassing the entirety of God (theology.christ.incarnation). The classical three-person formulation is taught as a historic interpretation, not as Canonical Shelf's position
 - Canonical Shelf names no denomination as its doctrinal identity, authority, or proxy; references to the Metropolitan Community Churches and the Christian Church (Disciples of Christ) are removed (theology.institutional-independence)
 - Remove every reference to the Metropolitan Community Churches (MCC) and the Christian Church (Disciples of Christ) from Canonical Shelf, including descriptive mentions in tradition comparisons
+- Lessons teach Canonical Shelf's view. Where it differs from the mainstream and Scripture supports it, teach it with more evidence than usual (at least three supporting passages, historic Christian precedent, and the strongest opposing texts stated fairly) and present the mainstream view alongside. Where it differs significantly and is not backed by Scripture, teach the mainstream view with Canonical Shelf's view as a labeled note. Where Scripture directly conflicts with Canonical Shelf's view, raise it with Chris before writing
 
 ### Changed
 

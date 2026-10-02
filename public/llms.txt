@@ -2823,10 +2823,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "reading": "Mark 1:14–15",
           "body": [
+            "You now know how the library is organized and how to read its different kinds of writing. This unit steps back and follows the story the library tells as a whole, from creation to the hope Christians hold for the end. This first lesson gives you the whole map at once; the lessons after it slow down on its opening chapters.",
             "The Bible’s broad Christian narrative moves through creation, human estrangement, God’s covenant with Israel, Israel’s life and crises, Jesus’ ministry, the early Church, and hope for renewed creation. This is a map for orientation, not a claim that every biblical book was written in the order it appears.",
+            "Mark’s summary of Jesus’ first preaching sits near the middle of the map you are about to see. Notice its three parts: a time that has arrived, a kingdom that has come near, and a call to respond.",
             "A covenant is a binding relationship with commitments. God’s dealings with Abraham, Israel at Sinai, and David help explain later hopes. Exile means displacement from one’s homeland; prophets address injustice, judgment, and hope amid concrete historical circumstances.",
             "Jesus announces God’s kingdom. Kingdom here concerns God’s reign, not simply a location people go after death. Mark’s short announcement invites repentance and faith. Repentance means turning or reorienting life, not merely feeling ashamed.",
-            "Jesus and his earliest followers were Jewish. Christian interpretations of fulfillment must not portray Jewish people as collectively guilty for Jesus’ death or assume God abandoned them. Judaism remains a living tradition with its own readings. Our map helps locate Christian claims within that history."
+            "Jesus and his earliest followers were Jewish. Christian interpretations of fulfillment must not portray Jewish people as collectively guilty for Jesus’ death or assume God abandoned them. Judaism remains a living tradition with its own readings. Our map helps locate Christian claims within that history.",
+            "You have the whole story in outline: creation, estrangement, covenant with Israel, Israel’s life and crises, Jesus and the kingdom, the early Church, and Christian hope for what comes. You know what a covenant is, what exile meant, and that Jesus’ announcement of God’s kingdom concerns God’s reign more than a place.",
+            "Christians broadly share this outline. They differ on how fulfillment in Jesus relates to Israel’s continuing covenant, and on what the final hope involves; Canonical Shelf leaves the final physical state of creation open. The question to carry forward: where on this map does the passage you are reading sit?"
           ],
           "simple": "Follow relationships and turning points: creation, covenant, Israel’s history, Jesus, the Church, and renewed creation. The books themselves are grouped partly by genre, not simply by date.",
           "vocab": {
@@ -2904,6 +2908,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "You now know how the library is organized and how to read its different kinds of writing. This unit steps back and follows the story the library tells as a whole, from creation to the hope Christians hold for the end. This first lesson gives you the whole map at once; the lessons after it slow down on its opening chapters."
+                },
+                {
+                  "type": "prose",
                   "text": "The Bible’s broad Christian narrative moves through creation, human estrangement, God’s covenant with Israel, Israel’s life and crises, Jesus’ ministry, the early Church, and hope for renewed creation. This is a map for orientation, not a claim that every biblical book was written in the order it appears."
                 }
               ]
@@ -2915,18 +2923,29 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Mark’s summary of Jesus’ first preaching sits near the middle of the map you are about to see. Notice its three parts: a time that has arrived, a kingdom that has come near, and a call to respond."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:story#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "covenant",
+              "anchor": "lesson:story#covenant",
+              "title": "Covenant, exile, and the prophets",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "A covenant is a binding relationship with commitments. God’s dealings with Abraham, Israel at Sinai, and David help explain later hopes. Exile means displacement from one’s homeland; prophets address injustice, judgment, and hope amid concrete historical circumstances."
-                },
+                }
+              ]
+            },
+            {
+              "id": "kingdom",
+              "anchor": "lesson:story#kingdom",
+              "title": "Jesus announces God’s kingdom",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Jesus announces God’s kingdom. Kingdom here concerns God’s reign, not simply a location people go after death. Mark’s short announcement invites repentance and faith. Repentance means turning or reorienting life, not merely feeling ashamed."
@@ -2938,9 +2957,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:story#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "within-judaism",
+              "anchor": "lesson:story#within-judaism",
+              "title": "Jesus within Judaism",
               "blocks": [
                 {
                   "type": "prose",
@@ -2949,6 +2968,21 @@ Source: [/data/catalog.json](/data/catalog.json)
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:story#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You have the whole story in outline: creation, estrangement, covenant with Israel, Israel’s life and crises, Jesus and the kingdom, the early Church, and Christian hope for what comes. You know what a covenant is, what exile meant, and that Jesus’ announcement of God’s kingdom concerns God’s reign more than a place."
+                },
+                {
+                  "type": "prose",
+                  "text": "Christians broadly share this outline. They differ on how fulfillment in Jesus relates to Israel’s continuing covenant, and on what the final hope involves; Canonical Shelf leaves the final physical state of creation open. The question to carry forward: where on this map does the passage you are reading sit?"
                 }
               ]
             },
@@ -4367,11 +4401,15 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Connect creation, human dignity, responsibility, and mortality without confusing theological claims with a scientific timeline.",
           "body": [
+            "The story begins with creation. This lesson reads the first chapter of Genesis and previews the three lessons that follow it: the garden, the rupture, and the care of a living world.",
             "Genesis opens with God bringing an ordered world into being and declaring it good. Human beings are portrayed as bearing God’s image. In this guide, that language grounds dignity and responsibility rather than a ranking of people by power, usefulness, gender, or sexuality. The story places humanity within creation and gives human action consequences for other creatures.",
+            "Notice how often the chapter calls what God makes good, and what human beings are given: a likeness to God, a blessing, and responsibility for the rest of creation.",
             "The garden account combines provision with responsibility and a boundary. The human is placed in the garden to cultivate and keep it. Freedom is therefore not pictured as the absence of relationships or obligations. A theological reading asks what these stories say about dependence on God, trust, and the way humans inhabit a world they did not make.",
             "Genesis 3 portrays distrust, disobedience, damaged relationships, and expulsion. Access to the tree of life is closed. Our teaching emphasizes the loss of humanity’s intended enduring life with God and the inheritance of mortality and a broken condition. Christians disagree about inherited personal guilt. The text’s account of human life does not require us to assert that animals could not die before human sin.",
             "The Bible uses ancient language and literary forms to address questions about God and the world. Creation narratives can have theological and historical significance without functioning as modern accounts of biological mechanisms. We do not require young-earth creationism. Distinguish what the text claims from scientific questions it does not formulate in modern terms.",
-            "Psalm 104 widens attention to the abundance and dependence of living creatures. Creation care follows from treating that world as valuable rather than disposable. A practical response might involve reducing harm, protecting resources shared with neighbors, or asking who bears the cost of our consumption. These actions express responsibility; they do not purchase salvation."
+            "Psalm 104 widens attention to the abundance and dependence of living creatures. Creation care follows from treating that world as valuable rather than disposable. A practical response might involve reducing harm, protecting resources shared with neighbors, or asking who bears the cost of our consumption. These actions express responsibility; they do not purchase salvation.",
+            "You have read Genesis 1 as the opening of the story: a good, ordered world; humanity bearing God’s image, which grounds every person’s dignity and responsibility; and the outline of what follows in the garden, the rupture, and the care of creation. Canonical Shelf’s own position on inherited guilt is stated in the lesson on Genesis 3.",
+            "Christians agree that creation is good and that human dignity is not earned. They differ on what the image of God consists of, and Canonical Shelf takes no definitive position on that; they also differ on how Genesis relates to scientific accounts, and this guide does not require young-earth creationism. The question to carry forward: what does a passage say about God, and what question is it not trying to answer?"
           ],
           "simple": "Humanity belongs to a good creation, bears dignity, and has responsibilities. Sin disrupts life with God; Genesis portrays lost access to the tree of life.",
           "vocab": {
@@ -4482,6 +4520,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The story begins with creation. This lesson reads the first chapter of Genesis and previews the three lessons that follow it: the garden, the rupture, and the care of a living world."
+                },
+                {
+                  "type": "prose",
                   "text": "Genesis opens with God bringing an ordered world into being and declaring it good. Human beings are portrayed as bearing God’s image. In this guide, that language grounds dignity and responsibility rather than a ranking of people by power, usefulness, gender, or sexuality. The story places humanity within creation and gives human action consequences for other creatures."
                 }
               ]
@@ -4493,18 +4535,29 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice how often the chapter calls what God makes good, and what human beings are given: a likeness to God, a blessing, and responsibility for the rest of creation."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:creation#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "garden-preview",
+              "anchor": "lesson:creation#garden-preview",
+              "title": "Provision, work, and a boundary",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The garden account combines provision with responsibility and a boundary. The human is placed in the garden to cultivate and keep it. Freedom is therefore not pictured as the absence of relationships or obligations. A theological reading asks what these stories say about dependence on God, trust, and the way humans inhabit a world they did not make."
-                },
+                }
+              ]
+            },
+            {
+              "id": "rupture-preview",
+              "anchor": "lesson:creation#rupture-preview",
+              "title": "Distrust and lost access",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Genesis 3 portrays distrust, disobedience, damaged relationships, and expulsion. Access to the tree of life is closed. Our teaching emphasizes the loss of humanity’s intended enduring life with God and the inheritance of mortality and a broken condition. Christians disagree about inherited personal guilt. The text’s account of human life does not require us to assert that animals could not die before human sin."
@@ -4512,25 +4565,47 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:creation#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "science",
+              "anchor": "lesson:creation#science",
+              "title": "Ancient language and modern questions",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The Bible uses ancient language and literary forms to address questions about God and the world. Creation narratives can have theological and historical significance without functioning as modern accounts of biological mechanisms. We do not require young-earth creationism. Distinguish what the text claims from scientific questions it does not formulate in modern terms."
                 },
                 {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "care-preview",
+              "anchor": "lesson:creation#care-preview",
+              "title": "A world worth caring for",
+              "blocks": [
+                {
                   "type": "prose",
                   "text": "Psalm 104 widens attention to the abundance and dependence of living creatures. Creation care follows from treating that world as valuable rather than disposable. A practical response might involve reducing harm, protecting resources shared with neighbors, or asking who bears the cost of our consumption. These actions express responsibility; they do not purchase salvation."
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:creation#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "You have read Genesis 1 as the opening of the story: a good, ordered world; humanity bearing God’s image, which grounds every person’s dignity and responsibility; and the outline of what follows in the garden, the rupture, and the care of creation. Canonical Shelf’s own position on inherited guilt is stated in the lesson on Genesis 3."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Christians agree that creation is good and that human dignity is not earned. They differ on what the image of God consists of, and Canonical Shelf takes no definitive position on that; they also differ on how Genesis relates to scientific accounts, and this guide does not require young-earth creationism. The question to carry forward: what does a passage say about God, and what question is it not trying to answer?"
                 }
               ]
             },
@@ -4593,11 +4668,15 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Trace how promise and liberation lead to covenant responsibilities and concern for neighbors.",
           "body": [
+            "This lesson closes the unit by stepping back over the whole movement you have read so far: from the promise to Abraham, through liberation from Egypt, to the covenant that gives a freed people a shared way of life.",
             "God’s call to Abram links a particular family with blessing beyond itself. A covenant is a committed relationship involving promises and responsibilities. Reading the story only as a reward for exceptional people misses the outward direction of the promise. The call begins a long narrative of trust, failure, conflict, and continuing relationship.",
+            "Begin where the movement begins, with the promise to Abram, and listen for the word “blessing”. It is the thread that ties the promise to everything that follows.",
             "Exodus portrays God hearing the suffering of an enslaved people and calling Moses into a work of liberation. Moses’ questions and limitations remain in the story. Deliverance is not described as the result of Israel already having built a perfect society. The narrative moves from oppression toward freedom and then toward the task of living together.",
             "At Sinai, Israel receives a communal vocation within a covenant. Instructions about worship and social conduct belong to that setting. Leviticus 19 connects holiness with concrete practices: leaving produce for vulnerable people, dealing honestly, paying attention to justice, and loving the neighbor. Worship and treatment of others are not unrelated spheres.",
             "Ancient laws require historical and literary interpretation. Distinguish their original community and social arrangements from principles and applications drawn by later readers. Christians differ over how particular Torah commands apply through Christ; this lesson does not flatten the whole Torah into either an unchanged modern rulebook or an irrelevant relic.",
-            "Christianity’s reading of covenant must preserve respect for Judaism as a living tradition. Israel’s scriptures have significance beyond serving as clues for Christians. In this unit, follow the movement from promise to liberation to responsibility, and identify how a community’s gratitude can become care for people with less power."
+            "Christianity’s reading of covenant must preserve respect for Judaism as a living tradition. Israel’s scriptures have significance beyond serving as clues for Christians. In this unit, follow the movement from promise to liberation to responsibility, and identify how a community’s gratitude can become care for people with less power.",
+            "Promise, liberation, and covenant form one movement: a particular family blessed for the sake of others, a people freed from slavery, and a covenant that joins belonging with responsibility in worship and everyday justice.",
+            "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: how does gratitude for rescue become a way of life?"
           ],
           "simple": "The narrative moves from God’s promise to liberation and a shared way of life. Covenant joins belonging with responsibility.",
           "vocab": {
@@ -4706,6 +4785,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson closes the unit by stepping back over the whole movement you have read so far: from the promise to Abraham, through liberation from Egypt, to the covenant that gives a freed people a shared way of life."
+                },
+                {
+                  "type": "prose",
                   "text": "God’s call to Abram links a particular family with blessing beyond itself. A covenant is a committed relationship involving promises and responsibilities. Reading the story only as a reward for exceptional people misses the outward direction of the promise. The call begins a long narrative of trust, failure, conflict, and continuing relationship."
                 }
               ]
@@ -4717,44 +4800,77 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Begin where the movement begins, with the promise to Abram, and listen for the word “blessing”. It is the thread that ties the promise to everything that follows."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:covenant#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "liberation",
+              "anchor": "lesson:covenant#liberation",
+              "title": "From promise to liberation",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Exodus portrays God hearing the suffering of an enslaved people and calling Moses into a work of liberation. Moses’ questions and limitations remain in the story. Deliverance is not described as the result of Israel already having built a perfect society. The narrative moves from oppression toward freedom and then toward the task of living together."
-                },
-                {
-                  "type": "prose",
-                  "text": "At Sinai, Israel receives a communal vocation within a covenant. Instructions about worship and social conduct belong to that setting. Leviticus 19 connects holiness with concrete practices: leaving produce for vulnerable people, dealing honestly, paying attention to justice, and loving the neighbor. Worship and treatment of others are not unrelated spheres."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:covenant#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "vocation",
+              "anchor": "lesson:covenant#vocation",
+              "title": "A communal vocation at Sinai",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "At Sinai, Israel receives a communal vocation within a covenant. Instructions about worship and social conduct belong to that setting. Leviticus 19 connects holiness with concrete practices: leaving produce for vulnerable people, dealing honestly, paying attention to justice, and loving the neighbor. Worship and treatment of others are not unrelated spheres."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "ancient-laws",
+              "anchor": "lesson:covenant#ancient-laws",
+              "title": "Reading ancient laws",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Ancient laws require historical and literary interpretation. Distinguish their original community and social arrangements from principles and applications drawn by later readers. Christians differ over how particular Torah commands apply through Christ; this lesson does not flatten the whole Torah into either an unchanged modern rulebook or an irrelevant relic."
-                },
+                }
+              ]
+            },
+            {
+              "id": "judaism",
+              "anchor": "lesson:covenant#judaism",
+              "title": "Covenant and living Judaism",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Christianity’s reading of covenant must preserve respect for Judaism as a living tradition. Israel’s scriptures have significance beyond serving as clues for Christians. In this unit, follow the movement from promise to liberation to responsibility, and identify how a community’s gratitude can become care for people with less power."
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:covenant#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Promise, liberation, and covenant form one movement: a particular family blessed for the sake of others, a people freed from slavery, and a covenant that joins belonging with responsibility in worship and everyday justice."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: how does gratitude for rescue become a way of life?"
                 }
               ]
             },
@@ -7849,10 +7965,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             25
           ],
           "body": [
+            "Genesis 2 tells the creation story again, close up: one garden, one human being, one task, and one boundary. This lesson reads that scene before the rupture in chapter 3, so you can see what is at stake.",
             "The garden is a place of provision and work. The human receives a task before the story of disobedience: cultivating and keeping what God has provided. Work itself is therefore not introduced here as a punishment. The setting holds receiving and responsibility together.",
+            "Notice the order of events: the task comes before any failure, the permission is broad, and the first thing the story calls “not good” is being alone.",
             "The permission to eat is broad, but it includes a boundary. In the story, freedom is exercised within a relationship of trust; it does not mean every possible action has the same consequence. The warning about death introduces the seriousness of that relationship without explaining every biological mechanism.",
             "The account also identifies isolation as a problem. The arrival of another human is celebrated as shared humanity and relationship. The narrative’s language should be examined carefully before being made into a complete rule for every modern household or a ranking of human worth.",
-            "Read this scene before the rupture in chapter 3. Notice what can be lost: trust, shared life, access, and a sustaining home. Keeping that earlier goodness in view prevents an introduction to sin from making failure the whole definition of a person."
+            "Read this scene before the rupture in chapter 3. Notice what can be lost: trust, shared life, access, and a sustaining home. Keeping that earlier goodness in view prevents an introduction to sin from making failure the whole definition of a person.",
+            "Work is a gift and a responsibility before it is ever a burden; freedom is exercised within trust; isolation is the first problem the story names; and keeping this goodness in view keeps a person from being defined by failure.",
+            "Readers agree on these movements. They disagree about how the creation of the woman should shape modern roles; this guide does not turn the scene into a ranking of human worth, and its Statement of Faith affirms that women and men may serve equally in every form of ministry. The question to carry forward: what does the next chapter take away?"
           ],
           "simple": "The story joins a gift, a responsibility, and a relationship. Freedom matters because our actions affect that relationship.",
           "vocab": {},
@@ -7862,7 +7982,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: The garden: freedom, trust, and limits",
+              "title": "Separate what the garden scene supports from overreach",
               "prompt": "Build an evidence board from Genesis 2:15–25. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The human is assigned care of the garden.",
@@ -7879,7 +7999,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put the garden: freedom, trust, and limits to work",
+              "title": "Apply the garden scene to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -8004,6 +8124,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Genesis 2 tells the creation story again, close up: one garden, one human being, one task, and one boundary. This lesson reads that scene before the rupture in chapter 3, so you can see what is at stake."
+                },
+                {
+                  "type": "prose",
                   "text": "The garden is a place of provision and work. The human receives a task before the story of disobedience: cultivating and keeping what God has provided. Work itself is therefore not introduced here as a punishment. The setting holds receiving and responsibility together."
                 }
               ]
@@ -8015,18 +8139,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the order of events: the task comes before any failure, the permission is broad, and the first thing the story calls “not good” is being alone."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:garden-trust#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "boundary",
+              "anchor": "lesson:garden-trust#boundary",
+              "title": "Freedom inside a relationship of trust",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The permission to eat is broad, but it includes a boundary. In the story, freedom is exercised within a relationship of trust; it does not mean every possible action has the same consequence. The warning about death introduces the seriousness of that relationship without explaining every biological mechanism."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "not-alone",
+              "anchor": "lesson:garden-trust#not-alone",
+              "title": "Not alone",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The account also identifies isolation as a problem. The arrival of another human is celebrated as shared humanity and relationship. The narrative’s language should be examined carefully before being made into a complete rule for every modern household or a ranking of human worth."
@@ -8034,9 +8173,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:garden-trust#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "what-could-be-lost",
+              "anchor": "lesson:garden-trust#what-could-be-lost",
+              "title": "What could be lost",
               "blocks": [
                 {
                   "type": "prose",
@@ -8044,11 +8183,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:garden-trust#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Work is a gift and a responsibility before it is ever a burden; freedom is exercised within trust; isolation is the first problem the story names; and keeping this goodness in view keeps a person from being defined by failure."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers agree on these movements. They disagree about how the creation of the woman should shape modern roles; this guide does not turn the scene into a ranking of human worth, and its Statement of Faith affirms that women and men may serve equally in every form of ministry. The question to carry forward: what does the next chapter take away?"
                 }
               ]
             },
@@ -8082,11 +8232,15 @@ Source: [/data/catalog.json](/data/catalog.json)
             24
           ],
           "body": [
+            "The previous lesson showed what the garden held. This one reads what happens next: hiding, blame, consequence, and the closed way to the tree of life. It is one of the most interpreted passages in Christian history, so the guide’s own position is stated first and the text is then read closely.",
             "**Canonical Shelf’s own position.** The first sin brought death into the human condition. We inherit its consequences, including mortality, but not the personal guilt of those who came before us. Human nature eventually leads each person into sin of their own, and each person is responsible for their own choices. Many traditions, following Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone.",
+            "Follow the conversation: God’s questions, the answers that point somewhere else, and the consequences that reach into work, relationships, and life itself.",
             "The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged.",
             "The consequences extend through shared life: painful labor, strained relationships, and return to dust. These descriptions do not instruct readers to create suffering or preserve domination. Reporting a broken condition is different from commanding that condition as a moral ideal.",
             "The expulsion closes access to the tree of life. This guide understands humanity as intended for enduring life with God, with mortality and a damaged condition inherited after sin. It does not treat inherited personal guilt as a settled conclusion or extend this claim to the absence of animal death.",
-            "God’s provision of clothing remains within the scene of judgment. Read judgment, consequence, and care together without pretending the rupture is trivial. Later Christian teaching connects this story with Christ’s saving work; that connection should preserve the details of Genesis rather than replace them."
+            "God’s provision of clothing remains within the scene of judgment. Read judgment, consequence, and care together without pretending the rupture is trivial. Later Christian teaching connects this story with Christ’s saving work; that connection should preserve the details of Genesis rather than replace them.",
+            "Genesis 3 portrays sin as damaged trust and relationship, describes its consequences without commanding them, and ends with lost access to the tree of life and with God clothing the humans. The guide’s position: mortality and a damaged condition are inherited; personal guilt is not.",
+            "Christians differ sharply here. Many follow Augustine in teaching inherited guilt; Eastern traditions and others emphasize inherited mortality instead. The question to carry forward: when later writers connect this story with Christ, which details of Genesis are they relying on?"
           ],
           "simple": "The story explains damaged trust and lost access to life. Receiving a broken world is not identical to personally committing another person’s act.",
           "vocab": {},
@@ -8096,7 +8250,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Rupture, mortality, and the tree of life",
+              "title": "Separate what Genesis 3 supports from overreach",
               "prompt": "Build an evidence board from Genesis 3:8–24. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The humans hide and shift attention toward others.",
@@ -8113,7 +8267,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put rupture, mortality, and the tree of life to work",
+              "title": "Apply Genesis 3 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -8238,11 +8392,11 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
-                  "text": "**Canonical Shelf’s own position.** The first sin brought death into the human condition. We inherit its consequences, including mortality, but not the personal guilt of those who came before us. Human nature eventually leads each person into sin of their own, and each person is responsible for their own choices. Many traditions, following Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone."
+                  "text": "The previous lesson showed what the garden held. This one reads what happens next: hiding, blame, consequence, and the closed way to the tree of life. It is one of the most interpreted passages in Christian history, so the guide’s own position is stated first and the text is then read closely."
                 },
                 {
                   "type": "prose",
-                  "text": "The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged."
+                  "text": "**Canonical Shelf’s own position.** The first sin brought death into the human condition. We inherit its consequences, including mortality, but not the personal guilt of those who came before us. Human nature eventually leads each person into sin of their own, and each person is responsible for their own choices. Many traditions, following Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone."
                 }
               ]
             },
@@ -8253,18 +8407,44 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Follow the conversation: God’s questions, the answers that point somewhere else, and the consequences that reach into work, relationships, and life itself."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:sin-mortality#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "hiding",
+              "anchor": "lesson:sin-mortality#hiding",
+              "title": "Hiding and blame",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged."
+                }
+              ]
+            },
+            {
+              "id": "consequences",
+              "anchor": "lesson:sin-mortality#consequences",
+              "title": "Consequences, not commands",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The consequences extend through shared life: painful labor, strained relationships, and return to dust. These descriptions do not instruct readers to create suffering or preserve domination. Reporting a broken condition is different from commanding that condition as a moral ideal."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "tree-of-life",
+              "anchor": "lesson:sin-mortality#tree-of-life",
+              "title": "The closed way to the tree of life",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The expulsion closes access to the tree of life. This guide understands humanity as intended for enduring life with God, with mortality and a damaged condition inherited after sin. It does not treat inherited personal guilt as a settled conclusion or extend this claim to the absence of animal death."
@@ -8272,9 +8452,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:sin-mortality#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "judgment-and-care",
+              "anchor": "lesson:sin-mortality#judgment-and-care",
+              "title": "Judgment and care together",
               "blocks": [
                 {
                   "type": "prose",
@@ -8282,11 +8462,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:sin-mortality#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Genesis 3 portrays sin as damaged trust and relationship, describes its consequences without commanding them, and ends with lost access to the tree of life and with God clothing the humans. The guide’s position: mortality and a damaged condition are inherited; personal guilt is not."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Christians differ sharply here. Many follow Augustine in teaching inherited guilt; Eastern traditions and others emphasize inherited mortality instead. The question to carry forward: when later writers connect this story with Christ, which details of Genesis are they relying on?"
                 }
               ]
             },
@@ -8320,10 +8511,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             30
           ],
           "body": [
+            "Genesis gave humanity responsibility within a good creation. This lesson turns to a psalm that praises that creation for its own sake, and then asks how praise becomes practice.",
             "Psalm 104 praises the variety of living things. Its poetic attention moves beyond human usefulness to creatures with their own place in the world. Praise invites wonder before it becomes a list of tasks. The world has value that is not exhausted by what an individual can consume.",
+            "Notice how much of the psalm is about creatures that have nothing to do with human beings, and how their life depends on God’s breath.",
             "The creatures depend on provision and life-giving breath. The poem also names death and renewal. It uses theological poetry, not the language of a modern scientific model. Reading its claims about God does not require ignoring the natural processes through which living systems change.",
             "Creation care is an application drawn from this value and dependence, in conversation with humanity’s responsibility in Genesis. The psalm does not specify a complete environmental policy. Moving from praise to policy requires additional evidence about consequences, resources, and the people most affected.",
-            "A manageable response begins with one shared resource: water, food, energy, or a neighborhood space. Investigate waste or harm, identify who bears the cost, and choose a realistic improvement. Responsible care involves learning whether an action helps, not simply feeling virtuous for having acted."
+            "A manageable response begins with one shared resource: water, food, energy, or a neighborhood space. Investigate waste or harm, identify who bears the cost, and choose a realistic improvement. Responsible care involves learning whether an action helps, not simply feeling virtuous for having acted.",
+            "The psalm values living creatures for their own sake and portrays all life as dependent on God; creation care is an application of that value, and good care is tested by its real effects rather than by good intentions.",
+            "Christians agree that creation is good; they differ on how central its care is to Christian life and on which policies follow. The psalm supplies value and dependence, not a policy. The question to carry forward: what evidence would show that an action actually helps?"
           ],
           "simple": "The poem celebrates a world full of dependent life. Care should follow that appreciation and be tested against real effects.",
           "vocab": {},
@@ -8333,7 +8528,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: A living world entrusted to our care",
+              "title": "Separate what Psalm 104 supports from overreach",
               "prompt": "Build an evidence board from Psalm 104:24–30. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "The psalm celebrates many kinds of creatures.",
@@ -8350,7 +8545,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put a living world entrusted to our care to work",
+              "title": "Apply Psalm 104 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -8475,6 +8670,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Genesis gave humanity responsibility within a good creation. This lesson turns to a psalm that praises that creation for its own sake, and then asks how praise becomes practice."
+                },
+                {
+                  "type": "prose",
                   "text": "Psalm 104 praises the variety of living things. Its poetic attention moves beyond human usefulness to creatures with their own place in the world. Praise invites wonder before it becomes a list of tasks. The world has value that is not exhausted by what an individual can consume."
                 }
               ]
@@ -8486,28 +8685,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice how much of the psalm is about creatures that have nothing to do with human beings, and how their life depends on God’s breath."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:creation-care#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "dependence",
+              "anchor": "lesson:creation-care#dependence",
+              "title": "Dependence and renewal",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The creatures depend on provision and life-giving breath. The poem also names death and renewal. It uses theological poetry, not the language of a modern scientific model. Reading its claims about God does not require ignoring the natural processes through which living systems change."
-                },
-                {
-                  "type": "prose",
-                  "text": "Creation care is an application drawn from this value and dependence, in conversation with humanity’s responsibility in Genesis. The psalm does not specify a complete environmental policy. Moving from praise to policy requires additional evidence about consequences, resources, and the people most affected."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:creation-care#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "praise-to-practice",
+              "anchor": "lesson:creation-care#praise-to-practice",
+              "title": "From praise to practice",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Creation care is an application drawn from this value and dependence, in conversation with humanity’s responsibility in Genesis. The psalm does not specify a complete environmental policy. Moving from praise to policy requires additional evidence about consequences, resources, and the people most affected."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "one-resource",
+              "anchor": "lesson:creation-care#one-resource",
+              "title": "Start with one shared resource",
               "blocks": [
                 {
                   "type": "prose",
@@ -8515,11 +8729,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:creation-care#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The psalm values living creatures for their own sake and portrays all life as dependent on God; creation care is an application of that value, and good care is tested by its real effects rather than by good intentions."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Christians agree that creation is good; they differ on how central its care is to Christian life and on which policies follow. The psalm supplies value and dependence, not a policy. The question to carry forward: what evidence would show that an action actually helps?"
                 }
               ]
             },
@@ -8553,10 +8778,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             9
           ],
           "body": [
+            "With Abraham the story narrows from all of humanity to one family, without losing sight of everyone else. This lesson closes the unit by reading the call that begins Israel’s story.",
             "God calls Abram to leave a familiar setting for a destination yet to be shown. The story begins with initiative and promise, followed by a response. It introduces a particular family within a larger account of humanity rather than beginning with a claim that this family has earned every blessing.",
+            "Notice the three parts: a command to leave, a promise in several layers, and Abram’s response in journeys and altars.",
             "The promise reaches beyond Abram. The language of blessing connects a particular calling with other families of the earth. Particularity and outward purpose belong together: the story follows real relationships, while refusing to make the gift simply private possession.",
             "Abram travels and builds altars. These actions locate the response in places and practices, not only in inward agreement. Later episodes also expose failures and conflict. Being called does not make a biblical character’s every subsequent choice morally exemplary.",
-            "Read Christian applications with respect for the story’s place in Jewish Scripture and living Jewish interpretation. A modern reader may learn about trust and responsibility without claiming to replace Israel or treating a personal ambition as an identical divine promise."
+            "Read Christian applications with respect for the story’s place in Jewish Scripture and living Jewish interpretation. A modern reader may learn about trust and responsibility without claiming to replace Israel or treating a personal ambition as an identical divine promise.",
+            "A particular calling carries an outward purpose: the blessing given to Abram is meant to reach other families of the earth. Response takes shape in journeys and worship, and being called does not make every later choice right.",
+            "Jewish and Christian readers both look to Abraham as an ancestor in faith, in different ways. Christians differ on how the promise relates to the Church and to Israel; this guide does not teach that the Church replaces Israel. The question to carry forward: the covenant with Abraham returns throughout the Bible; watch for it in the next module."
           ],
           "simple": "Abram receives a calling whose blessing reaches outward. A chosen role is not proof that every action of its holder is right.",
           "vocab": {
@@ -8568,7 +8797,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "sequence",
-              "title": "Reconstruct: Abraham: a promise that reaches beyond one family",
+              "title": "Reconstruct the promise to Abram",
               "prompt": "Arrange the movement of Genesis 12:1–9.",
               "items": [
                 "Abram leaves with his household.",
@@ -8587,7 +8816,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put abraham: a promise that reaches beyond one family to work",
+              "title": "Apply the call of Abram to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -8712,6 +8941,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "With Abraham the story narrows from all of humanity to one family, without losing sight of everyone else. This lesson closes the unit by reading the call that begins Israel’s story."
+                },
+                {
+                  "type": "prose",
                   "text": "God calls Abram to leave a familiar setting for a destination yet to be shown. The story begins with initiative and promise, followed by a response. It introduces a particular family within a larger account of humanity rather than beginning with a claim that this family has earned every blessing."
                 }
               ]
@@ -8723,18 +8956,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the three parts: a command to leave, a promise in several layers, and Abram’s response in journeys and altars."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:abraham-blessing#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "blessing",
+              "anchor": "lesson:abraham-blessing#blessing",
+              "title": "A blessing that reaches outward",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The promise reaches beyond Abram. The language of blessing connects a particular calling with other families of the earth. Particularity and outward purpose belong together: the story follows real relationships, while refusing to make the gift simply private possession."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "response",
+              "anchor": "lesson:abraham-blessing#response",
+              "title": "Response in places and practices",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Abram travels and builds altars. These actions locate the response in places and practices, not only in inward agreement. Later episodes also expose failures and conflict. Being called does not make a biblical character’s every subsequent choice morally exemplary."
@@ -8742,9 +8990,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:abraham-blessing#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "jewish-scripture",
+              "anchor": "lesson:abraham-blessing#jewish-scripture",
+              "title": "Reading with Jewish Scripture in view",
               "blocks": [
                 {
                   "type": "prose",
@@ -8752,11 +9000,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:abraham-blessing#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "A particular calling carries an outward purpose: the blessing given to Abram is meant to reach other families of the earth. Response takes shape in journeys and worship, and being called does not make every later choice right."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Jewish and Christian readers both look to Abraham as an ancestor in faith, in different ways. Christians differ on how the promise relates to the Church and to Israel; this guide does not teach that the Church replaces Israel. The question to carry forward: the covenant with Abraham returns throughout the Bible; watch for it in the next module."
                 }
               ]
             },
@@ -8790,10 +9049,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             15
           ],
           "body": [
+            "Module 2 reads the Hebrew Scriptures in their ancient Near Eastern world, starting with the story that shapes Israel’s memory more than any other: the Exodus. This lesson reads the call of Moses, where liberation begins with God noticing suffering.",
             "God’s speech begins with the suffering of the people: seeing, hearing, and knowing their affliction. Liberation is introduced through attention to oppression. The story gives the enslaved community’s experience a central place rather than describing their suffering as an inconvenience for rulers.",
+            "Notice the verbs in God’s speech before any instruction is given: seen, heard, known, come down. Then notice Moses’ two questions, “Who am I?” and “What is your name?”",
             "Moses is called into the response, and he asks questions about his role. Divine initiative and human participation are not presented as alternatives. A task can be significant while the person asked to undertake it remains uncertain and in need of support.",
             "The assurance of divine presence answers Moses’ concern about adequacy. The passage also introduces God’s self-identification and connection with the ancestors. Treat the divine name reverently and attend to translation notes; one English rendering does not exhaust its linguistic or theological significance.",
-            "Exodus can shape a Christian concern for people under oppression without making every current conflict a one-to-one reenactment. Identify the specific harm, listen to those experiencing it, and consider responsible participation. Quoting liberation language cannot excuse ignoring evidence or the agency of those being helped."
+            "Exodus can shape a Christian concern for people under oppression without making every current conflict a one-to-one reenactment. Identify the specific harm, listen to those experiencing it, and consider responsible participation. Quoting liberation language cannot excuse ignoring evidence or the agency of those being helped.",
+            "The Exodus begins with God attending to the suffering of an enslaved people, and with a hesitant person called into the response. Divine initiative and human participation work together, and the assurance Moses receives is presence, not certainty about his own adequacy.",
+            "Readers agree that the story centers the oppressed; they differ on how directly it should shape modern politics. The guide reads it as forming concern for people under oppression without treating every conflict as a reenactment. The question to carry forward: what does deliverance require after the escape?"
           ],
           "simple": "The call starts by taking suffering seriously. Moses is invited to participate even while asking honest questions.",
           "vocab": {
@@ -8805,7 +9068,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Exodus: hearing suffering and answering a call",
+              "title": "Separate what Exodus 3 supports from overreach",
               "prompt": "Build an evidence board from Exodus 3:7–15. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "God’s speech attends to the people’s affliction.",
@@ -8822,7 +9085,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put exodus: hearing suffering and answering a call to work",
+              "title": "Apply the call of Moses to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -8947,6 +9210,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Module 2 reads the Hebrew Scriptures in their ancient Near Eastern world, starting with the story that shapes Israel’s memory more than any other: the Exodus. This lesson reads the call of Moses, where liberation begins with God noticing suffering."
+                },
+                {
+                  "type": "prose",
                   "text": "God’s speech begins with the suffering of the people: seeing, hearing, and knowing their affliction. Liberation is introduced through attention to oppression. The story gives the enslaved community’s experience a central place rather than describing their suffering as an inconvenience for rulers."
                 }
               ]
@@ -8958,28 +9225,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the verbs in God’s speech before any instruction is given: seen, heard, known, come down. Then notice Moses’ two questions, “Who am I?” and “What is your name?”"
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:exodus-call#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "called-with-questions",
+              "anchor": "lesson:exodus-call#called-with-questions",
+              "title": "Called with questions",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Moses is called into the response, and he asks questions about his role. Divine initiative and human participation are not presented as alternatives. A task can be significant while the person asked to undertake it remains uncertain and in need of support."
-                },
-                {
-                  "type": "prose",
-                  "text": "The assurance of divine presence answers Moses’ concern about adequacy. The passage also introduces God’s self-identification and connection with the ancestors. Treat the divine name reverently and attend to translation notes; one English rendering does not exhaust its linguistic or theological significance."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:exodus-call#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "presence-and-name",
+              "anchor": "lesson:exodus-call#presence-and-name",
+              "title": "Presence and the divine name",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The assurance of divine presence answers Moses’ concern about adequacy. The passage also introduces God’s self-identification and connection with the ancestors. Treat the divine name reverently and attend to translation notes; one English rendering does not exhaust its linguistic or theological significance."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "today",
+              "anchor": "lesson:exodus-call#today",
+              "title": "Reading Exodus responsibly today",
               "blocks": [
                 {
                   "type": "prose",
@@ -8987,11 +9269,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:exodus-call#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The Exodus begins with God attending to the suffering of an enslaved people, and with a hesitant person called into the response. Divine initiative and human participation work together, and the assurance Moses receives is presence, not certainty about his own adequacy."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers agree that the story centers the oppressed; they differ on how directly it should shape modern politics. The guide reads it as forming concern for people under oppression without treating every conflict as a reenactment. The question to carry forward: what does deliverance require after the escape?"
                 }
               ]
             },
@@ -9025,10 +9318,14 @@ Source: [/data/catalog.json](/data/catalog.json)
             18
           ],
           "body": [
+            "This lesson closes the unit with one of Torah’s best-known chapters, where holiness turns out to be about harvests, wages, courts, and how you speak to a neighbor.",
             "The selected instructions include farming, wages, truthful dealing, impartial judgment, and treatment of neighbors. Holiness is not limited to ritual activity. Economic decisions and ordinary speech belong within the community’s response to God.",
+            "Read Leviticus 19:9–18 as a list of situations: a field at harvest, a worker at the end of the day, a courtroom, a grudge. Each instruction ends with the same reason: “I am the LORD.”",
             "The harvest instructions leave access to food for poor people and foreigners. They address a particular agricultural arrangement. A present-day reader must distinguish that arrangement from the concern for access and protection it expresses before choosing a modern response.",
             "Commands concerning justice resist favoritism, whether motivated by poverty or power. The passage also links rebuke, resentment, and love of neighbor. Love is not simply a pleasant feeling; it can require honest speech and changes in conduct that make another person less vulnerable.",
-            "Christians disagree about the continuing application of particular Torah laws. This lesson practices a method rather than settling every disputed case: identify the original instruction, examine its purpose and setting, read it in the wider scriptural conversation, and explain the reasoning behind a contemporary application."
+            "Christians disagree about the continuing application of particular Torah laws. This lesson practices a method rather than settling every disputed case: identify the original instruction, examine its purpose and setting, read it in the wider scriptural conversation, and explain the reasoning behind a contemporary application.",
+            "Holiness reaches into economics, justice, and speech. The harvest laws protect the poor and the foreigner within a particular agricultural world, and applying them today means first understanding that world and the concern behind the instruction. “Love your neighbor as yourself” first appears here, inside concrete obligations.",
+            "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: where would you need to understand the original arrangement before applying an instruction today?"
           ],
           "simple": "These laws place care and honesty inside everyday life. Applying them today requires understanding both the original arrangement and its concern.",
           "vocab": {
@@ -9041,7 +9338,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "challenges": [
             {
               "kind": "evidence",
-              "title": "Investigate: Torah: holiness in everyday relationships",
+              "title": "Separate what Leviticus 19 supports from overreach",
               "prompt": "Build an evidence board from Leviticus 19:9–18. Select the two supported statements; leave the two overreaches off the board.",
               "items": [
                 "Harvest instructions provide access for poor people and foreigners.",
@@ -9058,7 +9355,7 @@ Source: [/data/catalog.json](/data/catalog.json)
             },
             {
               "kind": "scenario",
-              "title": "Put torah: holiness in everyday relationships to work",
+              "title": "Apply Leviticus 19 to two situations",
               "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
               "items": [],
               "answer": [],
@@ -9183,6 +9480,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "This lesson closes the unit with one of Torah’s best-known chapters, where holiness turns out to be about harvests, wages, courts, and how you speak to a neighbor."
+                },
+                {
+                  "type": "prose",
                   "text": "The selected instructions include farming, wages, truthful dealing, impartial judgment, and treatment of neighbors. Holiness is not limited to ritual activity. Economic decisions and ordinary speech belong within the community’s response to God."
                 }
               ]
@@ -9194,18 +9495,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read Leviticus 19:9–18 as a list of situations: a field at harvest, a worker at the end of the day, a courtroom, a grudge. Each instruction ends with the same reason: “I am the LORD.”"
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:torah-neighbor#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "harvest",
+              "anchor": "lesson:torah-neighbor#harvest",
+              "title": "Leaving the edges of the field",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "The harvest instructions leave access to food for poor people and foreigners. They address a particular agricultural arrangement. A present-day reader must distinguish that arrangement from the concern for access and protection it expresses before choosing a modern response."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "justice-and-love",
+              "anchor": "lesson:torah-neighbor#justice-and-love",
+              "title": "Justice without favoritism, love with honesty",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Commands concerning justice resist favoritism, whether motivated by poverty or power. The passage also links rebuke, resentment, and love of neighbor. Love is not simply a pleasant feeling; it can require honest speech and changes in conduct that make another person less vulnerable."
@@ -9213,9 +9529,9 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:torah-neighbor#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "method",
+              "anchor": "lesson:torah-neighbor#method",
+              "title": "A method for applying Torah",
               "blocks": [
                 {
                   "type": "prose",
@@ -9223,11 +9539,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:torah-neighbor#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Holiness reaches into economics, justice, and speech. The harvest laws protect the poor and the foreigner within a particular agricultural world, and applying them today means first understanding that world and the concern behind the instruction. “Love your neighbor as yourself” first appears here, inside concrete obligations."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: where would you need to understand the original arrangement before applying an instruction today?"
                 }
               ]
             },
@@ -20073,10 +20400,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain how Passover connects deliverance from Egypt with ritual memory and communal identity.",
           "body": [
+            "The previous lesson heard the call; this one reads the night of departure. Passover is the meal Israel was told to keep so that every later generation would remember that night as its own.",
             "Exodus places Passover inside the final confrontation with Pharaoh. The meal is not an abstract religious exercise detached from history: it is tied to danger, departure, deliverance, and the formation of a people leaving slavery.",
+            "Notice how much of the passage is instruction for a household: a lamb, a doorpost, clothing for travel, and a command to keep the day as a festival for all generations.",
             "Households prepare a lamb, mark their doors, eat in readiness, and remember the night as a lasting observance. The details belong to Israel’s story before they become symbols in later Jewish or Christian interpretation. Responsible reading begins with that first setting.",
             "Passover becomes one of Israel’s major practices of memory. Later biblical books can recall Exodus language when speaking about rescue, covenant, worship, and identity. Remembering is therefore more than thinking about the past; ritual can locate a later generation inside a received story.",
-            "The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Course 4 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events."
+            "The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Module 3 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events.",
+            "Passover belongs first to Israel’s deliverance from Egypt: a meal eaten in readiness on the night of departure, kept afterward as a practice that places each generation inside the story.",
+            "Jewish tradition keeps Passover to this day, and the New Testament sets key moments of Jesus’ life in Passover settings. Christians differ in how they draw that connection; the guide insists it never erase Passover’s Jewish meaning. The question to carry forward: what does a ritual of memory do that a history lesson cannot?"
           ],
           "simple": "Passover remembers Israel’s deliverance from Egypt through a shared meal tied to the night of departure.",
           "vocab": {
@@ -20161,6 +20492,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The previous lesson heard the call; this one reads the night of departure. Passover is the meal Israel was told to keep so that every later generation would remember that night as its own."
+                },
+                {
+                  "type": "prose",
                   "text": "Exodus places Passover inside the final confrontation with Pharaoh. The meal is not an abstract religious exercise detached from history: it is tied to danger, departure, deliverance, and the formation of a people leaving slavery."
                 }
               ]
@@ -20172,18 +20507,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice how much of the passage is instruction for a household: a lamb, a doorpost, clothing for travel, and a command to keep the day as a festival for all generations."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-passover#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "the-night",
+              "anchor": "lesson:c2-passover#the-night",
+              "title": "The first Passover",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Households prepare a lamb, mark their doors, eat in readiness, and remember the night as a lasting observance. The details belong to Israel’s story before they become symbols in later Jewish or Christian interpretation. Responsible reading begins with that first setting."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "memory",
+              "anchor": "lesson:c2-passover#memory",
+              "title": "A practice of memory",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "Passover becomes one of Israel’s major practices of memory. Later biblical books can recall Exodus language when speaking about rescue, covenant, worship, and identity. Remembering is therefore more than thinking about the past; ritual can locate a later generation inside a received story."
@@ -20191,31 +20541,32 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-passover#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "later",
+              "anchor": "lesson:c2-passover#later",
+              "title": "Later readings of Passover",
               "blocks": [
                 {
                   "type": "prose",
-                  "text": "The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Course 4 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events."
-                }
-              ]
-            },
-            {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-passover#see-the-relationship",
-              "title": "See the relationship",
-              "blocks": [
-                {
-                  "type": "visual"
-                },
-                {
-                  "type": "check",
-                  "index": 0
+                  "text": "The New Testament later places important Jesus traditions in Passover settings and uses Passover imagery. Module 3 will examine those connections. The Christian connection should not erase Passover’s Jewish meaning or turn the Exodus into merely a code for later events."
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-passover#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Passover belongs first to Israel’s deliverance from Egypt: a meal eaten in readiness on the night of departure, kept afterward as a practice that places each generation inside the story."
+                },
+                {
+                  "type": "prose",
+                  "text": "Jewish tradition keeps Passover to this day, and the New Testament sets key moments of Jesus’ life in Passover settings. Christians differ in how they draw that connection; the guide insists it never erase Passover’s Jewish meaning. The question to carry forward: what does a ritual of memory do that a history lesson cannot?"
                 }
               ]
             }
@@ -20239,10 +20590,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Trace the movement from escape through the sea into wilderness dependence rather than treating Exodus as complete at departure.",
           "body": [
+            "Leaving Egypt is not the end of the Exodus. This lesson follows the people through the sea and into the wilderness, where freedom has to be learned.",
             "Leaving Egypt does not end the Exodus story. At the sea, the people face the possibility of renewed domination and fear that escape has failed. The narrative presents deliverance as a movement through danger rather than a single political announcement.",
+            "Read the scene at the sea as a sequence: fear, a word to stand firm, a path through the water, and a people who see and trust. Then notice that the next chapters begin with thirst.",
             "After the crossing, wilderness stories repeatedly focus on food, water, fear, trust, complaint, leadership, and dependence. Manna becomes a daily provision rather than a stockpile that removes the need to trust tomorrow.",
             "These stories resist a romantic picture of liberation. A people can be freed from an oppressive system and still need habits, institutions, memory, and trust for life beyond that system. The biblical narrative does not portray the liberated community as instantly mature.",
-            "Later Scripture repeatedly returns to sea and wilderness imagery. Those later uses depend on knowing the original narrative movement: danger, rescue, testing, provision, failure, and continuing presence."
+            "Later Scripture repeatedly returns to sea and wilderness imagery. Those later uses depend on knowing the original narrative movement: danger, rescue, testing, provision, failure, and continuing presence.",
+            "Deliverance moves through danger; the wilderness then forms a freed people through daily provision, testing, complaint, and continuing presence. Liberation from a system is not the same as maturity, and the story does not pretend otherwise.",
+            "Readers differ on the historical details of the crossing and the journey; they agree on the story’s movement, and later Scripture depends on that movement. The question to carry forward: what does a freed community need in order to live well?"
           ],
           "simple": "Exodus is not finished when Israel leaves Egypt. The sea and wilderness show rescue followed by dependence, testing, and formation.",
           "vocab": {
@@ -20323,6 +20678,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Leaving Egypt is not the end of the Exodus. This lesson follows the people through the sea and into the wilderness, where freedom has to be learned."
+                },
+                {
+                  "type": "prose",
                   "text": "Leaving Egypt does not end the Exodus story. At the sea, the people face the possibility of renewed domination and fear that escape has failed. The narrative presents deliverance as a movement through danger rather than a single political announcement."
                 }
               ]
@@ -20334,28 +20693,47 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Read the scene at the sea as a sequence: fear, a word to stand firm, a path through the water, and a people who see and trust. Then notice that the next chapters begin with thirst."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-sea-wilderness#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "wilderness",
+              "anchor": "lesson:c2-sea-wilderness#wilderness",
+              "title": "Wilderness: daily dependence",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "After the crossing, wilderness stories repeatedly focus on food, water, fear, trust, complaint, leadership, and dependence. Manna becomes a daily provision rather than a stockpile that removes the need to trust tomorrow."
                 },
                 {
-                  "type": "prose",
-                  "text": "These stories resist a romantic picture of liberation. A people can be freed from an oppressive system and still need habits, institutions, memory, and trust for life beyond that system. The biblical narrative does not portray the liberated community as instantly mature."
+                  "type": "check",
+                  "index": 0
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-sea-wilderness#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "not-instant",
+              "anchor": "lesson:c2-sea-wilderness#not-instant",
+              "title": "Freedom is not instant maturity",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "These stories resist a romantic picture of liberation. A people can be freed from an oppressive system and still need habits, institutions, memory, and trust for life beyond that system. The biblical narrative does not portray the liberated community as instantly mature."
+                },
+                {
+                  "type": "check",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "echoes",
+              "anchor": "lesson:c2-sea-wilderness#echoes",
+              "title": "Echoes in later Scripture",
               "blocks": [
                 {
                   "type": "prose",
@@ -20364,20 +20742,17 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-sea-wilderness#see-the-relationship",
-              "title": "See the relationship",
+              "id": "summary",
+              "anchor": "lesson:c2-sea-wilderness#summary",
+              "title": "What you now know",
               "blocks": [
                 {
-                  "type": "visual"
+                  "type": "prose",
+                  "text": "Deliverance moves through danger; the wilderness then forms a freed people through daily provision, testing, complaint, and continuing presence. Liberation from a system is not the same as maturity, and the story does not pretend otherwise."
                 },
                 {
-                  "type": "check",
-                  "index": 0
-                },
-                {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers differ on the historical details of the crossing and the journey; they agree on the story’s movement, and later Scripture depends on that movement. The question to carry forward: what does a freed community need in order to live well?"
                 }
               ]
             }
@@ -20401,10 +20776,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Connect Sinai covenant with the Exodus that precedes it and distinguish covenant identity from earning liberation.",
           "body": [
+            "Unit 2 slows down at Sinai, where the freed people enter covenant. This first lesson reads the moment before the commandments, because the order of events tells you what the law is for.",
             "Israel arrives at Sinai after the Exodus. The order matters: the covenant instructions do not purchase release from Egypt. The narrative first recalls what God has done in bringing the people out, then describes the relationship and responsibilities into which they are called.",
+            "Notice the sequence in God’s words: first what God has already done (“I carried you on eagles’ wings”), then what the people are invited to be.",
             "Covenant language joins relationship, promise, identity, and obligation. Exodus 19 speaks of treasured possession, priestly vocation, and holiness. These claims concern a people within a larger world rather than a license for moral superiority.",
             "The commandments and wider covenant laws that follow address worship, violence, property, labor, vulnerable neighbors, justice, and communal life. Torah therefore includes moral, social, ritual, and legal dimensions rather than a single undifferentiated list.",
-            "Christian traditions later reason differently about how Sinai law relates to Gentile Christians. That later question should not erase what these instructions meant within Israel’s covenant life. Course 4 and Course 6 return to the later debates."
+            "Christian traditions later reason differently about how Sinai law relates to Gentile Christians. That later question should not erase what these instructions meant within Israel’s covenant life. Modules 3 and 4 return to the later debates.",
+            "Rescue comes first; covenant responsibility follows as a way of living in the relationship, not as a price for release. Torah covers worship, violence, property, labor, justice, and care for the vulnerable, and Israel’s calling is a vocation within the wider world, not a claim of superiority.",
+            "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: what happens when the covenant is broken almost as soon as it is made?"
           ],
           "simple": "Israel is rescued before receiving Sinai’s covenant responsibilities. The law describes covenant life; it is not the price paid to escape Egypt.",
           "vocab": {
@@ -20485,6 +20864,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "Unit 2 slows down at Sinai, where the freed people enter covenant. This first lesson reads the moment before the commandments, because the order of events tells you what the law is for."
+                },
+                {
+                  "type": "prose",
                   "text": "Israel arrives at Sinai after the Exodus. The order matters: the covenant instructions do not purchase release from Egypt. The narrative first recalls what God has done in bringing the people out, then describes the relationship and responsibilities into which they are called."
                 }
               ]
@@ -20496,18 +20879,33 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the sequence in God’s words: first what God has already done (“I carried you on eagles’ wings”), then what the people are invited to be."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-sinai-covenant#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "covenant-language",
+              "anchor": "lesson:c2-sinai-covenant#covenant-language",
+              "title": "Treasured possession and priestly vocation",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Covenant language joins relationship, promise, identity, and obligation. Exodus 19 speaks of treasured possession, priestly vocation, and holiness. These claims concern a people within a larger world rather than a license for moral superiority."
                 },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "torah",
+              "anchor": "lesson:c2-sinai-covenant#torah",
+              "title": "What Torah covers",
+              "blocks": [
                 {
                   "type": "prose",
                   "text": "The commandments and wider covenant laws that follow address worship, violence, property, labor, vulnerable neighbors, justice, and communal life. Torah therefore includes moral, social, ritual, and legal dimensions rather than a single undifferentiated list."
@@ -20515,31 +20913,32 @@ Source: [/data/catalog.json](/data/catalog.json)
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-sinai-covenant#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "later-debates",
+              "anchor": "lesson:c2-sinai-covenant#later-debates",
+              "title": "Later debates",
               "blocks": [
                 {
                   "type": "prose",
-                  "text": "Christian traditions later reason differently about how Sinai law relates to Gentile Christians. That later question should not erase what these instructions meant within Israel’s covenant life. Course 4 and Course 6 return to the later debates."
-                }
-              ]
-            },
-            {
-              "id": "see-the-relationship",
-              "anchor": "lesson:c2-sinai-covenant#see-the-relationship",
-              "title": "See the relationship",
-              "blocks": [
-                {
-                  "type": "visual"
-                },
-                {
-                  "type": "check",
-                  "index": 0
+                  "text": "Christian traditions later reason differently about how Sinai law relates to Gentile Christians. That later question should not erase what these instructions meant within Israel’s covenant life. Modules 3 and 4 return to the later debates."
                 },
                 {
                   "type": "check",
                   "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-sinai-covenant#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Rescue comes first; covenant responsibility follows as a way of living in the relationship, not as a price for release. Torah covers worship, violence, property, labor, justice, and care for the vulnerable, and Israel’s calling is a vocation within the wider world, not a claim of superiority."
+                },
+                {
+                  "type": "prose",
+                  "text": "Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: what happens when the covenant is broken almost as soon as it is made?"
                 }
               ]
             }
@@ -20563,10 +20962,14 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "objective": "Explain the golden-calf episode as covenant rupture within the Sinai story and identify the roles of judgment, intercession, and renewal.",
           "body": [
+            "The covenant is barely made when it is broken. This lesson reads the golden calf, a story that refuses to present covenant life as a community without failure.",
             "The golden-calf story interrupts the Sinai material almost immediately. That placement is important: covenant instruction does not produce an idealized community without failure. The people’s anxiety and the making of an image become a crisis of loyalty and worship.",
+            "Notice the speed of the story, the people’s fear when Moses is delayed, and how Moses argues with God on the people’s behalf.",
             "Moses’ intercession appeals to God’s relationship with the people and to promises associated with the ancestors. The narrative therefore places judgment and intercession inside covenant relationship rather than treating failure as if the prior relationship never existed.",
             "The chapters that follow include consequences and covenant renewal. Renewal does not make the rupture imaginary. Biblical covenant life can include real failure, accountability, mercy, and a restored path forward.",
-            "Later readers often use “idolatry” as a label for anything they dislike. This story should first be understood in its own setting before the term is generalized to modern attachments or loyalties."
+            "Later readers often use “idolatry” as a label for anything they dislike. This story should first be understood in its own setting before the term is generalized to modern attachments or loyalties.",
+            "Covenant life includes real failure. The story holds judgment, intercession, consequence, mercy, and renewal together, and renewal never pretends the rupture did not happen.",
+            "Readers agree on that movement; they differ on details such as what the calf represented. The question to carry forward: what does holiness look like in ordinary life, not only in worship?"
           ],
           "simple": "Israel breaks covenant loyalty soon after Sinai; the story holds failure, judgment, intercession, and renewal together.",
           "vocab": {
@@ -20643,6 +21046,10 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
+                  "text": "The covenant is barely made when it is broken. This lesson reads the golden calf, a story that refuses to present covenant life as a community without failure."
+                },
+                {
+                  "type": "prose",
                   "text": "The golden-calf story interrupts the Sinai material almost immediately. That placement is important: covenant instruction does not produce an idealized community without failure. The people’s anxiety and the making of an image become a crisis of loyalty and worship."
                 }
               ]
@@ -20654,28 +21061,43 @@ Source: [/data/catalog.json](/data/catalog.json)
               "blocks": [
                 {
                   "type": "reading"
+                },
+                {
+                  "type": "prose",
+                  "text": "Notice the speed of the story, the people’s fear when Moses is delayed, and how Moses argues with God on the people’s behalf."
                 }
               ]
             },
             {
-              "id": "locate-the-claim-in-context",
-              "anchor": "lesson:c2-golden-calf#locate-the-claim-in-context",
-              "title": "Locate the claim in context",
+              "id": "intercession",
+              "anchor": "lesson:c2-golden-calf#intercession",
+              "title": "Intercession inside the relationship",
               "blocks": [
                 {
                   "type": "prose",
                   "text": "Moses’ intercession appeals to God’s relationship with the people and to promises associated with the ancestors. The narrative therefore places judgment and intercession inside covenant relationship rather than treating failure as if the prior relationship never existed."
-                },
-                {
-                  "type": "prose",
-                  "text": "The chapters that follow include consequences and covenant renewal. Renewal does not make the rupture imaginary. Biblical covenant life can include real failure, accountability, mercy, and a restored path forward."
                 }
               ]
             },
             {
-              "id": "keep-the-setting-visible",
-              "anchor": "lesson:c2-golden-calf#keep-the-setting-visible",
-              "title": "Keep the setting visible",
+              "id": "renewal",
+              "anchor": "lesson:c2-golden-calf#renewal",
+              "title": "Consequence and renewal",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "The chapters that follow include consequences and covenant renewal. Renewal does not make the rupture imaginary. Biblical covenant life can include real failure, accountability, mercy, and a restored path forward."
+                },
+                {
+                  "type": "check",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "id": "idolatry",
+              "anchor": "lesson:c2-golden-calf#idolatry",
+              "title": "Using the word idolatry carefully",
               "blocks": [
                 {
                   "type": "prose",
@@ -20683,11 +21105,22 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "check",
-                  "index": 0
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "id": "summary",
+              "anchor": "lesson:c2-golden-calf#summary",
+              "title": "What you now know",
+              "blocks": [
+                {
+                  "type": "prose",
+                  "text": "Covenant life includes real failure. The story holds judgment, intercession, consequence, mercy, and renewal together, and renewal never pretends the rupture did not happen."
                 },
                 {
-                  "type": "check",
-                  "index": 1
+                  "type": "prose",
+                  "text": "Readers agree on that movement; they differ on details such as what the calf represented. The question to carry forward: what does holiness look like in ordinary life, not only in worship?"
                 }
               ]
             }
@@ -34879,11 +35312,11 @@ Source: [/data/catalog.json](/data/catalog.json)
         ],
         "c1.story": [
           "lesson:story",
+          "lesson:creation",
           "lesson:garden-trust",
           "lesson:sin-mortality",
           "lesson:creation-care",
           "lesson:abraham-blessing",
-          "lesson:creation",
           "mastery:n.plot",
           "mastery:c.eras",
           "mastery:t.what",

@@ -63,6 +63,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
 | `curriculum.teaching-approach` | Audience: | Owner decision | undefined |
 | `curriculum.teaching-approach.identity` | Remove every reference to the Metropolitan Community Churches (MCC) and the Christian Church (Disciples of Christ) from Canonical Shelf, including descriptiv... | Owner decision | undefined |
+| `curriculum.teaching-rule.view` | Lessons teach Canonical Shelf's view. | Owner decision | undefined |
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
@@ -135,9 +136,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theology.communion` | Affirmed: | Owner decision | undefined |
 | `theology.covenant.love` | Affirmed: | Owner decision | undefined |
 | `theology.creation.final-state` | Left open: | Owner decision | undefined |
-| `theology.death.sleep` | Internal context only (not public doctrine): | Owner decision | undefined |
 | `theology.difficult-texts` | Affirmed: | Owner decision | undefined |
-| `theology.earth-as-hell` | Internal context only (not public doctrine): | Owner decision | undefined |
 | `theology.faith` | Affirmed: | Owner decision | undefined |
 | `theology.forgiveness` | Revised: | Owner decision | undefined |
 | `theology.god.love` | Affirmed: | Owner decision | undefined |
@@ -145,11 +144,15 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theology.god.one-consciousness` | Revised: | Owner decision | undefined |
 | `theology.god.source-agency` | God is affirmed as the ultimate source of existence in principle, but this must not imply that God directly causes or controls every creaturely choice or eve... | Owner decision | undefined |
 | `theology.grace.works` | Affirmed: | Owner decision | undefined |
-| `theology.hell.gehenna` | Internal context only (not public doctrine): | Owner decision | undefined |
 | `theology.human-dignity` | Affirmed: | Owner decision | undefined |
 | `theology.image-of-god` | Left open: | Owner decision | undefined |
 | `theology.inclusion.lgbtq` | Affirmed: | Owner decision | undefined |
 | `theology.institutional-independence` | Affirmed: | Owner decision | undefined |
+| `theology.internal.1` | Internal context only: | Owner decision | undefined |
+| `theology.internal.2` | Internal context only: | Owner decision | undefined |
+| `theology.internal.3` | Internal context only: | Owner decision | undefined |
+| `theology.internal.4` | Internal context only: | Owner decision | undefined |
+| `theology.internal.5` | Internal context only: | Owner decision | undefined |
 | `theology.judgment.repented` | Affirmed: | Owner decision | undefined |
 | `theology.judgment.revelation` | Affirmed: | Owner decision | undefined |
 | `theology.knowledge.open-future` | Revised: | Owner decision | undefined |
@@ -160,11 +163,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theology.providence` | Affirmed: | Owner decision | undefined |
 | `theology.reincarnation` | Rejected: | Owner decision | undefined |
 | `theology.repentance` | Affirmed: | Owner decision | undefined |
-| `theology.restoration.satan` | Internal context only (not public doctrine): | Owner decision | undefined |
 | `theology.restoration.universal` | Affirmed: | Owner decision | undefined |
 | `theology.salvation.death` | Affirmed: | Owner decision | undefined |
 | `theology.salvation.reconciliation-distinction` | Affirmed: | Owner decision | undefined |
-| `theology.science.multiverse` | Internal context only (not public doctrine): | Owner decision | undefined |
 | `theology.scripture.inspiration` | Revised: | Owner decision | undefined |
 | `theology.scripture.method` | Affirmed: | Owner decision | undefined |
 | `theology.sin.culpability` | Affirmed: | Owner decision | undefined |

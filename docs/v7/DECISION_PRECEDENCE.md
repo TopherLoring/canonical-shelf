@@ -140,6 +140,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Previous** · 2026-10-02 · Owner decision (Chris) · `curriculum.teaching-approach.independent-2026-10-02`
   ~~Canonical Shelf names no denomination as its doctrinal identity, authority, or proxy; references to the Metropolitan Community Churches and the Christian Church (Disciples of Christ) are removed (theology.institutional-independence)~~
 
+### `curriculum.teaching-rule.view`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.teaching-rule.cs-view-with-evidence`
+  Lessons teach Canonical Shelf's view. Where it differs from the mainstream and Scripture supports it, teach it with more evidence than usual (at least three supporting passages, historic Christian precedent, and the strongest opposing texts stated fairly) and present the mainstream view alongside. Where it differs significantly and is not backed by Scripture, teach the mainstream view with Canonical Shelf's view as a labeled note. Where Scripture directly conflicts with Canonical Shelf's view, raise it with Chris before writing
+
 ### `data.bsb-source`
 
 - **Current** · 2026-09-26 · Agent default (Claude) · `data.bsb-source.bsb-source-hosting-fetch`
@@ -672,22 +677,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Left open: No definitive belief about ultimate physical renewal/state of creation; do not make renewal of creation a binding claim.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
-### `theology.death.sleep`
-
-- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.death.sleep.2026-10-02`
-  Internal context only (not public doctrine): Death-as-sleep language is compatible with dormancy/reversibility under God's power.
-  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
-
 ### `theology.difficult-texts`
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `theology.difficult-texts.2026-10-02`
   Affirmed: Address conquest, slavery, violence, women, sexuality, punishment, exclusion, etc. directly/contextually without using context to excuse harm.
-  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
-
-### `theology.earth-as-hell`
-
-- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.earth-as-hell.2026-10-02`
-  Internal context only (not public doctrine): Personal interpretive idea only; not biblical terminology and not public doctrine.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
 ### `theology.faith`
@@ -731,12 +724,6 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Affirmed: Grace/salvation are gifts, not earned by works, rituals, prescribed words, or faith as payment. Works may follow/evidence faith.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
-### `theology.hell.gehenna`
-
-- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.hell.gehenna.2026-10-02`
-  Internal context only (not public doctrine): Jesus's Gehenna language does not by itself establish later eternal-torture ontology; can ≠ does ≠ will.
-  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
-
 ### `theology.human-dignity`
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `theology.human-dignity.2026-10-02`
@@ -759,6 +746,36 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `theology.institutional-independence.2026-10-02`
   Affirmed: Remove MCC and Christian Church (Disciples of Christ) references as doctrinal identity/authority/proxy. Canonical Shelf stands on its own Statement and method.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.1`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.1.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.2`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.2.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.3`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.3.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.4`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.4.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
+  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
+
+### `theology.internal.5`
+
+- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.internal.5.2026-10-02`
+  Internal context only: recorded in Chris’s private notes, not in the repository or on the site.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
 ### `theology.judgment.repented`
@@ -821,12 +838,6 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Affirmed: Recognition → ownership without blame/condemnation → apology → genuine intent to change outcome. Successful future behavior is not required for repentance to have been genuine.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
-### `theology.restoration.satan`
-
-- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.restoration.satan.2026-10-02`
-  Internal context only (not public doctrine): Even Satan retains possibility of return through genuine repentance; Scripture does not explicitly teach Satan's repentance and Rev 20:10 is a countertext.
-  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
-
 ### `theology.restoration.universal`
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `theology.restoration.universal.2026-10-02`
@@ -843,12 +854,6 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `theology.salvation.reconciliation-distinction.2026-10-02`
   Affirmed: Universal resurrection/salvation from death is distinct from reconciliation with God.
-  *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
-
-### `theology.science.multiverse`
-
-- **Current** · 2026-10-02 · Owner decision (Chris) · `theology.science.multiverse.2026-10-02`
-  Internal context only (not public doctrine): Theology does not depend on multiverse/branching physics but is compatible with future evidence for such models.
   *Why:* Statement of Faith reconciliation interview, 2026-10-02 (docs/theology/doctrinal-decisions-2026-10-02.md)
 
 ### `theology.scripture.inspiration`

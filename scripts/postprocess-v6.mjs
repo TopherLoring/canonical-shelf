@@ -142,6 +142,5 @@ for(const required of ['c2-passover','c2-tabernacle','c2-ark','c2-day-atonement'
 
 await writeFile(path,JSON.stringify(cat,null,2));
 await writeFile('public/data/statement-of-faith.md',await readFile('content/statement/statement-of-faith-compact.md','utf8'));
-await writeFile('public/data/theologian-belief-context.md',await readFile('content/statement/statement-of-faith-v3.md','utf8'));
 await writeFile('public/data/theology-sources.json',await readFile('content/theology/sources.json','utf8'));
 console.log(`module catalog: ${cat.courses.length} modules, ${cat.units.length} units, ${cat.lessons.length} guided lessons, ${cat.masteryIds.length} mastery/capstone activities, ${cat.activities.length} scored activities, ${cat.glossary.length} glossary terms`);

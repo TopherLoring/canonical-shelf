@@ -31,3 +31,6 @@ public/data/verse-annotations.json
 
 # Local backups created by Execute-CanonicalShelfOverhaul.ps1
 .backup-overhaul-*/
+
+# Server-only generated code (internal belief context); never committed or published
+worker/generated/

@@ -238,6 +238,16 @@ test('no all caps anywhere: no visible element is styled in capitals',async({pag
   }
 });
 
+test('the internal belief context is never served by the site (only the Theologian server reads it)',async({request})=>{
+  for(const path of ['/data/theologian-belief-context.md','/data/statement-of-faith-v3.md']){
+    const res=await request.get(path);
+    const body=await res.text();
+    expect(body,`${path} must not expose the internal belief context`).not.toContain('Internal Belief and Interpretive Context');
+  }
+  const llms=await (await request.get('/llms.txt')).text();
+  expect(llms).not.toContain('Internal Belief and Interpretive Context');
+});
+
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('.library-reader-panel [data-notes-mount]');
