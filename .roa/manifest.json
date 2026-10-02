@@ -85,7 +85,9 @@
       "public/theme-sample.js",
       "public/theme-lab.html",
       "public/theme-lab.js",
-      "public/theme-lab.css"
+      "public/theme-lab.css",
+      "scripts/build-legacy-ledger.mjs",
+      "scripts/convert-legacy-lessons.mjs"
     ],
     "exclude": [
       "public/data/",

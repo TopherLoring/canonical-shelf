@@ -146,6 +146,7 @@ function authoredScenes(lesson,corpus,esc){
       if(block.type==='prose')return proseMarkup([block.text],corpus,esc);
       if(block.type==='callout')return `<aside class="scene-callout"><p>${esc(block.text)}</p></aside>`;
       if(block.type==='reading')return scriptureMarkup(lesson,corpus,esc);
+      if(block.type==='visual')return visualBlock(lesson,esc);
       if(block.type==='check')return `<div class="inline-check" id="check-${block.index+1}">${challengeForm(lesson.challenges[block.index],aid,block.index,esc)}</div>`;
       if(block.type==='reflect')return `<p class="scene-prose">${esc(lesson.reflect)}</p>${lesson.model?`<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>`:''}`;
       return '';

@@ -52,6 +52,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.excluded-gospels` | All excluded gospels also receive coverage inside the main curriculum through each lesson's additional-details/footnotes section (the Study Desk apparatus) | Owner decision | undefined |
 | `curriculum.extra-credit` | Add an optional extra-credit module for in-depth coverage: | Owner decision | undefined |
 | `curriculum.format` | undefined | Agent default | undefined |
+| `curriculum.glossary.list` | Glossary review approved: | Owner decision | undefined |
 | `curriculum.glossary.selective` | The glossary should be selective for an adult audience: | Owner decision | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
@@ -82,6 +83,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.themes.rules` | Where the theme specification conflicts with an existing rule, the rule changes. | Owner decision | undefined |
 | `design.themes.scope` | Layout structure is the same in every theme; | Owner decision | undefined |
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
+| `design.themes.sketch-book-name` | The Illustrated theme is named Sketch Book | Owner decision | undefined |
 | `design.themes.spec` | The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; | Owner decision | undefined |
 | `design.typography.no-all-caps` | No all caps anywhere: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
@@ -131,7 +133,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
-| `ui.theme.default` | Paper is the default theme | Owner decision | undefined |
+| `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |

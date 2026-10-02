@@ -579,7 +579,7 @@ html[data-theme='watercolor'][data-mode='dark'] {
   --ornament-6: #E6A3A5;
 }
 
-/* Illustrated — style and light palette */
+/* Sketch Book — style and light palette */
 html[data-theme='illustrated'] {
   --font-display: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
   --font-body: ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
@@ -620,7 +620,7 @@ html[data-theme='illustrated'] {
   --ornament-6: #A2C2D0;
 }
 
-/* Illustrated — dark palette */
+/* Sketch Book — dark palette */
 html[data-theme='illustrated'][data-mode='dark'] {
   --color-page: #1B1B1A;
   --color-surface: #252523;
@@ -857,7 +857,7 @@ html[data-mode='dark'] [data-theme-swatch='watercolor'] {
   --swatch-accent: #E6A3A5;
 }
 
-/* Illustrated — swatch */
+/* Sketch Book — swatch */
 [data-theme-swatch='illustrated'] {
   --swatch-page: #F7F4EC;
   --swatch-surface: #FDFBF6;
@@ -866,7 +866,7 @@ html[data-mode='dark'] [data-theme-swatch='watercolor'] {
   --swatch-accent: #E3826A;
 }
 
-/* Illustrated — swatch, dark */
+/* Sketch Book — swatch, dark */
 html[data-mode='dark'] [data-theme-swatch='illustrated'] {
   --swatch-page: #1B1B1A;
   --swatch-surface: #252523;

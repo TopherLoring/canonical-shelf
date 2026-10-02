@@ -30,7 +30,12 @@
       "body": "Understanding is not assent. Canonical Shelf can state its own theological/editorial position while still asking you to identify the text, evidence, alternatives, uncertainty, and reasoning involved. Scored work evaluates understanding and reasoning rather than requiring you to agree personally.",
       "tag": "Explore"
     }
-  ]
+  ],
+  "carries": {
+    "p3": "#map",
+    "p4": "#map",
+    "drawer:Does “later” mean “no answer now”?": "drawers"
+  }
 }
 ---
 ## Bring your questions {#questions}

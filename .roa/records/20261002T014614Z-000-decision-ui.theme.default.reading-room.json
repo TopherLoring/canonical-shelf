@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.theme.default.reading-room",
+  "topic": "ui.theme.default",
+  "date": "2026-10-02",
+  "text": "Reading Room is the default theme (decided 2026-10-01; supersedes Paper)",
+  "rationale": "Same decision as record reading-room, filed under the default-theme topic so the state no longer lists Paper",
+  "by": "Chris"
+}
