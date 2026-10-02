@@ -26,7 +26,10 @@ const vars={
   BETTER_AUTH_URL:authUrl,
   CANONICAL_ORIGIN:effectiveOrigin,
   RELEASE_SHA:releaseSha,
-  BETTER_AUTH_SECRET:process.env.BETTER_AUTH_SECRET||'canonical-shelf-auth-secret-production'
+  // Production reads BETTER_AUTH_SECRET from the Cloudflare secret binding
+  // (uploaded by CI via --secrets-file). Emitting it as a plaintext var would
+  // expose it in the dashboard and make Wrangler replace the remote secret.
+  ...(!isProduction?{BETTER_AUTH_SECRET:process.env.BETTER_AUTH_SECRET||'canonical-shelf-auth-secret-local'}:{})
 };
 
 const config={
@@ -41,7 +44,7 @@ const config={
     binding:'ASSETS',
     html_handling:'auto-trailing-slash',
     not_found_handling:'single-page-application',
-    run_worker_first:['/api/*']
+    run_worker_first:['/api/*','/admin/*']
   },
   ai:{binding:'AI'},
   vars,

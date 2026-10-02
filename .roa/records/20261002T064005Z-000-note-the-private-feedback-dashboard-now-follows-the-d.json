@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-02",
+  "text": "The private feedback dashboard now follows the design system: it uses the shared theme tokens (Reading Room, with dark mode following the device) instead of hard-coded colors, and its labels and status badges are no longer all caps"
+}

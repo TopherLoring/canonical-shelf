@@ -83,6 +83,11 @@ for(const path of ['/data/theologian-crisis-policy.json','/safety.html']){
   const body=await (await fetchWithRetry(path)).text();
   if(/"pastoralCare"|"responseContract"|What crisis mode does/.test(body))throw new Error(`${path} still serves the internal crisis policy`);
 }
+const adminResponse=await fetchWithRetry('/admin/feedback',{init:{headers:{'sec-fetch-mode':'navigate',accept:'text/html'}}});
+const adminBody=await adminResponse.text();
+if(!adminBody.includes('/admin-feedback.js'))throw new Error('/admin/feedback is not serving the private feedback dashboard (Worker route bypassed by asset fallback?)');
+if(!/noindex/i.test(adminResponse.headers.get('x-robots-tag')||''))throw new Error('/admin/feedback is missing its noindex header');
+
 const llmsBody=await (await fetchWithRetry('/llms.txt')).text();
 if(/theologian-crisis-policy|"pastoralCare"/.test(llmsBody))throw new Error('/llms.txt still exposes the internal crisis policy');
 
@@ -111,4 +116,4 @@ if(!Array.isArray(theologian?.guardrails)||!theologian.guardrails.some(item=>/Be
 if(!Array.isArray(theologian?.evidence)||theologian.evidence.length===0)throw new Error('live Theologian smoke returned no grounding evidence');
 if(theologian?.validation?.status!=='passed')throw new Error('live Theologian smoke did not report passed guardrail validation');
 
-console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: SPA route fallback, legal/privacy surfaces, crisis policy kept internal, crisis mode, generated content, bindings, and live cloud Theologian verified`);
+console.log(`production smoke gate passed for ${origin} at release ${expectedRelease}: SPA route fallback, private admin dashboard route, legal/privacy surfaces, crisis policy kept internal, crisis mode, generated content, bindings, and live cloud Theologian verified`);

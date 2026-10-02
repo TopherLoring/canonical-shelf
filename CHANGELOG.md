@@ -17,6 +17,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - All 119 lessons are in the final lesson format; a frozen content ledger (1,776 items) and a no-condensing floor verify every lesson; Lesson 1's original content restored; glossary trimmed to 164 terms for adults
 
+### Fixed
+
+- The private feedback dashboard at /admin/feedback now loads in production: admin routes run Worker code before the static-asset SPA fallback, and the dashboard page is served without a redirect so its no-store and noindex headers hold; the production auth secret now comes only from the Cloudflare secret binding, never plaintext Worker vars
+- The private feedback dashboard now follows the design system: it uses the shared theme tokens (Reading Room, with dark mode following the device) instead of hard-coded colors, and its labels and status badges are no longer all caps
+
 ## 2026-10-01
 
 ### Decided
