@@ -1,3 +1,4 @@
+const darkQuery=matchMedia('(prefers-color-scheme: dark)');const applyMode=()=>{if(darkQuery.matches)document.documentElement.dataset.mode='dark';else delete document.documentElement.dataset.mode};applyMode();darkQuery.addEventListener('change',applyMode);
 const $=s=>document.querySelector(s);
 const login=$('#login'),dashboard=$('#dashboard'),loginForm=$('#login-form'),loginStatus=$('#login-status'),dashboardStatus=$('#dashboard-status'),list=$('#feedback-list'),signOut=$('#sign-out'),filter=$('#status-filter'),search=$('#search');
 let items=[];

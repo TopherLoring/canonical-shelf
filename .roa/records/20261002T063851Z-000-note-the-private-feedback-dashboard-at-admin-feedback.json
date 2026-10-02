@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-02",
+  "text": "The private feedback dashboard at /admin/feedback now loads in production: admin routes run Worker code before the static-asset SPA fallback, and the dashboard page is served without a redirect so its no-store and noindex headers hold; the production auth secret now comes only from the Cloudflare secret binding, never plaintext Worker vars"
+}

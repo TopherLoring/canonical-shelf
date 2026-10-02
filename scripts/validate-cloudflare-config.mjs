@@ -17,9 +17,11 @@ if(config.assets?.binding!=='ASSETS')fail('static assets binding must be ASSETS'
 if(config.assets?.html_handling!=='auto-trailing-slash')fail('static assets must preserve clean URL HTML handling');
 if(config.assets?.not_found_handling!=='single-page-application')fail('static assets must use single-page-application fallback');
 if(!Array.isArray(config.assets?.run_worker_first)||!config.assets.run_worker_first.includes('/api/*'))fail('API routes must run Worker code before static assets');
+if(!config.assets.run_worker_first.includes('/admin/*'))fail('admin routes must run Worker code before static assets');
 if(config.ai?.binding!=='AI')fail('Workers AI binding must be AI');
 if(config.vars?.BETTER_AUTH_URL!==CANONICAL_ORIGIN)fail(`BETTER_AUTH_URL must be canonical origin ${CANONICAL_ORIGIN}`);
 if(config.vars?.CANONICAL_ORIGIN!==CANONICAL_ORIGIN)fail('CANONICAL_ORIGIN must be emitted into Worker vars');
+if(config.vars&&Object.hasOwn(config.vars,'BETTER_AUTH_SECRET'))fail('BETTER_AUTH_SECRET must come from the Cloudflare secret binding, never plaintext vars');
 if(config.vars?.RELEASE_SHA!==expectedRelease)fail(`RELEASE_SHA must match current release ${expectedRelease}`);
 
 const databases=Array.isArray(config.d1_databases)?config.d1_databases:[];
