@@ -95,7 +95,9 @@ export async function readFeedbackAdminQueue(db:D1Like,{status='',limit=100}:{st
 
 export async function respondToFeedback(db:D1Like,feedbackId:unknown,response:unknown,status:unknown='responded',now=new Date().toISOString()){
   const id=clip(feedbackId,80),message=clip(response,6000),nextStatus=clip(status,40)||'responded';if(!id)return {ok:false,reason:'missing-id'};
-  const existing=await db.prepare('SELECT id FROM feedback WHERE id=?').bind(id).first();if(!existing)return {ok:false,reason:'not-found'};
-  await db.prepare('UPDATE feedback SET reviewer_response=?, status=?, responded_at=?, updated_at=? WHERE id=?').bind(message,nextStatus,now,now,id).run();
-  return {ok:true,id,status:nextStatus,respondedAt:now};
+  if(!['new','reviewed','responded','resolved','closed'].includes(nextStatus))return {ok:false,reason:'invalid-status'};
+  const existing=await db.prepare('SELECT id,responded_at FROM feedback WHERE id=?').bind(id).first<Record<string,unknown>>();if(!existing)return {ok:false,reason:'not-found'};
+  const isResponseState=['responded','resolved','closed'].includes(nextStatus),respondedAt=isResponseState?(existing.responded_at?String(existing.responded_at):now):null;
+  await db.prepare('UPDATE feedback SET reviewer_response=?, status=?, responded_at=?, updated_at=? WHERE id=?').bind(message,nextStatus,respondedAt,now,id).run();
+  return {ok:true,id,status:nextStatus,respondedAt};
 }
