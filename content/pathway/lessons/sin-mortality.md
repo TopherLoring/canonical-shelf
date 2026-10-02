@@ -18,6 +18,8 @@
 ## Rupture, mortality, and the tree of life {#orient}
 > The story explains damaged trust and lost access to life. Receiving a broken world is not identical to personally committing another person’s act.
 
+**Canonical Shelf’s own position.** The first sin brought death into the human condition. We inherit its consequences, including mortality, but not the personal guilt of those who came before us. Human nature eventually leads each person into sin of their own, and each person is responsible for their own choices. Many traditions, following Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone.
+
 The human response to God now includes hiding and fear. When questioned, the humans direct attention toward others. The story portrays a rupture in trust and accountability before readers reach its account of toil and death. Sin is more than breaking an arbitrary rule; relationships are damaged.
 
 ## Read the passage with the question in view {#read}

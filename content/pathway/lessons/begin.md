@@ -28,7 +28,10 @@
       "body": "Because this short passage is the earliest written summary of what the first Christians proclaimed. Knowing the center first gives the rest of the library a place to connect.",
       "tag": "Explore"
     }
-  ]
+  ],
+  "carries": {
+    "p3": "superseded:curriculum.teaching-approach.independent-2026-10-02"
+  }
 }
 ---
 ## Start with a person and a story {#start}
@@ -138,7 +141,7 @@ Paul writes to a community in Roman Corinth, not to isolated readers. Patron-cli
 ```
 
 ## How this guide teaches {#stance}
-This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective influenced by Metropolitan Community Churches and the Christian Church (Disciples of Christ). It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.
+This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective grounded in its own published Statement of Faith rather than in any denomination. It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.
 
 ```check
 {

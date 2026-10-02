@@ -12,7 +12,10 @@
     "Grace": "God’s freely given favor and saving gift."
   },
   "deeper": "Christian traditions relate faith, justification, and works differently. Explain their reasoning fairly. In this guide, good works do not purchase salvation; love takes practical shape in response to grace.",
-  "drawers": []
+  "drawers": [],
+  "carries": {
+    "p4": "superseded:theology.grace.works.2026-10-02"
+  }
 }
 ---
 ## Put understanding into practice {#orient}
@@ -29,7 +32,7 @@ The story names a priest, a Levite, and a Samaritan. The Samaritan’s role unse
 Mercy becomes practical: approaching the injured person, tending wounds, transporting him, arranging care, and paying for it. Jesus redirects attention from defining a category of acceptable neighbors to becoming a neighbor through action. Loving intentions alone are not the whole account.
 
 ## Keep the setting visible {#keep-the-setting-visible}
-This guide teaches salvation as God’s gift through Christ’s sacrifice and resurrection, received in repentance and faith rather than earned by good deeds. The parable nevertheless gives discipleship concrete ethical content. Reading grace and responsibility together avoids reducing Christianity either to a merit contest or to words with no consequences.
+This guide teaches that forgiveness and salvation are gifts of God’s Love through Christ’s sacrifice and resurrection, received rather than earned: not rewards for good deeds, rituals, or prescribed words. Faith and repentance are responses to that gift, not payment for it. The parable nevertheless gives discipleship concrete ethical content. Reading grace and responsibility together avoids reducing Christianity either to a merit contest or to words with no consequences.
 
 ```check
 {

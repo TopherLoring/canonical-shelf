@@ -62,6 +62,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.rewrite.preservation` | The curriculum rewrite must not lose content and must not condense or summarize it: | Owner decision | undefined |
 | `curriculum.structure` | Curriculum uses four top-level modules (Hermeneutics & Canon; | Owner decision | undefined |
 | `curriculum.teaching-approach` | Audience: | Owner decision | undefined |
+| `curriculum.teaching-approach.identity` | Remove every reference to the Metropolitan Community Churches (MCC) and the Christian Church (Disciples of Christ) from Canonical Shelf, including descriptiv... | Owner decision | undefined |
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
@@ -91,7 +92,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |
 | `doctrine.spiritual-warfare` | Satan, demons, and spiritual warfare: | Owner decision | undefined |
 | `doctrine.statement-of-faith` | undefined | Agent default | undefined |
-| `doctrine.trinity-incarnation` | Trinity and incarnation foundation: | Owner decision | undefined |
+| `doctrine.trinity-incarnation` | Superseded by the 2026-10-02 reconciliation: | Owner decision | undefined |
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
@@ -123,6 +124,53 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theologian.privacy` | undefined | Agent default | undefined |
 | `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
 | `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
+| `theology.agency.free-choice` | Affirmed: | Owner decision | undefined |
+| `theology.baptism` | Affirmed: | Owner decision | undefined |
+| `theology.christ.ascension` | Left open: | Owner decision | undefined |
+| `theology.christ.death-resurrection` | Affirmed: | Owner decision | undefined |
+| `theology.christ.incarnation` | Revised: | Owner decision | undefined |
+| `theology.christ.preexistence` | Affirmed: | Owner decision | undefined |
+| `theology.christ.way` | Revised: | Owner decision | undefined |
+| `theology.church` | Affirmed: | Owner decision | undefined |
+| `theology.communion` | Affirmed: | Owner decision | undefined |
+| `theology.covenant.love` | Affirmed: | Owner decision | undefined |
+| `theology.creation.final-state` | Left open: | Owner decision | undefined |
+| `theology.death.sleep` | Internal context only (not public doctrine): | Owner decision | undefined |
+| `theology.difficult-texts` | Affirmed: | Owner decision | undefined |
+| `theology.earth-as-hell` | Internal context only (not public doctrine): | Owner decision | undefined |
+| `theology.faith` | Affirmed: | Owner decision | undefined |
+| `theology.forgiveness` | Revised: | Owner decision | undefined |
+| `theology.god.love` | Affirmed: | Owner decision | undefined |
+| `theology.god.manifestation` | Affirmed: | Owner decision | undefined |
+| `theology.god.one-consciousness` | Revised: | Owner decision | undefined |
+| `theology.god.source-agency` | God is affirmed as the ultimate source of existence in principle, but this must not imply that God directly causes or controls every creaturely choice or eve... | Owner decision | undefined |
+| `theology.grace.works` | Affirmed: | Owner decision | undefined |
+| `theology.hell.gehenna` | Internal context only (not public doctrine): | Owner decision | undefined |
+| `theology.human-dignity` | Affirmed: | Owner decision | undefined |
+| `theology.image-of-god` | Left open: | Owner decision | undefined |
+| `theology.inclusion.lgbtq` | Affirmed: | Owner decision | undefined |
+| `theology.institutional-independence` | Affirmed: | Owner decision | undefined |
+| `theology.judgment.repented` | Affirmed: | Owner decision | undefined |
+| `theology.judgment.revelation` | Affirmed: | Owner decision | undefined |
+| `theology.knowledge.open-future` | Revised: | Owner decision | undefined |
+| `theology.ministry.women` | Affirmed: | Owner decision | undefined |
+| `theology.original-sin` | Revised: | Owner decision | undefined |
+| `theology.prayer-healing` | Affirmed: | Owner decision | undefined |
+| `theology.prophecy` | Affirmed: | Owner decision | undefined |
+| `theology.providence` | Affirmed: | Owner decision | undefined |
+| `theology.reincarnation` | Rejected: | Owner decision | undefined |
+| `theology.repentance` | Affirmed: | Owner decision | undefined |
+| `theology.restoration.satan` | Internal context only (not public doctrine): | Owner decision | undefined |
+| `theology.restoration.universal` | Affirmed: | Owner decision | undefined |
+| `theology.salvation.death` | Affirmed: | Owner decision | undefined |
+| `theology.salvation.reconciliation-distinction` | Affirmed: | Owner decision | undefined |
+| `theology.science.multiverse` | Internal context only (not public doctrine): | Owner decision | undefined |
+| `theology.scripture.inspiration` | Revised: | Owner decision | undefined |
+| `theology.scripture.method` | Affirmed: | Owner decision | undefined |
+| `theology.sin.culpability` | Affirmed: | Owner decision | undefined |
+| `theology.sin.definition` | Revised: | Owner decision | undefined |
+| `theology.sin.human-judgment` | Affirmed: | Owner decision | undefined |
+| `theology.spirit` | Revised: | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |

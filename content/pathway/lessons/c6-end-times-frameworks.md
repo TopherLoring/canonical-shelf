@@ -19,7 +19,10 @@
       "body": "The English word comes through Latin terminology for being “caught up.” Vocabulary does not settle whether the event is separate from or part of the public coming of Christ.",
       "tag": "Explore"
     }
-  ]
+  ],
+  "carries": {
+    "p4": "superseded:theology.creation.final-state.2026-10-02"
+  }
 }
 ---
 ## Millennium and rapture: name the frameworks before debating them {#orient}
@@ -36,7 +39,7 @@ Premillennialism itself includes important differences. Historic premillennialis
 Popular “rapture” teaching often draws especially on 1 Thessalonians 4 together with a dispensational end-times scheme. Christians disagree about whether the passage describes a separate secret removal, the public coming of Christ, or another configuration. The word “rapture” can name the catching-up imagery without settling the entire timeline.
 
 ## Keep the setting visible {#keep-the-setting-visible}
-Canonical Shelf keeps bodily resurrection, judgment, Christ’s victory, and renewed creation central while presenting detailed end-times schedules as disputed interpretations. The learner should be able to identify a framework and its evidence without being graded for adopting it.
+Canonical Shelf keeps bodily resurrection, judgment, and Christ’s victory over death central, and leaves the final physical state of creation open, while presenting detailed end-times schedules as disputed interpretations. The learner should be able to identify a framework and its evidence without being graded for adopting it.
 
 ```check
 {
@@ -69,7 +72,7 @@ Canonical Shelf keeps bodily resurrection, judgment, Christ’s victory, and ren
   "title": "Keep the center and the dispute distinct",
   "prompt": "Which two statements fit Canonical Shelf’s method?",
   "items": [
-    "Bodily resurrection and renewed creation are more central than one detailed timeline.",
+    "Bodily resurrection and Christ’s victory over death are more central than one detailed timeline.",
     "All Christians agree on a separate secret rapture.",
     "Dispensational premillennialism and historic premillennialism are identical.",
     "A learner can understand a framework without being graded for assent."

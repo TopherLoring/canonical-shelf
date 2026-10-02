@@ -20,6 +20,8 @@
 
 Christian doctrine gathers and interprets biblical testimony in a disciplined way. The Trinity names the historic confession of one God in three persons: Father, Son, and Holy Spirit. It does not mean three separate gods or one person merely switching roles. The language aims to preserve unity and real distinction together.
 
+**Canonical Shelf’s own position.** The historic confession described here is what most churches teach, and this guide teaches it accurately so you can recognize and discuss it. Canonical Shelf’s own Statement of Faith takes a different view: it affirms one God with one divine consciousness, and reads Father, Son, and Holy Spirit as Scripture’s language for how that one God relates to creation, not as three separate divine consciousnesses or a literal family tree. It affirms that the divine reality embodied in Jesus existed eternally within God and took part in creation, and that the Holy Spirit is God’s own presence throughout creation. Because this differs from the classical formulation, the guide labels it as its own position rather than presenting it as what all Christians believe.
+
 ## Read the passage with the question in view {#read}
 ::reading
 

@@ -12,7 +12,10 @@
     "Polity": "A church’s structure of governance."
   },
   "deeper": "Compare a denomination’s official statement with a local congregation’s practice. Neither should automatically be treated as a complete description of the other.",
-  "drawers": []
+  "drawers": [],
+  "carries": {
+    "p4": "superseded:curriculum.no-mcc-disciples-references"
+  }
 }
 ---
 ## Understand Christian differences without caricature {#orient}
@@ -29,7 +32,7 @@ Catholic, Orthodox, and Protestant traditions relate Scripture, tradition, and c
 The Reformation and other reform movements raised questions about authority, grace, faith, and church life. Protestant traditions themselves differ: Lutheran teaching emphasizes justification and law/gospel; Wesleyan teaching emphasizes grace and sanctification; Baptist traditions emphasize religious liberty and local church freedom. These summaries identify emphases rather than claiming each concern belongs to only one group.
 
 ## Keep the setting visible {#keep-the-setting-visible}
-This guide draws particularly on Metropolitan Community Churches and the Christian Church (Disciples of Christ). Its editorial commitments include an open table, explicit LGBTQ affirmation, Christian unity, contextual reading, and freedom of inquiry. It teaches historic doctrine substantively without making assent a prerequisite to learning. It does not claim to speak officially for every congregation in either movement.
+This guide is grounded in its own published Statement of Faith rather than in any denomination. Its editorial commitments include an open table, explicit LGBTQ affirmation, Christian unity, contextual reading, and freedom of inquiry. It teaches historic doctrine substantively without making assent a prerequisite to learning, and it does not claim to speak for any church or movement.
 
 Ecumenism seeks relationship and cooperation among Christians without pretending disagreements do not exist. A fair comparison asks what a tradition affirms, why its adherents find it persuasive, and where differences affect practice. Learners should be able to represent a position accurately even when they reject it. Understanding another account is not an obligation to adopt it.
 

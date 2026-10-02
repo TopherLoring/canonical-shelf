@@ -1,189 +1,545 @@
-# Statement of Faith
+# Canonical Shelf --- Internal Belief and Interpretive Context
+
+**Status:** Supplemental to the public Statement of Faith.\
+**Authority:** The public Statement of Faith remains the doctrinal
+ceiling.\
+**Purpose:** Preserve nuance, reasoning, uncertainty, and distinctions
+between Scripture, Canonical Shelf's conclusions, personal theological
+models, and historic Christian interpretation.
+
+## Interpretive Governance
+
+Canonical Shelf must distinguish: 1. what the biblical text explicitly
+states; 2. what follows by reasonable interpretation; 3. what later
+Christian tradition teaches; 4. what Canonical Shelf concludes; 5. what
+remains an open or personal theological model.
+
+Contested conclusions must not be presented as uncontested biblical
+facts. Learners are not required to agree. Understanding and reasoning,
+not theological assent, are assessed.
+
+Canonical Shelf's theology stands independently. No denomination is a
+source of doctrinal authority for Canonical Shelf, and none is named in
+its identity or curriculum framing.
+
+## 1. God: Source, Love, and Agency
+
+God is the ultimate source of all existence, but this does not mean God
+directly causes or determines every created action. Created beings
+possess genuine agency.
+
+God is Love (1 John 4:8, 16). Canonical Shelf treats this as
+foundational to God's nature rather than merely one divine attribute.
+Love is the driving purpose of creation. Genuine freedom makes
+rejection, separation, suffering, and their consequences possible;
+permanent abandonment is incompatible with the final purpose of Love.
 
-**TopherLoring Ministries**
+This conclusion goes beyond the bare wording of 1 John. The claim that
+God's restorative purpose must ultimately succeed is Canonical Shelf's
+theological synthesis.
 
-## Preamble
+## 2. One God, One Divine Consciousness
+
+Canonical Shelf affirms one God and one divine consciousness. Father,
+Son, and Holy Spirit are not understood as three separate divine
+consciousnesses or literal divine genealogy.
 
-This Statement of Faith sets out the convictions we hold, teach, and are governed by. We offer it in the conviction that a religious community owes the people it serves an honest account of what it believes and why — including where its convictions rest on contested interpretation rather than settled consensus.
+Father/Son language communicates relationship, inheritance, favor,
+representation, authority, and humanly intelligible relationship.
+Jesus's prayers to the Father are genuine and also model the human
+relationship of prayer, trust, dependence, and alignment with God. John
+11:41--42 explicitly shows at least one prayer spoken for the benefit of
+listeners; it does not establish that every Father/Son dialogue
+functions identically.
+
+The Holy Spirit is God's own invisible presence, Love, will, and
+influence throughout creation rather than a separate consciousness.
 
-We approach Scripture and theology with reverence, intellectual honesty, humility, compassion, and an open table. Questions are not enemies of faith: doubt, uncertainty, disagreement, and continued exploration can be part of sincere spiritual formation, and no one should have to pretend certainty they do not possess in order to learn, participate, worship, seek God, or belong. Faith involves trust, but it should never require intellectual dishonesty.
+**Departure from historic formulation:** Classical Nicene Christianity
+normally confesses one God in three distinct persons and does not define
+the Trinity as one divine consciousness expressed through Father, Son,
+and Spirit. Canonical Shelf does not present its one-consciousness model
+as the historic consensus or as explicitly defined by Scripture.
+
+## 3. Divine Manifestation
 
-Where Christianity makes a claim, we should be willing to ask why Christians believe it. Where doctrine developed historically, we should acknowledge that development. Where Scripture is difficult, we should confront the difficulty rather than conceal it. Where interpretation is contested, we should not present our conclusions with greater certainty than the evidence warrants.
+God may physically manifest in multiple forms and places as God chooses.
+Biblical manifestations such as cloud and fire demonstrate that God's
+physical manifestation need not imply confinement to a permanent body or
+location. Absence of physical manifestation does not imply absence of
+God; the Spirit describes God's nonphysical presence throughout
+creation.
+
+## 4. Christ Before the Incarnation
+
+The divine reality embodied as Jesus existed eternally within God and
+participated in creation. John 1:1--3, 14; John 17:5; Philippians
+2:6--8; Colossians 1:15--17; 1 Corinthians 8:6; and Hebrews 1:1--3 are
+central texts.
+
+Canonical Shelf does not claim to know the precise mode of this
+preexistent reality within the one God.
+
+## 5. Incarnation and Divine Experiential Understanding
+
+Jesus is fully divine and fully human, while the physical Jesus did not
+encompass the entirety of God. Through Jesus, God genuinely experienced
+human existence from within creation.
+
+Canonical Shelf distinguishes knowledge from experiential understanding.
+The incarnation gave God a deeper experiential and emotional
+understanding of human decision-making. God can learn through creation,
+respond to what occurs, and change how God acts without ceasing to be
+God.
+
+Genesis 6:6, Exodus 32:14, Jonah 3:10, and Genesis 22:12 contain
+responsive or learning language. Classical theology often interprets
+such language anthropomorphically in order to preserve exhaustive
+omniscience and immutability.
+
+**Major departure from classical theology:** Canonical Shelf does not
+require the classical doctrines that God eternally possesses exhaustive
+experiential understanding of every event before it occurs or that God's
+responses are immutable in the classical sense.
 
-Our goal is not merely to tell people what Christians believe. It is to help them encounter Jesus, understand Scripture, examine the foundations of Christian faith, grow in relationship with God, and discover what following Christ means for the way they live.
+## 6. Why Jesus
 
-The articles that follow are ordered deliberately. We confess God and Jesus Christ before we confess Scripture, because we believe Jesus is the lens through which Scripture is rightly read, and not the reverse.
+The incarnation is essential to salvation. God enters humanity,
+experiences the human condition, understands human choice from within
+it, forgives, and fulfills the promise of salvation and reconciliation.
 
-## Article I — Of God
+Jesus is therefore both God's entrance into human existence and the
+means through which God's relationship with humanity is transformed.
+This is not defined primarily as God requiring punishment to be
+transferred to Jesus.
 
-We believe in one God, Creator and source of all that exists. Scripture presents God as Father, Son, and Holy Spirit; historic Christianity describes this reality through the doctrine of the Trinity: one God eternally existing as three distinct persons.
+## 7. Death, Resurrection, Ascension, and Return
 
-The word *Trinity* does not itself appear in Scripture. The doctrine developed as the early church sought language capable of holding several biblical convictions together at once: there is one God; the Father is God; Jesus is presented within the divine identity; the Holy Spirit acts with the presence and authority of God; and the three are genuinely distinguishable from one another. We therefore hold the Trinity to be a theological framework developed from the biblical witness, not an arbitrary formula imposed upon it.
+Jesus was beaten, crucified, truly died, defeated death, was bodily
+resurrected, appeared to others as recorded, and ascended. His
+resurrected body will physically return.
 
-Father, Son, and Spirit are not three gods, not three pieces that together constitute God, and not three costumes, personalities, or temporary roles assumed by one divine individual. We confess one undivided divine reality in which the three exist in genuine and eternal relationship.
+Canonical Shelf does not claim certainty about the mechanics of the
+ascension, Jesus's current physical location, or the precise present
+physical state of the resurrected body.
 
-Human language cannot completely describe the nature of God. Mystery is not an excuse to stop thinking, but neither should the limits of human understanding surprise us here. Questions about the Trinity are welcomed rather than treated as failures of faith.
+Christ's victory over death means death cannot permanently hold
+humanity. All will be resurrected. Resurrection is distinct from
+reconciliation.
 
-## Article II — Of Jesus Christ
+## 8. Jesus as the Way
 
-We believe Jesus Christ is fully divine and fully human. He did not begin to exist at Bethlehem; the New Testament presents the Son as existing with God before creation and participating in creation itself. His birth is the Incarnation — the eternal Son entering human history and assuming human nature. He is not a separate lesser god, not a human being who later became divine, and not a period in which God stopped being God in order to become Jesus.
+John 14:6 is not understood as requiring every person to know Jesus's
+name, profess Christianity, or belong to Christianity before Christ's
+saving work can reach them.
 
-The distinction between Jesus and the Father is nevertheless genuine: Jesus can love the Father, speak to him, pray to him, obey him, and return to him without Christianity claiming the existence of two gods. In Jesus, God enters human life from within — birth, friendship, hunger, joy, grief, injustice, vulnerability, suffering, and death.
+"Through Jesus" refers to what God revealed and accomplished through
+Jesus. Rejection of Christianity is not automatically rejection of God.
 
-We believe Jesus was crucified, truly died, and was raised from the dead. The resurrection is not the survival of his memory, a metaphor for hope, a psychological transformation experienced by his disciples, or the temporary resuscitation of a corpse. The Gospels portray the risen Jesus as transformed yet bodily real — speaking with his followers, recognized by them, eating with them, able to be touched. Christian resurrection concerns renewed and transformed embodied life, not escape from physical existence. It declares that death does not possess the final claim over creation, and it is both the vindication of Jesus and the beginning of Christian hope: because Christ is raised, we look not merely toward souls escaping the world but toward God's ultimate renewal of it.
+This is an interpretive conclusion. John 14:6 explicitly identifies
+Jesus as the way; Canonical Shelf's non-exclusivist application must be
+labeled as interpretation rather than the only possible reading.
 
-We believe the risen Jesus appeared to his followers and later ascended. We do not understand heaven merely as a physical location above the clouds; biblical language for heaven points toward the unseen dimension of God's presence, authority, and reign. The ascension signifies that Jesus' earthly mission has reached its culmination and that the risen Christ participates fully in that reign. He did not discard his humanity: the one who was crucified is the one who was raised, and the one who was raised is the one we confess as reigning with God.
+## 9. Holy Spirit
 
-Jesus most clearly reveals the character of God. His life, teaching, ministry, death, and resurrection therefore provide the central interpretive lens through which we understand Christian faith, Scripture, and ethics.
+The Spirit is God's nonphysical omnipresence: God's Love, will,
+presence, and influence active throughout creation. The Spirit can
+affect created beings physically, mentally, and emotionally without
+overriding agency.
 
-## Article III — Of the Holy Spirit
+Acts 13:2; John 14:26; John 16:13; Ephesians 4:30; and 1 Corinthians
+12:11 contain personal/agentive language for the Spirit. Historic
+Christianity normally understands these texts in terms of distinct
+personhood. Canonical Shelf interprets the agency as the one God acting
+through God's Spirit.
 
-We believe the Holy Spirit is God's active and living presence, described in Scripture through language including breath, life, power, presence, guidance, comfort, transformation, conviction, gifting, and divine action. The Spirit may meaningfully be called the presence and power of God, while Christian tradition also understands the Spirit as more than an impersonal force. Through the Spirit, God is not confined to a distant heaven but remains active within creation and within human lives.
+## 10. Divine Knowledge and the Open Future
 
-The fruits associated with the Spirit — love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control — provide an important measure by which Christian life, relationships, communities, and teachings should be evaluated.
+God knows every possible decision and the complete consequences of every
+possible path. God perfectly understands created beings---their
+experiences, motivations, desires, fears, circumstances, and why choices
+may be made---but a genuinely free actual choice remains unknown as
+actual until it occurs.
 
-## Article IV — Of Scripture
+God can know the ultimate end without knowing every future free choice
+because every possible path ultimately remains within Love's restorative
+possibility.
 
-We believe Scripture is authoritative for Christian faith, and that taking it seriously requires more than reading an English translation at face value. The Bible is a library rather than a single book written at one time: its writings emerged across different centuries, cultures, languages, political situations, literary genres, communities, and theological conversations. Faithful interpretation seeks what a passage communicated within its original historical, literary, linguistic, and cultural setting before determining how it should be applied today.
+Genesis 22:12; Jeremiah 7:31; Exodus 32:14; Jonah 3:10; 1 Samuel
+23:10--13; and Matthew 11:21--23 are relevant. Psalm 139, Isaiah
+46:9--10, and specific predictions such as Mark 14:30 are important
+countertexts.
 
-We distinguish among the biblical text, the translation of that text, our interpretation of that translation, and our application of that interpretation. These are related, but not identical. Translation necessarily involves interpretation: ancient words carry ranges of meaning that no single modern English word reproduces, manuscripts contain textual variations, cultural assumptions influence readers, and historical distance invites modern categories to be projected backward. Acknowledging this does not diminish Scripture; it is part of taking Scripture seriously.
+**Departure from classical theology:** Classical Christianity commonly
+affirms exhaustive divine foreknowledge of future free acts. Canonical
+Shelf's complete-possibility-tree/open-actual-choice model is a
+theological synthesis close to open theism but should not be represented
+as identical to every form of open theism.
 
-We hold that poetry should be read as poetry, narrative as narrative, wisdom literature as wisdom, letters as correspondence, law within its covenantal setting, and apocalyptic according to its symbolic character.
+## 11. Providence
 
-The purpose of biblical study is not to accumulate quotations. It is to learn to observe carefully, interpret responsibly, discern faithfully, and apply wisely.
+God can influence choices and circumstances without controlling them.
+God may prepare a path, prompt a person, or arrange circumstances
+because God understands the significance a choice could have along
+future paths. A created being may feel or recognize that influence and
+still decline to act on it.
 
-## Article V — Of Interpretation
+Providence can therefore be proactive without becoming determinism.
 
-We believe Jesus Christ stands at the center of Christian interpretation. He identified love of God and love of neighbor as the commandments upon which the Law and the Prophets depend, and we therefore interpret Christian ethics through his character, teaching, ministry, death, and resurrection. He repeatedly directed attention away from religious performance that neglected mercy, justice, faithfulness, and human need; warned religious leaders against imposing heavy burdens on others; crossed boundaries of social respectability; and welcomed people whom religious communities treated as morally suspect or ceremonially unacceptable.
+Personal claims that a particular coincidence or event was providential
+should be labeled as personal interpretation rather than independently
+provable causation.
 
-Interpretations of Scripture are therefore to be evaluated not only by whether an isolated verse can be cited in their defense, but by whether they faithfully reflect the larger biblical witness and the character of God revealed in Jesus. Historical context can explain difficult biblical material, but it must not be used to excuse harm. Present-day application is to be tested against Jesus' teaching, love of neighbor, justice, mercy, human dignity, faithfulness, and the fruit that application produces.
+## 12. Science and Multiple-World Possibilities
 
-We reject proof-texting that lifts isolated verses out of their literary and historical context to settle complex theological or ethical questions. We also reject appeals to Hebrew and Greek used merely to make predetermined conclusions appear scholarly; the original languages should clarify the range of plausible interpretation, not become weapons for manufacturing certainty. Where linguistic, historical, or interpretive questions remain genuinely disputed, we will say so.
+The theology does not depend upon quantum mechanics, branching
+timelines, or a multiverse. It is intentionally compatible with future
+scientific evidence for one actual timeline, physically instantiated
+branches, multiple universes, or another model.
 
-We will address difficult passages directly rather than ignoring, sanitizing, or disguising them — including texts concerning warfare and conquest, slavery, violence, the treatment of women, sexuality, punishment, exclusion, and ethnic conflict. We seek to understand them within their ancient historical and cultural worlds while acknowledging the genuine ethical questions they create for modern readers. We will not pretend that historical context automatically resolves every moral difficulty, and we will not treat questioning difficult texts as rebellion against God. Where Christians hold competing interpretations, those interpretations will be represented fairly.
+Science does not presently prove this theology, and the theology should
+not be used as evidence for a particular interpretation of quantum
+physics.
 
-## Article VI — Of Sin
+## 13. Prophecy
 
-We believe sin is real. It includes the ways human beings turn away from God and damage themselves, other people, communities, and creation, and it may be personal, relational, institutional, or systemic: selfishness, exploitation, violence, greed, injustice, dishonesty, domination, hatred, cruelty, abuse of power, faithlessness, dehumanization, indifference toward suffering, and failure to love.
+Prophecy can include: - what God has determined God will do; -
+predictions grounded in God's understanding of how people will act under
+sufficiently established circumstances; - conditional prophecy; -
+prophecy whose human interpretation is mistaken even when the prophecy
+itself is fulfilled.
 
-Christian teaching about sin should lead people toward repentance, reconciliation, healing, justice, and restoration. It must not become a mechanism for identifying socially convenient groups as uniquely corrupt. All Christians stand in need of grace, and we reject any posture in which Christians approach another person as prosecutor and accused rather than as fellow recipients of God's mercy.
+The communication of a prophecy can itself become part of the
+circumstances influencing fulfillment. Human misunderstanding of
+prophecy must not become a device that makes every failed prediction
+unfalsifiable; claimed fulfillment must still be compared with the
+actual text.
 
-## Article VII — Of Salvation and Grace
+## 14. Free Choice
 
-We believe salvation is the gift of God through Jesus Christ. It cannot be earned, purchased through good behavior, secured through perfect theology, or achieved by first becoming morally acceptable enough for God. God moves toward humanity in grace while humanity is still broken, sinful, uncertain, and unfinished; Christ does not wait for people to complete their transformation before receiving them.
+A free choice is a conscious decision to act or not act. Involuntary
+biological processes are not choices, and outward actions that can
+ordinarily be chosen are not necessarily consciously chosen every time.
 
-Grace comes first. Transformation follows grace; it does not purchase grace. There is no condemnation for those who are in Christ Jesus, and nothing in creation can separate us from the love of God revealed in Christ.
+External coercion can restrict available alternatives and make
+consequences severe, even death, without necessarily eliminating choice
+where a conscious decision between remaining alternatives is still
+possible.
 
-We therefore reject presentations of the gospel that make God's acceptance appear conditional upon resolving every moral, theological, relational, or cultural question before someone can belong to Christ. A new believer should first encounter the reality that Christ has called, loved, received, and saved them. Discipleship, questions, growth, and sometimes correction follow — but grace comes first.
+A person may voluntarily surrender control to God and later withdraw
+that surrender. Divine influence may be resisted.
 
-## Article VIII — Of Repentance and Discipleship
+## 15. Scripture
 
-We believe grace does not make human behavior irrelevant. Jesus calls people to repentance and transformation. We understand repentance as a turning toward God rather than conformity to a predetermined list of cultural expectations — allowing God to transform what is destructive, exploitative, dishonest, unjust, faithless, selfish, or contrary to love.
+Scripture was divinely inspired and providentially maintained. Human
+transmission and translation introduce the possibility of fallibility in
+particular wording, translation, and interpretation without defeating
+Scripture's overall purpose.
 
-Discipleship is the lifelong process of learning to live increasingly in the way of Christ. No Christian completes it before entering the church, and there is therefore no legitimate distinction between supposedly finished Christians who may belong and unfinished people who must first correct themselves. We are all being formed.
+Canonical Shelf does not equate divine inspiration with the
+infallibility of every surviving manuscript, translation, or
+interpretation.
 
-## Article IX — Of the Law and the New Covenant
+Interpretation must distinguish text, textual transmission, translation,
+interpretation, later doctrine, reception, and application. Genre,
+language, historical setting, culture, and canonical context matter.
 
-We believe Christians live within the new covenant established through Christ rather than under the Mosaic covenant as ancient Israel received it. The New Testament repeatedly teaches that Gentile followers of Jesus need not become Torah-observant Jews in order to belong to God's people; the Jerusalem Council confronted that precise question and rejected placing the burden upon them.
+## 16. New Covenant and the Law of Love
 
-We therefore do not treat every command within Israel's covenant law as a timeless Christian command; commands must be interpreted within their covenantal, historical, literary, and theological settings. Freedom from the Mosaic Law is not freedom from morality. Christian ethics asks what faithfulness to God looks like in light of Jesus, the new covenant, love of neighbor, the work of the Spirit, and the moral vision of the wider biblical witness.
+Jesus established a new covenant between God and humanity and
+established Love as its governing law. Matthew 22:37--40, John
+13:34--35, Romans 13:8--10, Galatians 5:14, Luke 22:20, and Hebrews 8
+are central texts.
 
-We hold that selective use of Old Testament law requires theological justification. Christians should not dismiss one command as covenantally limited while treating a nearby command as universally binding without explaining why.
+"The law of Love" is Canonical Shelf's theological description of the
+relationship among these teachings, not a direct biblical title.
 
-## Article X — Of Human Dignity
+Old Testament law remains important to the biblical story but is not
+simply applied as though the Mosaic covenant remained the governing
+Christian covenant.
 
-We believe every human being possesses inherent dignity and should be treated accordingly. No person's value before God is determined by wealth, race, ethnicity, nationality, gender, sexuality, disability, social status, education, religious background, political identity, family structure, or degree of theological certainty. Human beings are never merely theological problems to be solved; they are people to be loved.
+## 17. Original Sin
 
-Any Christian doctrine, interpretation, institution, or pastoral practice is therefore to be evaluated partly by the way it treats actual human beings.
+Original sin introduced death into the human condition. Humans inherit
+its consequences, including mortality, but not Adam and Eve's personal
+guilt.
 
-## Article XI — Of Sexuality, Relationships, and Inclusion
+Romans 5:12--19 is the principal text requiring careful treatment
+because Christian traditions differ over inherited guilt, corruption,
+mortality, and solidarity with Adam. Ezekiel 18:20 supports individual
+responsibility.
 
-We affirm LGBTQ+ people as fully welcome within Christian community. We do not believe homosexual or bisexual orientation is itself sinful, or something a person must renounce in order to come to Christ, receive God's grace, participate in Christian community, or pursue discipleship.
+Human nature will eventually lead every person into personal sin.
 
-We believe faithful same-sex relationships can embody the same Christian virtues expected of faithful heterosexual relationships: love, fidelity, mutuality, honesty, responsibility, commitment, self-giving care, respect, and faithfulness. Our sexual ethic is therefore not organized primarily around the genders of the people within a relationship. It is organized around the character of the relationship. We ask whether it demonstrates mutual consent, fidelity, honesty, equality rather than domination, responsibility, self-control, care for the wellbeing of the other, respect for human dignity, self-giving rather than exploitation, and the fruits of the Spirit.
+## 18. Sin, Intention, Harm, and Human Limits
 
-We recognize that several biblical passages have historically been interpreted as universal condemnations of same-sex relationships. We take those texts seriously. We also recognize that their interpretation is more contested than is sometimes acknowledged.
+Sin is whatever contradicts God's loving will and purpose. Harm alone
+does not define sin. Painful or harmful action can, in some
+circumstances, serve God's purpose; apparently harmless action can
+contradict it.
 
-Genesis 19 and the parallel violence of Judges 19 concern attempted gang rape, humiliation, violence, and violations of hospitality rather than a covenantal relationship between consenting adults. The sexual prohibitions in Leviticus occur within Israel's Holiness Code and therefore require careful consideration of covenant, purity, historical context, and the Christian relationship to Mosaic law. Romans 1 must be interpreted within Paul's larger argument concerning idolatry, excess, desire, Gentile culture, and judgment — a rhetorical movement that culminates in his warning against judging others. The Greek terms *malakoi* and *arsenokoitai* in 1 Corinthians and 1 Timothy present genuine lexical and historical questions, and their precise scope should not be treated as though there has never been translation or scholarly disagreement.
+Intention, knowledge, faith, circumstances, and consequences matter
+without any one of them independently defining sin. A loving intention
+does not automatically make harmful means righteous.
 
-For these reasons, we reject the assumption that modern categories such as *gay*, *homosexual orientation*, or *same-sex marriage* can simply be inserted into ancient biblical texts without historical argument. Our affirming position does not result from ignoring Scripture; it results from engaging Scripture contextually, linguistically, canonically, and through the interpretive center of Jesus Christ. We conclude that Scripture does not provide sufficient grounds for declaring every faithful, committed, mutually loving same-sex relationship inherently sinful.
+It is not humanity's role to determine whether a particular action
+ultimately serves or contradicts God's larger purpose. People remain
+responsible for choices made using the understanding, faith, intention,
+knowledge, and agency available to them; judgment belongs to God.
 
-We therefore reject requiring LGBTQ+ people to renounce their orientation, or the possibility of faithful companionship, as a condition of following Christ. LGBTQ+ Christians may follow Jesus, worship, serve, lead, form families, enter committed relationships and marriages, exercise spiritual gifts, and participate fully in the life of Christian community. No one is to be told that Christ's invitation is available only after they surrender an intrinsic capacity for faithful human companionship.
+Canonical Shelf should not extrapolate a comprehensive moral algorithm
+from these principles.
 
-Grace is not heterosexuality. The gospel is not heterosexuality. The gospel is Jesus Christ.
+## 19. Objective Sin and Culpability
 
-We further hold that Jesus taught that things may be recognized by their fruit, and that this principle applies to relationships as well as to religious teaching. A relationship characterized by coercion, exploitation, manipulation, deception, violence, domination, infidelity, or disregard for another person's dignity is inconsistent with Christian love regardless of the genders of the people involved. A relationship characterized by love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, responsibility, sacrifice, and self-control is not to be dismissed without serious theological reflection merely because the partners are of the same sex. The moral character of a relationship matters, and so does its fruit.
+An act can objectively contradict God's purpose even when the actor does
+not know it. Ignorance therefore does not make the act non-sinful, but
+it affects culpability.
 
-## Article XII — Of Women in Ministry
+Knowledge, intention, understanding, and genuine agency matter to
+responsibility. Later recognition that a past act was sinful creates a
+present responsibility to respond; it does not retroactively create an
+intentional rejection that was absent at the time.
 
-We affirm the full dignity, giftedness, participation, leadership, and spiritual agency of women. Biblical passages concerning women's roles must be interpreted within the historical and social circumstances of the communities to which they were written, and alongside the wider biblical witness concerning women who prophesied, taught, led, supported ministries, served as coworkers, hosted churches, and participated centrally in the ministry of Jesus and the early Christian movement.
+Leviticus's treatment of unintentional sin and Numbers 15's distinction
+between unintentional and deliberate wrongdoing are relevant alongside
+Luke 12:47--48.
 
-Gender is not a basis for denying a person's capacity to teach, lead, serve, or respond to God's calling, and it will not be used as one in this ministry.
+## 20. Repentance
 
-## Article XIII — Of the Church and the Open Table
+Repentance consists of: 1. recognition; 2. ownership, without shifting
+blame or requiring self-condemnation; 3. apology; 4. genuine intent to
+change the outcome going forward.
 
-We recognize throughout Scripture a recurring movement in which God's people discover that the boundaries of God's welcome extend beyond what they previously assumed. Foreigners once viewed as outsiders become members of God's people. Eunuchs excluded under earlier covenantal regulations receive prophetic promises of belonging, dignity, and an everlasting name — and in Acts, Philip responds to an Ethiopian eunuch's desire for baptism without first reconstructing his identity into something more socially conventional. Gentiles once considered unclean are welcomed into the church without first becoming Jews. Peter's encounter with Cornelius forces him to recognize that what God has made clean should not be called unclean, and that categories of purity must not be used to declare people themselves unacceptable.
+Successful changed behavior is not constitutive of repentance. A person
+can genuinely repent and later fail again. Later failure does not
+automatically prove that the earlier repentance was false if its intent
+was genuine.
 
-Again and again, God's people encounter a table larger than they expected. This trajectory should produce humility whenever Christians are tempted to decide who cannot belong. Our first instinct must not be to search for reasons to exclude someone whom God may already be welcoming.
+## 21. Forgiveness
 
-The table is open, and belonging can precede certainty. No one needs to arrive with a completed theological system. People may come carrying faith, doubt, disagreement, skepticism, questions, wounds, previous religious experiences, another religious background, or none at all. They may investigate Christianity before deciding whether they believe it, participate while still asking fundamental questions, disagree with us, and change their minds. So may we.
+Forgiveness is for humanity, not a process by which humans make God
+become willing to love or forgive.
 
-We seek conviction without coercion, community without forced conformity, and faith capable of encountering difficult questions without fear. An open table does not mean nothing is believed; it means belief is offered as invitation rather than weapon.
+A person cannot be responsible for seeking forgiveness they do not know
+they need. Understanding that forgiveness is needed inherently includes
+recognition that something was wrong.
 
-We seek a community shaped by truth, grace, humility, love, justice, hospitality, reconciliation, and continual formation — where people can encounter Scripture before deciding what they believe about it, ask difficult questions without punishment, and disagree without being dehumanized.
+Explicitly asking for forgiveness can be a meaningful expression of
+repentance and relationship but is not what causes forgiveness. Shame
+and feelings of unworthiness may prevent verbal asking; Love does not
+withhold forgiveness because a person cannot perform the correct
+request.
 
-Christian community should be recognizable by its fruit. Where Christianity produces love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control, justice, reconciliation, courage, and compassion, it resembles the kingdom Jesus proclaimed. Where it consistently produces fear, shame, exclusion, domination, cruelty, or despair, Christians have an obligation to ask whether something has gone wrong.
+Guilt is the internal confession of wrongdoing. Shame is distinct: it
+can turn "I did wrong" into "I am unworthy."
 
-## Article XIV — Of Pastoral Care
+Luke 23:34; Romans 5:8; 2 Corinthians 5:19; Luke 15:20; Mark 2:5--12;
+and Psalm 51 are relevant. First John 1:9, Acts 2:38, and Luke 17:3--4
+are important texts often read as conditioning forgiveness and should be
+represented fairly.
 
-We believe receiving a new believer is a sacred pastoral responsibility. When someone first places their trust in Christ, our first task is not to identify everything about their life that others believe should change. Our first task is to proclaim clearly what has already happened: Christ has received them, grace has been given, they belong to God, and they are not alone.
+## 22. Faith, Trust, Grace, and Works
 
-Discipleship must never begin by making a new believer wonder whether Christ's acceptance was conditional after all. Questions of theology, morality, relationships, spiritual formation, and Christian practice deserve thoughtful attention over time — but those conversations belong within the security of grace, not under the threat that salvation will disappear unless the person immediately adopts a leader's interpretation of every disputed issue.
+Faith is the conscious decision to believe what cannot presently be
+seen, particularly that God exists and is what God claims to be. Hebrews
+11:1 and 11:6 are central.
 
-People seeking Christ deserve shepherds, not prosecutors.
+Trust is related but distinct. Faith provides the basis upon which a
+person may choose to trust God.
 
-## Article XV — Of Religious Authority
+Salvation and forgiveness are gifts of grace, not payment for faith or
+rewards earned through works, rituals, prescribed words, or successful
+moral performance. Ephesians 2:8--10, Romans 3:28, Galatians 2:16, and
+James 2 should be held together without turning works into payment for
+grace.
 
-We believe Christian leadership exists to serve. Jesus repeatedly warned religious leaders against using authority to elevate themselves, burden others, or neglect mercy, and we reject spiritual authority that manipulates through fear, shame, exclusion, humiliation, or threats of divine rejection.
+## 23. Salvation from Death and Universal Resurrection
 
-Because every pastor, teacher, scholar, and Christian interprets Scripture from within human limitations, pastoral confidence must be matched by pastoral humility — and because a leader's words carry spiritual authority and can profoundly affect vulnerable people, that responsibility is heightened.
+Christ has already saved humanity from death. This is why resurrection
+is universal. First Corinthians 15:21--22 is central: death comes
+through humanity and resurrection through Christ.
 
-Where Scripture clearly speaks, our leaders are to teach faithfully. Where Christians genuinely disagree, our leaders are not to present contested conclusions as though faithful disagreement were impossible. Conviction does not eliminate the responsibility to distinguish between "Scripture says this clearly" and "this is the interpretation I believe most faithfully explains Scripture." That distinction matters most when an interpretation places enormous burdens upon another person's life: the greater the burden demanded, the stronger the theological justification must be.
+This does not mean every person is already reconciled to God. Salvation
+from death/resurrection and reconciliation are distinct.
 
-## Article XVI — Of Prayer, Healing, and Suffering
+## 24. Judgment: Revelation, Understanding, and Genuine Response
 
-We believe prayer is fundamentally relationship with God. It includes petition, gratitude, confession, lament, silence, listening, praise, grief, anger, uncertainty, and hope. Scripture does not portray faithful prayer as requiring constant optimism or emotional certainty: lament belongs within faith, questions belong within faith, and silence can belong within faith. We reject the idea that prayer operates as a mechanism through which sufficient belief forces God to produce a desired outcome. Prayer is relationship, not leverage.
+Final judgment is treated as a collective future reality associated with
+resurrection.
 
-We take the biblical accounts of miracles seriously while acknowledging that Christians understand miraculous activity in different ways, and we remain open to God's ability to act beyond ordinary expectation. At the same time, we do not promise that prayer will produce physical healing.
+At judgment, God reveals God's existence, God's nature as Love, and what
+God accomplished through Jesus. Revelation provides knowledge, but
+knowledge is not identical to understanding. Being told that an action
+was wrong is not the same as understanding why it contradicted Love.
 
-We reject the teaching that continued illness necessarily indicates insufficient faith, hidden sin, spiritual failure, or divine punishment, and we reject any attempt to make suffering people responsible for their failure to experience a miracle. Prayer is not a substitute for appropriate medical or mental-health care. Faith must never require someone to deny reality in order to appear faithful.
+In light of God's revealed reality, people can understand their own
+lives and respond. Genuine repentance remains personal and free. God
+exercises the divine judicial role by determining whether repentance is
+genuine.
 
-## Article XVII — Of Evil
+Scripture contains elements of this model---John 3:19--21; Romans
+2:15--16; 1 Corinthians 4:5; Matthew 25; Romans 14:10--12; 2 Corinthians
+5:10; Revelation 20---but does not state Canonical Shelf's complete
+sequence in one passage. The sequence must therefore be labeled
+theological synthesis.
 
-We acknowledge the biblical language concerning Satan, demons, temptation, spiritual powers, and conflict with evil. Christians have understood this language through several frameworks — personal spiritual beings, symbolic representations of evil, systemic manifestations of destructive power, and combinations of these — and these questions may be explored without sensationalism.
+## 25. Final Reconciliation
 
-We reject using spiritual-warfare language to demonize individuals, religions, political opponents, minorities, or groups with whom Christians disagree, and we reject treating mental illness, neurological conditions, trauma, or psychological distress as automatic evidence of demonic possession.
+Some may freely remain outside direct relationship with God for a time.
+Revelation 22 depicts those inside and outside the gates, while the
+gates remain open. God's Spirit and Love are not spatially absent from
+those outside, but full relationship with the Source of Love is
+associated with entering.
 
-Christian teaching concerning evil should produce courage, compassion, discernment, resistance to injustice, and hope — not paranoia, scapegoating, or fear.
+Pain may continue outside; a person may even experience some happiness
+outside. God does not coerce entry.
 
-## Article XVIII — Of Faith, Reason, and Human Knowledge
+Canonical Shelf nevertheless believes God's restorative will ultimately
+succeeds: every soul eventually and freely recognizes the truth,
+genuinely repents, seeks the Source of Love, and is reconciled.
+Evil---the continuing rejection or absence of Love---eventually ceases
+to exist.
 
-We believe faith is not the abandonment of reason. Trust sometimes extends beyond what can be completely demonstrated, but uncertainty must not be disguised as certainty, mystery must not become an excuse for refusing questions, and "you just have to believe" is never to be used to shut down sincere inquiry.
+Relevant texts include 1 Timothy 2:4; Colossians 1:20; 1 Corinthians
+15:22--28; Philippians 2:10--11; Revelation 21--22. Matthew 25:46; Mark
+9:43--48; 2 Thessalonians 1:9; and Revelation 14:9--11 are serious
+countertexts and must not be concealed.
 
-Where evidence exists, we will examine it. Where historical development occurred, we will acknowledge it. Where language matters, we will investigate it. Where multiple interpretations are possible, we will explore them. Where we do not know, we will say so. Intellectual humility is a Christian virtue.
+**Departure from much historic Christianity:** Eventual freely chosen
+universal reconciliation is not the majority traditional Western
+doctrine and must be identified as Canonical Shelf's theological
+conclusion.
 
-Christians therefore need not choose between faith and legitimate human knowledge. Historical research, archaeology, linguistics, textual criticism, medicine, psychology, philosophy, and scientific inquiry can help us better understand creation, humanity, Scripture, and the historical worlds from which Scripture emerged. Truth does not become dangerous simply because it was discovered outside a church, nor is scholarship to be feared simply because it complicates an interpretation we inherited. When serious study challenges our assumptions, we will investigate rather than retreat.
+## 26. Satan and Restoration
 
-## Article XIX — Of the Application and Amendment of This Statement
+The possibility of genuine repentance is not metaphysically closed even
+to Satan. If Satan genuinely repents and returns, God accepts genuine
+repentance. Canonical Shelf believes God's final victory is the end of
+evil rather than the eternal preservation of an irredeemably evil will.
 
-**Who affirms this Statement.** Officers, directors, pastoral and teaching staff, and those who speak or teach on behalf of this ministry affirm this Statement of Faith as the doctrinal position of TopherLoring Ministries and agree to teach in accordance with it.
+Scripture does not explicitly teach Satan's repentance. Revelation 20:10
+is a serious countertext and must be examined rather than dismissed.
 
-**Who does not.** Participants, students, volunteers in non-teaching roles, users of our published materials, and anyone who attends, reads, listens, or takes part in any program of this ministry are **not** required to affirm this Statement, to agree with any part of it, or to hold any religious belief whatsoever as a condition of participation. Belonging precedes certainty, and we will not make agreement a condition of welcome. This is not an exception to our doctrine; it is our doctrine, as set out in Articles VII, VIII, XIII, and XIV.
+This belongs primarily in internal interpretive context rather than the
+compact public statement.
 
-**What this Statement is not.** This Statement expresses the convictions of this ministry. It is not a claim that Christians who disagree with it are outside the faith, nor a judgment upon other Christian bodies that have reached different conclusions. Where we have taken a position on a genuinely contested question — most notably in Articles IX, XI, and XII — we have said so plainly rather than presenting our conclusions as the only faithful reading available.
+## 27. Death, Gehenna, and "Outside"
 
-**Amendment.** This Statement may be amended only by formal action of the governing body of TopherLoring Ministries. Amendments are to be dated and recorded, and prior versions retained, so that any change in the ministry's stated convictions remains publicly traceable rather than silently revised.
+Biblical death-as-sleep language supports the conclusion that death is
+reversible under God's power. Canonical Shelf does not need
+reincarnation as part of its public or internal doctrinal model.
 
----
+Jesus's use of Gehenna establishes serious judgment imagery but does not
+by itself establish every later theory of hell. A culturally familiar
+image used to communicate a truth does not automatically establish that
+every feature of the audience's concept is literal ontology.
 
-**Version 3.0** — Restructured from v2.0 into traditional articled institutional form for adoption by TopherLoring Ministries. All doctrinal positions carried forward from v1.0 unchanged; none added, softened, or removed. Structural changes: preamble added; content reorganized into nineteen numbered articles; voice shifted from confessional description to institutional declaration ("we hold," "our leaders are to," "we will") where the document governs conduct. Article XIX is new — it defines who is bound by this Statement, states that participation requires no affirmation, disclaims judgment on other Christian bodies, and sets an amendment procedure. Articles are ordered with God and Christ preceding Scripture, departing from the Scripture-first convention of most institutional statements, because Article V holds Christ to be the interpretive center of Scripture. Article XIX reflects a drafting recommendation and requires confirmation by Christopher Rowden before adoption.
+"Can destroy" does not mean "does destroy" or "will destroy."
+Capability, actuality, and inevitability must remain logically distinct.
+
+Canonical Shelf's earlier personal interpretation of earthly life as
+"hell" is not biblical terminology and should not be part of the public
+doctrinal statement.
+
+## 28. The Church
+
+The Church is the body of Christ actively transmitting Christ's message.
+Its identity is not dependent upon a particular denomination,
+institution, building, or clergy structure.
+
+## 29. Communion
+
+Christ's table is open to all. Each person should reflect and freely
+decide whether to partake. Participation or abstention is the
+individual's choice, should not be argued with, and must not alter equal
+welcome or treatment.
+
+First Corinthians 11:28 places self-examination on the participant.
+Scripture does not explicitly state the modern universal-open-table
+formulation; unrestricted welcome is Canonical Shelf's theological
+application.
+
+## 30. Baptism
+
+Baptism is a voluntary public profession of faith. Burial in water,
+washing, and rising are symbolic of death to the old life, cleansing
+through Christ, and new life with Christ.
+
+The water itself does not cause forgiveness. Baptism is personally and
+spiritually significant but is not a requirement for salvation.
+
+Romans 6:3--4; Colossians 2:12; Acts 22:16; and 1 Peter 3:21 are
+relevant.
+
+## 31. LGBTQ+ Inclusion
+
+LGBTQ+ identity and faithful same-sex relationships are compatible with
+Christian faith and the new covenant's law of Love. LGBTQ+ people are
+fully included in Christian community, ministry, leadership, family
+life, and relationship with God.
+
+Scripture does not directly discuss modern sexual-orientation
+categories. Leviticus 18:22; 20:13; Romans 1:26--27; 1 Corinthians
+6:9--11; and 1 Timothy 1:9--10 require contextual, linguistic,
+covenantal, and theological interpretation. Canonical Shelf must
+represent serious non-affirming readings accurately while stating its
+affirming conclusion clearly.
+
+## 32. Women in Ministry
+
+Women and men may serve equally in every form of Christian ministry and
+leadership. Gender does not determine calling, gifting, or capacity to
+lead.
+
+Romans 16; Acts 18:26; Acts 2:17--18; and Galatians 3:28 support women's
+participation and leadership. First Timothy 2:11--15 and 1 Corinthians
+14:34--35 are significant restrictive texts requiring contextual
+interpretation.
+
+## 33. Human Dignity and the Image of God
+
+Canonical Shelf affirms human dignity and the biblical description of
+humanity as created in God's image but does not adopt a definitive
+interpretation of what the "image of God" consists of.
+
+## 34. Final State of Creation
+
+Canonical Shelf affirms universal resurrection, eventual freely chosen
+reconciliation, and the ultimate end of evil.
+
+It does not presently adopt a definitive position concerning the
+ultimate physical state, renewal, or transformation of creation itself.
+Earlier language asserting "the ultimate renewal of creation" should
+therefore not remain a binding doctrinal claim.
+
+## 35. Prayer, Healing, Difficult Texts, and Evil
+
+Previously settled curriculum-level positions remain: - prayer is
+relationship with God and may include petition, gratitude, lament,
+listening, praise, grief, anger, uncertainty, and hope; - prayer is not
+leverage and does not guarantee physical healing; - illness is not
+automatically evidence of insufficient faith, hidden sin, or divine
+punishment; - difficult texts involving conquest, slavery, violence,
+women, sexuality, punishment, exclusion, and ethnic conflict should be
+addressed directly, contextually, and without using context to excuse
+harm; - Satan, demons, and spiritual-warfare language should be handled
+without sensationalism, scapegoating, or treating mental illness as
+automatic evidence of possession.
+
+## 36. Open Questions
+
+Canonical Shelf presently makes no definitive doctrinal claim
+concerning: - the precise metaphysical meaning of humanity being made in
+the image of God; - the ultimate physical form or renewal of creation; -
+the precise present physical location/state of Jesus's resurrected
+body; - the mechanics of the ascension.
+
+Open questions must remain open until explicitly settled.
+
+## 37. Institutional Independence
+
+Canonical Shelf's positions derive from this Statement of Faith and its
+interpretive methodology, not denominational ancestry. No denomination
+serves as theological identity, authority, or proxy for Canonical
+Shelf's beliefs.

@@ -28,6 +28,8 @@ The claim about God working for good must not be turned into the claim that ever
 
 Foreknowledge concerns knowing beforehand; predestination concerns an appointed end; determinism concerns what determines events. Christians relate these differently. This guide teaches meaningful acceptance or resistance to grace while affirming that human choices cannot ultimately thwart God’s purpose.
 
+**Canonical Shelf’s own position.** God knows every possible path and its consequences and understands each person perfectly, but which genuinely free choice becomes actual remains open until it is made. God influences, guides, and prepares circumstances without controlling the response, and that influence can be resisted. Many Christian traditions hold instead that God knows every future choice in advance, and some that God determines it; the guide teaches those views accurately alongside its own.
+
 ## Keep the setting visible {#keep-the-setting-visible}
 Knowing an outcome and causing every choice are different claims. Likewise, God bringing good from an event does not remove an actor’s responsibility for harm. Explain these distinctions without claiming the passage gives a complete philosophical model or a specific diagnosis of every tragedy.
 

@@ -124,6 +124,7 @@ const sectionText = (sections, id) => { const s = sections.find(x => x.id === id
 function lessonFullText({ meta, sections, checks, reflection }) {
   return [sections.flatMap(s => s.blocks.map(b => b.text || '')).join(' '), meta.deeper, ...(meta.drawers || []).map(d => `${d.title} ${d.body}`), ...Object.entries(meta.glossary || {}).map(([k, v]) => `${k}: ${v}`), reflection?.prompt, reflection?.modelResponse, JSON.stringify(checks)].join(' ');
 }
+const RECORD_IDS = new Set(readdirSync('.roa/records').filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(join('.roa/records', f), 'utf8')).id));
 const coverage = (item, target) => { const terms = keyTerms(item); if (!terms.length) return 1; const t = norm(target); return terms.filter(w => t.includes(w)).length / terms.length; };
 const reports = [];
 for (const [id, c] of compiled) {
@@ -154,6 +155,13 @@ for (const [id, c] of compiled) {
     else if (target === 'drawers') text = (c.meta.drawers || []).map(d => `${d.title} ${d.body}`).join(' ');
     else if (target === 'glossary') text = Object.entries(c.meta.glossary || {}).map(([k, v]) => `${k} ${v}`).join(' ');
     else if (target === 'checks') text = JSON.stringify(c.checks);
+    else if (target.startsWith('superseded:')) {
+      // Text replaced because of an owner decision: the decision record must exist (e.g. a doctrinal revision).
+      const rid = target.slice(11);
+      if (!RECORD_IDS.has(rid)) rep.problems.push(`${item.id} is marked superseded by "${rid}", which is not a recorded decision`);
+      else rep.mapped++;
+      continue;
+    }
     else if (target.startsWith('lesson:')) { const [lid, anchor] = target.slice(7).split('#'); const other = compiled.get(lid); text = other ? (anchor ? sectionText(other.sections, anchor) : lessonFullText(other)) : null; if (!other) { rep.problems.push(`${item.id} is carried to ${target}, which is not authored yet`); continue; } }
     if (text === null || text === undefined) { rep.problems.push(`${item.id} is carried to "${target}", which does not exist in the lesson`); continue; }
     const cov = coverage(item.text, text);
@@ -162,7 +170,10 @@ for (const [id, c] of compiled) {
   }
   const teaching = countWords(c.sections.flatMap(s => s.blocks.filter(b => b.type === 'prose' || b.type === 'callout').map(b => b.text)).join(' ')) + countWords(c.meta.deeper);
   rep.teachingWords = { before: legacy.teachingWords, after: teaching };
-  if (teaching < legacy.teachingWords) rep.problems.push(`teaching text shrank from ${legacy.teachingWords} to ${teaching} words (no condensing)`);
+  // Text removed by an owner decision (carried as superseded:<decision>) does not count toward the floor.
+  const supersededWords = legacy.items.filter(i => ['paragraph', 'summary', 'deeper'].includes(i.kind) && String(carries[i.id] || '').startsWith('superseded:')).reduce((n, i) => n + countWords(i.text), 0);
+  const floor = legacy.teachingWords - supersededWords;
+  if (teaching < floor) rep.problems.push(`teaching text shrank from ${floor} to ${teaching} words (no condensing; ${supersededWords} words were superseded by owner decisions)`);
   rep.checks = { before: legacy.checks, after: c.checks.length };
   if (c.checks.length < legacy.checks) rep.problems.push(`checks went from ${legacy.checks} to ${c.checks.length} (no fewer checks)`);
   for (const pr of rep.problems) fail(`${where}: ${pr}`);

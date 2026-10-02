@@ -28,6 +28,8 @@ Zacchaeus speaks about giving and repayment. Readers debate aspects of the state
 
 This guide treats repair as a response to grace, not a payment that forces God to save. Repentance is more credible when it acknowledges those harmed. Forgiveness also does not give an offender the right to demand instant trust or unrestricted access to someone they have hurt.
 
+**Canonical Shelf’s own account of repentance** has four parts: recognizing that something contradicted God’s loving purpose, owning it without blame or self-condemnation, apologizing, and genuinely intending a different outcome. Whether the change succeeds later is not what makes repentance genuine. Asking for forgiveness can express repentance and relationship, but it does not make God willing to forgive. Shame may keep someone from asking; Love does not withhold forgiveness because a wounded person cannot find the right words.
+
 ## Keep the setting visible {#keep-the-setting-visible}
 A practical response can involve admission, restitution where possible, changed habits, and respect for boundaries. Different harms require different forms of repair. The lesson supplies a theological connection between grace and conduct, not a promise that every damaged relationship can be restored on demand.
 

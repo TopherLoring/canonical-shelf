@@ -158,7 +158,7 @@ Communion remembers Christ's sacrifice, expresses participation in his life, and
 
 ### LGBTQ dignity and belonging
 
-LGBTQ people, relationships, marriage, and equal participation in leadership and ministry are explicitly affirmed. This is a settled editorial commitment shaped especially by the course's MCC and Disciples orientation.
+LGBTQ people, relationships, marriage, and equal participation in leadership and ministry are explicitly affirmed. This is a settled editorial commitment of the course's own Statement of Faith.
 
 **Interpretive boundary:** opposing biblical interpretations can be explained and examined contextually. Learners are not asked to debate whether another participant possesses dignity or deserves care.
 
@@ -194,7 +194,7 @@ Bodily resurrection and renewed creation anchor Christian final hope. Judgment, 
 
 ## Denominational orientation
 
-The course gives particular editorial weight to Metropolitan Community Churches and the Christian Church (Disciples of Christ): radical welcome, open Communion, Christian unity, contextual reading, freedom of inquiry, LGBTQ affirmation, and concern for justice. It also introduces the ELCA, United Church of Christ, United Methodist Church, Episcopal Church, and Alliance of Baptists so learners can distinguish theological center, authority, sacramental practice, and governance rather than assuming all progressive churches are the same.
+The course is grounded in its own published Statement of Faith rather than in any denomination. Its editorial priorities are radical welcome, open Communion, Christian unity, contextual reading, freedom of inquiry, LGBTQ affirmation, and concern for justice. It also introduces the ELCA, United Church of Christ, United Methodist Church, Episcopal Church, and Alliance of Baptists so learners can distinguish theological center, authority, sacramental practice, and governance rather than assuming all progressive churches are the same.
 
 Official denominational sources should be used for substantive comparisons. A denominational statement is not assumed to describe every local congregation; learners are encouraged to ask concrete questions about actual practice.
 
@@ -219,6 +219,6 @@ The reference layer can state the guide's editorial commitments clearly while di
 
 ## Editorial and release gates
 
-Approved positions are the guide's stated perspective, not a claim that every Christian or every MCC/Disciples congregation agrees. Competing positions must be described in recognizable terms. Sources, textual observations, historical reconstruction, theological interpretation, and application should be distinguishable. No learner receives points for identity, religious disclosure, or professing a required belief. New substantive theological disagreements require owner review before they are presented as the guide's settled position.
+Approved positions are the guide's stated perspective, not a claim that every Christian or every congregation agrees. Competing positions must be described in recognizable terms. Sources, textual observations, historical reconstruction, theological interpretation, and application should be distinguishable. No learner receives points for identity, religious disclosure, or professing a required belief. New substantive theological disagreements require owner review before they are presented as the guide's settled position.
 
 The post-redesign review identifies further priorities: manual full-shell regression, human accessibility testing, novice learner testing, a scholarly source/confidence audit of all 66 book profiles, human feedback on independent-study projects, harder late-course transfer work, deeper Second Temple/canon history, and cross-course glossary/reference linking.
