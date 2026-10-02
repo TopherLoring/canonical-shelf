@@ -95,9 +95,9 @@ Read this scene before the rupture in chapter 3. Notice what can be lost: trust,
 ```
 
 ## What you now know {#summary}
-Work is a gift and a responsibility before it is ever a burden; freedom is exercised within trust; isolation is the first problem the story names; and keeping this goodness in view keeps a person from being defined by failure.
+Work is a gift and a responsibility before it is ever a burden; freedom is exercised within trust; being alone is the first condition the story explicitly calls “not good”; and keeping this goodness in view keeps a person from being defined by failure.
 
-Readers agree on these movements. They disagree about how the creation of the woman should shape modern roles; this guide does not turn the scene into a ranking of human worth, and its Statement of Faith affirms that women and men may serve equally in every form of ministry. The question to carry forward: what does the next chapter take away?
+Christians disagree about how the creation of the woman should shape modern roles; this guide does not turn the scene into a ranking of human worth, and its Statement of Faith affirms that women and men may serve equally in every form of ministry. The question to carry forward: what does the next chapter take away?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

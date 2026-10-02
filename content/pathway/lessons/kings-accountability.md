@@ -18,7 +18,7 @@
 ## Kingship: evaluating power rather than admiring it {#orient}
 > The warning asks what power takes from people. Evaluate consequences as well as promises.
 
-At the end of the judges period the people ask for a king. This lesson reads Samuel’s answer, one of the Bible’s sharpest warnings about what concentrated power takes from ordinary people.
+At the end of the judges period the people ask for a king. This lesson reads Samuel’s answer.
 
 Samuel’s warning repeatedly describes what a king will take. People, produce, and land become resources for royal purposes. The repetition directs attention to the costs of concentrated power rather than only to its promises of stability or prestige.
 

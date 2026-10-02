@@ -25,14 +25,14 @@ This course uses a 66-book Protestant shelf. Its nine navigation groups are Law/
 ## Read the passage with the question in view {#read}
 ::reading
 
-Here the risen Jesus describes Israel’s scriptures as “the Law of Moses, the Prophets, and the Psalms”, a different arrangement from the nine shelves you have learned. Both arrangements hold the same writings; they simply group them differently.
+Notice the three labels Jesus uses for Israel’s Scriptures. How do they compare with the nine-shelf system used in this course?
 
 ## Shelf order, story order, and writing order {#timeline}
 The first three skill tracks build orientation. The Story traces ten beats against their books; Order practices groups, testaments, and all 66; Groups teaches boundaries and reading approaches. Luke’s reference to Law, Prophets, and Psalms reflects another way of speaking about Israel’s Scriptures, reminding readers that this app’s shelf is not the only arrangement.
 
 Chronology separates shelf position, narrated events, and composition. Content adds summaries, casts, openings, authorship, and audiences. Dates and attributions vary in certainty, so a teaching timeline must not pretend every placement is settled. The integrated skill missions retain that practice while the curriculum marks those limits.
 
-A simple example: the book of Job sits among the poetry books, its story is set in an ancient patriarchal world, and scholars date its writing to a much later period. A reader who knows all three placements can ask better questions than one who only knows the page number.
+A simple example: the book of Job sits among the poetry books, its story resembles the world of the early ancestors in Genesis, and the date and development of the book itself remain debated and may be much later. A reader who knows all three placements can ask better questions than one who only knows the page number.
 
 ```check
 {
@@ -100,7 +100,7 @@ You will meet these skills in Practice, where they reinforce what the Pathway te
 ## What you now know {#summary}
 You can place a book three ways, by shelf, by story, and by date of writing, and you know that a shelf group can hold several kinds of writing. You also know the skills Practice builds and what they are for.
 
-Scholars agree on the broad order of the biblical story; they debate the dates of many books, and this guide marks those dates as debated rather than settled. The next unit begins the story itself, from creation onward. The question to carry forward: when you open a book, which of the three placements do you need?
+The broad order of the biblical story is easier to establish than the dates of many books; where dates are debated, this guide marks them as debated rather than settled. The next unit begins the story itself, from creation onward. The question to carry forward: when you open a book, which of the three placements do you need?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

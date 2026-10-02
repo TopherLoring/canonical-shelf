@@ -27,7 +27,7 @@
 ## Sinai: a liberated people enters covenant {#orient}
 > Israel is rescued before receiving Sinai’s covenant responsibilities. The law describes covenant life; it is not the price paid to escape Egypt.
 
-Unit 2 slows down at Sinai, where the freed people enter covenant. This first lesson reads the moment before the commandments, because the order of events tells you what the law is for.
+This lesson reads the moment just before the commandments begin.
 
 Israel arrives at Sinai after the Exodus. The order matters: the covenant instructions do not purchase release from Egypt. The narrative first recalls what God has done in bringing the people out, then describes the relationship and responsibilities into which they are called.
 
@@ -90,4 +90,4 @@ Christian traditions later reason differently about how Sinai law relates to Gen
 ## What you now know {#summary}
 Rescue comes first; covenant responsibility follows as a way of living in the relationship, not as a price for release. Torah covers worship, violence, property, labor, justice, and care for the vulnerable, and Israel’s calling is a vocation within the wider world, not a claim of superiority.
 
-Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: what happens when the covenant is broken almost as soon as it is made?
+Canonical Shelf understands Christian moral responsibility through Jesus’ new covenant and its governing law of Love; the earlier covenants remain essential context. Later modules compare other Christian views. The question to carry forward: what happens when the covenant is broken almost as soon as it is made?

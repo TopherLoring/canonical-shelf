@@ -24,7 +24,7 @@
 ## Sea and wilderness: freedom becomes dependence {#orient}
 > Exodus is not finished when Israel leaves Egypt. The sea and wilderness show rescue followed by dependence, testing, and formation.
 
-Leaving Egypt is not the end of the Exodus. This lesson follows the people through the sea and into the wilderness, where freedom has to be learned.
+This lesson follows the people through the sea and into the wilderness, where freedom has to be learned.
 
 Leaving Egypt does not end the Exodus story. At the sea, the people face the possibility of renewed domination and fear that escape has failed. The narrative presents deliverance as a movement through danger rather than a single political announcement.
 
@@ -87,4 +87,4 @@ Later Scripture repeatedly returns to sea and wilderness imagery. Those later us
 ## What you now know {#summary}
 Deliverance moves through danger; the wilderness then forms a freed people through daily provision, testing, complaint, and continuing presence. Liberation from a system is not the same as maturity, and the story does not pretend otherwise.
 
-Readers differ on the historical details of the crossing and the journey; they agree on the story’s movement, and later Scripture depends on that movement. The question to carry forward: what does a freed community need in order to live well?
+The historical details of the crossing and the journey are debated; the narrative itself moves through danger, rescue, testing, provision, failure, and continuing presence, and later Scripture repeatedly returns to that movement. The question to carry forward: what does a freed community need in order to live well?

@@ -18,8 +18,6 @@
 ## Promise, liberation, and covenant {#orient}
 > The narrative moves from God’s promise to liberation and a shared way of life. Covenant joins belonging with responsibility.
 
-This lesson closes the unit by stepping back over the whole movement you have read so far: from the promise to Abraham, through liberation from Egypt, to the covenant that gives a freed people a shared way of life.
-
 God’s call to Abram links a particular family with blessing beyond itself. A covenant is a committed relationship involving promises and responsibilities. Reading the story only as a reward for exceptional people misses the outward direction of the promise. The call begins a long narrative of trust, failure, conflict, and continuing relationship.
 
 ## Read the passage with the question in view {#read}

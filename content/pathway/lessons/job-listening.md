@@ -18,7 +18,7 @@
 ## Job and the limits of easy explanations {#orient}
 > The friends begin by showing up. Understanding a person’s pain matters more than winning an argument about why it happened.
 
-Job is the Bible’s longest argument about suffering. This lesson reads the moment before the arguing starts, when Job’s friends simply come and sit with him.
+Job is the Bible’s longest argument about suffering. This lesson reads the scene just before the arguing starts.
 
 Job’s friends come after hearing of his suffering. Their first response includes grief, physical presence, and silence. The scene recognizes that another person’s pain may be too great for a quick explanation or a polished religious answer.
 

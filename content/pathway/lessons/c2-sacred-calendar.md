@@ -24,7 +24,7 @@
 ## Sabbath and festivals: Israel learns time as well as space {#orient}
 > Israel’s calendar teaches memory and identity through recurring rest and festivals; those rhythms later shape Gospel and Acts settings.
 
-Israel keeps time as well as space. This lesson closes the unit with the Sabbath and the annual festivals, the rhythms that hold Israel’s memory and that later frame much of the New Testament.
+This lesson closes the unit with the Sabbath and the annual festivals.
 
 Israel’s worship is organized not only through sacred places but also through sacred time. Sabbath establishes a recurring rhythm of work and rest, while annual festivals connect worship with memory, harvest, pilgrimage, and communal identity.
 

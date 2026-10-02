@@ -20,7 +20,7 @@
 
 The previous lesson showed what the garden held. This one reads what happens next: hiding, blame, consequence, and the closed way to the tree of life. It is one of the most interpreted passages in Christian history, so the guide’s own position is stated first and the text is then read closely.
 
-**Canonical Shelf’s own position.** The first sin brought death into the human condition. We inherit its consequences, including mortality, but not the personal guilt of those who came before us. Human nature eventually leads each person into sin of their own, and each person is responsible for their own choices. Many traditions, following Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone.
+**Canonical Shelf’s own position.** The first human sin brought mortality into the human condition. We inherit its consequences, including a damaged condition and mortality, but not the personal guilt of those who came before us. In the condition humanity inherits, each person eventually sins through choices of their own and is responsible for those choices. Many Western Christian traditions, especially those shaped by Augustine, hold that humanity also inherits guilt; that is one of the later theories this lesson does not settle from Genesis alone.
 
 ## Read the passage with the question in view {#read}
 ::reading
@@ -100,7 +100,7 @@ God’s provision of clothing remains within the scene of judgment. Read judgmen
 ## What you now know {#summary}
 Genesis 3 portrays sin as damaged trust and relationship, describes its consequences without commanding them, and ends with lost access to the tree of life and with God clothing the humans. The guide’s position: mortality and a damaged condition are inherited; personal guilt is not.
 
-Christians differ sharply here. Many follow Augustine in teaching inherited guilt; Eastern traditions and others emphasize inherited mortality instead. The question to carry forward: when later writers connect this story with Christ, which details of Genesis are they relying on?
+Christians differ sharply here. Many Western traditions shaped by Augustine teach inherited guilt; Eastern traditions and others emphasize inherited mortality instead. The question to carry forward: when later writers connect this story with Christ, which details of Genesis are they relying on?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

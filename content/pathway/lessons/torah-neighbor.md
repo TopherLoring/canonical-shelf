@@ -18,7 +18,7 @@
 ## Torah: holiness in everyday relationships {#orient}
 > These laws place care and honesty inside everyday life. Applying them today requires understanding both the original arrangement and its concern.
 
-This lesson closes the unit with one of Torah’s best-known chapters, where holiness turns out to be about harvests, wages, courts, and how you speak to a neighbor.
+This lesson closes the unit with Leviticus 19.
 
 The selected instructions include farming, wages, truthful dealing, impartial judgment, and treatment of neighbors. Holiness is not limited to ritual activity. Economic decisions and ordinary speech belong within the community’s response to God.
 
@@ -97,7 +97,7 @@ Christians disagree about the continuing application of particular Torah laws. T
 ## What you now know {#summary}
 Holiness reaches into economics, justice, and speech. The harvest laws protect the poor and the foreigner within a particular agricultural world, and applying them today means first understanding that world and the concern behind the instruction. “Love your neighbor as yourself” first appears here, inside concrete obligations.
 
-Canonical Shelf’s own Statement of Faith holds that Jesus established a new covenant whose governing law is Love, and that Christian moral responsibility is understood through that covenant; the earlier laws and covenants remain important for understanding God’s relationship with humanity and the biblical story. Other Christian traditions draw the lines differently, and later modules lay those views out. The question to carry forward: where would you need to understand the original arrangement before applying an instruction today?
+Canonical Shelf understands these laws through Jesus’ new covenant and its governing law of Love while keeping Torah essential to the biblical story. Later modules compare other Christian views. The question to carry forward: where would you need to understand the original arrangement before applying an instruction today?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

@@ -18,7 +18,7 @@
 ## Exodus: hearing suffering and answering a call {#orient}
 > The call starts by taking suffering seriously. Moses is invited to participate even while asking honest questions.
 
-Module 2 reads the Hebrew Scriptures in their ancient Near Eastern world, starting with the story that shapes Israel’s memory more than any other: the Exodus. This lesson reads the call of Moses, where liberation begins with God noticing suffering.
+Module 2 begins with the Exodus, one of the central stories shaping Israel’s identity. This lesson reads the call of Moses.
 
 God’s speech begins with the suffering of the people: seeing, hearing, and knowing their affliction. Liberation is introduced through attention to oppression. The story gives the enslaved community’s experience a central place rather than describing their suffering as an inconvenience for rulers.
 
@@ -97,7 +97,7 @@ Exodus can shape a Christian concern for people under oppression without making 
 ## What you now know {#summary}
 The Exodus begins with God attending to the suffering of an enslaved people, and with a hesitant person called into the response. Divine initiative and human participation work together, and the assurance Moses receives is presence, not certainty about his own adequacy.
 
-Readers agree that the story centers the oppressed; they differ on how directly it should shape modern politics. The guide reads it as forming concern for people under oppression without treating every conflict as a reenactment. The question to carry forward: what does deliverance require after the escape?
+This passage foregrounds the suffering of the enslaved people. Christians differ on how directly Exodus should shape modern politics. The guide reads it as forming concern for people under oppression without treating every conflict as a reenactment. The question to carry forward: what does deliverance require after the escape?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

@@ -87,7 +87,7 @@ Psalm 104 widens attention to the abundance and dependence of living creatures. 
 ## What you now know {#summary}
 You have read Genesis 1 as the opening of the story: a good, ordered world; humanity bearing God’s image, which grounds every person’s dignity and responsibility; and the outline of what follows in the garden, the rupture, and the care of creation. Canonical Shelf’s own position on inherited guilt is stated in the lesson on Genesis 3.
 
-Christians agree that creation is good and that human dignity is not earned. They differ on what the image of God consists of, and Canonical Shelf takes no definitive position on that; they also differ on how Genesis relates to scientific accounts, and this guide does not require young-earth creationism. The question to carry forward: what does a passage say about God, and what question is it not trying to answer?
+Christians broadly affirm creation’s goodness and human dignity. They differ on what the image of God consists of, and Canonical Shelf takes no definitive position on that; they also differ on how Genesis relates to scientific accounts, and this guide does not require young-earth creationism. The question to carry forward: what does a passage say about God, and what question is it not trying to answer?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

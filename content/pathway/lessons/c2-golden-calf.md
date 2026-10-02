@@ -24,8 +24,6 @@
 ## Golden calf: covenant can be broken and renewed {#orient}
 > Israel breaks covenant loyalty soon after Sinai; the story holds failure, judgment, intercession, and renewal together.
 
-The covenant is barely made when it is broken. This lesson reads the golden calf, a story that refuses to present covenant life as a community without failure.
-
 The golden-calf story interrupts the Sinai material almost immediately. That placement is important: covenant instruction does not produce an idealized community without failure. The people’s anxiety and the making of an image become a crisis of loyalty and worship.
 
 ## Read the passage with the question in view {#read}
@@ -87,4 +85,4 @@ Later readers often use “idolatry” as a label for anything they dislike. Thi
 ## What you now know {#summary}
 Covenant life includes real failure. The story holds judgment, intercession, consequence, mercy, and renewal together, and renewal never pretends the rupture did not happen.
 
-Readers agree on that movement; they differ on details such as what the calf represented. The question to carry forward: what does holiness look like in ordinary life, not only in worship?
+Interpretations differ on details such as what the calf represented. The question to carry forward: what does holiness look like in ordinary life, not only in worship?
