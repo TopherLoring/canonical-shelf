@@ -30,7 +30,7 @@ Luke opens his Gospel by telling his reader how the book was made: others had wr
 ## Read a reference like an address {#references}
 A reference is an address. Luke 1:1–4 means the book of Luke, chapter 1, verses 1 through 4. Chapter and verse divisions help navigation; they do not replace the original flow of an argument or story. Read surrounding paragraphs when investigating a verse.
 
-You will see references written several ways: Luke 1:1–4, Lk 1.1-4, or Luke 1:1-4. They all mean the same thing. When a reference names a single verse, it is worth opening a few verses before and after it, because a sentence on its own can say something its context does not.
+You will see the same reference written in different styles: Luke 1:1–4 in most English Bibles, Lk 1:1–4 where book names are abbreviated, and Luke 1.1–4 in British and academic writing, which uses a period between chapter and verse. They all point to the same four verses. When a reference names a single verse, it is worth opening a few verses before and after it, because a sentence on its own can say something its context does not.
 
 ```check
 {
