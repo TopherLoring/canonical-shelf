@@ -4,14 +4,16 @@ import {queryStudyIndex,studyTerms,topicEvidenceDetail,lessonEvidenceDetail,book
 const sourceScore=(source,terms)=>{const text=`${source.title||''} ${source.author||''} ${source.publication||''} ${(source.supports||[]).join(' ')}`.toLowerCase();return terms.reduce((score,term)=>score+(text.includes(term)?1:0),0)};
 const topSources=(sources,terms,limit=4)=>sources.map(source=>({source,score:sourceScore(source,terms)})).filter(entry=>entry.score>0).sort((a,b)=>b.score-a.score).slice(0,limit).map(entry=>entry.source);
 const typed=(item,evidenceStatus,claimDomain,doctrinalStatus='descriptive-only',interpretationType='')=>({...item,evidenceStatus,claimDomain,doctrinalStatus,...(interpretationType?{interpretationType}:{})});
-const sentence=(value,max=420)=>{const text=String(value||'').replace(/\s+/g,' ').trim();if(!text)return'';const first=text.match(/^.*?[.!?](?:\s|$)/)?.[0]||text;return first.length>max?`${first.slice(0,max-1).trim()}…`:first.trim()};
+// First sentence, or the first two when the first is only a short label.
+const sentence=(value,max=420)=>{const text=String(value||'').replace(/\s+/g,' ').trim();if(!text)return'';const parts=text.match(/[^.!?]+[.!?]+(?:\s|$)/g)||[text];let first=parts[0];if(first.trim().length<60&&parts[1])first+=parts[1];first=first.trim();return first.length>max?`${first.slice(0,max-1).trim()}…`:first};
 
 export function classifyTheologianIntent(question){
   const q=String(question||'').toLowerCase();
+  if(/\b(what|how) (can|could|do|does|should) (you|i|the theologian)\b.*\b(help|do|ask|use|start)\b|\bon this (page|screen)\b|\bwhat (is|does) this (page|screen)\b|\bwhere (do|should) i (start|begin)\b|\bwhat are you\b|\bwho are you\b/.test(q))return 'about-page';
   if(/decalogue|ten commandments|ten words/.test(q))return 'decalogue';
   if(/ruth|naomi/.test(q))return 'ruth-naomi';
   if(/gay|lesbian|homosexual|bisexual|lgbt|queer|same[- ]sex/.test(q))return 'lgbtq';
-  if(/arsenokoitai|malakoi|greek|hebrew|lexic|word mean/.test(q))return 'lexical';
+  if(/arsenokoitai|malakoi|\b(greek|hebrew|aramaic) (word|term|verb|noun)|\bin (the )?(original )?(greek|hebrew|aramaic)\b|original language|lexic|word mean/.test(q))return 'lexical';
   if(/catholic|orthodox|luther|methodist|episcopal|baptist|denomination|tradition/.test(q))return 'tradition';
   if(parseReference(question))return 'scripture-reference';
   if(/doctrine|trinity|atonement|salvation|hell|predestination|resurrection|judgment/.test(q))return 'doctrine';
@@ -27,7 +29,7 @@ function scriptureEvidence(question,corpus){
 function indexedEvidence(question,data,corpus,sources){
   const ref=parseReference(question),result=queryStudyIndex({query:question,data,corpus,limits:{scripture:3,topics:4,lessons:3,glossary:2,books:2,verses:3}}),out=[];
   if(!ref){
-    for(const row of result.scripture)out.push(typed({type:'scripture',label:`${BOOKS[row.bn-1]} ${row.chapter}:${row.verse}`,detail:row.text,evidence:'direct text',href:`/bible?book=${row.bn}&chapter=${row.chapter}#v${row.verse}`},'direct','biblical-text'));
+    for(const row of result.scripture)out.push(typed({type:'scripture',label:`${BOOKS[row.bn-1]} ${row.chapter}:${row.verse}`,detail:row.text,evidence:'direct text',keywordHit:true,href:`/bible?book=${row.bn}&chapter=${row.chapter}#v${row.verse}`},'direct','biblical-text'));
   }
   for(const topic of result.topics)out.push(typed({type:'topic',label:topic.title,detail:topicEvidenceDetail(topic),id:topic.id,evidence:'curated reference',href:`/topics?topic=${encodeURIComponent(topic.id)}`},'strong','interpretation'));
   for(const lesson of result.lessons)out.push(typed({type:'lesson',label:lesson.title,detail:lessonEvidenceDetail(lesson),id:lesson.id,evidence:'course instruction',href:`/course?unit=${encodeURIComponent(lesson.unitId)}&lesson=${encodeURIComponent(lesson.id)}`},'strong','interpretation'));
@@ -50,14 +52,39 @@ function agencyNote(policy){
   return policy?.learnerAgency?.rule||'You remain responsible for your own considered conclusions; I can explain and compare the evidence without requiring doctrinal agreement.';
 }
 
-function evidenceLead(evidence){
-  const item=(evidence||[]).find(entry=>entry?.detail&&entry.type!=='authority');
+// A verse found by word search only counts as a lead when it shares at least two real words with the question;
+// one shared word ("help", "understand") is coincidence, not evidence.
+const strongEnough=(entry,terms)=>{
+  if(!entry.keywordHit)return true;
+  const words=new Set(String(entry.detail||'').toLowerCase().match(/[a-z]+/g)||[]);
+  return terms.filter(term=>words.has(term)).length>=2;
+};
+function evidenceLead(evidence,terms=[],question=''){
+  // Curated material (topics, lessons, book profiles) leads; a verse found only by word search comes last.
+  const rank={scripture:0,topic:1,lesson:2,book:3,passage:4,glossary:5,source:6};
+  const named=new Set(BOOKS.filter(name=>new RegExp(`\\b${name.toLowerCase().replace(/\s+/g,'\\s+')}\\b`).test(question)).map(name=>`${name} profile`));
+  const order=entry=>named.has(entry.label)?-1:entry.keywordHit?9:(rank[entry.type]??7);
+  const item=(evidence||[]).filter(entry=>entry?.detail&&entry.type!=='authority'&&strongEnough(entry,terms)).sort((a,b)=>order(a)-order(b))[0];
   if(!item)return'';
   const summary=sentence(item.detail);
-  return summary?`The strongest material I found here is ${item.label}: ${summary}`:'';
+  return summary?`The closest material on this site is ${item.label}: ${summary}`:'';
 }
 
-function safePosition(intent,question,policy,evidence){
+const PAGE_HELP={
+  home:'This is the Shelf: all 66 books of the Bible, grouped by the kind of writing they are. I can tell you what any group or book is, why the books are in this order, or where a new reader might start.',
+  course:'This is the Pathway, the guided course. I can explain what a module or lesson is about, help with a word or idea you got stuck on, or talk through a question it raised. In a scored check I will help you reason, but I will not pick the answer.',
+  bible:'This is the Bible reader. I can explain the passage on screen, its setting and kind of writing, a word that seems strange, or how Christians have read it differently.',
+  topics:'This is the Catalog of topics. I can summarize a topic, show which passages it rests on, and lay out where Christians agree and disagree.',
+  practice:'This is Practice. I can explain why an answer was right or wrong, or what a book or verse in a drill is about.'
+};
+function pageHelp(page){
+  const route=String(page?.route||'').replace(/^\//,'').split(/[/?#]/)[0]||'home';
+  const here=PAGE_HELP[route]||'I can explain what is on this screen, any passage or word in it, or a question it raises.';
+  const label=page?.label&&!['Canonical Shelf','Course','Pathway'].includes(page.label)?` You are looking at ${page.label}.`:'';
+  return `${here}${label} Ask in your own words; there are no wrong questions here.`;
+}
+
+function safePosition(intent,question,policy,evidence,page){
   if(intent==='decalogue'){
     return 'The Decalogue is the Ten Commandments—the covenant commands given to Israel at Sinai and repeated in Deuteronomy 5. It is part of Mosaic law, but it is not the whole of Mosaic law: the Torah also contains many additional laws about worship, sacrifice, purity, courts, property, festivals, family life, and Israel’s social order. Later Christians often group those laws into “moral,” “civil,” and “ceremonial” categories, but those labels are later theological tools rather than headings the Torah itself uses. In practice, the Decalogue functions as a compact core of covenant obligations, while the rest of the law works out Israel’s covenant life in much greater detail.';
   }
@@ -70,17 +97,20 @@ function safePosition(intent,question,policy,evidence){
   if(intent==='lexical')return 'The original-language evidence can narrow the possibilities, but a Greek or Hebrew word rarely settles a modern theological question by itself. The useful approach is to look at the word’s range of meaning, its literary context, comparable ancient usage, and how the larger argument works before moving from language to doctrine.';
   if(intent==='tradition')return 'Christian traditions can be compared by asking what each one actually teaches, which texts and authorities it relies on, and where its reasoning differs from other traditions. A denominational position is evidence about that tradition; it does not automatically become Canonical Shelf doctrine or something you must personally adopt.';
   if(intent==='scripture-reference')return 'Start with the passage itself, then ask what belongs to the text, what comes from historical or linguistic context, and what is a later interpretive or theological conclusion. That sequence keeps us from reading a doctrine back into the verse before we have established what the passage is doing in context.';
+  if(intent==='about-page')return pageHelp(page);
   if(intent==='doctrine')return 'This is a doctrinal question, so the useful answer is to separate the biblical claims from the theological models Christians build from them. Canonical Shelf can state its own position, but it should also show where major Christian interpretations differ and what evidence or assumptions drive those differences.';
-  const lead=evidenceLead(evidence);
+  const lead=evidenceLead(evidence,studyTerms(question),String(question||'').toLowerCase());
   if(lead)return `${lead} From there, the key is to distinguish the source itself from the interpretation we build on top of it. If you want, I can take the next step and explain how the pieces fit together rather than just listing the evidence.`;
   return 'I can help with that. The best way to approach it is to answer the question directly, then separate the biblical text, historical or linguistic context, and later interpretation so we can see which conclusions are strongly supported and which remain debated.';
 }
 
 export function buildTheologianResponse({question,data,policy,statement='',sources=[],corpus='',context={}}){
   const intent=classifyTheologianIntent(question),protectedMessage=masteryProtection(question,context);
-  const evidence=[...scriptureEvidence(question,corpus),...indexedEvidence(question,data,corpus,sources)];
+  const terms=studyTerms(question);
+  // Verses that share only one word with the question are noise, not evidence; page-help questions need no verse search at all.
+  const evidence=[...scriptureEvidence(question,corpus),...indexedEvidence(question,data,corpus,sources)].filter(entry=>intent==='about-page'?!entry.keywordHit:strongEnough(entry,terms));
   if(statement)evidence.unshift(typed({type:'authority',label:'Canonical Shelf Statement of Faith',detail:'Doctrinal ceiling for Canonical Shelf doctrinal claims.',evidence:'governing authority'},'direct','doctrine','affirmed'));
-  let position=protectedMessage||safePosition(intent,question,policy,evidence);
+  let position=protectedMessage||safePosition(intent,question,policy,evidence,context.page);
   const warnings=[];
   if(/romans\s*1/i.test(question))warnings.push('Romans 1 belongs inside Paul’s larger argument about idolatry, desire, judgment, and the rhetorical turn in Romans 2. Claims that it refers only to pederasty, temple prostitution, or exploitation are contested and should not be presented as settled fact.');
   if(/arsenokoitai/i.test(question))warnings.push('arsenokoitai is rare and its precise social scope is debated; it should not be mapped simplistically onto a modern sexual-orientation category.');
