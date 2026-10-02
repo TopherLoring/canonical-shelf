@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-01",
+  "text": "When the Theologian service can't be reached, its offline answer now says so, answers questions about the current screen directly, leads with curated material (and the profile of any book named in the question), and no longer offers a verse that merely shares one word with the question; a scheduled check now runs the deployment verification against the live site every six hours"
+}

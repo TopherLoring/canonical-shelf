@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-01",
+  "text": "A Theologian answer from the service is no longer thrown away when the site's study context or policy files fail to load; it is shown, and only a failed request to the service falls back to the offline answer. Browser tests retry once on CI, and the scroll test now checks it measured the real answer"
+}
