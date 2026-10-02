@@ -256,7 +256,6 @@
             {
               "id": "story",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect Jesus’ proclamation to Israel’s story without erasing Judaism.",
               "reading": "Mark.1.14-15",
               "teaches": [],
@@ -265,103 +264,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "covenant",
+                "kingdom",
+                "within-judaism",
+                "summary",
                 "reflect"
               ],
               "checks": [
                 "Build the story map",
                 "Connect the themes"
-              ]
-            },
-            {
-              "id": "garden-trust",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Distinguish humanity’s vocation, freedom, and dependence in the garden narrative.",
-              "reading": "Gen.2.15-25",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
               ],
-              "checks": [
-                "Investigate: The garden: freedom, trust, and limits",
-                "Put the garden: freedom, trust, and limits to work"
-              ]
-            },
-            {
-              "id": "sin-mortality",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Trace the consequences of sin while distinguishing mortality from inherited personal guilt.",
-              "reading": "Gen.3.8-24",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
-              ],
-              "checks": [
-                "Investigate: Rupture, mortality, and the tree of life",
-                "Put rupture, mortality, and the tree of life to work"
-              ]
-            },
-            {
-              "id": "creation-care",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Read creation poetry and reason from creaturely dependence to responsible care.",
-              "reading": "Ps.104.24-30",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
-              ],
-              "checks": [
-                "Investigate: A living world entrusted to our care",
-                "Put a living world entrusted to our care to work"
-              ]
-            },
-            {
-              "id": "abraham-blessing",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Identify the direction of the promise and distinguish calling from moral superiority.",
-              "reading": "Gen.12.1-9",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
-              ],
-              "checks": [
-                "Reconstruct: Abraham: a promise that reaches beyond one family",
-                "Put abraham: a promise that reaches beyond one family to work"
-              ]
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "creation",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Connect creation, human dignity, responsibility, and mortality without confusing theological claims with a scientific timeline.",
               "reading": "Gen.1.26-31",
               "teaches": [],
@@ -370,14 +287,111 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "garden-preview",
+                "rupture-preview",
+                "science",
+                "care-preview",
+                "summary",
                 "reflect"
               ],
               "checks": [
                 "Build the evidence case",
                 "Connect meaning with practice"
-              ]
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "garden-trust",
+              "authored": true,
+              "purpose": "Distinguish humanity’s vocation, freedom, and dependence in the garden narrative.",
+              "reading": "Gen.2.15-25",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "boundary",
+                "not-alone",
+                "what-could-be-lost",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "Separate what the garden scene supports from overreach",
+                "Apply the garden scene to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "sin-mortality",
+              "authored": true,
+              "purpose": "Trace the consequences of sin while distinguishing mortality from inherited personal guilt.",
+              "reading": "Gen.3.8-24",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "hiding",
+                "consequences",
+                "tree-of-life",
+                "judgment-and-care",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "Separate what Genesis 3 supports from overreach",
+                "Apply Genesis 3 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "creation-care",
+              "authored": true,
+              "purpose": "Read creation poetry and reason from creaturely dependence to responsible care.",
+              "reading": "Ps.104.24-30",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "dependence",
+                "praise-to-practice",
+                "one-resource",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "Separate what Psalm 104 supports from overreach",
+                "Apply Psalm 104 to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "abraham-blessing",
+              "authored": true,
+              "purpose": "Identify the direction of the promise and distinguish calling from moral superiority.",
+              "reading": "Gen.12.1-9",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "blessing",
+                "response",
+                "jewish-scripture",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "Reconstruct the promise to Abram",
+                "Apply the call of Abram to two situations"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },

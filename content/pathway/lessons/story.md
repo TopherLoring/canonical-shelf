@@ -18,14 +18,19 @@
 ## Follow the larger story {#orient}
 > Follow relationships and turning points: creation, covenant, Israel’s history, Jesus, the Church, and renewed creation. The books themselves are grouped partly by genre, not simply by date.
 
+You now know how the library is organized and how to read its different kinds of writing. This unit steps back and follows the story the library tells as a whole, from creation to the hope Christians hold for the end. This first lesson gives you the whole map at once; the lessons after it slow down on its opening chapters.
+
 The Bible’s broad Christian narrative moves through creation, human estrangement, God’s covenant with Israel, Israel’s life and crises, Jesus’ ministry, the early Church, and hope for renewed creation. This is a map for orientation, not a claim that every biblical book was written in the order it appears.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Mark’s summary of Jesus’ first preaching sits near the middle of the map you are about to see. Notice its three parts: a time that has arrived, a kingdom that has come near, and a call to respond.
+
+## Covenant, exile, and the prophets {#covenant}
 A covenant is a binding relationship with commitments. God’s dealings with Abraham, Israel at Sinai, and David help explain later hopes. Exile means displacement from one’s homeland; prophets address injustice, judgment, and hope amid concrete historical circumstances.
 
+## Jesus announces God’s kingdom {#kingdom}
 Jesus announces God’s kingdom. Kingdom here concerns God’s reign, not simply a location people go after death. Mark’s short announcement invites repentance and faith. Repentance means turning or reorienting life, not merely feeling ashamed.
 
 ```check
@@ -52,7 +57,7 @@ Jesus announces God’s kingdom. Kingdom here concerns God’s reign, not simply
 }
 ```
 
-## Keep the setting visible {#keep-the-setting-visible}
+## Jesus within Judaism {#within-judaism}
 Jesus and his earliest followers were Jewish. Christian interpretations of fulfillment must not portray Jewish people as collectively guilty for Jesus’ death or assume God abandoned them. Judaism remains a living tradition with its own readings. Our map helps locate Christian claims within that history.
 
 ```check
@@ -79,6 +84,11 @@ Jesus and his earliest followers were Jewish. Christian interpretations of fulfi
   ]
 }
 ```
+
+## What you now know {#summary}
+You have the whole story in outline: creation, estrangement, covenant with Israel, Israel’s life and crises, Jesus and the kingdom, the early Church, and Christian hope for what comes. You know what a covenant is, what exile meant, and that Jesus’ announcement of God’s kingdom concerns God’s reign more than a place.
+
+Christians broadly share this outline. They differ on how fulfillment in Jesus relates to Israel’s continuing covenant, and on what the final hope involves; Canonical Shelf leaves the final physical state of creation open. The question to carry forward: where on this map does the passage you are reading sit?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

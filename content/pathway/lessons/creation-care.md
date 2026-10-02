@@ -18,23 +18,25 @@
 ## A living world entrusted to our care {#orient}
 > The poem celebrates a world full of dependent life. Care should follow that appreciation and be tested against real effects.
 
+Genesis gave humanity responsibility within a good creation. This lesson turns to a psalm that praises that creation for its own sake, and then asks how praise becomes practice.
+
 Psalm 104 praises the variety of living things. Its poetic attention moves beyond human usefulness to creatures with their own place in the world. Praise invites wonder before it becomes a list of tasks. The world has value that is not exhausted by what an individual can consume.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Notice how much of the psalm is about creatures that have nothing to do with human beings, and how their life depends on God’s breath.
+
+## Dependence and renewal {#dependence}
 The creatures depend on provision and life-giving breath. The poem also names death and renewal. It uses theological poetry, not the language of a modern scientific model. Reading its claims about God does not require ignoring the natural processes through which living systems change.
 
+## From praise to practice {#praise-to-practice}
 Creation care is an application drawn from this value and dependence, in conversation with humanity’s responsibility in Genesis. The psalm does not specify a complete environmental policy. Moving from praise to policy requires additional evidence about consequences, resources, and the people most affected.
-
-## Keep the setting visible {#keep-the-setting-visible}
-A manageable response begins with one shared resource: water, food, energy, or a neighborhood space. Investigate waste or harm, identify who bears the cost, and choose a realistic improvement. Responsible care involves learning whether an action helps, not simply feeling virtuous for having acted.
 
 ```check
 {
   "kind": "evidence",
-  "title": "Investigate: A living world entrusted to our care",
+  "title": "Separate what Psalm 104 supports from overreach",
   "prompt": "Build an evidence board from Psalm 104:24–30. Select the two supported statements; leave the two overreaches off the board.",
   "items": [
     "The psalm celebrates many kinds of creatures.",
@@ -51,10 +53,13 @@ A manageable response begins with one shared resource: water, food, energy, or a
 }
 ```
 
+## Start with one shared resource {#one-resource}
+A manageable response begins with one shared resource: water, food, energy, or a neighborhood space. Investigate waste or harm, identify who bears the cost, and choose a realistic improvement. Responsible care involves learning whether an action helps, not simply feeling virtuous for having acted.
+
 ```check
 {
   "kind": "scenario",
-  "title": "Put a living world entrusted to our care to work",
+  "title": "Apply Psalm 104 to two situations",
   "prompt": "Navigate two decisions. Choose the response that best fits the passage and the limits of the evidence.",
   "items": [],
   "answer": [],
@@ -88,6 +93,11 @@ A manageable response begins with one shared resource: water, food, energy, or a
   "why": "Investigate one shared resource and make a practical change that reduces harm."
 }
 ```
+
+## What you now know {#summary}
+The psalm values living creatures for their own sake and portrays all life as dependent on God; creation care is an application of that value, and good care is tested by its real effects rather than by good intentions.
+
+Christians agree that creation is good; they differ on how central its care is to Christian life and on which policies follow. The psalm supplies value and dependence, not a policy. The question to carry forward: what evidence would show that an action actually helps?
 
 ## Reflect on the lesson {#reflect}
 ```reflect
