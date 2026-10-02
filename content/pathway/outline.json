@@ -183,7 +183,6 @@
             {
               "id": "library",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Read a Bible reference and distinguish canon, translation, and genre.",
               "reading": "Luke.1.1-4",
               "teaches": [],
@@ -192,40 +191,21 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
+                "references",
+                "canon",
+                "setting",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Sort the library labels",
-                "Find the passage"
-              ]
-            },
-            {
-              "id": "shelf-skills",
-              "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
-              "purpose": "Use the seven original learning tracks to connect book knowledge with responsible interpretation.",
-              "reading": "Luke.24.44-49",
-              "teaches": [],
-              "requires": [],
-              "outcomes": [],
-              "sections": [
-                "orient",
-                "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "reflect"
+                "put the steps for finding a passage in order",
+                "sort differences between Bibles into canon, translation, and kind of writing"
               ],
-              "checks": [
-                "Investigate: The shelf, the timeline, and seven Bible skills",
-                "Put the shelf, the timeline, and seven bible skills to work"
-              ]
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             },
             {
               "id": "genre",
               "authored": true,
-              "converted": "mechanical (text carried word for word; awaiting editorial rewrite)",
               "purpose": "Use literary clues to interpret imagery without dismissing the passage’s claim.",
               "reading": "Ps.23.1-6",
               "teaches": [],
@@ -234,16 +214,39 @@
               "sections": [
                 "orient",
                 "read",
-                "locate-the-claim-in-context",
-                "keep-the-setting-visible",
-                "read-closely",
+                "shepherd-and-host",
+                "compare",
+                "summary",
                 "reflect"
               ],
               "checks": [
-                "Sort the reading tools",
-                "Build a reading of the psalm",
-                "Three genres, three reading moves"
-              ]
+                "choose the details that show care amid danger",
+                "match literary clues to the first reading move",
+                "connect three kinds of writing to the reading move each warrants"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
+            },
+            {
+              "id": "shelf-skills",
+              "authored": true,
+              "purpose": "Use the seven original learning tracks to connect book knowledge with responsible interpretation.",
+              "reading": "Luke.24.44-49",
+              "teaches": [],
+              "requires": [],
+              "outcomes": [],
+              "sections": [
+                "orient",
+                "read",
+                "timeline",
+                "skills",
+                "summary",
+                "reflect"
+              ],
+              "checks": [
+                "separate what the passage supports from overreaches about shelf and date",
+                "decide what to compare when shelf, story, and writing order differ"
+              ],
+              "editorial": "2026-10-02: rewritten as a continuous lesson; all original text kept"
             }
           ]
         },

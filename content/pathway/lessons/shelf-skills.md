@@ -1,7 +1,7 @@
 ---
 {
   "id": "shelf-skills",
-  "title": "The shelf, the timeline, and seven Bible skills",
+  "title": "The timeline and the skills you’ll use from here",
   "objective": "Use the seven original learning tracks to connect book knowledge with responsible interpretation.",
   "reading": "Luke 24:44–49",
   "readingOsis": "Luke.24.44-49",
@@ -15,21 +15,24 @@
   "drawers": []
 }
 ---
-## The shelf, the timeline, and seven Bible skills {#orient}
+## Three ways to place a book {#orient}
 > Use book order to find a text, chronology to orient its setting, and content and context to understand it. They answer different questions.
+
+This lesson closes the unit and opens the next one, where the story of the Bible begins. Before you start reading that story, it helps to know three different ways a book can be placed: where it sits on the shelf, when the events it describes happened, and when it was written. They are not the same, and mixing them up causes a lot of confusion.
 
 This course uses a 66-book Protestant shelf. Its nine navigation groups are Law/Pentateuch, Historical Books, Poetry/Wisdom, Major Prophets, Minor Prophets, Gospels/History, Pauline Letters, General Letters, and Prophecy. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision.
 
 ## Read the passage with the question in view {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Here the risen Jesus describes Israel’s scriptures as “the Law of Moses, the Prophets, and the Psalms”, a different arrangement from the nine shelves you have learned. Both arrangements hold the same writings; they simply group them differently.
+
+## Shelf order, story order, and writing order {#timeline}
 The first three skill tracks build orientation. The Story traces ten beats against their books; Order practices groups, testaments, and all 66; Groups teaches boundaries and reading approaches. Luke’s reference to Law, Prophets, and Psalms reflects another way of speaking about Israel’s Scriptures, reminding readers that this app’s shelf is not the only arrangement.
 
 Chronology separates shelf position, narrated events, and composition. Content adds summaries, casts, openings, authorship, and audiences. Dates and attributions vary in certainty, so a teaching timeline must not pretend every placement is settled. The integrated skill missions retain that practice while the curriculum marks those limits.
 
-## Keep the setting visible {#keep-the-setting-visible}
-Themes traces fourteen threads across books, including covenant, wilderness, remnant, presence, worship, and mission. Verses connects passages with themes, speaker, recipient, and reconstructed wording. These skills serve contextual understanding; accurate recall by itself does not establish a sound interpretation.
+A simple example: the book of Job sits among the poetry books, its story is set in an ancient patriarchal world, and scholars date its writing to a much later period. A reader who knows all three placements can ask better questions than one who only knows the page number.
 
 ```check
 {
@@ -50,6 +53,11 @@ Themes traces fourteen threads across books, including covenant, wilderness, rem
   "why": "Organizing Scripture and interpreting Scripture are related but distinct tasks."
 }
 ```
+
+## The skills you will use from here {#skills}
+Themes traces fourteen threads across books, including covenant, wilderness, remnant, presence, worship, and mission. Verses connects passages with themes, speaker, recipient, and reconstructed wording. These skills serve contextual understanding; accurate recall by itself does not establish a sound interpretation.
+
+You will meet these skills in Practice, where they reinforce what the Pathway teaches. Use them as tools, not as a score: remembering where a book sits or which theme a verse carries is useful only when it helps you read the passage in its own setting.
 
 ```check
 {
@@ -88,6 +96,11 @@ Themes traces fourteen threads across books, including covenant, wilderness, rem
   "why": "Use shelf, setting, and textual context together when explaining a passage."
 }
 ```
+
+## What you now know {#summary}
+You can place a book three ways, by shelf, by story, and by date of writing, and you know that a shelf group can hold several kinds of writing. You also know the skills Practice builds and what they are for.
+
+Scholars agree on the broad order of the biblical story; they debate the dates of many books, and this guide marks those dates as debated rather than settled. The next unit begins the story itself, from creation onward. The question to carry forward: when you open a book, which of the three placements do you need?
 
 ## Reflect on the lesson {#reflect}
 ```reflect

@@ -1,7 +1,7 @@
 ---
 {
   "id": "genre",
-  "title": "Read the kind of writing in front of you",
+  "title": "Practice: reading Psalm 23 as poetry",
   "objective": "Use literary clues to interpret imagery without dismissing the passage’s claim.",
   "reading": "Psalm 23:1–6",
   "readingOsis": "Ps.23.1-6",
@@ -15,25 +15,48 @@
   "drawers": []
 }
 ---
-## Read the kind of writing in front of you {#orient}
+## Put the kinds of writing to work {#orient}
 > A metaphor can make a serious claim. Psalm 23’s shepherd image speaks of God’s care; the valley shows that care does not mean an absence of danger.
+
+The lesson on kinds of writing gave you the categories. This one is practice: you will take a single, well-known poem and read it slowly, the way the kinds-of-writing lesson describes, and then compare it with three other kinds of writing so you can feel the difference in your hands.
 
 A recipe, a news report, and a love poem can all be truthful without making the same kind of claim. Genre is a way of recognizing what a text is doing. Biblical books include stories, laws, poems, proverbs, letters, and symbolic visions. One book can contain several forms: a narrative may quote a poem, and a letter may include a confession or a hymn.
 
-## Read the passage with the question in view {#read}
+## Read the psalm slowly {#read}
 ::reading
 
-## Locate the claim in context {#locate-the-claim-in-context}
+Read it twice. The first time, notice the pictures: a shepherd, green pastures, still water, a dark valley, a table, oil, a cup. The second time, notice who is speaking and to whom, because halfway through the psalm the speaker stops talking about the LORD and starts talking to him.
+
+## The shepherd and the host {#shepherd-and-host}
 Psalm 23 describes the LORD as a shepherd and then as a host. The speaker is led, restored, accompanied through danger, and welcomed to a table. Those images communicate care and trust. Reading the shepherd image metaphorically does not mean the poem has nothing to say about reality. It means asking what the comparison helps its audience understand about God.
 
 Notice that the valley and enemies remain within the poem. Trust is voiced amid danger rather than only after every threat disappears. Reading the whole psalm therefore complicates a claim that faithful people must never experience hardship. The poem gives language for confidence and dependence; it is not a formula that lets a reader predict every outcome.
 
-## Keep the setting visible {#keep-the-setting-visible}
+```check
+{
+  "kind": "evidence",
+  "title": "Build a reading of the psalm",
+  "prompt": "Select the two details that support God’s care amid danger rather than a guarantee of an easy life.",
+  "items": [
+    "The speaker passes through a dark valley",
+    "The psalm says believers never meet enemies",
+    "The speaker finds comfort in God’s presence",
+    "The psalm supplies a scientific description of sheep"
+  ],
+  "answer": [
+    0,
+    2
+  ],
+  "hint": "Look for both danger and companionship.",
+  "why": "The valley and divine companionship belong to the same poem. The reading must account for both."
+}
+```
+
+## Compare three other kinds of writing {#compare}
 Genre also changes how we read other books. A proverb often communicates practical wisdom rather than an exceptionless guarantee. A narrative may report a character’s harmful act without endorsing it. Apocalyptic writing uses visions and symbols to address crisis and hope. Identifying genre starts inquiry; it does not automatically settle every historical or theological question.
 
 Try a simple routine: identify the form, point to a clue, explain what the language communicates, and test your reading against the whole passage. Avoid two shortcuts: assuming all vivid language is a literal description, and calling anything difficult a metaphor without evidence. Responsible reading gives reasons for either judgment.
 
-## Read closely {#read-closely}
 Genre comparison: Acts 18:1–4 narrates Paul’s arrival, work, and conversations in Corinth. Exodus 20:12–17 gives covenant commands; a command tells its audience what to do, not what everyone actually did. Daniel 7:2–3 presents a vision of beasts; 7:17–18 itself interprets beasts in relation to kings and a kingdom. The symbolism makes a claim about power and hope, not a zoological report. These genres can address reality differently. Identifying symbolism does not make a passage meaningless, and identifying narrative does not settle every historical question.
 
 ```check
@@ -66,26 +89,6 @@ Genre comparison: Acts 18:1–4 narrates Paul’s arrival, work, and conversatio
 
 ```check
 {
-  "kind": "evidence",
-  "title": "Build a reading of the psalm",
-  "prompt": "Select the two details that support God’s care amid danger rather than a guarantee of an easy life.",
-  "items": [
-    "The speaker passes through a dark valley",
-    "The psalm says believers never meet enemies",
-    "The speaker finds comfort in God’s presence",
-    "The psalm supplies a scientific description of sheep"
-  ],
-  "answer": [
-    0,
-    2
-  ],
-  "hint": "Look for both danger and companionship.",
-  "why": "The valley and divine companionship belong to the same poem. The reading must account for both."
-}
-```
-
-```check
-{
   "kind": "match",
   "title": "Three genres, three reading moves",
   "prompt": "Read the comparison passages. Connect each feature with the reading move it warrants.",
@@ -108,6 +111,11 @@ Genre comparison: Acts 18:1–4 narrates Paul’s arrival, work, and conversatio
   "why": "Daniel supplies an interpretive cue; Acts narrates a setting and actions; Exodus prescribes conduct. None of these moves licenses ignoring context."
 }
 ```
+
+## What you now know {#summary}
+You have read a poem as a poem: you followed its images, noticed the change from speaking about God to speaking to God, and kept the dark valley in view instead of turning the psalm into a promise of an easy life. You have also compared it with a narrative, a set of commands, and a vision, and seen that each makes a different kind of claim.
+
+Readers broadly agree that Psalm 23 is a poem of trust; they read some details differently, such as whether the “house of the LORD” means the temple, God’s presence, or both. The question to carry forward: before deciding what a passage means, what kind of writing is it, and what clue tells you so?
 
 ## Reflect on the lesson {#reflect}
 ```reflect
