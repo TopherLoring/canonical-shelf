@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.categories.per-theme",
+  "topic": "design.categories.colors",
+  "date": "2026-10-03",
+  "text": "Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. Shelf books sit flush with no gaps between them; books are left-aligned and stacked books share one uniform width.",
+  "by": "Chris"
+}

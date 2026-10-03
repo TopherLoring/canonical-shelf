@@ -15,6 +15,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - There is no fixed font set. Each theme chooses its own typography to reflect that theme; all fonts must be readable. (supersedes design.fonts.set.title-three)
 - Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.
 - The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
+- Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. Shelf books sit flush with no gaps between them; books are left-aligned and stacked books share one uniform width.
+- Each group keeps its hue family in every theme (Law blue, History brown, Wisdom teal-green, Major Prophets purple, Minor Prophets gold, Gospels and Acts red, Paul's Letters rose, General Letters slate, Revelation darkest/neutral) while saturation and lightness are tuned per theme and mode, so readers still recognize groups after switching themes. Adjacent groups must differ in lightness, not hue alone. (agent default)
 
 ### Added
 

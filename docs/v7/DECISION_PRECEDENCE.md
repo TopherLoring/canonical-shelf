@@ -161,6 +161,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
 
+### `design.categories.colors`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.categories.per-theme`
+  Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. Shelf books sit flush with no gaps between them; books are left-aligned and stacked books share one uniform width.
+
+### `design.categories.hue-families`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `design.categories.hue-families.v1`
+  Each group keeps its hue family in every theme (Law blue, History brown, Wisdom teal-green, Major Prophets purple, Minor Prophets gold, Gospels and Acts red, Paul's Letters rose, General Letters slate, Revelation darkest/neutral) while saturation and lightness are tuned per theme and mode, so readers still recognize groups after switching themes. Adjacent groups must differ in lightness, not hue alone.
+  *Why:* Per-theme colors without stable hue families would break group recognition across theme switches
+
 ### `design.color.roles`
 
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.roles.second-accent`

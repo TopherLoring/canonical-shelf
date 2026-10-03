@@ -73,6 +73,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
+| `design.categories.colors` | Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. | Owner decision | undefined |
+| `design.categories.hue-families` | undefined | Agent default | undefined |
 | `design.color.roles` | Themes may use more than one accent color: | Owner decision | undefined |
 | `design.color.signal` | The gold/gilt color is agent filler, not an owner choice; | Owner decision | undefined |
 | `design.color.text-tiers` | Text has three tiers: | Owner decision | undefined |
