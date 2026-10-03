@@ -469,6 +469,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
 
+### `notes.lesson-hidden`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `notes.lesson-hidden.v1`
+  Notes are hidden by default only in lessons. In the Bible reader, verses are selectable, readers can highlight and take notes, and the selected verse drives the Reading Desk content, including its notes.
+
 ### `orientation.scope`
 
 - **Current** · 2026-10-01 · Owner decision (Chris) · `orientation-scope`

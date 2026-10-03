@@ -107,6 +107,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
+| `notes.lesson-hidden` | Notes are hidden by default only in lessons. | Owner decision | undefined |
 | `orientation.scope` | Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; | Owner decision | undefined |
 | `platform.offline` | Offline access is not a requirement | Owner decision | undefined |
 | `platform.sw.caching` | undefined | Agent default | undefined |

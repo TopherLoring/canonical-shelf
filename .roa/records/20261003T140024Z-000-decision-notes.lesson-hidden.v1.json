@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "notes.lesson-hidden.v1",
+  "topic": "notes.lesson-hidden",
+  "date": "2026-10-03",
+  "text": "Notes are hidden by default only in lessons. In the Bible reader, verses are selectable, readers can highlight and take notes, and the selected verse drives the Reading Desk content, including its notes.",
+  "by": "Chris"
+}

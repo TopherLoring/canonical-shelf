@@ -11,6 +11,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 - Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels. (agent default) (supersedes ui.naming.library-labels)
 - The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.
+- Notes are hidden by default only in lessons. In the Bible reader, verses are selectable, readers can highlight and take notes, and the selected verse drives the Reading Desk content, including its notes.
 
 ### Added
 
