@@ -199,6 +199,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Agent default (Claude) · `design.contract.theme.installed`
   Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles
 
+### `design.corners`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.corners.rounded`
+  No round pill shapes and no 90-degree corners: interface elements use modern rounded corners.
+
+### `design.corners.scale`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `design.corners.scale.v1`
+  Corner scale: 3px for thin bars (progress), 6-8px for small chips, labels, step markers and tooltips, 10px for buttons, inputs, nav items and list rows, 12-14px for cards and panels, 16-18px for page frames and the bookshelf case. Themes may vary these values but never use pill (fully rounded) or square corners on interface elements; book spines keep physical book corners.
+  *Why:* Turns the owner's corner rule into token values the theme contract can carry
+
 ### `design.fonts.hosting`
 
 - **Current** · 2026-09-30 · Agent default (Claude) · `design.fonts.hosting.self-hosted`

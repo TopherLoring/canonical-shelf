@@ -80,6 +80,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.color.text-tiers` | Text has three tiers: | Owner decision | undefined |
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
+| `design.corners` | No round pill shapes and no 90-degree corners: | Owner decision | undefined |
+| `design.corners.scale` | undefined | Agent default | undefined |
 | `design.fonts.hosting` | undefined | Agent default | undefined |
 | `design.fonts.set` | There is no fixed font set. | Owner decision | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
