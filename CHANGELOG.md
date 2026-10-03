@@ -11,14 +11,17 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning.
 - Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
 - Use Tavily for web research only if it remains free; paid usage is not authorized.
+- Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clarification. It should provide prayer when asked, and may ask about a specific need when none has been shared.
 
 ### Changed
 
 - Implemented conversational Theologian prompts, follow-up grounding, site-category answers, and optional free-only Tavily search. Build/core checks and 42 system-Chromium browser tests passed; four focused browser tests passed after module relocation. One live Tavily search succeeded with zero reported paid usage. Full default verification was blocked by missing pinned Chromium. Worker deployment and live model conversation review remain pending.
+- Verified prayer/reply-formatting and secret-preservation changes with the full release gate (43 browser tests), Cloudflare configuration validation, and Wrangler deployment dry-run. Live Tavily capability still reports not-configured; historical secret loss is not proven without Cloudflare deployment history.
 
 ### Fixed
 
 - Theologian answers web capability questions from the deployment configuration, without model inference or spending search credits; normal prompts distinguish search availability from whether this turn searched.
+- Theologian distinguishes prayer requests from teaching about prayer, keeps replies brief by default, and renders safe basic reply formatting. Generated Cloudflare configuration explicitly preserves dashboard bindings, including secrets, for deployment paths without a secrets file.
 
 ## 2026-10-02
 

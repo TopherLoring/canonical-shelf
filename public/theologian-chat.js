@@ -57,7 +57,38 @@ function loadMessages(){try{const value=JSON.parse(localStorage.getItem(STORAGE_
 function saveMessages(items){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(items.slice(-MAX_STORED_MESSAGES)))}catch{}}
 let messages=loadMessages();
 
-function answerMarkup(text){return clip(text,9000).split(/\n\s*\n/).filter(Boolean).map(block=>`<p>${esc(block).replace(/\n/g,'<br>')}</p>`).join('')}
+// Parse a small Markdown subset; all raw text stays escaped and links allow only web/site URLs.
+function inlineAnswer(text,depth=0){
+  if(depth>3)return esc(text);
+  const tokens=/\[([^\]\n]+)\]\(([^\s)]+)\)|\*\*([^\n]+?)\*\*|\*([^*\n]+)\*|`([^`\n]+)`/g;
+  let html='',end=0;
+  for(const match of text.matchAll(tokens)){
+    html+=esc(text.slice(end,match.index));end=match.index+match[0].length;
+    if(match[1]){
+      const href=match[2];let safe=false;
+      try{const url=new URL(href,location.origin);safe=!url.username&&!url.password&&!/[\\\u0000-\u0020]/.test(href)&&(/^https?:\/\//i.test(href)||/^\/(?!\/)/.test(href))&&['http:','https:'].includes(url.protocol)}catch{}
+      html+=safe?`<a href="${esc(href)}" rel="noreferrer">${inlineAnswer(match[1],depth+1)}</a>`:esc(match[1]);
+    }else if(match[3])html+=`<strong>${inlineAnswer(match[3],depth+1)}</strong>`;
+    else if(match[4])html+=`<em>${inlineAnswer(match[4],depth+1)}</em>`;
+    else html+=`<code>${esc(match[5])}</code>`;
+  }
+  return html+esc(text.slice(end));
+}
+function answerMarkup(text,markdown=true){
+  const value=clip(text,9000);
+  if(!markdown)return value.split(/\n\s*\n/).filter(Boolean).map(block=>`<p>${esc(block).replace(/\n/g,'<br>')}</p>`).join('');
+  const html=[];let paragraph=[],list='';
+  const flush=()=>{if(paragraph.length){html.push(`<p>${paragraph.map(line=>inlineAnswer(line)).join('<br>')}</p>`);paragraph=[]}};
+  const closeList=()=>{if(list){html.push(`</${list}>`);list=''}};
+  for(const raw of value.replace(/\r/g,'').split('\n')){
+    const line=raw.trim().replace(/(?:\\| {2})$/,'');
+    if(!line){flush();closeList();continue}
+    const item=line.match(/^(?:([-*+])|\d+[.)])\s+(.+)$/);
+    if(item){flush();const type=item[1]?'ul':'ol';if(type!==list){closeList();list=type;html.push(`<${list}>`)}html.push(`<li>${inlineAnswer(item[2])}</li>`);continue}
+    closeList();paragraph.push(line.replace(/^#{1,6}\s+/,''));
+  }
+  flush();closeList();return html.join('');
+}
 function timeLabel(value){try{return new Date(value).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}catch{return''}}
 function evidenceMarkup(items=[]){
   if(!items.length)return'';
@@ -85,7 +116,7 @@ function flagFormMarkup(index){
 }
 function messageMarkup(message,index){
   const assistant=message.role==='assistant';
-  return `<article class="chat-message chat-message--${message.role}"><div class="chat-message__label">${assistant?'Theologian':'You'} <time>${esc(timeLabel(message.at))}</time></div><div class="chat-message__bubble">${answerMarkup(message.text)}</div>${assistant?badgesMarkup(message):''}${assistant?evidenceMarkup(message.evidence):''}${assistant?reviewActionsMarkup(index,message):''}</article>`;
+  return `<article class="chat-message chat-message--${message.role}"><div class="chat-message__label">${assistant?'Theologian':'You'} <time>${esc(timeLabel(message.at))}</time></div><div class="chat-message__bubble">${answerMarkup(message.text,assistant)}</div>${assistant?badgesMarkup(message):''}${assistant?evidenceMarkup(message.evidence):''}${assistant?reviewActionsMarkup(index,message):''}</article>`;
 }
 function systemMarkup(){
   const unread=replies.filter(r=>!seenReplies.has(r.id));

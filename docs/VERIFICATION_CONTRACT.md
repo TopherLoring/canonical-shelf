@@ -31,7 +31,7 @@ Verification may assert durable capabilities and template semantics such as:
 
 ## Theologian communication and research checks
 
-Tests should exercise follow-up evidence continuity, explicit topic changes, brief acknowledgments, site-category grounding, and recognition of feedback about a mistaken answer. Keep privacy, mastery protection, and crisis checks active. Web research checks cover explicit requests, exclusion of prior/private context, source-link handling, refusal of paid or unknown billing configurations, and graceful continuation when browsing is unavailable.
+Tests should exercise follow-up evidence continuity, explicit topic changes, brief acknowledgments, prayer-request context without irrelevant retrieval, safe reply formatting, site-category grounding, and recognition of feedback about a mistaken answer. Keep privacy, mastery protection, and crisis checks active. Web research checks cover explicit requests, exclusion of prior/private context, source-link handling, refusal of paid or unknown billing configurations, and graceful continuation when browsing is unavailable.
 
 Mocked model tests verify request construction and retrieval behavior, not the quality of a live model's prose or theological judgment. Live review should replay the bookshelf/category and conversation-repair examples, try follow-ups and disagreement, and inspect citations and alignment with the Statement of Faith. A successful Tavily API request alone does not establish that the deployed Theologian uses it correctly.
 

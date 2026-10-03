@@ -8,7 +8,7 @@ const assets={
     lessons:[{id:'romans-context',unitId:'unit.test',title:'Reading Romans in context',summary:'Read Romans in literary and historical context.'}],
     glossary:[{id:'term',term:'example term',quick:'A short lexical note.'}]
   }),
-  '/data/corpus.txt':'40\t3\t13\tJesus came to be baptized by John.\n44\t22\t16\tGet up and be baptized.\n45\t1\t26\tExample verse text.\n45\t1\t27\tExample continuation.\n45\t2\t1\tExample rhetorical turn.\n',
+  '/data/corpus.txt':'40\t3\t13\tJesus came to be baptized by John.\n44\t22\t16\tGet up and be baptized.\n45\t1\t26\tExample verse text.\n45\t1\t27\tExample continuation.\n45\t2\t1\tExample rhetorical turn.\n40\t6\t9\tPray with these words in prayer.\n',
   '/data/statement-of-faith.md':'# Statement of Faith\nA compact doctrinal ceiling for Canonical Shelf.\n',
   '/data/theologian-belief-context.md':'# Supplemental belief context\nLower-authority explanatory context.\n',
   '/data/theology-policy.json':JSON.stringify({
@@ -192,3 +192,18 @@ for(const key of [undefined,'configured-test-key']){
   }
 }
 console.log('PASS — truthful web capability responses.');
+
+// Requests for prayer are conversation, while teaching about prayer still uses sources.
+for (const question of ['Can you pray?', 'Please pray with me.', 'Write a prayer for me.']) {
+  const response=await postTheologian(new Request('https://canonical.test/api/theologian',{
+    method:'POST',body:JSON.stringify({question,history:[{role:'user',text:'My mother is having surgery tomorrow.'}]})
+  }),goodEnv);
+  const result=await response.json();
+  assert.deepEqual(result.evidence,[],'prayer request became a keyword-based Scripture lookup');
+  assert.ok(captured.input.messages.some(turn=>turn.role==='user'&&turn.content.includes('surgery')),'prayer request lost the need already shared');
+}
+const prayerTeaching=await postTheologian(new Request('https://canonical.test/api/theologian',{
+  method:'POST',body:JSON.stringify({question:'What did Jesus teach about prayer in Matthew 6:9?'})
+}),goodEnv);
+assert.ok((await prayerTeaching.json()).evidence.some(item=>item.label==='Matthew 6:9'),'teaching about prayer lost its biblical source');
+console.log('PASS — prayer requests preserve context without turning into a reference lesson.');

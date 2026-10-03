@@ -35,6 +35,9 @@ const vars={
 const config={
   $schema:'./node_modules/wrangler/config-schema.json',
   name:WORKER_NAME,
+  // Preserve dashboard secrets even for deploys that do not pass --secrets-file.
+  // Explicit vars below still update their values on each deployment.
+  keep_vars:true,
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},
