@@ -1063,6 +1063,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
   The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.
 
+### `ui.phone.tabs`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.tabs.v2`
+  Phone: the Theologian is a vertical tab on the right edge, sitting in a widened right margin (content card inset 36px on the right) so it never covers text; there are no bottom-edge tabs. My Notes is a button in the content header (reader: beside the reading-options menu; lesson: in the window title bar). The lesson Continue button is a normal-size button, not full width. Supersedes the bottom-tab placement in ui.bible.phone and ui.frame.phone.
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`

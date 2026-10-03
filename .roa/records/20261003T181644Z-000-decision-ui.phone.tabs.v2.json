@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.phone.tabs.v2",
+  "topic": "ui.phone.tabs",
+  "date": "2026-10-03",
+  "text": "Phone: the Theologian is a vertical tab on the right edge, sitting in a widened right margin (content card inset 36px on the right) so it never covers text; there are no bottom-edge tabs. My Notes is a button in the content header (reader: beside the reading-options menu; lesson: in the window title bar). The lesson Continue button is a normal-size button, not full width. Supersedes the bottom-tab placement in ui.bible.phone and ui.frame.phone.",
+  "by": "Chris"
+}
