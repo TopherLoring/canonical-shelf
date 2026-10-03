@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "existing-worker-test-2026-10-03",
+  "topic": "release.deployment",
+  "date": "2026-10-03",
+  "text": "Use the existing Worker for deployment and validation of these Theologian changes; the owner identified the repository and existing site as a test at this stage.",
+  "scope": "Deployment of the conversational Theologian and free-only Tavily changes from this task; not blanket authorization for future deployments",
+  "by": "Chris"
+}

@@ -2,7 +2,7 @@
 
 **Canonical Shelf** is an offline-capable Bible-literacy, Scripture-reading, Christian-study, and reference application for adult learners. It teaches the Bible as a library, develops durable biblical knowledge and interpretive reasoning, makes evidence/limits visible, presents Christian disagreement responsibly, and supports independent investigation rather than permanent dependence on lessons.
 
-> **Release status:** PR #24 is the sole active convergence/release candidate and remains draft until the current head passes `bun run verify` and the applicable human visual, accessibility, editorial/theological, and novice-usability gates. A GitHub Actions job that receives no runner and executes zero steps is infrastructure failure, not validation evidence.
+> **Release status:** Theologian communication and optional free-only web research are implemented on `theologian-conversation-web`. Local checks and a live Tavily API search have passed; deployment to the existing test Worker and review of live AI conversations remain pending. The default browser gate requires Playwright’s pinned Chromium; this cloud environment used its documented system-Chromium override.
 
 ## Product model
 
@@ -66,22 +66,20 @@ Response paths:
 2. **Deterministic evidence-aware fallback** when cloud inference is unavailable or rejected.
 3. **Deterministic crisis safety response** before ordinary AI generation when credible first-person suicide/self-harm indicators appear.
 
-Authority order:
+The Statement of Faith is Theologian’s governing doctrinal stance. It may fairly explain competing interpretations and conflicting evidence without adopting them as its own stance or pressuring learner agreement.
 
-1. bundled Berean Standard Bible for Scripture text/quotation;
-2. current Course/Topics/glossary/Bible/reference content;
-3. compact Statement of Faith as Canonical Shelf doctrinal ceiling;
-4. supplemental long-form belief context as lower-authority Theologian context;
-5. theology policy + vetted scholarship/traditions as attributed evidence.
+The model can reason from broader knowledge; site content is a reference resource, not an exclusive knowledge base. Exact Scripture quotations use the bundled BSB, and questions about the interface use actual site facts. Reply length follows the conversation rather than a fixed word target. Follow-ups retain relevant context, and feedback about a mistaken answer should prompt correction rather than a theological keyword search.
 
 Canonical theology files:
 
 ```text
 public/data/statement-of-faith.md
-public/data/theologian-belief-context.md
+content/statement/statement-of-faith-v3.md  # server-only source; not a public asset
 public/data/theology-policy.json
 public/data/theology-sources.json
 ```
+
+The supplemental belief source compiles to `worker/generated/belief-context.ts` and remains lower authority than the compact Statement of Faith.
 
 ### Learner agency
 

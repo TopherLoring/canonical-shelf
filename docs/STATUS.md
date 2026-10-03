@@ -119,12 +119,15 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
 | `theme.default` | Reading Room is the default theme: | Owner decision | undefined |
+| `theologian.authority` | Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented. | Owner decision | undefined |
+| `theologian.communication` | Theologian should communicate naturally like a traditional chat. | Owner decision | undefined |
+| `theologian.knowledge` | Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning. | Owner decision | undefined |
 | `theologian.learner-agency` | undefined | Agent default | undefined |
-| `theologian.length` | undefined | Agent default | undefined |
 | `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; | Owner decision | undefined |
 | `theologian.privacy` | undefined | Agent default | undefined |
 | `theologian.review` | Each Theologian response has thumbs up/down and a flag. | Owner decision | undefined |
 | `theologian.ui` | Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower righ... | Owner decision | undefined |
+| `theologian.web` | Use Tavily for web research only if it remains free; | Owner decision | undefined |
 | `theology.agency.free-choice` | Affirmed: | Owner decision | undefined |
 | `theology.baptism` | Affirmed: | Owner decision | undefined |
 | `theology.christ.ascension` | Left open: | Owner decision | undefined |
