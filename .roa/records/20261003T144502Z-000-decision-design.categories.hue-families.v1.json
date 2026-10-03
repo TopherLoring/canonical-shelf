@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "design.categories.hue-families.v1",
+  "topic": "design.categories.hue-families",
+  "date": "2026-10-03",
+  "text": "Each group keeps its hue family in every theme (Law blue, History brown, Wisdom teal-green, Major Prophets purple, Minor Prophets gold, Gospels and Acts red, Paul's Letters rose, General Letters slate, Revelation darkest/neutral) while saturation and lightness are tuned per theme and mode, so readers still recognize groups after switching themes. Adjacent groups must differ in lightness, not hue alone.",
+  "rationale": "Per-theme colors without stable hue families would break group recognition across theme switches",
+  "by": "Claude"
+}
