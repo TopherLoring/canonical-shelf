@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "free-only-tavily-2026-10-03",
+  "topic": "theologian.web",
+  "date": "2026-10-03",
+  "text": "Use Tavily for web research only if it remains free; paid usage is not authorized.",
+  "by": "Chris"
+}

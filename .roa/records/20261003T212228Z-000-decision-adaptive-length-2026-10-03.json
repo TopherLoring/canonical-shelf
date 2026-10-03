@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "adaptive-length-2026-10-03",
+  "topic": "theologian.length",
+  "date": "2026-10-03",
+  "text": "Approved matching reply length to the message: brief acknowledgments, direct answers, deeper explanations when requested, and clarification when needed, replacing the fixed 100-180-word default.",
+  "scope": "Communication design presented and approved in the 2026-10-03 Theologian chat task",
+  "supersedes": [
+    "concise-default"
+  ],
+  "by": "Chris"
+}

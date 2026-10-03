@@ -3,6 +3,19 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-03
+
+### Decided
+
+- Theologian should communicate naturally like a traditional chat. This work concerns communication; visual design is being resolved separately.
+- Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning.
+- Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
+- Use Tavily for web research only if it remains free; paid usage is not authorized.
+
+### Changed
+
+- Implemented conversational Theologian prompts, follow-up grounding, site-category answers, and optional free-only Tavily search. Build/core checks and 42 system-Chromium browser tests passed; four focused browser tests passed after module relocation. One live Tavily search succeeded with zero reported paid usage. Full default verification was blocked by missing pinned Chromium. Worker deployment and live model conversation review remain pending.
+
 ## 2026-10-02
 
 ### Decided
