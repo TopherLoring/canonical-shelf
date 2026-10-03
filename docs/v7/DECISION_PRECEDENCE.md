@@ -626,6 +626,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
   *Why:* Chris: paper, whites, light greys, deep blues, a hint of pink, library
 
+### `theologian.chat-design`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `theologian.chat-design.v1`
+  Theologian chat design (approved): desktop opens docked in the reader's right column (replacing study tools), phone opens as a centered card with the standard 10px margins; everything outside the chat is dimmed and clicking the dim closes it; no tab or handle while open (the header X closes it); strong elevation shadow. Navy header (title, 'You're reading [passage]', New chat, more menu, close) over a white body; one interface font throughout; user messages in a neutral grey bubble; answers as plain text with interpretations set off by a side rule; 'Scripture cited' section open by default and collapsible, each reference an underlined address with its group-color bar that opens the chapter, with per-reference expand for verse text; rating buttons on that row; suggested replies inside the conversation styled like user messages; removable passage chip (group-color bar plus x) above a bordered single-line input with Send inside; reminder line below. Edge tabs show a chevron (left when closed).
+
 ### `theologian.learner-agency`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `theologian.learner-agency.from-precedence-doc`
