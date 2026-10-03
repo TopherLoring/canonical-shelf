@@ -1087,6 +1087,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
   The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
 
+### `ui.phone.my-notes`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
+  Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
+
 ### `ui.phone.no-hscroll`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
