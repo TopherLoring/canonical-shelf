@@ -37,7 +37,7 @@ const config={
   name:WORKER_NAME,
   // Preserve dashboard-managed bindings; explicit vars below still update.
   keep_vars:true,
-    ...(isProduction ? {
+  ...(isProduction ? {
     secrets: {
       required: [
         'BETTER_AUTH_SECRET',

@@ -36,3 +36,21 @@ test('Theologian reply opens at its first line and stays put when rated',async({
   await expect(rate).toHaveAttribute('aria-pressed','true');
   expect(Math.abs(await stream.evaluate(el=>el.scrollTop)-before)).toBeLessThanOrEqual(2);
 });
+
+test('Theologian renders reply formatting and safe source links without executing HTML',async({page})=>{
+  const answer='A **short answer** with *emphasis*.\n\n1. First point\n2. Second point\n\n- A detail\n- Another detail\n\n[Source](https://example.com/reference) and [unsafe](javascript:alert%281%29).\n\n<img src=x onerror="window.chatInjected=true">';
+  await page.route('**/api/theologian',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({mode:'cloud',answer,evidence:[]})}));
+  await page.goto('/home');
+  await page.locator('#guide-open').click();
+  await page.locator('#guide-q').fill('Explain this briefly');
+  await page.locator('#guide-q').press('Enter');
+  const reply=page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)').last().locator('.chat-message__bubble');
+  await expect(reply.locator('strong')).toHaveText('short answer');
+  await expect(reply.locator('em')).toHaveText('emphasis');
+  await expect(reply.locator('ol > li')).toHaveCount(2);
+  await expect(reply.locator('ul > li')).toHaveCount(2);
+  await expect(reply.getByRole('link',{name:'Source'})).toHaveAttribute('href','https://example.com/reference');
+  await expect(reply.locator('a')).toHaveCount(1);
+  await expect(reply.locator('img,script')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.chatInjected)).toBeUndefined();
+});

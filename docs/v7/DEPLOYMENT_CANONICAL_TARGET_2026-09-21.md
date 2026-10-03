@@ -87,6 +87,8 @@ The production workflow deploys with the generated Wrangler configuration and an
 
 The workflow uses deployment concurrency so production deploys do not overlap.
 
+The generated Wrangler configuration sets `keep_vars: true`, preserving dashboard-managed bindings, including encrypted secrets, even when a deployment does not pass `--secrets-file`. Explicit configuration values still update on deployment. The Cloudflare configuration gate requires this preservation setting. `TAVILY_API_KEY` is an encrypted secret on the deployed `the-canonical-shelf` Worker; the cloud coding environment’s Tavily credential does not configure that Worker. The GitHub workflow supplies only the Better Auth secret and inherits the Worker’s existing Tavily secret. Keeping secrets cannot restore a key that is already missing. Deploy through this workflow; a separately configured Cloudflare Git build is not covered by its concurrency lock.
+
 ## Post-deploy proof
 
 A successful `wrangler deploy` is not sufficient evidence of a successful Canonical Shelf release.

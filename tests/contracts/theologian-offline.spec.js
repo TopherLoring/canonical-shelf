@@ -27,3 +27,20 @@ test('a half-typed Theologian message survives a re-render of the chat',async({p
   await page.locator('#guide .chat-message--assistant').last().locator('[data-theologian-rate="up"]').click();
   await expect(page.locator('#guide-q')).toHaveValue('A follow-up I am still writing');
 });
+
+
+test('offline acknowledgments stay brief and do not repeat the outage announcement',async({page})=>{
+  await page.route('**/api/theologian',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({fallback:true})}));
+  await page.goto('/home');
+  await page.locator('#guide-open').click();
+  await page.locator('#guide-q').fill('What can you help me understand on this page?');
+  await page.locator('#guide-q').press('Enter');
+  const replies=page.locator('#guide .chat-message--assistant:not(.chat-message--thinking)');
+  await expect(replies).toHaveCount(1);
+  await page.locator('#guide-q').fill('Thanks!');
+  await page.locator('#guide-q').press('Enter');
+  await expect(replies).toHaveCount(2);
+  const answer=replies.last().locator('.chat-message__bubble');
+  await expect(answer).not.toContainText('reachable');
+  expect((await answer.innerText()).length).toBeLessThan(100);
+});

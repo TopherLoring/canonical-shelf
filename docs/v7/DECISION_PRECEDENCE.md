@@ -551,6 +551,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-24 · Agent default (Claude) · `release.deployment.from-precedence-doc`
   Production deployment is a separate, explicit owner action. A GitHub Actions run with zero executed steps is infrastructure evidence, not code-validation evidence
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
+- **Approval** · 2026-10-03 · Chris · `existing-worker-test-2026-10-03` · scope: Deployment of the conversational Theologian and free-only Tavily changes from this task; not blanket authorization for future deployments
+  Use the existing Worker for deployment and validation of these Theologian changes; the owner identified the repository and existing site as a test at this stage.
 
 ### `release.gates`
 
@@ -576,6 +578,26 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Reading Room is the default theme: paper whites, light greys, deep navy, with dusty rose limited to small marks (underlines, progress, ornaments); light mode by default, and learners who already chose a theme keep it
   *Why:* Chris: paper, whites, light greys, deep blues, a hint of pink, library
 
+### `theologian.authority`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `governing-faith-2026-10-03`
+  Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
+
+### `theologian.communication`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `natural-conversation-2026-10-03`
+  Theologian should communicate naturally like a traditional chat. This work concerns communication; visual design is being resolved separately.
+
+### `theologian.conversation`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `theologian-brief-prayer-2026-10-03`
+  Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clarification. It should provide prayer when asked, and may ask about a specific need when none has been shared.
+
+### `theologian.knowledge`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `broader-knowledge-2026-10-03`
+  Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning.
+
 ### `theologian.learner-agency`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `theologian.learner-agency.from-precedence-doc`
@@ -584,9 +606,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `theologian.length`
 
-- **Current** · 2026-10-01 · Agent default (Claude) · `concise-default`
-  Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it
+- **Previous** · 2026-10-01 · Agent default (Claude) · `concise-default`
+  ~~Theologian replies default to about 100-180 words: the direct answer first, then the one or two points that matter, no preamble or recap, ending with at most one offer to go deeper; longer (up to about 350 words) only when the learner asks for depth or the question needs it~~
   *Why:* Chris: replies were too verbose and needed reining in a little
+- **Approval** · 2026-10-03 · Chris · `adaptive-length-2026-10-03` · scope: Communication design presented and approved in the 2026-10-03 Theologian chat task
+  Approved matching reply length to the message: brief acknowledgments, direct answers, deeper explanations when requested, and clarification when needed, replacing the fixed 100-180-word default.
 
 ### `theologian.memory`
 
@@ -610,6 +634,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `theologian.ui.theologian-ui`
   Theologian is a typical chat interface in a fixed-size panel that slides in and out from a compact vertical folder-tab on the right viewport edge, lower right, in the margin outside page content, on every screen including lessons. Label: 'Ask the Theologian', 'THEOLOGIAN', or 'Theologian'. It is aware of the current screen, passage, and lesson
   *Why:* Supersedes the floating pill and the Study Focus side-apparatus placement
+
+### `theologian.web`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `free-only-tavily-2026-10-03`
+  Use Tavily for web research only if it remains free; paid usage is not authorized.
 
 ### `theology.agency.free-choice`
 
