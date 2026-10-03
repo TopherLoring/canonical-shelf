@@ -16,6 +16,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Implemented conversational Theologian prompts, follow-up grounding, site-category answers, and optional free-only Tavily search. Build/core checks and 42 system-Chromium browser tests passed; four focused browser tests passed after module relocation. One live Tavily search succeeded with zero reported paid usage. Full default verification was blocked by missing pinned Chromium. Worker deployment and live model conversation review remain pending.
 
+### Fixed
+
+- Theologian answers web capability questions from the deployment configuration, without model inference or spending search credits; normal prompts distinguish search availability from whether this turn searched.
+
 ## 2026-10-02
 
 ### Decided

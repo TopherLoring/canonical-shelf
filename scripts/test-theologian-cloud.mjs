@@ -175,3 +175,20 @@ try{
   }
 }finally{globalThis.fetch=originalFetch}
 console.log('PASS — free-only browsing, source links, and search privacy.');
+
+// Capability questions must describe the actual application, without searching
+// their own wording or asking the model to invent its capabilities.
+for(const key of [undefined,'configured-test-key']){
+  const env={...goodEnv,TAVILY_API_KEY:key,AI:{run:async()=>{throw new Error('Capability answers must not depend on inference')}}};
+  for(const question of ['CAN YOU SEARCH THE INTERNET?','Can you browse the web?']){
+    const response=await postTheologian(new Request('https://canonical.test/api/theologian',{
+      method:'POST',body:JSON.stringify({question})
+    }),env);
+    assert.equal(response.status,200,'capability question attempted inference');
+    const result=await response.json();
+    assert.equal(result.webSearch.status,key?'available':'not-configured');
+    assert.deepEqual(result.evidence,[],'capability question retrieved theology');
+    assert.ok(result.answer.includes('Tavily'),'answer did not identify actual search capability');
+  }
+}
+console.log('PASS — truthful web capability responses.');
