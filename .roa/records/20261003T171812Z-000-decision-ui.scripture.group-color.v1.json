@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.scripture.group-color.v1",
+  "topic": "ui.scripture.group-color",
+  "date": "2026-10-03",
+  "text": "Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.",
+  "by": "Chris"
+}
