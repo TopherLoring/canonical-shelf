@@ -106,13 +106,14 @@ Accept when:
 
 Tasks:
 1. **Each level shows only its own scope.** The Learning Path shows modules, a Module shows units, and a Unit shows lessons, its scored check, and any Capstone. Each level has its own labelled progress, one primary action (Start, Resume, or Review), and unchanged progress calculations.
-2. **Lighter lesson cards.** Redistribute lesson content across more cards with step orientation from the existing progress dots (`ui.lesson.progress`). This is a word-for-word content diff, so nothing is lost.
-3. **Context-aware Study Desk.**
+2. **One screen per card, no scrolling (`curriculum.lesson.no-scroll`).** Split each step into as many screens as needed so none overflows the framed phone layout at default text size; add the overflow check to `bun run verify`; show "Step N of M · part X of Y".
+3. **Lighter lesson cards.** Redistribute lesson content across more cards with step orientation from the existing progress dots (`ui.lesson.progress`). This is a word-for-word content diff, so nothing is lost.
+4. **Context-aware Study Desk.**
    - It adapts to the current lesson step.
    - Empty tabs are hidden.
    - Lesson notes are hidden until opened (`notes.lesson-hidden`).
-4. **Redesign check presentation** using the confirmed game set (`learning.games`): Rule Discovery, Sequence Repair, and the new memory game. Answer keys, scoring, and completion rules are untouched.
-5. **Name the per-unit check** once `unit-check-label` is resolved.
+5. **Redesign check presentation** using the confirmed game set (`learning.games`): Rule Discovery, Sequence Repair, and the new memory game. Answer keys, scoring, and completion rules are untouched.
+6. **Name the per-unit check** once `unit-check-label` is resolved.
 
 Accept when:
 - A content-diff script shows zero lost or altered lesson text.

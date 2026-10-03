@@ -62,6 +62,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.glossary.list` | Glossary review approved: | Owner decision | undefined |
 | `curriculum.glossary.selective` | The glossary should be selective for an adult audience: | Owner decision | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
+| `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
+| `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |

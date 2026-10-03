@@ -90,6 +90,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Durable curriculum requirements: Topics sit outside completion; inherited stable learner and activity IDs; deterministic completion-bearing assessment; spaced review and retention; questions-first spiral learning; assessment of understanding and reasoning, never personal theological assent. Curriculum counts are descriptive data, not constants
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
 
+### `curriculum.lesson.no-scroll`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `curriculum.lesson.no-scroll.v1`
+  A lesson screen must never require scrolling: if it would, it holds too much content. Content is paced through the Next/Continue button, one screen at a time, by splitting steps into more screens (content redistributed, never cut).
+
+### `curriculum.lesson.no-scroll.check`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `curriculum.lesson.no-scroll.check.v1`
+  Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).
+  *Why:* Makes the owner's no-scroll rule testable instead of a judgment call per lesson
+
 ### `curriculum.module1`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
