@@ -1,4 +1,4 @@
-import {conversationQuery,conversationalReply,isConversationFollowUp,bookshelfQuestion,bookshelfDescription} from './theologian-conversation.js';
+import {conversationQuery,conversationalReply,isConversationFollowUp,bookshelfQuestion,bookshelfDescription} from './theologian-cloud.js';
 import {parseReference,parseCorpus,BOOKS} from './bible.js';
 import {queryStudyIndex,studyTerms,topicEvidenceDetail,lessonEvidenceDetail,bookEvidenceDetail,verseEvidenceDetail} from './study-index.js';
 
