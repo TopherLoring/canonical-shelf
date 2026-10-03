@@ -14,6 +14,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Notes are hidden by default only in lessons. In the Bible reader, verses are selectable, readers can highlight and take notes, and the selected verse drives the Reading Desk content, including its notes.
 - There is no fixed font set. Each theme chooses its own typography to reflect that theme; all fonts must be readable. (supersedes design.fonts.set.title-three)
 - Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.
+- The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
 
 ### Added
 
