@@ -12,6 +12,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
+- **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
 
 ## Phases
 
@@ -23,6 +24,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `1c` | Anchor the reader: resume, you-are-here, reading path, ask about this passage | planned | 2026-09-25 |
 | `2` | Visual redesign of Home, Bible, Course, and lesson | planned | 2026-09-25 |
 | `3` | Unit 0 content and Theologian evaluation on real questions | planned | 2026-09-25 |
+| `2a` | Slice 1: theme-role migration, shared navigation, vocabulary, label scrub | planned | 2026-10-03 |
+| `2b` | Slice 2: Bible reader (discovery, overview, reading) with context-aware Reading Desk and notes | planned | 2026-10-03 |
+| `2c` | Slice 3: learning hierarchy and lesson card density with redesigned checks | planned | 2026-10-03 |
+| `2d` | Slice 4: Profile, Study Topics, and Review & Practice | planned | 2026-10-03 |
+| `2e` | Slice 5: final theme values and light/dark audit | planned | 2026-10-03 |
 
 ## Checks
 
@@ -185,6 +191,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
+| `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
+| `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |

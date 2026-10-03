@@ -7,11 +7,18 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ### Decided
 
+- Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. Each name means exactly that level everywhere in learner-facing copy; 'course' and 'volume' are not used for these levels. Stable IDs and URLs are unchanged.
+- Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
+- Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels. (agent default) (supersedes ui.naming.library-labels)
 - Theologian should communicate naturally like a traditional chat. This work concerns communication; visual design is being resolved separately.
 - Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning.
 - Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
 - Use Tavily for web research only if it remains free; paid usage is not authorized.
 - Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clarification. It should provide prayer when asked, and may ask about a specific need when none has been shared.
+
+### Added
+
+- Structural redesign plan (docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md): five slices, 2a–2e, awaiting owner approval before execution
 
 ### Changed
 
