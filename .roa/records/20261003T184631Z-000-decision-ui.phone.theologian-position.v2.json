@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.phone.theologian-position.v2",
+  "topic": "ui.phone.theologian-position",
+  "date": "2026-10-03",
+  "text": "Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value.",
+  "supersedes": [
+    "ui.phone.theologian-position.v1"
+  ],
+  "by": "Chris"
+}
