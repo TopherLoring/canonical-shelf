@@ -194,6 +194,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
