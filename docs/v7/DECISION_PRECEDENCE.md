@@ -1076,6 +1076,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
   Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 
+### `ui.shelf.lamp`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.lamp.v1`
+  The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). It links to the 'Meet the library' lesson, labeled 'How this library is arranged'. Shelf book widths are sized by verse count; New Testament books use a higher minimum width so the Gospels stay proportionate at 80% fill.
+
 ### `ui.shelf.nt-fill`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
