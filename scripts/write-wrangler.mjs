@@ -35,6 +35,8 @@ const vars={
 const config={
   $schema:'./node_modules/wrangler/config-schema.json',
   name:WORKER_NAME,
+  // Preserve dashboard-managed bindings; explicit vars below still update.
+  keep_vars:true,
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},
