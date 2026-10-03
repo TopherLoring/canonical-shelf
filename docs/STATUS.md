@@ -13,6 +13,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
+- **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
 
 ## Phases
 
@@ -108,6 +109,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
 | `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |

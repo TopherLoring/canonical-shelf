@@ -28,6 +28,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
 - Phones also use the framed layout: content sits in a rounded surface card with a visible margin, separate from the nav bar and the screen edges, over the theme backdrop. The My Notes and Theologian tabs anchor to the bottom edge of that card and open upward.
 - The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.
+- Games (to be designed after the modules are written): visuals must go well beyond simple text boxes and vary by game type, scope and content within lessons; questions must not feel trivial or juvenile. Free practice should include crosswords, memory, word search, a swipe-style game (untimed or beat-the-clock) that totals right and wrong answers at the end, and a progressive-hint guessing game (Password / Wheel of Fortune / Guess Who style) where the answer's character count is shown and a new hint appears every few seconds until the player guesses it.
 
 ### Added
 
