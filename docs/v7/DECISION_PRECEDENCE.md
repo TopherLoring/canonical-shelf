@@ -588,6 +588,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `natural-conversation-2026-10-03`
   Theologian should communicate naturally like a traditional chat. This work concerns communication; visual design is being resolved separately.
 
+### `theologian.conversation`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `theologian-brief-prayer-2026-10-03`
+  Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clarification. It should provide prayer when asked, and may ask about a specific need when none has been shared.
+
 ### `theologian.knowledge`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `broader-knowledge-2026-10-03`

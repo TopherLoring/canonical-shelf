@@ -121,6 +121,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theme.default` | Reading Room is the default theme: | Owner decision | undefined |
 | `theologian.authority` | Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented. | Owner decision | undefined |
 | `theologian.communication` | Theologian should communicate naturally like a traditional chat. | Owner decision | undefined |
+| `theologian.conversation` | Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clar... | Owner decision | undefined |
 | `theologian.knowledge` | Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning. | Owner decision | undefined |
 | `theologian.learner-agency` | undefined | Agent default | undefined |
 | `theologian.memory` | Theologian chat persists until the user selects New chat, so dismissing never loses it; | Owner decision | undefined |

@@ -11,6 +11,7 @@ const config=JSON.parse(await readFile('wrangler.jsonc','utf8'));
 const fail=message=>{throw new Error(`Cloudflare config validation failed: ${message}`)};
 
 if(config.name!==WORKER_NAME)fail(`Worker name must be ${WORKER_NAME}; found ${config.name||'(missing)'}`);
+if(config.keep_vars!==true)fail('deployments must preserve dashboard bindings, including secrets');
 if(config.main!=='worker/index.ts')fail(`Worker entry must be worker/index.ts; found ${config.main||'(missing)'}`);
 if(config.assets?.directory!=='./public')fail('static assets directory must be ./public');
 if(config.assets?.binding!=='ASSETS')fail('static assets binding must be ASSETS');

@@ -79,6 +79,8 @@ Canonical Shelf's LGBTQ position is affirming while serious non-affirming readin
 
 Theologian's internal policy, prompt scaffold, source metadata, evidence model, and doctrinal boundaries are **silent operating context**, not the default learner-facing answer. The learner should receive a natural, conversational synthesis first. Evidence/limits remain inspectable separately. Do not answer ordinary questions by reciting the Statement of Faith, theology policy, guardrails, learner-agency text, or source instructions. The deterministic/offline fallback must also synthesize a question-specific answer rather than dump policy language.
 
+Theologian replies are short and direct by default. Start with the simplest useful answer and add explanation only when requested or needed for accuracy, safety, or clarification. For prayer requests, provide a brief prayer using the need already shared. A general request may receive one brief question about a specific need; once the need is clear, pray without further intake questions. Do not replace prayer with a lecture or unsolicited AI disclaimers, and do not claim personal spiritual agency. Reply formatting supports basic emphasis, lists, and safe source links without executing model-provided HTML.
+
 ## Theologian conversation / state privacy
 
 The active chat may persist locally in the browser until New chat or browser-data clearing.
