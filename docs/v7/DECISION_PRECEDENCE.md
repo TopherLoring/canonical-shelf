@@ -977,6 +977,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.bible.notes-panel.feedback-2026-09-26`
   Bible notes panel needs a different name and smaller title typography
 
+### `ui.bible.phone`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.phone.v1`
+  Phone Bible reader: no bottom sheet. Book-level study links (Overview, Timeline, Themes, People, Places, Maps) sit as small buttons at the top of the reader under the book title; the title is the book/chapter picker. Verse-level extra content appears as footnotes marked with inline superscript letters; tapping a marker opens the footnote inline below the verse. Tapping a verse pops up Highlight and Note (no Ask). Notes and Theologian are tabs on the bottom edge that open upward, with clearance above the home indicator so text is never hidden.
+
 ### `ui.bible.rails`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
