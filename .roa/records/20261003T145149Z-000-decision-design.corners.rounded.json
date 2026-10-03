@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.corners.rounded",
+  "topic": "design.corners",
+  "date": "2026-10-03",
+  "text": "No round pill shapes and no 90-degree corners: interface elements use modern rounded corners.",
+  "by": "Chris"
+}
