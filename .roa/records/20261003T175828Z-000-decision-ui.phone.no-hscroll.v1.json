@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.phone.no-hscroll.v1",
+  "topic": "ui.phone.no-hscroll",
+  "date": "2026-10-03",
+  "text": "The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.",
+  "by": "Chris"
+}
