@@ -953,6 +953,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
   Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.
 
+### `ui.bible.verse-actions`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `ui.bible.verse-actions.v1`
+  Selecting a verse opens an inline action bar (four highlight colors, Note, Ask, Copy); verses with saved notes show a dotted underline and note icon; notes open in the right rail rather than a popup over Scripture. Highlights are stored by color name and each theme supplies its own AA-readable shade per name.
+  *Why:* Answers the owner's highlighter and note-indicator questions without covering Scripture
+
 ### `ui.course-shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.course-shelf.feedback-2026-09-25`
@@ -1026,10 +1032,20 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
+### `ui.scripture.group-color`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.scripture.group-color.v1`
+  Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`
   Shelf direction (ledger D014) is work in progress; find a middle-ground solution
+
+### `ui.shelf.bookshelf`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
+  Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 
 ### `ui.theme.default`
 

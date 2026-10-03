@@ -187,6 +187,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
+| `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
@@ -198,6 +199,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
+| `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
+| `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
