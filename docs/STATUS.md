@@ -178,6 +178,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theology.sin.definition` | Revised: | Owner decision | undefined |
 | `theology.sin.human-judgment` | Affirmed: | Owner decision | undefined |
 | `theology.spirit` | Revised: | Owner decision | undefined |
+| `ui.bible.ask` | The Bible reader toolbar has no Ask button. | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |

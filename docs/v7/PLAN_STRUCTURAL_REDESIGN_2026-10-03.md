@@ -95,7 +95,7 @@ Tasks:
    - Tabs with nothing to show are hidden.
    - Notes are hidden by default until opened (`notes`).
    - Cross-references stay the last expandable level (`ui.bible.crossrefs`).
-5. **Phase `1c` scope.** Resume, you-are-here, reading path, and ask-about-this-passage are delivered here.
+5. **Phase `1c` scope.** Resume, you-are-here, reading path, and ask-about-this-passage are delivered here. There is no "Ask" button in the passage toolbar: the Theologian tab opens already holding the current passage, or the selected verse, and the Reading Desk offers "Ask about [verse]" for the selected verse (`ui.bible.ask`).
 
 Accept when:
 - Check `r2-unaided-flow` passes: start, read, see where you are, follow a cross-reference, and return.

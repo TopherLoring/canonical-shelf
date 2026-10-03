@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.bible.ask.v1",
+  "topic": "ui.bible.ask",
+  "date": "2026-10-03",
+  "text": "The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.",
+  "by": "Chris"
+}

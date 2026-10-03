@@ -902,6 +902,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.bible.feedback-2026-09-25`
   Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole
 
+### `ui.bible.ask`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.ask.v1`
+  The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.
+
 ### `ui.bible.crossrefs`
 
 - **Current** · 2026-09-27 · Owner decision (Chris) · `ui.bible.crossrefs.last-level`
