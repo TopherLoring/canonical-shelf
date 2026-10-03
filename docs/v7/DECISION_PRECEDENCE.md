@@ -1068,6 +1068,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.tabs.v2`
   Phone: the Theologian is a vertical tab on the right edge, sitting in a widened right margin (content card inset 36px on the right) so it never covers text; there are no bottom-edge tabs. My Notes is a button in the content header (reader: beside the reading-options menu; lesson: in the window title bar). The lesson Continue button is a normal-size button, not full width. Supersedes the bottom-tab placement in ui.bible.phone and ui.frame.phone.
 
+### `ui.phone.theologian-position`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
+  On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`

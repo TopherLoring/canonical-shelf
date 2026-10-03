@@ -32,6 +32,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - A lesson screen must never require scrolling: if it would, it holds too much content. Content is paced through the Next/Continue button, one screen at a time, by splitting steps into more screens (content redistributed, never cut).
 - Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2). (agent default)
 - Phone: the Theologian is a vertical tab on the right edge, sitting in a widened right margin (content card inset 36px on the right) so it never covers text; there are no bottom-edge tabs. My Notes is a button in the content header (reader: beside the reading-options menu; lesson: in the window title bar). The lesson Continue button is a normal-size button, not full width. Supersedes the bottom-tab placement in ui.bible.phone and ui.frame.phone.
+- On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.
 
 ### Added
 
