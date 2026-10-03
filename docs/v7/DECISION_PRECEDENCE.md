@@ -353,6 +353,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
   Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
 
+### `learning.games.direction`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `learning.games.direction.2026-10-03`
+  Games (to be designed after the modules are written): visuals must go well beyond simple text boxes and vary by game type, scope and content within lessons; questions must not feel trivial or juvenile. Free practice should include crosswords, memory, word search, a swipe-style game (untimed or beat-the-clock) that totals right and wrong answers at the end, and a progressive-hint guessing game (Password / Wheel of Fortune / Guess Who style) where the answer's character count is shown and a new hint appears every few seconds until the player guesses it.
+
 ### `legacy.apparatus-anchoring`
 
 
