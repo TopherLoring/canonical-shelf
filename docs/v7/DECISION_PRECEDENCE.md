@@ -1061,6 +1061,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
   Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 
+### `ui.notes.naming`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
+  The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
