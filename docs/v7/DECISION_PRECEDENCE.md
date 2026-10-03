@@ -975,6 +975,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Values now live in the design-tokens contract; layout items are open to Chris's redesign feedback
 
+### `ui.frame.phone`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.frame.phone.v1`
+  Phones also use the framed layout: content sits in a rounded surface card with a visible margin, separate from the nav bar and the screen edges, over the theme backdrop. The My Notes and Theologian tabs anchor to the bottom edge of that card and open upward.
+
 ### `ui.home`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.home.feedback-2026-09-25`

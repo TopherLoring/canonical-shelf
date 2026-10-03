@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.frame.phone.v1",
+  "topic": "ui.frame.phone",
+  "date": "2026-10-03",
+  "text": "Phones also use the framed layout: content sits in a rounded surface card with a visible margin, separate from the nav bar and the screen edges, over the theme backdrop. The My Notes and Theologian tabs anchor to the bottom edge of that card and open upward.",
+  "by": "Chris"
+}

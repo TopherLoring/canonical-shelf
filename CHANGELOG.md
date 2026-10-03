@@ -26,6 +26,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). It links to the 'Meet the library' lesson, labeled 'How this library is arranged'. Shelf book widths are sized by verse count; New Testament books use a higher minimum width so the Gospels stay proportionate at 80% fill.
 - Phone Bible reader: no bottom sheet. Book-level study links (Overview, Timeline, Themes, People, Places, Maps) sit as small buttons at the top of the reader under the book title; the title is the book/chapter picker. Verse-level extra content appears as footnotes marked with inline superscript letters; tapping a marker opens the footnote inline below the verse. Tapping a verse pops up Highlight and Note (no Ask). Notes and Theologian are tabs on the bottom edge that open upward, with clearance above the home indicator so text is never hidden.
 - The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
+- Phones also use the framed layout: content sits in a rounded surface card with a visible margin, separate from the nav bar and the screen edges, over the theme backdrop. The My Notes and Theologian tabs anchor to the bottom edge of that card and open upward.
 
 ### Added
 
