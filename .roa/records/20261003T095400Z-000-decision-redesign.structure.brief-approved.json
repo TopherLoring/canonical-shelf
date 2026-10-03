@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "redesign.structure.brief-approved",
+  "topic": "redesign.structure",
+  "date": "2026-10-03",
+  "text": "Approved advancing the amended structural redesign brief: correct navigation, page hierarchy, and presentation while preserving curriculum, Scripture, explanations, questions, answer logic, and doctrinal content; discovery separated from doing; one vocabulary; explicit progress scope; one primary action per region; stable URLs and IDs with aliases; five verified slices. Amendments: lesson content may be redistributed across more, lighter cards and checks may be redesigned (answer logic and completion rules fixed); preservation excludes owner-ordered removals and internal theology; theme-role migration runs first; existing owner decisions (feedback CTA, Theologian tab, notes, Study Desk, orientation, label scrub) are built into the slices.",
+  "scope": "docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md",
+  "by": "Chris"
+}

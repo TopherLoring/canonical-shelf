@@ -3,6 +3,18 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-03
+
+### Decided
+
+- Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. Each name means exactly that level everywhere in learner-facing copy; 'course' and 'volume' are not used for these levels. Stable IDs and URLs are unchanged.
+- Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
+- Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels. (agent default) (supersedes ui.naming.library-labels)
+
+### Added
+
+- Structural redesign plan (docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md): five slices, 2a–2e, awaiting owner approval before execution
+
 ## 2026-10-02
 
 ### Decided

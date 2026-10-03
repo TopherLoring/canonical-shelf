@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.naming.sections.v1",
+  "topic": "ui.naming.sections",
+  "date": "2026-10-03",
+  "text": "Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.",
+  "by": "Chris"
+}

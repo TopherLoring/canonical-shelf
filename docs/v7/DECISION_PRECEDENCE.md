@@ -546,6 +546,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.structure`
+
+- **Approval** · 2026-10-03 · Chris · `redesign.structure.brief-approved` · scope: docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md
+  Approved advancing the amended structural redesign brief: correct navigation, page hierarchy, and presentation while preserving curriculum, Scripture, explanations, questions, answer logic, and doctrinal content; discovery separated from doing; one vocabulary; explicit progress scope; one primary action per region; stable URLs and IDs with aliases; five verified slices. Amendments: lesson content may be redistributed across more, lighter cards and checks may be redesigned (answer logic and completion rules fixed); preservation excludes owner-ordered removals and internal theology; theme-role migration runs first; existing owner decisions (feedback CTA, Theologian tab, notes, Study Desk, orientation, label scrub) are built into the slices.
+
 ### `release.deployment`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `release.deployment.from-precedence-doc`
@@ -955,9 +960,22 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.naming`
 
-- **Current** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
-  Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)
+- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
+  Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.
+  *Why:* Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose
+- **Previous** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+  ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
+
+### `ui.naming.levels`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.levels.v1`
+  Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. Each name means exactly that level everywhere in learner-facing copy; 'course' and 'volume' are not used for these levels. Stable IDs and URLs are unchanged.
+
+### `ui.naming.sections`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
+  Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 
 ### `ui.profile`
 
