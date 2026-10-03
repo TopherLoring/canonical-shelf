@@ -1,3 +1,4 @@
+import {conversationQuery,conversationalReply,isConversationFollowUp,bookshelfQuestion,bookshelfDescription} from './theologian-conversation.js';
 import {parseReference,parseCorpus,BOOKS} from './bible.js';
 import {queryStudyIndex,studyTerms,topicEvidenceDetail,lessonEvidenceDetail,bookEvidenceDetail,verseEvidenceDetail} from './study-index.js';
 
@@ -15,19 +16,28 @@ export function classifyTheologianIntent(question){
   if(/gay|lesbian|homosexual|bisexual|lgbt|queer|same[- ]sex/.test(q))return 'lgbtq';
   if(/arsenokoitai|malakoi|\b(greek|hebrew|aramaic) (word|term|verb|noun)|\bin (the )?(original )?(greek|hebrew|aramaic)\b|original language|lexic|word mean/.test(q))return 'lexical';
   if(/catholic|orthodox|luther|methodist|episcopal|baptist|denomination|tradition/.test(q))return 'tradition';
-  if(parseReference(question))return 'scripture-reference';
+  if(referencedPassage(question))return 'scripture-reference';
   if(/doctrine|trinity|atonement|salvation|hell|predestination|resurrection|judgment/.test(q))return 'doctrine';
   return 'study';
 }
 
+function referencedPassage(question){
+  const direct=parseReference(question);
+  if(direct)return direct;
+  for(const match of String(question).matchAll(/(?:[1-3]\s+)?[a-z]+(?:\s+of\s+[a-z]+)?\s+\d+(?::\d+(?:[-–]\d+)?)?/gi)){
+    const ref=parseReference(match[0]);if(ref)return ref;
+  }
+  return null;
+}
+
 function scriptureEvidence(question,corpus){
-  const ref=parseReference(question);if(!ref)return[];
+  const ref=referencedPassage(question);if(!ref)return[];
   const rows=parseCorpus(corpus).filter(row=>row.bn===ref.bn&&row.chapter===ref.chapter&&(!ref.start||(row.verse>=ref.start&&row.verse<=ref.end))).slice(0,12);
   return rows.length?[typed({type:'scripture',label:`${BOOKS[ref.bn-1]} ${ref.chapter}${ref.start?`:${ref.start}${ref.end!==ref.start?`–${ref.end}`:''}`:''}`,detail:rows.map(row=>`${row.verse} ${row.text}`).join(' '),evidence:'direct text',href:`/bible?book=${ref.bn}&chapter=${ref.chapter}${ref.start?`#v${ref.start}`:''}`},'direct','biblical-text')]:[];
 }
 
 function indexedEvidence(question,data,corpus,sources){
-  const ref=parseReference(question),result=queryStudyIndex({query:question,data,corpus,limits:{scripture:3,topics:4,lessons:3,glossary:2,books:2,verses:3}}),out=[];
+  const ref=referencedPassage(question),result=queryStudyIndex({query:question,data,corpus,limits:{scripture:3,topics:4,lessons:3,glossary:2,books:2,verses:3}}),out=[];
   if(!ref){
     for(const row of result.scripture)out.push(typed({type:'scripture',label:`${BOOKS[row.bn-1]} ${row.chapter}:${row.verse}`,detail:row.text,evidence:'direct text',keywordHit:true,href:`/bible?book=${row.bn}&chapter=${row.chapter}#v${row.verse}`},'direct','biblical-text'));
   }
@@ -100,17 +110,27 @@ function safePosition(intent,question,policy,evidence,page){
   if(intent==='about-page')return pageHelp(page);
   if(intent==='doctrine')return 'This is a doctrinal question, so the useful answer is to separate the biblical claims from the theological models Christians build from them. Canonical Shelf can state its own position, but it should also show where major Christian interpretations differ and what evidence or assumptions drive those differences.';
   const lead=evidenceLead(evidence,studyTerms(question),String(question||'').toLowerCase());
-  if(lead)return `${lead} From there, the key is to distinguish the source itself from the interpretation we build on top of it. If you want, I can take the next step and explain how the pieces fit together rather than just listing the evidence.`;
-  return 'I can help with that. The best way to approach it is to answer the question directly, then separate the biblical text, historical or linguistic context, and later interpretation so we can see which conclusions are strongly supported and which remain debated.';
+  if(lead)return lead;
+  return 'I don’t have a reliable answer to that in the saved material. Is there a particular passage or term you’d like to look at?';
 }
 
 export function buildTheologianResponse({question,data,policy,statement='',sources=[],corpus='',context={}}){
-  const intent=classifyTheologianIntent(question),protectedMessage=masteryProtection(question,context);
+  const latestQuestion=question;
+  const social=conversationalReply(question);
+  if(social)return {intent:'conversation',position:social,evidence:[],warnings:[],method:[],masteryProtected:false};
+  question=conversationQuery(question,context.history);
+  if(bookshelfQuestion(question)&&!masteryProtection(latestQuestion,context))return {intent:'about-page',position:bookshelfDescription(),evidence:[],warnings:[],method:[],masteryProtected:false};
+  const intent=classifyTheologianIntent(question),protectedMessage=masteryProtection(latestQuestion,context);
   const terms=studyTerms(question);
   // Verses that share only one word with the question are noise, not evidence; page-help questions need no verse search at all.
   const evidence=[...scriptureEvidence(question,corpus),...indexedEvidence(question,data,corpus,sources)].filter(entry=>intent==='about-page'?!entry.keywordHit:strongEnough(entry,terms));
   if(statement)evidence.unshift(typed({type:'authority',label:'Canonical Shelf Statement of Faith',detail:'Doctrinal ceiling for Canonical Shelf doctrinal claims.',evidence:'governing authority'},'direct','doctrine','affirmed'));
   let position=protectedMessage||safePosition(intent,question,policy,evidence,context.page);
+  if(!protectedMessage&&isConversationFollowUp(latestQuestion)) {
+    const previous=[...(context.history||[])].reverse().find(turn=>turn.role==='assistant');
+    const lead=evidenceLead(evidence,terms,question.toLowerCase());
+    position=lead&&!previous?.text?.includes(lead)?`${lead}\n\nI’m limited to the saved material while the chat service is unavailable.`:'I can’t reliably take that explanation further while the chat service is unavailable. Which word or passage would you like to look at in the saved material?';
+  }
   const warnings=[];
   if(/romans\s*1/i.test(question))warnings.push('Romans 1 belongs inside Paul’s larger argument about idolatry, desire, judgment, and the rhetorical turn in Romans 2. Claims that it refers only to pederasty, temple prostitution, or exploitation are contested and should not be presented as settled fact.');
   if(/arsenokoitai/i.test(question))warnings.push('arsenokoitai is rare and its precise social scope is debated; it should not be mapped simplistically onto a modern sexual-orientation category.');

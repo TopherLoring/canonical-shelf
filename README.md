@@ -16,6 +16,26 @@ Primary destinations:
 
 Supporting capabilities include Search, Progress, optional Account/Profile sync, appearance themes, Journal, **Feedback & reviews**, and **Theologian**.
 
+## Optional Theologian web research
+
+Explicit requests such as “Search the web for sources on baptism” can use Tavily.
+Set `TAVILY_API_KEY` as a secret on the Cloudflare Worker; for cloud development,
+use the environment secret binding and pass it to local Wrangler through its
+supported secret configuration. Never commit a key. Browsing stays off without it.
+
+Use Tavily's free **Researcher** account, with no payment method or pay-as-you-go.
+Before each search the Worker checks `/usage`, accepts only the free plan with
+disabled pay-as-you-go (zero or null limit), zero overage usage, and unused credits. Unknown billing
+metadata blocks browsing. Each request uses one basic search (one credit), with
+up to three results and their available page text; automatic upgrades are disabled.
+The provider's free allowance is shared by the account. Chat continues when search
+is unavailable, with the model instructed to disclose the lack of web verification.
+
+Only the current explicit search message goes to Tavily. Retrieved pages are
+untrusted references, and the Statement of Faith remains the governing doctrinal
+stance. Sources appear in the existing evidence view. No autonomous browsing,
+separate URL extraction, or paid plan is enabled.
+
 ## Learning model
 
 Canonical Shelf uses a **questions-first spiral**: difficult doctrinal and interpretive questions are introduced early, revisited where evidence naturally appears, investigated with better interpretive tools, and synthesized later. Assessment evaluates understanding and reasoning, never theological assent.

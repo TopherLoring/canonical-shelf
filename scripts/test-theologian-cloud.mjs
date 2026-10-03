@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {buildTheologianResponse} from '../public/theologian.js';
 import {postTheologian} from '../worker/theologian-ai.ts';
 
 const assets={
@@ -7,7 +8,7 @@ const assets={
     lessons:[{id:'romans-context',unitId:'unit.test',title:'Reading Romans in context',summary:'Read Romans in literary and historical context.'}],
     glossary:[{id:'term',term:'example term',quick:'A short lexical note.'}]
   }),
-  '/data/corpus.txt':'45\t1\t26\tExample verse text.\n45\t1\t27\tExample continuation.\n45\t2\t1\tExample rhetorical turn.\n',
+  '/data/corpus.txt':'40\t3\t13\tJesus came to be baptized by John.\n44\t22\t16\tGet up and be baptized.\n45\t1\t26\tExample verse text.\n45\t1\t27\tExample continuation.\n45\t2\t1\tExample rhetorical turn.\n',
   '/data/statement-of-faith.md':'# Statement of Faith\nA compact doctrinal ceiling for Canonical Shelf.\n',
   '/data/theologian-belief-context.md':'# Supplemental belief context\nLower-authority explanatory context.\n',
   '/data/theology-policy.json':JSON.stringify({
@@ -88,3 +89,89 @@ const rejectedBody=await rejected.json();
 assert.equal(rejectedBody.fallback,true,'policy-rejected cloud answer did not activate fallback');
 
 console.log('PASS — Theologian conversation turns, evidence typing, learner agency, mastery protection, and fallback behavior.');
+// Retrieval must follow the conversation, while explicit topic changes start fresh.
+const prior=[{role:'user',text:'Explain Romans 1:26'},{role:'assistant',text:'Let us look at the passage in context.'}];
+for (const question of ['Why?', 'Can you explain that more simply?']) {
+  const response=await postTheologian(new Request('https://canonical.test/api/theologian',{
+    method:'POST',body:JSON.stringify({question,history:prior})
+  }),goodEnv);
+  const result=await response.json();
+  assert.ok(result.evidence.some(item=>item.type==='scripture'&&item.label==='Romans 1:26'),'follow-up lost the referenced passage');
+}
+const greeting=await postTheologian(new Request('https://canonical.test/api/theologian',{
+  method:'POST',body:JSON.stringify({question:'Thanks!',history:prior})
+}),goodEnv);
+assert.deepEqual((await greeting.json()).evidence,[],'acknowledgment retrieved unrelated theological evidence');
+const offline=question=>buildTheologianResponse({question,data:{},policy:{},context:{history:prior},corpus:assets['/data/corpus.txt']});
+assert.ok(offline('Thanks!').position.length<100,'offline acknowledgment became a lecture');
+assert.ok(offline('Why?').evidence.some(item=>item.label==='Romans 1:26'),'offline follow-up lost the passage');
+assert.ok(!offline('Tell me about baptism').evidence.some(item=>item.label==='Romans 1:26'),'new topic inherited the old passage');
+console.log('PASS — conversational retrieval and offline acknowledgments.');
+
+// Real feedback examples: UI facts and conversation repair must not become verse searches.
+const {CATEGORIES,CATEGORY_ORDER}=await import('../public/library-data.js');
+for(const question of ['what are the 9 categories of the biblical canon','what are the 9 categories that define the colors of the bookshelf on this page?']){
+  const response=await postTheologian(new Request('https://canonical.test/api/theologian',{
+    method:'POST',body:JSON.stringify({question,context:{path:'/home'}})
+  }),goodEnv);
+  const {evidence}=await response.json();
+  for(const key of CATEGORY_ORDER)assert.ok(evidence.some(item=>item.detail.includes(CATEGORIES[key].name)),`missing bookshelf category ${key}`);
+  assert.ok(!evidence.some(item=>item.type==='scripture'),'bookshelf question retrieved unrelated verses');
+  const local=buildTheologianResponse({question,data:{},policy:{}});
+  for(const key of CATEGORY_ORDER)assert.ok(local.position.includes(CATEGORIES[key].name),'offline bookshelf answer is missing a category');
+}
+for(const question of ['are you still broken?', "That is not what I asked", 'You misunderstood me']){
+  const response=await postTheologian(new Request('https://canonical.test/api/theologian',{
+    method:'POST',body:JSON.stringify({question,history:prior,context:{path:'/course?lesson=romans-context'}})
+  }),goodEnv);
+  assert.deepEqual((await response.json()).evidence,[],'conversation feedback became theological retrieval');
+  const local=buildTheologianResponse({question,data:{},policy:{}});
+  assert.ok(local.position.length<200,'conversation repair became a lecture');
+}
+console.log('PASS — bookshelf grounding and conversation repair from user feedback.');
+
+const baptism=await postTheologian(new Request('https://canonical.test/api/theologian',{
+  method:'POST',body:JSON.stringify({question:'Why did jeus get baptized/'})
+}),goodEnv);
+const baptismEvidence=(await baptism.json()).evidence;
+assert.ok(baptismEvidence.some(item=>item.label==='Matthew 3:13'),'missed Jesus baptism evidence after a common typo');
+assert.ok(!baptismEvidence.some(item=>item.label==='Acts 22:16'),'single-word baptism match displaced subject-specific evidence');
+console.log('PASS — subject-specific Scripture retrieval.');
+
+// Browsing is opt-in per question and must fail closed on billing uncertainty.
+const originalFetch=globalThis.fetch;
+const freeUsage={account:{current_plan:'Researcher',plan_usage:12,plan_limit:1000,paygo_usage:0,paygo_limit:0},key:{usage:12,limit:1000}};
+let usage=freeUsage,searches=0,searchBody=null;
+globalThis.fetch=async (url,options)=>{
+  if(String(url)==='https://api.tavily.com/usage')return Response.json(usage);
+  assert.equal(String(url),'https://api.tavily.com/search');
+  searches++;searchBody=JSON.parse(options.body);
+  return Response.json({results:[{title:'A historical source',url:'https://example.org/history',content:'A historical finding.',raw_content:'A historical finding with context.'},{title:'Unsafe link',url:'javascript:alert(1)',content:'bad'}]});
+};
+const browse=()=>postTheologian(new Request('https://canonical.test/api/theologian',{
+  method:'POST',body:JSON.stringify({question:'Search the web for historical sources on baptism',history:[{role:'user',text:'PRIVATE HISTORY MUST NOT REACH SEARCH'}]})
+}),{...goodEnv,TAVILY_API_KEY:'test-key'});
+try{
+  const response=await browse(),body=await response.json();
+  assert.equal(searches,1,'explicit web request did not search');
+  assert.ok(body.evidence.some(item=>item.href==='https://example.org/history'),'web evidence missing');
+  assert.ok(!body.evidence.some(item=>String(item.href).startsWith('javascript:')),'unsafe web URL accepted');
+  assert.equal(searchBody.search_depth,'basic');
+  assert.equal(searchBody.auto_parameters,false);
+  assert.ok(!JSON.stringify(searchBody).includes('PRIVATE HISTORY'),'history leaked to search provider');
+  // The configured Researcher account reports null when pay-as-you-go is disabled.
+  usage={...freeUsage,account:{...freeUsage.account,paygo_limit:null}};
+  assert.equal((await (await browse()).json()).webSearch.status,'searched','disabled paygo null was rejected');
+  const allowedSearches=searches;
+  for(const account of [
+    {...freeUsage.account,paygo_limit:100},
+    {...freeUsage.account,current_plan:'Bootstrap'},
+    {...freeUsage.account,plan_usage:1000},
+    {}
+  ]){
+    usage={...freeUsage,account};
+    const blocked=await browse();assert.equal(blocked.status,200,'unavailable browsing broke chat');
+    assert.equal(searches,allowedSearches,'search ran without a verified free allowance');
+  }
+}finally{globalThis.fetch=originalFetch}
+console.log('PASS — free-only browsing, source links, and search privacy.');
