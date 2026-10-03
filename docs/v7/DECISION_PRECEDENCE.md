@@ -196,8 +196,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `design.fonts.set`
 
-- **Current** · 2026-09-30 · Owner decision (Chris) · `design.fonts.set.title-three`
-  The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.fonts.set.per-theme`
+  There is no fixed font set. Each theme chooses its own typography to reflect that theme; all fonts must be readable.
+- **Previous** · 2026-09-30 · Owner decision (Chris) · `design.fonts.set.title-three`
+  ~~The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable~~
 
 ### `design.layout-contract`
 
@@ -952,6 +954,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The Bible notes panel is named Reading Desk, with a compact 1.15rem title
 - **Feedback** · 2026-09-27 · Chris · `ui.bible.notes-panel.feedback-2026-09-26`
   Bible notes panel needs a different name and smaller title typography
+
+### `ui.bible.rails`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
+  Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.
 
 ### `ui.course-shelf`
 

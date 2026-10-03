@@ -79,7 +79,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
 | `design.fonts.hosting` | undefined | Agent default | undefined |
-| `design.fonts.set` | The site uses only the three fonts of the original Home title area (serif: | Owner decision | undefined |
+| `design.fonts.set` | There is no fixed font set. | Owner decision | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `design.migration.route` | Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); | Owner decision | undefined |
 | `design.themes.color-character` | Stained Glass is polychrome: | Owner decision | undefined |
@@ -186,6 +186,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.ask` | The Bible reader toolbar has no Ask button. | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
+| `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
