@@ -93,7 +93,7 @@ Tasks:
 3. **One passage toolbar** with a single primary action, chosen by state: Resume or Read.
 4. **Make the Reading Desk optional and context-aware.**
    - Tabs with nothing to show are hidden.
-   - Notes are hidden by default until opened (`notes`).
+   - Notes are visible: the Notes tab shows the selected verse's notes, with "Add a note to [verse]" when it has none (`notes.lesson-hidden` scopes hidden-by-default to lessons only).
    - Cross-references stay the last expandable level (`ui.bible.crossrefs`).
 5. **Phase `1c` scope.** Resume, you-are-here, reading path, and ask-about-this-passage are delivered here. There is no "Ask" button in the passage toolbar: the Theologian tab opens already holding the current passage, or the selected verse, and the Reading Desk offers "Ask about [verse]" for the selected verse (`ui.bible.ask`).
 
@@ -109,7 +109,7 @@ Tasks:
 3. **Context-aware Study Desk.**
    - It adapts to the current lesson step.
    - Empty tabs are hidden.
-   - Notes are hidden until opened.
+   - Lesson notes are hidden until opened (`notes.lesson-hidden`).
 4. **Redesign check presentation** using the confirmed game set (`learning.games`): Rule Discovery, Sequence Repair, and the new memory game. Answer keys, scoring, and completion rules are untouched.
 5. **Name the per-unit check** once `unit-check-label` is resolved.
 
