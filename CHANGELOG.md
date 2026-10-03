@@ -22,6 +22,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 - Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.
 - Selecting a verse opens an inline action bar (four highlight colors, Note, Ask, Copy); verses with saved notes show a dotted underline and note icon; notes open in the right rail rather than a popup over Scripture. Highlights are stored by color name and each theme supplies its own AA-readable shade per name. (agent default)
+- New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
 ### Added
 

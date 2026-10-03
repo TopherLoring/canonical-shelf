@@ -1047,6 +1047,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
   Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 
+### `ui.shelf.nt-fill`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
+  New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
+
 ### `ui.theme.default`
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `ui.theme.default.reading-room`
