@@ -91,11 +91,12 @@ Tasks:
    - Passage reading: `/bible?book=&chapter=`, plus `start`, `end`, `focus`.
 2. **Remove the Bible cover** from the reader (`ui.bible`).
 3. **One passage toolbar** with a single primary action, chosen by state: Resume or Read.
-4. **Make the Reading Desk optional and context-aware.**
+4. **Rails (`ui.bible.rails`).** Left rail = links to study tools; right rail = the chosen tool's content plus notes, for the selected verse. Verses are selectable and highlightable.
+5. **Make the Reading Desk optional and context-aware.**
    - Tabs with nothing to show are hidden.
    - Notes are visible: the Notes tab shows the selected verse's notes, with "Add a note to [verse]" when it has none (`notes.lesson-hidden` scopes hidden-by-default to lessons only).
    - Cross-references stay the last expandable level (`ui.bible.crossrefs`).
-5. **Phase `1c` scope.** Resume, you-are-here, reading path, and ask-about-this-passage are delivered here. There is no "Ask" button in the passage toolbar: the Theologian tab opens already holding the current passage, or the selected verse, and the Reading Desk offers "Ask about [verse]" for the selected verse (`ui.bible.ask`).
+6. **Phase `1c` scope.** Resume, you-are-here, reading path, and ask-about-this-passage are delivered here. There is no "Ask" button in the passage toolbar: the Theologian tab opens already holding the current passage, or the selected verse, and the Reading Desk offers "Ask about [verse]" for the selected verse (`ui.bible.ask`).
 
 Accept when:
 - Check `r2-unaided-flow` passes: start, read, see where you are, follow a cross-reference, and return.

@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.fonts.set.per-theme",
+  "topic": "design.fonts.set",
+  "date": "2026-10-03",
+  "text": "There is no fixed font set. Each theme chooses its own typography to reflect that theme; all fonts must be readable.",
+  "supersedes": [
+    "design.fonts.set.title-three"
+  ],
+  "by": "Chris"
+}
