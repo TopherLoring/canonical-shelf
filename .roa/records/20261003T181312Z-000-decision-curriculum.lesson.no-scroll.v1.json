@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.lesson.no-scroll.v1",
+  "topic": "curriculum.lesson.no-scroll",
+  "date": "2026-10-03",
+  "text": "A lesson screen must never require scrolling: if it would, it holds too much content. Content is paced through the Next/Continue button, one screen at a time, by splitting steps into more screens (content redistributed, never cut).",
+  "by": "Chris"
+}
