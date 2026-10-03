@@ -1075,8 +1075,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.phone.theologian-position`
 
-- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
-  On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v2`
+  Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value.
+- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
+  ~~On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.~~
 
 ### `ui.profile`
 
