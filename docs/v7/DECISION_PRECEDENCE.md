@@ -1004,6 +1004,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.colors.three`
   Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
 
+### `ui.lesson.rails`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.lesson.rails.v1`
+  The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
+
 ### `ui.naming`
 
 - **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`

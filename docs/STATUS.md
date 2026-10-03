@@ -193,6 +193,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
+| `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
