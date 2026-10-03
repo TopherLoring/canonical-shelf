@@ -37,6 +37,15 @@ const config={
   name:WORKER_NAME,
   // Preserve dashboard-managed bindings; explicit vars below still update.
   keep_vars:true,
+    ...(isProduction ? {
+    secrets: {
+      required: [
+        'BETTER_AUTH_SECRET',
+        'TAVILY_API_KEY',
+        'FEEDBACK_ADMIN_TOKEN'
+      ]
+    }
+  } : {}),
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},
