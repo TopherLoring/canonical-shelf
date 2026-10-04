@@ -57,7 +57,10 @@ const TEXT_ROLE_PAIRS = [
   { fg: 'textMuted', bg: 'surface', min: 3.0, role: 'muted text on surface' },
   { fg: 'onAction', bg: 'action', min: 4.5, role: 'text on action control' },
   { fg: 'action', bg: 'surface', min: 3.0, role: 'action control on surface' },
-  { fg: 'onAccent', bg: 'accent', min: 4.5, role: 'text on accent surface' }
+  { fg: 'onAccent', bg: 'accent', min: 4.5, role: 'text on accent surface' },
+  { fg: 'text', bg: 'scriptureBed', min: 4.5, role: 'primary text on scripture bed' },
+  { fg: 'text', bg: 'chatSurface', min: 4.5, role: 'primary text on chat surface' },
+  { fg: 'text', bg: 'chatUser', min: 4.5, role: 'primary text on chat user bubble' }
 ];
 
 test.describe('Phase 0: WCAG AA contrast audit for text roles', () => {
@@ -85,7 +88,10 @@ test.describe('Phase 0: WCAG AA contrast audit for text roles', () => {
           action: cs.getPropertyValue('--color-action').trim(),
           onAction: cs.getPropertyValue('--color-on-action').trim(),
           accent: cs.getPropertyValue('--color-accent').trim(),
-          onAccent: cs.getPropertyValue('--color-on-accent').trim()
+          onAccent: cs.getPropertyValue('--color-on-accent').trim(),
+          scriptureBed: cs.getPropertyValue('--color-scripture-bed').trim(),
+          chatSurface: cs.getPropertyValue('--color-chat-surface').trim(),
+          chatUser: cs.getPropertyValue('--color-chat-user').trim()
         };
       });
 

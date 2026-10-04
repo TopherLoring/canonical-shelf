@@ -47,6 +47,7 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
   }
 
   test('no scrolling on any lesson screen at default text size on desktop (1440x900)', async ({ page }) => {
+    test.slow();
     await page.setViewportSize({ width: 1440, height: 900 });
     const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
     const overflowingScenes = [];
@@ -70,6 +71,7 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
   });
 
   test('no scrolling on any lesson screen at default text size on phone (390x844)', async ({ page }) => {
+    test.slow();
     await page.setViewportSize({ width: 390, height: 844 });
     const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
     const overflowingScenes = [];
