@@ -3,13 +3,7 @@ import {getPracticeState} from './practice-state.js';
 const KEY='canonical-shelf-bible-state-v1';
 const safeJson=(raw,fallback)=>{try{return JSON.parse(raw)}catch{return fallback}};
 
-if(typeof document!=='undefined'&&!document.querySelector('link[data-canonical-bible-state]')){
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='/bible-state.css';
-  link.dataset.canonicalBibleState='';
-  document.head.append(link);
-}
+// Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
 
 export function getBibleState(){
   try{

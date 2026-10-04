@@ -239,6 +239,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 ## Repository map
 
+- `public/highlights.js` — Persisted learner highlights, saved and synced with personal study state
+- `public/ui/screens/reader.js` — Redesigned Bible reader: Scripture apparatus, selection, notes, highlights, and study panels
+- `public/ui/legacy.css` — Pre-redesign stylesheets in the legacy cascade layer
 - `public/` — The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/
 - `content/` — Authored curriculum, topics, theology policy, statement of faith, and vendored data (content/vendor/)
 - `worker/` — Cloudflare Worker: auth, sync, Theologian, feedback APIs

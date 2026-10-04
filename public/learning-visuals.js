@@ -1,12 +1,6 @@
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
-if(typeof document!=='undefined'&&!document.querySelector('link[data-canonical-learning-visuals]')){
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='/learning-visuals.css';
-  link.dataset.canonicalLearningVisuals='';
-  document.head.append(link);
-}
+// Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
 
 const VISUAL_TYPES=['shelf','timeline','story-arc','relationship','compare','flow','theme-thread','map-lite','book-profile','verse-context','spectrum','stack'];
 const labels={shelf:'Canonical shelf',timeline:'Timeline','story-arc':'Story arc',relationship:'Relationship map',compare:'Comparison',flow:'Process', 'theme-thread':'Theme thread','map-lite':'Schematic map','book-profile':'Book profile','verse-context':'Verse context',spectrum:'Interpretive spectrum',stack:'Layered reading'};

@@ -104,21 +104,20 @@ test('Theologian opens as a fixed chat panel with a conversation menu, and close
   await expect(flag.locator('textarea[name=message]')).toHaveAttribute('required','');
 });
 
-test('cross-references are the last, collapsed detail level of the Reading Desk and list plain verse addresses',async({page})=>{
+test('cross-references follow the selected verse, even when the verse is chosen before the data arrives',async({page})=>{
   // Slow the chapter's cross-reference download so the verse is clicked before the data arrives (as on slow connections).
   await page.route('**/data/crossref/**',async route=>{await new Promise(r=>setTimeout(r,1500));await route.continue()});
   await page.goto('/bible?book=43&chapter=3');
-  const desk=page.locator('.library-reader-panel');
-  await expect(desk.locator(':scope > details').last()).toHaveClass(/reader-crossrefs/);
-  await page.locator('.reader.scripture .verses p').nth(15).click();
-  const summary=desk.locator('[data-xref-summary]');
-  await expect(summary).toContainText('John 3:16');
-  await expect(desk.locator('details.reader-crossrefs')).not.toHaveAttribute('open','');
-  await summary.click();
-  const links=desk.locator('.xref-link');
-  await expect(links.first()).toBeVisible();
-  await expect(desk.locator('details.reader-crossrefs')).not.toContainText('Citation');
-  expect(Number(await links.first().evaluate(el=>getComputedStyle(el).fontWeight))).toBeLessThanOrEqual(500);
+  const panel=page.locator('[data-reader-panel]');
+  await page.locator('[data-reader] #v16').click();
+  await expect(panel.locator('.reader-panel-title')).toHaveText('John 3:16');
+  const links=panel.locator('.ui-scripture-ref-link');
+  await expect(links.first()).toBeVisible({timeout:5000});
+  await expect(panel).not.toContainText('Citation');
+  await expect(page.locator('#reader-rail-xrefs .ui-rail-count')).toHaveText(/^\d+$/);
+  // Expanding a reference shows its verse text from the local Bible.
+  await panel.locator('[data-ref-toggle]').first().click();
+  await expect(panel.locator('.ui-scripture-ref-text').first()).toBeVisible();
   await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
 });
 
@@ -255,17 +254,20 @@ test('the internal belief context is never served by the site (only the Theologi
 
 test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
-  const mount=page.locator('.library-reader-panel [data-notes-mount]');
+  const mount=page.locator('[data-reader-notes] [data-notes-mount]');
   await expect(mount.locator('.study-notes__anchor')).toContainText('John 3');
-  await page.locator('.reader.scripture .verses p').nth(15).click();
+  await expect(page.locator('[data-notes-title]')).toHaveText('My notes on John 3');
+  await page.locator('[data-reader] #v16').click();
   await expect(mount.locator('.study-notes__anchor')).toContainText('John 3:16');
+  await expect(page.locator('[data-notes-title]')).toHaveText('My notes on 3:16');
   await mount.locator('[data-note-text]').fill('God so loved the world: ask about "world".');
   await mount.locator('[data-note-discuss]').check();
   await expect(mount.locator('[data-note-status]')).toContainText('Saved',{timeout:5000});
+  // The selected verse is kept in the address, so a reload returns to the same verse and note.
+  await expect(page).toHaveURL(/[?&]start=16(&|$)/);
   await page.reload();
-  await page.locator('.reader.scripture .verses p').nth(15).click();
-  await expect(page.locator('.library-reader-panel [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
-  await page.locator('.library-reader-panel .study-notes__all').click();
+  await expect(page.locator('[data-reader-notes] [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
+  await page.locator('[data-reader-notes] .study-notes__all').click();
   await expect(page).toHaveURL(/\/profile#notes$/);
   await expect(page.locator('[data-my-notes]')).toContainText('To bring up in person (1)');
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');

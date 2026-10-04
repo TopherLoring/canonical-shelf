@@ -250,7 +250,7 @@
     color: var(--color-action);
   }
 
-  /* Phone Viewport Responsive Contract (max-width: 640px) */
+  /* Phone navigation uses icons. */
   @media (max-width: 640px) {
     .masthead,
     .app-shell-header {
@@ -344,5 +344,14 @@
       left: 16px;
       z-index: var(--layer-popups);
     }
+  }
+
+  /* Lesson focus mode (body.study-focus-active): the lesson takes the whole screen, so the shell steps aside. */
+  body.study-focus-active > .masthead,
+  body.study-focus-active > .app-shell-header,
+  body.study-focus-active > .primary,
+  body.study-focus-active > .pwa-status,
+  body.study-focus-active > .guide-open {
+    display: none;
   }
 }

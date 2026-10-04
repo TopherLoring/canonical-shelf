@@ -20,12 +20,29 @@ export async function chapterHighlights(osisBook, chapter) {
 }
 
 // Set (or clear, with color null) the highlight on one verse. Returns the saved color.
-export async function setHighlight(osis, color, label = '') {
+let pendingSave = Promise.resolve();
+
+export function setHighlight(osis, color, label = '') {
+  return setHighlights([{ osis, label }], color);
+}
+
+// A selected range is one mutation; serialize successive actions so whole-state
+// writes cannot drop highlights saved by another verse or color action.
+export function setHighlights(entries, color) {
+  const save = pendingSave.then(() => saveHighlights(entries, color));
+  pendingSave = save.catch(() => {});
+  return save;
+}
+
+async function saveHighlights(entries, color) {
   if (color !== null && !HIGHLIGHT_COLORS.includes(color)) throw new Error(`Unknown highlight color: ${color}`);
   const state = await getState();
   const at = new Date().toISOString();
-  state.highlights = { ...(state.highlights || {}), [osis]: { color, updatedAt: at, ...(label ? { label } : {}) } };
-  recordMutation(state, 'personal-study', { id: `highlight:${osis}`, fields: ['highlights'], updatedAt: at }, at);
+  state.highlights = { ...(state.highlights || {}) };
+  for (const { osis, label } of entries) {
+    state.highlights[osis] = { color, updatedAt: at, ...(label ? { label } : {}) };
+    recordMutation(state, 'personal-study', { id: `highlight:${osis}`, fields: ['highlights'], updatedAt: at }, at);
+  }
   await putState(state);
   return color;
 }

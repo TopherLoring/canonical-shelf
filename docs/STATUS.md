@@ -214,6 +214,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
 | `ui.naming.unit-check` | The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
+| `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
@@ -222,11 +223,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
+| `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
+| `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
 | `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |

@@ -8,7 +8,7 @@
 import { LIBRARY_BOOKS, CATEGORIES, THREADS } from '../../library-data.js';
 import { OSIS, parseCorpus, parseReference } from '../../bible-books.js';
 import { renderMounts } from '../../study-notes.js';
-import { chapterHighlights, setHighlight, HIGHLIGHT_COLORS } from '../../highlights.js';
+import { chapterHighlights, setHighlights, HIGHLIGHT_COLORS } from '../../highlights.js';
 import {
   renderRail, renderGroupChip, renderScriptureRef, mountScriptureRef,
   renderVerseSpan, renderVerseActions, renderFootnoteBadge, renderEdgeTab
@@ -68,7 +68,9 @@ async function loadCrossrefs(book, chapter) {
   return crossrefCache.get(key);
 }
 
-const refLabel = ([b, c, v1, v2]) => `${bookByNumber(b)?.name || `Book ${b}`} ${c}:${v1}${v2 && v2 !== v1 ? `–${v2}` : ''}`;
+// One psalm is "Psalm 23"; the book is "Psalms".
+const bookLabel = b => (b === 19 ? 'Psalm' : bookByNumber(b)?.name || `Book ${b}`);
+const refLabel = ([b, c, v1, v2]) => `${bookLabel(b)} ${c}:${v1}${v2 && v2 !== v1 ? `–${v2}` : ''}`;
 const refHref = ([b, c, v1, v2]) => chapterHref(b, c, `&start=${v1}${v2 && v2 !== v1 ? `&end=${v2}` : ''}`);
 function refText(corpus, [b, c, v1, v2]) {
   const last = v2 || v1;
@@ -85,7 +87,9 @@ function verseBody(text, notes, esc, counter) {
   let html = '', at = 0;
   const cards = [];
   for (const note of sorted) {
-    const cut = Math.max(at, Math.min(text.length, note.at));
+    let cut = Math.max(at, Math.min(text.length, note.at));
+    // The badge follows any closing punctuation after the footnoted words, as the printed BSB places it.
+    while (cut < text.length && /[,.;:!?”’)\]—]/.test(text[cut])) cut++;
     html += esc(text.slice(at, cut));
     const m = marker(counter.n++);
     const id = `reader-fn-${m}`;
@@ -95,6 +99,16 @@ function verseBody(text, notes, esc, counter) {
   }
   html += esc(text.slice(at));
   return { html, cards };
+}
+
+// The source apparatus encodes Hebrew acrostic letters as numeric HTML entities.
+// Decode only valid code points, then escape as text before including in markup.
+function headingText(text) {
+  return text.replace(/&#(x[\da-f]+|\d+);/gi, (entity, value) => {
+    const point = value[0].toLowerCase() === 'x' ? parseInt(value.slice(1), 16) : Number(value);
+    return point > 0 && point <= 0x10ffff && !(point >= 0xd800 && point <= 0xdfff)
+      ? String.fromCodePoint(point) : entity;
+  });
 }
 
 function renderChapter({ rows, annotations, highlights, selected, esc }) {
@@ -110,8 +124,8 @@ function renderChapter({ rows, annotations, highlights, selected, esc }) {
     for (const h of headings[row.verse] || []) {
       close();
       blocks.push(h.kind === 'section'
-        ? `<h2 class="reader-heading">${esc(h.text)}</h2>`
-        : `<h3 class="reader-subheading">${esc(h.text)}</h3>`);
+        ? `<h2 class="reader-heading">${esc(headingText(h.text))}</h2>`
+        : `<h3 class="reader-subheading">${esc(headingText(h.text))}</h3>`);
     }
     // A paragraph or poetry-line start begins a new block; verses without one continue the open block.
     const kind = paragraphs[row.verse];
@@ -156,7 +170,7 @@ function pickerMarkup(book, chapter, esc) {
   const current = bookByNumber(book);
   const testament = (label, from, to) => `<optgroup label="${label}">${LIBRARY_BOOKS.filter(b => b.n >= from && b.n <= to).map(b => `<option value="${b.n}" ${b.n === book ? 'selected' : ''}>${esc(b.name)}</option>`).join('')}</optgroup>`;
   return `<details class="reader-picker" data-reader-picker>
-    <summary class="reader-picker-button"><span data-reader-title>${esc(current.name)} ${chapter}</span>${ICONS.chevronDown}</summary>
+    <summary class="reader-picker-button"><span data-reader-title>${esc(bookLabel(book))} ${chapter}</span>${ICONS.chevronDown}</summary>
     <div class="reader-picker-popup" role="group" aria-label="Choose a book and chapter">
       <label class="reader-picker-label" for="reader-book-select">Book</label>
       <select id="reader-book-select" class="reader-picker-select" data-reader-book>${testament('Old Testament', 1, 39)}${testament('New Testament', 40, 66)}</select>
@@ -170,11 +184,23 @@ function chapterLinks(book, chapter) {
   return Array.from({ length: count }, (_, i) => `<a role="listitem" class="reader-chapter-link" href="${chapterHref(book, i + 1)}" ${i + 1 === chapter ? 'aria-current="page"' : ''}>${i + 1}</a>`).join('');
 }
 
+// Bring a verse into view inside the reading column only (scrollIntoView would also scroll the page).
+function revealVerse(root, verse) {
+  const el = root.querySelector(`#v${verse}`);
+  const scroller = root.querySelector('[data-reader-scroll]');
+  if (!el || !scroller) return;
+  if (scroller.scrollHeight > scroller.clientHeight + 1) {
+    const top = el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+    scroller.scrollTo({ top: Math.max(0, top - scroller.clientHeight / 3) });
+  }
+}
+
 export async function mount(container, ctx) {
   const { esc, corpus } = ctx;
   const address = addressFrom(ctx.params);
   const { book, chapter } = address;
   const meta = bookByNumber(book);
+  const name = bookLabel(book);
   const osisBook = OSIS[book - 1];
   const rows = parseCorpus(corpus).filter(r => r.bn === book && r.chapter === chapter);
   const groupLabel = groupName(meta.cat);
@@ -184,16 +210,16 @@ export async function mount(container, ctx) {
   try { const saved = localStorage.getItem(SIZE_KEY); if (SIZES.includes(saved)) size = saved; } catch {}
   let selected = address.start ? { start: address.start, end: address.end } : null;
   let panel = address.panel;
-  const label = sel => `${meta.name} ${chapter}${sel ? `:${sel.start}${sel.end > sel.start ? `–${sel.end}` : ''}` : ''}`;
-  const short = sel => (sel ? `${chapter}:${sel.start}${sel.end > sel.start ? `–${sel.end}` : ''}` : `${meta.name} ${chapter}`);
+  const label = sel => `${name} ${chapter}${sel ? `:${sel.start}${sel.end > sel.start ? `–${sel.end}` : ''}` : ''}`;
+  const short = sel => (sel ? `${chapter}:${sel.start}${sel.end > sel.start ? `–${sel.end}` : ''}` : `${name} ${chapter}`);
 
   if (!rows.length) {
-    container.innerHTML = `<section class="reader-screen reader-screen--empty"><p class="reader-empty">${esc(meta.name)} ${chapter} is not in the local Bible text. <a href="${chapterHref(1, 1)}">Open Genesis 1</a>.</p></section>`;
+    container.innerHTML = `<section class="reader-screen reader-screen--empty"><p class="reader-empty">${esc(name)} ${chapter} is not in the local Bible text. <a href="${chapterHref(1, 1)}">Open Genesis 1</a>.</p></section>`;
     return () => {};
   }
 
   const railSections = sel => [
-    { title: `For ${meta.name} ${sel ? short(sel) : chapter}`, items: [
+    { title: `For ${name} ${sel ? short(sel) : chapter}`, items: [
       { href: '#context', label: 'Context', icon: ICONS.context, id: 'reader-rail-context' },
       { href: '#xrefs', label: 'Cross-references', icon: ICONS.xrefs, id: 'reader-rail-xrefs' },
       { href: '#highlights', label: 'Highlights', icon: ICONS.highlights, id: 'reader-rail-highlights' },
@@ -212,7 +238,7 @@ export async function mount(container, ctx) {
   const nextLink = next ? `<a class="reader-step" href="${chapterHref(...next)}" aria-label="Next chapter: ${esc(bookByNumber(next[0]).name)} ${next[1]}">${ICONS.chevronRight}</a>` : `<span class="reader-step" aria-disabled="true">${ICONS.chevronRight}</span>`;
   const phoneTools = [['context', 'Overview', ICONS.overview], ['timeline', 'Timeline', ICONS.timeline], ['themes', 'Themes', ICONS.themes], ['people', 'People', ICONS.people], ['places', 'Places', ICONS.places], ['maps', 'Maps', ICONS.maps]];
 
-  container.innerHTML = `<section class="reader-screen" data-reader data-book="${book}" data-chapter="${chapter}" data-size="${size}" aria-label="${esc(meta.name)} ${chapter}">
+  container.innerHTML = `<section class="reader-screen" data-reader data-book="${book}" data-chapter="${chapter}" data-selected-verse="${selected?.start || ''}" data-selected-end="${selected?.end || ''}" data-size="${size}" aria-label="${esc(name)} ${chapter}">
     <div class="reader-rail-wrap" data-reader-rail>${renderRail({ sections: railSections(selected), ariaLabel: 'Study tools', id: 'reader-rail' })}</div>
     <article class="reader-card" data-reader-card>
       <header class="reader-toolbar">
@@ -243,7 +269,7 @@ export async function mount(container, ctx) {
       <div class="reader-scroll" data-reader-scroll>
         <header class="reader-title" data-group="${meta.cat}">
           <p class="reader-title-group">${esc(groupLabel)}</p>
-          <h1 class="reader-title-heading">${esc(meta.name)} ${chapter}</h1>
+          <h1 class="reader-title-heading">${esc(name)} ${chapter}</h1>
           <p class="reader-title-version">Berean Standard Bible</p>
         </header>
         <div class="reader-text ui-verse-passage" data-reader-text>${renderChapter({ rows, annotations, highlights, selected, esc })}</div>
@@ -275,7 +301,9 @@ export async function mount(container, ctx) {
   const phone = () => matchMedia('(max-width: 1099px)').matches;
 
   // ---- Study panel -------------------------------------------------------------------------------------------
-  const chapterXrefs = await loadCrossrefs(book, chapter);
+  // Cross-references load in the background; the panel and counts update when they arrive.
+  let chapterXrefs = null;
+  let xrefsSettled = false;
   function crossrefsFor(sel) {
     if (!chapterXrefs?.verses) return [];
     const verses = sel ? Array.from({ length: sel.end - sel.start + 1 }, (_, i) => sel.start + i) : [];
@@ -297,14 +325,14 @@ export async function mount(container, ctx) {
       if (count) link.insertAdjacentHTML('beforeend', `<span class="ui-rail-count">${count}</span>`);
     }
     const title = root.querySelector('#reader-rail .ui-rail-section-title');
-    if (title) title.textContent = `For ${meta.name} ${selected ? short(selected) : chapter}`;
+    if (title) title.textContent = `For ${name} ${selected ? short(selected) : chapter}`;
   }
   function panelBody(which) {
     const head = (eyebrow, title) => `<header class="reader-panel-head"><p class="reader-panel-eyebrow">${esc(eyebrow)}</p><h2 class="reader-panel-title">${esc(title)}</h2></header>`;
     if (which === 'xrefs') {
-      if (!selected) return `${head('Cross-references', `${meta.name} ${chapter}`)}<p class="reader-panel-hint">Select a verse to see where else Scripture says something related.</p>`;
+      if (!selected) return `${head('Cross-references', `${name} ${chapter}`)}<p class="reader-panel-hint">Select a verse to see where else Scripture says something related.</p>`;
       const refs = crossrefsFor(selected);
-      if (!chapterXrefs) return `${head('Cross-references', label(selected))}<p class="reader-panel-hint">Cross-references are still loading or unavailable offline.</p>`;
+      if (!chapterXrefs) return `${head('Cross-references', label(selected))}<p class="reader-panel-hint">${xrefsSettled ? 'Cross-references are unavailable offline.' : 'Loading cross-references…'}</p>`;
       if (!refs.length) return `${head('Cross-references', label(selected))}<p class="reader-panel-hint">No cross-references are listed for this verse.</p>`;
       return `${head('Cross-references', label(selected))}<ul class="reader-xref-list" data-xref-list>${refs.slice(0, 40).map(ref => `<li>${renderScriptureRef({ reference: refLabel(ref), group: bookByNumber(ref[0])?.cat || 'law', text: refText(corpus, ref), href: refHref(ref), className: 'reader-xref' })}</li>`).join('')}</ul>${refs.length > 40 ? `<p class="reader-panel-hint">Showing 40 of ${refs.length}.</p>` : ''}<p class="reader-panel-source">Cross-references: OpenBible.info</p>`;
     }
@@ -315,8 +343,8 @@ export async function mount(container, ctx) {
     }
     if (which === 'highlights') {
       const marked = [...text.querySelectorAll('.reader-verse[class*="ui-highlight-"]')];
-      if (!marked.length) return `${head('Highlights', `${meta.name} ${chapter}`)}<p class="reader-panel-hint">Select a verse and pick a color to highlight it.</p>`;
-      return `${head('Highlights', `${meta.name} ${chapter}`)}<ul class="reader-highlight-list">${marked.map(v => {
+      if (!marked.length) return `${head('Highlights', `${name} ${chapter}`)}<p class="reader-panel-hint">Select a verse and pick a color to highlight it.</p>`;
+      return `${head('Highlights', `${name} ${chapter}`)}<ul class="reader-highlight-list">${marked.map(v => {
         const n = Number(v.dataset.verse);
         const color = HIGHLIGHT_COLORS.find(c => v.classList.contains(`ui-highlight-${c}`));
         const row = rows.find(r => r.verse === n);
@@ -381,6 +409,7 @@ export async function mount(container, ctx) {
   function select(start, end = start, { focusNotes = false } = {}) {
     selected = start ? { start, end } : null;
     root.dataset.selectedVerse = selected ? String(selected.start) : '';
+    root.dataset.selectedEnd = selected ? String(selected.end) : '';
     for (const v of text.querySelectorAll('.reader-verse')) {
       const n = Number(v.dataset.verse);
       const on = Boolean(selected && n >= selected.start && n <= selected.end);
@@ -437,18 +466,20 @@ export async function mount(container, ctx) {
       for (const v of targets) {
         HIGHLIGHT_COLORS.forEach(c => v.classList.remove(`ui-highlight-${c}`));
         if (next) v.classList.add(`ui-highlight-${next}`);
-        setHighlight(`${osisBook}.${chapter}.${v.dataset.verse}`, next, `${meta.name} ${chapter}:${v.dataset.verse}`).catch(() => {});
       }
+      setHighlights(targets.map(v => ({ osis: `${osisBook}.${chapter}.${v.dataset.verse}`, label: `${name} ${chapter}:${v.dataset.verse}` })), next).catch(() => {});
       updateCounts(); placeActions(); if (panel === 'highlights') renderPanel();
       return;
     }
     if (t.closest('[data-highlight-clear]') && selected) {
+      const entries = [];
       for (const v of text.querySelectorAll('.reader-verse')) {
         const n = Number(v.dataset.verse);
         if (n < selected.start || n > selected.end) continue;
         HIGHLIGHT_COLORS.forEach(c => v.classList.remove(`ui-highlight-${c}`));
-        setHighlight(`${osisBook}.${chapter}.${n}`, null).catch(() => {});
+        entries.push({ osis: `${osisBook}.${chapter}.${n}` });
       }
+      setHighlights(entries, null).catch(() => {});
       updateCounts(); placeActions(); if (panel === 'highlights') renderPanel();
       return;
     }
@@ -476,7 +507,7 @@ export async function mount(container, ctx) {
       return;
     }
     const goto = t.closest('[data-goto-verse]');
-    if (goto) { const n = Number(goto.dataset.gotoVerse); select(n); text.querySelector(`#v${n}`)?.scrollIntoView({ block: 'center' }); if (phone()) closeSheet(); return; }
+    if (goto) { const n = Number(goto.dataset.gotoVerse); select(n); revealVerse(root, n); if (phone()) closeSheet(); return; }
     const railLink = t.closest('#reader-rail .ui-rail-link');
     if (railLink && railLink.getAttribute('href')?.startsWith('#')) {
       event.preventDefault();
@@ -511,7 +542,7 @@ export async function mount(container, ctx) {
       return;
     }
     const verse = verseFrom(event.target);
-    if (verse && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); verse.click(); }
+    if (verse === event.target && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); verse.click(); }
   }
   function onChange(event) {
     const select = event.target.closest('[data-reader-book]');
@@ -529,12 +560,20 @@ export async function mount(container, ctx) {
 
   renderPanel();
   updateCounts();
+  let live = true;
+  loadCrossrefs(book, chapter).then(data => {
+    chapterXrefs = data; xrefsSettled = true;
+    if (!live) return;
+    updateCounts();
+    if (panel === 'xrefs') renderPanel();
+  });
   if (selected) {
     root.dataset.selectedVerse = String(selected.start);
-    requestAnimationFrame(() => { text.querySelector(`#v${selected.start}`)?.scrollIntoView({ block: 'center' }); placeActions(); });
+    requestAnimationFrame(() => { revealVerse(root, selected.start); placeActions(); });
   }
 
   return () => {
+    live = false;
     removeEventListener('resize', onResize);
   };
 }

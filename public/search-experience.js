@@ -2,9 +2,7 @@ import {BOOKS} from './bible-books.js';
 import {CATEGORIES} from './library-data.js';
 import {queryStudyIndex} from './study-index.js';
 
-if(typeof document!=='undefined'&&!document.querySelector('link[data-canonical-search]')){
-  const link=document.createElement('link');link.rel='stylesheet';link.href='/search-experience.css';link.dataset.canonicalSearch='';document.head.append(link);
-}
+// Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
 
 const section=(title,items,markup)=>`<section class="search-domain"><div class="search-domain__head"><h2>${title}</h2><span>${items.length}</span></div>${items.length?markup:'<p class="notice">No matching material in this collection.</p>'}</section>`;
 

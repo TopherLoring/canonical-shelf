@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning-path-primary-content-scroll-2026-10-04",
+  "topic": "ui.scrolling.reader-lessons",
+  "date": "2026-10-04",
+  "text": "Mobile pages must never scroll horizontally. Vertical scrolling is allowed where needed. The no-scrolling decision applies specifically to primary lesson content in the Learning Path; additional lesson content may scroll.",
+  "supersedes": [
+    "reader-lessons-scroll-2026-10-04"
+  ],
+  "by": "Chris"
+}

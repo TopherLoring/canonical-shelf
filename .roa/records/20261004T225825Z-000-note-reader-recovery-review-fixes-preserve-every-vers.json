@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-04",
+  "text": "Reader recovery review fixes preserve every verse in highlighted ranges, selected-range and reference-query context for notes, and native keyboard footnote activation. Phone widths 320, 390, and 428 were checked; tablet work was deferred by Chris. Final bun run verify passed with 124 browser tests. Baseline captures now use per-run artifact folders instead of overwriting tracked screenshots."
+}

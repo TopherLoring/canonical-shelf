@@ -590,6 +590,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Do not merge stale pull requests wholesale; PRs #20, #22, #23 were superseded, #24 was merged and later superseded by the single-page app. Carry forward only named outcomes
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
 
+### `process.roa.reader-registration`
+
+- **Approval** · 2026-10-04 · Chris · `reader-manifest-registration-approved-2026-10-04` · scope: reader-recovery-three-map-entries
+  Approved adding three descriptive manifest.map entries for public/highlights.js, public/ui/screens/reader.js, and public/ui/legacy.css, with the checker and guards unchanged.
+
 ### `product.audience`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `product.audience.audience`
@@ -1130,6 +1135,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
   Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
 
+### `ui.nav.tablet`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-work-deferred-2026-10-04`
+  Defer tablet-specific layout work and comparisons for now; finish the current recovery on desktop and phone.
+- **Previous** · 2026-10-04 · Owner decision (Chris) · `tablet-full-navigation-2026-10-04`
+  ~~Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.~~
+
 ### `ui.notes.naming`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
@@ -1172,6 +1184,18 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.scripture.group-color.v1`
   Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.
 
+### `ui.scrolling.container-width`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `dynamic-width-content-scroll-2026-10-04`
+  Layout width should adapt dynamically to available screen width. Where scrolling is needed and should not move the whole page, it should occur within the content container.
+
+### `ui.scrolling.reader-lessons`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `learning-path-primary-content-scroll-2026-10-04`
+  Mobile pages must never scroll horizontally. Vertical scrolling is allowed where needed. The no-scrolling decision applies specifically to primary lesson content in the Learning Path; additional lesson content may scroll.
+- **Previous** · 2026-10-04 · Owner decision (Chris) · `reader-lessons-scroll-2026-10-04`
+  ~~The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.~~
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`
@@ -1201,6 +1225,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
+
+### `ui.tablet.responsive-options`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
+  For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
 
 ### `ui.theme.default`
 

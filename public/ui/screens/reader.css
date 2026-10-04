@@ -3,15 +3,16 @@
 /* Bible reader (Step 2, phase 4). Arrangement of shared components plus the reading surface itself.
    Every color, font, corner and shadow comes from a theme role; nothing here is a raw value. */
 @layer screens {
+  main#main:has(> .reader-screen) { padding: 0; }
   .reader-screen {
-    --reader-rail-w: 168px;
+    --reader-rail-w: 216px;
     --reader-aside-w: 300px;
     --reader-gap: var(--space-4);
     display: grid;
     grid-template-columns: var(--reader-rail-w) minmax(0, 1fr) var(--reader-aside-w);
     gap: var(--reader-gap);
     padding: var(--space-4);
-    height: calc(100dvh - 104px);
+    height: calc(100dvh - 112px);
     min-height: 560px;
     box-sizing: border-box;
   }
@@ -20,14 +21,8 @@
   .reader-empty { font-family: var(--font-body); color: var(--color-text-secondary); padding: var(--space-6); }
 
   /* ---- Left: study links (Rail component) ---- */
-  .reader-rail-wrap {
-    background: var(--color-surface-raised);
-    border: var(--border-weight) solid var(--color-border);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    padding: var(--space-4) var(--space-3);
-    overflow-y: auto;
-  }
+  .reader-rail-wrap { min-width: 0; overflow-y: auto; }
+  .reader-rail-wrap .ui-rail { height: 100%; }
 
   /* ---- Middle: the chapter ---- */
   .reader-card {
@@ -145,6 +140,7 @@
 
   .reader-scroll {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     padding: var(--space-6) var(--space-7) var(--space-7);
   }
@@ -251,6 +247,7 @@
     color: var(--color-text-secondary);
     font-family: var(--font-body);
     font-size: var(--type-caption);
+    white-space: nowrap;
     cursor: pointer;
   }
 
@@ -344,11 +341,12 @@
 
   .reader-notes-tab { display: none; }
 
-  /* ---- Tablet and phone: one card, study icon row, notes and tools as sheets ---- */
+  /* ---- Narrow view: one card, study icon row, notes and tools as sheets ---- */
   @media (max-width: 1099px) {
-    .reader-screen { display: block; height: auto; min-height: 0; padding: 0; }
+    main#main:has(> .reader-screen) { min-height: 0; }
+    .reader-screen { display: block; height: calc(100dvh - 112px); min-height: 0; padding: 0; }
     .reader-rail-wrap, .reader-toolbar { display: none; }
-    .reader-card { border: 0; box-shadow: none; border-radius: var(--radius-frame); overflow: visible; }
+    .reader-card { height: 100%; border: 0; box-shadow: none; border-radius: var(--radius-frame); overflow: hidden; }
     .reader-phone-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) var(--space-4) var(--space-2); }
     .reader-eyebrow { margin: 0; padding-left: var(--space-2); border-left: 4px solid var(--group-color, var(--color-action)); font-family: var(--font-body); font-size: var(--type-small); font-weight: 700; color: var(--group-color, var(--color-action)); }
     .reader-phone-head .reader-picker-button { border: 0; padding: 0; background: transparent; font-family: var(--font-display); font-size: var(--type-h1); }
@@ -412,7 +410,7 @@
       font-size: 0.68rem;
       cursor: pointer;
     }
-    .reader-scroll { overflow: visible; padding: var(--space-2) var(--space-4) var(--space-6); }
+    .reader-scroll { overflow-y: auto; padding: var(--space-2) var(--space-4) var(--space-6); }
     .reader-title { display: none; }
     .reader-screen[data-size="standard"] .reader-text { font-size: 1.2rem; }
 
@@ -445,10 +443,11 @@
       color: var(--color-text);
       cursor: pointer;
     }
-    .reader-notes-tab { display: block; }
+    .reader-notes-tab:not(.is-hidden) { display: block; }
   }
 
   @media (max-width: 640px) {
+    .reader-screen { height: calc(100dvh - 76px); }
     .reader-phone-tool span { font-size: 0.62rem; }
   }
 }

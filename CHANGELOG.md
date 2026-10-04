@@ -13,6 +13,12 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision. (supersedes ui.naming.unit-check.checkpoint)
 - The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revelation, everywhere they are named (shelf, legend, chips, lessons). The ninth group is Revelation, not Prophecy, because 'Prophecy' would also cover the Prophets. 'Letters' is used in the group names; the term 'epistle' is taught in Module 1 where the groups are introduced.
 - The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target. (agent default)
+- The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.
+- Mobile pages must never scroll horizontally. Vertical scrolling is allowed where needed. The no-scrolling decision applies specifically to primary lesson content in the Learning Path; additional lesson content may scroll. (supersedes reader-lessons-scroll-2026-10-04)
+- Layout width should adapt dynamically to available screen width. Where scrolling is needed and should not move the whole page, it should occur within the content container.
+- Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.
+- Defer tablet-specific layout work and comparisons for now; finish the current recovery on desktop and phone. (supersedes tablet-full-navigation-2026-10-04)
+- For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
 
 ### Added
 
@@ -23,6 +29,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - Theme Contract v10: added new color roles, corner radius scale, shadow tokens, stacking layers, per-theme Bible categories, and Reading Room palette
+
+### Fixed
+
+- Recovered the Step 2 Bible reader edits from the Claude handoff: legacy stylesheets now load through a cascade layer; reader selection, notes, highlights, footnotes, and background cross-references are verified. Fixed phone notes-tab visibility, distant-verse scrolling within the chapter, Hebrew acrostic headings, and lesson focus-frame sizing. Full bun run verify passed with 120 browser tests; remaining redesign steps are still pending.
+- Reader recovery review fixes preserve every verse in highlighted ranges, selected-range and reference-query context for notes, and native keyboard footnote activation. Phone widths 320, 390, and 428 were checked; tablet work was deferred by Chris. Final bun run verify passed with 124 browser tests. Baseline captures now use per-run artifact folders instead of overwriting tracked screenshots.
 
 ## 2026-10-03
 
