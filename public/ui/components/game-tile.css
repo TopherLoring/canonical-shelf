@@ -1,0 +1,67 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* GameTile: visual tile per game/review mode */
+  .ui-game-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform var(--motion-fast) var(--motion-easing), box-shadow var(--motion-fast) var(--motion-easing);
+    box-sizing: border-box;
+  }
+
+  .ui-game-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-frame);
+    border-color: var(--color-action);
+  }
+
+  .ui-game-tile-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ui-game-tile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action-subtle);
+    color: var(--color-action);
+  }
+
+  .ui-game-tile-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-chip);
+    background-color: var(--color-surface-sunken);
+    color: var(--color-text-muted);
+  }
+
+  .ui-game-tile-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .ui-game-tile-desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: var(--leading-normal);
+    color: var(--color-text-secondary);
+  }
+}
+

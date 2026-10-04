@@ -1,0 +1,88 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* VerseText: selectable verses, word-level highlights, note underline, footnote badges */
+  .ui-verse-passage {
+    margin: 0;
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 19px;
+    line-height: var(--leading-reading, 1.85);
+    color: var(--color-text);
+  }
+
+  .ui-verse-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-right: 3px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .ui-verse-span {
+    padding: 2px 0;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-verse-span.is-selected {
+    border-radius: var(--radius-small);
+    box-shadow: 0 0 0 2px var(--color-selection);
+  }
+
+  .ui-verse-span.has-note {
+    text-decoration: underline dotted var(--color-note-marker);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+  }
+
+  .ui-verse-note-icon {
+    margin-left: 4px;
+    vertical-align: -1px;
+    color: var(--color-note-marker);
+  }
+
+  /* Highlights using theme tokens */
+  .ui-highlight-yellow,
+  mark.ui-highlight-yellow {
+    padding: 1px 0;
+    border-radius: 3px;
+    background-color: var(--color-highlight-yellow);
+    color: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .ui-highlight-green,
+  mark.ui-highlight-green {
+    padding: 1px 0;
+    border-radius: 3px;
+    background-color: var(--color-highlight-green);
+    color: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .ui-highlight-blue,
+  mark.ui-highlight-blue {
+    padding: 1px 0;
+    border-radius: 3px;
+    background-color: var(--color-highlight-blue);
+    color: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .ui-highlight-rose,
+  mark.ui-highlight-rose {
+    padding: 1px 0;
+    border-radius: 3px;
+    background-color: var(--color-highlight-rose);
+    color: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+}
+

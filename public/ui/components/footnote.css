@@ -1,0 +1,48 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* Footnote: inline badge and floating card */
+  .ui-footnote-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    margin: 0 4px 0 2px;
+    border: 0;
+    border-radius: var(--radius-small, 4px);
+    background-color: color-mix(in srgb, var(--color-accent) 15%, var(--color-surface));
+    vertical-align: 6px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-accent);
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .ui-footnote-badge:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 25%, var(--color-surface));
+  }
+
+  .ui-footnote-card {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+
+  .ui-footnote-card-marker {
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-right: 6px;
+  }
+}
+

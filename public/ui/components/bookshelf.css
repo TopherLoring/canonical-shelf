@@ -1,0 +1,81 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* Bookshelf: wall shelves, verse-count widths, fills, group color spires */
+  .ui-bookshelf {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ui-bookshelf-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ui-bookshelf-row-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 var(--space-2);
+  }
+
+  .ui-bookshelf-row-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .ui-bookshelf-row-count {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .ui-bookshelf-shelf {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: var(--home-shelf-height, 111px);
+    padding: 0 var(--space-3);
+    border-bottom: var(--home-shelf-depth, 10px) solid var(--color-border);
+    box-sizing: border-box;
+  }
+
+  .ui-bookshelf-book {
+    position: relative;
+    flex: 0 0 auto;
+    height: 90px;
+    min-width: 14px;
+    border-radius: 2px 2px 0 0;
+    background-color: var(--color-surface-sunken);
+    border: var(--border-weight) solid var(--color-border);
+    cursor: pointer;
+    transition: transform var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-bookshelf-book:hover {
+    transform: translateY(-4px);
+  }
+
+  .ui-bookshelf-book[data-group="law"] { background-color: var(--bible-law); }
+  .ui-bookshelf-book[data-group="othist"] { background-color: var(--bible-othist); }
+  .ui-bookshelf-book[data-group="wisdom"] { background-color: var(--bible-wisdom); }
+  .ui-bookshelf-book[data-group="major"] { background-color: var(--bible-major); }
+  .ui-bookshelf-book[data-group="minor"] { background-color: var(--bible-minor); }
+  .ui-bookshelf-book[data-group="gospel"] { background-color: var(--bible-gospel); }
+  .ui-bookshelf-book[data-group="paul"] { background-color: var(--bible-paul); }
+  .ui-bookshelf-book[data-group="general"] { background-color: var(--bible-general); }
+  .ui-bookshelf-book[data-group="apoc"] { background-color: var(--bible-apoc); }
+
+  .ui-bookshelf-book.is-lean {
+    transform: rotate(8deg);
+    transform-origin: bottom left;
+  }
+}
+
