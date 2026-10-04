@@ -192,6 +192,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `test:theologian` | `bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs` |
 | `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
 | `test:browser` | `playwright test` |
+| `test:redesign` | `playwright test tests/redesign` |
 | `test` | `bun run test:core && bun run test:browser` |
 | `build:client` | `mkdir -p public/generated && bun build public/account-client.ts --outfile=public/generated/account.js --target=browser --minify && bun run sw:stamp` |
 | `build:worker` | `bun build worker/index.ts --outdir=.tmp/canonical-shelf-worker --target=browser` |
