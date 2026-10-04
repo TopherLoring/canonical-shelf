@@ -8,11 +8,11 @@
     display: flex;
     align-items: center;
     gap: 28px;
-    background-color: var(--color-surface, #FCFCFB);
-    border-bottom: 1px solid var(--color-border, #D6D9DF);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
-    z-index: var(--layer-nav, 10);
+    z-index: var(--layer-nav);
     width: 100%;
   }
 
@@ -23,7 +23,7 @@
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: var(--color-text, #141B2D);
+    color: var(--color-text);
     flex: 0 0 248px;
     width: 248px;
     min-width: 248px;
@@ -36,7 +36,7 @@
     width: 26px;
     height: 26px;
     flex-shrink: 0;
-    fill: var(--color-action, #1F3A6E);
+    fill: var(--color-action);
   }
 
   .masthead .brand-wordmark,
@@ -45,7 +45,7 @@
     font-size: 23px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--color-text, #141B2D);
+    color: var(--color-text);
     white-space: nowrap;
     line-height: 1;
   }
@@ -53,14 +53,17 @@
   .masthead .brand-wordmark em,
   .app-shell-header .brand-wordmark em {
     font-style: italic;
-    color: var(--color-text-secondary, #3D4657);
+    color: var(--color-text-secondary);
   }
 
   /* On /home, brand wordmark is hidden while retaining the 248px reservation (Decision ui.nav.brand.v1) */
-  body[data-route="home"] .brand-wordmark,
-  [data-current-route="home"] .brand-wordmark,
-  .brand-wordmark[hidden] {
-    display: none !important;
+  body[data-route="home"] .masthead .brand-wordmark,
+  body[data-route="home"] .app-shell-header .brand-wordmark,
+  [data-current-route="home"] .masthead .brand-wordmark,
+  [data-current-route="home"] .app-shell-header .brand-wordmark,
+  .masthead .brand-wordmark[hidden],
+  .app-shell-header .brand-wordmark[hidden] {
+    display: none;
   }
 
   /* Primary Navigation Dock */
@@ -91,7 +94,7 @@
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: var(--color-text-secondary, #3D4657);
+    color: var(--color-text-secondary);
     text-decoration: none;
     white-space: nowrap;
     transition: color var(--motion-fast, 120ms) ease, border-color var(--motion-fast, 120ms) ease;
@@ -99,21 +102,21 @@
 
   .masthead nav.primary a:hover,
   .app-shell-header nav.primary a:hover {
-    color: var(--color-text, #141B2D);
+    color: var(--color-text);
   }
 
   .masthead nav.primary a[aria-current],
   .masthead nav.primary a.is-active,
   .app-shell-header nav.primary a[aria-current],
   .app-shell-header nav.primary a.is-active {
-    color: var(--color-text, #141B2D);
-    border-bottom: 2px solid var(--color-action, #1F3A6E);
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-action);
   }
 
   /* Nav icons hidden on desktop; nav labels display inline */
   .masthead .nav-icon,
   .app-shell-header .nav-icon {
-    display: none !important;
+    display: none;
   }
 
   .masthead .nav-label,
@@ -149,7 +152,7 @@
     border: 0;
     border-radius: var(--radius-control, 10px);
     background: transparent;
-    color: var(--color-text-secondary, #3D4657);
+    color: var(--color-text-secondary);
     cursor: pointer;
   }
 
@@ -169,10 +172,10 @@
     pointer-events: none;
     height: 36px;
     padding: 0 12px;
-    border: 1px solid var(--color-border, #D6D9DF);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-control, 10px);
-    background-color: var(--color-surface, #FFFFFF);
-    color: var(--color-text, #141B2D);
+    background-color: var(--color-surface);
+    color: var(--color-text);
     font-size: 14px;
     transition: width 200ms ease, opacity 200ms ease;
   }
@@ -182,12 +185,12 @@
     width: 240px;
     opacity: 1;
     pointer-events: auto;
-    z-index: 5;
+    z-index: var(--layer-nav);
   }
 
   .masthead #global-search[data-open="true"] .search-toggle,
   .app-shell-header #global-search[data-open="true"] .search-toggle {
-    z-index: 6;
+    z-index: var(--layer-popups);
   }
 
   /* Feedback CTA Button */
@@ -195,10 +198,10 @@
   .app-shell-header .feedback-cta {
     height: 36px;
     padding: 0 16px;
-    border: 1px solid var(--color-border, #D6D9DF);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-control, 10px);
-    background-color: var(--color-surface, #FFFFFF);
-    color: var(--color-text-secondary, #3D4657);
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -210,8 +213,8 @@
 
   .masthead .feedback-cta:hover,
   .app-shell-header .feedback-cta:hover {
-    background-color: var(--color-surface-hover, #F0F2F5);
-    color: var(--color-text, #141B2D);
+    background-color: var(--color-surface-hover);
+    color: var(--color-text);
   }
 
   /* Profile Link */
@@ -223,7 +226,7 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-control, 10px);
-    color: var(--color-text-secondary, #3D4657);
+    color: var(--color-text-secondary);
     text-decoration: none;
     cursor: pointer;
   }
@@ -237,12 +240,12 @@
 
   .masthead .profile-link:hover,
   .app-shell-header .profile-link:hover {
-    color: var(--color-text, #141B2D);
+    color: var(--color-text);
   }
 
   .masthead .profile-link[aria-current],
   .app-shell-header .profile-link[aria-current] {
-    color: var(--color-action, #1F3A6E);
+    color: var(--color-action);
   }
 
   /* Phone Viewport Responsive Contract (max-width: 640px) */
@@ -256,12 +259,12 @@
 
     .masthead .brand,
     .app-shell-header .brand {
-      display: none !important;
+      display: none;
     }
 
     .masthead .feedback-cta,
     .app-shell-header .feedback-cta {
-      display: none !important;
+      display: none;
     }
 
     .masthead nav.primary,
@@ -286,7 +289,7 @@
       gap: 3px;
       border-bottom: none;
       box-shadow: none;
-      color: var(--color-text-secondary, #3D4657);
+      color: var(--color-text-secondary);
       font-size: 10px;
       letter-spacing: 0.04em;
     }
@@ -295,13 +298,13 @@
     .masthead nav.primary a.is-active,
     .app-shell-header nav.primary a[aria-current],
     .app-shell-header nav.primary a.is-active {
-      color: var(--color-action, #1F3A6E);
-      box-shadow: inset 0 -2px 0 var(--color-action, #1F3A6E);
+      color: var(--color-action);
+      box-shadow: inset 0 -2px 0 var(--color-action);
     }
 
     .masthead .nav-icon,
     .app-shell-header .nav-icon {
-      display: block !important;
+      display: block;
       width: 22px;
       height: 22px;
       flex-shrink: 0;
@@ -309,10 +312,10 @@
 
     .masthead .nav-label,
     .app-shell-header .nav-label {
-      font-size: 0 !important;
-      line-height: 0 !important;
-      color: transparent !important;
-      display: block !important;
+      font-size: 0;
+      line-height: 0;
+      color: transparent;
+      display: block;
     }
 
     .masthead .nav-label::after,
@@ -337,7 +340,7 @@
       position: fixed;
       top: 10px;
       left: 16px;
-      z-index: var(--layer-popups, 30);
+      z-index: var(--layer-popups);
     }
   }
 }
