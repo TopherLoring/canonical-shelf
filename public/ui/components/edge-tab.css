@@ -50,7 +50,7 @@
     height: 118px;
   }
 
-  :root[data-mode="dark"] .ui-edge-tab,
+  html[data-mode="dark"] .ui-edge-tab,
   [data-mode="dark"] .ui-edge-tab {
     color: var(--color-text);
   }
