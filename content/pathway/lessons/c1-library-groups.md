@@ -12,7 +12,8 @@
     "Old Testament": "The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.",
     "New Testament": "The 27 books written by the first Christians about Jesus and the early church, written in Greek.",
     "Pentateuch": "The first five books of the Bible, also called the Law or the Torah.",
-    "Canon": "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books."
+    "Canon": "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books.",
+    "Epistle": "A letter, often addressing a community’s questions or conduct."
   },
   "deeper": "The group names used here follow common Protestant arrangement. Jewish Bibles arrange the same Hebrew books differently, into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. Each book’s profile on the Bible page shows its themes, people, setting, and where to begin.",
   "drawers": [
