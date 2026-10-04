@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.naming.levels.v1",
+  "topic": "ui.naming.levels",
+  "date": "2026-10-03",
+  "text": "Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. Each name means exactly that level everywhere in learner-facing copy; 'course' and 'volume' are not used for these levels. Stable IDs and URLs are unchanged.",
+  "by": "Chris"
+}

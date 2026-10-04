@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.phone.theologian-position.v1",
+  "topic": "ui.phone.theologian-position",
+  "date": "2026-10-03",
+  "text": "On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.",
+  "by": "Chris"
+}

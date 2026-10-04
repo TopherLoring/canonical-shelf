@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "design.corners.scale.v1",
+  "topic": "design.corners.scale",
+  "date": "2026-10-03",
+  "text": "Corner scale: 3px for thin bars (progress), 6-8px for small chips, labels, step markers and tooltips, 10px for buttons, inputs, nav items and list rows, 12-14px for cards and panels, 16-18px for page frames and the bookshelf case. Themes may vary these values but never use pill (fully rounded) or square corners on interface elements; book spines keep physical book corners.",
+  "rationale": "Turns the owner's corner rule into token values the theme contract can carry",
+  "by": "Claude"
+}

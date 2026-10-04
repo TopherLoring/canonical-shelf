@@ -1,0 +1,7 @@
+{
+  "type": "question",
+  "id": "redesign-implementation-approval",
+  "date": "2026-10-04",
+  "text": "Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.",
+  "owner": "Chris"
+}

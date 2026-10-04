@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.notes.naming.v1",
+  "topic": "ui.notes.naming",
+  "date": "2026-10-03",
+  "text": "The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.",
+  "by": "Chris"
+}

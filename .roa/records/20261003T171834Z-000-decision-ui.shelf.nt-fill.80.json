@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.shelf.nt-fill.80",
+  "topic": "ui.shelf.nt-fill",
+  "date": "2026-10-03",
+  "text": "New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).",
+  "by": "Chris"
+}

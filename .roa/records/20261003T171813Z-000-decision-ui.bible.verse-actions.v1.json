@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.bible.verse-actions.v1",
+  "topic": "ui.bible.verse-actions",
+  "date": "2026-10-03",
+  "text": "Selecting a verse opens an inline action bar (four highlight colors, Note, Ask, Copy); verses with saved notes show a dotted underline and note icon; notes open in the right rail rather than a popup over Scripture. Highlights are stored by color name and each theme supplies its own AA-readable shade per name.",
+  "rationale": "Answers the owner's highlighter and note-indicator questions without covering Scripture",
+  "by": "Claude"
+}

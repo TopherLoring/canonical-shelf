@@ -90,6 +90,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Durable curriculum requirements: Topics sit outside completion; inherited stable learner and activity IDs; deterministic completion-bearing assessment; spaced review and retention; questions-first spiral learning; assessment of understanding and reasoning, never personal theological assent. Curriculum counts are descriptive data, not constants
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
 
+### `curriculum.lesson.no-scroll`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `curriculum.lesson.no-scroll.v1`
+  A lesson screen must never require scrolling: if it would, it holds too much content. Content is paced through the Next/Continue button, one screen at a time, by splitting steps into more screens (content redistributed, never cut).
+
+### `curriculum.lesson.no-scroll.check`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `curriculum.lesson.no-scroll.check.v1`
+  Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).
+  *Why:* Makes the owner's no-scroll rule testable instead of a judgment call per lesson
+
 ### `curriculum.module1`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
@@ -161,6 +172,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
   *Why:* Supersedes 'canonical-shelf.css is the sole visual-system authority' (an agent-written rule)
 
+### `design.categories.colors`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.categories.per-theme`
+  Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. Shelf books sit flush with no gaps between them; books are left-aligned and stacked books share one uniform width.
+
+### `design.categories.hue-families`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `design.categories.hue-families.v1`
+  Each group keeps its hue family in every theme (Law blue, History brown, Wisdom teal-green, Major Prophets purple, Minor Prophets gold, Gospels and Acts red, Paul's Letters rose, General Letters slate, Revelation darkest/neutral) while saturation and lightness are tuned per theme and mode, so readers still recognize groups after switching themes. Adjacent groups must differ in lightness, not hue alone.
+  *Why:* Per-theme colors without stable hue families would break group recognition across theme switches
+
 ### `design.color.roles`
 
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.color.roles.second-accent`
@@ -188,6 +210,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Agent default (Claude) · `design.contract.theme.installed`
   Theme contract installed: 10 color roles per mode, per-theme style settings, shared scales, derived colors; the current look is the baseline theme 'scholarly-graphite'; theme.css loads before design-tokens.css so nothing changes until screens move onto the roles
 
+### `design.corners`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.corners.rounded`
+  No round pill shapes and no 90-degree corners: interface elements use modern rounded corners.
+
+### `design.corners.scale`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `design.corners.scale.v1`
+  Corner scale: 3px for thin bars (progress), 6-8px for small chips, labels, step markers and tooltips, 10px for buttons, inputs, nav items and list rows, 12-14px for cards and panels, 16-18px for page frames and the bookshelf case. Themes may vary these values but never use pill (fully rounded) or square corners on interface elements; book spines keep physical book corners.
+  *Why:* Turns the owner's corner rule into token values the theme contract can carry
+
 ### `design.fonts.hosting`
 
 - **Current** · 2026-09-30 · Agent default (Claude) · `design.fonts.hosting.self-hosted`
@@ -196,8 +229,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `design.fonts.set`
 
-- **Current** · 2026-09-30 · Owner decision (Chris) · `design.fonts.set.title-three`
-  The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable
+- **Current** · 2026-10-03 · Owner decision (Chris) · `design.fonts.set.per-theme`
+  There is no fixed font set. Each theme chooses its own typography to reflect that theme; all fonts must be readable.
+- **Previous** · 2026-09-30 · Owner decision (Chris) · `design.fonts.set.title-three`
+  ~~The site uses only the three fonts of the original Home title area (serif: Cambria, self-hosted as its open match Caladea; sans: the device's system font; mono: Cascadia Mono / system monospace), distributed differently by each theme; all fonts must be readable~~
 
 ### `design.layout-contract`
 
@@ -328,6 +363,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
   Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
+
+### `learning.games.direction`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `learning.games.direction.2026-10-03`
+  Games (to be designed after the modules are written): visuals must go well beyond simple text boxes and vary by game type, scope and content within lessons; questions must not feel trivial or juvenile. Free practice should include crosswords, memory, word search, a swipe-style game (untimed or beat-the-clock) that totals right and wrong answers at the end, and a progressive-hint guessing game (Password / Wheel of Fortune / Guess Who style) where the answer's character count is shown and a new hint appears every few seconds until the player guesses it.
 
 ### `legacy.apparatus-anchoring`
 
@@ -469,6 +509,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
 
+### `notes.lesson-hidden`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `notes.lesson-hidden.v1`
+  Notes are hidden by default only in lessons. In the Bible reader, verses are selectable, readers can highlight and take notes, and the selected verse drives the Reading Desk content, including its notes.
+
 ### `orientation.scope`
 
 - **Current** · 2026-10-01 · Owner decision (Chris) · `orientation-scope`
@@ -546,6 +591,26 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.implementation.approach`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `redesign.implementation.approach`
+  Implement the redesign properly across the whole project, not by adding override layers or quick fixes: build the design system the mockups describe (layered styles, complete theme roles, shared components), move screens onto it, and delete the legacy code each replacement supersedes.
+
+### `redesign.implementation.plan`
+
+- **Approval** · 2026-10-04 · Chris · `approved-the-implementation-plan-graph-in-docs-v` · scope: docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md
+  Approved the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) with 1 slice per branch execution and zero merges without approval
+
+### `redesign.mockups`
+
+- **Approval** · 2026-10-03 · Chris · `redesign.mockups.confirmed` · scope: docs/v7/mockups-2026-10-03/
+  The redesign mockup canvas (docs/v7/mockups-2026-10-03/) is the confirmed visual reference for slices 2a to 2e: Shelf home, Bible reader and lesson (desktop and phone), the docked Theologian (desktop) and centered Theologian (phone), Learning Path (path, module and unit on one page), Study Topics, and Review & Practice. Built pages follow these layouts in the Reading Room theme; other themes restyle the same layouts.
+
+### `redesign.structure`
+
+- **Approval** · 2026-10-03 · Chris · `redesign.structure.brief-approved` · scope: docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md
+  Approved advancing the amended structural redesign brief: correct navigation, page hierarchy, and presentation while preserving curriculum, Scripture, explanations, questions, answer logic, and doctrinal content; discovery separated from doing; one vocabulary; explicit progress scope; one primary action per region; stable URLs and IDs with aliases; five verified slices. Amendments: lesson content may be redistributed across more, lighter cards and checks may be redesigned (answer logic and completion rules fixed); preservation excludes owner-ordered removals and internal theology; theme-role migration runs first; existing owner decisions (feedback CTA, Theologian tab, notes, Study Desk, orientation, label scrub) are built into the slices.
+
 ### `release.deployment`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `release.deployment.from-precedence-doc`
@@ -582,6 +647,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `governing-faith-2026-10-03`
   Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
+
+### `theologian.chat-design`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `theologian.chat-design.v1`
+  Theologian chat design (approved): desktop opens docked in the reader's right column (replacing study tools), phone opens as a centered card with the standard 10px margins; everything outside the chat is dimmed and clicking the dim closes it; no tab or handle while open (the header X closes it); strong elevation shadow. Navy header (title, 'You're reading [passage]', New chat, more menu, close) over a white body; one interface font throughout; user messages in a neutral grey bubble; answers as plain text with interpretations set off by a side rule; 'Scripture cited' section open by default and collapsible, each reference an underlined address with its group-color bar that opens the chapter, with per-reference expand for verse text; rating buttons on that row; suggested replies inside the conversation styled like user messages; removable passage chip (group-color bar plus x) above a bordered single-line input with Send inside; reminder line below. Edge tabs show a chevron (left when closed).
 
 ### `theologian.communication`
 
@@ -926,6 +996,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.bible.feedback-2026-09-25`
   Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole
 
+### `ui.bible.ask`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.ask.v1`
+  The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.
+
 ### `ui.bible.crossrefs`
 
 - **Current** · 2026-09-27 · Owner decision (Chris) · `ui.bible.crossrefs.last-level`
@@ -938,6 +1013,22 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.bible.notes-panel.feedback-2026-09-26`
   Bible notes panel needs a different name and smaller title typography
 
+### `ui.bible.phone`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.phone.v1`
+  Phone Bible reader: no bottom sheet. Book-level study links (Overview, Timeline, Themes, People, Places, Maps) sit as small buttons at the top of the reader under the book title; the title is the book/chapter picker. Verse-level extra content appears as footnotes marked with inline superscript letters; tapping a marker opens the footnote inline below the verse. Tapping a verse pops up Highlight and Note (no Ask). Notes and Theologian are tabs on the bottom edge that open upward, with clearance above the home indicator so text is never hidden.
+
+### `ui.bible.rails`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
+  Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.
+
+### `ui.bible.verse-actions`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `ui.bible.verse-actions.v1`
+  Selecting a verse opens an inline action bar (four highlight colors, Note, Ask, Copy); verses with saved notes show a dotted underline and note icon; notes open in the right rail rather than a popup over Scripture. Highlights are stored by color name and each theme supplies its own AA-readable shade per name.
+  *Why:* Answers the owner's highlighter and note-indicator questions without covering Scripture
+
 ### `ui.course-shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.course-shelf.feedback-2026-09-25`
@@ -948,6 +1039,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-24 · Agent default (Claude) · `ui.current-values.from-precedence-doc`
   Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Values now live in the design-tokens contract; layout items are open to Chris's redesign feedback
+
+### `ui.frame.phone`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.frame.phone.v1`
+  Phones also use the framed layout: content sits in a rounded surface card with a visible margin, separate from the nav bar and the screen edges, over the theme backdrop. The My Notes and Theologian tabs anchor to the bottom edge of that card and open upward.
 
 ### `ui.home`
 
@@ -982,21 +1078,101 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.colors.three`
   Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
 
+### `ui.lesson.rails`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.lesson.rails.v1`
+  The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
+
 ### `ui.naming`
 
-- **Current** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
-  Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)
+- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
+  Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.
+  *Why:* Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose
+- **Previous** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+  ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
+
+### `ui.naming.levels`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.levels.v1`
+  Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. Each name means exactly that level everywhere in learner-facing copy; 'course' and 'volume' are not used for these levels. Stable IDs and URLs are unchanged.
+
+### `ui.naming.sections`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
+  Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
+
+### `ui.nav.brand`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
+  Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
+
+### `ui.notes.naming`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
+  The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
+
+### `ui.phone.my-notes`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
+  Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
+
+### `ui.phone.no-hscroll`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
+  The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.
+
+### `ui.phone.tabs`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.tabs.v2`
+  Phone: the Theologian is a vertical tab on the right edge, sitting in a widened right margin (content card inset 36px on the right) so it never covers text; there are no bottom-edge tabs. My Notes is a button in the content header (reader: beside the reading-options menu; lesson: in the window title bar). The lesson Continue button is a normal-size button, not full width. Supersedes the bottom-tab placement in ui.bible.phone and ui.frame.phone.
+
+### `ui.phone.theologian-position`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v2`
+  Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value.
+- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
+  ~~On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.~~
+
+### `ui.polish.2026-10-03`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.polish.2026-10-03.late`
+  The nav bar is the one place all caps is allowed: primary nav labels are uppercase and letter-spaced; the current page is marked with an underline, not a highlight box. The site wordmark and the Shelf home title use the v1 title typography (Cambria/Caladea bold, 'Shelf' in italic, title on two lines with the intro beside it). Readers can highlight part of a verse (word-level), not only whole verses. The Shelf decoration is a bronze praying-hands statue on a stone pedestal (replaces the oil lamp), seated flat on the plank. Shelf book-name labels appear only on hover or keyboard focus. The Shelf uses a dark walnut plank hung on iron suspension rods with iron bookends. The docked Theologian is the desktop chat window.
 
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
+### `ui.scripture.group-color`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.scripture.group-color.v1`
+  Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`
   Shelf direction (ledger D014) is work in progress; find a middle-ground solution
+
+### `ui.shelf.bookshelf`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
+  Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
+
+### `ui.shelf.final`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.final.2026-10-03`
+  Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
+
+### `ui.shelf.lamp`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.lamp.v1`
+  The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). It links to the 'Meet the library' lesson, labeled 'How this library is arranged'. Shelf book widths are sized by verse count; New Testament books use a higher minimum width so the Gospels stay proportionate at 80% fill.
+
+### `ui.shelf.nt-fill`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
+  New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
 ### `ui.theme.default`
 
@@ -1040,6 +1216,7 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch
 - 2026-10-01: **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** → Approved by Chris 2026-10-01 (decision `module1-outcomes-approved`)
 - 2026-10-01: **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** → Approved by Chris 2026-10-01 (decision `curriculum-design-approved`)
 - 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)

@@ -48,8 +48,9 @@ await load();policy||=FALLBACK;
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const roots=new Set(['home','course','bible','topics','practice','search','profile']);
+const routeAliases=new Map([['path','course'],['study-topics','topics'],['review','practice']]);
 const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/')[0].replace(/\.html$/,'')||'home';
-const appRouteFromPath=pathname=>{const r=pathRoot(pathname);return roots.has(r)?r:null};
+const appRouteFromPath=pathname=>{const r=pathRoot(pathname);const target=routeAliases.get(r)||r;return roots.has(target)?target:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
 const route=()=>routeFromPath(location.pathname);
 const params=()=>new URLSearchParams(location.search);

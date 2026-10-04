@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.shelf.lamp.v1",
+  "topic": "ui.shelf.lamp",
+  "date": "2026-10-03",
+  "text": "The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). It links to the 'Meet the library' lesson, labeled 'How this library is arranged'. Shelf book widths are sized by verse count; New Testament books use a higher minimum width so the Gospels stay proportionate at 80% fill.",
+  "by": "Chris"
+}

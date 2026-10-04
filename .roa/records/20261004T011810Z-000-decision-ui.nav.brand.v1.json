@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.nav.brand.v1",
+  "topic": "ui.nav.brand",
+  "date": "2026-10-03",
+  "text": "Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.",
+  "by": "Chris"
+}

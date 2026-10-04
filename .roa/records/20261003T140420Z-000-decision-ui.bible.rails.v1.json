@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.bible.rails.v1",
+  "topic": "ui.bible.rails",
+  "date": "2026-10-03",
+  "text": "Bible reader rails: the left rail holds links (study tools such as context, cross-references, highlights, people, places, maps, and book overview); the right rail holds content. Selecting a link on the left displays that content on the right, together with the notes, for the selected verse.",
+  "by": "Chris"
+}

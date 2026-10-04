@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "curriculum.lesson.no-scroll.check.v1",
+  "topic": "curriculum.lesson.no-scroll.check",
+  "date": "2026-10-03",
+  "text": "Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).",
+  "rationale": "Makes the owner's no-scroll rule testable instead of a judgment call per lesson",
+  "by": "Claude"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.naming.tabs-2026-10-03",
+  "topic": "ui.naming",
+  "date": "2026-10-03",
+  "text": "Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.",
+  "rationale": "Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose",
+  "supersedes": [
+    "ui.naming.library-labels"
+  ],
+  "by": "Claude"
+}

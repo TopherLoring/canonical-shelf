@@ -12,6 +12,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
+- **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
+- **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
+- **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** (`module1-title`, owner: Chris, since 2026-10-04)
 
 ## Phases
 
@@ -23,6 +26,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `1c` | Anchor the reader: resume, you-are-here, reading path, ask about this passage | planned | 2026-09-25 |
 | `2` | Visual redesign of Home, Bible, Course, and lesson | planned | 2026-09-25 |
 | `3` | Unit 0 content and Theologian evaluation on real questions | planned | 2026-09-25 |
+| `2a` | Slice 1: theme-role migration, shared navigation, vocabulary, label scrub | planned | 2026-10-03 |
+| `2b` | Slice 2: Bible reader (discovery, overview, reading) with context-aware Reading Desk and notes | planned | 2026-10-03 |
+| `2c` | Slice 3: learning hierarchy and lesson card density with redesigned checks | planned | 2026-10-03 |
+| `2d` | Slice 4: Profile, Study Topics, and Review & Practice | planned | 2026-10-03 |
+| `2e` | Slice 5: final theme values and light/dark audit | planned | 2026-10-03 |
 
 ## Checks
 
@@ -55,6 +63,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.glossary.list` | Glossary review approved: | Owner decision | undefined |
 | `curriculum.glossary.selective` | The glossary should be selective for an adult audience: | Owner decision | undefined |
 | `curriculum.invariants` | undefined | Agent default | undefined |
+| `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
+| `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
@@ -67,13 +77,17 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `data.bsb-source` | undefined | Agent default | undefined |
 | `data.dictionary` | undefined | Agent default | undefined |
 | `design.authority` | The design-tokens and layout contracts are the visual authority; | Owner decision | undefined |
+| `design.categories.colors` | Bible group colors (the nine shelf groups) adapt to complement each theme instead of staying fixed across themes. | Owner decision | undefined |
+| `design.categories.hue-families` | undefined | Agent default | undefined |
 | `design.color.roles` | Themes may use more than one accent color: | Owner decision | undefined |
 | `design.color.signal` | The gold/gilt color is agent filler, not an owner choice; | Owner decision | undefined |
 | `design.color.text-tiers` | Text has three tiers: | Owner decision | undefined |
 | `design.contract.scope` | The contract defines every appearance variable; | Owner decision | undefined |
 | `design.contract.theme` | undefined | Agent default | undefined |
+| `design.corners` | No round pill shapes and no 90-degree corners: | Owner decision | undefined |
+| `design.corners.scale` | undefined | Agent default | undefined |
 | `design.fonts.hosting` | undefined | Agent default | undefined |
-| `design.fonts.set` | The site uses only the three fonts of the original Home title area (serif: | Owner decision | undefined |
+| `design.fonts.set` | There is no fixed font set. | Owner decision | undefined |
 | `design.layout-contract` | undefined | Agent default | undefined |
 | `design.migration.route` | Rewrite every use of the old appearance variables and hard-coded colors onto the theme contract's roles (no alias layer); | Owner decision | undefined |
 | `design.themes.color-character` | Stained Glass is polychrome: | Owner decision | undefined |
@@ -98,9 +112,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
 | `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
+| `notes.lesson-hidden` | Notes are hidden by default only in lessons. | Owner decision | undefined |
 | `orientation.scope` | Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; | Owner decision | undefined |
 | `platform.offline` | Offline access is not a requirement | Owner decision | undefined |
 | `platform.sw.caching` | undefined | Agent default | undefined |
@@ -114,12 +130,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.project-state` | Project state is managed with project-roa-kit: | Owner decision | undefined |
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
+| `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
 | `theme.default` | Reading Room is the default theme: | Owner decision | undefined |
 | `theologian.authority` | Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented. | Owner decision | undefined |
+| `theologian.chat-design` | Theologian chat design (approved): | Owner decision | undefined |
 | `theologian.communication` | Theologian should communicate naturally like a traditional chat. | Owner decision | undefined |
 | `theologian.conversation` | Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clar... | Owner decision | undefined |
 | `theologian.knowledge` | Theologian should know the site content, but site content and Bible retrieval must not be its only way of communicating or reasoning. | Owner decision | undefined |
@@ -176,16 +194,36 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `theology.sin.definition` | Revised: | Owner decision | undefined |
 | `theology.sin.human-judgment` | Affirmed: | Owner decision | undefined |
 | `theology.spirit` | Revised: | Owner decision | undefined |
+| `ui.bible.ask` | The Bible reader toolbar has no Ask button. | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
+| `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
+| `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
+| `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
+| `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
+| `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
+| `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
+| `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
+| `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
+| `ui.phone.my-notes` | Phone: | Owner decision | undefined |
+| `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
+| `ui.phone.tabs` | Phone: | Owner decision | undefined |
+| `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
+| `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
+| `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
+| `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
+| `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
+| `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
+| `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
