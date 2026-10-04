@@ -1,7 +1,7 @@
 {
   "contract": "theme",
-  "version": 9,
-  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, Bible category colors, layout measures) are set once. Each theme sets 14 color roles for light and dark (page; surface, raised and sunken surfaces; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; correct; incorrect), optional per-mode shadows, and its style (display, body, reading, and label fonts; small, medium, and large corners, which may be free-form; border weight and style; shadows; backdrop; surface and border filters; texture; illustration set). Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark. Shared fonts (serif, sans, mono) are defined once; themes choose among them by reference, so a theme cannot introduce another font. Ornaments are up to six decorative colors per mode (never used for text; not contrast-checked) that let a theme be polychrome or near-monochrome.",
+  "version": 10,
+  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, layout measures, stacking layers) are set once. Each theme sets color roles for light and dark (page; surface, raised, sunken, and subtle surfaces; scripture bed; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; note marker; selection; correct; incorrect; edge tabs for theologian and notes; chat surface and user bubble; dim overlay; four highlight colors {yellow, green, blue, rose}; nine Bible category group colors {law, othist, wisdom, major, minor, gospel, paul, general, apoc}), style (display, body, reading, and label fonts; corner radius scale including chip, control, card, frame; border weight and style; shadows including card, frame, overlay; backdrop; surface and border filters; texture; illustration set), and optional per-mode shadows and ornaments. Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark. Shared fonts (serif, sans, mono) are defined once; themes choose among them by reference, so a theme cannot introduce another font. Ornaments are up to six decorative colors per mode that let a theme be polychrome or near-monochrome.",
   "schema": {
     "type": "object",
     "props": {
@@ -94,13 +94,30 @@
               }
             }
           },
-          "bibleCategories": {
-            "type": "map",
-            "of": {
-              "type": "color"
-            },
-            "keyPattern": "^[a-z][a-z0-9-]*$",
-            "minItems": 1
+          "layers": {
+            "type": "object",
+            "props": {
+              "nav": {
+                "type": "int",
+                "min": 0
+              },
+              "edgeTabs": {
+                "type": "int",
+                "min": 0
+              },
+              "popups": {
+                "type": "int",
+                "min": 0
+              },
+              "dimOverlay": {
+                "type": "int",
+                "min": 0
+              },
+              "theologian": {
+                "type": "int",
+                "min": 0
+              }
+            }
           },
           "measures": {
             "type": "map",
@@ -159,30 +176,12 @@
                 "fontLabel": {
                   "type": "font"
                 },
-                "radiusSmall": {
-                  "type": "css-value"
-                },
-                "radiusLarge": {
-                  "type": "css-value"
-                },
-                "borderWeight": {
-                  "type": "length"
-                },
-                "shadowRaised": {
-                  "type": "css-value"
-                },
-                "shadowOverlay": {
-                  "type": "css-value"
-                },
-                "texture": {
-                  "type": "css-value"
-                },
-                "illustrations": {
-                  "type": "id"
-                },
                 "fontReading": {
                   "type": "font",
                   "optional": true
+                },
+                "borderWeight": {
+                  "type": "length"
                 },
                 "borderStyle": {
                   "type": "enum",
@@ -192,12 +191,52 @@
                     "dashed"
                   ]
                 },
-                "backdrop": {
+                "radiusChip": {
+                  "type": "css-value"
+                },
+                "radiusControl": {
+                  "type": "css-value"
+                },
+                "radiusCard": {
+                  "type": "css-value"
+                },
+                "radiusFrame": {
+                  "type": "css-value"
+                },
+                "radiusSmall": {
                   "type": "css-value",
                   "optional": true
                 },
                 "radiusMedium": {
+                  "type": "css-value",
+                  "optional": true
+                },
+                "radiusLarge": {
+                  "type": "css-value",
+                  "optional": true
+                },
+                "shadowCard": {
                   "type": "css-value"
+                },
+                "shadowFrame": {
+                  "type": "css-value"
+                },
+                "shadowOverlay": {
+                  "type": "css-value"
+                },
+                "shadowRaised": {
+                  "type": "css-value",
+                  "optional": true
+                },
+                "texture": {
+                  "type": "css-value"
+                },
+                "illustrations": {
+                  "type": "id"
+                },
+                "backdrop": {
+                  "type": "css-value",
+                  "optional": true
                 },
                 "surfaceFilter": {
                   "type": "css-value",
@@ -227,6 +266,13 @@
                     "surfaceSunken": {
                       "type": "color"
                     },
+                    "surfaceSubtle": {
+                      "type": "color",
+                      "optional": true
+                    },
+                    "scriptureBed": {
+                      "type": "color"
+                    },
                     "border": {
                       "type": "color"
                     },
@@ -245,10 +291,17 @@
                     "onAction": {
                       "type": "color"
                     },
+                    "actionSubtle": {
+                      "type": "color",
+                      "optional": true
+                    },
                     "accent": {
                       "type": "color"
                     },
                     "onAccent": {
+                      "type": "color"
+                    },
+                    "noteMarker": {
                       "type": "color"
                     },
                     "correct": {
@@ -257,11 +310,86 @@
                     "incorrect": {
                       "type": "color"
                     },
-                    "shadowRaised": {
+                    "selection": {
+                      "type": "color"
+                    },
+                    "chatSurface": {
+                      "type": "color"
+                    },
+                    "chatUser": {
+                      "type": "color"
+                    },
+                    "edgeTheologian": {
+                      "type": "color"
+                    },
+                    "edgeNotes": {
+                      "type": "color"
+                    },
+                    "dimOverlay": {
+                      "type": "color"
+                    },
+                    "highlight": {
+                      "type": "object",
+                      "props": {
+                        "yellow": {
+                          "type": "color"
+                        },
+                        "green": {
+                          "type": "color"
+                        },
+                        "blue": {
+                          "type": "color"
+                        },
+                        "rose": {
+                          "type": "color"
+                        }
+                      }
+                    },
+                    "bibleCategories": {
+                      "type": "object",
+                      "props": {
+                        "law": {
+                          "type": "color"
+                        },
+                        "othist": {
+                          "type": "color"
+                        },
+                        "wisdom": {
+                          "type": "color"
+                        },
+                        "major": {
+                          "type": "color"
+                        },
+                        "minor": {
+                          "type": "color"
+                        },
+                        "gospel": {
+                          "type": "color"
+                        },
+                        "paul": {
+                          "type": "color"
+                        },
+                        "general": {
+                          "type": "color"
+                        },
+                        "apoc": {
+                          "type": "color"
+                        }
+                      }
+                    },
+                    "shadowCard": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowFrame": {
                       "type": "css-value",
                       "optional": true
                     },
                     "shadowOverlay": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowRaised": {
                       "type": "css-value",
                       "optional": true
                     },
@@ -290,6 +418,13 @@
                     "surfaceSunken": {
                       "type": "color"
                     },
+                    "surfaceSubtle": {
+                      "type": "color",
+                      "optional": true
+                    },
+                    "scriptureBed": {
+                      "type": "color"
+                    },
                     "border": {
                       "type": "color"
                     },
@@ -308,10 +443,17 @@
                     "onAction": {
                       "type": "color"
                     },
+                    "actionSubtle": {
+                      "type": "color",
+                      "optional": true
+                    },
                     "accent": {
                       "type": "color"
                     },
                     "onAccent": {
+                      "type": "color"
+                    },
+                    "noteMarker": {
                       "type": "color"
                     },
                     "correct": {
@@ -320,11 +462,86 @@
                     "incorrect": {
                       "type": "color"
                     },
-                    "shadowRaised": {
+                    "selection": {
+                      "type": "color"
+                    },
+                    "chatSurface": {
+                      "type": "color"
+                    },
+                    "chatUser": {
+                      "type": "color"
+                    },
+                    "edgeTheologian": {
+                      "type": "color"
+                    },
+                    "edgeNotes": {
+                      "type": "color"
+                    },
+                    "dimOverlay": {
+                      "type": "color"
+                    },
+                    "highlight": {
+                      "type": "object",
+                      "props": {
+                        "yellow": {
+                          "type": "color"
+                        },
+                        "green": {
+                          "type": "color"
+                        },
+                        "blue": {
+                          "type": "color"
+                        },
+                        "rose": {
+                          "type": "color"
+                        }
+                      }
+                    },
+                    "bibleCategories": {
+                      "type": "object",
+                      "props": {
+                        "law": {
+                          "type": "color"
+                        },
+                        "othist": {
+                          "type": "color"
+                        },
+                        "wisdom": {
+                          "type": "color"
+                        },
+                        "major": {
+                          "type": "color"
+                        },
+                        "minor": {
+                          "type": "color"
+                        },
+                        "gospel": {
+                          "type": "color"
+                        },
+                        "paul": {
+                          "type": "color"
+                        },
+                        "general": {
+                          "type": "color"
+                        },
+                        "apoc": {
+                          "type": "color"
+                        }
+                      }
+                    },
+                    "shadowCard": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowFrame": {
                       "type": "css-value",
                       "optional": true
                     },
                     "shadowOverlay": {
+                      "type": "css-value",
+                      "optional": true
+                    },
+                    "shadowRaised": {
                       "type": "css-value",
                       "optional": true
                     },
@@ -416,6 +633,11 @@
         {
           "fg": "text",
           "bg": "surfaceSunken",
+          "min": 4.5
+        },
+        {
+          "fg": "text",
+          "bg": "scriptureBed",
           "min": 4.5
         },
         {
