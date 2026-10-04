@@ -13,6 +13,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Confirmed redesign mockups saved to docs/v7/mockups-2026-10-03 (10 screens plus canvas layout)
 
+### Changed
+
+- Theme Contract v10: added new color roles, corner radius scale, shadow tokens, stacking layers, per-theme Bible categories, and Reading Room palette
+
 ## 2026-10-03
 
 ### Decided
