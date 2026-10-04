@@ -214,6 +214,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
 | `ui.naming.unit-check` | The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
+| `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
@@ -222,6 +223,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
+| `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
+| `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
+| `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
 | `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |

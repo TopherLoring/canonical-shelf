@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "fluid-nav-icons-2026-10-04",
+  "topic": "ui.nav.responsive",
+  "date": "2026-10-04",
+  "text": "The navigation remains one row. Its items adjust size as the available width decreases or increases, switching to icons with short labels when too narrow, as shown in the supplied desktop and phone references.",
+  "by": "Chris"
+}

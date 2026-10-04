@@ -19,6 +19,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.
 - Defer tablet-specific layout work and comparisons for now; finish the current recovery on desktop and phone. (supersedes tablet-full-navigation-2026-10-04)
 - For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
+- Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. The chapter title has a category-colored bar at its left, small category above, and translation below. Chapter continuation buttons belong before the footnotes.
+- My Notes opens saved notes with edit and delete icons and an add-note button or input. Sort notes by verse, then date/time. Remove the in-person discussion checkbox and Ask the Theologian action from the reader notes editor, extending the input downward. Notes and Theologian slide in from the right. The notes card remains below the Theologian tab; the Theologian tab and chat stay above other visible panels. Remove Copy from the reader highlight/note actions.
+- Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.
+- The navigation remains one row. Its items adjust size as the available width decreases or increases, switching to icons with short labels when too narrow, as shown in the supplied desktop and phone references.
 
 ### Added
 
@@ -34,6 +38,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Recovered the Step 2 Bible reader edits from the Claude handoff: legacy stylesheets now load through a cascade layer; reader selection, notes, highlights, footnotes, and background cross-references are verified. Fixed phone notes-tab visibility, distant-verse scrolling within the chapter, Hebrew acrostic headings, and lesson focus-frame sizing. Full bun run verify passed with 120 browser tests; remaining redesign steps are still pending.
 - Reader recovery review fixes preserve every verse in highlighted ranges, selected-range and reference-query context for notes, and native keyboard footnote activation. Phone widths 320, 390, and 428 were checked; tablet work was deferred by Chris. Final bun run verify passed with 124 browser tests. Baseline captures now use per-run artifact folders instead of overwriting tracked screenshots.
+- Reader polish: full explained footnotes and continuation before the notes; fixed chapter header and contained viewport; matching edge tabs with Theologian above right-side notes drawer; verse/time ordered note collection with add/edit/delete and preserved existing anchors; transactional note/highlight writes; removed redundant reader actions and footer brand; fluid single-row navigation switches to icons at narrow widths.
 
 ## 2026-10-03
 

@@ -6,10 +6,10 @@
   .app-shell-header {
     height: 64px;
     box-sizing: border-box;
-    padding: 0 32px;
+    padding: 0 clamp(8px, 2vw, 32px);
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: clamp(4px, 1.6vw, 28px);
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
     position: sticky;
@@ -44,7 +44,7 @@
   .masthead .brand-wordmark,
   .app-shell-header .brand-wordmark {
     font-family: var(--font-display, Cambria, Caladea, Georgia, serif);
-    font-size: 23px;
+    font-size: clamp(18px, 1.6vw, 23px);
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--color-text);
@@ -90,10 +90,10 @@
     height: 64px;
     box-sizing: border-box;
     padding: 10px 2px 8px;
-    margin: 0 10px;
+    margin: 0 clamp(2px, 0.6vw, 10px);
     border-bottom: 2px solid transparent;
     font-family: var(--font-body, var(--font-sans));
-    font-size: 13px;
+    font-size: clamp(10px, 1vw, 13px);
     font-weight: 600;
     letter-spacing: 0.08em;
     color: var(--color-text-secondary);
@@ -251,7 +251,7 @@
   }
 
   /* Phone navigation uses icons. */
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     .masthead,
     .app-shell-header {
       height: 56px;

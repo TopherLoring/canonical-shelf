@@ -1135,6 +1135,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
   Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
 
+### `ui.nav.responsive`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `fluid-nav-icons-2026-10-04`
+  The navigation remains one row. Its items adjust size as the available width decreases or increases, switching to icons with short labels when too narrow, as shown in the supplied desktop and phone references.
+
 ### `ui.nav.tablet`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-work-deferred-2026-10-04`
@@ -1178,6 +1183,21 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
+
+### `ui.reader.apparatus`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`
+  Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. The chapter title has a category-colored bar at its left, small category above, and translation below. Chapter continuation buttons belong before the footnotes.
+
+### `ui.reader.notes`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-notes-drawer-2026-10-04`
+  My Notes opens saved notes with edit and delete icons and an add-note button or input. Sort notes by verse, then date/time. Remove the in-person discussion checkbox and Ask the Theologian action from the reader notes editor, extending the input downward. Notes and Theologian slide in from the right. The notes card remains below the Theologian tab; the Theologian tab and chat stay above other visible panels. Remove Copy from the reader highlight/note actions.
+
+### `ui.reader.viewport`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-fixed-header-2026-10-04`
+  Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.
 
 ### `ui.scripture.group-color`
 

@@ -261,15 +261,15 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await expect(mount.locator('.study-notes__anchor')).toContainText('John 3:16');
   await expect(page.locator('[data-notes-title]')).toHaveText('My notes on 3:16');
   await mount.locator('[data-note-text]').fill('God so loved the world: ask about "world".');
-  await mount.locator('[data-note-discuss]').check();
+  await expect(mount.locator('[data-note-discuss]')).toHaveCount(0);
+  await mount.getByRole('button',{name:'Add a note',exact:true}).click();
   await expect(mount.locator('[data-note-status]')).toContainText('Saved',{timeout:5000});
   // The selected verse is kept in the address, so a reload returns to the same verse and note.
   await expect(page).toHaveURL(/[?&]start=16(&|$)/);
   await page.reload();
-  await expect(page.locator('[data-reader-notes] [data-note-text]')).toHaveValue('God so loved the world: ask about "world".');
+  await expect(page.locator('[data-reader-notes] [data-saved-note]')).toContainText('God so loved the world: ask about "world".');
   await page.locator('[data-reader-notes] .study-notes__all').click();
   await expect(page).toHaveURL(/\/profile#notes$/);
-  await expect(page.locator('[data-my-notes]')).toContainText('To bring up in person (1)');
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 

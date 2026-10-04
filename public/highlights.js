@@ -1,7 +1,7 @@
 // Verse highlights (VerseActions in the Bible reader). Stored on the learner state next to notes, keyed by the
 // verse's OSIS address ("Gen.1.2"), and synced the same way: each entry carries updatedAt so the newer change wins
 // across devices, and removing a highlight keeps a dated entry with color null so the removal syncs too.
-import { getState, putState } from './db.js';
+import { getState, updateState } from './db.js';
 import { recordMutation } from './sync.js';
 
 export const HIGHLIGHT_COLORS = Object.freeze(['yellow', 'green', 'blue', 'rose']);
@@ -36,13 +36,13 @@ export function setHighlights(entries, color) {
 
 async function saveHighlights(entries, color) {
   if (color !== null && !HIGHLIGHT_COLORS.includes(color)) throw new Error(`Unknown highlight color: ${color}`);
-  const state = await getState();
   const at = new Date().toISOString();
-  state.highlights = { ...(state.highlights || {}) };
-  for (const { osis, label } of entries) {
-    state.highlights[osis] = { color, updatedAt: at, ...(label ? { label } : {}) };
-    recordMutation(state, 'personal-study', { id: `highlight:${osis}`, fields: ['highlights'], updatedAt: at }, at);
-  }
-  await putState(state);
+  await updateState(state => {
+    state.highlights = { ...(state.highlights || {}) };
+    for (const { osis, label } of entries) {
+      state.highlights[osis] = { color, updatedAt: at, ...(label ? { label } : {}) };
+      recordMutation(state, 'personal-study', { id: `highlight:${osis}`, fields: ['highlights'], updatedAt: at }, at);
+    }
+  });
   return color;
 }

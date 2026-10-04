@@ -77,8 +77,25 @@ function refText(corpus, [b, c, v1, v2]) {
   return parseCorpus(corpus).filter(r => r.bn === b && r.chapter === c && r.verse >= v1 && r.verse <= last).map(r => r.text).join(' ');
 }
 
-// Footnotes keep the italics the BSB prints and nothing else.
-const noteHtml = (text, esc) => esc(text).replace(/&lt;i&gt;/g, '<i>').replace(/&lt;\/i&gt;/g, '</i>');
+// Expand source names without changing the underlying BSB apparatus.
+const noteSources = {
+  BYZ: 'the Byzantine Greek New Testament text', TR: 'the Textus Receptus Greek New Testament',
+  DSS: 'the Dead Sea Scrolls', MT: 'the Hebrew Masoretic Text',
+  LXX: 'the Septuagint (the ancient Greek translation of the Hebrew Scriptures)',
+  SP: 'the Samaritan Pentateuch', NA: 'the Nestle–Aland Greek New Testament',
+  SBL: 'the Society of Biblical Literature Greek New Testament',
+  ECM: 'the Editio Critica Maior (a critical edition of the Greek New Testament)',
+  NE: 'Eberhard Nestle’s Greek New Testament', WH: 'Westcott and Hort’s Greek New Testament',
+  HF: 'Hodges and Farstad’s Greek New Testament', PT: 'the Patriarchal Greek New Testament',
+  Tischendorf: 'Tischendorf’s edition of the Greek New Testament'
+};
+function noteHtml(text, esc, verseText = '') {
+  let expanded = text.replace(/\b(BYZ|TR|DSS|MT|LXX|SP|NA|SBL|ECM|NE|WH|HF|PT|Tischendorf)\b/g, name => noteSources[name]);
+  if (/^(?:BYZ|TR|NA|SBL|ECM|NE|WH|HF|PT|Tischendorf)(?: and (?:BYZ|TR|NA|SBL|ECM|NE|WH|HF|PT))*\s+<i>/.test(text)) expanded = expanded.replace(' <i>', ' reads: <i>');
+  if (/close this quotation/.test(text)) expanded += ' The closing quotation mark indicates where a speaker’s words end and the narrator resumes. Moving it changes who is understood to be speaking in the following verses; it does not change the words of the passage.';
+  if (text === 'TR <i>and the Jews</i>' && verseText.includes('a certain Jew')) expanded += ' This is an alternative reading with Jews in the plural, instead of “a certain Jew” in the main text.';
+  return esc(expanded).replace(/&lt;i&gt;/g, '<i>').replace(/&lt;\/i&gt;/g, '</i>');
+}
 const marker = i => String.fromCharCode(97 + (i % 26)) + (i >= 26 ? String(Math.floor(i / 26)) : '');
 
 function verseBody(text, notes, esc, counter) {
@@ -132,7 +149,7 @@ function renderChapter({ rows, annotations, highlights, selected, esc }) {
     if (kind) { close(); open = { kind, parts: [] }; }
     else if (!open) open = { kind: 'prose', parts: [] };
     const { html, cards } = verseBody(row.text, footnotes[row.verse], esc, counter);
-    allCards.push(...cards.map(c => ({ ...c, verse: row.verse })));
+    allCards.push(...cards.map(c => ({ ...c, verse: row.verse, verseText: row.text })));
     open.parts.push(renderVerseSpan({
       verseNumber: row.verse,
       text: html,
@@ -144,9 +161,9 @@ function renderChapter({ rows, annotations, highlights, selected, esc }) {
   }
   close();
   const footnoteList = allCards.length
-    ? `<section class="reader-footnotes" aria-labelledby="reader-footnotes-title"><h2 id="reader-footnotes-title" class="reader-footnotes-title">Footnotes</h2><ol class="reader-footnote-list">${allCards.map(c => `<li id="${c.id}" class="reader-footnote" data-footnote-item="${c.marker}"><span class="reader-footnote-marker">${c.marker}</span><span class="reader-footnote-ref">${c.verse}</span><span class="reader-footnote-text">${noteHtml(c.text, esc)}</span></li>`).join('')}</ol></section>`
+    ? `<section class="reader-footnotes" aria-labelledby="reader-footnotes-title"><h2 id="reader-footnotes-title" class="reader-footnotes-title">Footnotes</h2><ol class="reader-footnote-list">${allCards.map(c => `<li id="${c.id}" class="reader-footnote" data-footnote-item="${c.marker}"><span class="reader-footnote-marker">${c.marker}</span><span class="reader-footnote-ref">${c.verse}</span><span class="reader-footnote-text">${noteHtml(c.text, esc, c.verseText)}</span></li>`).join('')}</ol></section>`
     : '';
-  return blocks.join('') + footnoteList;
+  return { text: blocks.join(''), footnotes: footnoteList };
 }
 
 const ICONS = {
@@ -238,6 +255,7 @@ export async function mount(container, ctx) {
   const nextLink = next ? `<a class="reader-step" href="${chapterHref(...next)}" aria-label="Next chapter: ${esc(bookByNumber(next[0]).name)} ${next[1]}">${ICONS.chevronRight}</a>` : `<span class="reader-step" aria-disabled="true">${ICONS.chevronRight}</span>`;
   const phoneTools = [['context', 'Overview', ICONS.overview], ['timeline', 'Timeline', ICONS.timeline], ['themes', 'Themes', ICONS.themes], ['people', 'People', ICONS.people], ['places', 'Places', ICONS.places], ['maps', 'Maps', ICONS.maps]];
 
+  const chapterContent = renderChapter({ rows, annotations, highlights, selected, esc });
   container.innerHTML = `<section class="reader-screen" data-reader data-book="${book}" data-chapter="${chapter}" data-selected-verse="${selected?.start || ''}" data-selected-end="${selected?.end || ''}" data-size="${size}" aria-label="${esc(name)} ${chapter}">
     <div class="reader-rail-wrap" data-reader-rail>${renderRail({ sections: railSections(selected), ariaLabel: 'Study tools', id: 'reader-rail' })}</div>
     <article class="reader-card" data-reader-card>
@@ -251,9 +269,10 @@ export async function mount(container, ctx) {
         </div>
       </header>
       <header class="reader-phone-head">
-        <div class="reader-phone-title">
-          <p class="reader-eyebrow" data-group="${meta.cat}">${esc(groupLabel)} · Berean Standard Bible</p>
+        <div class="reader-phone-title" data-group="${meta.cat}">
+          <p class="reader-eyebrow">${esc(groupLabel)}</p>
           ${pickerMarkup(book, chapter, esc).replace('id="reader-book-select"', 'id="reader-book-select-phone"').replace('for="reader-book-select"', 'for="reader-book-select-phone"').replace('id="reader-chapter-label"', 'id="reader-chapter-label-phone"').replace('aria-labelledby="reader-chapter-label"', 'aria-labelledby="reader-chapter-label-phone"')}
+          <p class="reader-title-version">Berean Standard Bible</p>
         </div>
         <details class="reader-more" data-reader-more>
           <summary class="reader-more-button" aria-label="More reading options">${ICONS.more}</summary>
@@ -266,16 +285,17 @@ export async function mount(container, ctx) {
         </details>
       </header>
       <nav class="reader-phone-tools" aria-label="Study tools">${phoneTools.map(([id, name, icon]) => `<button type="button" class="reader-phone-tool" data-phone-tool="${id}">${icon}<span>${name}</span></button>`).join('')}</nav>
-      <div class="reader-scroll" data-reader-scroll>
         <header class="reader-title" data-group="${meta.cat}">
           <p class="reader-title-group">${esc(groupLabel)}</p>
           <h1 class="reader-title-heading">${esc(name)} ${chapter}</h1>
           <p class="reader-title-version">Berean Standard Bible</p>
         </header>
-        <div class="reader-text ui-verse-passage" data-reader-text>${renderChapter({ rows, annotations, highlights, selected, esc })}</div>
+      <div class="reader-scroll" data-reader-scroll>
+        <div class="reader-text ui-verse-passage" data-reader-text>${chapterContent.text}</div>
         <nav class="reader-chapter-nav" aria-label="Chapters">${prev ? `<a class="reader-chapter-nav-link" href="${chapterHref(...prev)}">${ICONS.chevronLeft}<span>${esc(bookByNumber(prev[0]).name)} ${prev[1]}</span></a>` : '<span></span>'}${next ? `<a class="reader-chapter-nav-link" href="${chapterHref(...next)}"><span>${esc(bookByNumber(next[0]).name)} ${next[1]}</span>${ICONS.chevronRight}</a>` : '<span></span>'}</nav>
+        ${chapterContent.footnotes}
       </div>
-      <div class="reader-actions" data-reader-actions hidden>${renderVerseActions({ verseReference: label(selected), colors: HIGHLIGHT_COLORS })}<button type="button" class="reader-actions-clear" data-highlight-clear hidden>Remove highlight</button></div>
+      <div class="reader-actions" data-reader-actions hidden>${renderVerseActions({ verseReference: label(selected), colors: HIGHLIGHT_COLORS, showCopy: false })}<button type="button" class="reader-actions-clear" data-highlight-clear hidden>Remove highlight</button></div>
       <div class="reader-fn-pop" data-reader-fn-pop role="note" hidden></div>
     </article>
     <aside class="reader-aside" data-reader-aside data-sheet="none" aria-label="My Notes and study tools">
@@ -428,6 +448,7 @@ export async function mount(container, ctx) {
   const notesTab = root.querySelector('#reader-notes-tab');
   function openSheet(kind) {
     aside.dataset.sheet = kind;
+    if (kind === 'notes') aside.scrollTop = 0;
     root.querySelector('[data-sheet-title]').textContent = kind === 'notes' ? 'My Notes' : (panelCard.querySelector('.reader-panel-eyebrow')?.textContent || 'Study');
     notesTab?.classList.toggle('is-hidden', kind !== 'none');
     if (kind !== 'none') aside.querySelector('[data-sheet-close]')?.focus();
@@ -452,7 +473,7 @@ export async function mount(container, ctx) {
       badge.setAttribute('aria-expanded', 'true');
       const cardBox = card.getBoundingClientRect(), box = badge.getBoundingClientRect();
       fnPop.style.setProperty('--reader-fn-x', `${Math.max(8, Math.min(cardBox.width - fnPop.offsetWidth - 8, box.left - cardBox.left - 12))}px`);
-      fnPop.style.setProperty('--reader-fn-y', `${box.bottom - cardBox.top + 6}px`);
+      fnPop.style.setProperty('--reader-fn-y', `${Math.max(8, Math.min(cardBox.height - fnPop.offsetHeight - 8, box.bottom - cardBox.top + 6))}px`);
       return;
     }
     if (!t.closest('[data-reader-fn-pop]')) { fnPop.hidden = true; delete fnPop.dataset.marker; root.querySelectorAll('[data-footnote][aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false')); }
@@ -484,7 +505,7 @@ export async function mount(container, ctx) {
       return;
     }
     if (t.closest('[data-reader-actions] [data-action="note"]')) {
-      if (phone()) openSheet('notes');
+      openSheet('notes');
       aside.querySelector('[data-note-text]')?.focus();
       return;
     }
@@ -523,7 +544,7 @@ export async function mount(container, ctx) {
       openSheet('study');
       return;
     }
-    if (t.closest('#reader-notes-tab')) { openSheet('notes'); aside.querySelector('[data-note-text]')?.focus(); return; }
+    if (t.closest('#reader-notes-tab')) { openSheet('notes'); return; }
     if (t.closest('[data-sheet-close]')) { closeSheet(); return; }
     const verse = verseFrom(t);
     if (verse) {

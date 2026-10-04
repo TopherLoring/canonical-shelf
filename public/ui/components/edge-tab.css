@@ -37,17 +37,20 @@
   }
 
   .ui-edge-tab--theologian {
+    z-index: var(--layer-theologian);
     background-color: var(--color-edge-theologian);
     color: var(--color-on-action);
     bottom: 120px;
     height: 132px;
   }
 
+  #guide.guide { z-index: var(--layer-theologian); }
+
   .ui-edge-tab--notes {
     background-color: var(--color-edge-notes);
     color: var(--color-on-accent);
     bottom: 260px;
-    height: 118px;
+    height: 132px;
   }
 
   html[data-mode="dark"] .ui-edge-tab,
@@ -59,7 +62,7 @@
   @media (max-width: 640px) {
     .ui-edge-tab--notes {
       bottom: 298px;
-      height: 104px;
+      height: 118px;
     }
 
     .ui-edge-tab--theologian {
@@ -74,6 +77,8 @@
     flex-shrink: 0;
     color: inherit;
   }
+
+  .ui-edge-tab--theologian[aria-expanded="true"] { display: flex; }
 
   .ui-edge-tab-label {
     display: block;

@@ -3,6 +3,110 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Bible reader', () => {
+  test('saving a note and a highlight concurrently preserves both', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3&start=16');
+    await page.locator('[data-reader-notes] [data-note-text]').fill('Concurrent note');
+    await page.evaluate(() => {
+      document.querySelector('[data-save-note]').click();
+      document.querySelector('[data-reader-actions] [data-color="yellow"]').click();
+    });
+    await expect(page.locator('[data-saved-note]')).toContainText('Concurrent note');
+    await expect.poll(() => page.evaluate(async () => {
+      const { getState } = await import('/db.js'); const state = await getState();
+      return { note: Object.values(state.notes).some(n => n.text === 'Concurrent note'), color: state.highlights?.['John.3.16']?.color };
+    })).toEqual({ note: true, color: 'yellow' });
+    await page.reload();
+    await expect(page.locator('[data-saved-note]')).toContainText('Concurrent note');
+    await expect(page.locator('#v16')).toHaveClass(/ui-highlight-yellow/);
+  });
+
+  test('full navigation labels and utility controls do not overlap at intermediate widths', async ({ page }) => {
+    for (const width of [390, 641, 841, 960, 961, 1100, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/profile#notes');
+      await expect(page.locator('.masthead')).toBeVisible();
+      expect(await page.evaluate(() => {
+        const boxes = [...document.querySelectorAll('.masthead nav.primary a, .masthead-tools')].map(el => el.getBoundingClientRect());
+        return boxes.every((a, i) => a.left >= 0 && a.right <= innerWidth && boxes.slice(i + 1).every(b => a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom));
+      })).toBe(true);
+    }
+  });
+  test('the chapter heading stays fixed while the passage scrolls inside the viewport', async ({ page }) => {
+    await page.goto('/bible?book=19&chapter=119');
+    const heading = page.locator('.reader-title-heading');
+    const before = await heading.boundingBox();
+    await page.locator('[data-reader-scroll]').evaluate(el => { el.scrollTop = el.scrollHeight; });
+    const after = await heading.boundingBox();
+    expect(after.y).toBe(before.y);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(page.viewportSize().height);
+    await expect(page.locator('.site-footer')).toBeHidden();
+  });
+  test('notes keep multiple entries per verse, ordered by verse then creation time, and support edit and delete', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3&start=16');
+    const mount = page.locator('[data-reader-notes]');
+    const add = async text => {
+      await mount.locator('[data-note-text]').fill(text);
+      await mount.getByRole('button', { name: 'Add a note', exact: true }).click();
+      await expect(mount.locator('[data-note-status]')).toHaveText('Saved');
+    };
+    await add('First note on verse sixteen');
+    await add('Second note on verse sixteen');
+    await page.locator('#v4').click();
+    await expect(mount.locator('.study-notes__anchor')).toContainText('3:4');
+    await add('Note on verse four');
+    const texts = mount.locator('[data-saved-note] > p');
+    await expect(texts).toHaveText(['Note on verse four', 'First note on verse sixteen', 'Second note on verse sixteen']);
+    await mount.locator('[data-edit-note]').nth(1).click();
+    await mount.locator('[data-note-text]').fill('Edited note on verse sixteen');
+    await mount.getByRole('button', { name: 'Save changes' }).click();
+    await expect(texts).toHaveText(['Note on verse four', 'Edited note on verse sixteen', 'Second note on verse sixteen']);
+    await mount.locator('[data-delete-note]').last().click();
+    await expect(texts).toHaveCount(2);
+    await page.reload();
+    await expect(texts).toHaveText(['Note on verse four', 'Edited note on verse sixteen']);
+    await expect(mount.getByRole('button', { name: /Ask the Theologian/ })).toHaveCount(0);
+    await expect(page.locator('[data-reader-actions] [data-action="copy"]')).toHaveCount(0);
+    await mount.locator('.study-notes__all').click();
+    await expect(page.locator('[data-my-notes]')).toContainText('Edited note on verse sixteen');
+  });
+
+  test('legacy notes remain readable and editable without changing their anchor', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3&start=4');
+    await page.evaluate(async () => {
+      const db = await import('/db.js'); const state = await db.getState();
+      state.notes = { 'scripture:John.3.4': { text: 'Existing note', label: 'John 3:4', updatedAt: '2026-10-01T10:00:00Z', discussLater: true } };
+      await db.putState(state);
+    });
+    await page.reload();
+    const note = page.locator('[data-saved-note="scripture:John.3.4"]');
+    await expect(note).toContainText('Existing note');
+    await note.getByRole('button', { name: 'Edit note on John 3:4' }).click();
+    await page.locator('[data-reader-notes] [data-note-text]').fill('Updated existing note');
+    await page.getByRole('button', { name: 'Save changes' }).click();
+    await expect(note).toContainText('Updated existing note');
+  });
+  test('chapter continuation is available before the full footnotes', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3');
+    await expect(page.locator('[data-reader]')).toBeVisible();
+    const order = await page.getByRole('navigation', { name: 'Chapters', exact: true }).evaluate(nav => {
+      const notes = document.querySelector('[aria-labelledby="reader-footnotes-title"]');
+      return Boolean(nav.compareDocumentPosition(notes) & Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+    expect(order).toBe(true);
+  });
+
+  test('source shorthand and quotation boundaries are explained in full notes and popups', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3');
+    const notes = page.locator('[aria-labelledby="reader-footnotes-title"]');
+    await expect(notes).toContainText('Textus Receptus');
+    await expect(notes).toContainText('Byzantine');
+    await expect(notes).not.toContainText('TR and');
+    await expect(notes).toContainText('narrator');
+    await page.locator('#v25 [data-footnote]').click();
+    await expect(page.locator('[data-reader-fn-pop]')).toContainText('Textus Receptus');
+    await expect(page.locator('[data-reader-fn-pop]')).toContainText('and the Jews');
+  });
   test('shows BSB section headings and the chapter text', async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3');
     const reader = page.locator('[data-reader]');
@@ -143,6 +247,30 @@ test.describe('Bible reader', () => {
 });
 
 test.describe('Bible reader on a phone', () => {
+  test('Notes and Theologian share tab sizing and the chat stays above the notes drawer', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3&start=4');
+    const notes = page.locator('#reader-notes-tab'), theo = page.locator('#guide-open');
+    await expect(theo).toBeEnabled();
+    const nb = await notes.boundingBox(), tb = await theo.boundingBox();
+    expect(nb.width).toBe(tb.width);
+    expect(nb.height).toBe(tb.height);
+    expect(await theo.evaluate(el => {
+      const probe = document.createElement('span'); probe.style.color = 'var(--color-edge-theologian)'; document.body.append(probe);
+      const match = getComputedStyle(el).backgroundColor === getComputedStyle(probe).color; probe.remove(); return match;
+    })).toBe(true);
+    await notes.click();
+    await expect(page.locator('[data-reader-aside]')).toHaveAttribute('data-sheet', 'notes');
+    await expect(page.locator('[data-sheet-close]')).toBeFocused();
+    expect(await page.locator('[data-reader-aside]').evaluate(el => getComputedStyle(el).animationName)).toBe('reader-drawer-in');
+    await theo.click();
+    await expect(page.locator('#guide')).toHaveAttribute('data-open', 'true');
+    await expect(theo).toBeVisible();
+    expect(await page.locator('#guide').evaluate(el => {
+      const box = el.getBoundingClientRect(); return el.contains(document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2));
+    })).toBe(true);
+    await page.locator('#guide-close').click();
+    await expect(page.locator('[data-reader-aside]')).toHaveAttribute('data-sheet', 'notes');
+  });
   test.use({ viewport: { width: 390, height: 844 } });
 
   test('adapts to different phone widths without horizontal scrolling', async ({ page }) => {
