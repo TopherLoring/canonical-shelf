@@ -1,19 +1,21 @@
+@layer tokens, base, layout, components, screens, overrides;
+
 @layer layout {
   /* Stacking layer contract classes */
   .layer-nav {
-    z-index: var(--layer-nav, 10);
+    z-index: var(--layer-nav);
   }
   .layer-edge-tabs {
-    z-index: var(--layer-edge-tabs, 20);
+    z-index: var(--layer-edge-tabs);
   }
   .layer-popups {
-    z-index: var(--layer-popups, 30);
+    z-index: var(--layer-popups);
   }
   .layer-dim-overlay {
-    z-index: var(--layer-dim-overlay, 40);
+    z-index: var(--layer-dim-overlay);
   }
   .layer-theologian {
-    z-index: var(--layer-theologian, 50);
+    z-index: var(--layer-theologian);
   }
 
   /* Root layout container */
@@ -32,28 +34,28 @@
   .masthead, .app-shell-header {
     position: sticky;
     top: 0;
-    z-index: var(--layer-nav, 10);
+    z-index: var(--layer-nav);
     width: 100%;
   }
 
   /* Phone edge-tabs dock */
   .edge-tabs-dock, #guide-open.theologian-tab {
-    z-index: var(--layer-edge-tabs, 20);
+    z-index: var(--layer-edge-tabs);
   }
 
   /* Popups and dialogs */
   .utility-panel, dialog, [role="dialog"] {
-    z-index: var(--layer-popups, 30);
+    z-index: var(--layer-popups);
   }
 
   /* Dim overlay */
   .dim-overlay, [data-dim-overlay] {
-    z-index: var(--layer-dim-overlay, 40);
+    z-index: var(--layer-dim-overlay);
   }
 
   /* Theologian panel */
   #guide.guide, .theologian-dock {
-    z-index: var(--layer-theologian, 50);
+    z-index: var(--layer-theologian);
   }
 
   /* Zero horizontal scroll guard on phone across all viewports */

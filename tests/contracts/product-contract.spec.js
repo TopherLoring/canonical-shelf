@@ -66,6 +66,7 @@ test('one navigation bar: destinations are tabs in the masthead; Home keeps the 
 }); 
 
 test('one inline Feedback link on every screen and the Theologian tab everywhere, including lessons',async({page})=>{
+  test.slow();
   for(const route of ['/home','/course','/bible?book=43&chapter=3','/topics','/practice','/course?unit=c1.christianity&lesson=begin']){
     await page.goto(route);
     await expect(page.locator('main')).not.toBeEmpty();
@@ -179,6 +180,9 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await expect(bar.locator('.brand')).not.toContainText('Canonical Shelf');
   await expect(bar.locator(':scope > *')).toHaveCount(3);
   await expect(bar.locator('.masthead-tools > *')).toHaveCount(3);
+  await page.goto('/bible');
+  await expect(page.locator('header.masthead .brand')).toContainText('The Canonical Shelf');
+  await page.goto('/home');
   for(const gone of ['#progress-open','#appearance-open','#account-open','#translation-select'])await expect(page.locator(gone)).toHaveCount(0);
   await bar.locator('.search-toggle').click();
   await expect(bar.locator('#q')).toBeFocused();

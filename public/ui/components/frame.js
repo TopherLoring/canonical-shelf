@@ -7,3 +7,7 @@ export function mountFrame() {
     main.classList.add('app-frame');
   }
 }
+
+export function renderFrame(content = '') {
+  return `<main id="main" class="app-frame" tabindex="-1" aria-live="polite">${content}</main>`;
+}
