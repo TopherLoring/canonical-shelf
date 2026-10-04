@@ -12,9 +12,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
-- **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** (`module1-title`, owner: Chris, since 2026-10-04)
 
 ## Phases
 
@@ -66,6 +64,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
 | `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
+| `curriculum.module1.title` | Module 1 is titled 'Reading the Bible Well: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
 | `curriculum.path1.overlap` | undefined | Agent default | undefined |
@@ -198,6 +197,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
+| `ui.bible.phone.board` | undefined | Agent default | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
@@ -209,8 +209,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
+| `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
+| `ui.naming.unit-check` | The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
@@ -222,6 +224,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
 | `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
+| `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |

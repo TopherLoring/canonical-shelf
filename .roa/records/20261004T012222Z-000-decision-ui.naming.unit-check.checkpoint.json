@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "ui.naming.unit-check.checkpoint",
+  "topic": "ui.naming.unit-check",
+  "date": "2026-10-03",
+  "text": "The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.",
+  "rationale": "Chris asked Claude to pick a name that fits",
+  "by": "Claude"
+}

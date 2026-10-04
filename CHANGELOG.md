@@ -7,11 +7,17 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ### Decided
 
+- Resolved "Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).": Approved: Reading the Bible Well: The Library and Its Story
+- Resolved "Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?": Checkpoint (picked by Claude at Chris's request)
 - Resolved "Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.": Approved by Chris; executing 1 slice per branch
+- The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision. (supersedes ui.naming.unit-check.checkpoint)
+- The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revelation, everywhere they are named (shelf, legend, chips, lessons). The ninth group is Revelation, not Prophecy, because 'Prophecy' would also cover the Prophets. 'Letters' is used in the group names; the term 'epistle' is taught in Module 1 where the groups are introduced.
+- The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target. (agent default)
 
 ### Added
 
 - Confirmed redesign mockups saved to docs/v7/mockups-2026-10-03 (10 screens plus canvas layout)
+- Redesign plan amendment (docs/v7/PLAN_IMPLEMENTATION_AMENDMENT_2026-10-04.md): recovery after the Antigravity run, P0-P3 rebased onto main, wiring seam step, parallel screen schedule
 
 ### Changed
 
@@ -59,6 +65,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
 - Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
 - Implement the redesign properly across the whole project, not by adding override layers or quick fixes: build the design system the mockups describe (layered styles, complete theme roles, shared components), move screens onto it, and delete the legacy code each replacement supersedes.
+- Module 1 is titled 'Reading the Bible Well: The Library and Its Story' (short title 'Reading the Bible Well'), replacing 'Hermeneutics & Canon: Through the Story'.
+- The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped. (agent default)
+- Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.
 
 ### Added
 

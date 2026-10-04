@@ -125,7 +125,7 @@ Source: [/privacy.html](/privacy.html)
     
     Canonical Shelf is designed to keep core study activity local while being explicit about the limited data that is processed when you choose accounts, synchronization, feedback, or cloud Theologian features.
     
-    Effective September 22, 2026
+    Effective October 3, 2026
     
     ## 1. Scope and principles
     
@@ -146,6 +146,8 @@ Source: [/privacy.html](/privacy.html)
     Deleting an account is designed to delete associated Canonical Shelf learner synchronization state, subject to limited records that must temporarily remain for security, abuse prevention, dispute resolution, or legal obligations.
     
     ## 4. Theologian and cloud AI processing
+    
+    When you explicitly request web search (for example, “Search the web for sources on baptism”), and browsing is configured, the current message is sent to Tavily to search and retrieve page text. Earlier chat messages, study-state summaries, account identifiers, notes, and Journal writing are not attached to that request. Avoid including private details in a web-search request. Tavily processes that request under its own terms and privacy policy. Ordinary chat does not use Tavily.
     
     When you send a question to the cloud Theologian, Canonical Shelf transmits the current question, a bounded recent conversation excerpt, the current route/activity, and an allowlisted study-state summary needed to make the response relevant. Journal text, lesson notes, optional reflection writing, account/profile identifiers, feedback content, and inferred theological beliefs are excluded from this context.
     
@@ -400,7 +402,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     ## Module and unit structure
     
-    ### Module 1 — Hermeneutics & Canon: Through the Story
+    ### Module 1 — Reading the Bible Well: The Library and Its Story
     
     **Estimated active study:** 5.5–7.5 hours active study.
     
@@ -632,7 +634,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     Can an ancient collection copied, translated, and interpreted across centuries be read responsibly and trusted?
     
-    - **introduce:** Hermeneutics & Canon → What the Bible Is
+    - **introduce:** Reading the Bible Well → What the Bible Is
     - **ground:** Second Temple & Christ → How We Got the Bible
     - **investigate:** Second Temple & Christ → Text, Manuscripts and Transmission
     - **investigate:** Second Temple & Christ → Translation
@@ -705,7 +707,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     How should Christians think about people of other religions, Jewish-Christian relations, and people who never encounter the Christian message?
     
-    - **introduce:** Hermeneutics & Canon → Christianity in One View
+    - **introduce:** Reading the Bible Well → Christianity in One View
     - **contextualize:** Second Temple & Christ → Jewish Life and Jewish Diversity
     - **encounter:** Second Temple & Christ → Paul and Gentile Inclusion
     - **investigate:** Synthesis & Practice → Difficult Texts and Questions
@@ -1404,8 +1406,8 @@ Source: [/data/catalog.json](/data/catalog.json)
         {
           "id": "module.canon",
           "sequence": 1,
-          "title": "Hermeneutics & Canon: Through the Story",
-          "shortTitle": "Hermeneutics & Canon",
+          "title": "Reading the Bible Well: The Library and Its Story",
+          "shortTitle": "Reading the Bible Well",
           "level": "core",
           "phaseLabel": "Start here",
           "achievement": "Module 1 Complete",
@@ -7773,7 +7775,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           ],
           "body": [
             "This lesson closes the unit and opens the next one, where the story of the Bible begins. Before you start reading that story, it helps to know three different ways a book can be placed: where it sits on the shelf, when the events it describes happened, and when it was written. They are not the same, and mixing them up causes a lot of confusion.",
-            "This course uses a 66-book Protestant shelf. Its nine navigation groups are Law/Pentateuch, Historical Books, Poetry/Wisdom, Major Prophets, Minor Prophets, Gospels/History, Pauline Letters, General Letters, and Prophecy. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision.",
+            "This course uses a 66-book Protestant shelf. Its nine navigation groups are Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision.",
             "Notice the three labels Jesus uses for Israel’s Scriptures. How do they compare with the nine-shelf system used in this course?",
             "The first three skill tracks build orientation. The Story traces ten beats against their books; Order practices groups, testaments, and all 66; Groups teaches boundaries and reading approaches. Luke’s reference to Law, Prophets, and Psalms reflects another way of speaking about Israel’s Scriptures, reminding readers that this app’s shelf is not the only arrangement.",
             "Chronology separates shelf position, narrated events, and composition. Content adds summaries, casts, openings, authorship, and audiences. Dates and attributions vary in certainty, so a teaching timeline must not pretend every placement is settled. The integrated skill missions retain that practice while the curriculum marks those limits.",
@@ -7937,7 +7939,7 @@ Source: [/data/catalog.json](/data/catalog.json)
                 },
                 {
                   "type": "prose",
-                  "text": "This course uses a 66-book Protestant shelf. Its nine navigation groups are Law/Pentateuch, Historical Books, Poetry/Wisdom, Major Prophets, Minor Prophets, Gospels/History, Pauline Letters, General Letters, and Prophecy. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision."
+                  "text": "This course uses a 66-book Protestant shelf. Its nine navigation groups are Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision."
                 }
               ]
             },
@@ -19444,7 +19446,8 @@ Source: [/data/catalog.json](/data/catalog.json)
             "Old Testament": "The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.",
             "New Testament": "The 27 books written by the first Christians about Jesus and the early church, written in Greek.",
             "Pentateuch": "The first five books of the Bible, also called the Law or the Torah.",
-            "Canon": "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books."
+            "Canon": "The collection of books a community recognizes as Scripture; Protestant Bibles contain 66 books.",
+            "Epistle": "A letter, often addressing a community’s questions or conduct."
           },
           "deeper": "The group names used here follow common Protestant arrangement. Jewish Bibles arrange the same Hebrew books differently, into Law, Prophets, and Writings, and Catholic and Orthodox Bibles include additional books. Each book’s profile on the Bible page shows its themes, people, setting, and where to begin.",
           "drawers": [
@@ -41103,19 +41106,19 @@ Source: [/library-data.js](/library-data.js)
     {
       "categories": {
         "law": {
-          "name": "Law / Pentateuch",
+          "name": "Law",
           "sub": "Torah · Pentateuch",
           "testament": "OT",
           "blurb": "Origins and the covenant: how a family becomes a nation and receives its law."
         },
         "othist": {
-          "name": "Historical Books",
+          "name": "History",
           "sub": "Joshua → Esther",
           "testament": "OT",
           "blurb": "Land, kings, collapse, exile and return — roughly 800 years of national story."
         },
         "wisdom": {
-          "name": "Poetry & Wisdom",
+          "name": "Wisdom and Poetry",
           "sub": "Job → Song of Solomon",
           "testament": "OT",
           "blurb": "Not story at all — songs, sayings, and arguments about suffering, meaning and desire."
@@ -41133,25 +41136,25 @@ Source: [/library-data.js](/library-data.js)
           "blurb": "Twelve short books. Minor means brief — several are under five pages."
         },
         "gospel": {
-          "name": "Gospels & History",
+          "name": "Gospels and Acts",
           "sub": "Matthew → Acts",
           "testament": "NT",
           "blurb": "Four accounts of the same life, then the one book on what happened next."
         },
         "paul": {
-          "name": "Pauline Epistles",
+          "name": "Paul’s Letters",
           "sub": "Romans → Philemon",
           "testament": "NT",
           "blurb": "Thirteen letters from Paul — arranged by length, not by date."
         },
         "general": {
-          "name": "General Epistles",
+          "name": "General Letters",
           "sub": "Hebrews → Jude",
           "testament": "NT",
           "blurb": "Eight letters from other leaders, mostly to scattered readers rather than one city."
         },
         "apoc": {
-          "name": "Prophecy",
+          "name": "Revelation",
           "sub": "Revelation",
           "testament": "NT",
           "blurb": "One book of visions about judgement, empire, and a world remade."
@@ -44634,21 +44637,21 @@ Source: [/practice-data.js](/practice-data.js)
         },
         {
           "id": "law",
-          "name": "Law / Pentateuch",
+          "name": "Law",
           "scope": {
             "cat": "law"
           }
         },
         {
           "id": "history",
-          "name": "Historical Books",
+          "name": "History",
           "scope": {
             "cat": "othist"
           }
         },
         {
           "id": "wisdom",
-          "name": "Poetry & Wisdom",
+          "name": "Wisdom and Poetry",
           "scope": {
             "cat": "wisdom"
           }
@@ -44669,14 +44672,14 @@ Source: [/practice-data.js](/practice-data.js)
         },
         {
           "id": "gospels",
-          "name": "Gospels & Acts",
+          "name": "Gospels and Acts",
           "scope": {
             "cat": "gospel"
           }
         },
         {
           "id": "paul",
-          "name": "Pauline Letters",
+          "name": "Paul’s Letters",
           "scope": {
             "cat": "paul"
           }

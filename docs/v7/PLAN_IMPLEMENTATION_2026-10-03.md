@@ -136,7 +136,7 @@ graph TD
   - the corner scale (`radius.chip/control/card/frame`)
   - `layer.*`
 - Move the nine group colors from `shared` into each theme and mode (`design.categories.per-theme`), keeping each group's color family.
-- Fill every role for Reading Room light and dark from the mockups. The other seven themes get temporary values copied from Reading Room until phase 10.
+- Fill every role for Reading Room light and dark from the mockups and `ThemeSheet.dc.html` (the role names on the sheet are the contract names). The other seven themes get temporary values copied from Reading Room until phase 10.
 - Contract rules: every role defined in every theme and mode, and text-on-surface combinations at AA contrast.
 
 **Exit:** `roa verify` passes, and `theme.css` contains every value the mockups use.
@@ -228,9 +228,6 @@ graph TD
 
 The work spans the whole front end and needs a full local environment: bun, Playwright browsers, the dev server, and the ability to open PRs. It should run in Claude Code against the repository, one phase per PR, with this plan and the mockups as its brief. This chat environment can't push or run the browser suite end to end.
 
-## Still to settle (none block phases 0–3)
+## Still to settle (does not block phases 0–9)
 
-- `unit-check-label`: needed by phase 5.
-- `module1-title`: needed by phase 5.
 - `visual-direction`: needed by phase 10.
-- Shelf home intro text: needed by phase 6.
