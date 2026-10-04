@@ -591,6 +591,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.implementation.approach`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `redesign.implementation.approach`
+  Implement the redesign properly across the whole project, not by adding override layers or quick fixes: build the design system the mockups describe (layered styles, complete theme roles, shared components), move screens onto it, and delete the legacy code each replacement supersedes.
+
 ### `redesign.mockups`
 
 - **Approval** · 2026-10-03 · Chris · `redesign.mockups.confirmed` · scope: docs/v7/mockups-2026-10-03/

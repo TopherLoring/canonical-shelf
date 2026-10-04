@@ -15,6 +15,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
 - **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** (`module1-title`, owner: Chris, since 2026-10-04)
+- **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** (`redesign-implementation-approval`, owner: Chris, since 2026-10-04)
 
 ## Phases
 
@@ -130,6 +131,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.project-state` | Project state is managed with project-roa-kit: | Owner decision | undefined |
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
+| `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
