@@ -41,6 +41,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented.
 - Use Tavily for web research only if it remains free; paid usage is not authorized.
 - Theologian responses should be short and direct, starting with the simplest useful answer and expanding only when requested or needed for information or clarification. It should provide prayer when asked, and may ask about a specific need when none has been shared.
+- The nav bar is the one place all caps is allowed: primary nav labels are uppercase and letter-spaced; the current page is marked with an underline, not a highlight box. The site wordmark and the Shelf home title use the v1 title typography (Cambria/Caladea bold, 'Shelf' in italic, title on two lines with the intro beside it). Readers can highlight part of a verse (word-level), not only whole verses. The Shelf decoration is a bronze praying-hands statue on a stone pedestal (replaces the oil lamp), seated flat on the plank. Shelf book-name labels appear only on hover or keyboard focus. The Shelf uses a dark walnut plank hung on iron suspension rods with iron bookends. The docked Theologian is the desktop chat window.
 
 ### Added
 
