@@ -4,6 +4,9 @@
 // loads the screen module. A screen module exports:
 //
 //   mount(container, ctx) -> cleanup function (or nothing)
+//   handles(params) -> boolean   (optional) false hands this address back to the route's current view, so a
+//                                route can move to the new screen one state at a time (for example /bible?book=&chapter=
+//                                before /bible?view=timeline)
 //
 // where ctx is built by app.js for every render:
 //

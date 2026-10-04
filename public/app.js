@@ -120,9 +120,9 @@ async function render(){
 
   releaseScreen();
   const loadScreen=SCREENS[r];
+  const screen=loadScreen?await loadScreen():null;
   let bookDrawer=null;
-  if(loadScreen){
-    const screen=await loadScreen();
+  if(screen&&(typeof screen.handles!=='function'||screen.handles(p))){
     main.replaceChildren();
     const cleanup=await screen.mount(main,screenContext(r,p));
     unmountScreen=typeof cleanup==='function'?cleanup:null;

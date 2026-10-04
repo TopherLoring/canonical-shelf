@@ -8,6 +8,8 @@ a.notes['lesson:a']={text:'older note',updatedAt:'2026-09-16T12:30:00.000Z'};
 b.notes['lesson:a']={text:'newer note',updatedAt:'2026-09-16T15:30:00.000Z'};
 a.journal['lesson:a']={text:'newer journal',updatedAt:'2026-09-16T16:00:00.000Z'};
 b.journal['lesson:a']={text:'older journal',updatedAt:'2026-09-16T11:00:00.000Z'};
+a.highlights={'Gen.1.2':{color:'yellow',updatedAt:'2026-09-16T12:00:00.000Z'},'John.3.16':{color:'rose',updatedAt:'2026-09-16T18:00:00.000Z'}};
+b.highlights={'Gen.1.2':{color:null,updatedAt:'2026-09-16T13:00:00.000Z'},'Ps.23.1':{color:'green',updatedAt:'2026-09-16T12:00:00.000Z'}};
 const merged=mergeLearnerState(a,b);
 assert(merged.completed.includes('lesson:a')&&merged.completed.includes('mastery:b'),'offline completion union failed');
 assert(merged.mastery['mastery:b']?.passed===true,'mastery pass must survive merge');
@@ -21,6 +23,9 @@ assert(!('outbox'in(snap.sync||{})),'local sync outbox entered remote snapshot')
 assert(snap.notes['lesson:a']?.text===merged.notes['lesson:a']?.text,'notes missing from sync snapshot');
 assert(snap.journal['lesson:a']?.text===merged.journal['lesson:a']?.text,'journal missing from sync snapshot');
 recordMutation(merged,'result',{id:'lesson:c',passed:true},'2026-09-16T16:00:00.000Z');
+assert(merged.highlights['Gen.1.2']?.color===null,'a newer highlight removal did not win merge');
+assert(merged.highlights['John.3.16']?.color==='rose'&&merged.highlights['Ps.23.1']?.color==='green','highlights from both devices must survive merge');
+assert(snap.highlights?.['Ps.23.1']?.color==='green','highlights missing from sync snapshot');
 const event=merged.sync.outbox.at(-1);
 assert(event?.deviceId===merged.sync.deviceId,'mutation device identity missing');
 acknowledgeSync(merged,{cursor:'cursor-next',acceptedIds:[event.id]});
