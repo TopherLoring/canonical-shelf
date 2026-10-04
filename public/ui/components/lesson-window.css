@@ -1,0 +1,130 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* LessonWindow: breadcrumb title-bar, split pane, Back/Continue footer */
+  .ui-lesson-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-frame);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-frame);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .ui-lesson-titlebar {
+    height: 48px;
+    flex-shrink: 0;
+    padding: 0 var(--space-4) 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-surface-sunken);
+    border-bottom: var(--border-weight) solid var(--color-border);
+  }
+
+  .ui-lesson-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 14px;
+    color: var(--color-text-muted);
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ui-lesson-breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .ui-lesson-breadcrumb a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .ui-lesson-breadcrumb-current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .ui-lesson-close-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .ui-lesson-close-btn:hover {
+    color: var(--color-text);
+    background-color: var(--color-action-subtle);
+  }
+
+  .ui-lesson-body {
+    flex-grow: 1;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .ui-lesson-footer {
+    flex-shrink: 0;
+    height: 60px;
+    padding: 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    border-top: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .ui-lesson-back-btn {
+    height: 44px;
+    padding: 0 var(--space-4);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .ui-lesson-back-btn:disabled {
+    color: var(--color-disabled);
+    cursor: default;
+    border-color: var(--color-border);
+  }
+
+  .ui-lesson-continue-btn {
+    height: 44px;
+    padding: 0 var(--space-6);
+    border: 0;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-lesson-continue-btn:hover {
+    background-color: var(--color-action-hover);
+  }
+}
+

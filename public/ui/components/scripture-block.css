@@ -1,0 +1,148 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* ScriptureBlock: verse text container on scriptureBed, Literata font, group color bar */
+  .ui-scripture-block {
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-card);
+    background-color: var(--color-scripture-bed);
+    border: var(--border-weight) solid var(--color-border);
+    border-left-width: 6px;
+    border-left-style: solid;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-sizing: border-box;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* 9 Bible Group colors mapped to border-left */
+  .ui-scripture-block[data-group="law"],
+  .ui-scripture-header[data-group="law"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-law);
+    background-color: var(--bible-law);
+  }
+  .ui-scripture-block[data-group="othist"],
+  .ui-scripture-header[data-group="othist"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-othist);
+    background-color: var(--bible-othist);
+  }
+  .ui-scripture-block[data-group="wisdom"],
+  .ui-scripture-header[data-group="wisdom"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-wisdom);
+    background-color: var(--bible-wisdom);
+  }
+  .ui-scripture-block[data-group="major"],
+  .ui-scripture-header[data-group="major"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-major);
+    background-color: var(--bible-major);
+  }
+  .ui-scripture-block[data-group="minor"],
+  .ui-scripture-header[data-group="minor"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-minor);
+    background-color: var(--bible-minor);
+  }
+  .ui-scripture-block[data-group="gospel"],
+  .ui-scripture-header[data-group="gospel"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-gospel);
+    background-color: var(--bible-gospel);
+  }
+  .ui-scripture-block[data-group="paul"],
+  .ui-scripture-header[data-group="paul"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-paul);
+    background-color: var(--bible-paul);
+  }
+  .ui-scripture-block[data-group="general"],
+  .ui-scripture-header[data-group="general"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-general);
+    background-color: var(--bible-general);
+  }
+  .ui-scripture-block[data-group="apoc"],
+  .ui-scripture-header[data-group="apoc"] .ui-scripture-header-bar {
+    border-left-color: var(--bible-apoc);
+    background-color: var(--bible-apoc);
+  }
+
+  .ui-scripture-block-quote {
+    margin: 0;
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 18px;
+    line-height: var(--leading-reading, 1.7);
+    color: var(--color-text);
+  }
+
+  .ui-scripture-block-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 14px;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+  }
+
+  .ui-scripture-block-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .ui-scripture-block-ref {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .ui-scripture-block-context {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-action);
+    text-decoration: none;
+  }
+
+  .ui-scripture-block-context:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  /* Scripture Header Banner variant */
+  .ui-scripture-header {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .ui-scripture-header-bar {
+    flex: 0 0 6px;
+    width: 6px;
+    min-height: 22px;
+    border-radius: 3px;
+  }
+
+  .ui-scripture-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ui-scripture-header-group {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ui-scripture-header-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--color-text);
+  }
+
+  .ui-scripture-header-sub {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+}
+

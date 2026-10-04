@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-theme="reading-room" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Component Lab — The Canonical Shelf</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/ui/base.css">
+  <link rel="stylesheet" href="/ui/layout.css">
+  <link rel="stylesheet" href="/ui/components/rail.css">
+  <link rel="stylesheet" href="/ui/components/panel.css">
+  <link rel="stylesheet" href="/ui/components/edge-tab.css">
+  <link rel="stylesheet" href="/ui/components/scripture-block.css">
+  <link rel="stylesheet" href="/ui/components/scripture-ref.css">
+  <link rel="stylesheet" href="/ui/components/group-chip.css">
+  <link rel="stylesheet" href="/ui/components/progress-bar.css">
+  <link rel="stylesheet" href="/ui/components/step-list.css">
+  <link rel="stylesheet" href="/ui/components/verse-text.css">
+  <link rel="stylesheet" href="/ui/components/verse-actions.css">
+  <link rel="stylesheet" href="/ui/components/footnote.css">
+  <link rel="stylesheet" href="/ui/components/notes-panel.css">
+  <link rel="stylesheet" href="/ui/components/lesson-window.css">
+  <link rel="stylesheet" href="/ui/components/bookshelf.css">
+  <link rel="stylesheet" href="/ui/components/game-tile.css">
+  <link rel="stylesheet" href="/ui/lab.css">
+</head>
+<body class="lab-page">
+  <header class="lab-header">
+    <div class="lab-header-top">
+      <div>
+        <h1 class="lab-title">Component Lab</h1>
+        <p class="lab-subtitle">Shared UI component library in Reading Room light and dark modes.</p>
+      </div>
+      <div class="lab-controls">
+        <div class="lab-control-group" role="group" aria-label="Theme mode">
+          <button type="button" class="lab-btn is-active" data-set-mode="light" aria-pressed="true">Light</button>
+          <button type="button" class="lab-btn" data-set-mode="dark" aria-pressed="false">Dark</button>
+          <button type="button" class="lab-btn" data-set-mode="both" aria-pressed="false">Both</button>
+        </div>
+      </div>
+    </div>
+    <nav class="lab-nav" aria-label="Components">
+      <a href="#rail">Rail</a>
+      <a href="#panel">Panel</a>
+      <a href="#edge-tab">EdgeTab</a>
+      <a href="#scripture-block">ScriptureBlock</a>
+      <a href="#scripture-ref">ScriptureRef</a>
+      <a href="#group-chip">GroupChip</a>
+      <a href="#progress">ProgressBar &amp; Scope</a>
+      <a href="#steps">StepStrip &amp; StepList</a>
+      <a href="#verse-text">VerseText</a>
+      <a href="#verse-actions">VerseActions</a>
+      <a href="#footnote">Footnote</a>
+      <a href="#notes-panel">NotesPanel</a>
+      <a href="#lesson-window">LessonWindow</a>
+      <a href="#bookshelf">Bookshelf</a>
+      <a href="#game-tile">GameTile</a>
+    </nav>
+  </header>
+
+  <main id="lab-main" class="lab-container">
+    <!-- Populated by /ui/lab.js -->
+  </main>
+
+  <script type="module" src="/ui/lab.js"></script>
+</body>
+</html>
+

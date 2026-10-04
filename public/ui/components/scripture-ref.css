@@ -1,0 +1,96 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* ScriptureRef: address link with group bar and expandable verse text */
+  .ui-scripture-ref {
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-sunken);
+    overflow: hidden;
+    display: flex;
+    box-sizing: border-box;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-scripture-ref:hover {
+    background-color: color-mix(in srgb, var(--color-action) 6%, var(--color-surface-sunken));
+  }
+
+  .ui-scripture-ref-bar {
+    flex: 0 0 6px;
+    width: 6px;
+    align-self: stretch;
+    background-color: var(--color-border);
+  }
+
+  /* 9 Canon groups mapped to group bar */
+  .ui-scripture-ref[data-group="law"] .ui-scripture-ref-bar { background-color: var(--bible-law); }
+  .ui-scripture-ref[data-group="othist"] .ui-scripture-ref-bar { background-color: var(--bible-othist); }
+  .ui-scripture-ref[data-group="wisdom"] .ui-scripture-ref-bar { background-color: var(--bible-wisdom); }
+  .ui-scripture-ref[data-group="major"] .ui-scripture-ref-bar { background-color: var(--bible-major); }
+  .ui-scripture-ref[data-group="minor"] .ui-scripture-ref-bar { background-color: var(--bible-minor); }
+  .ui-scripture-ref[data-group="gospel"] .ui-scripture-ref-bar { background-color: var(--bible-gospel); }
+  .ui-scripture-ref[data-group="paul"] .ui-scripture-ref-bar { background-color: var(--bible-paul); }
+  .ui-scripture-ref[data-group="general"] .ui-scripture-ref-bar { background-color: var(--bible-general); }
+  .ui-scripture-ref[data-group="apoc"] .ui-scripture-ref-bar { background-color: var(--bible-apoc); }
+
+  .ui-scripture-ref-content {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ui-scripture-ref-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  }
+
+  .ui-scripture-ref-link {
+    flex-grow: 1;
+    padding: 6px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-action);
+    text-decoration: none;
+  }
+
+  .ui-scripture-ref-link:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .ui-scripture-ref-toggle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .ui-scripture-ref-toggle:hover {
+    color: var(--color-text);
+    background-color: var(--color-action-subtle);
+  }
+
+  .ui-scripture-ref-text {
+    margin: 0;
+    padding: 0 var(--space-3) var(--space-3) calc(var(--space-4) + 2px);
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  .ui-scripture-ref-text[hidden] {
+    display: none;
+  }
+}
+

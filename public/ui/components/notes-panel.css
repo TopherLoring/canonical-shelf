@@ -1,0 +1,83 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* NotesPanel: My notes on target with list and composer */
+  .ui-notes-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface-raised);
+    border: var(--border-weight) solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+  }
+
+  .ui-notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ui-notes-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .ui-notes-item {
+    margin: 0;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+    background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+    font-size: 15px;
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+
+  .ui-notes-textarea {
+    min-height: 80px;
+    padding: var(--space-3);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    font-family: inherit;
+    font-size: 15px;
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    resize: vertical;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .ui-notes-textarea:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+  }
+
+  .ui-notes-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .ui-notes-save-btn {
+    height: 36px;
+    padding: 0 var(--space-4);
+    border: 0;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-notes-save-btn:hover {
+    background-color: var(--color-action-hover);
+  }
+}
+

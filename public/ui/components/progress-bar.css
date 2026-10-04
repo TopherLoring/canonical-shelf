@@ -1,0 +1,65 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* ProgressBar: 6px height, 3px radius indicator */
+  .ui-progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--color-surface-sunken);
+    border: var(--border-weight) solid var(--color-border);
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .ui-progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--color-action);
+    transition: width var(--motion-base) var(--motion-easing);
+  }
+
+  .ui-progress-bar--accent .ui-progress-bar-fill {
+    background-color: var(--color-accent);
+  }
+
+  .ui-progress-bar--correct .ui-progress-bar-fill {
+    background-color: var(--color-correct);
+  }
+
+  /* ProgressScope: labelled progress indicator (Unit, Module, Path) */
+  .ui-progress-scope {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ui-progress-scope-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: var(--leading-normal);
+  }
+
+  .ui-progress-scope-title {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .ui-progress-scope-status {
+    color: var(--color-text-muted);
+    font-size: 13px;
+  }
+
+  /* ProgressScopeGroup: container for multiple scopes (Unit, Module, Path) */
+  .ui-progress-scope-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+  }
+}
+

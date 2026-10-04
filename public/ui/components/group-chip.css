@@ -1,0 +1,98 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* GroupChip: 8px square color swatch + 6px radius chip for the 9 Bible groups */
+  .ui-group-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: var(--radius-chip, 6px);
+    background-color: color-mix(in srgb, var(--color-text-secondary) 12%, var(--color-surface));
+    color: var(--color-text);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+
+  .ui-group-chip-swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+
+  .ui-group-chip-label {
+    line-height: 1;
+  }
+
+  /* 9 Canon Groups: law, othist, wisdom, major, minor, gospel, paul, general, apoc */
+  .ui-group-chip[data-group="law"] {
+    background-color: color-mix(in srgb, var(--bible-law) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="law"] .ui-group-chip-swatch {
+    background-color: var(--bible-law);
+  }
+
+  .ui-group-chip[data-group="othist"] {
+    background-color: color-mix(in srgb, var(--bible-othist) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="othist"] .ui-group-chip-swatch {
+    background-color: var(--bible-othist);
+  }
+
+  .ui-group-chip[data-group="wisdom"] {
+    background-color: color-mix(in srgb, var(--bible-wisdom) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="wisdom"] .ui-group-chip-swatch {
+    background-color: var(--bible-wisdom);
+  }
+
+  .ui-group-chip[data-group="major"] {
+    background-color: color-mix(in srgb, var(--bible-major) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="major"] .ui-group-chip-swatch {
+    background-color: var(--bible-major);
+  }
+
+  .ui-group-chip[data-group="minor"] {
+    background-color: color-mix(in srgb, var(--bible-minor) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="minor"] .ui-group-chip-swatch {
+    background-color: var(--bible-minor);
+  }
+
+  .ui-group-chip[data-group="gospel"] {
+    background-color: color-mix(in srgb, var(--bible-gospel) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="gospel"] .ui-group-chip-swatch {
+    background-color: var(--bible-gospel);
+  }
+
+  .ui-group-chip[data-group="paul"] {
+    background-color: color-mix(in srgb, var(--bible-paul) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="paul"] .ui-group-chip-swatch {
+    background-color: var(--bible-paul);
+  }
+
+  .ui-group-chip[data-group="general"] {
+    background-color: color-mix(in srgb, var(--bible-general) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="general"] .ui-group-chip-swatch {
+    background-color: var(--bible-general);
+  }
+
+  .ui-group-chip[data-group="apoc"] {
+    background-color: color-mix(in srgb, var(--bible-apoc) 12%, var(--color-surface));
+  }
+  .ui-group-chip[data-group="apoc"] .ui-group-chip-swatch {
+    background-color: var(--bible-apoc);
+  }
+}
+
