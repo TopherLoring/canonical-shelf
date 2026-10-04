@@ -39,10 +39,10 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     await page.goto('/home');
     await waitForAppReady(page);
     const navLinks = await page.locator('nav.primary a').allInnerTexts();
-    const cleanNav = navLinks.map(s => s.trim());
+    const cleanNav = navLinks.map(s => s.trim().toUpperCase());
 
-    const targetNav = ['Shelf', 'Learning Path', 'Bible', 'Study Topics', 'Review & Practice'];
-    const hasLegacyNav = cleanNav.includes('Pathway') || cleanNav.includes('Catalog') || cleanNav.includes('Practice');
+    const targetNav = ['SHELF', 'LEARNING PATH', 'BIBLE', 'STUDY TOPICS', 'REVIEW & PRACTICE'];
+    const hasLegacyNav = cleanNav.includes('PATHWAY') || cleanNav.includes('CATALOG') || cleanNav.includes('PRACTICE');
 
     if (hasLegacyNav) {
       test.fail(hasLegacyNav, `TODO(Phase 2): Primary navigation currently reads [${cleanNav.join(', ')}]; Phase 2 migrates to target [${targetNav.join(', ')}]`);
