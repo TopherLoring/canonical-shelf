@@ -1,3 +1,5 @@
+@layer tokens, base, layout, components, screens, overrides;
+
 @layer components {
   /* Universal App Shell Masthead (Reading Room Light/Dark and responsive 1440px / 390px) */
   .masthead,
@@ -93,7 +95,7 @@
     font-family: var(--font-body, var(--font-sans));
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     color: var(--color-text-secondary);
     text-decoration: none;
     white-space: nowrap;
@@ -291,7 +293,7 @@
       box-shadow: none;
       color: var(--color-text-secondary);
       font-size: 10px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
     }
 
     .masthead nav.primary a[aria-current],
@@ -323,7 +325,7 @@
       content: attr(data-phone-label);
       font-size: 10px;
       line-height: 1;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       color: currentColor;
       display: block;
     }

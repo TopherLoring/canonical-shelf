@@ -1,3 +1,5 @@
+@layer tokens, base, layout, components, screens, overrides;
+
 @layer components {
   /* Frame component (1440px desktop frame, 390px phone card frame) */
   main#main,
@@ -6,7 +8,7 @@
     position: relative;
     max-width: 1440px;
     width: calc(100% - 56px);
-    margin: 20px auto 28px auto;
+    margin: 16px auto 28px auto;
     border-radius: var(--radius-frame, 16px);
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);

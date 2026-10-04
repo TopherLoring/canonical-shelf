@@ -12,6 +12,7 @@ import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
 import {scriptureResults,searchPage} from './search-engine.js';
+import {ROUTE_ALIASES} from './ui/labels.js';
 
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -48,7 +49,7 @@ await load();policy||=FALLBACK;
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const roots=new Set(['home','course','bible','topics','practice','search','profile']);
-const routeAliases=new Map([['path','course'],['study-topics','topics'],['review','practice']]);
+const routeAliases=new Map(Object.entries(ROUTE_ALIASES).map(([alias,target])=>[alias.replace(/^\/+/,''),target.replace(/^\/+/,'')]));
 const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/')[0].replace(/\.html$/,'')||'home';
 const appRouteFromPath=pathname=>{const r=pathRoot(pathname);const target=routeAliases.get(r)||r;return roots.has(target)?target:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
