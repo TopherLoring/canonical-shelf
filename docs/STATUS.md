@@ -206,6 +206,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.naming` | undefined | Agent default | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
+| `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
@@ -215,6 +216,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
+| `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |

@@ -591,6 +591,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.mockups`
+
+- **Approval** · 2026-10-03 · Chris · `redesign.mockups.confirmed` · scope: docs/v7/mockups-2026-10-03/
+  The redesign mockup canvas (docs/v7/mockups-2026-10-03/) is the confirmed visual reference for slices 2a to 2e: Shelf home, Bible reader and lesson (desktop and phone), the docked Theologian (desktop) and centered Theologian (phone), Learning Path (path, module and unit on one page), Study Topics, and Review & Practice. Built pages follow these layouts in the Reading Room theme; other themes restyle the same layouts.
+
 ### `redesign.structure`
 
 - **Approval** · 2026-10-03 · Chris · `redesign.structure.brief-approved` · scope: docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md
@@ -1058,6 +1063,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
   Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 
+### `ui.nav.brand`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
+  Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
+
 ### `ui.notes.naming`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
@@ -1109,6 +1119,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
   Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
+
+### `ui.shelf.final`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.final.2026-10-03`
+  Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
 
 ### `ui.shelf.lamp`
 

@@ -1,0 +1,108 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "LearningPath.dc.html": {
+      "h": 900,
+      "title": "Learning Path (path, module, unit), desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 2040
+    },
+    "Lesson.dc.html": {
+      "h": 900,
+      "title": "Lesson, desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 1020
+    },
+    "Main.dc.html": {
+      "h": 900,
+      "title": "Shelf home, desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "PhoneLesson.dc.html": {
+      "h": 844,
+      "title": "Lesson, phone",
+      "w": 390,
+      "x": 1990,
+      "y": 1020
+    },
+    "PhoneReader.dc.html": {
+      "h": 844,
+      "title": "Bible reader, phone",
+      "w": 390,
+      "x": 1520,
+      "y": 1020
+    },
+    "PhoneTheo.dc.html": {
+      "h": 844,
+      "title": "Theologian open, phone",
+      "w": 390,
+      "x": 3040,
+      "y": 1020
+    },
+    "Reader.dc.html": {
+      "h": 900,
+      "title": "Bible reader, desktop",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "ReviewPractice.dc.html": {
+      "h": 900,
+      "title": "Review & Practice, desktop",
+      "w": 1440,
+      "x": 3040,
+      "y": 2040
+    },
+    "StudyTopics.dc.html": {
+      "h": 900,
+      "title": "Study Topics, desktop",
+      "w": 1440,
+      "x": 1520,
+      "y": 2040
+    },
+    "TheoDock.dc.html": {
+      "h": 900,
+      "title": "Theologian open, desktop",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-03T10:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "title": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "Reading Room theme, light mode",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Reader.dc.html",
+    "Lesson.dc.html",
+    "PhoneReader.dc.html",
+    "PhoneLesson.dc.html",
+    "PhoneTheo.dc.html",
+    "TheoDock.dc.html",
+    "LearningPath.dc.html",
+    "StudyTopics.dc.html",
+    "ReviewPractice.dc.html"
+  ],
+  "pages": [],
+  "title": "Canonical Shelf Redesign"
+}

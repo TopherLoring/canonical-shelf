@@ -3,6 +3,12 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-04
+
+### Added
+
+- Confirmed redesign mockups saved to docs/v7/mockups-2026-10-03 (10 screens plus canvas layout)
+
 ## 2026-10-03
 
 ### Decided
@@ -37,6 +43,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value. (supersedes ui.phone.theologian-position.v1)
 - Theologian chat design (approved): desktop opens docked in the reader's right column (replacing study tools), phone opens as a centered card with the standard 10px margins; everything outside the chat is dimmed and clicking the dim closes it; no tab or handle while open (the header X closes it); strong elevation shadow. Navy header (title, 'You're reading [passage]', New chat, more menu, close) over a white body; one interface font throughout; user messages in a neutral grey bubble; answers as plain text with interpretations set off by a side rule; 'Scripture cited' section open by default and collapsible, each reference an underlined address with its group-color bar that opens the chapter, with per-reference expand for verse text; rating buttons on that row; suggested replies inside the conversation styled like user messages; removable passage chip (group-color bar plus x) above a bordered single-line input with Send inside; reminder line below. Edge tabs show a chevron (left when closed).
 - The nav bar is the one place all caps is allowed: primary nav labels are uppercase and letter-spaced; the current page is marked with an underline, not a highlight box. The site wordmark and the Shelf home title use the v1 title typography (Cambria/Caladea bold, 'Shelf' in italic, title on two lines with the intro beside it). Readers can highlight part of a verse (word-level), not only whole verses. The Shelf decoration is a bronze praying-hands statue on a stone pedestal (replaces the oil lamp), seated flat on the plank. Shelf book-name labels appear only on hover or keyboard focus. The Shelf uses a dark walnut plank hung on iron suspension rods with iron bookends. The docked Theologian is the desktop chat window.
+- Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
+- Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
 
 ### Added
 
