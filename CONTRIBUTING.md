@@ -31,7 +31,7 @@ None declared in an env example file.
 | `generate:wrangler` | `bun scripts/write-wrangler.mjs` |
 | `generate:curriculum-reference` | `bun scripts/generate-curriculum-reference.mjs` |
 | `generate:llms` | `bun scripts/generate-llms.mjs` |
-| `prepare:content` | `bun run migrate && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
+| `prepare:content` | `bun run migrate && bun scripts/publish-bsb-annotations.mjs && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
 | `verify:bsb` | `bun scripts/bsb-integrity.mjs` |
 | `verify:contract` | `bun scripts/verify-product-contract.mjs` |
 | `verify:deployment` | `bun scripts/verify-deployment.mjs` |
