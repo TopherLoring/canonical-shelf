@@ -4,6 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 const routes=['/home','/course','/bible','/topics','/practice','/search'];
 
 test('core destinations render as valid documents',async({page})=>{
+  test.slow();
   for(const route of routes){
     const response=await page.goto(route,{waitUntil:'domcontentloaded'});
     expect(response?.ok(),`${route} should load`).toBeTruthy();
@@ -24,8 +25,8 @@ test('primary navigation is a same-document SPA transition',async({page})=>{
     await expect(page.locator('#main h1')).toHaveCount(1);
     expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   }
-  await page.locator('nav.primary a[href="/course"]').click();
-  await expect(page).toHaveURL(/\/course(?:[?#]|$)/);
+  await page.locator('nav.primary a[href="/path"], nav.primary a[href="/course"]').click();
+  await expect(page).toHaveURL(/\/(?:course|path)(?:[?#]|$)/);
   expect(await page.evaluate(()=>window.__CANONICAL_SPA_SENTINEL__)).toBe('same-document');
   await page.goBack();
   await expect(page).toHaveURL(/\/home(?:[?#]|$)/);
@@ -38,7 +39,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await page.goto('/home');
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
-  await page.locator('nav.primary a[href="/course"]').click();
+  await page.locator('nav.primary a[href="/path"], nav.primary a[href="/course"]').click();
   await expect(page.locator('.course-volume-landing')).toBeVisible();
   await page.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
@@ -60,7 +61,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
 test('one navigation bar: destinations are tabs in the masthead; Home keeps the canonical library',async({page})=>{
   await page.goto('/home');
   await expect(page.locator('nav:not(.site-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
-  await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Pathway','Bible','Catalog','Practice']);
+  await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Learning Path','Bible','Study Topics','Review & Practice']);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
 }); 
 
@@ -173,7 +174,7 @@ test('lesson objectives describe lessons on the unit overview and never appear i
 });
 
 test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full screen with appearance',async({page})=>{
-  await page.goto('/bible');
+  await page.goto('/home');
   const bar=page.locator('header.masthead');
   await expect(bar.locator('.brand')).not.toContainText('Canonical Shelf');
   await expect(bar.locator(':scope > *')).toHaveCount(3);

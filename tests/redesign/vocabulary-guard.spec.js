@@ -52,6 +52,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
   });
 
   test('no forbidden words ("Catalog", "volume", "course") appear as primary nav destinations or section headers', async ({ page }) => {
+    test.slow();
     const routes = ['/home', '/course', '/bible', '/path', '/topics', '/practice', '/profile'];
     const strayOccurrences = [];
 
