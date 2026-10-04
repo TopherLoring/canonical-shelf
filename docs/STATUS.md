@@ -14,6 +14,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
+- **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** (`module1-title`, owner: Chris, since 2026-10-04)
 
 ## Phases
 
@@ -210,6 +211,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
+| `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
