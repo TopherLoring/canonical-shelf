@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "added",
+  "date": "2026-10-04",
+  "text": "Redesign Step 1: screen registry seam in the router, shared Scripture utilities (bible-books.js) and challenge engine (challenge-engine.js), screen stylesheet slots, Checkpoint label, theme contract v11 with shelf wood/iron roles and bar/marker radii"
+}

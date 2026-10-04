@@ -1,7 +1,7 @@
 {
   "contract": "theme",
-  "version": 10,
-  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, layout measures, stacking layers) are set once. Each theme sets color roles for light and dark (page; surface, raised, sunken, and subtle surfaces; scripture bed; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; note marker; selection; correct; incorrect; edge tabs for theologian and notes; chat surface and user bubble; dim overlay; four highlight colors {yellow, green, blue, rose}; nine Bible category group colors {law, othist, wisdom, major, minor, gospel, paul, general, apoc}), style (display, body, reading, and label fonts; corner radius scale including chip, control, card, frame; border weight and style; shadows including card, frame, overlay; backdrop; surface and border filters; texture; illustration set), and optional per-mode shadows and ornaments. Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark. Shared fonts (serif, sans, mono) are defined once; themes choose among them by reference, so a theme cannot introduce another font. Ornaments are up to six decorative colors per mode that let a theme be polychrome or near-monochrome.",
+  "version": 11,
+  "description": "Every themeable value. Shared values (type scale, line heights, spacing, motion, layout measures, stacking layers) are set once. Each theme sets color roles for light and dark (page; surface, raised, sunken, and subtle surfaces; scripture bed; border; primary, secondary, and muted text; action and text on action for anything clickable; accent and text on accent for non-clickable emphasis; note marker; selection; correct; incorrect; edge tabs for theologian and notes; chat surface and user bubble; dim overlay; four highlight colors {yellow, green, blue, rose}; nine Bible category group colors {law, othist, wisdom, major, minor, gospel, paul, general, apoc}), style (display, body, reading, and label fonts; corner radius scale including chip, control, card, frame; border weight and style; shadows including card, frame, overlay; backdrop; surface and border filters; texture; illustration set), and optional per-mode shadows and ornaments. Derived colors are generated. fontSources are fetched at build time; fontImports are what the site loads. Contrast rules cover text and clickable controls (WCAG AA); borders and accents are decorative and not contrast-checked; translucent colors are measured as seen over the page. A theme may set a native mode used until the learner chooses light or dark. Shared fonts (serif, sans, mono) are defined once; themes choose among them by reference, so a theme cannot introduce another font. Ornaments are up to six decorative colors per mode that let a theme be polychrome or near-monochrome. Shelf roles (wood and iron) color the Shelf home bookshelf: planks, support blocks and bookends; they are decorative and not contrast-checked. The radius scale also includes bar (progress bars) and marker (tooltips, step markers).",
   "schema": {
     "type": "object",
     "props": {
@@ -245,6 +245,12 @@
                 "borderFilter": {
                   "type": "css-value",
                   "optional": true
+                },
+                "radiusBar": {
+                  "type": "css-value"
+                },
+                "radiusMarker": {
+                  "type": "css-value"
                 }
               }
             },
@@ -400,6 +406,30 @@
                       },
                       "maxItems": 6,
                       "optional": true
+                    },
+                    "shelfWood": {
+                      "type": "color"
+                    },
+                    "shelfWoodLight": {
+                      "type": "color"
+                    },
+                    "shelfWoodDark": {
+                      "type": "color"
+                    },
+                    "shelfWoodEdge": {
+                      "type": "color"
+                    },
+                    "shelfWoodHighlight": {
+                      "type": "color"
+                    },
+                    "shelfIron": {
+                      "type": "color"
+                    },
+                    "shelfIronLight": {
+                      "type": "color"
+                    },
+                    "shelfIronEdge": {
+                      "type": "color"
                     }
                   }
                 },
@@ -552,6 +582,30 @@
                       },
                       "maxItems": 6,
                       "optional": true
+                    },
+                    "shelfWood": {
+                      "type": "color"
+                    },
+                    "shelfWoodLight": {
+                      "type": "color"
+                    },
+                    "shelfWoodDark": {
+                      "type": "color"
+                    },
+                    "shelfWoodEdge": {
+                      "type": "color"
+                    },
+                    "shelfWoodHighlight": {
+                      "type": "color"
+                    },
+                    "shelfIron": {
+                      "type": "color"
+                    },
+                    "shelfIronLight": {
+                      "type": "color"
+                    },
+                    "shelfIronEdge": {
+                      "type": "color"
                     }
                   }
                 }

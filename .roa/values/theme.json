@@ -87,7 +87,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -140,7 +142,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -192,7 +202,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -235,7 +253,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -288,7 +308,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -340,7 +368,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -383,7 +419,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -436,7 +474,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -488,7 +534,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -532,7 +586,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -585,7 +641,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -637,7 +701,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -680,7 +752,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -733,7 +807,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -785,7 +867,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -829,7 +919,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -882,7 +974,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -934,7 +1034,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -977,7 +1085,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -1030,7 +1140,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -1082,7 +1200,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -1125,7 +1251,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -1178,7 +1306,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -1230,7 +1366,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -1273,7 +1417,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -1326,7 +1472,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -1378,7 +1532,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
@@ -1422,7 +1584,9 @@
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
@@ -1475,7 +1639,15 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
@@ -1527,7 +1699,15 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     }

@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import {normalizeLearnerState,applyActivityResult,REVIEW_DAYS} from '../public/db.js';
 import {createSyncMeta,mergeLearnerState,remoteSnapshot} from '../public/sync.js';
-import {challengeEvaluationMode} from '../public/learning.js';
+import {challengeEvaluationMode} from '../public/challenge-engine.js';
 
 const assert=(condition,message)=>{if(!condition)throw new Error(message)};
 const base=(device='test-device')=>normalizeLearnerState({

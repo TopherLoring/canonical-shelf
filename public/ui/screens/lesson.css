@@ -1,0 +1,6 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Lesson (Step 3, phase 5). Arrangement only: grids, columns, spacing and positioning of shared components.
+   No colors, fonts or radii here; those come from theme roles and the components. */
+@layer screens {
+}
