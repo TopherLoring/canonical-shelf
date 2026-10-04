@@ -591,7 +591,23 @@ for (const c of CASES) {
       const expected = {};
       for (const [k, v] of Object.entries(t.style || {})) if (k !== 'illustrations') expected[`--${kebab(k)}`] = String(v);
       // Same naming as the theme-vars view: palette roles are --color-*, per-mode shadows are --shadow-*.
-      for (const [k, v] of Object.entries(t.modes[mode])) if (k !== 'ornaments') expected[k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`] = String(v);
+      for (const [k, v] of Object.entries(t.modes[mode])) {
+        if (k === 'ornaments') continue;
+        if (k === 'highlight') {
+          for (const [hk, hv] of Object.entries(v)) {
+            expected[`--color-highlight-${kebab(hk)}`] = String(hv);
+            expected[`--highlight-${kebab(hk)}`] = String(hv);
+          }
+          continue;
+        }
+        if (k === 'bibleCategories') {
+          for (const [bk, bv] of Object.entries(v)) {
+            expected[`--bible-${kebab(bk)}`] = String(bv);
+          }
+          continue;
+        }
+        expected[k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`] = String(v);
+      }
       (t.modes[mode].ornaments || []).forEach((c, i) => { expected[`--ornament-${i + 1}`] = String(c); });
       cases.push({ theme: id, mode, expected });
     }
