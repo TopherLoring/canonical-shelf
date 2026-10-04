@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "redesign.implementation.approach",
+  "topic": "redesign.implementation.approach",
+  "date": "2026-10-03",
+  "text": "Implement the redesign properly across the whole project, not by adding override layers or quick fixes: build the design system the mockups describe (layered styles, complete theme roles, shared components), move screens onto it, and delete the legacy code each replacement supersedes.",
+  "by": "Chris"
+}
