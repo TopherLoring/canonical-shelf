@@ -1,4 +1,5 @@
-import {test,expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { waitForAppReady } from './test-helpers.js';
 
 // Decided learner-facing names per redesign decisions
 const DECIDED_NAMES = [
@@ -17,7 +18,8 @@ const DECIDED_NAMES = [
 const FORBIDDEN_SECTION_WORDS = [
   'Catalog',
   'volume',
-  'volumes'
+  'volumes',
+  'course'
 ];
 
 test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology', () => {
@@ -35,6 +37,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
 
   test('primary navigation uses decided names (Shelf, Learning Path, Bible, Study Topics, Review & Practice)', async ({ page }) => {
     await page.goto('/home');
+    await waitForAppReady(page);
     const navLinks = await page.locator('nav.primary a').allInnerTexts();
     const cleanNav = navLinks.map(s => s.trim());
 
@@ -48,12 +51,15 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     expect(cleanNav, 'Primary nav items must match decided vocabulary').toEqual(targetNav);
   });
 
-  test('no forbidden words ("Catalog", "volume") appear as primary nav destinations or section headers', async ({ page }) => {
-    const routes = ['/home', '/course', '/bible', '/topics', '/practice'];
+  test('no forbidden words ("Catalog", "volume", "course") appear as primary nav destinations or section headers', async ({ page }) => {
+    const routes = ['/home', '/course', '/bible', '/path', '/topics', '/practice', '/profile'];
     const strayOccurrences = [];
 
     for (const r of routes) {
-      await page.goto(r, { waitUntil: 'domcontentloaded' });
+      await page.goto(r);
+      await waitForAppReady(page);
+
+      // Check primary navigation items
       const navTexts = await page.locator('nav.primary a').allInnerTexts();
       for (const forbidden of FORBIDDEN_SECTION_WORDS) {
         if (navTexts.some(t => t.toLowerCase() === forbidden.toLowerCase())) {
@@ -61,11 +67,11 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
         }
       }
 
-      // Check main section h1 and eyebrow
-      const headings = await page.locator('main h1, main .eyebrow').allInnerTexts();
+      // Check main section h1, h2, and eyebrow headings
+      const headings = await page.locator('main h1, main h2, main .eyebrow').allInnerTexts();
       for (const h of headings) {
         for (const forbidden of FORBIDDEN_SECTION_WORDS) {
-          if (h.toLowerCase().includes(forbidden.toLowerCase())) {
+          if (h.toLowerCase().split(/\s+/).includes(forbidden.toLowerCase())) {
             strayOccurrences.push({ route: r, context: 'heading', text: h.trim(), word: forbidden });
           }
         }
@@ -79,17 +85,25 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     expect(strayOccurrences, 'No forbidden words should appear as section names').toEqual([]);
   });
 
-  test('reader notes are identified as "My Notes" rather than un-scoped "Notes"', async ({ page }) => {
-    await page.goto('/bible?book=GEN&chapter=1&start=1&end=1');
-    const notesTab = page.locator('[data-desk-tab="notes"], [data-note-marker]');
-    const tabCount = await notesTab.count();
-    if (tabCount > 0) {
-      const tabText = (await notesTab.first().innerText()).trim();
-      const hasBareNotes = tabText.toLowerCase() === 'notes';
-      if (hasBareNotes) {
-        test.fail(hasBareNotes, 'TODO(Phase 2): Reader notes tab is labelled "Notes" instead of "My Notes"; Phase 2 standardizes on My Notes');
-      }
-      expect(tabText).not.toBe('Notes');
+  test('notes section is identified as "My Notes" rather than un-scoped "Notes"', async ({ page }) => {
+    // 1. Profile notes section heading
+    await page.goto('/profile');
+    await waitForAppReady(page);
+    const profileNotesTitle = page.locator('#notes-title');
+    const profileNotesText = (await profileNotesTitle.innerText()).trim();
+
+    // 2. Reader notes panel
+    await page.goto('/bible?book=1&chapter=1&start=1&end=1');
+    await waitForAppReady(page);
+    const readerNotes = page.locator('.study-notes[aria-label]');
+    const readerNotesAria = (await readerNotes.getAttribute('aria-label'))?.trim();
+
+    const isLegacyNotes = profileNotesText === 'Notes' || readerNotesAria === 'Your notes';
+    if (isLegacyNotes) {
+      test.fail(isLegacyNotes, `TODO(Phase 2): Notes section is currently labelled "${profileNotesText}" in profile and "${readerNotesAria}" in reader; Phase 2 standardizes on "My Notes"`);
     }
+
+    expect(profileNotesText, 'Profile notes section title must be "My Notes"').toBe('My Notes');
+    expect(readerNotesAria, 'Reader study notes container label must be "My Notes"').toBe('My Notes');
   });
 });

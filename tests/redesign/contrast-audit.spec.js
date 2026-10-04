@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -63,32 +63,47 @@ const TEXT_ROLE_PAIRS = [
 test.describe('Phase 0: WCAG AA contrast audit for text roles', () => {
   const themes = Object.keys(themeData.themes);
 
-  // Dedicated explicit test for Reading Room (the default theme)
+  // Dedicated in-browser runtime test for Reading Room (the default theme) using live computed styles
   for (const mode of ['light', 'dark']) {
-    test(`Reading Room (${mode}) meets WCAG AA contrast for all text roles`, async ({ page }) => {
+    test(`Reading Room (${mode}) meets WCAG AA contrast for all text roles in browser DOM`, async ({ page }) => {
       await page.goto('/home');
       await page.evaluate(({ mode }) => {
         document.documentElement.setAttribute('data-theme', 'reading-room');
         document.documentElement.setAttribute('data-mode', mode);
       }, { mode });
 
-      const modeColors = themeData.themes['reading-room'].modes[mode];
-      const failures = [];
+      const computedVars = await page.evaluate(() => {
+        const cs = getComputedStyle(document.documentElement);
+        return {
+          text: cs.getPropertyValue('--color-text').trim(),
+          page: cs.getPropertyValue('--color-page').trim(),
+          surface: cs.getPropertyValue('--color-surface').trim(),
+          surfaceRaised: cs.getPropertyValue('--color-surface-raised').trim(),
+          surfaceSunken: cs.getPropertyValue('--color-surface-sunken').trim(),
+          textSecondary: cs.getPropertyValue('--color-text-secondary').trim(),
+          textMuted: cs.getPropertyValue('--color-text-muted').trim(),
+          action: cs.getPropertyValue('--color-action').trim(),
+          onAction: cs.getPropertyValue('--color-on-action').trim(),
+          accent: cs.getPropertyValue('--color-accent').trim(),
+          onAccent: cs.getPropertyValue('--color-on-accent').trim()
+        };
+      });
 
+      const failures = [];
       for (const pair of TEXT_ROLE_PAIRS) {
-        const fg = modeColors[pair.fg];
-        const bg = modeColors[pair.bg];
+        const fg = computedVars[pair.fg];
+        const bg = computedVars[pair.bg];
         const ratio = contrastRatio(fg, bg);
         if (ratio === null || ratio < pair.min) {
-          failures.push(`${pair.role} (${pair.fg} ${fg} on ${pair.bg} ${bg}): got ${ratio?.toFixed(2)}:1, expected >= ${pair.min}:1`);
+          failures.push(`${pair.role} (${pair.fg} "${fg}" on ${pair.bg} "${bg}"): got ${ratio?.toFixed(2)}:1, expected >= ${pair.min}:1`);
         }
       }
 
-      expect(failures, `Reading Room ${mode} contrast failures`).toEqual([]);
+      expect(failures, `Reading Room ${mode} runtime computed contrast failures`).toEqual([]);
     });
   }
 
-  // Comprehensive test for all 8 existing themes across light and dark modes
+  // Comprehensive test for all 8 existing themes across light and dark modes from theme contract
   for (const theme of themes) {
     for (const mode of ['light', 'dark']) {
       test(`Theme contract contrast: ${theme} (${mode}) meets WCAG AA for text roles`, async () => {
@@ -101,7 +116,7 @@ test.describe('Phase 0: WCAG AA contrast audit for text roles', () => {
           const bg = modeColors[pair.bg];
           const ratio = contrastRatio(fg, bg);
           if (ratio === null || ratio < pair.min) {
-            failures.push(`${pair.role} (${pair.fg} ${fg} on ${pair.bg} ${bg}): got ${ratio?.toFixed(2)}:1, expected >= ${pair.min}:1`);
+            failures.push(`${pair.role} (${pair.fg} "${fg}" on ${pair.bg} "${bg}"): got ${ratio?.toFixed(2)}:1, expected >= ${pair.min}:1`);
           }
         }
 

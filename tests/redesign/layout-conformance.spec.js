@@ -1,6 +1,7 @@
-import {test,expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
+import { waitForAppReady } from './test-helpers.js';
 
 const ROUTES = [
   { id: 'home', name: 'Shelf', path: '/home' },
@@ -24,9 +25,9 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
   for (const route of ROUTES) {
     test(`render and capture desktop baseline (1440x900): ${route.name}`, async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 });
-      const resp = await page.goto(route.path, { waitUntil: 'domcontentloaded' });
+      const resp = await page.goto(route.path);
       expect(resp?.ok(), `${route.name} (${route.path}) should load`).toBeTruthy();
-      await page.waitForTimeout(300);
+      await waitForAppReady(page);
 
       const screenshotPath = path.join(SNAPSHOT_DIR, `desktop-${route.id}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: false });
@@ -35,9 +36,9 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
 
     test(`render and capture phone baseline (390x844): ${route.name}`, async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      const resp = await page.goto(route.path, { waitUntil: 'domcontentloaded' });
+      const resp = await page.goto(route.path);
       expect(resp?.ok(), `${route.name} (${route.path}) should load`).toBeTruthy();
-      await page.waitForTimeout(300);
+      await waitForAppReady(page);
 
       const screenshotPath = path.join(SNAPSHOT_DIR, `phone-${route.id}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: false });
@@ -51,8 +52,8 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
     const overflowingScenes = [];
 
     for (const scene of scenes) {
-      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(200);
+      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
+      await waitForAppReady(page);
       const isOverflowing = await page.evaluate(() => {
         return document.documentElement.scrollHeight > window.innerHeight + 2;
       });
@@ -74,8 +75,8 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
     const overflowingScenes = [];
 
     for (const scene of scenes) {
-      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(200);
+      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
+      await waitForAppReady(page);
       const isOverflowing = await page.evaluate(() => {
         return document.documentElement.scrollHeight > window.innerHeight + 2;
       });
