@@ -35,9 +35,17 @@ const vars={
 const config={
   $schema:'./node_modules/wrangler/config-schema.json',
   name:WORKER_NAME,
-  // Preserve dashboard secrets even for deploys that do not pass --secrets-file.
-  // Explicit vars below still update their values on each deployment.
+  // Preserve dashboard-managed bindings; explicit vars below still update.
   keep_vars:true,
+  ...(isProduction ? {
+    secrets: {
+      required: [
+        'BETTER_AUTH_SECRET',
+        'TAVILY_API_KEY',
+        'FEEDBACK_ADMIN_TOKEN'
+      ]
+    }
+  } : {}),
   main:'worker/index.ts',
   compatibility_date:'2026-09-17',
   observability:{enabled:true},

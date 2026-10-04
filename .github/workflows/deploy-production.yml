@@ -18,6 +18,8 @@ jobs:
       D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
       BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+      FEEDBACK_ADMIN_TOKEN: ${{ secrets.FEEDBACK_ADMIN_TOKEN }}
       CANONICAL_ORIGIN: https://the-canonical-shelf.christopherwonder.workers.dev
     steps:
       - uses: actions/checkout@v5
@@ -38,7 +40,7 @@ jobs:
           set -euo pipefail
           SECRETS_FILE="$RUNNER_TEMP/canonical-shelf-secrets.json"
           trap 'rm -f "$SECRETS_FILE"' EXIT
-          bun -e 'await Bun.write(process.env.RUNNER_TEMP + "/canonical-shelf-secrets.json", JSON.stringify({ BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET }))'
+          bun -e 'await Bun.write(process.env.RUNNER_TEMP + "/canonical-shelf-secrets.json", JSON.stringify({ BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET, TAVILY_API_KEY: process.env.TAVILY_API_KEY, FEEDBACK_ADMIN_TOKEN: process.env.FEEDBACK_ADMIN_TOKEN }))'
           chmod 600 "$SECRETS_FILE"
           bunx wrangler deploy --secrets-file "$SECRETS_FILE"
       - name: Verify release, route documents, bindings, and live Theologian
