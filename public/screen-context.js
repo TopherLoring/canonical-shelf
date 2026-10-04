@@ -14,7 +14,7 @@ export function selectedVerse() {
   const n = el ? Number(String(el.id || '').replace(/^v/, '')) : 0;
   if (n) return n;
   // A verse clicked before the reader finished loading is remembered on the reader itself.
-  const remembered = Number(document.querySelector('.reader.scripture')?.dataset.selectedVerse || 0);
+  const remembered = Number(document.querySelector('[data-reader]')?.dataset.selectedVerse || document.querySelector('.reader.scripture')?.dataset.selectedVerse || 0);
   return remembered || null;
 }
 

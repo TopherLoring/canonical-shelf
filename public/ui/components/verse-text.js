@@ -9,7 +9,8 @@ export function renderVerseSpan({
   isSelected = false,
   hasNote = false,
   highlightColor = null, // 'yellow' | 'green' | 'blue' | 'rose'
-  className = ''
+  className = '',
+  selectable = false // true: the span is a focusable verse (data-verse, id "v<n>") the reader can select
 } = {}) {
   const selectedClass = isSelected ? 'is-selected' : '';
   const noteClass = hasNote ? 'has-note' : '';
@@ -18,7 +19,10 @@ export function renderVerseSpan({
   const numHtml = verseNumber ? `<sup class="ui-verse-num">${verseNumber}</sup>` : '';
   const noteIcon = hasNote ? `<svg class="ui-verse-note-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-label="Has a note"><path d="M5 4h10l4 4v12H5z"></path></svg>` : '';
 
-  return `<span class="ui-verse-span ${selectedClass} ${noteClass} ${highlightClass} ${esc(className)}">${numHtml}${text}</span>${noteIcon}`;
+  const selectAttrs = selectable && verseNumber
+    ? ` id="v${Number(verseNumber)}" data-verse="${Number(verseNumber)}" role="button" tabindex="0" aria-pressed="${isSelected ? 'true' : 'false'}"`
+    : '';
+  return `<span class="ui-verse-span ${selectedClass} ${noteClass} ${highlightClass} ${esc(className)}"${selectAttrs}>${numHtml}${text}</span>${noteIcon}`;
 }
 
 export function renderVersePassage({

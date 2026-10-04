@@ -1,6 +1,454 @@
 @layer tokens, base, layout, components, screens, overrides;
 
-/* Bible reader (Step 2, phase 4). Arrangement only: grids, columns, spacing and positioning of shared components.
-   No colors, fonts or radii here; those come from theme roles and the components. */
+/* Bible reader (Step 2, phase 4). Arrangement of shared components plus the reading surface itself.
+   Every color, font, corner and shadow comes from a theme role; nothing here is a raw value. */
 @layer screens {
+  .reader-screen {
+    --reader-rail-w: 168px;
+    --reader-aside-w: 300px;
+    --reader-gap: var(--space-4);
+    display: grid;
+    grid-template-columns: var(--reader-rail-w) minmax(0, 1fr) var(--reader-aside-w);
+    gap: var(--reader-gap);
+    padding: var(--space-4);
+    height: calc(100dvh - 104px);
+    min-height: 560px;
+    box-sizing: border-box;
+  }
+
+  .reader-screen--empty { display: block; height: auto; }
+  .reader-empty { font-family: var(--font-body); color: var(--color-text-secondary); padding: var(--space-6); }
+
+  /* ---- Left: study links (Rail component) ---- */
+  .reader-rail-wrap {
+    background: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-4) var(--space-3);
+    overflow-y: auto;
+  }
+
+  /* ---- Middle: the chapter ---- */
+  .reader-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--color-scripture-bed);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .reader-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-weight) solid var(--color-border);
+    background: var(--color-surface-raised);
+    font-family: var(--font-body);
+  }
+  .reader-phone-head, .reader-phone-tools { display: none; }
+
+  .reader-picker { position: relative; }
+  .reader-picker-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    cursor: pointer;
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--type-body);
+  }
+  .reader-picker-button::-webkit-details-marker { display: none; }
+  .reader-picker-popup {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    z-index: var(--layer-popups);
+    width: min(340px, 86vw);
+    padding: var(--space-4);
+    background: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-overlay);
+  }
+  .reader-picker-label { display: block; margin: 0 0 var(--space-1); font-size: var(--type-caption); color: var(--color-text-muted); font-family: var(--font-body); }
+  .reader-picker-select {
+    width: 100%;
+    margin-bottom: var(--space-3);
+    padding: var(--space-2);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--type-body);
+  }
+  .reader-chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: var(--space-1);
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .reader-chapter-link {
+    display: grid;
+    place-items: center;
+    min-height: 36px;
+    border-radius: var(--radius-chip);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+    text-decoration: none;
+    background: var(--color-surface-sunken);
+  }
+  .reader-chapter-link:hover { background: var(--color-action-subtle); }
+  .reader-chapter-link[aria-current="page"] { background: var(--color-action); color: var(--color-on-action); }
+
+  .reader-steps { display: inline-flex; gap: var(--space-1); }
+  .reader-step {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+  .reader-step[aria-disabled="true"] { color: var(--color-disabled); }
+
+  .reader-meta { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); font-size: var(--type-small); }
+  .reader-toolbar-end { margin-left: auto; display: inline-flex; align-items: center; gap: var(--space-3); }
+  .reader-version { color: var(--color-text-secondary); font-size: var(--type-small); text-decoration: none; }
+  .reader-size {
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-reading);
+    font-size: var(--type-lead);
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-chip);
+  }
+  .reader-size:hover { background: var(--color-action-subtle); }
+
+  .reader-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-6) var(--space-7) var(--space-7);
+  }
+
+  .reader-title {
+    margin: 0 auto var(--space-5);
+    max-width: var(--measure-reading);
+    padding-left: var(--space-4);
+    border-left: 6px solid var(--group-color, var(--color-action));
+  }
+  .reader-title[data-group="law"], .reader-eyebrow[data-group="law"] { --group-color: var(--bible-law); }
+  .reader-title[data-group="othist"], .reader-eyebrow[data-group="othist"] { --group-color: var(--bible-othist); }
+  .reader-title[data-group="wisdom"], .reader-eyebrow[data-group="wisdom"] { --group-color: var(--bible-wisdom); }
+  .reader-title[data-group="major"], .reader-eyebrow[data-group="major"] { --group-color: var(--bible-major); }
+  .reader-title[data-group="minor"], .reader-eyebrow[data-group="minor"] { --group-color: var(--bible-minor); }
+  .reader-title[data-group="gospel"], .reader-eyebrow[data-group="gospel"] { --group-color: var(--bible-gospel); }
+  .reader-title[data-group="paul"], .reader-eyebrow[data-group="paul"] { --group-color: var(--bible-paul); }
+  .reader-title[data-group="general"], .reader-eyebrow[data-group="general"] { --group-color: var(--bible-general); }
+  .reader-title[data-group="apoc"], .reader-eyebrow[data-group="apoc"] { --group-color: var(--bible-apoc); }
+  .reader-title-group { margin: 0; font-family: var(--font-body); font-weight: 700; font-size: var(--type-small); color: var(--group-color); }
+  .reader-title-heading { margin: 0; font-family: var(--font-display); font-size: var(--type-h1); line-height: var(--leading-tight); color: var(--color-text); }
+  .reader-title-version { margin: var(--space-1) 0 0; font-family: var(--font-body); font-size: var(--type-small); color: var(--color-text-muted); }
+
+  .reader-text { max-width: var(--measure-reading); margin: 0 auto; font-family: var(--font-reading); color: var(--color-text); }
+  .reader-screen[data-size="standard"] .reader-text { font-size: 1.15rem; }
+  .reader-screen[data-size="large"] .reader-text { font-size: 1.3rem; }
+  .reader-screen[data-size="larger"] .reader-text { font-size: 1.5rem; }
+  .reader-heading {
+    margin: var(--space-5) 0 var(--space-2);
+    font-family: var(--font-reading);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--type-lead);
+    color: var(--color-text-secondary);
+  }
+  .reader-subheading {
+    margin: var(--space-4) 0 var(--space-1);
+    font-family: var(--font-reading);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--type-body);
+    color: var(--color-text-muted);
+  }
+  .reader-para { margin: 0 0 var(--space-3); line-height: var(--leading-reading); }
+  .reader-para--poetry, .reader-para--list, .reader-para--selah { margin: 0; padding-left: var(--space-5); text-indent: calc(var(--space-4) * -1); }
+  .reader-para--poetry2 { margin: 0; padding-left: var(--space-7); text-indent: calc(var(--space-4) * -1); }
+  .reader-para--selah { text-align: right; font-style: italic; }
+  .reader-heading + .reader-para--poetry, .reader-subheading + .reader-para--poetry { margin-top: var(--space-2); }
+  .reader-para--poetry + .reader-para--prose, .reader-para--poetry2 + .reader-para--prose { margin-top: var(--space-3); }
+
+  .reader-verse { cursor: pointer; border-radius: var(--radius-chip); }
+  .reader-verse:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .reader-verse.is-selected { outline: 2px solid color-mix(in srgb, var(--color-action) 45%, transparent); outline-offset: 1px; }
+
+  .reader-fn-badge { margin: 0 1px; vertical-align: super; font-size: 0.65em; }
+
+  .reader-footnotes {
+    max-width: var(--measure-reading);
+    margin: var(--space-6) auto 0;
+    padding-top: var(--space-4);
+    border-top: var(--border-weight) solid var(--color-border);
+    font-family: var(--font-body);
+  }
+  .reader-footnotes-title { margin: 0 0 var(--space-2); font-size: var(--type-small); color: var(--color-text-secondary); }
+  .reader-footnote-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .reader-footnote { display: grid; grid-template-columns: 1.5em 2.5em 1fr; font-size: var(--type-small); color: var(--color-text-secondary); }
+  .reader-footnote-marker { font-weight: 700; color: var(--color-accent); }
+  .reader-footnote-ref { color: var(--color-text-muted); }
+
+  .reader-chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--measure-reading);
+    margin: var(--space-6) auto 0;
+    font-family: var(--font-body);
+  }
+  .reader-chapter-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-action);
+    text-decoration: none;
+    background: var(--color-surface);
+  }
+
+  .reader-actions {
+    position: absolute;
+    left: var(--reader-actions-x, var(--space-4));
+    top: var(--reader-actions-y, var(--space-4));
+    z-index: var(--layer-popups);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .reader-actions[hidden] { display: none; }
+  .reader-actions-clear {
+    padding: var(--space-1) var(--space-2);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-raised);
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--type-caption);
+    cursor: pointer;
+  }
+
+  .reader-fn-pop {
+    position: absolute;
+    left: var(--reader-fn-x, var(--space-4));
+    top: var(--reader-fn-y, var(--space-4));
+    z-index: var(--layer-popups);
+    display: flex;
+    gap: var(--space-2);
+    max-width: 320px;
+    padding: var(--space-3);
+    background: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-marker);
+    box-shadow: var(--shadow-overlay);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+    color: var(--color-text);
+  }
+  .reader-fn-pop[hidden] { display: none; }
+  .reader-fn-pop-marker { font-weight: 700; color: var(--color-accent); }
+
+  /* ---- Right: My Notes and the study panel ---- */
+  .reader-aside { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; overflow-y: auto; }
+  .reader-sheet-head { display: none; }
+  .reader-notes-card, .reader-panel-card {
+    background: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-4);
+  }
+  .reader-panel-card { flex: 1; }
+  .reader-notes-title { margin: 0 0 var(--space-3); font-family: var(--font-display); font-size: var(--type-lead); color: var(--color-text); }
+  .reader-notes-card .study-notes__anchor { display: none; }
+  .reader-notes-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 96px;
+    padding: var(--space-3);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+    resize: vertical;
+  }
+
+  .reader-panel-head { margin-bottom: var(--space-3); }
+  .reader-panel-eyebrow { margin: 0; font-family: var(--font-body); font-size: var(--type-caption); color: var(--color-text-muted); }
+  .reader-panel-title { margin: 0; font-family: var(--font-display); font-size: var(--type-lead); color: var(--color-text); }
+  .reader-panel-hint, .reader-panel-text { margin: 0 0 var(--space-3); font-family: var(--font-body); font-size: var(--type-small); color: var(--color-text-secondary); line-height: var(--leading-normal); }
+  .reader-panel-hook { margin: 0 0 var(--space-2); font-family: var(--font-reading); font-style: italic; color: var(--color-text-secondary); }
+  .reader-panel-source { margin: var(--space-3) 0 0; font-family: var(--font-body); font-size: var(--type-caption); color: var(--color-text-muted); }
+  .reader-panel-link { font-family: var(--font-body); font-size: var(--type-small); color: var(--color-action); }
+  .reader-facts { margin: 0 0 var(--space-3); font-family: var(--font-body); font-size: var(--type-small); }
+  .reader-facts dt { margin-top: var(--space-2); color: var(--color-text-muted); font-size: var(--type-caption); }
+  .reader-facts dd { margin: 0; color: var(--color-text); }
+  .reader-xref-list, .reader-highlight-list, .reader-chip-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .reader-chip-list { display: flex; flex-wrap: wrap; }
+  .reader-chip {
+    padding: var(--space-1) var(--space-3);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-chip);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+  .reader-highlight-item {
+    display: grid;
+    grid-template-columns: 12px auto 1fr;
+    gap: var(--space-2);
+    align-items: start;
+    width: 100%;
+    padding: var(--space-2);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+    cursor: pointer;
+  }
+  .reader-highlight-swatch { width: 12px; height: 12px; margin-top: 3px; border-radius: var(--radius-bar); }
+  .reader-highlight-ref { font-weight: 600; }
+  .reader-highlight-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: var(--color-text-secondary); }
+
+  .reader-notes-tab { display: none; }
+
+  /* ---- Tablet and phone: one card, study icon row, notes and tools as sheets ---- */
+  @media (max-width: 1099px) {
+    .reader-screen { display: block; height: auto; min-height: 0; padding: 0; }
+    .reader-rail-wrap, .reader-toolbar { display: none; }
+    .reader-card { border: 0; box-shadow: none; border-radius: var(--radius-frame); overflow: visible; }
+    .reader-phone-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) var(--space-4) var(--space-2); }
+    .reader-eyebrow { margin: 0; padding-left: var(--space-2); border-left: 4px solid var(--group-color, var(--color-action)); font-family: var(--font-body); font-size: var(--type-small); font-weight: 700; color: var(--group-color, var(--color-action)); }
+    .reader-phone-head .reader-picker-button { border: 0; padding: 0; background: transparent; font-family: var(--font-display); font-size: var(--type-h1); }
+    .reader-more { position: relative; }
+    .reader-more-button {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      list-style: none;
+      cursor: pointer;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+    .reader-more-button::-webkit-details-marker { display: none; }
+    .reader-more-popup {
+      position: absolute;
+      right: 0;
+      top: calc(100% + var(--space-2));
+      z-index: var(--layer-popups);
+      display: grid;
+      min-width: 190px;
+      padding: var(--space-2);
+      background: var(--color-surface-raised);
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-overlay);
+    }
+    .reader-more-item {
+      padding: var(--space-3);
+      border: 0;
+      border-radius: var(--radius-control);
+      background: transparent;
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      text-align: left;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .reader-more-item:hover { background: var(--color-action-subtle); }
+    .reader-phone-tools {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: var(--space-1);
+      padding: 0 var(--space-4) var(--space-3);
+    }
+    .reader-phone-tool {
+      display: grid;
+      justify-items: center;
+      gap: 2px;
+      min-height: 52px;
+      padding: var(--space-2) 0;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      cursor: pointer;
+    }
+    .reader-scroll { overflow: visible; padding: var(--space-2) var(--space-4) var(--space-6); }
+    .reader-title { display: none; }
+    .reader-screen[data-size="standard"] .reader-text { font-size: 1.2rem; }
+
+    .reader-aside {
+      position: fixed;
+      inset: auto var(--space-2) var(--space-2) var(--space-2);
+      z-index: var(--layer-popups);
+      max-height: 78dvh;
+      padding: var(--space-3);
+      background: var(--color-surface-raised);
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-frame);
+      box-shadow: var(--shadow-overlay);
+      overflow-y: auto;
+    }
+    .reader-aside[data-sheet="none"] { display: none; }
+    .reader-aside[data-sheet="notes"] .reader-panel-card { display: none; }
+    .reader-aside[data-sheet="study"] .reader-notes-card { display: none; }
+    .reader-aside .reader-notes-card, .reader-aside .reader-panel-card { border: 0; box-shadow: none; padding: 0; }
+    .reader-sheet-head { display: flex; align-items: center; justify-content: space-between; }
+    .reader-sheet-title { font-family: var(--font-body); font-weight: 700; font-size: var(--type-small); color: var(--color-text-secondary); }
+    .reader-sheet-close {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: var(--radius-control);
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+    }
+    .reader-notes-tab { display: block; }
+  }
+
+  @media (max-width: 640px) {
+    .reader-phone-tool span { font-size: 0.62rem; }
+  }
 }
