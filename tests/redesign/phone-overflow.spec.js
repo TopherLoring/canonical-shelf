@@ -1,4 +1,5 @@
-import {test,expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { waitForAppReady } from './test-helpers.js';
 
 const ROUTES = [
   { name: 'Shelf', path: '/home' },
@@ -19,8 +20,8 @@ test.describe('Phase 0: Phone horizontal overflow guard (390x844)', () => {
 
   for (const route of ROUTES) {
     test(`no horizontal scroll on phone: ${route.name} (${route.path})`, async ({ page }) => {
-      await page.goto(route.path, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(300);
+      await page.goto(route.path);
+      await waitForAppReady(page);
 
       const overflow = await page.evaluate(() => {
         const root = document.documentElement;
