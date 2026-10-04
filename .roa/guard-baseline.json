@@ -53,7 +53,7 @@
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "color:#1b1d22;",
-      "count": 71
+      "count": 66
     },
     "css-raw-color|public/learning-visuals.css": {
       "rule": "css-raw-color",
@@ -149,7 +149,7 @@
       "rule": "css-z-index-literal",
       "file": "public/styles.css",
       "text": ".guide-open{position:fixed;right:1rem;bottom:1rem;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);pad",
-      "count": 5
+      "count": 4
     },
     "css-z-index-literal|public/theologian-chat.css": {
       "rule": "css-z-index-literal",

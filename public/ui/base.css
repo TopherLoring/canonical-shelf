@@ -1,0 +1,133 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    line-height: var(--leading-normal, 1.45);
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    background-color: var(--color-page);
+    color: var(--color-text);
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-body, var(--font-sans));
+    font-size: var(--type-body, 1rem);
+    line-height: var(--leading-normal, 1.45);
+    background-color: var(--color-page);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: var(--color-selection);
+    color: var(--color-text);
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display, var(--font-serif));
+    font-weight: 600;
+    line-height: var(--leading-tight, 1.2);
+    color: var(--color-text);
+  }
+
+  h1 { font-size: var(--type-h1, 2.3rem); }
+  h2 { font-size: var(--type-h2, 1.7rem); }
+  h3 { font-size: var(--type-h3, 1.3rem); }
+  h4 { font-size: var(--type-lead, 1.15rem); }
+
+  p {
+    margin-bottom: var(--space-3, 12px);
+    line-height: var(--leading-normal, 1.45);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Reading / lede prose */
+  .lede, [data-reading] {
+    font-family: var(--font-reading, var(--font-serif));
+    font-size: var(--type-lead, 1.15rem);
+    line-height: var(--leading-reading, 1.7);
+    color: var(--color-text-secondary);
+  }
+
+  /* Eyebrows / Labels */
+  .eyebrow, [data-label] {
+    font-family: var(--font-label, var(--font-mono));
+    font-size: var(--type-caption, 0.75rem);
+    letter-spacing: 0.08em;
+    color: var(--color-action);
+  }
+
+  /* Links */
+  a {
+    color: var(--color-action);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--motion-fast, 120ms) var(--motion-easing, ease);
+  }
+
+  a:hover {
+    color: var(--color-action-hover);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring, var(--color-action));
+    outline-offset: 2px;
+  }
+
+  /* Avoid outline on programmatic container focus */
+  main:focus, main:focus-visible, [tabindex="-1"]:focus, [tabindex="-1"]:focus-visible {
+    outline: none;
+  }
+
+  /* Form controls */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+
+  input, select, textarea {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control, 10px);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  /* Media elements */
+  img, svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Lists */
+  ul, ol {
+    list-style: none;
+  }
+}
