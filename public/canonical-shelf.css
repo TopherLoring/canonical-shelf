@@ -291,20 +291,7 @@ body.study-focus-active .study-layout:not(.study-layout--theologian)>.scene-rail
 }
 .scene-rail a[data-state="current"] span{background:var(--color-action);border-color:var(--color-action)}
 
-/* ---- Top bar (owner decision ui.topbar): logo mark · tabs · search, Feedback, profile ---- */
-.masthead{display:flex;align-items:center;flex-wrap:nowrap;gap:clamp(12px,2.2vw,32px)}
-.masthead .brand{display:inline-grid;place-items:center;flex:0 0 auto;padding:4px;color:inherit}
-.brand-mark{width:30px;height:30px;fill:currentColor}
-.masthead .primary{flex:1 1 auto;justify-content:center}
-.masthead-tools{display:flex;align-items:center;gap:14px;flex:0 0 auto;margin-left:auto}
-.masthead .search{display:flex;align-items:center;gap:6px;flex:0 0 auto;max-width:none;margin:0}
-.masthead .search input{width:0;min-width:0;padding:0;border:0;opacity:0;transition:width var(--motion-base,200ms) var(--motion-easing,ease),opacity var(--motion-fast,120ms)}
-.masthead .search[data-open="true"] input{width:min(18rem,42vw);padding:.45rem .7rem;border:1px solid var(--color-border);border-radius:var(--radius-small,7px);background:var(--color-surface);color:var(--color-text);opacity:1}
-.search-toggle,.profile-link{display:inline-grid;place-items:center;width:38px;height:38px;padding:0;border:1px solid transparent;border-radius:50%;background:transparent;color:inherit;cursor:pointer}
-.search-toggle svg,.profile-link svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-.search-toggle:hover,.profile-link:hover,.profile-link[aria-current]{border-color:currentColor}
-.search-toggle:focus-visible,.profile-link:focus-visible,.masthead .brand:focus-visible{outline:2px solid var(--focus-ring,currentColor);outline-offset:2px}
-@media (max-width:960px){.masthead{flex-wrap:wrap}.masthead .primary{order:3;flex:1 1 100%;justify-content:flex-start}}
+
 
 /* ---- Profile screen (owner decision ui.profile) — built on the theme contract's roles ---- */
 .profile-page{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,48px) clamp(16px,4vw,32px) 64px;color:var(--color-text)}
@@ -322,11 +309,7 @@ body.study-focus-active .study-layout:not(.study-layout--theologian)>.scene-rail
 .profile-danger{margin-top:14px}
 .profile-danger summary{cursor:pointer;color:var(--color-text-secondary)}
 .profile-theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:14px}
-
-.profile-field{display:grid;gap:6px;max-width:26rem;font-weight:600}
 .profile-links{list-style:none;padding:0;display:grid;gap:8px}
-.masthead .search .search-toggle{background:transparent;border-color:transparent;box-shadow:none}
-.masthead .search .search-toggle:hover{border-color:currentColor}
 
 /* Theme texture (theme contract style.texture): a background layer above the page color. */
 body{background:var(--texture,none),var(--color-page)}
@@ -376,7 +359,6 @@ main#main :is(.course-volume-heading,.bible-reader-heading,.topics-dossier__head
 
 /* ---- Ornaments (theme contract: six decorative colors per mode). Stained Glass shows them as jewel colors;
    Paper and Library as close tones of one hue. Never used for text. ---- */
-.masthead{position:relative}
 .masthead::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:linear-gradient(90deg,var(--ornament-1) 0 16.66%,var(--ornament-2) 16.66% 33.33%,var(--ornament-3) 33.33% 50%,var(--ornament-4) 50% 66.66%,var(--ornament-5) 66.66% 83.33%,var(--ornament-6) 83.33% 100%);pointer-events:none}
 .study-scripture{border-left:4px solid var(--ornament-1)}
 .library-reader-panel{border-top:3px solid var(--ornament-2)}
