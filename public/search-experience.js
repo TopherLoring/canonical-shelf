@@ -1,4 +1,4 @@
-import {BOOKS} from './bible.js';
+import {BOOKS} from './bible-books.js';
 import {CATEGORIES} from './library-data.js';
 import {queryStudyIndex} from './study-index.js';
 

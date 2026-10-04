@@ -1,4 +1,5 @@
-// Central Labels Registry (owner decisions ui.naming.levels.v1, ui.naming.sections.v1, ui.notes.naming.v1)
+// Central Labels Registry (owner decisions ui.naming.levels.v1, ui.naming.sections.v1, ui.notes.naming.v1,
+// ui.naming.unit-check.checkpoint.v2, ui.naming.groups.v1)
 // Single source of truth for all learner-facing names and navigation labels.
 
 export const LABELS = Object.freeze({
@@ -8,6 +9,7 @@ export const LABELS = Object.freeze({
   unit: 'Unit',
   lesson: 'Lesson',
   capstone: 'Capstone',
+  unitCheck: 'Checkpoint',
   studyTopics: 'Study Topics',
   reviewPractice: 'Review & Practice',
   myNotes: 'My Notes',
@@ -44,6 +46,7 @@ export const MODULE = LABELS.module;
 export const UNIT = LABELS.unit;
 export const LESSON = LABELS.lesson;
 export const CAPSTONE = LABELS.capstone;
+export const UNIT_CHECK = LABELS.unitCheck;
 export const STUDY_TOPICS = LABELS.studyTopics;
 export const REVIEW_PRACTICE = LABELS.reviewPractice;
 export const MY_NOTES = LABELS.myNotes;

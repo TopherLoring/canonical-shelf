@@ -1,0 +1,6 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Shelf home (Step 4, phase 6). Arrangement only: grids, columns, spacing and positioning of shared components.
+   No colors, fonts or radii here; those come from theme roles and the components. */
+@layer screens {
+}

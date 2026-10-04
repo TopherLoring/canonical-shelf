@@ -1,7 +1,9 @@
 import {profileView} from './profile.js';
 import {getState,recordResult,recordReview,dueReviews,exportState,importState} from './db.js';
-import {courseView,challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './learning.js';
-import {bibleView,parseCorpus,parseReference,BOOKS} from './bible.js';
+import {courseView} from './learning.js';
+import {challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './challenge-engine.js';
+import {bibleView} from './bible.js';
+import {parseCorpus,parseReference,BOOKS} from './bible-books.js';
 import {buildTheologianResponse} from './theologian.js';
 import {topicsView,recentEntryForRoute,recordRecent} from './experience.js';
 import {practiceView,checkPracticeGame} from './practice-experience.js';
@@ -12,7 +14,8 @@ import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
 import {scriptureResults,searchPage} from './search-engine.js';
-import {ROUTE_ALIASES} from './ui/labels.js';
+import {ROUTE_ALIASES,LABELS,GROUP_NAMES} from './ui/labels.js';
+import {SCREENS} from './ui/screens/registry.js';
 
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
@@ -77,6 +80,19 @@ function activityHref(id){const a=data.activities?.find(x=>x.id===id);if(!a)retu
 function renderInto(target,view){if(!target)return;if(typeof view==='string')target.innerHTML=view;else target.replaceChildren(view)}
 function refreshProgressPanel(){}
 
+// Redesigned screens (public/ui/screens/registry.js) mount through this seam; routes without one keep their
+// current view. The context is rebuilt on every render so screens always see the current catalog and state.
+let unmountScreen=null;
+const screenDb=Object.freeze({getState,recordResult,recordReview,dueReviews,exportState,importState});
+function screenContext(r,p){
+  return Object.freeze({route:r,params:p,data,corpus,state,setState:next=>{state=next},esc,labels:LABELS,groupNames:GROUP_NAMES,navigate,activityHref,db:screenDb});
+}
+function releaseScreen(){
+  if(!unmountScreen)return;
+  const cleanup=unmountScreen;unmountScreen=null;
+  try{cleanup()}catch(error){console.error('screen cleanup failed',error)}
+}
+
 function courseRouteView(p){
   if(!data.units.length)return shell('Pathway','Migration required','<p class="notice">Run bun run migrate.</p>');
   if(p.has('lesson')||p.has('mastery')||p.has('glossary'))return courseView(data,state,p,esc,corpus);
@@ -102,25 +118,36 @@ async function render(){
     await ensureCorpus();
   }
 
-  let view;
-  if(r==='search')view=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
-  else if(r==='course')view=courseRouteView(p);
-  else if(r==='bible')view=bibleView(corpus,p,esc);
-  else if(r==='topics')view=topicsView({data,params:p,esc});
-  else if(r==='practice')view=practiceView({data,state,params:p,esc,dueReviews,activityHref});
-  else if(r==='profile')view=profileView({data,state,esc,progressNode:progressPanelView({data,state,esc})});
-  else view=homeView({data,state,esc});
-
-  if(typeof view==='string'){
-    main.innerHTML=view;
+  releaseScreen();
+  const loadScreen=SCREENS[r];
+  const screen=loadScreen?await loadScreen():null;
+  let bookDrawer=null;
+  if(screen&&(typeof screen.handles!=='function'||screen.handles(p))){
+    main.replaceChildren();
+    const cleanup=await screen.mount(main,screenContext(r,p));
+    unmountScreen=typeof cleanup==='function'?cleanup:null;
+    canonicalizeLinks(main);
   }else{
-    main.replaceChildren(view);
-  }
+    let view;
+    if(r==='search')view=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
+    else if(r==='course')view=courseRouteView(p);
+    else if(r==='bible')view=bibleView(corpus,p,esc);
+    else if(r==='topics')view=topicsView({data,params:p,esc});
+    else if(r==='practice')view=practiceView({data,state,params:p,esc,dueReviews,activityHref});
+    else if(r==='profile')view=profileView({data,state,esc,progressNode:progressPanelView({data,state,esc})});
+    else view=homeView({data,state,esc});
 
-  canonicalizeLinks(main);
-  if(r==='course')enhanceLearningVisuals(main);
-  if(r==='bible')enhanceBibleState(main,p);
-  const bookDrawer=r==='bible'?main.querySelector('[data-book-drawer]'):null;
+    if(typeof view==='string'){
+      main.innerHTML=view;
+    }else{
+      main.replaceChildren(view);
+    }
+
+    canonicalizeLinks(main);
+    if(r==='course')enhanceLearningVisuals(main);
+    if(r==='bible')enhanceBibleState(main,p);
+    bookDrawer=r==='bible'?main.querySelector('[data-book-drawer]'):null;
+  }
   document.body.classList.toggle('book-drawer-active',!!bookDrawer);
   const recent=recentEntryForRoute(r,p,data,BOOKS);if(recent)recordRecent(recent);
   if(bookDrawer)bookDrawer.querySelector('[data-book-drawer-close]')?.focus({preventScroll:true});
