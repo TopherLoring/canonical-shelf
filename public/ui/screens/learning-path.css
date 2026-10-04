@@ -1,0 +1,501 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer screens {
+  /* ==========================================================================
+     Learning Path Screen Track (/path & /course)
+     Conforms to LearningPath.dc.html and design tokens contract
+     ========================================================================== */
+
+  .screen-learning-path {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 320px;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--color-surface-sunken);
+    border-radius: var(--radius-frame);
+    overflow: hidden;
+  }
+
+  /* --------------------------------------------------------------------------
+     Left Column: Path Tier (Modules Navigation Rail)
+     -------------------------------------------------------------------------- */
+  .lp-modules-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-2);
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .lp-nav-header {
+    padding: 0 var(--space-3) var(--space-2);
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .lp-module-nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+    text-decoration: none;
+    color: var(--color-text);
+    background: transparent;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lp-module-nav-item:hover {
+    background-color: var(--color-action-subtle);
+  }
+
+  .lp-module-nav-item.is-active,
+  .lp-module-nav-item[aria-current="true"] {
+    background-color: var(--color-action-subtle);
+  }
+
+  .lp-module-seq {
+    font-size: var(--type-caption);
+    font-weight: 600;
+    color: var(--color-action);
+  }
+
+  .lp-module-nav-item:not(.is-active) .lp-module-seq {
+    color: var(--color-text-muted);
+  }
+
+  .lp-module-title {
+    font-size: var(--type-small);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .lp-module-meta {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  .lp-nav-divider {
+    margin: var(--space-3) var(--space-3) var(--space-1);
+    padding-top: var(--space-3);
+    border-top: var(--border-weight) solid var(--color-border);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .lp-nav-capstones {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 40px;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-control);
+    font-size: var(--type-small);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lp-nav-capstones:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .lp-nav-capstones svg {
+    flex-shrink: 0;
+  }
+
+  .lp-nav-capstones span:first-of-type {
+    flex-grow: 1;
+  }
+
+  .lp-count-badge {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Center Column: Module & Unit Tier
+     -------------------------------------------------------------------------- */
+  .lp-module-view {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  .lp-module-header {
+    padding: var(--space-1) var(--space-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .lp-module-kicker {
+    font-size: var(--type-small);
+    font-weight: 600;
+    color: var(--color-action);
+  }
+
+  .lp-module-heading {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: var(--type-h1);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .lp-module-sub {
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+  }
+
+  .lp-units-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .lp-unit-section {
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    box-sizing: border-box;
+  }
+
+  .lp-unit-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    width: 100%;
+  }
+
+  .lp-unit-seq {
+    font-size: var(--type-caption);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  .lp-unit-name {
+    flex-grow: 1;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .lp-unit-status {
+    font-size: var(--type-caption);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .lp-unit-status.lp-status--complete {
+    color: var(--color-correct);
+  }
+
+  .lp-unit-status.lp-status--in-progress {
+    color: var(--color-accent);
+  }
+
+  .lp-unit-status.lp-status--not-started {
+    color: var(--color-text-muted);
+  }
+
+  .lp-unit-chevron {
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    transition: transform var(--motion-fast) var(--motion-easing);
+  }
+
+  .lp-unit-section.is-expanded .lp-unit-chevron {
+    transform: rotate(180deg);
+  }
+
+  .lp-unit-lessons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--border-weight) solid var(--color-border);
+    padding-top: var(--space-1);
+  }
+
+  .lp-lesson-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    padding: var(--space-1) 0;
+    border-top: var(--border-weight) solid var(--color-border);
+  }
+
+  .lp-lesson-row:first-child {
+    border-top: 0;
+  }
+
+  .lp-lesson-chip {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-chip);
+    font-size: var(--type-caption);
+    font-weight: 600;
+  }
+
+  .lp-lesson-chip.is-active {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .lp-lesson-chip.is-complete {
+    background-color: var(--color-correct);
+    color: var(--color-on-action);
+  }
+
+  .lp-lesson-chip.is-upcoming {
+    border: var(--border-weight) solid var(--color-border);
+    color: var(--color-text-muted);
+    background-color: transparent;
+  }
+
+  .lp-lesson-chip.is-locked {
+    border: var(--border-weight) dashed var(--color-border);
+    color: var(--color-text-muted);
+    background-color: transparent;
+  }
+
+  .lp-lesson-title {
+    flex-grow: 1;
+    font-size: var(--type-small);
+    color: var(--color-text);
+  }
+
+  .lp-lesson-cta {
+    height: 32px;
+    padding: 0 var(--space-3);
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lp-lesson-cta:hover {
+    background-color: var(--color-action-hover);
+  }
+
+  .lp-lesson-lock {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Right Column: Progress Tier
+     -------------------------------------------------------------------------- */
+  .lp-progress-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .lp-upnext-card,
+  .lp-summary-card {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+  }
+
+  .lp-card-eyebrow {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  .lp-card-sub {
+    font-size: var(--type-caption);
+    font-weight: 600;
+    color: var(--color-action);
+  }
+
+  .lp-card-title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .lp-card-primary-cta {
+    margin-top: var(--space-1);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-size: var(--type-small);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lp-card-primary-cta:hover {
+    background-color: var(--color-action-hover);
+  }
+
+  .lp-summary-card {
+    gap: var(--space-3);
+  }
+
+  .lp-progress-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .lp-progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--type-small);
+    color: var(--color-text);
+  }
+
+  .lp-progress-row span:last-child {
+    color: var(--color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Phone Responsive Layout (390px Viewport)
+     Eliminates horizontal scroll overflow entirely
+     -------------------------------------------------------------------------- */
+  .lp-phone-module-bar {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .screen-learning-path {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-2);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .lp-modules-nav {
+      display: none;
+    }
+
+    .lp-phone-module-bar {
+      display: flex;
+      gap: var(--space-1);
+      width: 100%;
+      box-sizing: border-box;
+      overflow-x: auto;
+      padding-bottom: var(--space-1);
+      scrollbar-width: none;
+    }
+
+    .lp-phone-module-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .lp-phone-tab {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 36px;
+      padding: 0 var(--space-2);
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface-raised);
+      color: var(--color-text-secondary);
+      font-size: var(--type-caption);
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-family: inherit;
+    }
+
+    .lp-phone-tab.is-active {
+      background-color: var(--color-action);
+      color: var(--color-on-action);
+      border-color: var(--color-action);
+    }
+
+    .lp-module-view {
+      overflow: visible;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .lp-module-heading {
+      font-size: 1.5rem;
+    }
+
+    .lp-unit-section {
+      padding: var(--space-3);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .lp-unit-name {
+      font-size: 1rem;
+    }
+
+    .lp-progress-aside {
+      overflow: visible;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}

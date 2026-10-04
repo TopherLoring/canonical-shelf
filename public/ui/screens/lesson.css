@@ -1,0 +1,806 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer screens {
+  /* ==========================================================================
+     Guided Lesson Screen Track (/course)
+     Conforms to Lesson.dc.html, PhoneLesson.dc.html, and layout-conformance
+     ========================================================================== */
+
+  /* Viewport No-Scroll Invariant: eliminate document-level scrolling */
+  html:has(.screen-lesson),
+  body:has(.screen-lesson),
+  body.study-focus-active {
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  body:has(.screen-lesson) .site-footer,
+  body.study-focus-active .site-footer {
+    display: none;
+  }
+
+  body:has(.screen-lesson) main#main,
+  body.study-focus-active main#main,
+  body:has(.screen-lesson) .app-frame,
+  body.study-focus-active .app-frame {
+    height: calc(100vh - 108px);
+    max-height: calc(100vh - 108px);
+    min-height: 0;
+    margin: var(--space-4) auto var(--space-5) auto;
+    overflow: hidden;
+    padding: 0;
+    border-radius: var(--radius-frame);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-frame);
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .screen-lesson {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-surface);
+    box-sizing: border-box;
+  }
+
+  /* --------------------------------------------------------------------------
+     Breadcrumb Title Bar (Desktop)
+     -------------------------------------------------------------------------- */
+  .lesson-titlebar {
+    height: 48px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 0 var(--space-4) 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-surface-sunken);
+    border-bottom: var(--border-weight) solid var(--color-border);
+  }
+
+  .lesson-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lesson-breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-breadcrumb a:hover {
+    color: var(--color-text);
+  }
+
+  .lesson-breadcrumb-current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .lesson-leave-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing), color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-leave-btn:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  /* --------------------------------------------------------------------------
+     Desktop Split Body Grid
+     -------------------------------------------------------------------------- */
+  .lesson-body-grid {
+    flex-grow: 1;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: var(--space-4);
+    gap: var(--space-4);
+    background-color: var(--color-surface-sunken);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 364px;
+    overflow: hidden;
+  }
+
+  .lesson-content-layout {
+    min-width: 0;
+    display: flex;
+    gap: var(--space-4);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Left Sub-Rail: Steps & Step Tools */
+  .lesson-subrail {
+    width: 236px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: var(--space-4) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    overflow-y: auto;
+  }
+
+  .lesson-rail-steps-header {
+    padding: 0 var(--space-2) var(--space-1);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .lesson-steps-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lesson-step-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 40px;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-control);
+    color: var(--color-text-secondary);
+    font-size: var(--type-small);
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-step-link:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .lesson-step-link.is-active,
+  .lesson-step-link[aria-current="step"] {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .lesson-step-badge {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-chip);
+    font-size: var(--type-caption);
+    font-weight: 600;
+  }
+
+  .lesson-step-link.is-active .lesson-step-badge {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .lesson-step-link.is-complete .lesson-step-badge {
+    background-color: var(--color-correct);
+    color: var(--color-on-action);
+  }
+
+  .lesson-step-link:not(.is-active):not(.is-complete) .lesson-step-badge {
+    border: var(--border-weight) solid var(--color-border);
+    color: var(--color-text-muted);
+    background: transparent;
+  }
+
+  .lesson-step-title {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lesson-rail-tools-header {
+    margin: var(--space-3) var(--space-2) var(--space-1);
+    padding-top: var(--space-3);
+    border-top: var(--border-weight) solid var(--color-border);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .lesson-tools-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lesson-tool-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 38px;
+    padding: 0 var(--space-2);
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--type-small);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-tool-btn:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .lesson-tool-btn.is-active {
+    background-color: var(--color-action-subtle);
+    color: var(--color-action);
+    font-weight: 600;
+  }
+
+  .lesson-tool-btn span:first-of-type {
+    flex-grow: 1;
+  }
+
+  .lesson-tool-count {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  /* Center Reading Card */
+  .lesson-center-pane {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+  }
+
+  .lesson-reading-card {
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .lesson-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex-shrink: 0;
+  }
+
+  .lesson-card-eyebrow {
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+  }
+
+  .lesson-card-title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: var(--type-h1);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .lesson-card-content {
+    flex-grow: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-right: var(--space-2);
+    scrollbar-width: thin;
+  }
+
+  .lesson-card-content p {
+    margin: 0;
+    font-size: var(--type-body);
+    line-height: var(--leading-reading);
+    color: var(--color-text);
+  }
+
+  .lesson-callout {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-sunken);
+    border-left: var(--space-1) solid var(--color-action);
+    font-size: var(--type-body);
+    line-height: var(--leading-normal);
+  }
+
+  .lesson-card-nav {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-2);
+  }
+
+  .lesson-btn-back {
+    height: 44px;
+    padding: 0 var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: var(--type-small);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-btn-back:hover:not(.is-disabled) {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .lesson-btn-back.is-disabled {
+    color: var(--color-disabled);
+    cursor: default;
+    border-color: var(--color-border);
+  }
+
+  .lesson-btn-continue {
+    height: 48px;
+    padding: 0 var(--space-6);
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-size: var(--type-body);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-btn-continue:hover {
+    background-color: var(--color-action-hover);
+  }
+
+  /* Right Aside: My Notes + Step Glossary */
+  .lesson-study-aside {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .lesson-notes-accordion {
+    flex-shrink: 0;
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .lesson-notes-toggle {
+    width: 100%;
+    height: 52px;
+    padding: 0 var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .lesson-notes-toggle svg:first-child {
+    color: var(--color-accent);
+  }
+
+  .lesson-notes-toggle span:first-of-type {
+    flex-grow: 1;
+  }
+
+  .lesson-notes-cue {
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    font-weight: 600;
+    color: var(--color-action);
+  }
+
+  .lesson-notes-chevron {
+    color: var(--color-text-muted);
+    transition: transform var(--motion-fast) var(--motion-easing);
+  }
+
+  .lesson-notes-accordion.is-expanded .lesson-notes-chevron {
+    transform: rotate(180deg);
+  }
+
+  .study-notes[data-notes-mount] {
+    padding: var(--space-3) var(--space-4);
+    border-top: var(--border-weight) solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .lesson-glossary-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    overflow-y: auto;
+  }
+
+  .lesson-glossary-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lesson-glossary-kicker {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  .lesson-glossary-title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .lesson-glossary-terms {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .lesson-glossary-term dt {
+    font-weight: 600;
+    font-size: var(--type-small);
+    color: var(--color-text);
+  }
+
+  .lesson-glossary-term dd {
+    margin: 0;
+    font-size: var(--type-small);
+    line-height: var(--leading-normal);
+    color: var(--color-text-secondary);
+  }
+
+  .lesson-glossary-all {
+    margin-top: auto;
+    font-size: var(--type-small);
+    color: var(--color-action);
+    text-decoration: none;
+  }
+
+  .lesson-glossary-all:hover {
+    text-decoration: underline;
+  }
+
+  /* --------------------------------------------------------------------------
+     Phone Lesson Layout (390px Viewport)
+     Conforms to PhoneLesson.dc.html
+     -------------------------------------------------------------------------- */
+  .phone-lesson-titlebar,
+  .phone-tools-strip,
+  .phone-lesson-footer,
+  .phone-edge-tab {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .lesson-titlebar,
+    .lesson-body-grid,
+    .lesson-subrail,
+    .lesson-study-aside {
+      display: none;
+    }
+
+    .screen-lesson {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-lesson-titlebar {
+      height: 44px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 0 var(--space-2) 0 var(--space-3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      background-color: var(--color-surface-sunken);
+      border-bottom: var(--border-weight) solid var(--color-border);
+    }
+
+    .phone-lesson-breadcrumb {
+      font-size: var(--type-small);
+      color: var(--color-text-secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .phone-lesson-breadcrumb strong {
+      color: var(--color-text);
+    }
+
+    .phone-lesson-leave {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: var(--radius-control);
+      background: transparent;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Step Strip Component */
+    .ui-step-strip {
+      flex-shrink: 0;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: var(--border-weight) solid var(--color-border);
+      background-color: var(--color-surface);
+      box-sizing: border-box;
+    }
+
+    .ui-step-strip-button {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .ui-step-strip-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: var(--type-caption);
+      color: var(--color-text-muted);
+    }
+
+    .ui-step-strip-action {
+      color: var(--color-action);
+      font-weight: 600;
+    }
+
+    .ui-step-strip-bars {
+      display: flex;
+      gap: var(--space-1);
+      width: 100%;
+    }
+
+    .ui-step-strip-bar {
+      flex: 1 1 0;
+      height: 6px;
+      border-radius: 3px;
+      background-color: var(--color-border);
+    }
+
+    .ui-step-strip-bar.is-active {
+      background-color: var(--color-accent);
+    }
+
+    .ui-step-strip-bar.is-complete {
+      background-color: var(--color-correct);
+    }
+
+    /* Mobile Article Content */
+    .phone-lesson-article {
+      flex-grow: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: var(--space-3);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      box-sizing: border-box;
+      scrollbar-width: none;
+    }
+
+    .phone-lesson-article::-webkit-scrollbar {
+      display: none;
+    }
+
+    .phone-tools-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .phone-tool-btn {
+      min-width: 0;
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface-raised);
+      color: var(--color-text-secondary);
+      font-size: var(--type-caption);
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .phone-tool-btn.is-active {
+      background-color: var(--color-action-subtle);
+      color: var(--color-action);
+      font-weight: 600;
+    }
+
+    .phone-lesson-footer {
+      flex-shrink: 0;
+      height: 60px;
+      box-sizing: border-box;
+      padding: 0 var(--space-3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      border-top: var(--border-weight) solid var(--color-border);
+      background-color: var(--color-surface);
+    }
+
+    .phone-btn-back {
+      height: 44px;
+      padding: 0 var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: var(--type-small);
+      text-decoration: none;
+    }
+
+    .phone-btn-back.is-disabled {
+      color: var(--color-disabled);
+      cursor: default;
+    }
+
+    .phone-btn-continue {
+      height: 44px;
+      padding: 0 var(--space-5);
+      display: inline-flex;
+      align-items: center;
+      border: 0;
+      border-radius: var(--radius-control);
+      background-color: var(--color-action);
+      color: var(--color-on-action);
+      font-size: var(--type-small);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Fixed Dual Edge Tabs on Phone */
+    .phone-edge-tab {
+      position: fixed;
+      right: 0;
+      width: 28px;
+      z-index: var(--layer-edge-tabs);
+      padding: 0;
+      border: var(--border-weight) solid var(--color-border);
+      border-right: 0;
+      border-radius: var(--radius-control) 0 0 var(--radius-control);
+      box-shadow: -3px 0 8px var(--color-dim-overlay);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-1);
+      cursor: pointer;
+    }
+
+    .phone-edge-tab span {
+      display: block;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: var(--type-caption);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .phone-edge-tab--notes {
+      bottom: 298px;
+      height: 104px;
+      background-color: var(--color-edge-notes);
+      color: var(--color-surface-raised);
+    }
+
+    .phone-edge-tab--theologian {
+      bottom: 168px;
+      height: 118px;
+      background-color: var(--color-edge-theologian);
+      color: var(--color-surface-sunken);
+    }
+  }
+}

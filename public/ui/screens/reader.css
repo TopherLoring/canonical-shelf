@@ -1,0 +1,908 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer screens {
+  /* ==========================================================================
+     Bible Reader Screen Track (/bible — P4 / R1)
+     Desktop 3-column layout & Phone framed card container
+     ========================================================================== */
+
+  .reader-screen,
+  .ui-reader-screen {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 376px;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: clip;
+  }
+
+  /* --------------------------------------------------------------------------
+     1. Left Study Tools Side Rail (220px)
+     -------------------------------------------------------------------------- */
+  .ui-reader-rail {
+    padding: var(--space-4) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+    align-self: start;
+    position: sticky;
+    top: var(--space-4);
+  }
+
+  .ui-reader-rail-section-label {
+    padding: 0 var(--space-3) var(--space-2);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .ui-reader-rail-divider {
+    margin: var(--space-3) var(--space-3) var(--space-2);
+    padding-top: var(--space-3);
+    border-top: var(--border-weight) solid var(--color-border);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .ui-reader-rail-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 42px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-control);
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing), color var(--motion-fast) var(--motion-easing);
+    box-sizing: border-box;
+  }
+
+  .ui-reader-rail-item:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .ui-reader-rail-item.is-active,
+  .ui-reader-rail-item[aria-current="page"],
+  .ui-reader-rail-item[aria-current="true"] {
+    font-weight: 600;
+    color: var(--color-action);
+    background-color: color-mix(in srgb, var(--color-action) 12%, var(--color-surface));
+  }
+
+  .ui-reader-rail-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: inherit;
+  }
+
+  .ui-reader-rail-item-label {
+    flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ui-reader-rail-item-badge {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     2. Middle Passage Column (minmax(0, 1fr))
+     -------------------------------------------------------------------------- */
+  .ui-reader-passage {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* 64px Passage Header Toolbar */
+  .ui-reader-toolbar {
+    height: 64px;
+    box-sizing: border-box;
+    padding: 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    border-bottom: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface);
+    flex-shrink: 0;
+  }
+
+  .ui-reader-picker-btn {
+    height: 40px;
+    padding: 0 var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-raised);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-picker-btn:hover {
+    background-color: var(--color-action-subtle);
+  }
+
+  .ui-reader-nav-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-raised);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing), color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-nav-btn:hover:not(:disabled) {
+    background-color: var(--color-action-subtle);
+  }
+
+  .ui-reader-nav-btn:disabled {
+    color: var(--color-text-muted);
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  .ui-reader-toolbar-meta {
+    flex-grow: 1;
+    padding-left: var(--space-1);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ui-reader-tool-btn {
+    height: 40px;
+    padding: 0 var(--space-3);
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--type-small);
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing), color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-tool-btn:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .ui-reader-tool-btn--text-size {
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 17px;
+  }
+
+  /* Reading Article and Typography */
+  .ui-reader-article {
+    padding: var(--space-6) var(--space-7);
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background-color: var(--color-surface);
+  }
+
+  .ui-reader-prose-container {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-sizing: border-box;
+  }
+
+  .ui-reader-title-banner {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .ui-reader-group-bar {
+    flex: 0 0 6px;
+    width: 6px;
+    border-radius: var(--radius-chip);
+    background-color: var(--bible-law);
+  }
+
+  .ui-reader-group-bar[data-group="law"] { background-color: var(--bible-law); }
+  .ui-reader-group-bar[data-group="othist"] { background-color: var(--bible-othist); }
+  .ui-reader-group-bar[data-group="wisdom"] { background-color: var(--bible-wisdom); }
+  .ui-reader-group-bar[data-group="major"] { background-color: var(--bible-major); }
+  .ui-reader-group-bar[data-group="minor"] { background-color: var(--bible-minor); }
+  .ui-reader-group-bar[data-group="gospel"] { background-color: var(--bible-gospel); }
+  .ui-reader-group-bar[data-group="paul"] { background-color: var(--bible-paul); }
+  .ui-reader-group-bar[data-group="general"] { background-color: var(--bible-general); }
+  .ui-reader-group-bar[data-group="apoc"] { background-color: var(--bible-apoc); }
+
+  .ui-reader-title-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ui-reader-group-name {
+    font-size: var(--type-small);
+    font-weight: 600;
+    color: var(--bible-law);
+  }
+
+  .ui-reader-group-name[data-group="law"] { color: var(--bible-law); }
+  .ui-reader-group-name[data-group="othist"] { color: var(--bible-othist); }
+  .ui-reader-group-name[data-group="wisdom"] { color: var(--bible-wisdom); }
+  .ui-reader-group-name[data-group="major"] { color: var(--bible-major); }
+  .ui-reader-group-name[data-group="minor"] { color: var(--bible-minor); }
+  .ui-reader-group-name[data-group="gospel"] { color: var(--bible-gospel); }
+  .ui-reader-group-name[data-group="paul"] { color: var(--bible-paul); }
+  .ui-reader-group-name[data-group="general"] { color: var(--bible-general); }
+  .ui-reader-group-name[data-group="apoc"] { color: var(--bible-apoc); }
+
+  .ui-reader-book-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--color-text);
+  }
+
+  .ui-reader-translation-subtitle {
+    font-size: var(--type-small);
+    color: var(--color-text-muted);
+  }
+
+  .ui-reader-section-heading {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .ui-reader-prose {
+    margin: 0;
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 19px;
+    line-height: var(--leading-reading, 1.85);
+    color: var(--color-text);
+    position: relative;
+  }
+
+  /* Text size modifier classes */
+  .ui-reader-prose[data-text-size="sm"] { font-size: 17px; line-height: 1.75; }
+  .ui-reader-prose[data-text-size="md"] { font-size: 19px; line-height: 1.85; }
+  .ui-reader-prose[data-text-size="lg"] { font-size: 22px; line-height: 1.95; }
+
+  /* Verse Spans & Highlights */
+  .ui-reader-verse {
+    position: relative;
+    padding: 2px 0;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-verse:hover {
+    background-color: color-mix(in srgb, var(--color-action) 6%, transparent);
+  }
+
+  .ui-reader-verse.is-selected,
+  .ui-reader-verse.v5-active,
+  .reader.scripture .verses p.v5-active {
+    border-radius: var(--radius-small);
+    box-shadow: 0 0 0 2px var(--color-selection);
+    text-decoration: underline dotted var(--color-note-marker);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    background-color: color-mix(in srgb, var(--color-selection) 25%, transparent);
+  }
+
+  .ui-reader-verse sup,
+  .ui-reader-verse .ui-verse-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-right: 3px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .ui-reader-verse.is-selected sup,
+  .ui-reader-verse.v5-active sup {
+    color: var(--color-action);
+  }
+
+  .ui-reader-verse mark {
+    padding: 1px 0;
+    border-radius: 3px;
+    background-color: var(--color-highlight-yellow);
+    color: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Note icon indicator */
+  .ui-reader-has-note-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: var(--space-1);
+    vertical-align: -1px;
+    color: var(--color-note-marker);
+  }
+
+  /* Floating Toolbar Anchor */
+  .ui-reader-toolbar-anchor {
+    position: relative;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+  }
+
+  .ui-reader-floating-toolbar {
+    position: absolute;
+    bottom: var(--space-2);
+    left: 0;
+    z-index: var(--layer-popups);
+    white-space: nowrap;
+  }
+
+  /* --------------------------------------------------------------------------
+     3. Right Notes & Cross-Reference Aside (376px)
+     -------------------------------------------------------------------------- */
+  .ui-reader-aside,
+  .library-reader-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-sizing: border-box;
+    min-height: 0;
+  }
+
+  .ui-reader-aside-card {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    box-sizing: border-box;
+  }
+
+  .ui-reader-notes-card {
+    flex: 0 0 auto;
+    min-height: 268px;
+    border-color: color-mix(in srgb, var(--color-accent) 24%, var(--color-border));
+  }
+
+  .ui-reader-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .ui-reader-card-title {
+    margin: 0;
+    font-family: var(--font-display, Newsreader, Georgia, serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .ui-reader-collapse-btn {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-collapse-btn:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .ui-reader-note-quote {
+    margin: 0;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+    background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+    font-size: 15px;
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+
+  .ui-reader-note-textarea {
+    flex-grow: 1;
+    min-height: 72px;
+    box-sizing: border-box;
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    font-family: inherit;
+    font-size: 15px;
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-surface-raised);
+    resize: none;
+    width: 100%;
+  }
+
+  .ui-reader-note-textarea:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+  }
+
+  .ui-reader-note-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .ui-reader-note-status {
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+
+  .ui-reader-save-note-btn {
+    height: 36px;
+    padding: 0 var(--space-4);
+    border: 0;
+    border-radius: var(--radius-control);
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-save-note-btn:hover {
+    background-color: var(--color-action-hover);
+  }
+
+  /* Cross-references card */
+  .ui-reader-xref-card {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .ui-reader-xref-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    overflow-y: auto;
+  }
+
+  .ui-reader-xref-item {
+    border-radius: var(--radius-control);
+    background-color: var(--color-surface-sunken);
+    overflow: hidden;
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  .ui-reader-xref-bar {
+    flex: 0 0 6px;
+    width: 6px;
+    background-color: var(--bible-major);
+  }
+
+  .ui-reader-xref-content {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ui-reader-xref-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  }
+
+  .ui-reader-xref-link,
+  .xref-link {
+    flex-grow: 1;
+    padding: 6px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-action);
+    text-decoration: none;
+  }
+
+  .ui-reader-xref-link:hover,
+  .xref-link:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .ui-reader-xref-text {
+    margin: 0;
+    padding: 0 var(--space-3) var(--space-3) calc(var(--space-4) + 2px);
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  /* Reading desk details container for backward compatibility */
+  .library-reader-panel details.reader-crossrefs summary {
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--color-action);
+  }
+
+  /* --------------------------------------------------------------------------
+     4. Modals and Drawers (Book Selector & Book Profile)
+     -------------------------------------------------------------------------- */
+  .ui-reader-scrim {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-dim-overlay);
+    z-index: var(--layer-dim-overlay);
+    backdrop-filter: blur(2px);
+  }
+
+  .ui-reader-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(560px, 100vw);
+    background-color: var(--color-surface);
+    border-left: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-overlay);
+    z-index: var(--layer-theologian);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .ui-reader-drawer-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .ui-reader-drawer-close {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-drawer-close:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .ui-reader-chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .ui-reader-chapter-cell {
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-control);
+    border: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface-raised);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color var(--motion-fast) var(--motion-easing), border-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-reader-chapter-cell:hover {
+    background-color: var(--color-action-subtle);
+    border-color: var(--color-action);
+  }
+
+  .ui-reader-chapter-cell.is-current {
+    background-color: var(--color-action);
+    color: var(--color-on-action);
+    border-color: var(--color-action);
+  }
+
+  /* --------------------------------------------------------------------------
+     5. Phone Layout (Viewport <= 640px / 390px Mobile Viewport)
+     Framed card container (10px margin, 16px radius), strict 0px overflow
+     -------------------------------------------------------------------------- */
+  @media (max-width: 640px) {
+    .reader-screen,
+    .ui-reader-screen {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 20px);
+      max-width: 390px;
+      margin: 10px auto;
+      padding: 0;
+      gap: 0;
+      border-radius: var(--radius-frame);
+      background-color: var(--color-surface);
+      border: var(--border-weight) solid var(--color-border);
+      box-shadow: var(--shadow-frame);
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* Hide desktop-only rail and desktop aside in default stream */
+    .ui-reader-rail {
+      display: none;
+    }
+
+    .ui-reader-aside {
+      display: none;
+    }
+
+    /* Passage card container inside phone frame */
+    .ui-reader-passage {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Phone Header Bar */
+    .ui-reader-phone-header {
+      padding: var(--space-4) var(--space-4) var(--space-2);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .ui-reader-phone-header-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .ui-reader-phone-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--bible-law);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ui-reader-phone-book-btn {
+      align-self: flex-start;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-text);
+      font-family: var(--font-display, Newsreader, Georgia, serif);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.1;
+      cursor: pointer;
+    }
+
+    .ui-reader-phone-opt-btn {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface-raised);
+      color: var(--color-text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Phone 3x2 / 6-col Study Links Grid */
+    .ui-reader-phone-study-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 5px;
+      padding: 0 var(--space-4) var(--space-3);
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .ui-reader-phone-study-item {
+      min-width: 0;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface-raised);
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background-color var(--motion-fast) var(--motion-easing);
+    }
+
+    .ui-reader-phone-study-item:hover {
+      background-color: var(--color-action-subtle);
+      color: var(--color-text);
+    }
+
+    /* Scripture Stream on Phone */
+    .ui-reader-article {
+      padding: var(--space-2) var(--space-4) var(--space-5);
+    }
+
+    .ui-reader-prose {
+      font-size: 18px;
+      line-height: 1.8;
+      padding-right: var(--space-3);
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Footnote badges inline */
+    .ui-reader-footnote-badge,
+    .ui-footnote-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 3px;
+      margin: 0 6px 0 2px;
+      border: 0;
+      border-radius: 4px;
+      background-color: color-mix(in srgb, var(--color-accent) 15%, var(--color-surface));
+      vertical-align: 6px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-accent);
+      cursor: pointer;
+    }
+
+    /* Dual Right-Edge Tabs (Fixed Coordinate Invariants) */
+    .ui-reader-edge-tab--notes {
+      position: fixed;
+      right: 0;
+      bottom: 298px;
+      width: 28px;
+      height: 104px;
+      z-index: var(--layer-edge-tabs);
+      padding: 0;
+      border: var(--border-weight) solid color-mix(in srgb, var(--color-edge-notes) 70%, var(--color-border));
+      border-right: 0;
+      border-radius: 12px 0 0 12px;
+      background-color: var(--color-edge-notes);
+      color: var(--color-on-accent);
+      box-shadow: -3px 0 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .ui-reader-edge-tab--theologian {
+      position: fixed;
+      right: 0;
+      bottom: 168px;
+      width: 28px;
+      height: 118px;
+      z-index: var(--layer-edge-tabs);
+      padding: 0;
+      border: var(--border-weight) solid color-mix(in srgb, var(--color-edge-theologian) 70%, var(--color-border));
+      border-right: 0;
+      border-radius: 12px 0 0 12px;
+      background-color: var(--color-edge-theologian);
+      color: var(--color-on-action);
+      box-shadow: -3px 0 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .ui-reader-edge-tab-label {
+      display: block;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+}

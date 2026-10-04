@@ -1,0 +1,525 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer screens {
+  /* ==========================================================================
+     Shelf Home Screen Track (/home)
+     ========================================================================== */
+
+  .shelf-home {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 960px) {
+    .shelf-home {
+      grid-template-columns: minmax(0, 1fr);
+      padding: var(--space-3) var(--space-2);
+      gap: var(--space-4);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Header: Two-line v1 title with introductory copy beside it
+     -------------------------------------------------------------------------- */
+  .shelf-home-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+
+  @media (max-width: 680px) {
+    .shelf-home-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+  }
+
+  .shelf-home-title {
+    margin: 0;
+    flex-shrink: 0;
+    font-family: var(--font-display, Cambria, Georgia, serif);
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .shelf-home-title em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .shelf-home-intro {
+    margin: 0;
+    max-width: 480px;
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 16px;
+    line-height: var(--leading-reading, 1.6);
+    color: var(--color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Main Bookshelf Section (2-tier dark walnut planks)
+     -------------------------------------------------------------------------- */
+  .shelf-home-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .shelf-bookshelf {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-1) 0 0;
+  }
+
+  .shelf-tier {
+    position: relative;
+    margin-bottom: var(--space-5);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Books row above plank */
+  .shelf-books-row {
+    height: 140px;
+    box-sizing: border-box;
+    padding: 0 var(--space-3);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Iron bookends (70px height) */
+  .shelf-bookend {
+    flex: 0 0 7px;
+    height: 70px;
+    margin: 0 var(--space-1);
+    border-radius: var(--radius-chip) var(--radius-chip) 0 0;
+    background: linear-gradient(90deg, rgb(30, 30, 34) 0%, rgb(85, 85, 94) 50%, rgb(30, 30, 34) 100%);
+    box-shadow: 0 0 0 1px rgb(18, 18, 20), 2px 0 4px rgba(0, 0, 0, 0.2);
+    align-self: flex-end;
+  }
+
+  /* Shelf tracks holding books */
+  .shelf-track {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .shelf-track--ot {
+    flex: 1 1 0%;
+    width: 100%;
+  }
+
+  .shelf-track--nt {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+
+  /* Individual book spine button/link */
+  .shelf-book {
+    position: relative;
+    display: block;
+    height: var(--book-height, 110px);
+    flex: var(--book-weight, 1) 1 0px;
+    min-width: 3px;
+    max-width: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-chip) var(--radius-chip) 2px 2px;
+    cursor: pointer;
+    background: var(--book-spine-bg, var(--bible-general));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 1px 0 0 rgba(20, 27, 45, 0.2);
+    text-decoration: none;
+    transition: transform var(--motion-fast) var(--motion-easing), box-shadow var(--motion-fast) var(--motion-easing);
+  }
+
+  .shelf-book:hover,
+  .shelf-book:focus-visible {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 18px rgba(20, 27, 45, 0.3), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-action);
+    z-index: var(--layer-popups);
+    outline: none;
+  }
+
+  .shelf-book.is-selected {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 18px rgba(20, 27, 45, 0.3), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-action);
+  }
+
+  /* Revelation leaning 12° on Jude */
+  .shelf-book-wrap--lean {
+    position: relative;
+    flex: var(--book-weight, 1) 1 0px;
+    min-width: 3px;
+    max-width: 44px;
+    transform-origin: 0% 100%;
+    transform: rotate(-12deg);
+    margin-left: 24px;
+  }
+
+  .shelf-book-wrap--lean .shelf-book {
+    width: 100%;
+  }
+
+  /* Spine ornamentation: ribs and gilt bands */
+  .shelf-book-cap-top {
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    right: 2px;
+    height: 5px;
+    border-top: 1px solid rgba(217, 195, 138, 0.8);
+    border-bottom: 1px solid rgba(217, 195, 138, 0.8);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .shelf-book-cap-bottom {
+    position: absolute;
+    bottom: 7px;
+    left: 2px;
+    right: 2px;
+    height: 5px;
+    border-top: 1px solid rgba(217, 195, 138, 0.8);
+    border-bottom: 1px solid rgba(217, 195, 138, 0.8);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .shelf-book-rib-1 {
+    position: absolute;
+    top: 26%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-chip);
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+
+  .shelf-book-rib-2 {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-chip);
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+
+  /* Tooltip: visible ONLY on hover/focus */
+  .shelf-book-tooltip,
+  .shelf-book [data-tooltip] {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    border-radius: var(--radius-control);
+    background: var(--color-text);
+    color: var(--color-surface);
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--shadow-overlay);
+    z-index: var(--layer-popups);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--motion-fast) var(--motion-easing), visibility var(--motion-fast) var(--motion-easing);
+  }
+
+  .shelf-book:hover .shelf-book-tooltip,
+  .shelf-book:focus-visible .shelf-book-tooltip,
+  .shelf-book:hover [data-tooltip],
+  .shelf-book:focus-visible [data-tooltip] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 2-tier Dark Walnut Planks with visible grain */
+  .shelf-plank {
+    position: relative;
+    height: 18px;
+    margin: 0 0 var(--space-4);
+    border-radius: var(--radius-chip);
+    background:
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 37px, rgba(255, 255, 255, 0.06) 38px, rgba(255, 255, 255, 0) 40px, rgba(0, 0, 0, 0.08) 71px, rgba(255, 255, 255, 0) 73px, rgba(255, 255, 255, 0) 113px),
+      repeating-linear-gradient(178deg, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.04) 2px, rgba(0, 0, 0, 0.07) 4px, rgba(255, 255, 255, 0) 6px),
+      linear-gradient(180deg, rgb(107, 70, 48) 0%, rgb(85, 54, 33) 55%, rgb(62, 38, 23) 100%);
+    border: 1px solid rgb(46, 28, 17);
+    box-shadow: inset 0 1px 0 rgba(138, 98, 70, 0.8), 0 10px 14px rgba(20, 27, 45, 0.22), 0 2px 3px rgba(20, 27, 45, 0.2);
+  }
+
+  /* Two 10px walnut support blocks per shelf at 8% in */
+  .shelf-support-block {
+    position: absolute;
+    top: 100%;
+    width: 12px;
+    height: 10px;
+    border-radius: 0 0 var(--radius-chip) var(--radius-chip);
+    background: linear-gradient(90deg, rgb(62, 38, 23), rgb(107, 70, 48));
+    box-shadow: 0 4px 6px rgba(20, 27, 45, 0.15);
+  }
+
+  .shelf-support-block--left {
+    left: 8%;
+  }
+
+  .shelf-support-block--right {
+    right: 8%;
+  }
+
+  .shelf-plaque {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1px 12px;
+    border-radius: var(--radius-chip);
+    background: rgb(241, 230, 212);
+    color: rgb(62, 38, 23);
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+  }
+
+  /* Nine Canon Categories Legend */
+  .shelf-legend {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .shelf-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .shelf-legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-chip);
+  }
+
+  /* Context Continuation Cards (2-column grid) */
+  .shelf-context-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 680px) {
+    .shelf-context-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .shelf-context-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-raised);
+    border: var(--border-weight, 1px) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform var(--motion-fast) var(--motion-easing), box-shadow var(--motion-fast) var(--motion-easing);
+  }
+
+  .shelf-context-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-frame);
+  }
+
+  .shelf-context-eyebrow {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .shelf-context-title {
+    font-family: var(--font-display, Cambria, Georgia, serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .shelf-context-cta {
+    font-size: 14px;
+    color: var(--color-action);
+    font-weight: 600;
+    margin-top: var(--space-1);
+  }
+
+  /* --------------------------------------------------------------------------
+     Right Aside: Selected Book Details (340px)
+     -------------------------------------------------------------------------- */
+  .shelf-book-aside {
+    box-sizing: border-box;
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-surface-sunken);
+    border: var(--border-weight, 1px) solid var(--color-border);
+    width: 100%;
+  }
+
+  .shelf-aside-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .shelf-aside-group-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    height: 22px;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius-chip);
+    background: color-mix(in srgb, var(--chip-color, var(--color-action)) 12%, var(--color-surface));
+    color: var(--color-text);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .shelf-aside-group-chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--chip-color, var(--color-action));
+  }
+
+  .shelf-aside-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .shelf-aside-title {
+    margin: 0;
+    font-family: var(--font-display, Cambria, Georgia, serif);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--color-text);
+  }
+
+  .shelf-aside-subtitle {
+    font-family: var(--font-display, Cambria, Georgia, serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  .shelf-aside-synopsis {
+    margin: 0;
+    font-family: var(--font-reading, Literata, Georgia, serif);
+    font-size: 15px;
+    line-height: var(--leading-reading, 1.6);
+    color: var(--color-text);
+  }
+
+  .shelf-aside-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  .shelf-aside-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    border-radius: var(--radius-control);
+    background: var(--color-action);
+    color: var(--color-on-action);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .shelf-aside-cta:hover {
+    background: var(--color-action-hover);
+  }
+
+  .shelf-aside-dl {
+    margin: var(--space-2) 0 0;
+    padding-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-top: var(--border-weight, 1px) solid var(--color-border);
+  }
+
+  .shelf-aside-dl dt {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .shelf-aside-dl dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--color-text);
+  }
+
+  .shelf-aside-people-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .shelf-aside-person-tag {
+    padding: 3px var(--space-2);
+    border-radius: var(--radius-chip);
+    background: var(--color-surface-raised);
+    border: var(--border-weight, 1px) solid var(--color-border);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+}
