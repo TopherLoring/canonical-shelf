@@ -50,6 +50,11 @@
     height: 118px;
   }
 
+  :root[data-mode="dark"] .ui-edge-tab,
+  [data-mode="dark"] .ui-edge-tab {
+    color: var(--color-text);
+  }
+
   /* Phone positioning */
   @media (max-width: 640px) {
     .ui-edge-tab--notes {

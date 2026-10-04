@@ -1,11 +1,56 @@
 import { test, expect } from '@playwright/test';
 
+// WCAG relative luminance and contrast calculation
+function parseRgb(colorStr) {
+  if (!colorStr) return null;
+  const match = colorStr.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (match) {
+    return [Number(match[1]), Number(match[2]), Number(match[3])];
+  }
+  const colorMatch = colorStr.match(/color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/);
+  if (colorMatch) {
+    return [
+      Math.round(Number(colorMatch[1]) * 255),
+      Math.round(Number(colorMatch[2]) * 255),
+      Math.round(Number(colorMatch[3]) * 255)
+    ];
+  }
+  const hex = colorStr.trim();
+  if (hex.startsWith('#')) {
+    const raw = hex.slice(1);
+    if (raw.length === 3 || raw.length === 4) {
+      return [parseInt(raw[0] + raw[0], 16), parseInt(raw[1] + raw[1], 16), parseInt(raw[2] + raw[2], 16)];
+    }
+    if (raw.length === 6 || raw.length === 8) {
+      return [parseInt(raw.slice(0, 2), 16), parseInt(raw.slice(2, 4), 16), parseInt(raw.slice(4, 6), 16)];
+    }
+  }
+  return null;
+}
+
+function relativeLuminance([r, g, b]) {
+  const srgb = [r / 255, g / 255, b / 255];
+  const linear = srgb.map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+}
+
+function contrastRatio(fgStr, bgStr) {
+  const fgRgb = parseRgb(fgStr);
+  const bgRgb = parseRgb(bgStr);
+  if (!fgRgb || !bgRgb) return null;
+  const l1 = relativeLuminance(fgRgb);
+  const l2 = relativeLuminance(bgRgb);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 test.describe('Phase 3: Shared UI Component Library & Lab Harness', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/ui/lab.html');
   });
 
-  test('Component Lab loads successfully with all component sections', async ({ page }) => {
+  test('Component Lab loads successfully with all 15 component sections', async ({ page }) => {
     await expect(page.locator('h1.lab-title')).toHaveText('Component Lab');
 
     const expectedSections = [
@@ -18,15 +63,40 @@ test.describe('Phase 3: Shared UI Component Library & Lab Harness', () => {
       'progress',
       'steps',
       'verse-text',
+      'verse-actions',
       'footnote',
+      'notes-panel',
       'lesson-window',
-      'bookshelf'
+      'bookshelf',
+      'game-tile'
     ];
 
     for (const secId of expectedSections) {
       const section = page.locator(`section#${secId}`);
       await expect(section, `Section #${secId} should exist`).toBeVisible();
     }
+  });
+
+  test('Component Lab navigation anchors link to valid component sections', async ({ page }) => {
+    const navLinks = page.locator('.lab-nav a');
+    const count = await navLinks.count();
+    expect(count).toBe(15);
+
+    for (let i = 0; i < count; i++) {
+      const link = navLinks.nth(i);
+      const href = await link.getAttribute('href');
+      expect(href).toMatch(/^#[a-z-]+$/);
+      const targetSec = page.locator(`section${href}`);
+      await expect(targetSec, `Anchor ${href} must correspond to a section`).toBeAttached();
+    }
+  });
+
+  test('Routes /ui/lab and /ui/lab/ resolve to the Component Lab harness', async ({ page }) => {
+    await page.goto('/ui/lab');
+    await expect(page.locator('h1.lab-title')).toHaveText('Component Lab');
+
+    await page.goto('/ui/lab/');
+    await expect(page.locator('h1.lab-title')).toHaveText('Component Lab');
   });
 
   test('EdgeTab renders both Theologian and My Notes with correct tokens', async ({ page }) => {
@@ -48,6 +118,19 @@ test.describe('Phase 3: Shared UI Component Library & Lab Harness', () => {
     // Verify chevron exists
     await expect(theoTab.locator('svg[data-chevron="1"]')).toBeVisible();
     await expect(notesTab.locator('svg[data-chevron="1"]')).toBeVisible();
+  });
+
+  test('ScriptureBlock renders quote on scriptureBed with group border', async ({ page }) => {
+    const block = page.locator('#scripture-block .ui-scripture-block').first();
+    await expect(block).toBeVisible();
+
+    // Verify scriptureBed background is active and not overridden by raw group color
+    const quote = block.locator('.ui-scripture-block-quote');
+    await expect(quote).toBeVisible();
+    await expect(quote).toContainText('Law of Moses, the Prophets, and the Psalms');
+
+    const contextLink = block.locator('.ui-scripture-block-context');
+    await expect(contextLink).toHaveText('Read in context');
   });
 
   test('ScriptureRef interactively expands and collapses verse text', async ({ page }) => {
@@ -134,39 +217,77 @@ test.describe('Phase 3: Shared UI Component Library & Lab Harness', () => {
         document.documentElement.setAttribute('data-mode', m);
       }, mode);
 
-      // Verify key text elements in Component Lab have valid colors and contrast
-      const checks = await page.evaluate(() => {
-        const results = [];
-        const selectors = [
-          'h1.lab-title',
-          '.ui-panel-title',
-          '.ui-rail-link.is-active',
-          '.ui-scripture-block-quote',
-          '.ui-scripture-ref-link',
-          '.ui-group-chip-label',
-          '.ui-progress-scope-title',
-          '.ui-step-list-header'
+      const items = await page.evaluate(() => {
+        function resolveToRgb(colorStr) {
+          if (!colorStr) return null;
+          const canvas = document.createElement('canvas');
+          canvas.width = 1;
+          canvas.height = 1;
+          const ctx = canvas.getContext('2d', { willReadFrequently: true });
+          ctx.clearRect(0, 0, 1, 1);
+          ctx.fillStyle = colorStr;
+          ctx.fillRect(0, 0, 1, 1);
+          const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+          return { r, g, b, a };
+        }
+
+        const specs = [
+          { sel: 'h1.lab-title', min: 3.0 },
+          { sel: '.ui-panel-title', min: 3.0 },
+          { sel: '.ui-rail-link.is-active', min: 4.5 },
+          { sel: '.ui-scripture-block-quote', min: 4.5 },
+          { sel: '.ui-scripture-ref-link', min: 4.5 },
+          { sel: '.ui-group-chip-label', min: 4.5 },
+          { sel: '.ui-progress-scope-title', min: 4.5 },
+          { sel: '.ui-step-list-header', min: 3.0 },
+          { sel: '.ui-edge-tab-label', min: 4.5 },
+          { sel: '.ui-game-tile-title', min: 3.0 },
+          { sel: '.ui-notes-title', min: 3.0 }
         ];
 
-        for (const sel of selectors) {
-          const el = document.querySelector(sel);
-          if (el) {
-            const cs = getComputedStyle(el);
-            results.push({
-              selector: sel,
-              color: cs.color,
-              hasColor: Boolean(cs.color && cs.color !== 'rgba(0, 0, 0, 0)')
-            });
+        return specs.map(spec => {
+          const el = document.querySelector(spec.sel);
+          if (!el) return { sel: spec.sel, missing: true };
+          const cs = getComputedStyle(el);
+          let cur = el;
+          let bgStr = '';
+          while (cur) {
+            const curBg = getComputedStyle(cur).backgroundColor;
+            if (curBg && curBg !== 'rgba(0, 0, 0, 0)' && !curBg.endsWith(', 0)')) {
+              bgStr = curBg;
+              break;
+            }
+            cur = cur.parentElement;
           }
-        }
-        return results;
+          if (!bgStr) {
+            bgStr = getComputedStyle(document.body).backgroundColor || 'rgb(237, 238, 240)';
+          }
+          const fgRgb = resolveToRgb(cs.color);
+          const bgRgb = resolveToRgb(bgStr);
+
+          return {
+            sel: spec.sel,
+            min: spec.min,
+            rawFg: cs.color,
+            rawBg: bgStr,
+            fg: fgRgb ? [fgRgb.r, fgRgb.g, fgRgb.b] : null,
+            bg: bgRgb ? [bgRgb.r, bgRgb.g, bgRgb.b] : null
+          };
+        });
       });
 
-      expect(checks.length).toBeGreaterThan(0);
-      for (const c of checks) {
-        expect(c.hasColor, `${c.selector} has visible text color in ${mode} mode`).toBeTruthy();
+      for (const item of items) {
+        expect(item.missing, `Element for ${item.sel} should exist`).toBeFalsy();
+        expect(item.fg, `Fg color for ${item.sel} (${item.rawFg}) must resolve`).toBeTruthy();
+        expect(item.bg, `Bg color for ${item.sel} (${item.rawBg}) must resolve`).toBeTruthy();
+        const l1 = relativeLuminance(item.fg);
+        const l2 = relativeLuminance(item.bg);
+        const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        expect(
+          ratio,
+          `Contrast ratio ${ratio.toFixed(2)} for ${item.sel} (${item.rawFg} on ${item.rawBg}) in ${mode} mode should meet WCAG AA (>= ${item.min})`
+        ).toBeGreaterThanOrEqual(item.min);
       }
     }
   });
 });
-

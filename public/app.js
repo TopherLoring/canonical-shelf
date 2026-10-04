@@ -46,6 +46,9 @@ async function load(){
   ensureCorpus();
 }
 await load();policy||=FALLBACK;
+if(location.pathname==='/ui/lab'||location.pathname==='/ui/lab/'){
+  location.replace('/ui/lab.html');
+}
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const roots=new Set(['home','course','bible','topics','practice','search','profile']);

@@ -17,52 +17,33 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* 9 Bible Group colors mapped to border-left */
-  .ui-scripture-block[data-group="law"],
-  .ui-scripture-header[data-group="law"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-law);
-    background-color: var(--bible-law);
-  }
-  .ui-scripture-block[data-group="othist"],
-  .ui-scripture-header[data-group="othist"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-othist);
-    background-color: var(--bible-othist);
-  }
-  .ui-scripture-block[data-group="wisdom"],
-  .ui-scripture-header[data-group="wisdom"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-wisdom);
-    background-color: var(--bible-wisdom);
-  }
-  .ui-scripture-block[data-group="major"],
-  .ui-scripture-header[data-group="major"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-major);
-    background-color: var(--bible-major);
-  }
-  .ui-scripture-block[data-group="minor"],
-  .ui-scripture-header[data-group="minor"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-minor);
-    background-color: var(--bible-minor);
-  }
-  .ui-scripture-block[data-group="gospel"],
-  .ui-scripture-header[data-group="gospel"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-gospel);
-    background-color: var(--bible-gospel);
-  }
-  .ui-scripture-block[data-group="paul"],
-  .ui-scripture-header[data-group="paul"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-paul);
-    background-color: var(--bible-paul);
-  }
-  .ui-scripture-block[data-group="general"],
-  .ui-scripture-header[data-group="general"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-general);
-    background-color: var(--bible-general);
-  }
-  .ui-scripture-block[data-group="apoc"],
-  .ui-scripture-header[data-group="apoc"] .ui-scripture-header-bar {
-    border-left-color: var(--bible-apoc);
-    background-color: var(--bible-apoc);
-  }
+  /* 9 Bible Group colors mapped to border-left (ScriptureBlock) and background-color (Header bar) */
+  .ui-scripture-block[data-group="law"] { border-left-color: var(--bible-law); }
+  .ui-scripture-header[data-group="law"] .ui-scripture-header-bar { background-color: var(--bible-law); }
+
+  .ui-scripture-block[data-group="othist"] { border-left-color: var(--bible-othist); }
+  .ui-scripture-header[data-group="othist"] .ui-scripture-header-bar { background-color: var(--bible-othist); }
+
+  .ui-scripture-block[data-group="wisdom"] { border-left-color: var(--bible-wisdom); }
+  .ui-scripture-header[data-group="wisdom"] .ui-scripture-header-bar { background-color: var(--bible-wisdom); }
+
+  .ui-scripture-block[data-group="major"] { border-left-color: var(--bible-major); }
+  .ui-scripture-header[data-group="major"] .ui-scripture-header-bar { background-color: var(--bible-major); }
+
+  .ui-scripture-block[data-group="minor"] { border-left-color: var(--bible-minor); }
+  .ui-scripture-header[data-group="minor"] .ui-scripture-header-bar { background-color: var(--bible-minor); }
+
+  .ui-scripture-block[data-group="gospel"] { border-left-color: var(--bible-gospel); }
+  .ui-scripture-header[data-group="gospel"] .ui-scripture-header-bar { background-color: var(--bible-gospel); }
+
+  .ui-scripture-block[data-group="paul"] { border-left-color: var(--bible-paul); }
+  .ui-scripture-header[data-group="paul"] .ui-scripture-header-bar { background-color: var(--bible-paul); }
+
+  .ui-scripture-block[data-group="general"] { border-left-color: var(--bible-general); }
+  .ui-scripture-header[data-group="general"] .ui-scripture-header-bar { background-color: var(--bible-general); }
+
+  .ui-scripture-block[data-group="apoc"] { border-left-color: var(--bible-apoc); }
+  .ui-scripture-header[data-group="apoc"] .ui-scripture-header-bar { background-color: var(--bible-apoc); }
 
   .ui-scripture-block-quote {
     margin: 0;
