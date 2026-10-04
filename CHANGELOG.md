@@ -10,6 +10,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Resolved "Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).": Approved: Reading the Bible Well: The Library and Its Story
 - Resolved "Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?": Checkpoint (picked by Claude at Chris's request)
 - Resolved "Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.": Approved by Chris; executing 1 slice per branch
+- The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision. (supersedes ui.naming.unit-check.checkpoint)
+- The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revelation, everywhere they are named (shelf, legend, chips, lessons). The ninth group is Revelation, not Prophecy, because 'Prophecy' would also cover the Prophets. 'Letters' is used in the group names; the term 'epistle' is taught in Module 1 where the groups are introduced.
+- The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target. (agent default)
 
 ### Added
 

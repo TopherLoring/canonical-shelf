@@ -197,6 +197,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
+| `ui.bible.phone.board` | undefined | Agent default | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
@@ -208,9 +209,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.naming` | undefined | Agent default | undefined |
+| `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
-| `ui.naming.unit-check` | undefined | Agent default | undefined |
+| `ui.naming.unit-check` | The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |

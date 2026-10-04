@@ -1023,6 +1023,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.phone.v1`
   Phone Bible reader: no bottom sheet. Book-level study links (Overview, Timeline, Themes, People, Places, Maps) sit as small buttons at the top of the reader under the book title; the title is the book/chapter picker. Verse-level extra content appears as footnotes marked with inline superscript letters; tapping a marker opens the footnote inline below the verse. Tapping a verse pops up Highlight and Note (no Ask). Notes and Theologian are tabs on the bottom edge that open upward, with clearance above the home indicator so text is never hidden.
 
+### `ui.bible.phone.board`
+
+- **Current** · 2026-10-04 · Agent default (Claude) · `ui.bible.phone.board.v1`
+  The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target.
+
 ### `ui.bible.rails`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
@@ -1097,6 +1102,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
 
+### `ui.naming.groups`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `ui.naming.groups.v1`
+  The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revelation, everywhere they are named (shelf, legend, chips, lessons). The ninth group is Revelation, not Prophecy, because 'Prophecy' would also cover the Prophets. 'Letters' is used in the group names; the term 'epistle' is taught in Module 1 where the groups are introduced.
+
 ### `ui.naming.levels`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.levels.v1`
@@ -1109,8 +1119,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.naming.unit-check`
 
-- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
-  The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.
+- **Current** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
+  The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.
+- **Previous** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
+  ~~The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.~~
   *Why:* Chris asked Claude to pick a name that fits
 
 ### `ui.nav.brand`
