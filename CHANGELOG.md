@@ -17,6 +17,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Added
 
 - Confirmed redesign mockups saved to docs/v7/mockups-2026-10-03 (10 screens plus canvas layout)
+- Redesign plan amendment (docs/v7/PLAN_IMPLEMENTATION_AMENDMENT_2026-10-04.md): recovery after the Antigravity run, P0-P3 rebased onto main, wiring seam step, parallel screen schedule
 
 ### Changed
 
