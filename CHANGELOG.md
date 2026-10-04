@@ -5,6 +5,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ## 2026-10-04
 
+### Decided
+
+- Resolved "Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.": Approved by Chris; executing 1 slice per branch
+
 ### Added
 
 - Confirmed redesign mockups saved to docs/v7/mockups-2026-10-03 (10 screens plus canvas layout)
