@@ -17,6 +17,19 @@ export const LABELS = Object.freeze({
   profile: 'Profile'
 });
 
+// Shelf group names (owner decision ui.naming.groups.v1). Keys are the stable group IDs.
+export const GROUP_NAMES = Object.freeze({
+  law: 'Law',
+  othist: 'History',
+  wisdom: 'Wisdom and Poetry',
+  major: 'Major Prophets',
+  minor: 'Minor Prophets',
+  gospel: 'Gospels and Acts',
+  paul: 'Paul’s Letters',
+  general: 'General Letters',
+  apoc: 'Revelation'
+});
+
 export const NAV_LABELS = Object.freeze({
   shelf: 'SHELF',
   learningPath: 'LEARNING PATH',
