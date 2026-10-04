@@ -38,7 +38,7 @@ await check('Application shell',async()=>{
 await check('Single-document SPA contract',async()=>{
   requireContract((shell.match(/<main\b/gi)||[]).length===1,'SPA shell must own exactly one main region');
   requireContract(!shell.includes('data-route-document='),'canonical shell must not contain generated route-document ownership');
-  for(const route of routes)requireContract(new RegExp(`href=["']/${route}(?:[?#["'])`,'i').test(shell)||route==='search',`shell cannot reach ${route}`);
+  for(const route of routes)requireContract(new RegExp(`href=["']/${route==='course'?'(?:course|path)':route}(?:[?#["'])`,'i').test(shell)||route==='search',`shell cannot reach ${route}`);
   for(const id of viewTemplates)requireContract(new RegExp(`id=["']${id}["']`,'i').test(shell),`missing DOM view template ${id}`);
   return 'one document shell + History API routes + native view templates';
 });
@@ -54,7 +54,7 @@ await check('Visual contract authority',async()=>{
 });
 
 await check('Home exploration template',async()=>{
-  for(const target of ['/course','/bible','/topics','/practice'])requireContract(new RegExp(`href=["']${target}["']`,'i').test(shell),`Home cannot reach ${target}`);
+  for(const target of ['/course','/bible','/topics','/practice'])requireContract(new RegExp(`href=["']${target==='/course'?'(?:/course|/path)':target}["']`,'i').test(shell),`Home cannot reach ${target}`);
   requireContract(/id=["']tpl-home-book["']/i.test(shell),'Home bookshelf must publish its reusable book template');
   requireContract(LIBRARY_BOOKS.length===66,'Home bookshelf data must expose the 66-book canon');
   return 'four primary destinations + canonical bookshelf template/data';

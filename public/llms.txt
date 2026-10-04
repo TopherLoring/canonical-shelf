@@ -9,10 +9,10 @@ Current scored curriculum: 4 modules, 44 units, 119 guided lessons, 119 mastery/
 ## Primary destinations
 
 - [Shelf](/home): Personalized learner dashboard for orientation, progress, recommendations, and resuming the next relevant activity.
-- [Pathway](/course): Four-module guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.
+- [Learning Path](/path): Four-module guided curriculum containing sequenced lessons, mastery activities, and scored learning experiences.
 - [Bible](/bible): Interactive 66-book Bible shelf for browsing books, reading biblical text, and accessing book-level historical, literary, and study context.
-- [Catalog](/topics): Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward module completion.
-- [Practice](/practice): Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.
+- [Study Topics](/topics): Curated theological and biblical reference material. Topics supplement the curriculum but do not count toward module completion.
+- [Review & Practice](/practice): Retrieval practice, review, and spaced reinforcement derived from learned material without creating a parallel curriculum.
 
 ## Canonical learning and editorial resources
 
