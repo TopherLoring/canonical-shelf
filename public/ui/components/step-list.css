@@ -1,0 +1,152 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* StepList: desktop lesson pacing list */
+  .ui-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-card);
+    border: var(--border-weight) solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-4) var(--space-3);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .ui-step-list-header {
+    padding: 0 var(--space-3) var(--space-2);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .ui-step-list-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ui-step-list-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-control);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-step-list-link:hover {
+    background-color: var(--color-action-subtle);
+    color: var(--color-text);
+  }
+
+  .ui-step-list-link.is-active,
+  .ui-step-list-link[aria-current="step"] {
+    background-color: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .ui-step-badge {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 2px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ui-step-list-link.is-active .ui-step-badge,
+  .ui-step-list-link[aria-current="step"] .ui-step-badge {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: 600;
+  }
+
+  .ui-step-list-link.is-complete .ui-step-badge {
+    background-color: color-mix(in srgb, var(--color-correct) 20%, var(--color-surface));
+    border-color: var(--color-correct);
+    color: var(--color-correct);
+  }
+
+  .ui-step-title {
+    flex-grow: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* StepStrip: phone lesson pacing strip */
+  .ui-step-strip {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ui-step-strip-button {
+    width: 100%;
+    padding: 10px 14px 8px;
+    border: 0;
+    border-bottom: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .ui-step-strip-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .ui-step-strip-action {
+    color: var(--color-action);
+    font-weight: 600;
+  }
+
+  .ui-step-strip-bars {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .ui-step-strip-bar {
+    flex: 1 1 0;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--color-border);
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-step-strip-bar.is-active {
+    background-color: var(--color-accent);
+  }
+
+  .ui-step-strip-bar.is-complete {
+    background-color: var(--color-correct);
+  }
+}
+
