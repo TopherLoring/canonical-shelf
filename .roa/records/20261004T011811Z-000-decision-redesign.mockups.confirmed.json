@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "redesign.mockups.confirmed",
+  "topic": "redesign.mockups",
+  "date": "2026-10-03",
+  "text": "The redesign mockup canvas (docs/v7/mockups-2026-10-03/) is the confirmed visual reference for slices 2a to 2e: Shelf home, Bible reader and lesson (desktop and phone), the docked Theologian (desktop) and centered Theologian (phone), Learning Path (path, module and unit on one page), Study Topics, and Review & Practice. Built pages follow these layouts in the Reading Room theme; other themes restyle the same layouts.",
+  "scope": "docs/v7/mockups-2026-10-03/",
+  "by": "Chris"
+}
