@@ -248,29 +248,32 @@ function buildShowcase() {
       </div>
     </div>`;
 
-  // 9. VerseText & 10. VerseActions
+  // 9. VerseText
   const versesData = [
     { verseNumber: 1, text: 'In the beginning God created the heavens and the earth.' },
     { verseNumber: 2, text: 'Now the earth was formless and void, and darkness was over the surface of the deep.', isSelected: true, hasNote: true, highlightColor: 'yellow' },
     { verseNumber: 3, text: 'And God said, “Let there be light,” and there was light.' }
   ];
   const verseTextHtml = `
-    <div class="lab-card">
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">Verse Text with Highlights &amp; Notes</h3>
       <div class="lab-card-preview">
         ${renderVersePassage({ verses: versesData })}
       </div>
-    </div>
-    <div class="lab-card">
+    </div>`;
+
+  // 10. VerseActions
+  const verseActionsHtml = `
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">Verse Actions Floating Toolbar</h3>
       <div class="lab-card-preview" style="align-items: center; justify-content: center; min-height: 80px;">
         ${renderVerseActions({ verseReference: 'Genesis 1:2' })}
       </div>
     </div>`;
 
-  // 11. Footnote & 12. NotesPanel
-  const footnoteAndNotesHtml = `
-    <div class="lab-card">
+  // 11. Footnote
+  const footnoteHtml = `
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">Footnote Badges &amp; Card</h3>
       <div class="lab-card-preview" style="gap: 16px;">
         <p style="margin: 0; font-family: var(--font-reading); font-size: 16px;">
@@ -279,12 +282,15 @@ function buildShowcase() {
         </p>
         ${renderFootnoteCard({ marker: 'a', text: 'Old Testament: The 39 books of Israel’s scriptures, written mostly in Hebrew.' })}
       </div>
-    </div>
-    <div class="lab-card">
+    </div>`;
+
+  // 12. NotesPanel
+  const notesPanelHtml = `
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">My Notes Panel</h3>
       <div class="lab-card-preview">
         ${renderNotesPanel({
-          target: '1:2',
+          target: 'Genesis 1:2',
           notes: ['What does “the deep” mean here? Bring this up on Sunday.']
         })}
       </div>
@@ -311,7 +317,7 @@ function buildShowcase() {
       </div>
     </div>`;
 
-  // 14. Bookshelf & 15. GameTile
+  // 14. Bookshelf
   const bookshelfSample = [
     {
       title: 'Law & History',
@@ -328,14 +334,17 @@ function buildShowcase() {
       ]
     }
   ];
-  const shelfAndTileHtml = `
-    <div class="lab-card">
+  const bookshelfHtml = `
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">Bookshelf Component</h3>
       <div class="lab-card-preview">
         ${renderBookshelf({ rows: bookshelfSample })}
       </div>
-    </div>
-    <div class="lab-card">
+    </div>`;
+
+  // 15. GameTile
+  const gameTileHtml = `
+    <div class="lab-card" style="grid-column: 1 / -1;">
       <h3 class="lab-card-title">Game Tile (Review &amp; Practice)</h3>
       <div class="lab-card-preview">
         ${renderGameTile({
@@ -356,10 +365,13 @@ function buildShowcase() {
     renderComponentSection({ id: 'group-chip', title: 'GroupChip', description: '8px square color swatch + 6px radius chip for the 9 Bible groups.', contentHtml: groupChipHtml }),
     renderComponentSection({ id: 'progress', title: 'ProgressBar & ProgressScope', description: 'Labelled progress indicators (Unit, Module, Path) with 3px radius.', contentHtml: progressHtml }),
     renderComponentSection({ id: 'steps', title: 'StepStrip & StepList', description: 'Desktop step list and phone step strip for lesson pacing.', contentHtml: stepsHtml }),
-    renderComponentSection({ id: 'verse-text', title: 'VerseText & VerseActions', description: 'Selectable verses, highlights, note markers, and floating action toolbar.', contentHtml: verseTextHtml }),
-    renderComponentSection({ id: 'footnote', title: 'Footnote & NotesPanel', description: 'Inline footnote badges and "My notes on..." container with textarea.', contentHtml: footnoteAndNotesHtml }),
+    renderComponentSection({ id: 'verse-text', title: 'VerseText', description: 'Selectable verses, word-level highlights, and note markers.', contentHtml: verseTextHtml }),
+    renderComponentSection({ id: 'verse-actions', title: 'VerseActions', description: 'Floating action toolbar for highlights, note creation, and copying.', contentHtml: verseActionsHtml }),
+    renderComponentSection({ id: 'footnote', title: 'Footnote', description: 'Inline footnote badges and floating popover card.', contentHtml: footnoteHtml }),
+    renderComponentSection({ id: 'notes-panel', title: 'NotesPanel', description: 'My Notes container with note list, editor textarea, and save button.', contentHtml: notesPanelHtml }),
     renderComponentSection({ id: 'lesson-window', title: 'LessonWindow', description: 'Breadcrumb title-bar, split pane, and lesson pacing controls.', contentHtml: lessonWindowHtml }),
-    renderComponentSection({ id: 'bookshelf', title: 'Bookshelf & GameTile', description: 'Canonical bookshelf with proportional books and Review & Practice game tiles.', contentHtml: shelfAndTileHtml })
+    renderComponentSection({ id: 'bookshelf', title: 'Bookshelf', description: 'Canonical bookshelf with proportional books and group colors.', contentHtml: bookshelfHtml }),
+    renderComponentSection({ id: 'game-tile', title: 'GameTile', description: 'Review & Practice activity tiles with icons and badge indicators.', contentHtml: gameTileHtml })
   ].join('');
 
   // Mount interactive handlers

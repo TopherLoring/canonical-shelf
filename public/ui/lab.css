@@ -230,5 +230,18 @@
     border: var(--border-weight) solid var(--color-border);
     overflow: hidden;
   }
+
+  .lab-stage-tab {
+    position: absolute;
+    right: 0;
+  }
+
+  .lab-stage-tab.ui-edge-tab--theologian {
+    bottom: 24px;
+  }
+
+  .lab-stage-tab.ui-edge-tab--notes {
+    bottom: 172px;
+  }
 }
 
