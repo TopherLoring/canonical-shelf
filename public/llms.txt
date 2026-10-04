@@ -400,7 +400,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     ## Module and unit structure
     
-    ### Module 1 — Hermeneutics & Canon: Through the Story
+    ### Module 1 — Reading the Bible Well: The Library and Its Story
     
     **Estimated active study:** 5.5–7.5 hours active study.
     
@@ -632,7 +632,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     Can an ancient collection copied, translated, and interpreted across centuries be read responsibly and trusted?
     
-    - **introduce:** Hermeneutics & Canon → What the Bible Is
+    - **introduce:** Reading the Bible Well → What the Bible Is
     - **ground:** Second Temple & Christ → How We Got the Bible
     - **investigate:** Second Temple & Christ → Text, Manuscripts and Transmission
     - **investigate:** Second Temple & Christ → Translation
@@ -705,7 +705,7 @@ Source: [/data/curriculum.md](/data/curriculum.md)
     
     How should Christians think about people of other religions, Jewish-Christian relations, and people who never encounter the Christian message?
     
-    - **introduce:** Hermeneutics & Canon → Christianity in One View
+    - **introduce:** Reading the Bible Well → Christianity in One View
     - **contextualize:** Second Temple & Christ → Jewish Life and Jewish Diversity
     - **encounter:** Second Temple & Christ → Paul and Gentile Inclusion
     - **investigate:** Synthesis & Practice → Difficult Texts and Questions
@@ -1404,8 +1404,8 @@ Source: [/data/catalog.json](/data/catalog.json)
         {
           "id": "module.canon",
           "sequence": 1,
-          "title": "Hermeneutics & Canon: Through the Story",
-          "shortTitle": "Hermeneutics & Canon",
+          "title": "Reading the Bible Well: The Library and Its Story",
+          "shortTitle": "Reading the Bible Well",
           "level": "core",
           "phaseLabel": "Start here",
           "achievement": "Module 1 Complete",

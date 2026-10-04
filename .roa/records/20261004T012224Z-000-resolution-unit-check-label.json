@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "unit-check-label",
+  "date": "2026-10-04",
+  "text": "Checkpoint (picked by Claude at Chris's request)",
+  "decision": "ui.naming.unit-check.checkpoint"
+}

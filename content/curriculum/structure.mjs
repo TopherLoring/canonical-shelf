@@ -8,7 +8,7 @@ const course=(config)=>({
 
 export const courses=[
   course({
-    id:'module.canon',sequence:1,title:'Hermeneutics & Canon: Through the Story',shortTitle:'Hermeneutics & Canon',
+    id:'module.canon',sequence:1,title:'Reading the Bible Well: The Library and Its Story',shortTitle:'Reading the Bible Well',
     level:'core',phaseLabel:'Start here',achievement:'Module 1 Complete',activeStudyMinutes:{min:330,max:450},
     scope:'The central Christian claim, the questions that worry new readers, the Bible as a library of different kinds of writing, and the story from creation to Abraham, with each reading skill taught the first time a passage needs it.',
     outcome:'State what Christianity claims at its center, find your way around the Bible, and read a passage by first recognizing what kind of writing it is and what it claims.',

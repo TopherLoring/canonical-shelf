@@ -111,6 +111,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Approval** · 2026-10-01 · Chris · `module1-outcomes-approved` · scope: content/pathway/outline.json goals and outcomes (drafted 2026-09-28)
   Approved the Module 1 goals and outcomes
 
+### `curriculum.module1.title`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `curriculum.module1.title.v2`
+  Module 1 is titled 'Reading the Bible Well: The Library and Its Story' (short title 'Reading the Bible Well'), replacing 'Hermeneutics & Canon: Through the Story'.
+
 ### `curriculum.objective-display`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `curriculum.objective-display.overview-only`
@@ -1102,6 +1107,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
   Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 
+### `ui.naming.unit-check`
+
+- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
+  The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.
+  *Why:* Chris asked Claude to pick a name that fits
+
 ### `ui.nav.brand`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
@@ -1164,6 +1175,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.final.2026-10-03`
   Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
 
+### `ui.shelf.intro`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.intro.current`
+  Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.
+
 ### `ui.shelf.lamp`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.lamp.v1`
@@ -1217,6 +1233,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 ## Resolved questions
 
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch
+- 2026-10-04: **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** → Checkpoint (picked by Claude at Chris's request) (decision `ui.naming.unit-check.checkpoint`)
+- 2026-10-04: **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** → Approved: Reading the Bible Well: The Library and Its Story (decision `curriculum.module1.title.v2`)
 - 2026-10-01: **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** → Approved by Chris 2026-10-01 (decision `module1-outcomes-approved`)
 - 2026-10-01: **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** → Approved by Chris 2026-10-01 (decision `curriculum-design-approved`)
 - 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)
