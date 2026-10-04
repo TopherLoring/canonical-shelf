@@ -1,0 +1,555 @@
+{
+  "schemaVersion": "1.2",
+  "project": "The Canonical Shelf — Structural Redesign Implementation",
+  "branch": "plan/structural-redesign-2026-10-03",
+  "status": "planned",
+  "objective": "Implement the structural redesign across the entire front end by building the design system described in the mockups (layered styles, complete theme contract roles, shared components), moving screens onto it, deleting legacy overrides, closing guards to zero, and expanding themes 2 through 8.",
+  "governance": {
+    "implementationPlan": "docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md",
+    "structuralPlan": "docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md",
+    "precedenceProtocol": "docs/v7/DECISION_PRECEDENCE.md",
+    "verificationContract": "docs/VERIFICATION_CONTRACT.md",
+    "visualReference": {
+      "path": "docs/v7/mockups-2026-10-03/",
+      "approval": "redesign.mockups.confirmed",
+      "artboards": 10,
+      "canvas": "docs/v7/mockups-2026-10-03/canvas.json"
+    }
+  },
+  "invariants": [
+    "Protestant 66-book canon; Berean Standard Bible is the default text",
+    "Assess understanding and reasoning, never personal theological assent; agreement with the Statement of Faith is never a condition of use",
+    "The curriculum states its published LGBTQ-affirming position openly while presenting other readings accurately; never claim neutrality",
+    "Stable learner and activity IDs are inherited; never renumber or rename them",
+    "Topics sit outside course completion",
+    "Single-document SPA: public/index.html is the only application document",
+    "The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output",
+    "Pastoral and crisis-adjacent content routes through the Theologian crisis policy",
+    "No streaks, public leaderboards, or peer comparison"
+  ],
+  "architecturalRules": [
+    "Build the design system the mockups describe, then move screens onto it",
+    "No override layers, no patching old markup to look new, no !important, no aliases",
+    "Colors appear only in theme.css; everything else uses role variables",
+    "Stacking uses --layer-* variables only (nav, edge-tabs, popups, dim-overlay, theologian)",
+    "Screen layer may not set colors, fonts, or radii",
+    "Old code is deleted once replacement passes, never left running underneath",
+    "Guard baseline strictly shrinks to zero; never grows",
+    "No user-facing content lost: all existing capabilities, explanations, notes, activities, and study tools are reorganized and modernized in presentation/layout, never cut or condensed"
+  ],
+  "openQuestionsAndBlockers": {
+    "redesign-implementation-approval": {
+      "record": ".roa/records/20261004T012123Z-000-question-redesign-implementation-approval.json",
+      "description": "Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.",
+      "blocks": "G.PLAN and all subsequent phases",
+      "status": "open"
+    },
+    "unit-check-label": {
+      "record": ".roa/records/20261003T095401Z-000-question-unit-check-label.json",
+      "description": "Learner-facing name for the per-unit scored activity (e.g. Unit Check vs Unit Challenge)",
+      "blocks": "P5.LESSON_PATH label text only; does not block Phases 0 through 4",
+      "defaultPlaceholder": "Unit check"
+    },
+    "module1-title": {
+      "record": ".roa/records/20261004T010350Z-000-question-module1-title.json",
+      "description": "Plain-language replacement for 'Hermeneutics & Canon: Through the Story' (proposed: Reading the Bible Well: The Library and Its Story)",
+      "blocks": "P5.LESSON_PATH Module 1 header/breadcrumb copy only; does not block Phases 0 through 4",
+      "defaultPlaceholder": "Module 1: Reading the Bible Well: The Library and Its Story"
+    },
+    "shelf-home-intro": {
+      "record": null,
+      "description": "Introductory copy positioned beside the two-line v1 title on Shelf home (drafted in Main.dc.html lines 41-42)",
+      "blocks": "P6.SHELF_HOME intro copy only; does not block Phases 0 through 5",
+      "defaultPlaceholder": "Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing."
+    },
+    "visual-direction": {
+      "record": ".roa/records/20260925T173926Z-000-question-visual-direction.json",
+      "description": "Final color roles, typography, and corner values for themes 2 through 8 in light and dark modes",
+      "blocks": "P10.THEMES_EXPANSION final tokens only; does not block Phases 0 through 9",
+      "defaultPlaceholder": "Reading Room clones for themes 2-8 during Phases 1-9"
+    }
+  },
+  "nodeTypes": [
+    "governance",
+    "harness",
+    "theme_contract",
+    "system_shell",
+    "components",
+    "feature_screen",
+    "theologian",
+    "cleanup_guard",
+    "theme_expansion",
+    "human_gate",
+    "release"
+  ],
+  "nodes": [
+    {
+      "id": "G.PLAN",
+      "phase": "pre",
+      "type": "governance",
+      "title": "Owner Approval of Implementation Plan Graph",
+      "status": "pending_owner_decision",
+      "dependsOn": [],
+      "inputs": [
+        "docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md",
+        "docs/v7/PLAN_STRUCTURAL_REDESIGN_2026-10-03.md",
+        "docs/v7/mockups-2026-10-03/README.md"
+      ],
+      "outputs": [
+        ".roa/records/*-approval-redesign.implementation.plan.json"
+      ],
+      "verificationGates": [
+        "node .roa-kit/roa.mjs verify"
+      ],
+      "humanGates": [
+        "Chris explicitly approves graph (redesign.implementation.plan)"
+      ],
+      "exitCriteria": "Approval record exists in .roa/records/ and .roa/state.json, resolving redesign-implementation-approval question.",
+      "blockers": [
+        "redesign-implementation-approval"
+      ]
+    },
+    {
+      "id": "P0.HARNESS",
+      "phase": "0",
+      "type": "harness",
+      "title": "Test Harness & Responsive Baseline Suite",
+      "status": "planned",
+      "dependsOn": [
+        "G.PLAN"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/canvas.json",
+        "tests/contracts/product-contract.spec.js"
+      ],
+      "outputs": [
+        "tests/redesign/layout-conformance.spec.js",
+        "tests/redesign/phone-overflow.spec.js",
+        "tests/redesign/nav-dock-position.spec.js",
+        "tests/redesign/contrast-audit.spec.js",
+        "tests/redesign/vocabulary-guard.spec.js",
+        "tests/redesign/snapshots/*"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/",
+        "bun run test:core",
+        "node .roa-kit/roa.mjs verify"
+      ],
+      "humanGates": [],
+      "exitCriteria": "Harness suite executes in bun run verify, accurately captures screenshot baselines, asserts phone non-overflow, nav dock invariance, and vocabulary rules without regressing core test suites.",
+      "blockers": []
+    },
+    {
+      "id": "P1.THEME_CONTRACT",
+      "phase": "1",
+      "type": "theme_contract",
+      "title": "Theme Contract v10 & Per-Theme Canon Groups",
+      "status": "planned",
+      "dependsOn": [
+        "P0.HARNESS"
+      ],
+      "inputs": [
+        ".roa/contracts/theme.json",
+        ".roa/values/theme.json",
+        "docs/v7/mockups-2026-10-03/Main.dc.html",
+        "docs/v7/mockups-2026-10-03/Reader.dc.html",
+        "docs/v7/mockups-2026-10-03/TheoDock.dc.html"
+      ],
+      "outputs": [
+        ".roa/contracts/theme.json",
+        ".roa/values/theme.json",
+        "public/theme.css",
+        "public/theme-list.js"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "bun run verify:contract",
+        "node .roa-kit/roa.mjs verify",
+        "playwright test tests/redesign/contrast-audit.spec.js"
+      ],
+      "humanGates": [],
+      "exitCriteria": "Theme contract version 10 validates. Variables include scriptureBed, selection, noteMarker, highlight.*, chatSurface, chatUser, edgeTheologian, edgeNotes, dimOverlay, shadowCard, shadowFrame, radius.*, and layer.*. Nine group colors moved into per-theme matrices. Reading Room light/dark roles populated from mockups; temporary clones supplied for themes 2-8. Zero contrast failures for Reading Room.",
+      "blockers": []
+    },
+    {
+      "id": "P2.STYLE_SHELL",
+      "phase": "2",
+      "type": "system_shell",
+      "title": "Cascade Layer System & Universal App Shell",
+      "status": "planned",
+      "dependsOn": [
+        "P1.THEME_CONTRACT"
+      ],
+      "inputs": [
+        "public/theme.css",
+        "public/index.html",
+        "public/bootstrap.js",
+        "docs/v7/mockups-2026-10-03/Main.dc.html"
+      ],
+      "outputs": [
+        "public/ui/base.css",
+        "public/ui/layout.css",
+        "public/ui/utilities.css",
+        "public/ui/labels.js",
+        "public/ui/components/app-shell.js",
+        "public/ui/components/app-shell.css",
+        "public/ui/components/frame.js",
+        "public/ui/components/frame.css"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/nav-dock-position.spec.js",
+        "playwright test tests/redesign/vocabulary-guard.spec.js",
+        "bun run verify:contract",
+        "bun run test:browser"
+      ],
+      "humanGates": [
+        "Visual audit of masthead brand reservation (248px), all-caps underlined nav, and Frame margins across desktop (1440px) and phone (390px)"
+      ],
+      "exitCriteria": "AppShell and Frame mounted via bootstrap.js on all routes. Nav items retain exact coordinates across all screen changes with 248px fixed brand reservation. Labels module active; route aliases /path, /study-topics, and /review resolve. topbar.js removed. Guard baseline decreases.",
+      "blockers": []
+    },
+    {
+      "id": "P3.SHARED_COMPONENTS",
+      "phase": "3",
+      "type": "components",
+      "title": "Shared UI Component Library & Lab Harness",
+      "status": "planned",
+      "dependsOn": [
+        "P2.STYLE_SHELL"
+      ],
+      "inputs": [
+        "public/ui/layout.css",
+        "docs/v7/mockups-2026-10-03/*.dc.html"
+      ],
+      "outputs": [
+        "public/ui/components/rail.js",
+        "public/ui/components/rail.css",
+        "public/ui/components/panel.js",
+        "public/ui/components/panel.css",
+        "public/ui/components/edge-tab.js",
+        "public/ui/components/edge-tab.css",
+        "public/ui/components/scripture-block.js",
+        "public/ui/components/scripture-block.css",
+        "public/ui/components/scripture-ref.js",
+        "public/ui/components/scripture-ref.css",
+        "public/ui/components/group-chip.js",
+        "public/ui/components/group-chip.css",
+        "public/ui/components/verse-text.js",
+        "public/ui/components/verse-text.css",
+        "public/ui/components/verse-actions.js",
+        "public/ui/components/verse-actions.css",
+        "public/ui/components/footnote.js",
+        "public/ui/components/footnote.css",
+        "public/ui/components/notes-panel.js",
+        "public/ui/components/notes-panel.css",
+        "public/ui/components/progress-bar.js",
+        "public/ui/components/progress-bar.css",
+        "public/ui/components/step-list.js",
+        "public/ui/components/step-list.css",
+        "public/ui/components/lesson-window.js",
+        "public/ui/components/lesson-window.css",
+        "public/ui/components/bookshelf.js",
+        "public/ui/components/bookshelf.css",
+        "public/ui/components/game-tile.js",
+        "public/ui/components/game-tile.css",
+        "public/ui/lab/index.html",
+        "public/ui/lab/lab.js"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/components.spec.js",
+        "playwright test tests/redesign/contrast-audit.spec.js"
+      ],
+      "humanGates": [
+        "Visual audit of all component states in Reading Room light and dark at /ui/lab"
+      ],
+      "exitCriteria": "All 17 reusable component render functions implemented with isolated styles conforming to theme contract tokens. /ui/lab showcases every component state in light and dark mode with 100% WCAG AA contrast pass.",
+      "blockers": []
+    },
+    {
+      "id": "P4.BIBLE_READER",
+      "phase": "4",
+      "type": "feature_screen",
+      "title": "Bible Reader (Desktop 3-Column & Phone Card)",
+      "status": "planned",
+      "dependsOn": [
+        "P3.SHARED_COMPONENTS"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/Reader.dc.html",
+        "docs/v7/mockups-2026-10-03/PhoneReader.dc.html",
+        "content/vendor/bsb.tsv"
+      ],
+      "outputs": [
+        "public/ui/screens/reader.js",
+        "public/ui/screens/reader.css"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "bun run verify:bsb",
+        "playwright test tests/redesign/reader.spec.js",
+        "node .roa-kit/roa.mjs check r2-unaided-flow pass"
+      ],
+      "humanGates": [
+        "Device verification on mobile (390px) and desktop (1440px)"
+      ],
+      "exitCriteria": "Bible reader renders natively via shared components. Desktop 3-column grid active (220px / 1fr / 376px); phone framed card active with 3x2 study links, inline footnote badges, and dual edge tabs. Verse selection supports word-level highlights and note actions without an Ask toolbar button. Legacy bible.js, bible.css, and bible-state.css deleted. verify-product-contract.mjs updated.",
+      "blockers": []
+    },
+    {
+      "id": "P5.LESSON_PATH",
+      "phase": "5",
+      "type": "feature_screen",
+      "title": "Lesson & Learning Path (No-Scroll Pacing)",
+      "status": "planned",
+      "dependsOn": [
+        "P3.SHARED_COMPONENTS"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/Lesson.dc.html",
+        "docs/v7/mockups-2026-10-03/PhoneLesson.dc.html",
+        "docs/v7/mockups-2026-10-03/LearningPath.dc.html",
+        "content/pathway/outline.json",
+        "content/pathway/lessons/*.md"
+      ],
+      "outputs": [
+        "public/ui/screens/lesson.js",
+        "public/ui/screens/lesson.css",
+        "public/ui/screens/learning-path.js",
+        "public/ui/screens/learning-path.css",
+        "scripts/verify-lesson-content-diff.mjs"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "bun run test:assessment",
+        "playwright test tests/redesign/phone-overflow.spec.js",
+        "bun scripts/verify-lesson-content-diff.mjs"
+      ],
+      "humanGates": [
+        "Editorial review of multi-screen card redistribution pacing"
+      ],
+      "exitCriteria": "Learning Path presents path, module, and unit hierarchies simultaneously. Lesson screens enforce strict no-scroll invariant on 390px viewport at default text size. Content redistribution verified via 100% word-for-word text diff against source markdown. Legacy learning.js, course-experience.js, and associated CSS deleted.",
+      "blockers": [
+        "unit-check-label",
+        "module1-title"
+      ]
+    },
+    {
+      "id": "P6.SHELF_HOME",
+      "phase": "6",
+      "type": "feature_screen",
+      "title": "Shelf Home (Semantic Bookshelf & Header)",
+      "status": "planned",
+      "dependsOn": [
+        "P3.SHARED_COMPONENTS"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/Main.dc.html",
+        "content/vendor/bsb.tsv"
+      ],
+      "outputs": [
+        "public/ui/screens/shelf-home.js",
+        "public/ui/screens/shelf-home.css"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/shelf-home.spec.js",
+        "node .roa-kit/roa.mjs check r1-surfaces pass"
+      ],
+      "humanGates": [
+        "Visual audit of walnut texture, Revelation lean, support blocks, iron bookends, and hover/focus states"
+      ],
+      "exitCriteria": "Bookshelf reflects confirmed final design: dark walnut planks with visible grain, 2 walnut support blocks under each shelf, no suspension rods, iron bookends, OT full, NT at 80% fill, Revelation leaning on Jude, book titles visible only on hover/focus, no decorative statues or lamps. Header displays two-line v1 title with confirmed intro beside it.",
+      "blockers": [
+        "shelf-home-intro"
+      ]
+    },
+    {
+      "id": "P7.TOPICS_PRACTICE_PROFILE",
+      "phase": "7",
+      "type": "feature_screen",
+      "title": "Study Topics, Review & Practice, and Profile",
+      "status": "planned",
+      "dependsOn": [
+        "P3.SHARED_COMPONENTS"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/StudyTopics.dc.html",
+        "docs/v7/mockups-2026-10-03/ReviewPractice.dc.html",
+        "content/topics/*.json",
+        "public/account-client.ts",
+        "public/account-ui.js"
+      ],
+      "outputs": [
+        "public/ui/screens/study-topics.js",
+        "public/ui/screens/study-topics.css",
+        "public/ui/screens/review-practice.js",
+        "public/ui/screens/review-practice.css",
+        "public/ui/screens/profile.js",
+        "public/ui/screens/profile.css"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/topics-practice.spec.js",
+        "node .roa-kit/roa.mjs check r3-no-dead-ends pass"
+      ],
+      "humanGates": [
+        "UX review verifying complete independence of review vs practice, absence of streaks/leaderboards, and full-screen Profile navigation (account workflow, appearance selector, translation utility, study progress)"
+      ],
+      "exitCriteria": "Study Topics, Review & Practice, and Profile re-implemented on Rail and Panel primitives. Practice games render with GameTile; Review and Practice progress tracked separately without streaks or leaderboards. Profile presents a full-screen layout (/profile) containing: (1) Account creation & management workflow with Name and Email fields alongside passkey/recovery credentials; (2) Appearance / themes selector (8 themes, light/dark/system mode); (3) Translation upload and selection utility (defaulting to BSB, supporting custom translation uploads); (4) Personal study management (My Notes, Saved Passages, Learning Progress). Content preservation strictly enforced: zero user-facing content lost, all existing data, notes, and capabilities cleanly reorganized into the modern layout. Legacy topics-experience.js, practice-experience.js, and profile modal code removed.",
+      "blockers": []
+    },
+    {
+      "id": "P8.THEOLOGIAN",
+      "phase": "8",
+      "type": "theologian",
+      "title": "Theologian Integration (Docked Desktop & Centered Phone)",
+      "status": "planned",
+      "dependsOn": [
+        "P4.BIBLE_READER",
+        "P5.LESSON_PATH"
+      ],
+      "inputs": [
+        "docs/v7/mockups-2026-10-03/TheoDock.dc.html",
+        "docs/v7/mockups-2026-10-03/PhoneTheo.dc.html",
+        "worker/theologian-ai.ts"
+      ],
+      "outputs": [
+        "public/ui/components/theologian-panel.js",
+        "public/ui/components/theologian-panel.css",
+        "public/theologian-chat.js"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "bun run test:theologian",
+        "playwright test tests/contracts/theologian-offline.spec.js",
+        "playwright test tests/contracts/theologian-scroll.spec.js",
+        "node .roa-kit/roa.mjs check r6-theologian pass"
+      ],
+      "humanGates": [
+        "Theological review on real test prompts ensuring citation grounding and crisis compliance"
+      ],
+      "exitCriteria": "TheologianPanel renders docked in 452px right column on desktop and as a centered card on mobile over dim overlay. Right-edge folder tab hidden while open. Scripture cited open by default; suggested replies render inside message stream; composer includes removable passage chip. theologian-chat.css replaced; backend crisis paths intact. verify-product-contract.mjs updated.",
+      "blockers": []
+    },
+    {
+      "id": "P9.CLEANUP_GUARDS",
+      "phase": "9",
+      "type": "cleanup_guard",
+      "title": "Legacy Deletion & Guard Baseline Closure",
+      "status": "planned",
+      "dependsOn": [
+        "P6.SHELF_HOME",
+        "P7.TOPICS_PRACTICE_PROFILE",
+        "P8.THEOLOGIAN"
+      ],
+      "inputs": [
+        ".roa/guard-baseline.json",
+        "public/index.html"
+      ],
+      "outputs": [
+        ".roa/guard-baseline.json",
+        "public/index.html"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "node .roa-kit/roa.mjs verify",
+        "playwright test tests/redesign/css-coverage.spec.js",
+        "bun run verify"
+      ],
+      "humanGates": [],
+      "exitCriteria": "All 12 superseded stylesheets deleted. Four js-head-inject cases relocated into shell. Guard baseline count reaches 0 for css-raw-color, css-important, and css-z-index-literal. Application bundle contains zero dead CSS. index.html loads only theme.css and layered bundle.",
+      "blockers": []
+    },
+    {
+      "id": "P10.THEMES_EXPANSION",
+      "phase": "10",
+      "type": "theme_expansion",
+      "title": "Themes 2–8 Token Expansion & 16-Mode Audit",
+      "status": "planned",
+      "dependsOn": [
+        "P9.CLEANUP_GUARDS"
+      ],
+      "inputs": [
+        ".roa/values/theme.json",
+        "docs/v7/mockups-2026-10-03/README.md"
+      ],
+      "outputs": [
+        ".roa/values/theme.json",
+        "public/theme.css",
+        "tests/redesign/snapshots/themes/*"
+      ],
+      "verificationGates": [
+        "bun run build:app",
+        "playwright test tests/redesign/contrast-audit.spec.js",
+        "playwright test tests/redesign/theme-layout-invariance.spec.js",
+        "bun run verify:contract"
+      ],
+      "humanGates": [
+        "Visual aesthetic review of all 8 themes in light and dark modes (16 permutations)"
+      ],
+      "exitCriteria": "All 8 themes fully populated in light and dark modes (16 permutations). Automated WCAG AA contrast verification passes across every theme and mode. Layout geometry is bit-for-bit identical across themes.",
+      "blockers": [
+        "visual-direction"
+      ]
+    },
+    {
+      "id": "G.FINAL_AUDIT",
+      "phase": "final",
+      "type": "human_gate",
+      "title": "Final Pre-Launch Human & Comprehensive Experience Audit",
+      "status": "planned",
+      "dependsOn": [
+        "P10.THEMES_EXPANSION"
+      ],
+      "inputs": [
+        "docs/STATUS.md",
+        "docs/VERIFICATION_CONTRACT.md"
+      ],
+      "outputs": [
+        ".roa/records/*-check-r1-surfaces.json",
+        ".roa/records/*-check-r2-unaided-flow.json",
+        ".roa/records/*-check-r3-no-dead-ends.json",
+        ".roa/records/*-check-r5-stand-in.json"
+      ],
+      "verificationGates": [
+        "bun run verify",
+        "node .roa-kit/roa.mjs verify"
+      ],
+      "humanGates": [
+        "Owner review of core flows",
+        "Assistive technology screen-reader audit (NVDA / VoiceOver)",
+        "Real physical device review (iOS Safari / Android Chrome)"
+      ],
+      "exitCriteria": "All project verification checks (r1-surfaces, r2-unaided-flow, r3-no-dead-ends, r5-stand-in) resolved to pass. Final owner sign-off recorded.",
+      "blockers": []
+    },
+    {
+      "id": "R.RELEASE",
+      "phase": "release",
+      "type": "release",
+      "title": "Production Deployment Gate",
+      "status": "planned",
+      "dependsOn": [
+        "G.FINAL_AUDIT"
+      ],
+      "inputs": [
+        "worker/index.ts",
+        "wrangler.jsonc"
+      ],
+      "outputs": [
+        "production deployment"
+      ],
+      "verificationGates": [
+        "bun run verify:deployment"
+      ],
+      "humanGates": [
+        "Explicit owner instruction to deploy"
+      ],
+      "exitCriteria": "Successful production deployment to Cloudflare Workers with verified live health checks and zero runtime regressions.",
+      "blockers": []
+    }
+  ]
+}
