@@ -13,11 +13,11 @@ const OUT = 'content/pathway/lesson-type.json';
 const FONTS_CSS = 'public/fonts/fonts.css';
 const LESSONS = 'content/pathway/lessons';
 
-// Card geometry: text box 4:5 portrait (ui.lesson.card.portrait-4x5-2026-10-05) and ~5:3 landscape, 49 and 91 (ui.lesson.card.block-max-2026-10-05)
+// Card geometry: text box 4:5 portrait (ui.lesson.card.portrait-4x5-2026-10-05) and 2:1 landscape (landscape-2x1-2026-10-05), 49 and 91 (ui.lesson.card.block-max-2026-10-05), at most 17 and 14 lines (landscape-91x14)
 // characters per line. The shapes no longer hold the same amount of text; the divider packs to the tighter one.
 const SHAPES = {
   portrait: { aspect: [4, 5], charsPerLine: 49 },
-  landscape: { aspect: [5, 3], charsPerLine: 91 },
+  landscape: { aspect: [2, 1], charsPerLine: 91, maxLinesCap: 14 },
 };
 const LINE_HEIGHT = 1.45; // --leading-normal in public/theme.css; with Caladea this gives 17 lines in the 4:5 box at 49 per line
 // Kerning (GPOS) and hinting are not applied here, and a real wrap leaves ragged line ends. These margins keep the
@@ -193,7 +193,7 @@ export function calibrate() {
     const [w, h] = s.aspect;
     const fontSizeShare = w / (s.charsPerLine * avgEm); // font size as a share of text-box width
     const lineWidthEm = +(s.charsPerLine * avgEm * WIDTH_SAFETY).toFixed(3);
-    const maxLines = Math.floor(h / (fontSizeShare * LINE_HEIGHT));
+    const maxLines = Math.min(Math.floor(h / (fontSizeShare * LINE_HEIGHT)), s.maxLinesCap ?? Infinity);
     shapes[name] = {
       aspect: s.aspect.join(':'),
       charsPerLine: s.charsPerLine,

@@ -14,11 +14,11 @@
    "capacityChars": 766
   },
   "landscape": {
-   "aspect": "5:3",
+   "aspect": "2:1",
    "charsPerLine": 91,
    "lineWidthEm": 35.835,
-   "maxLines": 15,
-   "capacityChars": 1255
+   "maxLines": 12,
+   "capacityChars": 1004
   }
  },
  "governingShape": "portrait",
