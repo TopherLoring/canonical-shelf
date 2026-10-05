@@ -210,7 +210,7 @@ html:not([data-theme]) {
   --shadow-overlay: 0 4px 10px #141b2d26, 0 22px 56px #141b2d52;
   --shadow-raised: 0 1px 3px #141b2d14, 0 8px 20px #141b2d1f;
   --texture: radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px;
-  --font-reading: Literata,Cambria,Caladea,Georgia,serif;
+  --font-reading: Literata,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
   --border-style: solid;
   --backdrop: none;
   --surface-filter: none;

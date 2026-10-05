@@ -68,6 +68,17 @@ async function loadCrossrefs(book, chapter) {
   return crossrefCache.get(key);
 }
 
+// Layout and verse scrolling must use the settled theme metrics. Loading only the normal face
+// would still allow bold/italic prose or footnotes to move a deep-linked verse afterward.
+async function themeFontsReady() {
+  if (!document.fonts?.load) return;
+  const computed = getComputedStyle(document.documentElement);
+  const families = [...new Set(['--font-body', '--font-reading'].map(role => computed.getPropertyValue(role).trim()).filter(Boolean))];
+  await Promise.all(families.flatMap(family => ['normal', 'italic'].flatMap(fontStyle => [400, 600, 700].map(weight =>
+    document.fonts.load(`${fontStyle} ${weight} 16px ${family}`, 'AaĀ').catch(() => [])
+  ))));
+}
+
 // One psalm is "Psalm 23"; the book is "Psalms".
 const bookLabel = b => (b === 19 ? 'Psalm' : bookByNumber(b)?.name || `Book ${b}`);
 const refLabel = ([b, c, v1, v2]) => `${bookLabel(b)} ${c}:${v1}${v2 && v2 !== v1 ? `–${v2}` : ''}`;
@@ -264,7 +275,11 @@ export async function mount(container, ctx) {
   const osisBook = OSIS[book - 1];
   const rows = parseCorpus(corpus).filter(r => r.bn === book && r.chapter === chapter);
   const groupLabel = groupName(meta.cat);
-  const [annotations, highlights] = await Promise.all([loadAnnotations(book, chapter), chapterHighlights(osisBook, chapter, { details: true }).catch(() => ({}))]);
+  const [annotations, highlights] = await Promise.all([
+    loadAnnotations(book, chapter),
+    chapterHighlights(osisBook, chapter, { details: true }).catch(() => ({})),
+    themeFontsReady()
+  ]);
   if (ctx.isCurrent?.() === false) return;
   const { prev, next } = neighbours(book, chapter);
   let size = SIZES[0];
