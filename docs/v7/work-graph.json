@@ -35,7 +35,7 @@
     {
       "id": "R1",
       "title": "Reader: \"a pending reader mount cannot replace the profile after navigation\" fails in the parallel run",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -63,6 +63,26 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Investigation: existing ctx.isCurrent guard passes 10 isolated repetitions and the parallel full-suite R1 case. Temporarily removing the guard fails the profile assertion in all 3 mutation runs; reader restored unchanged. Initial full gate: 137 passed, 4 other reader failures (legacy notes, highlighted range, shared passage context, study links); study-links trace reports ERR_NETWORK_IO_SUSPENDED for library-books modules. Full verification with configured CI worker limit is in progress."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Existing fix confirmed: c58c433 already added the navigation-generation guard. No runtime or test change is needed. Full bun run verify passed with CI=1 (configured 2 workers; 141/141 browser tests, no retries reported). R1 also passed in the default 6-worker full run and 10 isolated repetitions; removing the guard failed 3/3 mutation runs. Earlier default full run had four other reader failures; one trace identified Chromium ERR_NETWORK_IO_SUSPENDED. Next: run node acceptance, close through work done, commit and push the board-only verification handoff to the existing draft PR #60."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/reader.spec.js --grep \"pending reader mount\" --repeat-each=10; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through bun run work done R1: 10/10 race repetitions and verify:fast (12/12 smoke) passed with CI=1. Full verify previously passed 141/141 with the same configuration. Board-only investigation; existing guard retained unchanged. Handoff: default six-worker network-suspension failures remain recorded above for future suite reliability work; no other node changed. Ready for Chris's review in draft PR #60."
         }
       ],
       "owner": "Codex"
