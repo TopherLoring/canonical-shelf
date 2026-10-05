@@ -16,6 +16,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - A single block of lesson text holds at most 49 characters across and 17 lines down in portrait, and at most 91 characters across in landscape. These replace the 38 and 68 characters per line in ui.lesson.card.orientation-2026-10-05; the 4:5 portrait box stands.
 - A single block of lesson text holds at most 91 characters across and 14 lines down in landscape. Completes ui.lesson.card.block-max-2026-10-05 (portrait 49 x 17).
 - The landscape lesson text box is roughly 2:1 (width:height), replacing the about 5:3 in ui.lesson.card.orientation-2026-10-05.
+- Lesson body text uses a 1.55 line height.
 
 ### Added
 
