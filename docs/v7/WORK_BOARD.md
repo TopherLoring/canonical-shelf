@@ -31,6 +31,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `S3.A2` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: handoff doc brought current (decisions, vocabulary, open questions) |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
 | `R1` | ready |  | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
@@ -80,6 +81,10 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 ### X1 — Codex lesson branch committed and pushed (codex/redesign-lesson-path)
 
 - 2026-10-05 (Claude): Needed by S3.H and S3.J. Close with a record such as process.codex-lesson-branch-pushed once pushed.
+
+### S3.A2 — Step 3: handoff doc brought current (decisions, vocabulary, open questions)
+
+- 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 
 ### S3.B — Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets)
 

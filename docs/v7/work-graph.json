@@ -113,6 +113,29 @@
       "branch": "feature/redesign-p5-lesson-path"
     },
     {
+      "id": "S3.A2",
+      "title": "Step 3: handoff doc brought current (decisions, vocabulary, open questions)",
+      "state": "claimed",
+      "deps": [
+        "S3.A"
+      ],
+      "owns": [
+        "docs/v7/STEP3_HANDOFF.md"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        }
+      ]
+    },
+    {
       "id": "S3.B",
       "title": "Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets)",
       "state": "done",
