@@ -178,6 +178,31 @@
       ]
     },
     {
+      "id": "S3.B3",
+      "title": "Step 3: recalibrate line budgets to the block maximums (49 across x 17 down portrait, 91 across landscape)",
+      "state": "claimed",
+      "deps": [
+        "S3.B2"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        }
+      ]
+    },
+    {
       "id": "S3.Q",
       "title": "Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose",
       "state": "done",
