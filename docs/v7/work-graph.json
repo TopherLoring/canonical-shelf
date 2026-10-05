@@ -35,7 +35,7 @@
     {
       "id": "R1",
       "title": "Reader: \"a pending reader mount cannot replace the profile after navigation\" fails in the parallel run",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -58,8 +58,14 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Released from feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Codex"
     },
     {
       "id": "R2",

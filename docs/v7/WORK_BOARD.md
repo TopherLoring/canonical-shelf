@@ -16,7 +16,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **R1** — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
 - **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
 - **S3.D** — Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
@@ -31,9 +30,9 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `R1` | claimed | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `R1` | ready |  | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7` | Chris approves the redesign |
 | `S3.B7` | waiting |  |  | `S3.Q2` | Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape) |
@@ -73,6 +72,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### R1 — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
 
+- 2026-10-05 (Codex): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): Released from feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 
