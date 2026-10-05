@@ -111,7 +111,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
-| `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `learning.games` | Every Checkpoint is also available on the Review & Practice page. | Owner decision | undefined |
 | `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |

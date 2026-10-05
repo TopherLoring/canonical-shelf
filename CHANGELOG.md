@@ -23,6 +23,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear, for example Learning Path > Reading the Bible Well > What the Bible Is > Lesson 1. "Lesson" and "Step" stay visible. The per-unit check keeps its decided name, "Unit N Checkpoint" (ui.naming.unit-check.checkpoint.v2). Module and unit IDs and file structure are unchanged.
 - The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the "Unit 2 Checkpoint" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.
 - Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.
+- Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.
 
 ### Added
 
