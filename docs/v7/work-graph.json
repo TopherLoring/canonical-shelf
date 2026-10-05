@@ -548,11 +548,19 @@
       "title": "Step 3: Chris reviews the report and approves the one-time revision edits",
       "state": "todo",
       "deps": [
-        "S3.E"
+        "S3.E",
+        "C5"
       ],
       "owns": [],
       "accept": [],
-      "gate": "chris"
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Deferred until the lesson content is revised (C5): reviewing breaks on text about to change is wasted work. Regenerate the report (S3.E) first."
+        }
+      ]
     },
     {
       "id": "S3.G",
@@ -576,8 +584,8 @@
       "state": "todo",
       "deps": [
         "S3.C",
-        "S3.G",
-        "X1"
+        "X1",
+        "S3.D3"
       ],
       "owns": [
         "public/ui/screens/lesson.js",
@@ -591,6 +599,11 @@
           "date": "2026-10-05",
           "by": "unknown",
           "text": "Build the reading popover per ui.lesson.reading.inline-or-popover-2026-10-05: centered over a dimmed screen on phones, beside the link on desktop; passage scrolls inside; Open in the Bible; closes with close button, Escape, or the dimmed area; focus returns to the link. Inline readings use the ScriptureBlock look with extra padding, scriptureBed surface and the group stripe."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Render the cards the build emits (S3.D3), not locked sources: card breaks are reviewed only after the content revision (redesign.sequence.content-after-templates-2026-10-05)."
         }
       ]
     },
@@ -748,11 +761,20 @@
       "title": "Chris approves the redesign",
       "state": "todo",
       "deps": [
-        "S7"
+        "S7",
+        "C3",
+        "S3.G"
       ],
       "owns": [],
       "accept": [],
-      "gate": "chris"
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Chris approves the redesign after the content track (glossary and lesson revision) and locked card breaks are in place."
+        }
+      ]
     },
     {
       "id": "S7b",
@@ -1063,6 +1085,100 @@
       ],
       "owner": "Codex",
       "branch": "codex/reader-font-readiness"
+    },
+    {
+      "id": "S3.D3",
+      "title": "Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources",
+      "state": "todo",
+      "deps": [
+        "S3.D2"
+      ],
+      "owns": [
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Per redesign.sequence.content-after-templates-2026-10-05: the screen renders live divider output until the content revision is done; S3.G later locks reviewed cards."
+        }
+      ]
+    },
+    {
+      "id": "C1",
+      "title": "Content: one glossary, one definition per term (single file lessons reference; optional per-lesson \"in this lesson\" notes); resolves the 59 terms defined differently across lessons",
+      "state": "todo",
+      "deps": [
+        "S7"
+      ],
+      "owns": [
+        "content/pathway/glossary.json",
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "C2",
+      "title": "Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module",
+      "state": "todo",
+      "deps": [
+        "C1"
+      ],
+      "owns": [
+        "content/pathway/glossary.json",
+        "docs/v7/GLOSSARY_REVISION.md"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "C3",
+      "title": "Content: Chris approves each glossary batch (old and new side by side)",
+      "state": "todo",
+      "deps": [
+        "C2"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "C4",
+      "title": "Content: revise lesson text to the voice standard (justify claims by explaining how; source language and setting; no slogans; remove repetition such as the doubled Gospel/Christ definitions in begin#words), drafted by module with before/after",
+      "state": "todo",
+      "deps": [
+        "S7"
+      ],
+      "owns": [
+        "content/pathway/lessons/",
+        "docs/v7/LESSON_REVISION.md"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "C5",
+      "title": "Content: Chris approves each lesson revision batch",
+      "state": "todo",
+      "deps": [
+        "C4"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"

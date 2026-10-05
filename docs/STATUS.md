@@ -52,6 +52,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `arch.spa-implementation` | undefined | Agent default | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
 | `content.reachability` | undefined | Agent default | undefined |
+| `content.voice` | Content voice standard for lesson text and the glossary, set by Chris's example: | Owner decision | undefined |
 | `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. | Owner decision | undefined |
 | `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; | Owner decision | undefined |
 | `curriculum.content-review` | undefined | Agent default | undefined |
@@ -132,6 +133,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
 | `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
+| `redesign.sequence` | Sequence: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
