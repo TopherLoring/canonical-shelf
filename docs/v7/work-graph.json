@@ -499,7 +499,7 @@
     {
       "id": "S3.E",
       "title": "Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.D",
         "S3.B7",
@@ -533,6 +533,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "docs/v7/LESSON_PAGINATION_REVIEW.md (generated; --check keeps it current). Section 1: 2 short last cards and 29 seams that open mid-paragraph with a word leaning on the previous card (It, This, They, But, So...). Section 2: 72 blocks (mostly checks) opening their own card. Section 3: every lesson in Learning Path order with every break shown as last sentence before / first sentence after. Next: Chris's review (S3.F)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/lesson-pagination-report.mjs --check; bun run verify:fast)."
         }
       ],
       "owner": "Claude",

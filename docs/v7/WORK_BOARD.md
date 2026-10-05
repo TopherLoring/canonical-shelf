@@ -19,6 +19,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
 - **S3.C** — Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)
+- **S3.F** — Step 3: Chris reviews the report and approves the one-time revision edits *(needs Chris)*
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 - **S5a** — Step 5: Study Topics
@@ -30,13 +31,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.E` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
 | `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7` | Chris approves the redesign |
 | `S3.C` | ready |  |  | `S3.B`, `S3.B7`, `S3.R` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
-| `S3.F` | waiting (Chris) |  |  | `S3.E` | Step 3: Chris reviews the report and approves the one-time revision edits |
+| `S3.F` | ready (Chris) |  |  | `S3.E` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S3.H` | waiting |  |  | `S3.C`, `S3.G`, `X1` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `S3.I` | waiting |  |  | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
@@ -62,6 +62,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.B7` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.Q2` | Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape) |
 | `S3.D` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.B`, `S3.R` | Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests |
 | `S3.D2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.S` | Divider: implement the Scripture reading rule from S3.S; attach "As you read X, notice..." to the reading's last card |
+| `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
@@ -157,6 +158,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.E — Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)
 
+- 2026-10-05 (Claude): Done; acceptance passed (bun scripts/lesson-pagination-report.mjs --check; bun run verify:fast).
 - 2026-10-05 (Claude): docs/v7/LESSON_PAGINATION_REVIEW.md (generated; --check keeps it current). Section 1: 2 short last cards and 29 seams that open mid-paragraph with a word leaning on the previous card (It, This, They, But, So...). Section 2: 72 blocks (mostly checks) opening their own card. Section 3: every lesson in Learning Path order with every break shown as last sentence before / first sentence after. Next: Chris's review (S3.F).
 - 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): List steps that exceed the primary layout but fit fallback D; many such steps is the trigger to switch to D.
