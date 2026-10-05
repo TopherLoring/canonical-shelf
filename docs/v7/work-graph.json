@@ -1210,7 +1210,7 @@
     {
       "id": "S3.D3a",
       "title": "Regenerate the published catalog documentation for provisional lesson cards",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S3.D3"
       ],
@@ -1226,8 +1226,30 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/lesson-card-catalog-docs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run generate:llms; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done: generation and verify:fast (12 smoke) passed with CI=1. Combined catalog source and documentation already passed full verify 144/144, divider unit tests and all 119 lesson/1042 card consumer checks. Only generated llms.txt and this node's handoff are committed here. Next: review the stacked source/output drafts together before merging. Independently created content-revision files are left untouched."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/lesson-card-catalog-docs"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"
