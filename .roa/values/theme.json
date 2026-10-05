@@ -221,15 +221,14 @@
         "/fonts/fonts.css"
       ],
       "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap",
+        "https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,700;1,7..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       ],
       "style": {
         "fontDisplay": {
           "$ref": "shared.fonts.serif"
         },
-        "fontBody": {
-          "$ref": "shared.fonts.sans"
-        },
+        "fontBody": "'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif",
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
@@ -247,9 +246,7 @@
         "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
         "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
-        },
+        "fontReading": "Literata,Cambria,Caladea,Georgia,serif",
         "borderStyle": "solid",
         "backdrop": "none",
         "surfaceFilter": "none",
