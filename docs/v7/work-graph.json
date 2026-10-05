@@ -528,6 +528,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "docs/v7/LESSON_PAGINATION_REVIEW.md (generated; --check keeps it current). Section 1: 2 short last cards and 29 seams that open mid-paragraph with a word leaning on the previous card (It, This, They, But, So...). Section 2: 72 blocks (mostly checks) opening their own card. Section 3: every lesson in Learning Path order with every break shown as last sentence before / first sentence after. Next: Chris's review (S3.F)."
         }
       ],
       "owner": "Claude",
