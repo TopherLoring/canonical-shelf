@@ -1,7 +1,7 @@
-// Step 3, node S3.B: type calibration for the lesson card.
-// Reads character widths from the shipped reading font (Caladea, same advance widths as Cambria, so text wraps
-// identically on every device) and derives the per-shape line width and line count the build-time divider packs
-// against. Output: content/pathway/lesson-type.json.
+// Step 3, nodes S3.B and S3.B7: type calibration for the lesson step body.
+// Reads character widths from the fonts the site ships for lesson text (Reading Room, decision work.s3.q: Source Sans 3
+// for prose, Literata for Scripture blocks; both self-hosted, so text wraps the same on every device) and derives the
+// per-shape line width and line count the build-time divider packs against. Output: content/pathway/lesson-type.json.
 //   bun scripts/calibrate-lesson-type.mjs           write the file
 //   bun scripts/calibrate-lesson-type.mjs --check   fail if the file is stale or its budgets are inconsistent
 // Decisions: ui.lesson.card.orientation-2026-10-05, curriculum.lesson.pagination.build-time-2026-10-05.
@@ -29,6 +29,16 @@ const FACES = [
   { key: 'italic', style: 'italic', weight: '400' },
   { key: 'boldItalic', style: 'italic', weight: '700' },
 ];
+// Which shipped font sets each kind of step-body text (Reading Room theme sheet; decision work.s3.q).
+const ROLES = {
+  prose: { family: 'Source Sans 3', scale: 1 },
+  // Scripture blocks are set larger than prose: theme sheet body 15-17px, Scripture 18-19px.
+  scripture: { family: 'Literata', scale: 1.15 },
+};
+// Variable fonts keep one width table (the default, regular instance) for every weight in a file. Bold is wider
+// than that table says; this factor keeps bold text on the safe side (Source Sans 3 and Literata bold run about
+// 5-7% wider than regular).
+const BOLD_WIDTH_FACTOR = 1.07;
 // Characters measured: printable Latin-1 plus the typographic punctuation lessons use.
 const EXTRA = '–—‘’“”…•−';
 const CHARS = [...Array(0x5f).keys()].map(i => String.fromCharCode(0x20 + i))
@@ -135,20 +145,27 @@ function measureFace(file) {
   return { unitsPerEm, widths };
 }
 
-// The font file for each Caladea face: latin subset (the one holding U+0020).
-function caladeaFiles() {
+// The latin-subset font file for each face of a family. Weights that share one variable-font file with the regular
+// face get the regular widths scaled by BOLD_WIDTH_FACTOR; a face the site does not ship (for example bold italic)
+// is derived from the nearest shipped face the same way.
+function familyFiles(family) {
   const css = readFileSync(FONTS_CSS, 'utf8');
   const found = {};
+  const esc = family.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   for (const m of css.matchAll(/\/\*\s*([a-z-]+)\s*\*\/\s*@font-face\s*\{([^}]*)\}/g)) {
-    if (m[1] !== 'latin' || !/font-family:\s*'Caladea'/.test(m[2])) continue;
+    if (m[1] !== 'latin' || !new RegExp(`font-family:\\s*'${esc}'`).test(m[2])) continue;
     const style = m[2].match(/font-style:\s*(\w+)/)[1], weight = m[2].match(/font-weight:\s*(\d+)/)[1];
     found[`${style}/${weight}`] = 'public' + m[2].match(/url\(([^)]+)\)/)[1];
   }
-  return Object.fromEntries(FACES.map(f => {
-    const file = found[`${f.style}/${f.weight}`];
-    if (!file) throw new Error(`Caladea ${f.style} ${f.weight} (latin) missing from ${FONTS_CSS}`);
-    return [f.key, file];
-  }));
+  if (!found['normal/400']) throw new Error(`${family} regular (latin) missing from ${FONTS_CSS}; run bun run fonts:fetch`);
+  const faces = {};
+  for (const f of FACES) {
+    const own = found[`${f.style}/${f.weight}`];
+    const base = f.style === 'italic' && found['italic/400'] ? found['italic/400'] : found['normal/400'];
+    if (own && !(f.weight === '700' && own === base)) faces[f.key] = { file: own, widthScale: 1 };
+    else faces[f.key] = { file: base, widthScale: f.weight === '700' ? BOLD_WIDTH_FACTOR : 1, derived: true };
+  }
+  return faces;
 }
 
 // Plain lesson prose: drop front matter, fenced blocks, directives, headings and markdown marks.
@@ -164,28 +181,35 @@ function lessonProse() {
   return text;
 }
 
-/** Width of `text` in em for a font entry from lesson-type.json (regular face by default). */
-export function widthEm(type, text, face = 'regular') {
-  const f = type.fonts[face];
+/** Width of `text` in em at the role's own size (prose by default), for a face of lesson-type.json. */
+export function widthEm(type, text, face = 'regular', role = 'prose') {
+  const r = type.fonts[role];
+  const f = r.faces[face];
+  const widths = r.widths[f.file];
   let units = 0;
-  for (const ch of text) units += f.widths[ch] ?? f.widths['n'];
-  return units / f.unitsPerEm;
+  for (const ch of text) units += widths[ch] ?? widths['n'];
+  return (units * f.widthScale * r.scale) / r.unitsPerEm;
 }
 
 export function calibrate() {
-  const files = caladeaFiles();
   const fonts = {};
-  for (const [key, file] of Object.entries(files)) fonts[key] = { file, ...measureFace(file) };
+  for (const [role, def] of Object.entries(ROLES)) {
+    const faces = familyFiles(def.family);
+    const widths = {};
+    let unitsPerEm = 0;
+    for (const f of Object.values(faces)) if (!widths[f.file]) { const m = measureFace(f.file); widths[f.file] = m.widths; unitsPerEm = m.unitsPerEm; }
+    fonts[role] = { family: def.family, scale: def.scale, unitsPerEm, faces, widths };
+  }
 
-  // Average advance of lesson prose in the regular face, weighted by how often each character occurs.
-  const reg = fonts.regular;
+  // Average advance of lesson prose in the prose regular face, weighted by how often each character occurs.
+  const pr = fonts.prose, regW = pr.widths[pr.faces.regular.file];
   let units = 0, count = 0;
   for (const ch of lessonProse()) {
     if (ch === '\n') continue;
-    units += reg.widths[ch] ?? reg.widths['n'];
+    units += regW[ch] ?? regW['n'];
     count++;
   }
-  const avgEm = units / count / reg.unitsPerEm;
+  const avgEm = units / count / pr.unitsPerEm;
 
   const shapes = {};
   for (const [name, s] of Object.entries(SHAPES)) {
@@ -206,7 +230,8 @@ export function calibrate() {
   const governing = Object.entries(shapes).sort((a, b) => a[1].maxCharsByParagraphs[1] - b[1].maxCharsByParagraphs[1])[0][0];
   return {
     note: 'GENERATED by scripts/calibrate-lesson-type.mjs; do not edit by hand. Widths are font units; divide by unitsPerEm for em.',
-    font: 'Caladea (same advance widths as Cambria)',
+    font: `${fonts.prose.family} (prose), ${fonts.scripture.family} at ${fonts.scripture.scale}x (Scripture blocks)`,
+    boldWidthFactor: BOLD_WIDTH_FACTOR,
     lineHeight: LINE_HEIGHT,
     widthSafety: WIDTH_SAFETY,
     averageCharEm: +avgEm.toFixed(4),
@@ -230,7 +255,10 @@ function checkBudgets(t) {
     if (Math.abs(s.charsPerLine - { portrait: 49, landscape: 91 }[name]) > 0) problems.push(`${name}: chars per line is not the decided value`);
     if (s.maxLines < 8) problems.push(`${name}: fewer than 8 lines`);
   }
-  for (const [key, f] of Object.entries(t.fonts)) if (!f.widths[' '] || !f.widths['e']) problems.push(`${key}: missing basic glyph widths`);
+  for (const [role, r] of Object.entries(t.fonts)) for (const [face, f] of Object.entries(r.faces)) {
+    const w = r.widths[f.file];
+    if (!w || !w[' '] || !w['e']) problems.push(`${role} ${face}: missing basic glyph widths`);
+  }
   return problems;
 }
 

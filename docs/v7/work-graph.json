@@ -389,7 +389,8 @@
       "state": "todo",
       "deps": [
         "S3.B",
-        "S3.B7"
+        "S3.B7",
+        "S3.R"
       ],
       "owns": [
         "public/ui/screens/lesson.css",
@@ -416,7 +417,8 @@
       "title": "Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests",
       "state": "todo",
       "deps": [
-        "S3.B"
+        "S3.B",
+        "S3.R"
       ],
       "owns": [
         "scripts/lesson-divider.mjs",
@@ -784,10 +786,33 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Recalibrated to the shipped fonts: Source Sans 3 (prose; avg 0.395 em/char) and Literata at 1.15x (Scripture blocks). Variable-font bold widths scaled by 1.07 (one width table per file). widthEm(type, text, face, role) now takes a role ('prose' or 'scripture'). Result exposed a conflict between 4:5, 49x17 and 1.55: see S3.R."
         }
       ],
       "owner": "Claude",
       "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.R",
+      "title": "Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box",
+      "state": "todo",
+      "deps": [
+        "S3.B7"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Measured (S3.B7): Source Sans 3 averages 0.395 em per character on lesson prose. At 49 per line the line is 19.36 em; a 4:5 box is then 24.2 em tall = 15.6 lines at 1.55. Claude recommends C (3:4 box keeps 49x17, the 833/784/735 ceilings and 1.55 spacing). Landscape 2:1 at 91 per line fits 11.6 lines; not binding because portrait governs."
+        }
+      ]
     }
   ]
 }

@@ -18,7 +18,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - **R1** — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
 - **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
-- **S3.D** — Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 - **S5a** — Step 5: Study Topics
@@ -36,14 +35,15 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `R1` | ready |  | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7` | Chris approves the redesign |
-| `S3.C` | waiting |  |  | `S3.B`, `S3.B7` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
-| `S3.D` | ready |  |  | `S3.B` | Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests |
+| `S3.C` | waiting |  |  | `S3.B`, `S3.B7`, `S3.R` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
+| `S3.D` | waiting |  |  | `S3.B`, `S3.R` | Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests |
 | `S3.E` | waiting |  |  | `S3.D`, `S3.B7` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.F` | waiting (Chris) |  |  | `S3.E` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S3.H` | waiting |  |  | `S3.C`, `S3.G`, `X1` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `S3.I` | waiting |  |  | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
 | `S3.J` | ready |  |  | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
+| `S3.R` | waiting (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S4` | ready |  |  | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
 | `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
 | `S5b` | ready |  |  | `S2` | Step 5: Review & Practice |
@@ -164,7 +164,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.B7 — Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape)
 
+- 2026-10-05 (Claude): Recalibrated to the shipped fonts: Source Sans 3 (prose; avg 0.395 em/char) and Literata at 1.15x (Scripture blocks). Variable-font bold widths scaled by 1.07 (one width table per file). widthEm(type, text, face, role) now takes a role ('prose' or 'scripture'). Result exposed a conflict between 4:5, 49x17 and 1.55: see S3.R.
 - 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box.
 - 2026-10-05 (Claude): The counts and the 833/784/735 ceilings are Chris's design targets, measured from his approved portrait and landscape mockups; they do not change. Only the type size that produces them changes with the font. S3.B through S3.B6 measured Caladea.
+
+### S3.R — Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box
+
+- 2026-10-05 (Claude): Measured (S3.B7): Source Sans 3 averages 0.395 em per character on lesson prose. At 49 per line the line is 19.36 em; a 4:5 box is then 24.2 em tall = 15.6 lines at 1.55. Claude recommends C (3:4 box keeps 49x17, the 833/784/735 ceilings and 1.55 spacing). Landscape 2:1 at 91 per line fits 11.6 lines; not binding because portrait governs.
 
