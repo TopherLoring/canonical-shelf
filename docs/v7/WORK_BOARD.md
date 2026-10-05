@@ -6,13 +6,14 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 1. Read the board, the node you will work on, and the decisions it cites before editing anything.
 2. Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.
-3. Edit only the paths your node owns. Anything outside them is a new node (add it, commit it) or a question for Chris, never a side edit.
-4. Two agents never hold nodes that own the same paths at the same time; `bun run work check` fails if they do.
-5. Decisions live only in `.roa/records` (`node .roa-kit/roa.mjs decide ...`). When decisions conflict, the decision made with Claude stands unless Chris explicitly overrides it. Chris's latest explicit decision on a topic is the baseline; never restore a superseded one.
-6. One node, one branch, one draft PR. Nothing merges without Chris's approval.
-7. A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.
-8. Leave the node handoff-ready at every commit: `bun run work note <id> "what changed, what is next"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.
-9. Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done.
+3. Before claiming, `bun run work claim` reads the shared board on GitHub (integrationBranch) and refuses if the node is already taken there or your branch is behind it. Start every node's branch from the latest integration branch.
+4. Edit only the paths your node owns. Anything outside them is a new node (add it, commit it) or a question for Chris, never a side edit.
+5. Two agents never hold nodes that own the same paths at the same time; `bun run work check` fails if they do.
+6. Decisions live only in `.roa/records` (`node .roa-kit/roa.mjs decide ...`). When decisions conflict, the decision made with Claude stands unless Chris explicitly overrides it. Chris's latest explicit decision on a topic is the baseline; never restore a superseded one.
+7. One node, one branch, one draft PR. Nothing merges without Chris's approval.
+8. A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.
+9. Leave the node handoff-ready at every commit: `bun run work note <id> "what changed, what is next"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.
+10. Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done.
 
 ## Ready to start
 

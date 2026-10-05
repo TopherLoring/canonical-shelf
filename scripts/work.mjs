@@ -116,6 +116,19 @@ if (cmd === 'check') {
   const n = node(), agent = flag('agent'), branch = flag('branch');
   if (!agent || !branch) fail('claim needs --agent <name> --branch <branch>');
   if (n.gate === 'chris') fail(`${n.id} is Chris's decision; agents do not claim it`);
+  // Read the shared board on GitHub first: a local copy can be stale, which is how one node got claimed twice.
+  const shared = g.integrationBranch || 'feature/redesign-p5-lesson-path';
+  try {
+    execSync(`git fetch -q origin ${shared}`, { stdio: 'ignore' });
+    const remote = JSON.parse(execSync(`git show FETCH_HEAD:docs/v7/work-graph.json`, { encoding: 'utf8' }));
+    const there = remote.nodes.find(x => x.id === n.id);
+    if (there && there.state !== 'todo') fail(`${n.id} is ${there.state}${there.owner ? ` by ${there.owner}` : ''} on GitHub (${shared}). Pull ${shared} before claiming.`);
+    const behind = execSync(`git rev-list --count HEAD..FETCH_HEAD`, { encoding: 'utf8' }).trim();
+    if (behind !== '0') fail(`your branch is ${behind} commit(s) behind ${shared} on GitHub. Merge or rebase onto it before claiming.`);
+  } catch (e) {
+    if (e.status === undefined || process.env.WORK_OFFLINE) throw e;
+    fail(`could not read the shared board from origin/${shared}. Check the network, or set WORK_OFFLINE=1 only if you are sure no other agent is working.`);
+  }
   if (n.state !== 'todo') fail(`${n.id} is ${n.state}${n.owner ? ` (owner ${n.owner})` : ''}`);
   if (!ready(g, n)) fail(`${n.id} is waiting on ${n.deps.filter(d => !['done', 'dropped'].includes(byId(g).get(d).state)).join(', ')}`);
   Object.assign(n, { state: 'claimed', owner: agent, branch });

@@ -4,6 +4,7 @@
   "rules": [
     "Read the board, the node you will work on, and the decisions it cites before editing anything.",
     "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
+    "Before claiming, `bun run work claim` reads the shared board on GitHub (integrationBranch) and refuses if the node is already taken there or your branch is behind it. Start every node's branch from the latest integration branch.",
     "Edit only the paths your node owns. Anything outside them is a new node (add it, commit it) or a question for Chris, never a side edit.",
     "Two agents never hold nodes that own the same paths at the same time; `bun run work check` fails if they do.",
     "Decisions live only in `.roa/records` (`node .roa-kit/roa.mjs decide ...`). When decisions conflict, the decision made with Claude stands unless Chris explicitly overrides it. Chris's latest explicit decision on a topic is the baseline; never restore a superseded one.",
@@ -1046,5 +1047,6 @@
       "owner": "Codex",
       "branch": "codex/reader-font-readiness"
     }
-  ]
+  ],
+  "integrationBranch": "feature/redesign-p5-lesson-path"
 }
