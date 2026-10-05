@@ -207,7 +207,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
-| `ui.lesson.card` | Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. | Owner decision | undefined |
+| `ui.lesson.card` | Interim lesson card break rule, used until the content revision: | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |

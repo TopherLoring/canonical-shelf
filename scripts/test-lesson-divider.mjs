@@ -1,7 +1,7 @@
 // Unit tests for the build-time lesson divider (S3.D). Runs in Node in about a second; no browser.
 //   bun scripts/test-lesson-divider.mjs
 import { readFileSync } from 'node:fs';
-import { sentences, visible, divideLesson, divideAll, loadContext, geometry, CEILINGS, TARGET } from './lesson-divider.mjs';
+import { sentences, visible, divideLesson, divideAll, loadContext, geometry, BREAK_AT, PARAGRAPH_COST } from './lesson-divider.mjs';
 import { parseLesson } from './lib/lesson-parse.mjs';
 
 let failures = 0;
@@ -51,10 +51,14 @@ for (const lesson of all) {
       check(!ids.has(`${lesson.lesson}#${card.id}`), `${lesson.lesson}#${card.id}: card ids are unique`);
       ids.add(`${lesson.lesson}#${card.id}`);
       check(card.units.every(u => step.cards.indexOf(card) === ci), 'cards never share units');
-      const ceiling = CEILINGS[Math.min(3, Math.max(1, card.paragraphs))];
-      if (!card.flags.includes('over-ceiling')) check(card.chars <= ceiling || card.paragraphs > 3, `${lesson.lesson}#${card.id}: ${card.chars} chars is over the ${ceiling} ceiling`);
-      const textOnly = card.units.every(u => u.kind === 'sentence' || u.kind === 'callout');
-      if (textOnly && card.units.length > 1) check(card.chars <= TARGET.max + 60, `${lesson.lesson}#${card.id}: ${card.chars} chars is far over the ~${TARGET.max} target`);
+      if (!card.flags.includes('over-ceiling')) check(card.count <= BREAK_AT, `${lesson.lesson}#${card.id}: count ${card.count} is over ${BREAK_AT}`);
+      // The break is at the LAST sentence end before 637: the next card's first sentence would not have fitted.
+      const next = step.cards[ci + 1];
+      const lead = next?.units[0];
+      if (lead && (lead.kind === 'sentence' || lead.kind === 'callout') && card.units.some(u => u.kind === 'sentence' || u.kind === 'callout')) {
+        const extra = lead.kind === 'callout' || lead.paraStart ? PARAGRAPH_COST : 1;
+        check(card.count + extra + visible(lead.text).length > BREAK_AT, `${lesson.lesson}#${card.id}: broke early (${card.count} + ${extra + visible(lead.text).length} would fit)`);
+      }
       check(card.lines <= geo.primary.lines, `${lesson.lesson}#${card.id}: ${card.lines} lines does not fit the ${geo.primary.lines}-line step body`);
       for (const u of card.units.filter(u => u.kind === 'reading')) {
         const n = sentences(u.text).length;
@@ -65,18 +69,19 @@ for (const lesson of all) {
   });
 }
 
-// ---- a synthetic step: a long paragraph splits evenly at sentence boundaries, never mid-sentence
-const sentence = 'This sentence is exactly the kind of plain lesson prose the divider has to pack. ';
-const longParagraph = sentence.repeat(12).trim();
+// ---- a synthetic step: the count, the paragraph cost, and the break at the last sentence before 637
+const sentence = 'This sentence is exactly the kind of plain lesson prose the divider has to pack. '; // 81 characters with its space
 const synthetic = {
   meta: { id: 'synthetic' }, checks: [], reflection: null,
-  sections: [{ id: 'long', title: 'Long', blocks: [{ type: 'prose', text: longParagraph }] }],
+  sections: [{ id: 'rule', title: 'Rule', blocks: [
+    { type: 'prose', text: sentence.repeat(4).trim() },   // 80 + 3 x 81 = 323
+    { type: 'prose', text: sentence.repeat(4).trim() },   // + 49 + 323 = 695 > 637: card 1 ends inside paragraph 2
+  ] }],
 };
 const [step] = divideLesson(synthetic, ctx);
-const sizes = step.cards.map(c => c.chars);
-check(step.cards.length >= 2, `a ${longParagraph.length}-character paragraph splits into cards (got ${step.cards.length})`);
-check(Math.max(...sizes) - Math.min(...sizes) <= sentence.length + 2, `splits are balanced to within one sentence (${sizes.join(' / ')})`);
-check(step.cards.flatMap(c => c.units).every(u => longParagraph.includes(u.text) && /[.!?]$/.test(u.text)), 'every card boundary falls at a sentence end');
+check(step.cards.length === 2, `the synthetic step splits into 2 cards (got ${step.cards.length})`);
+check(step.cards[0].count === 323 + 49 + 80 + 81 + 81, `card 1 counts paragraph 1, the 49 for paragraph 2, and the sentences that fit (got ${step.cards[0].count})`);
+check(step.cards[1].count === 80, `card 2 starts again at the next sentence (got ${step.cards[1].count})`);
 
 if (failures) { console.error(`test-lesson-divider: ${failures} failure(s)`); process.exit(1); }
-console.log(`PASS — lesson divider: ${all.length} lessons, ${ids.size} cards; sentences intact, content unchanged and in order, ids unique, ceilings and the ${geo.primary.lines}-line step body respected; readings quoted inline at two sentences and 300 characters or fewer, otherwise linked.`);
+console.log(`PASS — lesson divider: ${all.length} lessons, ${ids.size} cards; sentences intact, content unchanged and in order, ids unique, every card breaks at the last sentence before ${BREAK_AT} (new paragraphs +${PARAGRAPH_COST}), the ${geo.primary.lines}-line step body respected; readings quoted inline at two sentences and 300 characters or fewer, otherwise linked.`);

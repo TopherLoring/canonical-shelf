@@ -5,8 +5,9 @@
 //   (curriculum.lesson.pagination.build-time-2026-10-05).
 // - Every card is a step; the first card keeps the step's id, later cards get "<id>-2", "<id>-3"
 //   (record: every lesson card is a step).
-// - Hard ceilings: 833 / 784 / 735 characters for 1 / 2 / 3 paragraphs (spaces and punctuation included); target
-//   about half the ceiling, 370-420 (ui.lesson.card.step-length-2026-10-05).
+// - Interim break rule (ui.lesson.card.break-637-2026-10-05): count every character on a card (spaces and
+//   punctuation included, starting at 1 on each card; each new paragraph adds 49) and break at the last sentence end
+//   before 637. The 833 / 784 / 735 ceilings and the ~400 target return when content is revised.
 // - A card must also fit the portrait step body: 4:5 box, 16px type, line height 1.55 on the reference iPhone, which
 //   holds about 54 characters x 17 lines in Source Sans 3 (ui.lesson.card.type-16px-2026-10-05). Cards that do not
 //   fit are flagged, never silently accepted.
@@ -23,6 +24,9 @@ export const CEILINGS = { 1: 833, 2: 784, 3: 735 };
 export const TARGET = { min: 370, max: 420 };
 // A text-only card shorter than this, left at the end of a step, is merged back or flagged as an orphan.
 export const ORPHAN_CHARS = 120;
+// Interim break rule: break at the last sentence end before the card's count passes 637; a new paragraph adds 49.
+export const BREAK_AT = 637;
+export const PARAGRAPH_COST = 49;
 // Reference phone (Chris's calculation, ui.lesson.card.type-16px-2026-10-05): 16px type at line height 1.55 in the
 // portrait step body, which spans about 89% x 51.5% of a 390 x 844 iPhone viewport (ui.lesson.card.portrait-4x5).
 // With Source Sans 3 that box holds about 54 characters x 17 lines.
@@ -199,68 +203,52 @@ export function divideLesson(lesson, { type, corpus }) {
       const short = sentences(u.text).length <= INLINE_READING_SENTENCES;
       u.mode = short && u.text.length <= INLINE_READING_MAX_CHARS ? 'inline' : 'link';
     }
+    // Interim rule (ui.lesson.card.break-637-2026-10-05): count every character on the card, spaces and
+    // punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds
+    // 49; break at the last sentence end before the count would pass 637. Blocks without text (checks, readings,
+    // reflections, visuals) stay on the card when its lines allow, otherwise they start the next card.
     const cards = [];
-    let card = [];
-    const textChars = us => us.filter(u => u.kind === 'sentence' || u.kind === 'callout').reduce((n, u) => n + visible(u.text).length + 1, 0);
+    let card = [], count = 0;
+    const hasText = us => us.some(u => u.kind === 'sentence' || u.kind === 'callout');
     for (const u of units) {
-      const next = [...card, u];
       const isText = u.kind === 'sentence' || u.kind === 'callout';
-      const overTarget = isText && textChars(next) > TARGET.max && textChars(card) >= TARGET.min / 2;
-      if (card.length && (!fitsIn(next, geo.primary) || overTarget)) { cards.push(card); card = [u]; }
-      else card = next;
+      if (isText) {
+        const len = visible(u.text).length;
+        const newParagraph = u.kind === 'callout' || u.paraStart;
+        const cost = len + (hasText(card) ? (newParagraph ? PARAGRAPH_COST : 1) : 0);
+        if (hasText(card) && count + cost > BREAK_AT) { cards.push(card); card = [u]; count = len; }
+        else { card.push(u); count += cost; }
+      } else if (card.length && !fitsIn([...card, u], geo.primary)) {
+        cards.push(card); card = [u]; count = 0;
+      } else card.push(u);
     }
     if (card.length) cards.push(card);
-    // Balance: re-split each run of consecutive sentence-only cards into the same number of cards around an even
-    // target, so 971 characters over three cards come out about 324 each rather than 404 / 323 / 242. A
-    // re-split is used only if every new card still fits; otherwise the greedy cards stand.
-    const sentenceOnly = c => c.every(u => u.kind === 'sentence');
-    for (let i = 0; i < cards.length; i++) {
-      if (!sentenceOnly(cards[i])) continue;
-      let j = i;
-      while (j + 1 < cards.length && sentenceOnly(cards[j + 1])) j++;
-      const k = j - i + 1;
-      if (k >= 2) {
-        const run = cards.slice(i, j + 1).flat();
-        const total = textChars(run), target = total / k;
-        const out = [];
-        let cur = [];
-        run.forEach((u, idx) => {
-          const left = run.length - idx;
-          const len = visible(u.text).length + 1;
-          const need = k - out.length - 1;
-          if (cur.length && need > 0 && (textChars(cur) + len / 2 > target || left === need)) { out.push(cur); cur = []; }
-          cur.push(u);
-        });
-        out.push(cur);
-        const biggest = cs => Math.max(...cs.map(textChars));
-        if (out.length === k && out.every(c => fitsIn(c, geo.primary)) && biggest(out) <= Math.max(TARGET.max, biggest(cards.slice(i, j + 1)))) cards.splice(i, k, ...out);
+    // The count each card ends with, for reporting and tests.
+    const cardCount = us => {
+      let n = 0, first = true;
+      for (const u of us) if (u.kind === 'sentence' || u.kind === 'callout') {
+        n += visible(u.text).length + (first ? 0 : (u.kind === 'callout' || u.paraStart ? PARAGRAPH_COST : 1));
+        first = false;
       }
-      i = j;
-    }
-    // Merge a short text-only last card back when the combined card still fits.
-    if (cards.length > 1) {
-      const last = cards.at(-1);
-      const merged = [...cards.at(-2), ...last];
-      if (last.every(u => u.kind === 'sentence' || u.kind === 'callout') && textChars(last) < ORPHAN_CHARS && fitsIn(merged, geo.primary) && textChars(merged) <= TARGET.max + ORPHAN_CHARS / 2) {
-        cards.splice(-2, 2, merged);
-      }
-    }
+      return n;
+    };
     return {
       id: section.id,
       title: section.title,
       cards: cards.map((us, i) => {
         const m = layout(us, geo.primary.widthEm, measure);
         const flags = [];
-        const single = us.length === 1;
-        if (m.chars > ceilingFor(m.paragraphs || 1)) flags.push(single ? 'over-ceiling' : 'overflow');
+        const n = cardCount(us);
+        if (n > BREAK_AT) flags.push('over-ceiling');
         if (m.lines > geo.primary.lines) flags.push('overflow');
-        if (cards.length > 1 && us.every(u => u.kind === 'sentence' || u.kind === 'callout') && textChars(us) < ORPHAN_CHARS) flags.push('orphan');
+        if (cards.length > 1 && us.every(u => u.kind === 'sentence' || u.kind === 'callout') && n < ORPHAN_CHARS) flags.push('orphan');
         const nonText = us.filter(u => !['sentence', 'callout'].includes(u.kind));
         if (nonText.length && us.length === nonText.length && i > 0 && cards[i - 1].at(-1)?.kind === 'sentence') flags.push('block-alone');
         return {
           id: i === 0 ? section.id : `${section.id}-${i + 1}`,
           units: us,
           chars: m.chars,
+          count: n,
           paragraphs: m.paragraphs,
           lines: m.lines,
           flags: [...new Set(flags)],
