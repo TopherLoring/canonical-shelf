@@ -1091,12 +1091,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.card`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.char-ceiling-2026-10-05`
-  The absolute maximum for one step of lesson text, counting every space, letter and punctuation mark, is 833 characters as a single block, 784 as two paragraphs and 735 as three paragraphs. These are ceilings, not targets or minimums; shorter is preferred so cards are not overwhelming.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-means-screen-2026-10-05`
+  In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a "step" means one screen: everything the learner sees before pressing Continue. It is not an entry in the lesson's step list; the pagination docs call that screen a "part". The 833, 784 and 735 ceilings apply to each screen.
+  *Why:* Owner clarified how he uses the word step
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.char-ceiling-2026-10-05`
+  ~~The absolute maximum for one step of lesson text, counting every space, letter and punctuation mark, is 833 characters as a single block, 784 as two paragraphs and 735 as three paragraphs. These are ceilings, not targets or minimums; shorter is preferred so cards are not overwhelming.~~
   *Why:* Owner stated the maximum characters per step
-- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.line-height-1-55-2026-10-05`
-  ~~Lesson body text uses a 1.55 line height.~~
-  *Why:* Owner stated the line height used in the mockups
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
   ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
@@ -1111,6 +1111,9 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-2x1-2026-10-05`
   ~~The landscape lesson text box is roughly 2:1 (width:height), replacing the about 5:3 in ui.lesson.card.orientation-2026-10-05.~~
   *Why:* Owner stated the landscape box shape
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.line-height-1-55-2026-10-05`
+  ~~Lesson body text uses a 1.55 line height.~~
+  *Why:* Owner stated the line height used in the mockups
 
 ### `ui.lesson.colors`
 
