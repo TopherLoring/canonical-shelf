@@ -739,7 +739,7 @@
     {
       "id": "S3.Q2",
       "title": "Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.Q"
       ],
@@ -755,8 +755,20 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Decided under S3.Q but no node shipped them. Self-host the woff2 files through the existing fontSources mechanism (open license, no cost). Fonts must load before lesson text renders or wrapping will differ from the calibration."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/ship-reading-room-fonts."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed the approved font shipment: keep existing fontSources generation, ship Source Sans 3 body faces and Literata Scripture faces, and update only Reading Room values. Existing themes keep their fonts. First commit is the claim; next fetch licensed assets, regenerate theme output, verify the actual browser font faces and run the required gates."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/ship-reading-room-fonts"
     },
     {
       "id": "S3.B7",
