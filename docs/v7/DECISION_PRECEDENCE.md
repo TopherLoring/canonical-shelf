@@ -1091,8 +1091,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.card`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
-  The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
+  The portrait lesson text box is 4:5 (width:height, 0.80:1), replacing the roughly 3:5 in ui.lesson.card.orientation-2026-10-05. It spans about 89% of the viewport width and 51.5-52% of its height (390x844: ~348x435 pt; 430x932: ~383x480; 375x667: ~334x418). Landscape stays about 5:3. Proposed container: width 100%, aspect-ratio 4/5, max-height calc(100dvh - 380px), overflow-y auto.
+  *Why:* Owner specified the portrait text box ratio and dimensions
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
+  ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
 
 ### `ui.lesson.colors`
 

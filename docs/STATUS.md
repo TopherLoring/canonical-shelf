@@ -205,7 +205,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
-| `ui.lesson.card` | The lesson card has two layouts chosen by the screen's shape, not the device: | Owner decision | undefined |
+| `ui.lesson.card` | The portrait lesson text box is 4:5 (width:height, 0.80:1), replacing the roughly 3:5 in ui.lesson.card.orientation-2026-10-05. | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
