@@ -420,7 +420,7 @@
     {
       "id": "S3.D",
       "title": "Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.B",
         "S3.R"
@@ -444,8 +444,15 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Pack to the target of about half the ceiling (about 370-420 characters; ui.lesson.card.step-length-2026-10-05), never above 833/784/735 by paragraph count, and never more lines than fit the primary portrait box (about 15 at 49 per line). Report every step that only fits under fallback D."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     },
     {
       "id": "S3.E",
