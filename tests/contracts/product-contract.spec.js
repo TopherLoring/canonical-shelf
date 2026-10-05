@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const routes=['/home','/course','/bible','/topics','/practice','/search'];
 
-test('core destinations render as valid documents',async({page})=>{
+test('core destinations render as valid documents',{tag:'@smoke'},async({page})=>{
   test.slow();
   for(const route of routes){
     const response=await page.goto(route,{waitUntil:'domcontentloaded'});
@@ -14,7 +14,7 @@ test('core destinations render as valid documents',async({page})=>{
   }
 });
 
-test('primary navigation is a same-document SPA transition',async({page})=>{
+test('primary navigation is a same-document SPA transition',{tag:'@smoke'},async({page})=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/course');
   await expect(page.locator('#guide-open')).toBeEnabled();
@@ -104,7 +104,7 @@ test('Theologian opens as a fixed chat panel with a conversation menu, and close
   await expect(flag.locator('textarea[name=message]')).toHaveAttribute('required','');
 });
 
-test('cross-references follow the selected verse, even when the verse is chosen before the data arrives',async({page})=>{
+test('cross-references follow the selected verse, even when the verse is chosen before the data arrives',{tag:'@smoke'},async({page})=>{
   // Slow the chapter's cross-reference download so the verse is clicked before the data arrives (as on slow connections).
   await page.route('**/data/crossref/**',async route=>{await new Promise(r=>setTimeout(r,1500));await route.continue()});
   await page.goto('/bible?book=43&chapter=3');
@@ -239,7 +239,7 @@ test('the internal belief context is never served by the site (only the Theologi
   expect(llms).not.toContain('Internal Belief and Interpretive Context');
 });
 
-test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',async({page})=>{
+test('notes are built into the Bible side panel, follow the selected verse, and appear in the profile',{tag:'@smoke'},async({page})=>{
   await page.goto('/bible?book=43&chapter=3');
   const mount=page.locator('[data-reader-notes] [data-notes-mount]');
   await expect(mount.locator('.study-notes__anchor')).toContainText('John 3');
@@ -274,7 +274,7 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   await expect(desk.locator('.apparatus-module summary').first()).toContainText('Your notes');
 });
 
-test('desktop and narrow layouts do not create horizontal page overflow',async({page})=>{
+test('desktop and narrow layouts do not create horizontal page overflow',{tag:'@smoke'},async({page})=>{
   for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
     await page.setViewportSize(viewport);
     for(const route of ['/home','/bible','/course']){
@@ -285,7 +285,7 @@ test('desktop and narrow layouts do not create horizontal page overflow',async({
   }
 });
 
-test('critical accessibility smoke is clean on representative destinations',async({page})=>{
+test('critical accessibility smoke is clean on representative destinations',{tag:'@smoke'},async({page})=>{
   for(const route of ['/home','/bible','/course']){
     await page.goto(route);
     const results=await new AxeBuilder({page}).analyze();

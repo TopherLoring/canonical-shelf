@@ -4,7 +4,9 @@ export default defineConfig({
   testDir:'./tests',
   timeout:30000,
   expect:{timeout:7000},
-  fullyParallel:false,
+  // Every test gets its own browser context (fresh storage), so tests run in parallel: half the CPU cores locally, two on CI.
+  fullyParallel:true,
+  workers:process.env.CI?2:undefined,
   // One retry on CI absorbs runner hiccups (dropped local connections); a test that fails twice still fails the build.
   retries:process.env.CI?1:0,
   reporter:'line',

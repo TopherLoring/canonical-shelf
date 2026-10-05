@@ -275,7 +275,7 @@ test.describe('Bible reader', () => {
     await expect(page.locator('[data-reader-fn-pop]')).toContainText('Textus Receptus');
     await expect(page.locator('[data-reader-fn-pop]')).toContainText('and the Jews');
   });
-  test('shows BSB section headings and the chapter text', async ({ page }) => {
+  test('shows BSB section headings and the chapter text',{tag:'@smoke'}, async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3');
     const reader = page.locator('[data-reader]');
     await expect(reader.getByRole('heading', { level: 2 }).first()).toBeVisible();
@@ -327,7 +327,7 @@ test.describe('Bible reader', () => {
     expect(frame.height).toBe(page.viewportSize().height);
   });
 
-  test('highlights persist across reloads and can be removed', async ({ page }) => {
+  test('highlights persist across reloads and can be removed',{tag:'@smoke'}, async ({ page }) => {
     await page.goto('/bible?book=1&chapter=1');
     await page.locator('#v2').click();
     await page.locator('[data-reader-actions] [data-color="green"]').click();
@@ -471,7 +471,7 @@ test.describe('Bible reader on a phone', () => {
     expect(await page.locator('[data-reader-scroll]').evaluate(el => el.scrollTop)).toBeGreaterThan(0);
   });
 
-  test('has no horizontal scroll and opens My Notes from its edge tab', async ({ page }) => {
+  test('has no horizontal scroll and opens My Notes from its edge tab',{tag:'@smoke'}, async ({ page }) => {
     await page.goto('/bible?book=1&chapter=1');
     await expect(page.locator('[data-reader]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);

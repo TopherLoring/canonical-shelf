@@ -209,6 +209,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `test:feedback` | `bun scripts/test-feedback.mjs` |
 | `test:theologian` | `bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs` |
 | `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
+| `test:smoke` | `playwright test --grep @smoke` |
+| `verify:fast` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run verify:sw && bun run test:core && node .roa-kit/roa.mjs verify && bun run test:smoke` |
 | `test:browser` | `playwright test` |
 | `test:redesign` | `playwright test tests/redesign` |
 | `test` | `bun run test:core && bun run test:browser` |

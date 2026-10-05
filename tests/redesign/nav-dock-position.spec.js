@@ -14,7 +14,7 @@ const ROUTES = [
 
 test.describe('Phase 0: Nav and dock invariant positions across routes', () => {
   test.slow();
-  test('primary navigation is in the same position across every route on desktop (1440x900)', async ({ page }) => {
+  test('primary navigation is in the same position across every route on desktop (1440x900)',{tag:'@smoke'}, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     let baselineBox = null;
     let baselineItemBoxes = null;

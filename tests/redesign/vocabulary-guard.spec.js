@@ -35,7 +35,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     expect(DECIDED_NAMES).toContain('Shelf');
   });
 
-  test('primary navigation uses decided names (Shelf, Learning Path, Bible, Study Topics, Review & Practice)', async ({ page }) => {
+  test('primary navigation uses decided names (Shelf, Learning Path, Bible, Study Topics, Review & Practice)',{tag:'@smoke'}, async ({ page }) => {
     await page.goto('/home');
     await waitForAppReady(page);
     const navLinks = await page.locator('nav.primary a').allInnerTexts();
