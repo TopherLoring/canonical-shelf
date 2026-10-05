@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "work.s3.q.2026-10-05",
+  "topic": "work.s3.q",
+  "date": "2026-10-05",
+  "text": "S3.Q: Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet",
+  "scope": "S3.Q: Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose",
+  "by": "Chris"
+}

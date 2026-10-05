@@ -120,7 +120,7 @@
     {
       "id": "S3.Q",
       "title": "Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose",
-      "state": "todo",
+      "state": "done",
       "deps": [],
       "owns": [],
       "accept": [],
@@ -130,8 +130,14 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Not blocking: S3.B calibrates the shipped reading font (Cambria/Caladea metrics, identical on every device). Choosing the theme-sheet fonts means shipping them site-wide and rerunning S3.B."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: work.s3.q.2026-10-05 (Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet)."
         }
-      ]
+      ],
+      "record": "work.s3.q.2026-10-05"
     },
     {
       "id": "S3.C",
