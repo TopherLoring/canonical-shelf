@@ -757,7 +757,7 @@
     {
       "id": "S3.B7",
       "title": "Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.Q2"
       ],
@@ -779,8 +779,15 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     }
   ]
 }
