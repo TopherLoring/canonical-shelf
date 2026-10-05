@@ -7,11 +7,11 @@
  "averageCharEm": 0.406,
  "shapes": {
   "portrait": {
-   "aspect": "3:5",
+   "aspect": "4:5",
    "charsPerLine": 38,
    "lineWidthEm": 14.964,
-   "maxLines": 15,
-   "capacityChars": 524
+   "maxLines": 11,
+   "capacityChars": 384
   },
   "landscape": {
    "aspect": "5:3",
@@ -23,8 +23,8 @@
  },
  "governingShape": "portrait",
  "partBudget": {
-  "lines": 15,
-  "chars": 524
+  "lines": 11,
+  "chars": 384
  },
  "fonts": {
   "regular": {

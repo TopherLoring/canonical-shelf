@@ -13,10 +13,10 @@ const OUT = 'content/pathway/lesson-type.json';
 const FONTS_CSS = 'public/fonts/fonts.css';
 const LESSONS = 'content/pathway/lessons';
 
-// Card geometry from the orientation decision: text box ~3:5 portrait and ~5:3 landscape, ~38 and ~68 characters
-// per line, so both shapes hold about the same amount of text.
+// Card geometry: text box 4:5 portrait (ui.lesson.card.portrait-4x5-2026-10-05) and ~5:3 landscape, ~38 and ~68
+// characters per line. The shapes no longer hold the same amount of text; the divider packs to the tighter one.
 const SHAPES = {
-  portrait: { aspect: [3, 5], charsPerLine: 38 },
+  portrait: { aspect: [4, 5], charsPerLine: 38 },
   landscape: { aspect: [5, 3], charsPerLine: 68 },
 };
 const LINE_HEIGHT = 1.7; // --leading-reading in public/theme.css; lesson prose is reading text
@@ -223,8 +223,8 @@ export function calibrate() {
 
 function checkBudgets(t) {
   const problems = [];
-  const caps = Object.values(t.shapes).map(s => s.capacityChars);
-  if (Math.max(...caps) / Math.min(...caps) > 1.2) problems.push(`shapes hold different amounts of text: ${caps.join(' vs ')} characters`);
+  if (t.shapes.portrait.aspect !== '4:5') problems.push('portrait text box is not the decided 4:5');
+  if (t.partBudget.chars < 300) problems.push(`part budget is only ${t.partBudget.chars} characters`);
   for (const [name, s] of Object.entries(t.shapes)) {
     if (Math.abs(s.charsPerLine - { portrait: 38, landscape: 68 }[name]) > 0) problems.push(`${name}: chars per line is not the decided value`);
     if (s.maxLines < 8) problems.push(`${name}: fewer than 8 lines`);
