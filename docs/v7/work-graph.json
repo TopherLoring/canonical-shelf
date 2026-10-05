@@ -892,18 +892,26 @@
     {
       "id": "S3.S",
       "title": "Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends)",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S3.D"
       ],
       "owns": [],
       "accept": [],
-      "gate": "chris"
+      "gate": "chris",
+      "record": "ui.lesson.reading.inline-or-popover-2026-10-05",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: ui.lesson.reading.inline-or-popover-2026-10-05."
+        }
+      ]
     },
     {
       "id": "S3.D2",
       "title": "Divider: implement the Scripture reading rule from S3.S; attach \"As you read X, notice...\" to the reading's last card",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.S"
       ],
@@ -914,6 +922,15 @@
       "accept": [
         "bun scripts/test-lesson-divider.mjs",
         "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        }
       ]
     }
   ]
