@@ -205,7 +205,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
-| `ui.lesson.card` | In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a "step" means one screen: | Owner decision | undefined |
+| `ui.lesson.card` | Every lesson card is a step. | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
