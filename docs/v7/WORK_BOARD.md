@@ -25,12 +25,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - **S5b** — Step 5: Review & Practice
 - **S5c** — Step 5: Profile
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
-- **S3.D3** — Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `S3.D3` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -41,7 +41,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.C` | ready |  |  | `S3.B`, `S3.B7`, `S3.R` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
-| `S3.D3` | ready |  |  | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S3.H` | waiting |  |  | `S3.C`, `X1`, `S3.D3` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
@@ -244,5 +243,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.D3 — Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources
 
+- 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): Per redesign.sequence.content-after-templates-2026-10-05: the screen renders live divider output until the content revision is done; S3.G later locks reviewed cards.
 
