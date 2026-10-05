@@ -13,13 +13,13 @@ const OUT = 'content/pathway/lesson-type.json';
 const FONTS_CSS = 'public/fonts/fonts.css';
 const LESSONS = 'content/pathway/lessons';
 
-// Card geometry: text box 4:5 portrait (ui.lesson.card.portrait-4x5-2026-10-05) and ~5:3 landscape, ~38 and ~68
+// Card geometry: text box 4:5 portrait (ui.lesson.card.portrait-4x5-2026-10-05) and ~5:3 landscape, 49 and 91 (ui.lesson.card.block-max-2026-10-05)
 // characters per line. The shapes no longer hold the same amount of text; the divider packs to the tighter one.
 const SHAPES = {
-  portrait: { aspect: [4, 5], charsPerLine: 38 },
-  landscape: { aspect: [5, 3], charsPerLine: 68 },
+  portrait: { aspect: [4, 5], charsPerLine: 49 },
+  landscape: { aspect: [5, 3], charsPerLine: 91 },
 };
-const LINE_HEIGHT = 1.7; // --leading-reading in public/theme.css; lesson prose is reading text
+const LINE_HEIGHT = 1.45; // --leading-normal in public/theme.css; with Caladea this gives 17 lines in the 4:5 box at 49 per line
 // Kerning (GPOS) and hinting are not applied here, and a real wrap leaves ragged line ends. These margins keep the
 // computed budgets on the safe side: lines are treated as 3% narrower, and a part may fill 92% of its lines.
 const WIDTH_SAFETY = 0.97;
@@ -226,7 +226,7 @@ function checkBudgets(t) {
   if (t.shapes.portrait.aspect !== '4:5') problems.push('portrait text box is not the decided 4:5');
   if (t.partBudget.chars < 300) problems.push(`part budget is only ${t.partBudget.chars} characters`);
   for (const [name, s] of Object.entries(t.shapes)) {
-    if (Math.abs(s.charsPerLine - { portrait: 38, landscape: 68 }[name]) > 0) problems.push(`${name}: chars per line is not the decided value`);
+    if (Math.abs(s.charsPerLine - { portrait: 49, landscape: 91 }[name]) > 0) problems.push(`${name}: chars per line is not the decided value`);
     if (s.maxLines < 8) problems.push(`${name}: fewer than 8 lines`);
   }
   for (const [key, f] of Object.entries(t.fonts)) if (!f.widths[' '] || !f.widths['e']) problems.push(`${key}: missing basic glyph widths`);

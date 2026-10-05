@@ -180,7 +180,7 @@
     {
       "id": "S3.B3",
       "title": "Step 3: recalibrate line budgets to the block maximums (49 across x 17 down portrait, 91 across landscape)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.B2"
       ],
@@ -199,6 +199,16 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Block maximums per ui.lesson.card.block-max-2026-10-05: portrait 49 across x 17 lines (766 chars, governs), landscape 91 across x 15 lines (1255 chars, derived from the 5:3 box). Line height 1.45 (--leading-normal); with Caladea that yields exactly 17 lines in the 4:5 box at 49 per line. Font size = box width / (49 x 0.406) portrait, / (91 x 0.406) landscape. Still Caladea: rerun after S3.Q fonts ship."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
         }
       ]
     },
