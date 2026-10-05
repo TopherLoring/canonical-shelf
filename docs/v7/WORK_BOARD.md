@@ -30,7 +30,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.D3a` | claimed | Codex | `codex/lesson-card-catalog-docs` | `S3.D3` | Regenerate the published catalog documentation for provisional lesson cards |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -68,6 +67,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.D` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.B`, `S3.R` | Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests |
 | `S3.D2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.S` | Divider: implement the Scripture reading rule from S3.S; attach "As you read X, notice..." to the reading's last card |
 | `S3.D3` | done | Codex | `codex/lesson-catalog-cards` | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
+| `S3.D3a` | done | Codex | `codex/lesson-card-catalog-docs` | `S3.D3` | Regenerate the published catalog documentation for provisional lesson cards |
 | `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
@@ -253,6 +253,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.D3a — Regenerate the published catalog documentation for provisional lesson cards
 
+- 2026-10-05 (Codex): Closed through work done: generation and verify:fast (12 smoke) passed with CI=1. Combined catalog source and documentation already passed full verify 144/144, divider unit tests and all 119 lesson/1042 card consumer checks. Only generated llms.txt and this node's handoff are committed here. Next: review the stacked source/output drafts together before merging. Independently created content-revision files are left untouched.
+- 2026-10-05 (Codex): Done; acceptance passed (bun run generate:llms; bun run verify:fast).
 - 2026-10-05 (Codex): Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched.
 - 2026-10-05 (Codex): Claimed on codex/lesson-card-catalog-docs.
 - 2026-10-05 (Codex): S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions.
