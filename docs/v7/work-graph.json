@@ -464,6 +464,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Per ui.naming.hide-module-unit-labels-2026-10-05: do not show the words Module or Unit to learners (titles only); Lesson and Step stay; keep 'Unit N Checkpoint'. Check tests/redesign/vocabulary-guard.spec.js for terms to adjust."
+        }
       ]
     },
     {

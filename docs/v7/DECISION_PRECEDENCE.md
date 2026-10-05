@@ -1147,10 +1147,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.naming`
 
-- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
-  Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.naming.hide-module-unit-labels-2026-10-05`
+  Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear, for example Learning Path > Reading the Bible Well > What the Bible Is > Lesson 1. "Lesson" and "Step" stay visible. The per-unit check keeps its decided name, "Unit N Checkpoint" (ui.naming.unit-check.checkpoint.v2). Module and unit IDs and file structure are unchanged.
+  *Why:* Owner: learners do not need to know a module is a module or a unit a unit
+- **Previous** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
+  ~~Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.~~
   *Why:* Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose
-- **Previous** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+- **Prior** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
   ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
 
