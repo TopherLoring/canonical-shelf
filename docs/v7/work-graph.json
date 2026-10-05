@@ -115,7 +115,7 @@
     {
       "id": "S3.A2",
       "title": "Step 3: handoff doc brought current (decisions, vocabulary, open questions)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.A"
       ],
@@ -132,6 +132,16 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Handoff doc rewritten: current decisions, vocabulary (card = step), calibration result, open questions."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ]
     },
