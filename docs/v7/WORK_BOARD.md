@@ -18,8 +18,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - **R1** — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
 - **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
-- **X1** — Codex lesson branch committed and pushed (codex/redesign-lesson-path) *(needs Chris)*
 - **S3.D** — Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests
+- **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 - **S5a** — Step 5: Study Topics
 - **S5b** — Step 5: Review & Practice
@@ -44,7 +44,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S3.H` | waiting |  |  | `S3.C`, `S3.G`, `X1` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `S3.I` | waiting |  |  | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
-| `S3.J` | waiting |  |  | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
+| `S3.J` | ready |  |  | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
 | `S3.Q2` | ready |  |  | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S4` | ready |  |  | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
 | `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
@@ -53,7 +53,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S6` | waiting |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
-| `X1` | ready (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `S2` | done | Codex + Claude | `feature/redesign-p4-reader` |  | Step 2: Bible reader |
 | `S3.A` | done | Claude | `feature/redesign-p5-lesson-path` |  | Step 3: decisions and handoff doc |
 | `S3.A2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: handoff doc brought current (decisions, vocabulary, open questions) |
@@ -64,6 +63,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.B5` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.B4` | Step 3: line height 1.55; decided line counts (17 portrait, 14 landscape) are authoritative, box aspect follows |
 | `S3.B6` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.B5` | Step 3: character ceilings per step (833 / 784 / 735 by paragraph count) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
+| `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 
 ## Handoff notes (latest first)
 
@@ -82,6 +82,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### X1 — Codex lesson branch committed and pushed (codex/redesign-lesson-path)
 
+- 2026-10-05 (Chris): Decided: work.x1.2026-10-05 (Codex lesson branch pushed (6f8c2ac)).
 - 2026-10-05 (Claude): Needed by S3.H and S3.J. Close with a record such as process.codex-lesson-branch-pushed once pushed.
 
 ### S3.A2 — Step 3: handoff doc brought current (decisions, vocabulary, open questions)

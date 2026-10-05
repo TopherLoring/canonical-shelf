@@ -1365,6 +1365,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Approval** · 2026-10-05 · Chris · `work.s3.q.2026-10-05` · scope: S3.Q: Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose
   S3.Q: Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet
 
+### `work.x1`
+
+- **Approval** · 2026-10-05 · Chris · `work.x1.2026-10-05` · scope: X1: Codex lesson branch committed and pushed (codex/redesign-lesson-path)
+  X1: Codex lesson branch pushed (6f8c2ac)
+
 ## Resolved questions
 
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch

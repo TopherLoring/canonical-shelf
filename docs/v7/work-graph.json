@@ -87,7 +87,7 @@
     {
       "id": "X1",
       "title": "Codex lesson branch committed and pushed (codex/redesign-lesson-path)",
-      "state": "todo",
+      "state": "done",
       "deps": [],
       "owns": [],
       "accept": [],
@@ -97,8 +97,14 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Needed by S3.H and S3.J. Close with a record such as process.codex-lesson-branch-pushed once pushed."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: work.x1.2026-10-05 (Codex lesson branch pushed (6f8c2ac))."
         }
-      ]
+      ],
+      "record": "work.x1.2026-10-05"
     },
     {
       "id": "S3.A",
