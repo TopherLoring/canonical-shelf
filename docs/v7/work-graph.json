@@ -138,6 +138,11 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "Closed through bun run work done R2: spacing contract and verify:fast passed (12 smoke) with CI=1; full verify passed 144/144 and targeted spacing passed 10 repetitions. Board-only investigation; current runtime left unchanged. Next: publish codex/r2-top-bar-spacing as a draft PR into feature/redesign-p5-lesson-path for Chris's review. S3.J must check the replacement Learning Path screen's own top spacing; historical 62px gap was reproduced in the old screen, not shared frame/layout. No other node changed."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "PR #66 merged into feature/redesign-p5-lesson-path after #65 merged into #64 and #64 merged into integration. Git merged the graph correctly but left its generated board stale; regenerating the board from the combined graph. All three nodes remain done; no source content changes. Next: finish the lesson templates before content revision and final break review. Main and production were not touched."
         }
       ],
       "owner": "Codex",
