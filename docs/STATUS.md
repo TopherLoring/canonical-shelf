@@ -100,7 +100,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
 | `design.themes.sketch-book-name` | The Illustrated theme is named Sketch Book | Owner decision | undefined |
 | `design.themes.spec` | The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; | Owner decision | undefined |
-| `design.typography.no-all-caps` | No all caps anywhere: | Owner decision | undefined |
+| `design.typography.caps` | No capitalization rule is enforced while the redesign is built: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
 | `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |
@@ -115,6 +115,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
+| `notes.discuss-flag` | The in-person discussion flag on notes was a reason notes exist, not an intended feature; | Owner decision | undefined |
 | `notes.lesson-hidden` | Notes are hidden by default only in lessons. | Owner decision | undefined |
 | `orientation.scope` | Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; | Owner decision | undefined |
 | `platform.offline` | Offline access is not a requirement | Owner decision | undefined |

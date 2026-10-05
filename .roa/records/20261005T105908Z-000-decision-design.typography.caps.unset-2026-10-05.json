@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design.typography.caps.unset-2026-10-05",
+  "topic": "design.typography.caps",
+  "date": "2026-10-05",
+  "text": "No capitalization rule is enforced while the redesign is built: the 'no all caps anywhere' guard and test are removed, and the nav-caps requirement is not applied. Capitalization is a style question to revisit when the redesign is done.",
+  "supersedes": [
+    "design.typography.no-all-caps"
+  ],
+  "by": "Chris"
+}

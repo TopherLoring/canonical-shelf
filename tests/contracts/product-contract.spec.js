@@ -229,19 +229,6 @@ test('each page starts close under the top bar (no large blank band); Home has n
   await expect(page.locator('main')).not.toContainText('66 books');
 });
 
-test('no all caps anywhere: no visible element is styled in capitals',async({page})=>{
-  for(const u of ['/home','/course','/course?unit=c1.christianity&lesson=begin&scene=2','/bible?book=43&chapter=3','/topics','/practice','/profile']){
-    await page.goto(u);
-    await expect(page.locator('main')).not.toBeEmpty();
-    const caps=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(el=>el.offsetParent!==null&&el.textContent.trim()).filter(el=>{const cs=getComputedStyle(el);return cs.textTransform==='uppercase'||/small-caps|all-small-caps|petite-caps/.test(cs.fontVariantCaps)}).slice(0,3).map(el=>`${el.tagName.toLowerCase()}.${el.className}`));
-    expect(caps,`all-caps styling on ${u}`).toEqual([]);
-    const shouting=await page.evaluate(()=>{const keep=/^(BSB|KJV|NLT|NIV|ESV|NRSV|NASB|LORD|YHWH|LGBTQ|AD|BC|BCE|CE|XP|II|III|IV)$/;
-      return [...document.querySelectorAll('body *')].filter(el=>el.offsetParent!==null).flatMap(el=>[...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent))
-        .filter(text=>(text.match(/\b[A-Z]{3,}\b/g)||[]).filter(word=>!keep.test(word)).length>=2).slice(0,3)});
-    expect(shouting,`text written in capitals on ${u}`).toEqual([]);
-  }
-});
-
 test('the internal belief context is never served by the site (only the Theologian server reads it)',async({request})=>{
   for(const path of ['/data/theologian-belief-context.md','/data/statement-of-faith-v3.md']){
     const res=await request.get(path);

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "notes.discuss-flag.removed-2026-10-05",
+  "topic": "notes.discuss-flag",
+  "date": "2026-10-05",
+  "text": "The in-person discussion flag on notes was a reason notes exist, not an intended feature; the reader's My Notes editor has no 'Bring this up with someone in person' checkbox. Existing flagged notes stay readable.",
+  "by": "Chris"
+}

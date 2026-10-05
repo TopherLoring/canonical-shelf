@@ -307,10 +307,14 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.spec.2026-09-30`
   The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 
+### `design.typography.caps`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `design.typography.caps.unset-2026-10-05`
+  No capitalization rule is enforced while the redesign is built: the 'no all caps anywhere' guard and test are removed, and the nav-caps requirement is not applied. Capitalization is a style question to revisit when the redesign is done.
+
 ### `design.typography.no-all-caps`
 
-- **Current** · 2026-09-30 · Owner decision (Chris) · `design.typography.no-all-caps`
-  No all caps anywhere: no text styled or written in capitals (acronyms such as BSB stay as they are)
+
 
 ### `doctrine.difficult-texts`
 
@@ -513,6 +517,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `notes.notes-context`
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
+
+### `notes.discuss-flag`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `notes.discuss-flag.removed-2026-10-05`
+  The in-person discussion flag on notes was a reason notes exist, not an intended feature; the reader's My Notes editor has no 'Bring this up with someone in person' checkbox. Existing flagged notes stay readable.
 
 ### `notes.lesson-hidden`
 
@@ -1010,6 +1019,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.ask.v1`
   The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.
+- **Overridden default** · 2026-10-05 · Agent default (Claude) · `ui.bible.ask.notes-link-2026-10-05`
+  ~~The reader's My Notes editor has no 'Ask the Theologian about this' link. The Theologian edge tab is on every screen and opens already holding the current passage, narrowed to the selected verse, so a second entry point inside notes is redundant; discoverability comes from the always-visible tab. Supersedes the 'Ask about [verse]' notes-panel link in ui.bible.ask.v1; the rest of that decision (no Ask button in the toolbar, context-aware Theologian) stands.~~
 
 ### `ui.bible.crossrefs`
 

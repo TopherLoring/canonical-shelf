@@ -5,6 +5,12 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 ## 2026-10-05
 
+### Decided
+
+- No capitalization rule is enforced while the redesign is built: the 'no all caps anywhere' guard and test are removed, and the nav-caps requirement is not applied. Capitalization is a style question to revisit when the redesign is done. (supersedes design.typography.no-all-caps)
+- The in-person discussion flag on notes was a reason notes exist, not an intended feature; the reader's My Notes editor has no 'Bring this up with someone in person' checkbox. Existing flagged notes stay readable.
+- The reader's My Notes editor has no 'Ask the Theologian about this' link. The Theologian edge tab is on every screen and opens already holding the current passage, narrowed to the selected verse, so a second entry point inside notes is redundant; discoverability comes from the always-visible tab. Supersedes the 'Ask about [verse]' notes-panel link in ui.bible.ask.v1; the rest of that decision (no Ask button in the toolbar, context-aware Theologian) stands. (agent default)
+
 ### Added
 
 - Reader word and phrase highlights and underlines use native selection and canonical text offsets, preserve surrounding marks and footnotes, retain phrase scope across toolbar actions, and persist and sync with existing highlights. Fixed queued marking paints per verse and superseded asynchronous route renders. Full bun run verify passed with 142 browser tests; sync range and removal checks passed; independent review is clean; guard remains at 247 existing violations with zero new. Lesson pagination and later redesign slices remain pending.
