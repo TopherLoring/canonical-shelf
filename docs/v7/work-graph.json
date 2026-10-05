@@ -918,7 +918,7 @@
     {
       "id": "S3.D2",
       "title": "Divider: implement the Scripture reading rule from S3.S; attach \"As you read X, notice...\" to the reading's last card",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.S"
       ],
@@ -942,6 +942,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Reading rule implemented (ui.lesson.reading.inline-or-popover-2026-10-05): inline when two sentences or fewer AND at most 300 characters (Luke 24:44-45, Nehemiah 8:8, Proverbs 26:4-5); the other 113 readings are a 4-line link that opens a scrollable popover. The 300-character limit keeps out single Scripture sentences that run many verses (Ephesians 4:1-6, Ecclesiastes 3:1-8). Result: 1042 cards, no overflow; 2 orphans and 72 check-alone cards for the review report. The popover itself is lesson-screen work (S3.H)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
         }
       ]
     }
