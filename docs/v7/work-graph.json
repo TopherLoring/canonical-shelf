@@ -446,7 +446,7 @@
     {
       "id": "S3.D",
       "title": "Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.B",
         "S3.R"
@@ -485,6 +485,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Divider complete except readings: 642 steps -> 1078 cards, median 286 chars, max 475; sentences intact, content unchanged and in order, ids <step>, <step>-2...; runs of text cards re-split evenly; short last cards merged back only up to ~480 chars, else flagged orphan (6). 74 checks/blocks sit on their own card after their setup (informational). 100 primary readings overflow: rule pending S3.S, implemented in S3.D2. Suggest S3.I add scripts/test-lesson-divider.mjs to test:core."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
         }
       ],
       "owner": "Claude",
