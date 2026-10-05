@@ -17,7 +17,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
 - **S3.C** — Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
@@ -37,7 +36,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `C5` | waiting (Chris) |  |  | `C4` | Content: Chris approves each lesson revision batch |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.C` | ready |  |  | `S3.B`, `S3.B7`, `S3.R` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
@@ -54,6 +52,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
+| `R2` | done | Codex | `codex/r2-top-bar-spacing` | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `S2` | done | Codex + Claude | `feature/redesign-p4-reader` |  | Step 2: Bible reader |
 | `S3.A` | done | Claude | `feature/redesign-p5-lesson-path` |  | Step 3: decisions and handoff doc |
 | `S3.A2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: handoff doc brought current (decisions, vocabulary, open questions) |
@@ -93,6 +92,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### R2 — Every page starts close under the top bar: contract test fails on the lesson branch
 
+- 2026-10-05 (Codex): Closed through bun run work done R2: spacing contract and verify:fast passed (12 smoke) with CI=1; full verify passed 144/144 and targeted spacing passed 10 repetitions. Board-only investigation; current runtime left unchanged. Next: publish codex/r2-top-bar-spacing as a draft PR into feature/redesign-p5-lesson-path for Chris's review. S3.J must check the replacement Learning Path screen's own top spacing; historical 62px gap was reproduced in the old screen, not shared frame/layout. No other node changed.
+- 2026-10-05 (Codex): Done; acceptance passed (bunx playwright test tests/contracts/product-contract.spec.js --grep "starts close under the top bar"; bun run verify:fast).
+- 2026-10-05 (Codex): Current integration verified: 10/10 repeated spacing contract runs and full bun run verify with CI=1 (144/144 browser tests; no retries reported; build/BSB/contracts/core passed). Historical failure reproduced twice at 62px on /course in 6f8c2ac; screen-owned learning-path.css causes it, not the frame/layout. Existing integration has removed that unfinished renderer. Next: close via work done, commit this board-only investigation, and present its draft PR for review; S3.J should rerun this contract when introducing the replacement screen.
+- 2026-10-05 (Codex): Historical reproduction confirmed on codex/redesign-lesson-path (6f8c2ac) in an ignored archive snapshot: /course first-text gap is 62px, failing the 48px contract on both initial run and retry. That branch mounts learning-path.js, whose screen CSS adds 28px frame margin-top plus internal padding. Current integration leaves course registry null and removes that unfinished screen; the same contract passes. Frame/layout are not the source, so no CSS change is warranted. Next: repeated current-branch contract check and full verify; hand the historical spacing issue to S3.J when its new screen is implemented.
+- 2026-10-05 (Codex): Claimed from the latest feature/redesign-p5-lesson-path at Chris's request. Scope is public/ui/components/frame.css and public/ui/layout.css. No implementation changed. Next: reproduce the top-bar spacing contract failure on the lesson branch, then fix only the owned frame/layout paths; preserve Claude's lesson work.
+- 2026-10-05 (Codex): Claimed on codex/r2-top-bar-spacing.
 - 2026-10-05 (Claude): Seen on Chris's run of codex/redesign-lesson-path; reproduce on that branch first to confirm whether the lesson screen or the frame causes it.
 
 ### X1 — Codex lesson branch committed and pushed (codex/redesign-lesson-path)
