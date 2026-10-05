@@ -37,51 +37,31 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
     });
   }
 
-  test('no scrolling on any lesson screen at default text size on desktop (1440x900)', async ({ page }) => {
-    test.slow();
-    await page.setViewportSize({ width: 1440, height: 900 });
-    const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
-    const overflowingScenes = [];
-
-    for (const scene of scenes) {
-      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
-      await waitForAppReady(page);
-      const isOverflowing = await page.evaluate(() => {
-        return document.documentElement.scrollHeight > window.innerHeight + 2;
-      });
-      if (isOverflowing) {
-        overflowingScenes.push(scene);
+  for(const width of [320,390,428,768,1024,1440]) {
+    test('primary lesson parts fit without clipping at '+width+'px',async({page})=>{
+      test.slow();
+      await page.setViewportSize({width,height:width===1440?900:844});
+      for(let scene=1;scene<=8;scene++){
+        await page.goto('/course?unit=c1.christianity&lesson=begin&scene='+scene);
+        await expect(page.locator('[data-lesson-screen]')).toBeVisible();
+        await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
+        const results=await page.evaluate(()=>{
+          const parts=Number(document.querySelector('.lesson-part-status').textContent.match(/part [0-9]+ of ([0-9]+)/)[1]);
+          const bounds=[];
+          for(let part=1;part<=parts;part++){
+            const el=document.querySelector('.lesson-primary-window'),r=el.getBoundingClientRect(),c=document.querySelector('.lesson-primary-content').getBoundingClientRect();
+            const nested=[...document.querySelectorAll('.lesson-primary-content *')].filter(node=>node.getClientRects().length&&!node.closest('[hidden]')).filter(node=>{const s=getComputedStyle(node);return (/^(auto|scroll|hidden|clip)$/.test(s.overflowY)&&node.scrollHeight>node.clientHeight+1)||(/^(auto|scroll|hidden|clip)$/.test(s.overflowX)&&node.scrollWidth>node.clientWidth+1);}).map(node=>node.className);
+            bounds.push({part,nested,overflowY:el.scrollHeight-el.clientHeight,overflowX:el.scrollWidth-el.clientWidth,bottom:c.bottom-r.bottom,viewport:r.bottom-innerHeight,height:el.clientHeight,pageOverflow:document.documentElement.scrollWidth-innerWidth});
+            if(part<parts)document.querySelector('.ui-lesson-continue-btn').click();
+          }
+          return bounds;
+        });
+        for(const bounds of results){
+          expect(bounds.height,'primary viewport is usable').toBeGreaterThan(100);
+          expect(bounds.nested,'primary content has no nested scrolling or clipping').toEqual([]);
+          for(const key of ['overflowY','overflowX','bottom','viewport','pageOverflow'])expect(bounds[key],'scene '+scene+' part '+bounds.part+' '+key).toBeLessThanOrEqual(1);
+        }
       }
-    }
-
-    if (overflowingScenes.length > 0) {
-      test.fail(true, `TODO(Phase 5): Lesson scenes [${overflowingScenes.join(', ')}] scroll on desktop (1440x900); Phase 5 splits each step into non-scrolling screens`);
-    }
-
-    expect(overflowingScenes, 'No lesson screen should scroll at default text size').toEqual([]);
-  });
-
-  test('no scrolling on any lesson screen at default text size on phone (390x844)', async ({ page }) => {
-    test.slow();
-    await page.setViewportSize({ width: 390, height: 844 });
-    const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
-    const overflowingScenes = [];
-
-    for (const scene of scenes) {
-      await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
-      await waitForAppReady(page);
-      const isOverflowing = await page.evaluate(() => {
-        return document.documentElement.scrollHeight > window.innerHeight + 2;
-      });
-      if (isOverflowing) {
-        overflowingScenes.push(scene);
-      }
-    }
-
-    if (overflowingScenes.length > 0) {
-      test.fail(true, `TODO(Phase 5): Lesson scenes [${overflowingScenes.join(', ')}] scroll on phone (390x844); Phase 5 splits each step into non-scrolling screens`);
-    }
-
-    expect(overflowingScenes, 'No lesson screen should scroll on phone at default text size').toEqual([]);
-  });
+    });
+  }
 });

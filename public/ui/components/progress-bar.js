@@ -16,14 +16,15 @@ export function renderProgressBar({
   const variantClass = variant !== 'action' ? `ui-progress-bar--${variant}` : '';
 
   return `
-  <div class="ui-progress-bar ${variantClass} ${esc(className)}"
+  <progress class="ui-progress-bar ${variantClass} ${esc(className)}"
+    value="${clampedVal}" max="${safeMax}"
     role="progressbar"
     aria-valuenow="${clampedVal}"
     aria-valuemin="0"
     aria-valuemax="${safeMax}"
     aria-label="${esc(ariaLabel)}">
-    <div class="ui-progress-bar-fill" style="width: ${percent}%;"></div>
-  </div>`;
+    ${percent}%
+  </progress>`;
 }
 
 export function renderProgressScope({

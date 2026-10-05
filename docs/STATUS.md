@@ -3,7 +3,7 @@
 
 A guided Bible-learning library: full BSB reader, questions-first courses, topics, practice, and a grounded Theologian.
 
-**Project status:** active · **Current phase:** **Anchor the reader: resume, you-are-here, reading path, ask about this passage** (`1c`, planned) · **Checks:** 1/7 passing
+**Project status:** active · **Current phase:** **Slice 3: learning hierarchy and lesson card density with redesigned checks** (`2c`, active) · **Checks:** 1/7 passing
 
 ## Open questions
 
@@ -26,7 +26,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `3` | Unit 0 content and Theologian evaluation on real questions | planned | 2026-09-25 |
 | `2a` | Slice 1: theme-role migration, shared navigation, vocabulary, label scrub | planned | 2026-10-03 |
 | `2b` | Slice 2: Bible reader (discovery, overview, reading) with context-aware Reading Desk and notes | planned | 2026-10-03 |
-| `2c` | Slice 3: learning hierarchy and lesson card density with redesigned checks | planned | 2026-10-03 |
+| `2c` | Slice 3: learning hierarchy and lesson card density with redesigned checks | active | 2026-10-05 |
 | `2d` | Slice 4: Profile, Study Topics, and Review & Practice | planned | 2026-10-03 |
 | `2e` | Slice 5: final theme values and light/dark audit | planned | 2026-10-03 |
 
@@ -107,6 +107,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `doctrine.spiritual-warfare` | Satan, demons, and spiritual warfare: | Owner decision | undefined |
 | `doctrine.statement-of-faith` | undefined | Agent default | undefined |
 | `doctrine.trinity-incarnation` | Superseded by the 2026-10-02 reconciliation: | Owner decision | undefined |
+| `engineering.agent.verification` | Worker agents should not verify their own work or write their own tests. | Owner decision | undefined |
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
@@ -235,6 +236,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
+| `ui.tablet.rotation` | Tablet rotation guidance must be dismissible and must never require rotating the device to continue. | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |

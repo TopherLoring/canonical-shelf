@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.tablet.rotation.dismissible.v1",
+  "topic": "ui.tablet.rotation",
+  "date": "2026-10-05",
+  "text": "Tablet rotation guidance must be dismissible and must never require rotating the device to continue.",
+  "by": "Chris"
+}

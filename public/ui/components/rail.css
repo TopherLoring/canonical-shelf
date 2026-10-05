@@ -74,6 +74,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .ui-rail-sublabel, .ui-rail-description { display: block; font-size: var(--type-caption); color: var(--color-text-muted); line-height: var(--leading-normal); margin-block: var(--space-1); }
+  .ui-rail-sublabel { font-weight: 600; }
+  .ui-rail-label .ui-progress-bar { margin-top: var(--space-2); }
 
   .ui-rail-count,
   .ui-rail-badge {

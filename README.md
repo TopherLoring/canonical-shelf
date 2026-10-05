@@ -184,7 +184,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 - **Purpose:** Help adults read and understand the Bible in context without being overwhelmed, by pairing a full reader with a map, guided courses, and a Theologian that answers from the passage in front of them.
 - **For:** Primary: a graduate-level adult who recently came to faith and is anxious about navigating Scripture; Casual adult learners; Existing Christians and Bible-study groups
-- **Status:** active · current phase **Anchor the reader: resume, you-are-here, reading path, ask about this passage**
+- **Status:** active · current phase **Slice 3: learning hierarchy and lesson card density with redesigned checks**
 - **Stack:** node, bun 1.2.15, bun@1.2.15 · CSS, HTML, JavaScript, PowerShell, SQL, TypeScript
 - **repository:** https://github.com/TopherLoring/canonical-shelf
 - **production:** https://the-canonical-shelf.christopherwonder.workers.dev

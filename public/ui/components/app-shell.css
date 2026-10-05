@@ -347,11 +347,11 @@
   }
 
   /* Lesson focus mode (body.study-focus-active): the lesson takes the whole screen, so the shell steps aside. */
-  body.study-focus-active > .masthead,
-  body.study-focus-active > .app-shell-header,
-  body.study-focus-active > .primary,
-  body.study-focus-active > .pwa-status,
-  body.study-focus-active > .guide-open {
+  body.study-focus-active:not(:has([data-lesson-screen])) > .masthead,
+  body.study-focus-active:not(:has([data-lesson-screen])) > .app-shell-header,
+  body.study-focus-active:not(:has([data-lesson-screen])) > .primary,
+  body.study-focus-active:not(:has([data-lesson-screen])) > .pwa-status,
+  body.study-focus-active:not(:has([data-lesson-screen])) > .guide-open {
     display: none;
   }
 }

@@ -346,6 +346,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Previous** · 2026-09-26 · Owner decision (Chris) · `doctrine.trinity-incarnation.doctrine-trinity-incarnation`
   ~~Trinity and incarnation foundation: one God in three persons; Jesus fully divine and fully human. Teach biblical foundations, historical development, and interpretive difficulties~~
 
+### `engineering.agent.verification`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `engineering.agent.independent-verification.v1`
+  Worker agents should not verify their own work or write their own tests.
+
 ### `feedback`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `feedback.feedback-cta`
@@ -1250,6 +1255,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
   For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
+
+### `ui.tablet.rotation`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.tablet.rotation.dismissible.v1`
+  Tablet rotation guidance must be dismissible and must never require rotating the device to continue.
 
 ### `ui.theme.default`
 

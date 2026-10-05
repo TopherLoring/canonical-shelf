@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "engineering.agent.independent-verification.v1",
+  "topic": "engineering.agent.verification",
+  "date": "2026-10-05",
+  "text": "Worker agents should not verify their own work or write their own tests.",
+  "by": "Chris"
+}

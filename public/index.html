@@ -122,41 +122,14 @@
     </div>
   </footer>
 
-  <template id="tpl-course-chooser">
-    <header class="section compact-section course-catalog-heading"><p class="eyebrow">Pathway</p><h1>Choose where to begin.</h1><p class="lede tpl-course-chooser-lede"></p></header>
-    <section class="course-catalog-chooser" aria-label="Pathway modules"><div class="course-selector"><header class="course-selector__head"><h2>Canonical learning</h2><p class="tpl-course-chooser-count"></p></header><div data-course-choices></div></div><article class="course-preview" data-course-preview aria-live="polite"></article></section>
+  <template id="tpl-learning-path">
+    <section class="learning-path" data-learning-path data-study-return-scroll="path" aria-label="Learning Path">
+      <div class="path-module-picker"><label for="path-module">Module</label><select id="path-module" data-path-module-picker></select></div>
+      <div class="path-modules" data-path-modules data-study-return-scroll="modules"></div>
+      <section class="path-content" data-study-return-scroll="units" aria-labelledby="path-title"><header class="path-heading"><p data-path-position></p><h1 id="path-title"></h1><p data-path-scope></p></header><div class="path-units" data-path-units></div></section>
+      <aside class="path-progress" data-path-progress data-study-return-scroll="progress" aria-label="Your progress"></aside>
+    </section>
   </template>
-
-  <template id="tpl-course-chooser-preview">
-    <header class="course-preview__head"><p class="eyebrow tpl-course-prev-seq"></p><h2 class="tpl-course-prev-title"></h2><p class="tpl-course-prev-scope"></p></header>
-    <div class="course-preview__body"><section><h3>What this module establishes</h3><p class="tpl-course-prev-outcome"></p><h3>Learning path</h3><p>The units below are ordered intentionally, while completed material remains available for review.</p></section><section><h3>Module contents</h3><div class="course-preview__units tpl-course-prev-units"></div></section></div>
-    <footer class="course-preview__foot"><div class="course-preview__meta"><span class="tpl-course-prev-count"></span><span>No progress yet</span><a class="tpl-course-prev-orientation">Orientation</a></div><a class="button tpl-course-prev-open">Open module →</a></footer>
-  </template>
-
-  <template id="tpl-course-landing">
-    <section class="course-volume-landing"><header class="course-volume-heading"><p class="eyebrow tpl-course-landing-eyebrow"></p><h1>Pathway</h1><p class="lede tpl-course-landing-lede"></p><p class="course-volume-heading__help"><a href="/course?unit=unit.orientation&amp;lesson=orientation">How Canonical Shelf works</a></p></header><div class="course-volume-shelf tpl-course-landing-shelf"></div><section class="course-volume-summary"><div><p class="eyebrow tpl-course-summary-label"></p><h2 class="tpl-course-summary-title"></h2><p class="tpl-course-summary-scope"></p></div><div><strong class="tpl-course-summary-pct"></strong><p class="tpl-course-summary-count"></p><a class="button button--primary tpl-course-summary-open">Open volume →</a></div></section></section>
-  </template>
-
-  <template id="tpl-course-volume-link">
-    <a class="course-volume"><span class="course-volume__seq tpl-course-volume-seq"></span><strong class="course-volume__title tpl-course-volume-title"></strong><span class="course-volume__status"><strong class="tpl-course-volume-status"></strong><span class="tpl-course-volume-units"></span></span></a>
-  </template>
-
-  <template id="tpl-course-detail">
-    <section class="course-catalog-detail"><aside class="course-detail-hero"><div class="course-current-label">Current volume</div><div class="course-detail-hero__grid"><div><p class="eyebrow tpl-course-detail-eyebrow"></p><h1 class="tpl-course-detail-title"></h1><p class="lede tpl-course-detail-scope"></p><p class="tpl-course-detail-outcome"></p><div class="hero-actions"><a class="button button--primary tpl-course-detail-primary"></a><a class="button tpl-course-detail-glossary">Module glossary</a></div></div></div><div class="course-current-sequence tpl-course-detail-sequence"></div><div class="course-total-state"><strong class="tpl-course-detail-pct"></strong><span class="tpl-course-detail-count"></span><small class="tpl-course-detail-review"></small></div><nav class="course-volume-nav" aria-label="Course navigation"><a class="tpl-course-prev">Prev</a><a class="tpl-course-next">Next</a></nav></aside><section class="course-catalog-contents"><header class="course-catalog-contents__head"><p class="eyebrow tpl-course-contents-eyebrow"></p><h2 class="tpl-course-contents-title"></h2><p class="tpl-course-contents-count"></p></header><div class="unit-card-grid tpl-course-detail-units"></div></section></section>
-  </template>
-
-  <template id="tpl-course-unit-card">
-    <article class="journey-unit-card"><header><span class="tpl-unit-card-seq"></span><span class="unit-state tpl-unit-card-state"></span></header><h2><a class="tpl-unit-card-title"></a></h2><p class="tpl-unit-card-scope"></p><div class="progress"><span class="tpl-unit-card-progress"></span></div><div class="journey-unit-card__stats"><span class="tpl-unit-card-activities"></span><span class="tpl-unit-card-mastery"></span></div><footer><a class="tpl-unit-card-open"></a></footer></article>
-  </template>
-
-  <template id="tpl-unit-experience">
-    <header class="unit-experience-hero"><p><a class="tpl-unit-back"></a></p><div class="unit-experience-hero__grid"><div><p class="eyebrow tpl-unit-eyebrow"></p><h1 class="tpl-unit-title"></h1><p class="lede tpl-unit-scope"></p><p class="unit-access-note">Recommended sequence, open navigation: start or revisit any activity whenever it is useful.</p></div><aside><strong class="tpl-unit-pct"></strong><span class="tpl-unit-count"></span><small class="tpl-unit-review" hidden></small></aside></div></header><ol class="activity-journey unit-list tpl-unit-exp-activities"></ol>
-  </template>
-
-  <template id="tpl-unit-activity-step">
-    <li class="activity-step unit"><span class="activity-step__num unit-num tpl-activity-num"></span><div><p class="eyebrow tpl-activity-label"></p><h3><a class="tpl-activity-link"></a><p class="tpl-activity-objective unit-lesson-objective" hidden></p></h3><p class="activity-state tpl-activity-state"></p></div><span class="activity-step__mark tpl-activity-mark"></span></li>
-  </template>
-
   <template id="tpl-home">
     <div class="library-first-home">
       <section class="library-first-hero"><header class="library-first-homehead"><div class="library-first-copy"><div><h1>The Canonical <em>Shelf</em></h1></div><p class="lede">Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div><a class="button button--primary library-first-continue tpl-home-continue" hidden>Continue where you left off</a></header><div class="library-first-shelf-wrap" aria-label="Canonical bookshelf"><div class="library-first-shelf-row"><div class="library-first-shelf-label">Old Testament</div><div class="library-first-shelf tpl-home-shelf-ot"></div></div><div class="library-first-shelf-row"><div class="library-first-shelf-label">New Testament</div><div class="library-first-shelf tpl-home-shelf-nt"></div></div><span class="library-first-bookend-space" aria-hidden="true"></span><span class="library-first-bookend" aria-hidden="true"></span><p class="library-first-shelf-note">Book height and width follow relative length; color follows canonical category.</p></div></section>

@@ -317,14 +317,12 @@ test.describe('Bible reader', () => {
     await expect(page.locator('[data-reader-text]')).not.toContainText('&#1504;');
   });
 
-  test('legacy lesson focus still fills the viewport after stylesheet layering', async ({ page }) => {
+  test('redesigned lesson keeps its primary viewport contained after stylesheet layering', async ({ page }) => {
     await page.goto('/course?unit=c1.christianity&lesson=begin');
-    await expect(page.locator('body')).toHaveClass(/study-focus-active/);
-    const frame = await page.locator('#main').boundingBox();
-    expect(frame.x).toBe(0);
-    expect(frame.y).toBe(0);
-    expect(frame.width).toBe(page.viewportSize().width);
-    expect(frame.height).toBe(page.viewportSize().height);
+    await expect(page.locator('[data-lesson-screen]')).toBeVisible();
+    await expect(page.locator('header.masthead')).toBeVisible();
+    const bounds=await page.locator('.lesson-primary-window').evaluate(el=>({height:el.clientHeight,scroll:el.scrollHeight}));
+    expect(bounds.scroll).toBeLessThanOrEqual(bounds.height+1);
   });
 
   test('highlights persist across reloads and can be removed', async ({ page }) => {

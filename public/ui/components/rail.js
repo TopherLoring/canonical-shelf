@@ -1,5 +1,6 @@
 // Rail Component (Reading Room design system)
 // Provides desktop side rail navigation and phone drawer with expand/collapse states.
+import { renderProgressBar } from './progress-bar.js';
 
 const esc = (s = '') => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -10,6 +11,8 @@ export function renderRailLink({
   count = null,
   isActive = false,
   sublabel = '',
+  description = '',
+  progress = null,
   id = ''
 } = {}) {
   const currentAttr = isActive ? 'aria-current="page"' : '';
@@ -20,7 +23,8 @@ export function renderRailLink({
     : '';
   const iconHtml = icon ? `<span class="ui-rail-icon" aria-hidden="true">${icon}</span>` : '';
 
-  return `<a href="${esc(href)}" class="ui-rail-link ${activeClass}" ${currentAttr} ${idAttr}>${iconHtml}<span class="ui-rail-label">${esc(label)}</span>${countHtml}</a>`;
+  const extras = `${sublabel ? `<span class="ui-rail-sublabel">${esc(sublabel)}</span>` : ''}<span>${esc(label)}</span>${description ? `<span class="ui-rail-description">${esc(description)}</span>` : ''}${progress ? renderProgressBar(progress) : ''}`;
+  return `<a href="${esc(href)}" class="ui-rail-link ${activeClass}" ${currentAttr} ${idAttr}>${iconHtml}<span class="ui-rail-label">${extras}</span>${countHtml}</a>`;
 }
 
 export function renderRail({

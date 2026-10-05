@@ -9,7 +9,7 @@ import {topicsView,recentEntryForRoute,recordRecent} from './experience.js';
 import {practiceView,checkPracticeGame} from './practice-experience.js';
 import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
 import {homeView,progressPanelView} from './progress-experience.js';
-import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
+
 import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
@@ -93,20 +93,7 @@ function releaseScreen(){
   try{cleanup()}catch(error){console.error('screen cleanup failed',error)}
 }
 
-function courseRouteView(p){
-  if(!data.units.length)return shell('Pathway','Migration required','<p class="notice">Run bun run migrate.</p>');
-  if(p.has('lesson')||p.has('mastery')||p.has('glossary'))return courseView(data,state,p,esc,corpus);
-  const rawUnit=p.get('unit');
-  if(rawUnit){
-    if(rawUnit==='unit.orientation')return courseView(data,state,p,esc,corpus);
-    const unitId=data.units.some(u=>u.id===rawUnit)?rawUnit:(data.legacyUnitAliases?.[rawUnit]||rawUnit),unit=data.units.find(u=>u.id===unitId);
-    if(!unit)return courseView(data,state,p,esc,corpus);
-    return unitExperienceView({data,state,unit,course:data.courses.find(c=>c.id===unit.courseId),esc});
-  }
-  const courseId=p.get('course');
-  if(courseId){const course=data.courses.find(c=>c.id===(data.legacyCourseAliases?.[courseId]||courseId));return course?courseDetailView({data,state,course,esc}):'<p class="notice">Module not found.</p>'}
-  return courseLandingView({data,state,esc});
-}
+function courseRouteView(p){return courseView(data,state,p,esc,corpus);}
 
 async function render(){
   const generation=++renderGeneration,isCurrent=()=>generation===renderGeneration;
@@ -162,11 +149,21 @@ async function render(){
   // Arriving at a page with a section in the address (e.g. /profile#notes) scrolls to that section.
   if(location.hash.length>1){const section=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(section)requestAnimationFrame(()=>section.scrollIntoView({block:'start'}))}
 }
-function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||''}))}catch{}}
+function rememberStudyReturn(link,url){if(document.body.classList.contains('study-focus-active'))return;if(url.pathname!=='/course'||(!url.searchParams.has('lesson')&&!url.searchParams.has('mastery')))return;try{sessionStorage.setItem(STUDY_RETURN_KEY,JSON.stringify({path:location.pathname+location.search,scrollY:window.scrollY,activity:link.dataset.activityLink||'',panes:[...document.querySelectorAll('[data-study-return-scroll]')].map(node=>({key:node.dataset.studyReturnScroll,top:node.scrollTop}))}))}catch{}}
 function exitStudy(button){
   let saved=null;try{saved=JSON.parse(sessionStorage.getItem(STUDY_RETURN_KEY)||'null')}catch{}
-  const target=saved?.path||button.dataset.fallback||'/course';try{sessionStorage.removeItem(STUDY_RETURN_KEY)}catch{}navigate(target);
-  requestAnimationFrame(()=>{if(Number.isFinite(saved?.scrollY))window.scrollTo({top:saved.scrollY,left:0,behavior:'auto'});if(saved?.activity)[...document.querySelectorAll('[data-activity-link]')].find(link=>link.dataset.activityLink===saved.activity)?.focus({preventScroll:true})});
+  const target=saved?.path||button.dataset.fallback||'/course';try{sessionStorage.removeItem(STUDY_RETURN_KEY)}catch{}
+  const address=new URL(target,location.href);
+  document.addEventListener('canonical-route-rendered',()=>{
+    if(location.pathname+location.search!==address.pathname+address.search)return;
+    requestAnimationFrame(()=>{
+      if(location.pathname+location.search!==address.pathname+address.search)return;
+      if(Number.isFinite(saved?.scrollY))window.scrollTo({top:saved.scrollY,left:0,behavior:'auto'});
+      for(const pane of saved?.panes||[]){const node=[...document.querySelectorAll('[data-study-return-scroll]')].find(item=>item.dataset.studyReturnScroll===pane.key);if(node&&Number.isFinite(pane.top))node.scrollTop=pane.top;}
+      if(saved?.activity)[...document.querySelectorAll('[data-activity-link]')].find(link=>link.dataset.activityLink===saved.activity)?.focus({preventScroll:true});
+    });
+  },{once:true});
+  navigate(target);
 }
 function syncSequence(board){const cards=[...board.querySelectorAll('[data-seq-value]')];cards.forEach((card,index)=>{const input=card.querySelector('input[type="hidden"]');if(input&&!input.name.includes('-')){input.name=`p${index}`;input.value=card.dataset.seqValue}const position=card.querySelector('.sequence-card__index');if(position)position.textContent=String(index+1).padStart(2,'0');card.querySelectorAll('[data-seq-move]').forEach(button=>{button.disabled=(button.dataset.seqMove==='up'&&index===0)||(button.dataset.seqMove==='down'&&index===cards.length-1)})})}
 function moveSequence(button){const card=button.closest('[data-seq-value]'),board=button.closest('[data-sequence-board]');if(!card||!board)return;if(button.dataset.seqMove==='up'&&card.previousElementSibling)board.insertBefore(card,card.previousElementSibling);if(button.dataset.seqMove==='down'&&card.nextElementSibling)board.insertBefore(card.nextElementSibling,card);syncSequence(board);card.focus?.()}

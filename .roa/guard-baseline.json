@@ -7,12 +7,6 @@
       "text": "@media(prefers-reduced-motion:reduce){.library-first-book,.course-volume{transition:none!important}}",
       "count": 1
     },
-    "css-important|public/course-experience.css": {
-      "rule": "css-important",
-      "file": "public/course-experience.css",
-      "text": ".course-journey-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:end;padding:2.3rem 0 1.5rem}.course-journey-intro h2{max-width:",
-      "count": 2
-    },
     "css-important|public/learning.css": {
       "rule": "css-important",
       "file": "public/learning.css",

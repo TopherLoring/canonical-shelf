@@ -13,7 +13,7 @@ function optionTiles(name,options,esc){
   return `<div class="answer-tiles">${(options||[]).map((option,index)=>`<label class="answer-tile"><input type="radio" name="${name}" value="${index}"><span>${esc(option)}</span></label>`).join('')}</div>`;
 }
 
-function challengeForm(ch,activityId,index,esc){
+export function challengeForm(ch,activityId,index,esc){
   if(!ch)return'';
   const kind=ch.kind||'reasoning';
   const shape=challengeShape(ch);
@@ -136,7 +136,7 @@ function authoredScenes(lesson,corpus,esc){
   });
 }
 
-function lessonScenes(lesson,corpus,esc){
+export function lessonScenes(lesson,corpus,esc){
   if(Array.isArray(lesson.sections)&&lesson.sections.length)return authoredScenes(lesson,corpus,esc);
   const aid=`lesson:${lesson.id}`;
   const body=[...(lesson.body||[])];
@@ -162,7 +162,7 @@ function lessonScenes(lesson,corpus,esc){
   return scenes;
 }
 
-function orientationSceneMarkup(scene,esc){
+export function orientationSceneMarkup(scene,esc){
   const paragraphs=(scene.paragraphs||[]).map(text=>`<p class="scene-prose">${esc(text)}</p>`).join('');
   const bullets=scene.bullets?.length?`<ul class="orientation-list">${scene.bullets.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:'';
   const callout=scene.callout?`<aside class="scene-callout"><p>${esc(scene.callout)}</p></aside>`:'';
@@ -175,7 +175,7 @@ function apparatusModule(title,tag,body,{open=false}={}){
   return `<details class="apparatus-module" ${open?'open':''}><summary><span>${title}</span>${tag?`<small>${tag}</small>`:''}</summary><div class="apparatus-module__body">${body}</div></details>`;
 }
 
-function lessonApparatus(lesson,esc,scene){
+export function lessonApparatus(lesson,esc,scene){
   const aid=`lesson:${lesson.id}`;
   const vocab=vocabEntries(lesson);
   const sources=(lesson.sources||[]).map((source,index)=>`<li><a href="${esc(source)}" target="_blank" rel="noreferrer">Source ${index+1}</a></li>`).join('');
@@ -196,51 +196,12 @@ function lessonApparatus(lesson,esc,scene){
   return modules;
 }
 
-function orientationApparatus(){
+export function orientationApparatus(){
   return apparatusModule('Orientation','not scored','<p>This tutorial teaches the product and study method. It does not add to module completion.</p>',{open:true})+
     apparatusModule('Study layers','method','<p>Canonical Shelf keeps text, historical evidence, interpretation, reception, doctrine, and application visible as related but distinct layers.</p>')+
     apparatusModule('Need help?','navigation','<p>Inside lessons use hints, drawers, glossary, Session Notes, and sources. Across the site use Bible, Topics, search, the Theologian, Practice, and Advanced Study.</p>');
 }
 
-function focusHref(base,index){return `${base}${base.includes('?')?'&':'?'}scene=${index+1}`}
-
-function studyFocusShell({courseSequence,courseTitle,unitSequence,unitTitle,lessonSequence,title,sceneIndex,scenes,baseHref,exitFallback,apparatus,esc,scored=true,completed=false,continuation=null}){
-  const scene=scenes[sceneIndex]||scenes[0];
-  const previous=sceneIndex>0?focusHref(baseHref,sceneIndex-1):null;
-  const finalScene=sceneIndex===scenes.length-1;
-  const next=finalScene?(continuation?.href||exitFallback):focusHref(baseHref,sceneIndex+1);
-  const nextLabel=!finalScene?'Continue →':continuation?completed?`Continue to ${continuation.label} →`:`Explore ${continuation.label} →`:'Return to unit →';
-  const completion=finalScene&&completed?'<aside class="lesson-complete" role="status"><span aria-hidden="true">✓</span><div><strong>Lesson complete</strong><p>You finished every required check. Review remains available whenever you want a refresher.</p></div></aside>':'';
-  const progress=Math.round(((sceneIndex+1)/Math.max(scenes.length,1))*100);
-  const hierarchy=[courseSequence?`Module ${courseSequence}${courseTitle?`: ${courseTitle}`:''}`:'',`Unit ${unitSequence}${unitTitle?`: ${unitTitle}`:''}`].filter(Boolean).join(' · ');
-  return `<section class="study-focus" data-study-focus>
-    <header class="study-focus__chrome">
-      <div class="study-focus__identity"><span>${esc(hierarchy)}</span><strong>${esc(title)}</strong></div>
-      <div class="study-focus__utilities"><button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button><button type="button" class="study-exit" data-exit-lesson data-fallback="${esc(exitFallback)}">Exit lesson</button></div>
-    </header>
-    <article class="study-folio" aria-labelledby="study-scene-title">
-      <header class="study-folio__head"><div class="scene-content-head"><p class="eyebrow">${esc(scene.role)}${scored?'':' · orientation'}</p><h1 id="study-scene-title">${esc(scene.title)}</h1></div></header>
-      <div class="study-layout">
-        <nav class="scene-rail" aria-label="Lesson scenes">${scenes.map((item,index)=>`<a href="${focusHref(baseHref,index)}" aria-label="Step ${index+1} of ${scenes.length}: ${esc(item.label||item.role)}${index<sceneIndex?' (completed)':''}" data-state="${index<sceneIndex?'complete':index===sceneIndex?'current':'upcoming'}" data-complete="${index<sceneIndex?'true':'false'}" ${index===sceneIndex?'aria-current="step"':''}><span aria-hidden="true"></span><em class="scene-rail__label" aria-hidden="true">${esc(item.label||item.role)}</em></a>`).join('')}</nav>
-        <div class="study-scene" role="region" aria-labelledby="study-scene-title"><div class="study-scene__inner">${completion}${scene.html}</div></div>
-        <aside id="study-apparatus" class="study-apparatus" aria-label="Study Desk"><div class="study-apparatus__head"><div><h2>Study Desk</h2></div></div><p class="session-context-note">Your notes stay with this lesson. Study tools below provide optional evidence, vocabulary, context, and sources.</p>${apparatus}</aside>
-      </div>
-      <footer class="study-nav" aria-label="Lesson navigation">
-        <div>${previous?`<a class="study-nav__button" href="${previous}">← Previous</a>`:'<span class="study-nav__button is-disabled" aria-hidden="true">← Previous</span>'}</div>
-        <button type="button" class="study-nav__notes" data-toggle-apparatus aria-controls="study-apparatus">Study Desk</button>
-        <div class="study-nav__progress"><span class="sr-only">${esc(scene.role)} · ${sceneIndex+1}/${scenes.length}</span><div class="study-nav__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}" aria-label="${progress}% through this lesson"><i style="width:${progress}%"></i></div></div>
-        <a class="study-nav__button study-nav__button--next" href="${next}">${nextLabel}</a>
-      </footer>
-    </article>
-  </section>`;
-}
-
-function orientationView(params,esc){
-  const scenes=ORIENTATION_LESSON.scenes.map(scene=>({...scene,html:orientationSceneMarkup(scene,esc)}));
-  const sceneIndex=Math.max(0,Math.min(scenes.length-1,(Number(params.get('scene'))||1)-1));
-  const baseHref=`/course?unit=${encodeURIComponent(ORIENTATION_UNIT_ID)}&lesson=${encodeURIComponent(ORIENTATION_LESSON_ID)}`;
-  return studyFocusShell({unitSequence:0,unitTitle:ORIENTATION_LESSON.unitTitle,lessonSequence:1,title:ORIENTATION_LESSON.title,sceneIndex,scenes,baseHref,exitFallback:'/course',apparatus:orientationApparatus(),esc,scored:false});
-}
 
 function activityRoute(activity){return activity?.type==='lesson'?`/course?unit=${encodeURIComponent(activity.unitId)}&lesson=${encodeURIComponent(activity.sourceId)}`:activity?`/course?unit=${encodeURIComponent(activity.unitId)}&mastery=${encodeURIComponent(activity.sourceId)}`:'/course'}
 function nextActivityFor(data,currentId){
@@ -250,34 +211,8 @@ function nextActivityFor(data,currentId){
   const nextId=ordered[ordered.indexOf(currentId)+1];
   return nextId?activityFor(data,nextId):null;
 }
-function continuationFor(data,currentId){const next=nextActivityFor(data,currentId);return next?{href:activityRoute(next),label:next.title}:null}
+export function continuationFor(data,currentId){const next=nextActivityFor(data,currentId);return next?{href:activityRoute(next),label:next.title}:null}
 
-function lessonView(data,state,lesson,params,esc,corpus){
-  const unit=data.units?.find(item=>item.id===lesson.unitId||item.id===lesson.v6Unit)||{sequence:1,title:'Module',courseId:'module.canon'};
-  const course=data.courses?.find(item=>item.id===unit.courseId)||null;
-  const ids=data.byUnit?.[unit.id]||[];
-  const lessonPosition=Math.max(0,ids.filter(id=>id.startsWith('lesson:')).indexOf(`lesson:${lesson.id}`));
-  const scenes=lessonScenes(lesson,corpus,esc);
-  const sceneIndex=Math.max(0,Math.min(scenes.length-1,(Number(params.get('scene'))||1)-1));
-  const baseHref=`/course?unit=${encodeURIComponent(unit.id)}&lesson=${encodeURIComponent(lesson.id)}`;
-  const activityId=`lesson:${lesson.id}`;
-  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:lessonPosition+1,title:lesson.title,sceneIndex,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(unit.id)}`,apparatus:lessonApparatus(lesson,esc,scenes[sceneIndex]),esc,scored:true,completed:state.completed?.includes(activityId),continuation:continuationFor(data,activityId)});
-}
-
-function masteryView(data,state,id,params,esc){
-  const mastery=masteryFor(data,id);
-  if(!mastery)return `<p class="notice">Mastery source ${esc(id)} was not found.</p>`;
-  const activity=activityFor(data,`mastery:${id}`);
-  const unit=data.units?.find(item=>item.id===activity?.unitId)||{sequence:'—',title:'Mastery',courseId:null};
-  const course=data.courses?.find(item=>item.id===unit.courseId)||null;
-  const kind=activity?.masteryType==='course-capstone'?'Capstone':activity?.masteryType==='unit-mastery'?'Unit mastery':'Mastery';
-  const scene={role:'Practice',title:mastery.title||id,html:`<p class="scene-objective">${esc(mastery.dek||mastery.plain||'Apply the skill using the authored evidence.')}</p>${(mastery.body||[]).map(p=>`<p class="scene-prose">${esc(p)}</p>`).join('')}${mastery.plain?`<aside class="scene-callout"><p>${esc(mastery.plain)}</p></aside>`:''}${challengeForm(mastery.challenge,`mastery:${id}`,0,esc)}`};
-  const scenes=[scene];
-  const baseHref=`/course?unit=${encodeURIComponent(activity?.unitId||'')}&mastery=${encodeURIComponent(id)}`;
-  const apparatus=apparatusModule(kind,'scored skill','<p>This activity evaluates understanding or reasoning, not whether you personally assent to a theological claim.</p>',{open:true});
-  const activityId=`mastery:${id}`;
-  return studyFocusShell({courseSequence:course?.sequence,courseTitle:course?.shortTitle||course?.title||'',unitSequence:unit.sequence,unitTitle:unit.title,lessonSequence:'M',title:mastery.title||id,sceneIndex:0,scenes,baseHref,exitFallback:`/course?unit=${encodeURIComponent(activity?.unitId||'')}`,apparatus,esc,scored:true,completed:state.completed?.includes(activityId),continuation:continuationFor(data,activityId)});
-}
 
 function orientationUnitView(){
   return `<header class="section"><p><a href="/course">← All modules</a></p><p class="eyebrow">Orientation · not scored</p><h1>Orientation</h1><p class="lede">Learn how Canonical Shelf works before entering the scored curriculum. Revisit this tutorial whenever you need it.</p></header><ol class="unit-list"><li class="unit unit--orientation"><span class="unit-num">01</span><div><p class="eyebrow">Tutorial</p><h3><a data-activity-link="orientation" href="/course?unit=${encodeURIComponent(ORIENTATION_UNIT_ID)}&lesson=${encodeURIComponent(ORIENTATION_LESSON_ID)}">Welcome to Canonical Shelf</a></h3><p>Canon, library structure, site navigation, deeper study, sources, translation comparison, Practice, themes, and independent study.</p></div><span>Not scored</span></li></ol>`;
@@ -303,12 +238,8 @@ function courseOverview(data,state,course,esc){
 }
 
 export function courseView(data,state,params,esc,corpus=''){
-  const lessonId=params.get('lesson'),masteryId=params.get('mastery');
   let unitId=params.get('unit');
   const courseId=params.get('course');
-  if(lessonId===ORIENTATION_LESSON_ID&&unitId===ORIENTATION_UNIT_ID)return orientationView(params,esc);
-  if(lessonId){const lesson=lessonFor(data,lessonId);return lesson?lessonView(data,state,lesson,params,esc,corpus):'<p class="notice">Lesson not found.</p>'}
-  if(masteryId)return masteryView(data,state,masteryId,params,esc);
   if(unitId===ORIENTATION_UNIT_ID)return orientationUnitView();
   if(params.has('glossary'))return glossaryView(data,params,esc);
 

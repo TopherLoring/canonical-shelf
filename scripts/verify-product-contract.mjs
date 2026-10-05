@@ -18,7 +18,7 @@ const requireContract=(condition,message)=>{if(!condition)throw new Error(messag
 const routes=['home','course','bible','topics','practice','search'];
 const legalFiles=['about.html','privacy.html','data-retention.html','storage.html','terms.html'];
 const durableAssets=['manifest.webmanifest','sw.js','llms.txt','data/catalog.json','data/corpus.txt','data/theology-policy.json'];
-const viewTemplates=['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'];
+const viewTemplates=['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-learning-path'];
 
 const shell=await read(`${PUBLIC}/index.html`);
 

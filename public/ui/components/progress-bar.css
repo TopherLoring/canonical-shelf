@@ -3,8 +3,10 @@
 @layer components {
   /* ProgressBar: 6px height, 3px radius indicator */
   .ui-progress-bar {
+    appearance: none;
+    display: block;
     height: 6px;
-    border-radius: 3px;
+    border-radius: var(--radius-bar);
     background-color: var(--color-surface-sunken);
     border: var(--border-weight) solid var(--color-border);
     overflow: hidden;
@@ -12,20 +14,23 @@
     width: 100%;
   }
 
-  .ui-progress-bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    background-color: var(--color-action);
-    transition: width var(--motion-base) var(--motion-easing);
+  .ui-progress-bar::-webkit-progress-bar {
+    background-color: var(--color-surface-sunken);
   }
-
-  .ui-progress-bar--accent .ui-progress-bar-fill {
+  .ui-progress-bar::-webkit-progress-value {
+    border-radius: var(--radius-bar);
+    background-color: var(--color-action);
+  }
+  .ui-progress-bar::-moz-progress-bar { background-color: var(--color-action); }
+  .ui-progress-bar--accent::-webkit-progress-value {
     background-color: var(--color-accent);
   }
 
-  .ui-progress-bar--correct .ui-progress-bar-fill {
+  .ui-progress-bar--accent::-moz-progress-bar { background-color: var(--color-accent); }
+  .ui-progress-bar--correct::-webkit-progress-value {
     background-color: var(--color-correct);
   }
+  .ui-progress-bar--correct::-moz-progress-bar { background-color: var(--color-correct); }
 
   /* ProgressScope: labelled progress indicator (Unit, Module, Path) */
   .ui-progress-scope {
