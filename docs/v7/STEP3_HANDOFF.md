@@ -41,11 +41,9 @@ J  Learning Path page (path, module, unit on one page) — parallel with H
 
 ## Status
 
-| Node | State | Notes |
-|---|---|---|
-| A | done | Three decisions recorded 2026-10-05; this document. |
-| B | in progress | See "Fonts" below. |
-| C–J | not started | H and J depend on Codex's `codex/redesign-lesson-path` being pushed. |
+Tracked on the shared work board: `docs/v7/WORK_BOARD.md` (generated from `docs/v7/work-graph.json`; nodes `S3.*`,
+`X1`, `S3.Q`). Run `bun run work` for the live board. This document keeps the decisions and findings; the board
+keeps who owns what and what is ready.
 
 ## Fonts (finding, 2026-10-05)
 
@@ -75,5 +73,4 @@ kept and adapted in H and J.
 
 ## Next actions
 
-1. Chris: stop Codex; commit and push `codex/redesign-lesson-path` so H and J can build on it.
-2. Node B: calibrate the reading font and compute the portrait and landscape budgets.
+See "Ready to start" on the work board.

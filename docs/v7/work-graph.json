@@ -1,0 +1,419 @@
+{
+  "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
+  "updated": "2026-10-05",
+  "rules": [
+    "Read the board, the node you will work on, and the decisions it cites before editing anything.",
+    "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
+    "Edit only the paths your node owns. Anything outside them is a new node (add it, commit it) or a question for Chris, never a side edit.",
+    "Two agents never hold nodes that own the same paths at the same time; `bun run work check` fails if they do.",
+    "Decisions live only in `.roa/records` (`node .roa-kit/roa.mjs decide ...`). When decisions conflict, the decision made with Claude stands unless Chris explicitly overrides it. Chris's latest explicit decision on a topic is the baseline; never restore a superseded one.",
+    "One node, one branch, one draft PR. Nothing merges without Chris's approval.",
+    "A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.",
+    "Leave the node handoff-ready at every commit: `bun run work note <id> \"what changed, what is next\"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.",
+    "Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done."
+  ],
+  "nodes": [
+    {
+      "id": "S2",
+      "title": "Step 2: Bible reader",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [
+        "bun run test:smoke"
+      ],
+      "owner": "Codex + Claude",
+      "branch": "feature/redesign-p4-reader",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Codex rebuilt the reader from Claude's work (codex/resume-reader); Claude added the 2026-10-05 decisions and two-speed verification. Full run on Chris's laptop: 165 passed, 4 failed (see R1, R2, S3.I)."
+        }
+      ]
+    },
+    {
+      "id": "R1",
+      "title": "Reader: \"a pending reader mount cannot replace the profile after navigation\" fails in the parallel run",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/reader.js",
+        "tests/redesign/reader.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/reader.spec.js --grep \"pending reader mount\" --repeat-each=10",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "R2",
+      "title": "Every page starts close under the top bar: contract test fails on the lesson branch",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/components/frame.css",
+        "public/ui/layout.css"
+      ],
+      "accept": [
+        "bunx playwright test tests/contracts/product-contract.spec.js --grep \"starts close under the top bar\"",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Seen on Chris's run of codex/redesign-lesson-path; reproduce on that branch first to confirm whether the lesson screen or the frame causes it."
+        }
+      ]
+    },
+    {
+      "id": "X1",
+      "title": "Codex lesson branch committed and pushed (codex/redesign-lesson-path)",
+      "state": "todo",
+      "deps": [],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Needed by S3.H and S3.J. Close with a record such as process.codex-lesson-branch-pushed once pushed."
+        }
+      ]
+    },
+    {
+      "id": "S3.A",
+      "title": "Step 3: decisions and handoff doc",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [
+        "node .roa-kit/roa.mjs verify"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.B",
+      "title": "Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets)",
+      "state": "claimed",
+      "deps": [
+        "S3.A"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.Q",
+      "title": "Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose",
+      "state": "todo",
+      "deps": [],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Not blocking: S3.B calibrates the shipped reading font (Cambria/Caladea metrics, identical on every device). Choosing the theme-sheet fonts means shipping them site-wide and rerunning S3.B."
+        }
+      ]
+    },
+    {
+      "id": "S3.C",
+      "title": "Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)",
+      "state": "todo",
+      "deps": [
+        "S3.B"
+      ],
+      "owns": [
+        "public/ui/screens/lesson.css",
+        "public/ui/components/lesson-window.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.D",
+      "title": "Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests",
+      "state": "todo",
+      "deps": [
+        "S3.B"
+      ],
+      "owns": [
+        "scripts/lesson-divider.mjs",
+        "scripts/test-lesson-divider.mjs",
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.E",
+      "title": "Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)",
+      "state": "todo",
+      "deps": [
+        "S3.D"
+      ],
+      "owns": [
+        "docs/v7/LESSON_PAGINATION_REVIEW.md",
+        "scripts/lesson-pagination-report.mjs"
+      ],
+      "accept": [
+        "bun scripts/lesson-pagination-report.mjs --check",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.F",
+      "title": "Step 3: Chris reviews the report and approves the one-time revision edits",
+      "state": "todo",
+      "deps": [
+        "S3.E"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "S3.G",
+      "title": "Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget",
+      "state": "todo",
+      "deps": [
+        "S3.F"
+      ],
+      "owns": [
+        "content/pathway/lessons/",
+        "content/pathway/legacy-ledger.json"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.H",
+      "title": "Step 3: lesson screen renders locked parts (adapt Codex's lesson screen)",
+      "state": "todo",
+      "deps": [
+        "S3.C",
+        "S3.G",
+        "X1"
+      ],
+      "owns": [
+        "public/ui/screens/lesson.js",
+        "public/ui/screens/registry.js"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.I",
+      "title": "Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test",
+      "state": "todo",
+      "deps": [
+        "S3.H"
+      ],
+      "owns": [
+        "tests/redesign/lesson.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/lesson.spec.js",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.J",
+      "title": "Step 3: Learning Path page (path, module and unit on one page)",
+      "state": "todo",
+      "deps": [
+        "X1"
+      ],
+      "owns": [
+        "public/ui/screens/learning-path.js",
+        "public/ui/screens/learning-path.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S4",
+      "title": "Step 4: Shelf home (bookshelf, two-line title, selected-book panel)",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/shelf-home.js",
+        "public/ui/screens/shelf-home.css",
+        "public/ui/components/bookshelf.js",
+        "public/ui/components/bookshelf.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S5a",
+      "title": "Step 5: Study Topics",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/topics.js",
+        "public/ui/screens/topics.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S5b",
+      "title": "Step 5: Review & Practice",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/practice.js",
+        "public/ui/screens/practice.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S5c",
+      "title": "Step 5: Profile",
+      "state": "todo",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/ui/screens/profile.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S6",
+      "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
+      "state": "todo",
+      "deps": [
+        "S3.H"
+      ],
+      "owns": [
+        "public/theologian-chat.js",
+        "public/ui/components/theologian-panel.js",
+        "public/ui/components/theologian-panel.css"
+      ],
+      "accept": [
+        "bun run test:theologian",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S7",
+      "title": "Step 7: remove legacy stylesheets and render paths; close the guards",
+      "state": "todo",
+      "deps": [
+        "S4",
+        "S5a",
+        "S5b",
+        "S5c",
+        "S6",
+        "S3.I",
+        "S3.J"
+      ],
+      "owns": [
+        "public/ui/legacy.css",
+        "public/index.html",
+        "public/sw.js",
+        ".roa/guard-baseline.json"
+      ],
+      "accept": [
+        "bun run verify"
+      ]
+    },
+    {
+      "id": "RD",
+      "title": "Chris approves the redesign",
+      "state": "todo",
+      "deps": [
+        "S7"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "S7b",
+      "title": "Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases)",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "tests/redesign/"
+      ],
+      "accept": [
+        "bun run verify"
+      ]
+    },
+    {
+      "id": "P10",
+      "title": "Themes 2-8: final values per theme (layouts unchanged)",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        ".roa/values/theme.json"
+      ],
+      "accept": [
+        "bun run verify"
+      ]
+    },
+    {
+      "id": "K1",
+      "title": "project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture",
+      "state": "todo",
+      "deps": [],
+      "owns": [
+        "../project-roa-kit/"
+      ],
+      "accept": [
+        "node ../project-roa-kit/test/all.mjs"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Separate repository (C:/dev/project-roa-kit). Until done, never re-copy the upstream kit into .roa-kit/: it would pin a contract version the kit does not have."
+        }
+      ]
+    }
+  ]
+}
