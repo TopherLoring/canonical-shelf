@@ -739,7 +739,7 @@
     {
       "id": "S3.Q2",
       "title": "Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.Q",
         "F1"
@@ -776,6 +776,21 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "Full verify exposed a font-dependent reader deep-link regression: 140 passed, Psalm 119:105 phone visibility failed on both attempts. Added F1 as a dependency under the board's path-ownership rule. Assets and theme values are ready; F1 will wait for reading fonts before mount, preserve navigation cancellation, and handle failed downloads. Commit the font shipment and graph now after verify:fast; F1 gets its own branch and draft PR, with Q2 closure awaiting integration approval."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Combined stack now passes full verify (CI=1, 144/144). Font shipment depends on F1's font-safe reader mount; keep the separate draft PRs stacked and do not merge the parent without including F1. S3.B7 gets the shipped fonts; S3.H still owns waiting for its selected theme fonts before locked-part lesson rendering. Next: close both nodes through work done on the verified combined stack, commit the handoff, and publish draft PRs for review."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done on the tested combined stack: verify:fast passed (12 smoke) with CI=1; full combined runtime verify passed 144 browser tests. Source Sans 3/Literata assets and licenses are committed on the parent branch. Completion status is carried by the dependent F1 child PR; include F1 before merging the font shipment. S3.B7 is ready on the combined stack, and S3.H owns font readiness for locked lesson parts. No Claude-owned node changed."
         }
       ],
       "owner": "Codex",
@@ -812,7 +827,7 @@
     {
       "id": "F1",
       "title": "Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -840,6 +855,26 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "Claimed the font-readiness regression fix on a branch stacked on codex/ship-reading-room-fonts. First commit is this claim; next add behavior tests with a real delayed font, wait before reader layout/reveal, and retain cancellation and missing-font fallback. Font shipment node remains open until this separately reviewed dependency is integrated."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "The new delayed-font test failed before the fix (readerFontAtMount false), then all 3 tests passed with the fix. The reader now waits for selected body/reading fonts (400/600/700 normal and italic, Latin and Latin-ext) in parallel with annotations/highlights; the existing isCurrent guard follows the whole wait. Missing fonts are allowed to fall back. Original Psalm 119:105 test repeated 10/10 successfully. Next: full verification, node acceptance, commit, and two draft PRs for Chris's integration review."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Full bun run verify passed with CI=1: 144/144 browser tests, no retries reported, plus build/BSB/contracts/core checks. Self-review: readiness runs in parallel with data, all layout writes remain after isCurrent, failed font downloads fall back, and tests use an arbitrary bundled real font instead of freezing a family choice. Next: node acceptance and commit the F1 fix; draft PR is stacked on the font shipment, with merge reserved for Chris."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/font-readiness.spec.js; bunx playwright test tests/redesign/reader.spec.js --grep \"opening a distant verse\" --repeat-each=10; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done: final fixture uses intercepted theme CSS instead of forbidden DOM/style observers; three regression tests, ten distant-verse repetitions, and verify:fast (12 smoke) passed with CI=1. Full combined runtime verify passed 144 browser tests before the fixture-only guard correction. Commit the reader fix and both completion handoffs on the child branch; keep the two draft PRs stacked for Chris's approval."
         }
       ],
       "owner": "Codex",
