@@ -55,7 +55,12 @@ for (const lesson of all) {
       if (!card.flags.includes('over-ceiling')) check(card.chars <= ceiling || card.paragraphs > 3, `${lesson.lesson}#${card.id}: ${card.chars} chars is over the ${ceiling} ceiling`);
       const textOnly = card.units.every(u => u.kind === 'sentence' || u.kind === 'callout');
       if (textOnly && card.units.length > 1) check(card.chars <= TARGET.max + 60, `${lesson.lesson}#${card.id}: ${card.chars} chars is far over the ~${TARGET.max} target`);
-      if (!card.units.some(u => u.kind === 'reading')) check(card.lines <= geo.primary.lines, `${lesson.lesson}#${card.id}: ${card.lines} lines does not fit the ${geo.primary.lines}-line step body`);
+      check(card.lines <= geo.primary.lines, `${lesson.lesson}#${card.id}: ${card.lines} lines does not fit the ${geo.primary.lines}-line step body`);
+      for (const u of card.units.filter(u => u.kind === 'reading')) {
+        const n = sentences(u.text).length;
+        check(['inline', 'link'].includes(u.mode), `${lesson.lesson}#${card.id}: reading mode must be inline or link`);
+        check(u.mode === (n <= 2 && u.text.length <= 300 ? 'inline' : 'link'), `${lesson.lesson}#${card.id}: ${u.reference} (${n} sentences, ${u.text.length} chars) is ${u.mode}`);
+      }
     });
   });
 }
@@ -74,4 +79,4 @@ check(Math.max(...sizes) - Math.min(...sizes) <= sentence.length + 2, `splits ar
 check(step.cards.flatMap(c => c.units).every(u => longParagraph.includes(u.text) && /[.!?]$/.test(u.text)), 'every card boundary falls at a sentence end');
 
 if (failures) { console.error(`test-lesson-divider: ${failures} failure(s)`); process.exit(1); }
-console.log(`PASS — lesson divider: ${all.length} lessons, ${ids.size} cards; sentences intact, content unchanged and in order, ids unique, ceilings and the ${geo.primary.lines}-line step body respected (readings excepted until their rule is decided).`);
+console.log(`PASS — lesson divider: ${all.length} lessons, ${ids.size} cards; sentences intact, content unchanged and in order, ids unique, ceilings and the ${geo.primary.lines}-line step body respected; readings quoted inline at two sentences and 300 characters or fewer, otherwise linked.`);

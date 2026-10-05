@@ -28,7 +28,14 @@ export const ORPHAN_CHARS = 120;
 // With Source Sans 3 that box holds about 54 characters x 17 lines.
 const REFERENCE = { boxPx: [347, 435], fontPx: 16 };
 // Fixed line costs for blocks whose height does not come from wrapped text.
-const COST = { gap: 1, calloutPad: 1, readingPad: 2, checkBase: 3, reflectBox: 5, visual: 9 };
+// readingInlinePad: the quoted Scripture block's extra padding and reference caption; readingLink: the compact link
+// (reference, version, one-line preview) for passages that open in a popover (ui.lesson.reading.inline-or-popover).
+const COST = { gap: 1, calloutPad: 1, readingInlinePad: 3, readingLink: 4, checkBase: 3, reflectBox: 5, visual: 9 };
+// A reading of two sentences or fewer and at most 300 characters is quoted on the card (Luke 24:44-45, 246
+// characters, is the mockup's example); anything longer becomes a link and a popover. The character limit keeps
+// out single Scripture sentences that run six or eight verses (Ephesians 4:1-6, Ecclesiastes 3:1-8).
+export const INLINE_READING_SENTENCES = 2;
+export const INLINE_READING_MAX_CHARS = 300;
 
 // ---------------------------------------------------------------- text measurement
 
@@ -104,7 +111,8 @@ function stepUnits(section, lesson, corpus) {
     } else if (block.type === 'reflect') {
       units.push({ kind: 'reflect', block: b, reflect: lesson.reflection });
     } else if (block.type === 'reading') {
-      units.push({ kind: 'reading', block: b, text: readingText(lesson.meta.readingOsis, corpus) });
+      const text = readingText(lesson.meta.readingOsis, corpus);
+      units.push({ kind: 'reading', block: b, text, mode: 'pending', reference: lesson.meta.reading || '' });
     } else if (block.type === 'visual') {
       units.push({ kind: 'visual', block: b });
     }
@@ -138,9 +146,13 @@ export function layout(units, widthEm, measure) {
       chars += visible(u.text).length;
       lines += wrapLines(u.text, widthEm - 2, measure) + COST.calloutPad;
     } else if (u.kind === 'reading') {
-      // Scripture is set larger (lesson-type.json scale), so each of its lines is taller as well.
-      const scale = measure.scriptureScale || 1;
-      lines += Math.ceil(wrapLines(u.text, widthEm - 1.5, measure, 'scripture') * scale) + COST.readingPad;
+      if (u.mode === 'link') lines += COST.readingLink;
+      else {
+        // Quoted Scripture is set larger (lesson-type.json scale), so each of its lines is taller as well; the
+        // block's stripe and padding take about 3 em of the width.
+        const scale = measure.scriptureScale || 1;
+        lines += Math.ceil(wrapLines(u.text, widthEm - 3, measure, 'scripture') * scale) + COST.readingInlinePad;
+      }
     } else if (u.kind === 'check') {
       const c = u.check || {};
       lines += COST.checkBase + wrapLines(c.prompt || '', widthEm, measure)
@@ -183,6 +195,10 @@ export function divideLesson(lesson, { type, corpus }) {
   };
   return lesson.sections.map(section => {
     const units = stepUnits(section, lesson, corpus);
+    for (const u of units.filter(u => u.kind === 'reading')) {
+      const short = sentences(u.text).length <= INLINE_READING_SENTENCES;
+      u.mode = short && u.text.length <= INLINE_READING_MAX_CHARS ? 'inline' : 'link';
+    }
     const cards = [];
     let card = [];
     const textChars = us => us.filter(u => u.kind === 'sentence' || u.kind === 'callout').reduce((n, u) => n + visible(u.text).length + 1, 0);
