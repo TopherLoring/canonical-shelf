@@ -382,7 +382,8 @@
       "title": "Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)",
       "state": "todo",
       "deps": [
-        "S3.B"
+        "S3.B",
+        "S3.B7"
       ],
       "owns": [
         "public/ui/screens/lesson.css",
@@ -390,6 +391,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Landscape columns follow ui.lesson.card.landscape-columns-2026-10-05: the center text box must fit 91 characters by 14 lines at the calibrated landscape type size; the step list and My Notes columns narrow to make room (each keeps a usable minimum). In Chris's landscape mockup the box ran about 10% past the center column into My Notes and over the title line; neither may happen."
+        }
       ]
     },
     {
@@ -414,7 +422,8 @@
       "title": "Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)",
       "state": "todo",
       "deps": [
-        "S3.D"
+        "S3.D",
+        "S3.B7"
       ],
       "owns": [
         "docs/v7/LESSON_PAGINATION_REVIEW.md",
@@ -423,6 +432,13 @@
       "accept": [
         "bun scripts/lesson-pagination-report.mjs --check",
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "The report must simulate wrapping with the shipped Source Sans 3 widths (S3.B7), not Caladea."
+        }
       ]
     },
     {
@@ -673,6 +689,51 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Separate repository (C:/dev/project-roa-kit). Until done, never re-copy the upstream kit into .roa-kit/: it would pin a contract version the kit does not have."
+        }
+      ]
+    },
+    {
+      "id": "S3.Q2",
+      "title": "Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values",
+      "state": "todo",
+      "deps": [
+        "S3.Q"
+      ],
+      "owns": [
+        "public/fonts/",
+        ".roa/values/theme.json"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Decided under S3.Q but no node shipped them. Self-host the woff2 files through the existing fontSources mechanism (open license, no cost). Fonts must load before lesson text renders or wrapping will differ from the calibration."
+        }
+      ]
+    },
+    {
+      "id": "S3.B7",
+      "title": "Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape)",
+      "state": "todo",
+      "deps": [
+        "S3.Q2"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "The counts and the 833/784/735 ceilings are Chris's design targets, measured from his approved portrait and landscape mockups; they do not change. Only the type size that produces them changes with the font. S3.B through S3.B6 measured Caladea."
         }
       ]
     }
