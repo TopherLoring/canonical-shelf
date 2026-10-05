@@ -16,7 +16,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **R1** — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
 - **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
 - **X1** — Codex lesson branch committed and pushed (codex/redesign-lesson-path) *(needs Chris)*
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
@@ -29,10 +28,10 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `R1` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `S3.B` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets) |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `R1` | ready |  |  | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7` | Chris approves the redesign |
 | `S3.C` | waiting |  |  | `S3.B` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
@@ -60,6 +59,10 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 ### S2 — Step 2: Bible reader
 
 - 2026-10-05 (Claude): Codex rebuilt the reader from Claude's work (codex/resume-reader); Claude added the 2026-10-05 decisions and two-speed verification. Full run on Chris's laptop: 165 passed, 4 failed (see R1, R2, S3.I).
+
+### R1 — Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run
+
+- 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
 
 ### R2 — Every page starts close under the top bar: contract test fails on the lesson branch
 
