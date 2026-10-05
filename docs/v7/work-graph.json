@@ -812,7 +812,7 @@
     {
       "id": "F1",
       "title": "Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -830,8 +830,20 @@
           "date": "2026-10-05",
           "by": "Codex",
           "text": "S3.Q2 font shipment exposes this: full CI-configured verify has 140 passed and the Psalm 119:105 phone deep-link test fails twice because the reader reveals the verse before Literata settles. Reader paths are outside Q2 scope, so this node owns the fix; preserve navigation-generation cancellation and graceful missing-font fallback."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/reader-font-readiness."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed the font-readiness regression fix on a branch stacked on codex/ship-reading-room-fonts. First commit is this claim; next add behavior tests with a real delayed font, wait before reader layout/reveal, and retain cancellation and missing-font fallback. Font shipment node remains open until this separately reviewed dependency is integrated."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/reader-font-readiness"
     }
   ]
 }
