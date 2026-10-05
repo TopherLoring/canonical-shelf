@@ -1174,14 +1174,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.naming.unit-check`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.naming.checkpoint-bare-2026-10-05`
-  The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the "Unit 2 Checkpoint" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.checkpoint.placement-content-and-steps-2026-10-05`
+  Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.
+  *Why:* Owner answered the per-unit or per-lesson question
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.naming.checkpoint-bare-2026-10-05`
+  ~~The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the "Unit 2 Checkpoint" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.~~
   *Why:* Owner chose Checkpoint from Capstone, Mastery Checkpoint, Retention Check, Checkpoint
-- **Previous** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
-  ~~The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.~~
 - **Prior** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
   ~~The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.~~
   *Why:* Chris asked Claude to pick a name that fits
+- **Prior** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
+  ~~The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.~~
 
 ### `ui.nav.brand`
 

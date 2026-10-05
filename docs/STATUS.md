@@ -215,7 +215,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
-| `ui.naming.unit-check` | The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. | Owner decision | undefined |
+| `ui.naming.unit-check` | Where Checkpoints appear is not fixed per unit or per lesson; | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |

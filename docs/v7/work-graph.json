@@ -475,6 +475,11 @@
           "date": "2026-10-05",
           "by": "unknown",
           "text": "Checkpoint is named plain 'Checkpoint' with the unit title (ui.naming.checkpoint-bare-2026-10-05). Open question for Chris: one Checkpoint per unit or per lesson."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris."
         }
       ]
     },
