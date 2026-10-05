@@ -718,7 +718,7 @@
     {
       "id": "S3.Q2",
       "title": "Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.Q"
       ],
@@ -744,6 +744,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Reading Room: fontBody = Source Sans 3, fontReading (Scripture) = Literata, self-hosted Latin subsets via fontSources (24 faces, 16 files; all fonts 544 KB total, loaded only when used). Display/title stays Cambria/Caladea. Other themes unchanged until P10. Set as theme-level font stacks rather than new shared slots: the contract's shared fonts are fixed to serif/sans/mono, and adding slots means contract v12 (fold into K1). Verified in a browser: both families load and render on the reader. Lesson text must wait for document.fonts.ready before first paint (S3.H) so wrapping matches calibration."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ],
       "owner": "Claude",
