@@ -290,7 +290,7 @@
     {
       "id": "S3.B6",
       "title": "Step 3: character ceilings per step (833 / 784 / 735 by paragraph count)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.B5"
       ],
@@ -309,6 +309,16 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ceilings per ui.lesson.card.char-ceiling-2026-10-05: 833 / 784 / 735 chars for 1 / 2 / 3 paragraphs (each paragraph break costs one 49-char line; 4 paragraphs = 686). Hard maximums, not targets. Interpreted as per card (one screen of a step), the same unit as the 17 x 49 portrait block; if Chris means the whole step, the divider (S3.D) would have no parts to cut. Replaced the 92% fill budget. Landscape ceilings are higher (1274 for one block), so portrait governs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
         }
       ]
     },

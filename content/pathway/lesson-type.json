@@ -3,7 +3,6 @@
  "font": "Caladea (same advance widths as Cambria)",
  "lineHeight": 1.55,
  "widthSafety": 0.97,
- "fill": 0.92,
  "averageCharEm": 0.406,
  "shapes": {
   "portrait": {
@@ -12,7 +11,12 @@
    "charsPerLine": 49,
    "lineWidthEm": 19.296,
    "maxLines": 17,
-   "capacityChars": 766
+   "maxCharsByParagraphs": {
+    "1": 833,
+    "2": 784,
+    "3": 735,
+    "4": 686
+   }
   },
   "landscape": {
    "aspect": "2:1",
@@ -20,13 +24,23 @@
    "charsPerLine": 91,
    "lineWidthEm": 35.835,
    "maxLines": 14,
-   "capacityChars": 1172
+   "maxCharsByParagraphs": {
+    "1": 1274,
+    "2": 1183,
+    "3": 1092,
+    "4": 1001
+   }
   }
  },
  "governingShape": "portrait",
  "partBudget": {
   "lines": 17,
-  "chars": 766
+  "maxCharsByParagraphs": {
+   "1": 833,
+   "2": 784,
+   "3": 735,
+   "4": 686
+  }
  },
  "fonts": {
   "regular": {
