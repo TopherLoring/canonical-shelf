@@ -101,6 +101,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).
   *Why:* Makes the owner's no-scroll rule testable instead of a judgment call per lesson
 
+### `curriculum.lesson.pagination`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.pagination.build-time-2026-10-05`
+  Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.
+
 ### `curriculum.module1`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
@@ -136,6 +141,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.rewrite.no-loss-no-condense`
   The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
+- **Approval** · 2026-10-05 · Chris · `curriculum.lesson.pagination.revision-pass-2026-10-05` · scope: Step 3 lesson pagination revision pass
+  One-time revision pass for lesson pagination, a scoped exception to curriculum.rewrite.preservation: wording may change only where a part boundary falls badly (an orphaned line, a check separated from its setup, a sentence too long for one part). Every edit is listed before and after in a review document and applied only after Chris approves it. All other lesson text stays word-for-word, checked automatically.
 
 ### `curriculum.structure`
 
@@ -1081,6 +1088,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-30 · Agent default (Claude) · `ui.home.kicker.removed`
   The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar
   *Why:* Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered
+
+### `ui.lesson.card`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
+  The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.
 
 ### `ui.lesson.colors`
 

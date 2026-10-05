@@ -63,6 +63,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
 | `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
+| `curriculum.lesson.pagination` | Lesson pagination is decided at build time. | Owner decision | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.module1.title` | Module 1 is titled 'Reading the Bible Well: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
@@ -204,6 +205,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
+| `ui.lesson.card` | The lesson card has two layouts chosen by the screen's shape, not the device: | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |

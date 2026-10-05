@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.lesson.pagination.build-time-2026-10-05",
+  "topic": "curriculum.lesson.pagination",
+  "date": "2026-10-05",
+  "text": "Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.",
+  "by": "Chris"
+}
