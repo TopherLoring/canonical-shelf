@@ -499,7 +499,7 @@
     {
       "id": "S3.E",
       "title": "Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.D",
         "S3.B7",
@@ -523,8 +523,15 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "List steps that exceed the primary layout but fit fallback D; many such steps is the trigger to switch to D."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     },
     {
       "id": "S3.F",
