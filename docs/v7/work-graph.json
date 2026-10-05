@@ -35,7 +35,7 @@
     {
       "id": "R1",
       "title": "Reader: \"a pending reader mount cannot replace the profile after navigation\" fails in the parallel run",
-      "state": "claimed",
+      "state": "todo",
       "deps": [
         "S2"
       ],
@@ -47,13 +47,17 @@
         "bunx playwright test tests/redesign/reader.spec.js --grep \"pending reader mount\" --repeat-each=10",
         "bun run verify:fast"
       ],
-      "owner": "Claude",
       "branch": "feature/redesign-p5-lesson-path",
       "notes": [
         {
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Released from feature/redesign-p5-lesson-path."
         }
       ]
     },
@@ -111,7 +115,7 @@
     {
       "id": "S3.B",
       "title": "Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.A"
       ],
@@ -124,7 +128,19 @@
         "bun run verify:fast"
       ],
       "owner": "Claude",
-      "branch": "feature/redesign-p5-lesson-path"
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Calibrated Caladea (regular/bold/italic/boldItalic) widths from the shipped WOFF2 files into content/pathway/lesson-type.json (200 chars each, font units, 1000/em). Budgets: portrait 38/line x 15 lines = 524 chars, landscape 68/line x 9 lines = 563 chars; portrait governs, so one part holds at most 15 lines / 524 chars (lineHeight 1.7, 3% width safety, 92% fill). widthEm() is exported from scripts/calibrate-lesson-type.mjs for S3.D to wrap-simulate. Kerning is not modelled; the margins cover it. S3.C and S3.D are next."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
     },
     {
       "id": "S3.Q",
