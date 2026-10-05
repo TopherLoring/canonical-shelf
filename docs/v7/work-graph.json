@@ -409,6 +409,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Primary portrait layout: 4:5 step body, 49 characters per line, 1.55 line height (ui.lesson.card.portrait-layout-primary-fallback-2026-10-05). Size the type so 49 characters fill the box width; keep fallback D (54 x 17) switchable by one setting."
         }
       ]
     },
@@ -434,6 +439,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Pack to the target of about half the ceiling (about 370-420 characters; ui.lesson.card.step-length-2026-10-05), never above 833/784/735 by paragraph count, and never more lines than fit the primary portrait box (about 15 at 49 per line). Report every step that only fits under fallback D."
         }
       ]
     },
@@ -458,6 +468,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "The report must simulate wrapping with the shipped Source Sans 3 widths (S3.B7), not Caladea."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "List steps that exceed the primary layout but fit fallback D; many such steps is the trigger to switch to D."
         }
       ]
     },
@@ -804,7 +819,7 @@
     {
       "id": "S3.R",
       "title": "Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S3.B7"
       ],
@@ -816,8 +831,14 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Measured (S3.B7): Source Sans 3 averages 0.395 em per character on lesson prose. At 49 per line the line is 19.36 em; a 4:5 box is then 24.2 em tall = 15.6 lines at 1.55. Claude recommends C (3:4 box keeps 49x17, the 833/784/735 ceilings and 1.55 spacing). Landscape 2:1 at 91 per line fits 11.6 lines; not binding because portrait governs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: ui.lesson.card.portrait-layout-primary-fallback-2026-10-05."
         }
-      ]
+      ],
+      "record": "ui.lesson.card.portrait-layout-primary-fallback-2026-10-05"
     }
   ]
 }
