@@ -1100,11 +1100,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.card`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-columns-2026-10-05`
-  Landscape lesson columns are adjusted so the center text box fits the decided 91 characters per line by 14 lines at the calibrated landscape type size. The step list and My Notes columns narrow to give the center column that width (each keeps a minimum: the step list fits its longest step title, My Notes stays usable). The text box sits below the step title and never overlaps the title or the side columns. Chosen over lowering the line length or shrinking landscape type.
-- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.card-is-step-2026-10-05`
-  ~~Every lesson card is a step. There is no separate "part": what the pagination docs call a part is a step, the step list and "Step N of M" count cards, and the character ceilings (833 / 784 / 735) apply to each step. Supersedes ui.lesson.card.step-means-screen-2026-10-05 where it keeps "part" as a separate term.~~
-  *Why:* Owner: every card is a step
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-body-scope-2026-10-05`
+  The lesson box ratios (4:5 portrait, 2:1 landscape), the line and character counts (49 x 17 portrait, 91 across landscape) and the per-step character ceilings apply only to the step body: the area holding a step's authored body content (prose, Scripture blocks, checks, visuals). Everything else on the lesson screen sits outside that box and is sized separately: the step eyebrow and title, the step progress bar and 'Step N of M' line, the study-tool buttons (Glossary, Questions, Go deeper), the step list and My Notes columns, the edge tabs, and Back and Continue.
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-columns-2026-10-05`
+  ~~Landscape lesson columns are adjusted so the center text box fits the decided 91 characters per line by 14 lines at the calibrated landscape type size. The step list and My Notes columns narrow to give the center column that width (each keeps a minimum: the step list fits its longest step title, My Notes stays usable). The text box sits below the step title and never overlaps the title or the side columns. Chosen over lowering the line length or shrinking landscape type.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
   ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
@@ -1128,6 +1127,9 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-means-screen-2026-10-05`
   ~~In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a "step" means one screen: everything the learner sees before pressing Continue. It is not an entry in the lesson's step list; the pagination docs call that screen a "part". The 833, 784 and 735 ceilings apply to each screen.~~
   *Why:* Owner clarified how he uses the word step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.card-is-step-2026-10-05`
+  ~~Every lesson card is a step. There is no separate "part": what the pagination docs call a part is a step, the step list and "Step N of M" count cards, and the character ceilings (833 / 784 / 735) apply to each step. Supersedes ui.lesson.card.step-means-screen-2026-10-05 where it keeps "part" as a separate term.~~
+  *Why:* Owner: every card is a step
 
 ### `ui.lesson.colors`
 

@@ -397,6 +397,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Landscape columns follow ui.lesson.card.landscape-columns-2026-10-05: the center text box must fit 91 characters by 14 lines at the calibrated landscape type size; the step list and My Notes columns narrow to make room (each keeps a usable minimum). In Chris's landscape mockup the box ran about 10% past the center column into My Notes and over the title line; neither may happen."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
         }
       ]
     },
@@ -415,6 +420,13 @@
       "accept": [
         "bun scripts/test-lesson-divider.mjs",
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        }
       ]
     },
     {
@@ -734,6 +746,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "The counts and the 833/784/735 ceilings are Chris's design targets, measured from his approved portrait and landscape mockups; they do not change. Only the type size that produces them changes with the font. S3.B through S3.B6 measured Caladea."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
         }
       ]
     }
