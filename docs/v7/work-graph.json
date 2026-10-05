@@ -759,7 +759,7 @@
     {
       "id": "S3.B7",
       "title": "Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.Q2"
       ],
@@ -791,6 +791,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Recalibrated to the shipped fonts: Source Sans 3 (prose; avg 0.395 em/char) and Literata at 1.15x (Scripture blocks). Variable-font bold widths scaled by 1.07 (one width table per file). widthEm(type, text, face, role) now takes a role ('prose' or 'scripture'). Result exposed a conflict between 4:5, 49x17 and 1.55: see S3.R."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
         }
       ],
       "owner": "Claude",
