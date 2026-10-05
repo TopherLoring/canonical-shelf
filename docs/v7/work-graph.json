@@ -91,7 +91,7 @@
     {
       "id": "R2",
       "title": "Every page starts close under the top bar: contract test fails on the lesson branch",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -108,8 +108,20 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Seen on Chris's run of codex/redesign-lesson-path; reproduce on that branch first to confirm whether the lesson screen or the frame causes it."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/r2-top-bar-spacing."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed from the latest feature/redesign-p5-lesson-path at Chris's request. Scope is public/ui/components/frame.css and public/ui/layout.css. No implementation changed. Next: reproduce the top-bar spacing contract failure on the lesson branch, then fix only the owned frame/layout paths; preserve Claude's lesson work."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/r2-top-bar-spacing"
     },
     {
       "id": "X1",
