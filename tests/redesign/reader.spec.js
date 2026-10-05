@@ -2,7 +2,175 @@
 // highlights, notes, study panels, keyboard use, addresses that stay on the current Bible page, and phone layout.
 import { test, expect } from '@playwright/test';
 
+async function selectWords(page, verse, words) {
+  await page.locator(`#v${verse}`).evaluate((el, words) => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('sup, [data-footnote]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    const text = nodes.map(n => n.data).join(''); const start = text.indexOf(words), end = start + words.length;
+    if (start < 0) throw new Error('Selected words absent from verse');
+    const range = document.createRange(); let offset = 0;
+    for (const node of nodes) {
+      if (start >= offset && start < offset + node.length) range.setStart(node, start - offset);
+      if (end > offset && end <= offset + node.length) { range.setEnd(node, end - offset); break; }
+      offset += node.length;
+    }
+    const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    document.dispatchEvent(new Event('selectionchange'));
+  }, words);
+}
+
 test.describe('Bible reader', () => {
+  test('slow Scripture loading cannot overwrite a newer destination', async ({ page }) => {
+    let release;
+    const gate = new Promise(resolve => { release = resolve; });
+    await page.route('**/data/corpus.txt', async route => { await gate; await route.continue(); });
+    await page.goto('/home');
+    await expect(page.locator('main h1')).toBeVisible();
+    await page.locator('nav.primary a[href="/bible"]').click();
+    await page.locator('.profile-link').click();
+    await expect(page.locator('#you.profile-section')).toBeVisible();
+    release();
+    await page.waitForResponse('**/data/corpus.txt');
+    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    await expect(page.locator('main [data-reader]')).toHaveCount(0);
+    await expect(page).toHaveURL(/\/profile$/);
+  });
+  test('a rapid whole-verse action supersedes an earlier phrase repaint', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await selectWords(page, 2, 'formless and void');
+    await page.evaluate(() => {
+      document.querySelector('[data-action="underline"]').click();
+      getSelection().removeAllRanges();
+      document.dispatchEvent(new Event('selectionchange'));
+      const verse = document.querySelector('#v2'); verse.click(); verse.click();
+      document.querySelector('[data-color="green"]').click();
+    });
+    await expect.poll(() => page.evaluate(async () => (await (await import('/db.js')).getState()).highlights?.['Gen.1.2']?.color)).toBe('green');
+    await expect(page.locator('#v2')).toHaveClass(/ui-highlight-green/);
+    await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
+    await page.reload();
+    await expect(page.locator('#v2')).toHaveClass(/ui-highlight-green/);
+  });
+  test('a pending reader mount cannot replace the profile after navigation', async ({ page }) => {
+    let release;
+    const gate = new Promise(resolve => { release = resolve; });
+    await page.route('**/data/bsb-annotations/1.json', async route => { await gate; await route.continue(); });
+    const request = page.waitForRequest('**/data/bsb-annotations/1.json');
+    await page.goto('/bible?book=1&chapter=1');
+    await request;
+    await page.locator('.profile-link').click();
+    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    const response = page.waitForResponse('**/data/bsb-annotations/1.json');
+    release(); await response;
+    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    await expect(page.locator('main [data-reader]')).toHaveCount(0);
+    await expect(page).toHaveURL(/\/profile$/);
+  });
+  test('rapid phrase markings on different verses both appear without reloading', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await expect(page.locator('#v3')).toBeVisible();
+    await page.evaluate(() => {
+      function pick(number, words) {
+        const verse = document.querySelector(`#v${number}`);
+        const node = [...verse.childNodes].find(n => n.nodeType === Node.TEXT_NODE && n.data.includes(words));
+        const start = node.data.indexOf(words), range = document.createRange();
+        range.setStart(node, start); range.setEnd(node, start + words.length);
+        const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range);
+        document.dispatchEvent(new Event('selectionchange'));
+      }
+      pick(2, 'formless and void'); document.querySelector('[data-action="underline"]').click();
+      pick(3, 'Let there be light'); document.querySelector('[data-action="underline"]').click();
+    });
+    await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
+    await expect(page.locator('#v3 [data-mark-underline="true"]')).toHaveText(['Let there be light']);
+    await page.reload();
+    await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
+    await expect(page.locator('#v3 [data-mark-underline="true"]')).toHaveText(['Let there be light']);
+  });
+  test('dragging over words opens their marking controls', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    const box = await page.locator('#v1').evaluate(el => {
+      const node = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+      const start = node.data.indexOf('God created'), range = document.createRange();
+      range.setStart(node, start); range.setEnd(node, start + 'God created'.length);
+      const b = range.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height };
+    });
+    await page.mouse.move(box.x + 0.1, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width - 0.1, box.y + box.height / 2, { steps: 12 });
+    await page.mouse.up();
+    await page.getByRole('button', { name: 'Highlight green', exact: true }).click();
+    await expect(page.locator('#v1 [data-mark-color="green"]')).toHaveText(['God created']);
+  });
+  test('selected words highlight without changing the rest of the verse and survive reload', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await selectWords(page, 2, 'formless and void');
+    await page.getByRole('button', { name: 'Highlight yellow', exact: true }).click();
+    const marks = page.locator('#v2 [data-text-mark][data-mark-color="yellow"]');
+    await expect(marks).toHaveText(['formless and void']);
+    await expect(page.locator('#v2')).not.toHaveClass(/ui-highlight-yellow/);
+    await page.getByRole('button', { name: 'Underline selected text' }).click();
+    await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
+    await page.getByRole('button', { name: 'Highlight green', exact: true }).click();
+    await expect(page.locator('#v2 [data-mark-color="green"]')).toHaveText(['formless and void']);
+    await page.getByRole('button', { name: 'Highlight yellow', exact: true }).click();
+    await page.reload();
+    await expect(marks).toHaveText(['formless and void']);
+    await selectWords(page, 2, 'formless and void');
+    await page.locator('[data-highlight-clear]').click();
+    await expect(marks).toHaveCount(0);
+    await page.reload();
+    await expect(marks).toHaveCount(0);
+  });
+
+  test('underline and overlapping color changes preserve unselected words and footnotes', async ({ page }) => {
+    await page.goto('/bible?book=43&chapter=3');
+    await selectWords(page, 16, 'God so loved the world');
+    await page.getByRole('button', { name: 'Underline selected text' }).click();
+    await expect(page.locator('#v16 [data-mark-underline="true"]')).toHaveText(['God so loved the world']);
+    await selectWords(page, 16, 'loved the world');
+    await page.getByRole('button', { name: 'Highlight rose', exact: true }).click();
+    await expect(page.locator('#v16 [data-mark-color="rose"]')).toHaveText(['loved the world']);
+    expect(await page.locator('#v16 [data-mark-underline="true"]').allTextContents()).toEqual(['God so ', 'loved the world']);
+    await page.locator('#v16 [data-footnote]').click();
+    await expect(page.locator('[data-reader-fn-pop]')).toContainText('only begotten');
+    await page.reload();
+    await expect(page.locator('#v16 [data-mark-color="rose"]')).toHaveText(['loved the world']);
+    await selectWords(page, 16, 'loved the world');
+    await page.getByRole('button', { name: 'Underline selected text' }).click();
+    await expect(page.locator('#v16 [data-mark-underline="true"]')).toHaveText(['God so ']);
+    await expect(page.locator('#v16 [data-mark-color="rose"]')).toHaveText(['loved the world']);
+  });
+
+  test('partial removal from a whole-verse highlight preserves the surrounding highlight', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await page.locator('#v2').click();
+    await page.getByRole('button', { name: 'Highlight yellow', exact: true }).click();
+    await selectWords(page, 2, 'formless and void');
+    await page.locator('[data-highlight-clear]').click();
+    await expect(page.locator('#v2 [data-mark-color="yellow"]')).toHaveCount(2);
+    expect((await page.locator('#v2 [data-mark-color="yellow"]').allTextContents()).join('')).not.toContain('formless and void');
+    await page.reload();
+    await expect(page.locator('#v2 [data-mark-color="yellow"]')).toHaveCount(2);
+  });
+
+  test('a native selection crossing two verses saves both text ranges', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await expect(page.locator('#v2')).toBeVisible();
+    await page.evaluate(() => {
+      const from = document.querySelector('#v1'), to = document.querySelector('#v2');
+      const start = [...from.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+      const end = [...to.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+      const range = document.createRange(); range.setStart(start, start.data.indexOf('God')); range.setEnd(end, end.data.indexOf('formless'));
+      const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range); document.dispatchEvent(new Event('selectionchange'));
+    });
+    await page.getByRole('button', { name: 'Highlight blue', exact: true }).click();
+    await expect(page.locator('#v1 [data-mark-color="blue"]')).toContainText('God created');
+    await expect(page.locator('#v2 [data-mark-color="blue"]')).toContainText('Now the earth was');
+    await page.reload();
+    await expect(page.locator('#v1 [data-mark-color="blue"]')).toContainText('God created');
+    await expect(page.locator('#v2 [data-mark-color="blue"]')).toContainText('Now the earth was');
+  });
   test('saving a note and a highlight concurrently preserves both', async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3&start=16');
     await page.locator('[data-reader-notes] [data-note-text]').fill('Concurrent note');
@@ -247,6 +415,15 @@ test.describe('Bible reader', () => {
 });
 
 test.describe('Bible reader on a phone', () => {
+  test('native touch selection exposes marking controls without horizontal overflow', async ({ page }) => {
+    await page.goto('/bible?book=1&chapter=1');
+    await selectWords(page, 2, 'formless and void');
+    await page.getByRole('button', { name: 'Underline selected text' }).tap();
+    await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
+    const box = await page.locator('[data-reader-actions]').boundingBox();
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(page.viewportSize().width);
+  });
   test('Notes and Theologian share tab sizing and the chat stays above the notes drawer', async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3&start=4');
     const notes = page.locator('#reader-notes-tab'), theo = page.locator('#guide-open');
@@ -271,7 +448,7 @@ test.describe('Bible reader on a phone', () => {
     await page.locator('#guide-close').click();
     await expect(page.locator('[data-reader-aside]')).toHaveAttribute('data-sheet', 'notes');
   });
-  test.use({ viewport: { width: 390, height: 844 } });
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
 
   test('adapts to different phone widths without horizontal scrolling', async ({ page }) => {
     for (const width of [320, 428]) {

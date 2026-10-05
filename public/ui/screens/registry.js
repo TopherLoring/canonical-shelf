@@ -10,7 +10,7 @@
 //
 // where ctx is built by app.js for every render:
 //
-//   { route, params, data, corpus, state, setState, esc, labels, groupNames, navigate, activityHref, db }
+//   { route, params, data, corpus, state, setState, esc, labels, groupNames, navigate, activityHref, db, isCurrent }
 //
 //   params      URLSearchParams for the current address (book, chapter, start, end, focus, q, unit, lesson, ...)
 //   data        the loaded catalog (courses, units, lessons, activities, topics, glossary, ...)
@@ -18,6 +18,7 @@
 //   state       learner state at render time; after a change call setState(nextState) so the app keeps it
 //   db          { getState, recordResult, recordReview, dueReviews, exportState, importState } from db.js
 //   navigate    client-side navigation: navigate('/bible?book=1&chapter=1')
+//   isCurrent   after an asynchronous preparation, check this before writing to the container; a newer route may have replaced this render
 //
 // Screens never fetch the catalog or the corpus themselves, never touch elements outside the container, and
 // return a cleanup function that removes any listeners they attached outside it.

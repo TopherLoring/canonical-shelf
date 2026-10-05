@@ -26,6 +26,12 @@ recordMutation(merged,'result',{id:'lesson:c',passed:true},'2026-09-16T16:00:00.
 assert(merged.highlights['Gen.1.2']?.color===null,'a newer highlight removal did not win merge');
 assert(merged.highlights['John.3.16']?.color==='rose'&&merged.highlights['Ps.23.1']?.color==='green','highlights from both devices must survive merge');
 assert(snap.highlights?.['Ps.23.1']?.color==='green','highlights missing from sync snapshot');
+const olderMarks={'Gen.1.2':{color:null,ranges:[{start:19,end:35,color:'yellow',underline:true}],updatedAt:'2026-09-16T12:00:00.000Z'}};
+const newerMarks={'Gen.1.2':{color:null,ranges:[],updatedAt:'2026-09-16T13:00:00.000Z'}};
+const marked=mergeLearnerState({...base('marks-a'),highlights:olderMarks},base('marks-b'));
+assert(JSON.stringify(remoteSnapshot(marked).highlights['Gen.1.2'].ranges)===JSON.stringify(olderMarks['Gen.1.2'].ranges),'partial colors and underlines missing from sync snapshot');
+const removed=mergeLearnerState(marked,{...base('marks-b'),highlights:newerMarks});
+assert(removed.highlights['Gen.1.2'].ranges.length===0,'a newer partial marking removal did not win merge');
 const event=merged.sync.outbox.at(-1);
 assert(event?.deviceId===merged.sync.deviceId,'mutation device identity missing');
 acknowledgeSync(merged,{cursor:'cursor-next',acceptedIds:[event.id]});

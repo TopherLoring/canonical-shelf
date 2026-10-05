@@ -3,6 +3,12 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-05
+
+### Added
+
+- Reader word and phrase highlights and underlines use native selection and canonical text offsets, preserve surrounding marks and footnotes, retain phrase scope across toolbar actions, and persist and sync with existing highlights. Fixed queued marking paints per verse and superseded asynchronous route renders. Full bun run verify passed with 142 browser tests; sync range and removal checks passed; independent review is clean; guard remains at 247 existing violations with zero new. Lesson pagination and later redesign slices remain pending.
+
 ## 2026-10-04
 
 ### Decided

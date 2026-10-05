@@ -82,10 +82,10 @@ function refreshProgressPanel(){}
 
 // Redesigned screens (public/ui/screens/registry.js) mount through this seam; routes without one keep their
 // current view. The context is rebuilt on every render so screens always see the current catalog and state.
-let unmountScreen=null;
+let unmountScreen=null,renderGeneration=0;
 const screenDb=Object.freeze({getState,recordResult,recordReview,dueReviews,exportState,importState});
-function screenContext(r,p){
-  return Object.freeze({route:r,params:p,data,corpus,state,setState:next=>{state=next},esc,labels:LABELS,groupNames:GROUP_NAMES,navigate,activityHref,db:screenDb});
+function screenContext(r,p,isCurrent){
+  return Object.freeze({route:r,params:p,data,corpus,state,setState:next=>{state=next},esc,labels:LABELS,groupNames:GROUP_NAMES,navigate,activityHref,db:screenDb,isCurrent});
 }
 function releaseScreen(){
   if(!unmountScreen)return;
@@ -109,6 +109,7 @@ function courseRouteView(p){
 }
 
 async function render(){
+  const generation=++renderGeneration,isCurrent=()=>generation===renderGeneration;
   const main=getMain();
   if(!main)return;
   const r=route(),p=params(),focus=r==='course'&&(p.has('lesson')||p.has('mastery'));
@@ -116,15 +117,18 @@ async function render(){
   
   if((r==='bible'||r==='search'||(r==='course'&&(p.has('lesson')||p.has('mastery')||p.has('glossary'))))&&!corpus){
     await ensureCorpus();
+    if(!isCurrent())return;
   }
 
   releaseScreen();
   const loadScreen=SCREENS[r];
   const screen=loadScreen?await loadScreen():null;
+  if(!isCurrent())return;
   let bookDrawer=null;
   if(screen&&(typeof screen.handles!=='function'||screen.handles(p))){
     main.replaceChildren();
-    const cleanup=await screen.mount(main,screenContext(r,p));
+    const cleanup=await screen.mount(main,screenContext(r,p,isCurrent));
+    if(!isCurrent()){if(typeof cleanup==='function')cleanup();return}
     unmountScreen=typeof cleanup==='function'?cleanup:null;
     canonicalizeLinks(main);
   }else{

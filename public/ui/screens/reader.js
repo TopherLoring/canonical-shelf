@@ -8,7 +8,7 @@
 import { LIBRARY_BOOKS, CATEGORIES, THREADS } from '../../library-data.js';
 import { OSIS, parseCorpus, parseReference } from '../../bible-books.js';
 import { renderMounts } from '../../study-notes.js';
-import { chapterHighlights, setHighlights, HIGHLIGHT_COLORS } from '../../highlights.js';
+import { chapterHighlights, setHighlights, setTextMarks, HIGHLIGHT_COLORS } from '../../highlights.js';
 import {
   renderRail, renderGroupChip, renderScriptureRef, mountScriptureRef,
   renderVerseSpan, renderVerseActions, renderFootnoteBadge, renderEdgeTab
@@ -154,7 +154,7 @@ function renderChapter({ rows, annotations, highlights, selected, esc }) {
       verseNumber: row.verse,
       text: html,
       isSelected: Boolean(selected && row.verse >= selected.start && row.verse <= selected.end),
-      highlightColor: highlights[row.verse] || null,
+      highlightColor: highlights[row.verse]?.color || null,
       className: 'reader-verse',
       selectable: true
     }));
@@ -182,6 +182,49 @@ const ICONS = {
   more: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>',
   close: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'
 };
+
+function scriptureNodes(verse) {
+  const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT, {
+    acceptNode: node => node.parentElement.closest('.ui-verse-num, [data-footnote]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+  });
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  return nodes;
+}
+
+function paintTextMarks(verse, entry) {
+  verse.querySelectorAll('[data-text-mark]').forEach(mark => mark.replaceWith(...mark.childNodes));
+  verse.normalize();
+  HIGHLIGHT_COLORS.forEach(color => verse.classList.toggle(`ui-highlight-${color}`, entry?.color === color));
+  let offset = 0;
+  for (const node of scriptureNodes(verse)) {
+    const start = offset, end = offset + node.length; offset = end;
+    const ranges = (entry?.ranges || []).filter(r => r.start < end && r.end > start);
+    if (!ranges.length) continue;
+    const bounds = [...new Set([start, end, ...ranges.flatMap(r => [Math.max(start, r.start), Math.min(end, r.end)])])].sort((a, b) => a - b);
+    const fragment = document.createDocumentFragment();
+    for (let i = 1; i < bounds.length; i++) {
+      const a = bounds[i - 1], b = bounds[i], range = ranges.find(r => r.start <= a && r.end >= b);
+      const value = document.createTextNode(node.data.slice(a - start, b - start));
+      if (!range) { fragment.append(value); continue; }
+      const mark = document.createElement(range.color ? 'mark' : 'span');
+      mark.dataset.textMark = '';
+      if (HIGHLIGHT_COLORS.includes(range.color)) { mark.dataset.markColor = range.color; mark.classList.add(`ui-highlight-${range.color}`); }
+      if (range.underline) { mark.dataset.markUnderline = 'true'; mark.classList.add('ui-word-underline'); }
+      mark.append(value); fragment.append(mark);
+    }
+    node.replaceWith(fragment);
+  }
+}
+
+function rangeForWords(verse, start, end) {
+  const range = document.createRange(); let offset = 0, began = false;
+  for (const node of scriptureNodes(verse)) {
+    if (start >= offset && start < offset + node.length) { range.setStart(node, start - offset); began = true; }
+    if (end > offset && end <= offset + node.length && began) { range.setEnd(node, end - offset); return range; }
+    offset += node.length;
+  }
+  return null;
+}
 
 function pickerMarkup(book, chapter, esc) {
   const current = bookByNumber(book);
@@ -221,7 +264,8 @@ export async function mount(container, ctx) {
   const osisBook = OSIS[book - 1];
   const rows = parseCorpus(corpus).filter(r => r.bn === book && r.chapter === chapter);
   const groupLabel = groupName(meta.cat);
-  const [annotations, highlights] = await Promise.all([loadAnnotations(book, chapter), chapterHighlights(osisBook, chapter).catch(() => ({}))]);
+  const [annotations, highlights] = await Promise.all([loadAnnotations(book, chapter), chapterHighlights(osisBook, chapter, { details: true }).catch(() => ({}))]);
+  if (ctx.isCurrent?.() === false) return;
   const { prev, next } = neighbours(book, chapter);
   let size = SIZES[0];
   try { const saved = localStorage.getItem(SIZE_KEY); if (SIZES.includes(saved)) size = saved; } catch {}
@@ -295,7 +339,7 @@ export async function mount(container, ctx) {
         <nav class="reader-chapter-nav" aria-label="Chapters">${prev ? `<a class="reader-chapter-nav-link" href="${chapterHref(...prev)}">${ICONS.chevronLeft}<span>${esc(bookByNumber(prev[0]).name)} ${prev[1]}</span></a>` : '<span></span>'}${next ? `<a class="reader-chapter-nav-link" href="${chapterHref(...next)}"><span>${esc(bookByNumber(next[0]).name)} ${next[1]}</span>${ICONS.chevronRight}</a>` : '<span></span>'}</nav>
         ${chapterContent.footnotes}
       </div>
-      <div class="reader-actions" data-reader-actions hidden>${renderVerseActions({ verseReference: label(selected), colors: HIGHLIGHT_COLORS, showCopy: false })}<button type="button" class="reader-actions-clear" data-highlight-clear hidden>Remove highlight</button></div>
+      <div class="reader-actions" data-reader-actions hidden>${renderVerseActions({ verseReference: label(selected), colors: HIGHLIGHT_COLORS, showCopy: false, showUnderline: true })}<button type="button" class="reader-actions-clear" data-highlight-clear hidden>Remove highlight</button></div>
       <div class="reader-fn-pop" data-reader-fn-pop role="note" hidden></div>
     </article>
     <aside class="reader-aside" data-reader-aside data-sheet="none" aria-label="My Notes and study tools">
@@ -319,6 +363,89 @@ export async function mount(container, ctx) {
   const fnPop = root.querySelector('[data-reader-fn-pop]');
   const card = root.querySelector('[data-reader-card]');
   const phone = () => matchMedia('(max-width: 1099px)').matches;
+  let wordSelection = null;
+  let markingVersion = 0;
+  let mounted = true;
+  const markingVersions = new Map();
+  function versionFor(entries) {
+    const version = ++markingVersion;
+    for (const entry of entries) markingVersions.set(entry.osis, version);
+    return version;
+  }
+  for (const verse of text.querySelectorAll('.reader-verse')) paintTextMarks(verse, highlights[verse.dataset.verse]);
+
+  function selectedEntries() {
+    if (wordSelection) return wordSelection;
+    return rows.filter(row => selected && row.verse >= selected.start && row.verse <= selected.end)
+      .map(row => ({ verse: row.verse, osis: `${osisBook}.${chapter}.${row.verse}`, label: `${name} ${chapter}:${row.verse}`, start: 0, end: row.text.length, length: row.text.length }));
+  }
+  function covered(entries, property, value) {
+    return entries.length > 0 && entries.every(part => {
+      const entry = highlights[part.verse] || {};
+      if (property === 'color' && entry.color === value) return true;
+      let at = part.start;
+      for (const range of entry.ranges || []) {
+        if (range.end <= at) continue;
+        if (range.start > at || range[property] !== value) return false;
+        at = Math.min(part.end, range.end);
+        if (at === part.end) return true;
+      }
+      return false;
+    });
+  }
+  function captureWords() {
+    const selection = document.getSelection();
+    if (!selection?.rangeCount || selection.isCollapsed) {
+      if (wordSelection && !actions.contains(document.activeElement)) { wordSelection = null; placeActions(); }
+      return;
+    }
+    const range = selection.getRangeAt(0);
+    if (!text.contains(range.startContainer) || !text.contains(range.endContainer)) { wordSelection = null; placeActions(); return; }
+    const parts = [];
+    for (const verse of text.querySelectorAll('.reader-verse')) {
+      const number = Number(verse.dataset.verse), row = rows.find(r => r.verse === number);
+      let offset = 0, start = null, end = null;
+      for (const node of scriptureNodes(verse)) {
+        if (range.intersectsNode(node)) {
+          const a = range.startContainer === node ? range.startOffset : 0;
+          const b = range.endContainer === node ? range.endOffset : node.length;
+          if (b > a) { if (start === null) start = offset + a; end = offset + b; }
+        }
+        offset += node.length;
+      }
+      if (start !== null && end > start) parts.push({ verse: number, osis: `${osisBook}.${chapter}.${number}`, label: `${name} ${chapter}:${number}`, start, end, length: row.text.length });
+    }
+    if (!parts.length) return;
+    wordSelection = parts;
+    select(parts[0].verse, parts.at(-1).verse, { keepWords: true });
+  }
+  async function markWords(patch) {
+    const entries = selectedEntries();
+    if (!entries.length) return;
+    const version = versionFor(entries);
+    const values = await setTextMarks(entries, patch);
+    applySavedMarks(entries, values, version);
+  }
+  function applySavedMarks(entries, values, version) {
+    if (!mounted) return;
+    for (const part of entries) {
+      if (markingVersions.get(part.osis) !== version) continue;
+      const verse = part.verse || Number(part.osis.split('.').at(-1));
+      highlights[verse] = values[part.osis];
+      paintTextMarks(text.querySelector(`#v${verse}`), values[part.osis]);
+    }
+    if (wordSelection) {
+      const first = wordSelection[0], last = wordSelection.at(-1);
+      const range = rangeForWords(text.querySelector(`#v${first.verse}`), first.start, first.end);
+      const end = rangeForWords(text.querySelector(`#v${last.verse}`), last.start, last.end);
+      if (range && end) {
+        range.setEnd(end.endContainer, end.endOffset);
+        const selection = document.getSelection();
+        selection?.removeAllRanges(); selection?.addRange(range);
+      }
+    }
+    updateCounts(); placeActions(); if (panel === 'highlights') renderPanel();
+  }
 
   // ---- Study panel -------------------------------------------------------------------------------------------
   // Cross-references load in the background; the panel and counts update when they arrive.
@@ -337,7 +464,7 @@ export async function mount(container, ctx) {
   }
   function updateCounts() {
     const xrefCount = selected ? crossrefsFor(selected).length : 0;
-    const highlightCount = text.querySelectorAll('.reader-verse[class*="ui-highlight-"]').length;
+    const highlightCount = Object.values(highlights).filter(value => value.color || value.ranges?.length).length;
     for (const [id, count] of [['reader-rail-xrefs', xrefCount], ['reader-rail-highlights', highlightCount]]) {
       const link = root.querySelector(`#${id}`);
       if (!link) continue;
@@ -362,13 +489,13 @@ export async function mount(container, ctx) {
         <p><a class="reader-panel-link" href="/bible?book=${book}&profile=1">Book overview</a></p>`;
     }
     if (which === 'highlights') {
-      const marked = [...text.querySelectorAll('.reader-verse[class*="ui-highlight-"]')];
+      const marked = [...text.querySelectorAll('.reader-verse')].filter(v => highlights[v.dataset.verse]?.color || highlights[v.dataset.verse]?.ranges?.length);
       if (!marked.length) return `${head('Highlights', `${name} ${chapter}`)}<p class="reader-panel-hint">Select a verse and pick a color to highlight it.</p>`;
       return `${head('Highlights', `${name} ${chapter}`)}<ul class="reader-highlight-list">${marked.map(v => {
         const n = Number(v.dataset.verse);
-        const color = HIGHLIGHT_COLORS.find(c => v.classList.contains(`ui-highlight-${c}`));
+        const color = highlights[n]?.color || highlights[n]?.ranges?.find(r => r.color)?.color;
         const row = rows.find(r => r.verse === n);
-        return `<li><button type="button" class="reader-highlight-item" data-goto-verse="${n}"><span class="reader-highlight-swatch ui-highlight-${color}" aria-hidden="true"></span><span class="reader-highlight-ref">${chapter}:${n}</span><span class="reader-highlight-text">${esc(row?.text || '')}</span></button></li>`;
+        return `<li><button type="button" class="reader-highlight-item" data-goto-verse="${n}"><span class="reader-highlight-swatch ${color ? `ui-highlight-${color}` : 'ui-word-underline'}" aria-hidden="true">${color ? '' : 'U'}</span><span class="reader-highlight-ref">${chapter}:${n}</span><span class="reader-highlight-text">${esc(row?.text || '')}</span></button></li>`;
       }).join('')}</ul>`;
     }
     if (which === 'people') {
@@ -416,17 +543,20 @@ export async function mount(container, ctx) {
     if (!first) { actions.hidden = true; return; }
     actions.hidden = false;
     const cardBox = card.getBoundingClientRect();
-    const box = first.getClientRects()[0] || first.getBoundingClientRect();
+    const box = wordSelection ? rangeForWords(first, wordSelection[0].start, wordSelection[0].end)?.getBoundingClientRect() || first.getBoundingClientRect() : first.getClientRects()[0] || first.getBoundingClientRect();
     const width = actions.offsetWidth || 240;
     const left = Math.max(8, Math.min(cardBox.width - width - 8, box.right - cardBox.left - width));
     const top = Math.max(8, box.top - cardBox.top - actions.offsetHeight - 8);
     actions.style.setProperty('--reader-actions-x', `${left}px`);
     actions.style.setProperty('--reader-actions-y', `${top}px`);
-    const current = HIGHLIGHT_COLORS.find(c => first.classList.contains(`ui-highlight-${c}`));
-    clearButton.hidden = !current;
-    for (const b of actions.querySelectorAll('[data-color]')) b.setAttribute('aria-pressed', String(b.dataset.color === current));
+    const entries = selectedEntries();
+    clearButton.hidden = !entries.some(part => { const value = highlights[part.verse]; return value?.color || value?.ranges?.some(r => r.start < part.end && r.end > part.start); });
+    clearButton.textContent = wordSelection ? 'Remove marking' : 'Remove highlight';
+    for (const b of actions.querySelectorAll('[data-color]')) b.setAttribute('aria-pressed', String(covered(entries, 'color', b.dataset.color)));
+    actions.querySelector('[data-action="underline"]')?.setAttribute('aria-pressed', String(covered(entries, 'underline', true)));
   }
-  function select(start, end = start, { focusNotes = false } = {}) {
+  function select(start, end = start, { focusNotes = false, keepWords = false } = {}) {
+    if (!keepWords) wordSelection = null;
     selected = start ? { start, end } : null;
     root.dataset.selectedVerse = selected ? String(selected.start) : '';
     root.dataset.selectedEnd = selected ? String(selected.end) : '';
@@ -480,30 +610,40 @@ export async function mount(container, ctx) {
     const color = t.closest('[data-reader-actions] [data-color]');
     if (color && selected) {
       const chosen = color.dataset.color;
+      if (wordSelection) { markWords({ color: covered(wordSelection, 'color', chosen) ? null : chosen }).catch(() => {}); return; }
       const targets = [...text.querySelectorAll('.reader-verse')].filter(v => { const n = Number(v.dataset.verse); return n >= selected.start && n <= selected.end; });
+      const entries = targets.map(v => ({ osis: `${osisBook}.${chapter}.${v.dataset.verse}`, label: `${name} ${chapter}:${v.dataset.verse}` }));
+      const version = versionFor(entries);
       const first = targets[0];
       const same = first && first.classList.contains(`ui-highlight-${chosen}`);
       const next = same ? null : chosen;
       for (const v of targets) {
         HIGHLIGHT_COLORS.forEach(c => v.classList.remove(`ui-highlight-${c}`));
         if (next) v.classList.add(`ui-highlight-${next}`);
+        const n = Number(v.dataset.verse);
+        highlights[n] = { color: next, ranges: next ? (highlights[n]?.ranges || []).filter(r => r.underline).map(({ start, end }) => ({ start, end, underline: true })) : [] };
+        paintTextMarks(v, highlights[n]);
       }
-      setHighlights(targets.map(v => ({ osis: `${osisBook}.${chapter}.${v.dataset.verse}`, label: `${name} ${chapter}:${v.dataset.verse}` })), next).catch(() => {});
+      setHighlights(entries, next, { details: true }).then(values => applySavedMarks(entries, values, version)).catch(() => {});
       updateCounts(); placeActions(); if (panel === 'highlights') renderPanel();
       return;
     }
     if (t.closest('[data-highlight-clear]') && selected) {
+      if (wordSelection) { markWords({ color: null, underline: false }).catch(() => {}); return; }
       const entries = [];
       for (const v of text.querySelectorAll('.reader-verse')) {
         const n = Number(v.dataset.verse);
         if (n < selected.start || n > selected.end) continue;
         HIGHLIGHT_COLORS.forEach(c => v.classList.remove(`ui-highlight-${c}`));
+        delete highlights[n]; paintTextMarks(v, null);
         entries.push({ osis: `${osisBook}.${chapter}.${n}` });
       }
-      setHighlights(entries, null).catch(() => {});
+      const version = versionFor(entries);
+      setHighlights(entries, null, { details: true }).then(values => applySavedMarks(entries, values, version)).catch(() => {});
       updateCounts(); placeActions(); if (panel === 'highlights') renderPanel();
       return;
     }
+    if (t.closest('[data-reader-actions] [data-action="underline"]') && selected) { markWords({ underline: !covered(selectedEntries(), 'underline', true) }).catch(() => {}); return; }
     if (t.closest('[data-reader-actions] [data-action="note"]')) {
       openSheet('notes');
       aside.querySelector('[data-note-text]')?.focus();
@@ -549,8 +689,13 @@ export async function mount(container, ctx) {
     const verse = verseFrom(t);
     if (verse) {
       const n = Number(verse.dataset.verse);
-      if (event.shiftKey && selected) select(Math.min(selected.start, n), Math.max(selected.end, n));
-      else if (selected && selected.start === n && selected.end === n) select(null);
+      if (event.shiftKey && selected) {
+        document.getSelection()?.removeAllRanges();
+        select(Math.min(selected.start, n), Math.max(selected.end, n));
+        return;
+      }
+      if (!document.getSelection()?.isCollapsed) { captureWords(); return; }
+      if (selected && selected.start === n && selected.end === n) select(null);
       else select(n);
       return;
     }
@@ -577,6 +722,9 @@ export async function mount(container, ctx) {
   root.addEventListener('click', onClick);
   root.addEventListener('keydown', onKeydown);
   root.addEventListener('change', onChange);
+  const keepSelection = event => { if (event.target.closest('[data-reader-actions]')) event.preventDefault(); };
+  root.addEventListener('pointerdown', keepSelection);
+  document.addEventListener('selectionchange', captureWords);
   addEventListener('resize', onResize);
 
   renderPanel();
@@ -595,6 +743,8 @@ export async function mount(container, ctx) {
 
   return () => {
     live = false;
+    mounted = false;
     removeEventListener('resize', onResize);
+    document.removeEventListener('selectionchange', captureWords);
   };
 }

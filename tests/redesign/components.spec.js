@@ -217,6 +217,9 @@ test.describe('Phase 3: Shared UI Component Library & Lab Harness', () => {
         document.documentElement.setAttribute('data-mode', m);
       }, mode);
 
+      await page.evaluate(async () => {
+        await Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {})));
+      });
       const items = await page.evaluate(() => {
         function resolveToRgb(colorStr) {
           if (!colorStr) return null;

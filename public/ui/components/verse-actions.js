@@ -8,6 +8,7 @@ export function renderVerseActions({
   colors = ['yellow', 'green', 'blue', 'rose'],
   showNote = true,
   showCopy = true,
+  showUnderline = false,
   className = ''
 } = {}) {
   const ariaLabel = verseReference ? `Actions for ${verseReference}` : 'Verse actions';
@@ -19,6 +20,7 @@ export function renderVerseActions({
   <div role="toolbar" class="ui-verse-actions ${esc(className)}" aria-label="${esc(ariaLabel)}">
     ${colorButtons}
     <span class="ui-verse-actions-divider" aria-hidden="true"></span>
+    ${showUnderline ? '<button type="button" class="ui-verse-action-btn" data-action="underline" aria-label="Underline selected text" aria-pressed="false"><u>U</u></button>' : ''}
     ${showNote ? `<button type="button" class="ui-verse-action-btn" data-action="note">+ Note</button>` : ''}
     ${showCopy ? `<button type="button" class="ui-verse-action-btn" data-action="copy">Copy</button>` : ''}
   </div>`;
