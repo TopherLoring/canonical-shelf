@@ -1089,7 +1089,7 @@
     {
       "id": "S3.D3",
       "title": "Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.D2"
       ],
@@ -1106,8 +1106,20 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Per redesign.sequence.content-after-templates-2026-10-05: the screen renders live divider output until the content revision is done; S3.G later locks reviewed cards."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/lesson-catalog-cards."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Continuing Chris's requested sequence: finish redesign templates before content/glossary revision and final break review. Emit provisional divider output in the catalog for the lesson renderer; preserve authored sections, source files, stable section/activity IDs, and current content. The pasted 637/46 counting changes are not published on the shared branch, so this node will expose current divider output without treating it as locked final pagination. No Claude-owned node changes. Next: verify and commit the claim, then wire the existing divider into compile-pathway."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/lesson-catalog-cards"
     },
     {
       "id": "C1",
