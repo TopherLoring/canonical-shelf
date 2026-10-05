@@ -377,14 +377,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `learning.games`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.untaught-piece-2026-10-05`
-  The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-lesson-generation-2026-10-05`
+  The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned content, a taught piece and an untaught piece. The same Checkpoints are also available on Review & Practice. Corrects the scope in learning.checkpoint.untaught-piece-2026-10-05, which placed the mix on Review & Practice.
+  *Why:* Owner clarified he means the in-lesson checkpoints
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.untaught-piece-2026-10-05`
+  ~~The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.~~
   *Why:* Owner added the untaught piece to the Checkpoint mix
-- **Previous** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-review-practice-2026-10-05`
-  ~~Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.~~
-  *Why:* Owner stated that checkpoints are also in Review & Practice with randomly generated content
 - **Prior** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
   ~~Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-review-practice-2026-10-05`
+  ~~Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.~~
+  *Why:* Owner stated that checkpoints are also in Review & Practice with randomly generated content
 
 ### `learning.games.direction`
 

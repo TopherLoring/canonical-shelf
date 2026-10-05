@@ -25,6 +25,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.
 - Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.
 - The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.
+- The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned content, a taught piece and an untaught piece. The same Checkpoints are also available on Review & Practice. Corrects the scope in learning.checkpoint.untaught-piece-2026-10-05, which placed the mix on Review & Practice.
 
 ### Added
 
