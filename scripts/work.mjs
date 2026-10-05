@@ -5,7 +5,8 @@
 //   bun run work note <id> "handoff text"
 //   bun run work done <id>               runs the node's acceptance commands; marks done only if they pass
 //   bun run work release <id>            gives a claimed node back (keeps its notes)
-//   bun run work approve <id> --record <roa record id>   closes a Chris-gate node; the record must exist in .roa/records
+//   bun run work approve <id> "what you decided"   (Chris) records the decision and closes his gate node in one step
+//   bun run work approve <id> --record <roa id>      closes a gate node citing a decision already recorded
 //   bun run work check                   validates the graph and that docs/v7/WORK_BOARD.md is current (in verify:fast)
 //
 // The graph lives in docs/v7/work-graph.json; docs/v7/WORK_BOARD.md is generated from it. Never edit the board by hand.
@@ -99,7 +100,7 @@ function board(g) {
 const [cmd = 'status', id, ...rest] = process.argv.slice(2);
 const flag = name => { const i = rest.indexOf(`--${name}`); return i >= 0 ? rest[i + 1] : undefined; };
 const g = load();
-const node = () => { const n = byId(g).get(id); if (!n) fail(`no node "${id}"`); return n; };
+const node = () => { const n = g.nodes.find(x => x.id.toLowerCase() === String(id || '').toLowerCase()); if (!n) fail(`no node "${id}". Run: bun run work`); return n; };
 
 if (cmd === 'check') {
   const errors = validate(g);
@@ -146,15 +147,27 @@ if (cmd === 'check') {
   (n.notes ||= []).push({ date: today(), by: n.owner || 'unknown', text: `Done; acceptance passed (${n.accept.join('; ')}).` });
   g.updated = today(); save(g); console.log(`work: ${n.id} done`);
 } else if (cmd === 'approve') {
-  const n = node(), record = flag('record');
-  if (n.gate !== 'chris') fail(`${n.id} is not a Chris-gate node; use done`);
-  if (!record) fail('approve needs --record <roa record id>');
-  const found = execSync('git ls-files .roa/records', { encoding: 'utf8' }).split('\n').filter(Boolean)
-    .some(f => { try { return JSON.parse(readFileSync(f, 'utf8')).id === record; } catch { return false; } });
-  if (!found) fail(`no committed .roa record with id "${record}"; record Chris's decision first (node .roa-kit/roa.mjs decide ...)`);
+  // Chris closes his own gate in one line: bun run work approve S3.F "Approved the revision edits as listed"
+  // (or cites an existing record with --record <id>).
+  const n = node();
+  if (n.gate !== 'chris') fail(`${n.id} is not a Chris-gate node; agents finish it with: bun run work done ${n.id}`);
+  let record = flag('record');
+  const text = rest.filter((x, i) => !x.startsWith('--') && !(i > 0 && rest[i - 1].startsWith('--'))).join(' ').trim();
+  const known = id => execSync('git ls-files .roa/records', { encoding: 'utf8' }).split('\n').filter(Boolean)
+    .some(f => { try { return JSON.parse(readFileSync(f, 'utf8')).id === id; } catch { return false; } });
+  if (!record) {
+    if (!text) fail(`say what you decided, e.g.: bun run work approve ${n.id} "Approved"`);
+    record = `work.${n.id.toLowerCase()}.${today()}`;
+    const q = v => JSON.stringify(v);
+    execSync(`node .roa-kit/roa.mjs decide ${q(`${n.id}: ${text}`)} --topic ${q(`work.${n.id.toLowerCase()}`)} --by Chris --kind approval --scope ${q(`${n.id}: ${n.title}`)} --id ${q(record)}`, { stdio: 'inherit' });
+    execSync('git add .roa', { stdio: 'inherit' });
+  } else if (!known(record)) {
+    fail(`no .roa record with id "${record}"`);
+  }
   n.state = 'done'; n.record = record;
-  (n.notes ||= []).push({ date: today(), by: 'Chris', text: `Decided: ${record}.` });
-  g.updated = today(); save(g); console.log(`work: ${n.id} closed by ${record}`);
+  (n.notes ||= []).push({ date: today(), by: 'Chris', text: `Decided: ${record}${text ? ` (${text})` : ''}.` });
+  g.updated = today(); save(g);
+  console.log(`work: ${n.id} closed by ${record}. Commit with: git add -A && git commit -m "work: ${n.id} approved"`);
 } else {
   fail(`unknown command "${cmd}" (status, claim, note, release, done, approve, check)`);
 }
