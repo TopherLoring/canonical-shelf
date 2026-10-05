@@ -480,6 +480,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "WIP: scripts/lib/lesson-parse.mjs (parser shared with compile-pathway, no behavior change) and scripts/lesson-divider.mjs. Geometry from 16px / 1.55 / 347x435 box (54 x 17). Result: 642 steps -> 1088 cards, median 278 chars, max 419; checks all fit; 100 primary readings overflow (need Chris: split by verse, scroll, or open in reader); 5 orphans are 'As you read X, notice...' after a reading. Remaining: reading rule, then scripts/test-lesson-divider.mjs unit tests."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Divider complete except readings: 642 steps -> 1078 cards, median 286 chars, max 475; sentences intact, content unchanged and in order, ids <step>, <step>-2...; runs of text cards re-split evenly; short last cards merged back only up to ~480 chars, else flagged orphan (6). 74 checks/blocks sit on their own card after their setup (informational). 100 primary readings overflow: rule pending S3.S, implemented in S3.D2. Suggest S3.I add scripts/test-lesson-divider.mjs to test:core."
         }
       ],
       "owner": "Claude",
@@ -491,7 +496,8 @@
       "state": "todo",
       "deps": [
         "S3.D",
-        "S3.B7"
+        "S3.B7",
+        "S3.D2"
       ],
       "owns": [
         "docs/v7/LESSON_PAGINATION_REVIEW.md",
@@ -877,6 +883,33 @@
         }
       ],
       "record": "ui.lesson.card.portrait-layout-primary-fallback-2026-10-05"
+    },
+    {
+      "id": "S3.S",
+      "title": "Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends)",
+      "state": "todo",
+      "deps": [
+        "S3.D"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "S3.D2",
+      "title": "Divider: implement the Scripture reading rule from S3.S; attach \"As you read X, notice...\" to the reading's last card",
+      "state": "todo",
+      "deps": [
+        "S3.S"
+      ],
+      "owns": [
+        "scripts/lesson-divider.mjs",
+        "scripts/test-lesson-divider.mjs"
+      ],
+      "accept": [
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ]
     }
   ]
 }

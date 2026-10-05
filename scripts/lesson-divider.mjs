@@ -194,24 +194,39 @@ export function divideLesson(lesson, { type, corpus }) {
       else card = next;
     }
     if (card.length) cards.push(card);
-    // Balance: when a paragraph runs from one card into the next, move sentences forward while that makes the two
-    // cards' text more even and both still fit (so a 485-character run splits about 243 / 242, not 420 / 65).
-    for (let i = 0; i + 1 < cards.length; i++) {
-      let a = cards[i], b = cards[i + 1];
-      for (;;) {
-        const last = a.at(-1);
-        if (a.length < 2 || last.kind !== 'sentence' || b[0].kind !== 'sentence' || b[0].paraStart) break;
-        const na = a.slice(0, -1), nb = [last, ...b];
-        if (Math.abs(textChars(na) - textChars(nb)) >= Math.abs(textChars(a) - textChars(b)) || !fitsIn(nb, geo.primary)) break;
-        cards[i] = a = na; cards[i + 1] = b = nb;
-        if (last.paraStart) break;
+    // Balance: re-split each run of consecutive sentence-only cards into the same number of cards around an even
+    // target, so 971 characters over three cards come out about 324 each rather than 404 / 323 / 242. A
+    // re-split is used only if every new card still fits; otherwise the greedy cards stand.
+    const sentenceOnly = c => c.every(u => u.kind === 'sentence');
+    for (let i = 0; i < cards.length; i++) {
+      if (!sentenceOnly(cards[i])) continue;
+      let j = i;
+      while (j + 1 < cards.length && sentenceOnly(cards[j + 1])) j++;
+      const k = j - i + 1;
+      if (k >= 2) {
+        const run = cards.slice(i, j + 1).flat();
+        const total = textChars(run), target = total / k;
+        const out = [];
+        let cur = [];
+        run.forEach((u, idx) => {
+          const left = run.length - idx;
+          const len = visible(u.text).length + 1;
+          const need = k - out.length - 1;
+          if (cur.length && need > 0 && (textChars(cur) + len / 2 > target || left === need)) { out.push(cur); cur = []; }
+          cur.push(u);
+        });
+        out.push(cur);
+        const biggest = cs => Math.max(...cs.map(textChars));
+        if (out.length === k && out.every(c => fitsIn(c, geo.primary)) && biggest(out) <= Math.max(TARGET.max, biggest(cards.slice(i, j + 1)))) cards.splice(i, k, ...out);
       }
+      i = j;
     }
     // Merge a short text-only last card back when the combined card still fits.
     if (cards.length > 1) {
       const last = cards.at(-1);
-      if (last.every(u => u.kind === 'sentence' || u.kind === 'callout') && textChars(last) < ORPHAN_CHARS && fitsIn([...cards.at(-2), ...last], geo.primary)) {
-        cards.splice(-2, 2, [...cards.at(-2), ...last]);
+      const merged = [...cards.at(-2), ...last];
+      if (last.every(u => u.kind === 'sentence' || u.kind === 'callout') && textChars(last) < ORPHAN_CHARS && fitsIn(merged, geo.primary) && textChars(merged) <= TARGET.max + ORPHAN_CHARS / 2) {
+        cards.splice(-2, 2, merged);
       }
     }
     return {
