@@ -1373,7 +1373,7 @@
     {
       "id": "R3",
       "title": "Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -1399,6 +1399,11 @@
           "date": "2026-10-06",
           "by": "Claude",
           "text": "Corrected: the failures reproduced here only because this sandbox has one CPU (see SW1). The edits are still right on their own: (1) seeding right after goto could race the app's startup write; (2) a reload straight after clicking a highlight colour can drop the queued save, so the spec now waits until the saved ranges show the colour; (3) the service worker pre-caches about 130 files on first visit, which is extra load when many browsers run at once and is irrelevant to these tests (verify:sw covers it). Chris's 12-core run failed 1 of 149 on the legacy-notes test; unconfirmed whether these edits remove it."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/reader.spec.js --repeat-each=2; bun run verify:fast)."
         }
       ],
       "owner": "Claude",
