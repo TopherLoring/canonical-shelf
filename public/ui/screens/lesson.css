@@ -1,6 +1,258 @@
 @layer tokens, base, layout, components, screens, overrides;
 
-/* Lesson (Step 3, phase 5). Arrangement only: grids, columns, spacing and positioning of shared components.
-   No colors, fonts or radii here; those come from theme roles and the components. */
+/* Lesson screen (Step 3, S3.C + S3.H). Every color, font, corner and shadow comes from a theme role.
+   Two layouts chosen by the screen's shape, not the device (ui.lesson.card.orientation-2026-10-05):
+   - portrait: the phone layout. Card fills the frame; progress, step title, study-tool buttons, the step body, Back and
+     Continue; sections, study tools and My Notes open as sheets; My Notes has an edge tab.
+   - landscape: the desktop layout. Section list and study tools on the left, the step in the middle, My Notes on the
+     right. The side columns narrow before the step body does (ui.lesson.card.landscape-columns-2026-10-05).
+   The step body is a fixed-shape box: 4:5 in portrait, 2:1 in landscape (decisions portrait-4x5 / landscape-2x1).
+   Type is sized from the box's width so a step wraps the same at every size: about 54 characters per line in portrait
+   (16px Source Sans 3 in the reference iPhone box, ui.lesson.card.type-16px-2026-10-05) and about 91 in landscape.
+   Text larger than the box (a learner's enlarged type) scrolls inside it; it never clips. */
 @layer screens {
+  body:has([data-lesson-screen]) > .site-footer { display: none; }
+  main#main:has(> .lesson-screen) { padding: 0; }
+
+  .lesson-screen {
+    --lesson-gap: var(--space-3);
+    --lesson-body-chars: 21.7;      /* portrait: box width in em at reference type (347px / 16px) */
+    --lesson-body-lh: 1.55;
+    height: calc(100dvh - var(--lesson-top, 112px));   /* --lesson-top: where the screen starts (set by lesson.js) */
+    padding: var(--space-3);
+    box-sizing: border-box;
+    display: flex;
+  }
+  .lesson-card {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    background: var(--color-surface);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  /* ---- Title bar: breadcrumb and close ---- */
+  .lesson-titlebar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface-sunken);
+    border-bottom: var(--border-weight) solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+  }
+  .lesson-crumbs { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--space-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text-secondary); }
+  .lesson-crumbs a { color: var(--color-text-secondary); text-decoration: none; }
+  .lesson-crumbs a:hover { color: var(--color-text); text-decoration: underline; }
+  .lesson-crumbs [aria-current="page"] { color: var(--color-text); font-weight: 600; }
+  .lesson-crumb-sep { color: var(--color-text-muted); }
+  .lesson-close { display: inline-flex; padding: var(--space-1); color: var(--color-text-secondary); border-radius: var(--radius-control); }
+  .lesson-close:hover { color: var(--color-text); background: var(--color-surface-raised); }
+
+  /* ---- Progress: "n of m", a plain segmented bar, All steps ---- */
+  .lesson-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: var(--border-weight) solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: var(--type-small);
+  }
+  .lesson-progress-count { color: var(--color-text-secondary); white-space: nowrap; }
+  .lesson-progress-bar { flex: 1; display: flex; gap: 3px; list-style: none; margin: 0; padding: 0; min-width: 0; }
+  .lesson-progress-bar li { flex: 1; height: 6px; border-radius: var(--radius-bar); background: var(--color-border); }
+  .lesson-progress-bar li.is-done { background: var(--color-action-subtle); }
+  .lesson-progress-bar li.is-current { background: var(--color-accent); }
+  .lesson-all-steps { border: 0; background: none; padding: var(--space-1); font: inherit; font-weight: 600; color: var(--color-action); cursor: pointer; white-space: nowrap; }
+
+  /* ---- Layout ---- */
+  .lesson-layout { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+  .lesson-rail, .lesson-side { display: none; }
+
+  .lesson-main {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "head" "tools" "stage" "nav";
+    gap: var(--lesson-gap);
+    padding: var(--space-3) var(--space-4);
+  }
+  .lesson-step-head { grid-area: head; }
+  .lesson-phone-tools { grid-area: tools; }
+  .lesson-stage { grid-area: stage; }
+  .lesson-nav { grid-area: nav; }
+  .lesson-step-head { min-width: 0; }
+  .lesson-eyebrow { margin: 0; font-family: var(--font-body); font-size: var(--type-small); color: var(--color-text-secondary); }
+  .lesson-step-head h1 { margin: var(--space-1) 0 0; font-family: var(--font-display); font-size: var(--type-h2); line-height: var(--leading-tight); color: var(--color-text); }
+
+  .lesson-tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+  .lesson-tools button {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
+    min-height: 56px; padding: var(--space-2);
+    font: inherit; font-family: var(--font-body); font-size: var(--type-caption);
+    color: var(--color-text-secondary);
+    background: var(--color-surface-raised);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control);
+    cursor: pointer;
+  }
+  .lesson-tools button:hover:not(:disabled) { color: var(--color-text); border-color: var(--color-action); }
+  .lesson-tools button:disabled { opacity: 0.5; cursor: default; }
+
+  /* ---- The step body: a fixed-shape box sized to the space it is given ---- */
+  .lesson-stage { min-height: 0; container-type: size; display: grid; place-items: start center; }
+  .lesson-body {
+    width: min(100cqw, 80cqh);           /* 4:5 */
+    aspect-ratio: 4 / 5;
+    container-type: inline-size;
+    overflow: auto;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+  }
+  .lesson-body:focus-visible { outline: 2px solid var(--color-action); outline-offset: 2px; }
+  .lesson-body-text {
+    font-family: var(--font-body);
+    font-size: clamp(16px, calc(100cqi / var(--lesson-body-chars)), 20px);
+    line-height: var(--lesson-body-lh);
+    color: var(--color-text);
+  }
+  .lesson-body-text > * { margin: 0; }
+  /* Lesson prose takes the step body's type, not the older scene styles (prose is Source Sans 3, Scripture Literata). */
+  .lesson-body-text .scene-prose { font: inherit; line-height: inherit; color: inherit; max-width: none; }
+  .lesson-body-text > * + * { margin-top: calc(1em * var(--lesson-body-lh)); }   /* a paragraph break is one line */
+  .lesson-body-text .scene-callout { padding: var(--space-2) var(--space-3); border-left: 3px solid var(--color-accent); background: var(--color-surface-sunken); border-radius: var(--radius-control); }
+  .lesson-body-text .scene-callout p { margin: 0; }
+  .lesson-body-text .ui-scripture-block { font-size: 1.15em; }
+  .lesson-body-text .inline-check { font-size: var(--type-body); line-height: var(--leading-normal); }
+
+  /* Readings longer than two sentences: a compact link that opens the passage (ui.lesson.reading.inline-or-popover) */
+  .lesson-reading-link {
+    --group-color: var(--color-accent);
+    display: grid; gap: 2px; width: 100%; text-align: left;
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-scripture-bed);
+    border: var(--border-weight) solid var(--color-border);
+    border-left: 4px solid var(--group-color);
+    border-radius: var(--radius-control);
+    cursor: pointer;
+  }
+  .lesson-reading-link[data-group="law"] { --group-color: var(--bible-law); }
+  .lesson-reading-link[data-group="othist"] { --group-color: var(--bible-othist); }
+  .lesson-reading-link[data-group="wisdom"] { --group-color: var(--bible-wisdom); }
+  .lesson-reading-link[data-group="major"] { --group-color: var(--bible-major); }
+  .lesson-reading-link[data-group="minor"] { --group-color: var(--bible-minor); }
+  .lesson-reading-link[data-group="gospel"] { --group-color: var(--bible-gospel); }
+  .lesson-reading-link[data-group="paul"] { --group-color: var(--bible-paul); }
+  .lesson-reading-link[data-group="general"] { --group-color: var(--bible-general); }
+  .lesson-reading-link[data-group="apoc"] { --group-color: var(--bible-apoc); }
+  .lesson-reading-link:hover { border-color: var(--color-action); border-left-color: var(--group-color); }
+  .lesson-reading-ref { font-family: var(--font-body); font-weight: 600; font-size: 0.9em; }
+  .lesson-reading-version { color: var(--color-text-muted); font-weight: 400; }
+  .lesson-reading-preview { font-family: var(--font-reading); font-size: 0.95em; color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lesson-reading-cta { font-family: var(--font-body); font-size: 0.8em; font-weight: 600; color: var(--color-action); }
+
+  /* ---- Back and Continue ---- */
+  .lesson-nav { display: flex; justify-content: space-between; gap: var(--space-3); }
+  .lesson-back, .lesson-continue {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 var(--space-5);
+    font-family: var(--font-body); font-weight: 600; text-decoration: none;
+    border-radius: var(--radius-control);
+  }
+  .lesson-back { color: var(--color-text); background: var(--color-surface-raised); border: var(--border-weight) solid var(--color-border); }
+  .lesson-back[aria-disabled="true"] { color: var(--color-text-muted); pointer-events: none; }
+  .lesson-continue { color: var(--color-on-action); background: var(--color-action); border: var(--border-weight) solid var(--color-action); }
+  .lesson-continue:hover { filter: brightness(1.08); }
+
+  /* ---- Sections list (rail on landscape, sheet on portrait) ---- */
+  .lesson-sections { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); font-family: var(--font-body); font-size: var(--type-small); }
+  .lesson-sections li { display: grid; gap: 4px; padding: var(--space-2); border-radius: var(--radius-control); }
+  .lesson-sections li.is-current { background: var(--color-action-subtle); }
+  .lesson-sections a { color: var(--color-text); text-decoration: none; }
+  .lesson-sections li.is-done a { color: var(--color-text-secondary); }
+  .lesson-sections a[aria-current="step"] { font-weight: 600; }
+  .lesson-section-dots { display: flex; gap: 4px; }
+  .lesson-section-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--color-border); }
+  .lesson-section-dots span.is-done { background: var(--color-text-muted); }
+  .lesson-section-dots span.is-current { background: var(--color-accent); }
+
+  /* ---- Sheets and the reading popover (native dialog: focus is trapped, Escape closes) ---- */
+  .lesson-sheet, .lesson-reading-dialog {
+    width: min(560px, calc(100vw - 2 * var(--space-4)));
+    max-height: min(80dvh, 720px);
+    padding: 0;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-overlay);
+    overflow: auto;
+  }
+  .lesson-sheet::backdrop, .lesson-reading-dialog::backdrop { background: color-mix(in srgb, var(--color-text) 40%, transparent); }
+  .lesson-sheet > header, .lesson-reading-dialog > header {
+    position: sticky; top: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface);
+    border-bottom: var(--border-weight) solid var(--color-border);
+  }
+  .lesson-sheet h2, .lesson-reading-dialog h2 { margin: 0; font-family: var(--font-display); font-size: var(--type-h3); }
+  .lesson-sheet > .lesson-sections, .lesson-sheet > .lesson-apparatus, .lesson-sheet > [data-notes-mount] { padding: var(--space-3) var(--space-4); }
+  .lesson-dialog-close { border: 0; background: none; font-size: 1.5rem; line-height: 1; color: var(--color-text-secondary); cursor: pointer; padding: var(--space-1); border-radius: var(--radius-control); }
+  .lesson-dialog-close:hover { color: var(--color-text); background: var(--color-surface-raised); }
+  .lesson-reading-text { padding: var(--space-3) var(--space-4); background: var(--color-scripture-bed); font-family: var(--font-reading); font-size: var(--type-lead); line-height: var(--leading-reading); }
+  .lesson-reading-text p { margin: 0; }
+  .lesson-reading-dialog > footer { padding: var(--space-3) var(--space-4); border-top: var(--border-weight) solid var(--color-border); }
+  .lesson-reading-context { font-family: var(--font-body); font-weight: 600; color: var(--color-action); }
+
+  .lesson-screen .study-notes__anchor { font-family: var(--font-body); font-size: var(--type-small); color: var(--color-text-secondary); }
+
+  /* My Notes edge tab: portrait only (landscape shows My Notes in its own column). */
+  .lesson-notes-tab { position: fixed; right: 0; bottom: 298px; }
+
+  /* ---- Landscape: the desktop layout ---- */
+  @media (orientation: landscape) and (min-width: 700px) {
+    .lesson-screen { --lesson-body-chars: 36; }   /* about 91 characters per line in the 2:1 box */
+    .lesson-layout {
+      grid-template-columns: minmax(160px, 0.9fr) minmax(0, 3.2fr) minmax(200px, 1.1fr);
+      gap: var(--space-3);
+      padding: 0 var(--space-3);
+    }
+    .lesson-rail, .lesson-side {
+      display: flex; flex-direction: column; gap: var(--space-2);
+      min-height: 0; overflow-y: auto;
+      padding: var(--space-3) 0;
+    }
+    .lesson-rail-heading, .lesson-side-heading { margin: var(--space-2) 0 0; font-family: var(--font-body); font-size: var(--type-caption); font-weight: 600; color: var(--color-text-secondary); }
+    .lesson-side-heading { font-size: var(--type-small); color: var(--color-text); }
+    .lesson-rail .lesson-tools { grid-template-columns: 1fr; }
+    .lesson-rail .lesson-tools button { flex-direction: row; justify-content: flex-start; min-height: 36px; font-size: var(--type-small); }
+    .lesson-phone-tools, .lesson-all-steps, .lesson-notes-tab { display: none; }
+    .lesson-main { padding: var(--space-3) 0; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "head" "stage" "nav"; }
+    .lesson-body { width: min(100cqw, 200cqh); aspect-ratio: 2 / 1; }
+    .lesson-body-text { font-size: clamp(15px, calc(100cqi / var(--lesson-body-chars)), 22px); }
+    .lesson-side .lesson-apparatus { border-top: var(--border-weight) solid var(--color-border); padding-top: var(--space-2); }
+  }
+
+  /* ---- Portrait: the phone layout ---- */
+  @media (orientation: portrait), (max-width: 699px) {
+    .lesson-screen { padding: var(--space-2); }
+    .lesson-crumb-wide { display: none; }
+    .lesson-crumb-wide + .lesson-crumb-sep { display: none; }
+    .lesson-main { padding: var(--space-3); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lesson-tools button, .lesson-reading-link, .lesson-continue { transition: border-color var(--motion-fast) var(--motion-easing), filter var(--motion-fast) var(--motion-easing); }
+  }
 }
