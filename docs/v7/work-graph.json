@@ -1342,6 +1342,37 @@
       ],
       "owner": "Codex",
       "branch": "codex/lesson-card-catalog-docs"
+    },
+    {
+      "id": "R3",
+      "title": "Lesson: restore inline Feedback and update browser contracts for approved compiled steps",
+      "state": "claimed",
+      "deps": [
+        "S3.H"
+      ],
+      "owns": [
+        "public/ui/screens/lesson.js",
+        "public/ui/screens/lesson.css",
+        "tests/contracts/product-contract.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/contracts/product-contract.spec.js",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Chris explicitly authorized this separate repair node, including completed Claude lesson source, after S3.J verification exposed four existing lesson failures. Preserve Feedback and learner-copy/notes/navigation/Scripture behavior; adapt obsolete markup expectations. Manifest repair stays on hold."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed on codex/r3-lesson-verification."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/r3-lesson-verification"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"

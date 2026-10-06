@@ -30,6 +30,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `R3` | claimed | Codex | `codex/r3-lesson-verification` | `S3.H` | Lesson: restore inline Feedback and update browser contracts for approved compiled steps |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -277,4 +278,9 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-05 (Codex): Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched.
 - 2026-10-05 (Codex): Claimed on codex/lesson-card-catalog-docs.
 - 2026-10-05 (Codex): S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions.
+
+### R3 — Lesson: restore inline Feedback and update browser contracts for approved compiled steps
+
+- 2026-10-06 (Codex): Claimed on codex/r3-lesson-verification.
+- 2026-10-06 (Codex): Chris explicitly authorized this separate repair node, including completed Claude lesson source, after S3.J verification exposed four existing lesson failures. Preserve Feedback and learner-copy/notes/navigation/Scripture behavior; adapt obsolete markup expectations. Manifest repair stays on hold.
 
