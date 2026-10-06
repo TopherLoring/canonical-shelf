@@ -52,6 +52,7 @@
   .lesson-crumbs a:hover { color: var(--color-text); text-decoration: underline; }
   .lesson-crumbs [aria-current="page"] { color: var(--color-text); font-weight: 600; }
   .lesson-crumb-sep { color: var(--color-text-muted); }
+  .lesson-titlebar-utilities { display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0; }
   .lesson-close { display: inline-flex; padding: var(--space-1); color: var(--color-text-secondary); border-radius: var(--radius-control); }
   .lesson-close:hover { color: var(--color-text); background: var(--color-surface-raised); }
 

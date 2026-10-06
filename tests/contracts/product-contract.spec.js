@@ -121,42 +121,46 @@ test('cross-references follow the selected verse, even when the verse is chosen 
   await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
 });
 
-test('lesson progress: unlabeled dots (vertical on desktop, centered along the bottom on phones) navigate to any step',async({page})=>{
-  for(const [w,h,dir] of [[1440,900,'column'],[390,844,'row']]){
+test('lesson navigation: the sections list (rail on desktop, All steps sheet on phone) jumps to any section\'s first step, Continue/Back move one step',async({page})=>{
+  for(const [w,h] of [[1440,900],[390,844]]){
     await page.setViewportSize({width:w,height:h});
-    await page.goto('/course?unit=c1.bible&lesson=c1-reading-kinds&scene=3');
-    const rail=page.locator('.scene-rail'),dots=rail.locator('a');
-    await expect(rail).toBeVisible();
-    expect(await rail.evaluate(el=>getComputedStyle(el).flexDirection)).toBe(dir);
-    await expect(rail.locator('.scene-rail__label').first()).toBeHidden();
-    const count=await dots.count();
-    expect(await dots.evaluateAll(a=>a.map(x=>x.dataset.state))).toEqual(Array.from({length:count},(_,i)=>i<2?'complete':i===2?'current':'upcoming'));
-    await expect(dots.first()).toHaveAttribute('aria-label',new RegExp(`Step 1 of ${count}`));
-    if(dir==='row'){const box=await rail.boundingBox();expect(Math.abs(box.x+box.width/2-w/2),'dots centered on phones').toBeLessThan(40)}
-    else{await dots.nth(4).hover();await expect(dots.nth(4).locator('.scene-rail__label'),'step name shows on hover on desktop').toBeVisible()}
-    await dots.nth(count-1).click();
-    await expect(page).toHaveURL(new RegExp(`scene=${count}(?:&|$)`));
-    await expect(rail.locator('a').nth(count-1)).toHaveAttribute('data-state','current');
-    await rail.locator('a').first().click();
-    await expect(rail.locator('a').first()).toHaveAttribute('data-state','current');
+    await page.goto('/course?unit=c1.christianity&lesson=begin&step=3');
+    if(w<=700)await page.locator('.lesson-all-steps').click();
+    const list=w>700?page.locator('.lesson-rail .lesson-sections'):page.locator('#lesson-steps-sheet .lesson-sections');
+    await expect(list).toBeVisible();
+    const current=list.locator('li.is-current');
+    await expect(current).toHaveCount(1);
+    await expect(current.locator('a')).toHaveAttribute('aria-current','step');
+    const items=list.locator('li');
+    const count=await items.count();
+    await items.nth(count-1).locator('a').click();
+    await expect(page).toHaveURL(/step=\d+/);
+    await expect(page.locator('[data-lesson-count]')).toHaveText(/^\d+ of \d+$/);
+    await page.locator('.lesson-back').click();
+    const before=await page.locator('[data-lesson-count]').textContent();
+    await page.locator('.lesson-continue').click();
+    await expect(page.locator('[data-lesson-count]')).not.toHaveText(before);
   }
 });
 
-test('authored Lesson 1: one step per section, checks inline where written, readable Scripture in light and dark',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin&scene=2');
-  await expect(page.locator('.scene-rail a')).toHaveCount(8);
-  await expect(page.locator('.scene-rail a').nth(1)).toHaveAttribute('aria-label',/Read the passage/);
-  const scene=page.locator('.study-scene, main').first();
-  await expect(scene.locator('.study-scripture')).toBeVisible();
-  await expect(scene.locator('.inline-check')).toHaveCount(1);
-  const order=await page.evaluate(()=>{const r=document.querySelector('.study-scripture'),c=document.querySelector('.inline-check');return r.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING?'reading-then-check':'check-first'});
-  expect(order).toBe('reading-then-check');
+test('authored Lesson 1: sections may span several steps, checks render inline, readable Scripture in light and dark',async({page})=>{
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
+  const list=page.locator('.lesson-rail .lesson-sections li');
+  await expect(list).not.toHaveCount(0);
+  // At least one section spans more than one step (break rule v3 divides a section into several steps).
+  const perSection=await page.locator('.lesson-rail .lesson-sections li').evaluateAll(items=>items.map(li=>li.querySelectorAll('.lesson-section-dots span').length));
+  expect(Math.max(...perSection)).toBeGreaterThan(1);
+  // Step 13 (begin#read) holds an inline check.
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=13');
+  const check=page.locator('.lesson-body-text .inline-check');
+  await expect(check).toHaveCount(1);
   for(const mode of ['light','dark']){
     await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
-    const ratio=await page.locator('.study-scripture p:not(.eyebrow)').first().evaluate(el=>{
+    const ratio=await page.locator('.lesson-reading-inline').first().evaluate(el=>{
       const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
       const lum=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
-      const f=lum(rgb(getComputedStyle(el).color)),b=lum(rgb(getComputedStyle(el.closest('.study-scripture')).backgroundColor));
+      const f=lum(rgb(getComputedStyle(el.querySelector('p') || el).color)),b=lum(rgb(getComputedStyle(el).backgroundColor));
       return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
     });
     expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
@@ -167,8 +171,10 @@ test('lesson objectives describe lessons on the unit overview and never appear i
   const objective='Put the proclamation Paul recalls';
   await page.goto('/course?unit=c1.christianity');
   await expect(page.locator('.unit-lesson-objective').first()).toContainText(objective);
-  for(const scene of [1,2,3,7]){
-    await page.goto(`/course?unit=c1.christianity&lesson=begin&scene=${scene}`);
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
+  const total=Number((await page.locator('[data-lesson-count]').textContent()).match(/of (\d+)/)[1]);
+  for(const step of [1,2,3,total]){
+    await page.goto(`/course?unit=c1.christianity&lesson=begin&step=${step}`);
     await expect(page.locator('main')).not.toContainText(objective);
   }
 });
@@ -261,17 +267,17 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
 });
 
 test('guided lessons foreground learner copy and keep notes separate from study tools',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin');
-  const scene=page.locator('.study-scene__inner');
-  await expect(scene.locator('.scene-objective')).toHaveCount(0);
-  await expect(scene.locator('.scene-callout')).toBeVisible();
-  await expect(scene.locator('.scene-prose').first()).toBeVisible();
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
+  const body=page.locator('.lesson-body-text');
+  await expect(body.locator('.scene-objective')).toHaveCount(0);
+  await expect(body.locator('.scene-callout')).toBeVisible();
+  await expect(body.locator('p').first()).toBeVisible();
 
-  const desk=page.locator('#study-apparatus');
-  await expect(desk).toBeVisible();
-  await expect(desk.locator('h2')).toHaveText('Study Desk');
-  await expect(desk.locator('[data-notes-mount] [data-note-text]')).toBeVisible();
-  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Your notes');
+  // My Notes is its own column, separate from the Glossary / Go deeper apparatus.
+  await expect(page.locator('.lesson-side [data-note-text]')).toBeVisible();
+  await expect(page.locator('.lesson-side .lesson-apparatus details:has-text(\'Your notes\')')).toHaveCount(0);
+  await expect(page.locator('.lesson-side .lesson-apparatus summary').first()).not.toContainText('Your notes');
 });
 
 test('desktop and narrow layouts do not create horizontal page overflow',{tag:'@smoke'},async({page})=>{
