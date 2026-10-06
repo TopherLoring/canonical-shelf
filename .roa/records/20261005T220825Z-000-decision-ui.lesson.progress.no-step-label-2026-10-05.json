@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.progress.no-step-label-2026-10-05",
+  "topic": "ui.lesson.progress",
+  "date": "2026-10-05",
+  "text": "Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.",
+  "by": "Chris"
+}

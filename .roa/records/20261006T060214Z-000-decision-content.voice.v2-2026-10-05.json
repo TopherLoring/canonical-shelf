@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "content.voice.v2-2026-10-05",
+  "topic": "content.voice",
+  "date": "2026-10-05",
+  "text": "Content voice reference example (refines content.voice.v1-2026-10-05): 'Gospel is the English translation of the Greek word euangelion, which means \"good news\" or \"good announcement.\" In Paul's world, it was the word used for announcements of a military victory or a new emperor's accession. Calling the message about Jesus \"the gospel\" was a claim of the same scale.' followed by a sentence that justifies the claim by explaining how (for example the Priene inscription of 9 BC calling Augustus's birthday the beginning of the good news for the world, set against the Christian announcement that a crucified man God had raised, not Caesar, was Lord), then 'Eventually it became synonymous with the first four books of the New Testament that tell Jesus' story: Matthew, Mark, Luke, and John.' Every claim of this kind is justified with an explanation, not asserted. Greek and Hebrew terms use their standard transliteration (euangelion).",
+  "supersedes": [
+    "content.voice.v1-2026-10-05"
+  ],
+  "by": "Chris"
+}

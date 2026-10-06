@@ -1,7 +1,8 @@
-// Unit tests for the build-time lesson divider (S3.D). Runs in Node in about a second; no browser.
+// Unit tests for the build-time lesson divider. Runs in Node in about a second; no browser.
 //   bun scripts/test-lesson-divider.mjs
+// Rules under test: curriculum.lesson.sections-divided-2026-10-05 and ui.lesson.card.break-rule-v2-2026-10-05.
 import { readFileSync } from 'node:fs';
-import { sentences, visible, divideLesson, divideAll, loadContext, geometry, BREAK_AT, PARAGRAPH_COST } from './lesson-divider.mjs';
+import { sentences, visible, divideLesson, divideAll, loadContext, unitCost, countOf, blockCost, BREAK_AT, PARAGRAPH_COST, BLOCK_COST, LINE_CHARS } from './lesson-divider.mjs';
 import { parseLesson } from './lib/lesson-parse.mjs';
 
 let failures = 0;
@@ -24,64 +25,62 @@ for (const [input, want] of cases) {
 }
 check(visible('**Bold** and [a link](/x) and *it*') === 'Bold and a link and it', 'visible() strips emphasis and link targets');
 
+// ---- the count
+check(unitCost({ kind: 'sentence', text: 'Hello.', paraStart: true }, true) === 6, 'the first unit on a step counts its characters only');
+check(unitCost({ kind: 'sentence', text: 'Hello.', paraStart: false }, false) === 7, 'a sentence continuing a paragraph adds its space');
+check(unitCost({ kind: 'sentence', text: 'Hello.', paraStart: true }, false) === 6 + PARAGRAPH_COST, `a new paragraph adds ${PARAGRAPH_COST}`);
+check(blockCost({ kind: 'check', check: { title: 'T', prompt: 'P', items: ['a', 'b'] } }) === BLOCK_COST + LINE_CHARS * 4, 'a block counts 49 plus 49 per line of its text');
+check(blockCost({ kind: 'check', check: { title: 'T', prompt: 'x'.repeat(50), items: [] } }) === BLOCK_COST + LINE_CHARS * 3, 'a 50-character line wraps to two lines');
+
 // ---- the whole curriculum
 const ctx = loadContext();
-const geo = geometry(ctx.type);
-check(geo.primary.lines === 17, `primary step body is 17 lines at 16px / 1.55 (got ${geo.primary.lines})`);
-check(geo.primary.charsPerLine >= 53 && geo.primary.charsPerLine <= 56, `primary step body holds about 54 characters per line (got ${geo.primary.charsPerLine})`);
-
 const all = divideAll();
 check(all.length >= 119, `every lesson is divided (got ${all.length})`);
-const ids = new Set();
+let steps = 0;
 for (const lesson of all) {
   const source = parseLesson(readFileSync(`content/pathway/lessons/${lesson.lesson}.md`, 'utf8'), lesson.lesson);
-  lesson.steps.forEach((step, si) => {
-    const section = source.sections[si];
-    check(step.id === section.id, `${lesson.lesson}: steps stay in order (${step.id} vs ${section.id})`);
-    // Word-for-word: the cards' text, in order, is the step's text, and no unit appears twice or goes missing.
-    const fromCards = step.cards.flatMap(c => c.units).map(u => u.kind === 'sentence' || u.kind === 'callout' ? u.text : `[${u.kind}]`);
-    const fromSource = section.blocks.flatMap(b => b.type === 'prose' ? sentences(b.text) : b.type === 'callout' ? [b.text] : [`[${b.type}]`]);
-    check(JSON.stringify(fromCards) === JSON.stringify(fromSource), `${lesson.lesson}#${step.id}: cards must hold the step's content in order, unchanged`);
-    for (const b of section.blocks.filter(b => b.type === 'prose')) {
-      const rebuilt = step.cards.flatMap(c => c.units).filter(u => u.kind === 'sentence' && section.blocks.indexOf(b) === u.block).map(u => u.text).join(' ');
-      check(rebuilt === b.text.trim(), `${lesson.lesson}#${step.id}: a paragraph must rebuild exactly from its sentences`);
-    }
-    step.cards.forEach((card, ci) => {
-      check(card.id === (ci === 0 ? step.id : `${step.id}-${ci + 1}`), `${lesson.lesson}#${card.id}: card ids follow <step>, <step>-2, ...`);
-      check(!ids.has(`${lesson.lesson}#${card.id}`), `${lesson.lesson}#${card.id}: card ids are unique`);
-      ids.add(`${lesson.lesson}#${card.id}`);
-      check(card.units.every(u => step.cards.indexOf(card) === ci), 'cards never share units');
-      if (!card.flags.includes('over-ceiling')) check(card.count <= BREAK_AT, `${lesson.lesson}#${card.id}: count ${card.count} is over ${BREAK_AT}`);
-      // The break is at the LAST sentence end before 637: the next card's first sentence would not have fitted.
-      const next = step.cards[ci + 1];
-      const lead = next?.units[0];
-      if (lead && (lead.kind === 'sentence' || lead.kind === 'callout') && card.units.some(u => u.kind === 'sentence' || u.kind === 'callout')) {
-        const extra = lead.kind === 'callout' || lead.paraStart ? PARAGRAPH_COST : 1;
-        check(card.count + extra + visible(lead.text).length > BREAK_AT, `${lesson.lesson}#${card.id}: broke early (${card.count} + ${extra + visible(lead.text).length} would fit)`);
-      }
-      check(card.lines <= geo.primary.lines, `${lesson.lesson}#${card.id}: ${card.lines} lines does not fit the ${geo.primary.lines}-line step body`);
+  const ids = new Set();
+  for (const section of source.sections) {
+    const cards = lesson.cards.filter(c => c.section === section.id);
+    check(cards.length >= 1, `${lesson.lesson}#${section.id}: every section produces at least one step`);
+    // Word-for-word, in order, within the section: nothing moves between sections.
+    const fromCards = cards.flatMap(c => c.units).map(u => (u.kind === 'sentence' || u.kind === 'callout' ? u.text : `[${u.kind}]`));
+    const fromSource = section.blocks.flatMap(b => (b.type === 'prose' ? sentences(b.text) : b.type === 'callout' ? [b.text] : [`[${b.type}]`]));
+    check(JSON.stringify(fromCards) === JSON.stringify(fromSource), `${lesson.lesson}#${section.id}: steps must hold the section's content in order, unchanged`);
+    cards.forEach((card, i) => {
+      steps++;
+      check(card.id === (i === 0 ? section.id : `${section.id}-${i + 1}`), `${lesson.lesson}#${card.id}: ids follow <section>, <section>-2, ...`);
+      check(!ids.has(card.id), `${lesson.lesson}#${card.id}: ids are unique`);
+      ids.add(card.id);
+      check(card.title === section.title, `${lesson.lesson}#${card.id}: a step's title is its section's title`);
+      check(card.count === countOf(card.units), `${lesson.lesson}#${card.id}: reported count matches the rule`);
+      if (card.units.length > 1) check(card.count <= BREAK_AT, `${lesson.lesson}#${card.id}: count ${card.count} is over ${BREAK_AT}`);
+      else if (card.count > BREAK_AT) check(card.flags.includes('over-ceiling'), `${lesson.lesson}#${card.id}: a single unit over ${BREAK_AT} must be flagged`);
+      // The break is at the LAST sentence end at or before 637: the next step's first unit would not have fitted.
+      const next = cards[i + 1];
+      if (next) check(card.count + unitCost(next.units[0], false) > BREAK_AT, `${lesson.lesson}#${card.id}: broke early (${card.count} + ${unitCost(next.units[0], false)} would fit)`);
       for (const u of card.units.filter(u => u.kind === 'reading')) {
         const n = sentences(u.text).length;
-        check(['inline', 'link'].includes(u.mode), `${lesson.lesson}#${card.id}: reading mode must be inline or link`);
         check(u.mode === (n <= 2 && u.text.length <= 300 ? 'inline' : 'link'), `${lesson.lesson}#${card.id}: ${u.reference} (${n} sentences, ${u.text.length} chars) is ${u.mode}`);
       }
     });
-  });
+  }
 }
 
-// ---- a synthetic step: the count, the paragraph cost, and the break at the last sentence before 637
-const sentence = 'This sentence is exactly the kind of plain lesson prose the divider has to pack. '; // 81 characters with its space
+// ---- a synthetic section: paragraphs, the 46, a block, and the break at or before 637
+const sentence = 'This sentence is exactly the kind of plain lesson prose the divider has to pack. '; // 81 with its space
 const synthetic = {
-  meta: { id: 'synthetic' }, checks: [], reflection: null,
+  meta: { id: 'synthetic' }, checks: [{ title: 'Order', prompt: 'Put them in order.', items: ['One', 'Two', 'Three'] }], reflection: null,
   sections: [{ id: 'rule', title: 'Rule', blocks: [
     { type: 'prose', text: sentence.repeat(4).trim() },   // 80 + 3 x 81 = 323
-    { type: 'prose', text: sentence.repeat(4).trim() },   // + 49 + 323 = 695 > 637: card 1 ends inside paragraph 2
+    { type: 'prose', text: sentence.repeat(4).trim() },   // + 46 + 80 = 449, + 81 = 530, + 81 = 611, + 81 = 692 > 637
+    { type: 'check', index: 0 },                           // 49 + 49 x 5 = 294
   ] }],
 };
-const [step] = divideLesson(synthetic, ctx);
-check(step.cards.length === 2, `the synthetic step splits into 2 cards (got ${step.cards.length})`);
-check(step.cards[0].count === 323 + 49 + 80 + 81 + 81, `card 1 counts paragraph 1, the 49 for paragraph 2, and the sentences that fit (got ${step.cards[0].count})`);
-check(step.cards[1].count === 80, `card 2 starts again at the next sentence (got ${step.cards[1].count})`);
+const synthetic3 = divideLesson(synthetic, ctx);
+check(synthetic3.length === 2, `the synthetic section splits into 2 steps (got ${synthetic3.length})`);
+check(synthetic3[0].count === 323 + 46 + 80 + 81 + 81, `step 1 counts paragraph 1, 46 for paragraph 2, and the sentences that fit (got ${synthetic3[0].count})`);
+check(synthetic3[1].count === 80 + 294, `step 2 starts again and adds the check as 49 + 49 x 5 (got ${synthetic3[1].count})`);
 
 if (failures) { console.error(`test-lesson-divider: ${failures} failure(s)`); process.exit(1); }
-console.log(`PASS — lesson divider: ${all.length} lessons, ${ids.size} cards; sentences intact, content unchanged and in order, ids unique, every card breaks at the last sentence before ${BREAK_AT} (new paragraphs +${PARAGRAPH_COST}), the ${geo.primary.lines}-line step body respected; readings quoted inline at two sentences and 300 characters or fewer, otherwise linked.`);
+console.log(`PASS — lesson divider: ${all.length} lessons, ${steps} steps; sections kept, content unchanged and in order, ids <section>, <section>-2..., every step breaks at the last sentence end at or before ${BREAK_AT} (paragraphs +${PARAGRAPH_COST}, blocks ${BLOCK_COST} + ${LINE_CHARS}/line), indivisible units over the limit flagged.`);

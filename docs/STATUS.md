@@ -51,8 +51,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
+| `content.lesson-shape` | Lesson shape: | Owner decision | undefined |
 | `content.reachability` | undefined | Agent default | undefined |
-| `content.voice` | Content voice standard for lesson text and the glossary, set by Chris's example: | Owner decision | undefined |
+| `content.voice` | Content voice reference example (refines content.voice.v1-2026-10-05): | Owner decision | undefined |
 | `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. | Owner decision | undefined |
 | `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; | Owner decision | undefined |
 | `curriculum.content-review` | undefined | Agent default | undefined |
@@ -64,7 +65,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
 | `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
-| `curriculum.lesson.pagination` | Lesson pagination is decided at build time. | Owner decision | undefined |
+| `curriculum.lesson.pagination` | Lessons are generated as their authored sections, each divided into steps (cards): | Owner decision | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.module1.title` | Module 1 is titled 'Reading the Bible Well: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
@@ -207,9 +208,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
-| `ui.lesson.card` | Interim lesson card break rule, used until the content revision: | Owner decision | undefined |
+| `ui.lesson.card` | Step break rule: | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
-| `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
+| `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |

@@ -24,9 +24,13 @@ export const CEILINGS = { 1: 833, 2: 784, 3: 735 };
 export const TARGET = { min: 370, max: 420 };
 // A text-only card shorter than this, left at the end of a step, is merged back or flagged as an orphan.
 export const ORPHAN_CHARS = 120;
-// Interim break rule: break at the last sentence end before the card's count passes 637; a new paragraph adds 49.
+// Break rule v2 (ui.lesson.card.break-rule-v2-2026-10-05): break at the last sentence end at or before 637; a new
+// paragraph adds 46; a block counts 49 plus 49 per 49-character line of its text.
 export const BREAK_AT = 637;
-export const PARAGRAPH_COST = 49;
+export const PARAGRAPH_COST = 46;
+export const BLOCK_COST = 49;
+export const LINE_CHARS = 49;
+export const VISUAL_LINES = 9;
 // Reference phone (Chris's calculation, ui.lesson.card.type-16px-2026-10-05): 16px type at line height 1.55 in the
 // portrait step body, which spans about 89% x 51.5% of a 390 x 844 iPhone viewport (ui.lesson.card.portrait-4x5).
 // With Source Sans 3 that box holds about 54 characters x 17 lines.
@@ -197,66 +201,64 @@ export function divideLesson(lesson, { type, corpus }) {
     const m = layout(units, box.widthEm, measure);
     return m.lines <= box.lines && m.chars <= ceilingFor(m.paragraphs || 1);
   };
-  return lesson.sections.map(section => {
+  // Lessons are their authored sections, each divided into steps (curriculum.lesson.sections-divided-2026-10-05).
+  // Step break rule (ui.lesson.card.break-rule-v2-2026-10-05): count every character on a step, spaces and
+  // punctuation included, starting again on each step; each new paragraph after the first adds 46; a block counts 49
+  // plus 49 for each 49-character line of its text; a visual counts as its 9-line height. Break at the last sentence
+  // end at or before 637. Sentences and blocks are never divided.
+  const cards = [];
+  for (const section of lesson.sections) {
     const units = stepUnits(section, lesson, corpus);
     for (const u of units.filter(u => u.kind === 'reading')) {
       const short = sentences(u.text).length <= INLINE_READING_SENTENCES;
       u.mode = short && u.text.length <= INLINE_READING_MAX_CHARS ? 'inline' : 'link';
     }
-    // Interim rule (ui.lesson.card.break-637-2026-10-05): count every character on the card, spaces and
-    // punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds
-    // 49; break at the last sentence end before the count would pass 637. Blocks without text (checks, readings,
-    // reflections, visuals) stay on the card when its lines allow, otherwise they start the next card.
-    const cards = [];
-    let card = [], count = 0;
-    const hasText = us => us.some(u => u.kind === 'sentence' || u.kind === 'callout');
+    const steps = [];
+    let step = [], count = 0;
     for (const u of units) {
-      const isText = u.kind === 'sentence' || u.kind === 'callout';
-      if (isText) {
-        const len = visible(u.text).length;
-        const newParagraph = u.kind === 'callout' || u.paraStart;
-        const cost = len + (hasText(card) ? (newParagraph ? PARAGRAPH_COST : 1) : 0);
-        if (hasText(card) && count + cost > BREAK_AT) { cards.push(card); card = [u]; count = len; }
-        else { card.push(u); count += cost; }
-      } else if (card.length && !fitsIn([...card, u], geo.primary)) {
-        cards.push(card); card = [u]; count = 0;
-      } else card.push(u);
+      const c = unitCost(u, step.length === 0);
+      if (step.length && count + c > BREAK_AT) { steps.push(step); step = [u]; count = unitCost(u, true); }
+      else { step.push(u); count += c; }
     }
-    if (card.length) cards.push(card);
-    // The count each card ends with, for reporting and tests.
-    const cardCount = us => {
-      let n = 0, first = true;
-      for (const u of us) if (u.kind === 'sentence' || u.kind === 'callout') {
-        n += visible(u.text).length + (first ? 0 : (u.kind === 'callout' || u.paraStart ? PARAGRAPH_COST : 1));
-        first = false;
-      }
-      return n;
-    };
-    return {
-      id: section.id,
-      title: section.title,
-      cards: cards.map((us, i) => {
-        const m = layout(us, geo.primary.widthEm, measure);
-        const flags = [];
-        const n = cardCount(us);
-        if (n > BREAK_AT) flags.push('over-ceiling');
-        if (m.lines > geo.primary.lines) flags.push('overflow');
-        if (cards.length > 1 && us.every(u => u.kind === 'sentence' || u.kind === 'callout') && n < ORPHAN_CHARS) flags.push('orphan');
-        const nonText = us.filter(u => !['sentence', 'callout'].includes(u.kind));
-        if (nonText.length && us.length === nonText.length && i > 0 && cards[i - 1].at(-1)?.kind === 'sentence') flags.push('block-alone');
-        return {
-          id: i === 0 ? section.id : `${section.id}-${i + 1}`,
-          units: us,
-          chars: m.chars,
-          count: n,
-          paragraphs: m.paragraphs,
-          lines: m.lines,
-          flags: [...new Set(flags)],
-        };
-      }),
-    };
-  });
+    if (step.length) steps.push(step);
+    steps.forEach((us, i) => {
+      const m = layout(us, geo.primary.widthEm, measure);
+      const n = countOf(us);
+      const flags = [];
+      if (n > BREAK_AT) flags.push(us.length === 1 ? 'over-ceiling' : 'overflow');
+      if (m.lines > geo.primary.lines) flags.push('tall');
+      if (i > 0 && us.every(u => u.kind === 'sentence' || u.kind === 'callout') && n < ORPHAN_CHARS) flags.push('orphan');
+      if (i > 0 && us.every(u => !(u.kind === 'sentence' || u.kind === 'callout')) && steps[i - 1].at(-1)?.kind === 'sentence') flags.push('block-alone');
+      cards.push({ id: i === 0 ? section.id : `${section.id}-${i + 1}`, title: section.title, section: section.id, sectionStep: i + 1, sectionSteps: steps.length, units: us, chars: m.chars, count: n, paragraphs: m.paragraphs, lines: m.lines, flags });
+    });
+  }
+  return cards;
 }
+
+// ---------------------------------------------------------------- the count (break rule v2)
+
+const textLines = text => Math.max(1, Math.ceil(visible(String(text || '')).length / LINE_CHARS));
+/** Characters a block counts: 49 plus 49 for each 49-character line of its text. */
+export function blockCost(u) {
+  if (u.kind === 'visual') return BLOCK_COST + LINE_CHARS * (VISUAL_LINES - 1);
+  let lines = 0;
+  if (u.kind === 'check') {
+    const c = u.check || {};
+    lines = textLines(c.title) + textLines(c.prompt) + (c.items || []).reduce((n, item) => n + textLines(typeof item === 'string' ? item : item?.text || JSON.stringify(item)), 0);
+  } else if (u.kind === 'reflect') {
+    lines = textLines(u.reflect?.prompt);
+  } else if (u.kind === 'reading') {
+    // A quoted reading shows its verses; a linked reading shows its reference and a one-line preview.
+    lines = u.mode === 'inline' ? textLines(u.text) + 1 : 2;
+  }
+  return BLOCK_COST + LINE_CHARS * lines;
+}
+/** What one unit adds to its step's count. */
+export function unitCost(u, first) {
+  if (u.kind === 'sentence' || u.kind === 'callout') return visible(u.text).length + (first ? 0 : (u.kind === 'sentence' && !u.paraStart ? 1 : PARAGRAPH_COST));
+  return blockCost(u);
+}
+export const countOf = us => us.reduce((n, u, i) => n + unitCost(u, i === 0), 0);
 
 // ---------------------------------------------------------------- loading
 
@@ -274,7 +276,7 @@ export function divideAll(root = process.cwd()) {
   const dir = `${root}/content/pathway/lessons`;
   return readdirSync(dir).filter(f => f.endsWith('.md')).sort().map(f => {
     const lesson = parseLesson(readFileSync(`${dir}/${f}`, 'utf8'), `lessons/${f}`);
-    return { lesson: lesson.meta.id, title: lesson.meta.title, steps: divideLesson(lesson, ctx) };
+    return { lesson: lesson.meta.id, title: lesson.meta.title, cards: divideLesson(lesson, ctx) };
   });
 }
 
@@ -282,16 +284,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const only = process.argv[2];
   const all = divideAll().filter(l => !only || l.lesson === only);
   if (only && !all.length) { console.error(`lesson-divider: no lesson "${only}"`); process.exit(1); }
-  const cards = all.flatMap(l => l.steps.flatMap(s => s.cards));
-  const steps = all.flatMap(l => l.steps);
+  const cards = all.flatMap(l => l.cards);
   const flagged = {};
   for (const c of cards) for (const f of c.flags) flagged[f] = (flagged[f] || 0) + 1;
-  const sizes = cards.map(c => c.chars).filter(n => n > 0).sort((a, b) => a - b);
-  if (only) {
-    for (const s of all[0].steps) {
-      console.log(`\n## ${s.title} {#${s.id}}  (${s.cards.length} card${s.cards.length > 1 ? 's' : ''})`);
-      for (const c of s.cards) console.log(`  [${c.id}] ${c.chars} chars, ${c.paragraphs} para, ${c.lines} lines${c.flags.length ? `  FLAGS: ${c.flags.join(', ')}` : ''}\n    ${c.units.map(u => u.kind === 'sentence' ? (u.paraStart ? '¶ ' : '') + u.text : `[${u.kind}]`).join(' ').slice(0, 300)}`);
-    }
-  }
-  console.log(`\nlesson-divider: ${all.length} lessons, ${steps.length} authored steps -> ${cards.length} cards; median ${sizes[sizes.length >> 1]} chars, max ${sizes.at(-1)}; flags ${JSON.stringify(flagged)}`);
+  const sizes = cards.map(c => c.count).filter(n => n > 0).sort((a, b) => a - b);
+  if (only) for (const c of all[0].cards) console.log(`\n[${c.id}] ${c.title} — count ${c.count}, ${c.lines} lines${c.flags.length ? `  FLAGS: ${c.flags.join(', ')}` : ''}\n  ${c.units.map(u => u.kind === 'sentence' ? (u.paraStart ? '¶ ' : '') + u.text : u.kind === 'heading' ? `## ${u.text}` : `[${u.kind}]`).join(' ').slice(0, 260)}`);
+  console.log(`\nlesson-divider: ${all.length} lessons, ${all.reduce((n, l) => n + new Set(l.cards.map(c => c.section)).size, 0)} sections -> ${cards.length} steps; median count ${sizes[sizes.length >> 1]}, max ${sizes.at(-1)}; flags ${JSON.stringify(flagged)}`);
 }

@@ -32,6 +32,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `content.anchoring.universal-anchoring`
   One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
 
+### `content.lesson-shape`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.lesson-shape.v1-2026-10-05`
+  Lesson shape: every lesson reads as one script, the way a lecture, sermon or lesson plan flows: one objective (the lesson's objective field), several points (the authored sections, in order), and details that elaborate each point. The content revision rewrites each lesson as a whole script in the content voice and at that depth, working from the compiled scripts (docs/v7/LESSON_SCRIPTS.md), not by patching sentences.
+
 ### `content.reachability`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `content.reachability.from-precedence-doc`
@@ -40,8 +45,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `content.voice`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `content.voice.v1-2026-10-05`
-  Content voice standard for lesson text and the glossary, set by Chris's example: 'Gospel was derived from the Greek word euangelion, which means "good news" or "good announcement". In Paul's world, it was the word used for announcements like a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale. Eventually it became synonymous for the first four books of the New Testament that tell Jesus' story - Matthew, Mark, Luke, & John.' Rules drawn from it: write for an educated adult, never a slogan; give a word's source language and literal sense where it matters; place it in its historical setting; when the text makes a claim ("a claim of the same scale"), justify it by explaining how, not by asserting it; then show how later usage developed; plain, confident, complete sentences.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.voice.v2-2026-10-05`
+  Content voice reference example (refines content.voice.v1-2026-10-05): 'Gospel is the English translation of the Greek word euangelion, which means "good news" or "good announcement." In Paul's world, it was the word used for announcements of a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale.' followed by a sentence that justifies the claim by explaining how (for example the Priene inscription of 9 BC calling Augustus's birthday the beginning of the good news for the world, set against the Christian announcement that a crucified man God had raised, not Caesar, was Lord), then 'Eventually it became synonymous with the first four books of the New Testament that tell Jesus' story: Matthew, Mark, Luke, and John.' Every claim of this kind is justified with an explanation, not asserted. Greek and Hebrew terms use their standard transliteration (euangelion).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `content.voice.v1-2026-10-05`
+  ~~Content voice standard for lesson text and the glossary, set by Chris's example: 'Gospel was derived from the Greek word euangelion, which means "good news" or "good announcement". In Paul's world, it was the word used for announcements like a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale. Eventually it became synonymous for the first four books of the New Testament that tell Jesus' story - Matthew, Mark, Luke, & John.' Rules drawn from it: write for an educated adult, never a slogan; give a word's source language and literal sense where it matters; place it in its historical setting; when the text makes a claim ("a claim of the same scale"), justify it by explaining how, not by asserting it; then show how later usage developed; plain, confident, complete sentences.~~
 
 ### `curriculum.apparatus`
 
@@ -108,8 +115,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `curriculum.lesson.pagination`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.pagination.build-time-2026-10-05`
-  Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.sections-divided-2026-10-05`
+  Lessons are generated as their authored sections, each divided into steps (cards): sections stay the boundaries the script was written with, and each section is divided independently. Supersedes the continuous-script rule in curriculum.lesson.card-is-step-script-2026-10-05 (every card is still a step).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.card-is-step-script-2026-10-05`
+  ~~Every card is a step. A lesson is one continuous authored script; the break rule alone decides where each card (step) begins and ends, so authored section boundaries are no longer step boundaries. Each step's title is the heading of the section it begins in; a heading that falls mid-card appears inside the card as a subheading, counts like a new paragraph (+49 plus its characters), and never ends a card. A step that begins exactly at a section keeps that section's id; others take <section>-2, -3. Supersedes 'content never moves between steps' in curriculum.lesson.pagination.build-time-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.pagination.build-time-2026-10-05`
+  ~~Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.~~
 
 ### `curriculum.module1`
 
@@ -1110,10 +1121,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.card`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-637-2026-10-05`
-  Interim lesson card break rule, used until the content revision: count every character on a card, spaces and punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds 49; break at the last sentence end (period, question mark or exclamation mark) before the count would pass 637. Sentences are never split and content never moves between steps. Checks, readings, reflections and visuals do not count characters; they stay on the card when its lines allow, otherwise they start the next card.
-- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.type-16px-2026-10-05`
-  ~~Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. With the shipped Source Sans 3 the 4:5 step body (about 347 x 435) then holds about 54 characters x 17 lines; that is the primary layout. The 49-per-line figure came from the wider mockup font. Ceilings 833 / 784 / 735 stay as content limits. Supersedes the primary/fallback split in ui.lesson.card.portrait-layout-primary-fallback-2026-10-05.~~
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v2-2026-10-05`
+  Step break rule: within a section, count every character on a step (spaces and punctuation included, starting again on each step); each new paragraph after the first adds 46; a block (check, reading, reflection) counts 49 plus 49 for each line of its text, a line being 49 characters; a visual counts as its 9-line height (49 + 49 x 8). Break at the last sentence end at or before 637. Sentences and blocks are never divided. Supersedes ui.lesson.card.break-637-2026-10-05.
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-637-2026-10-05`
+  ~~Interim lesson card break rule, used until the content revision: count every character on a card, spaces and punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds 49; break at the last sentence end (period, question mark or exclamation mark) before the count would pass 637. Sentences are never split and content never moves between steps. Checks, readings, reflections and visuals do not count characters; they stay on the card when its lines allow, otherwise they start the next card.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
   ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
@@ -1148,6 +1159,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   ~~Step body length: hard ceilings per step are 833 characters (1 paragraph), 784 (2) and 735 (3), counting spaces and punctuation. The target is about half the ceiling (roughly 370-420 characters per step); the divider aims for the target and goes longer only when a sentence or block cannot be split without breaking a rule. A step must also fit the portrait step body in the primary layout; whichever limit is tighter applies.~~
 - **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-layout-primary-fallback-2026-10-05`
   ~~Portrait step body layout: primary is the 4:5 box at 49 characters per line and line height 1.55 (about 17.9px type on an iPhone; about 15 lines fit). Fallback D, used if adjusting the steps runs into trouble: 54 characters x 17 lines at 1.55 in the same 4:5 box (about 16.5px type). A 3:4 box is rejected because it does not use the space an iPhone gives the step body.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.type-16px-2026-10-05`
+  ~~Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. With the shipped Source Sans 3 the 4:5 step body (about 347 x 435) then holds about 54 characters x 17 lines; that is the primary layout. The 49-per-line figure came from the wider mockup font. Ceilings 833 / 784 / 735 stay as content limits. Supersedes the primary/fallback split in ui.lesson.card.portrait-layout-primary-fallback-2026-10-05.~~
 
 ### `ui.lesson.colors`
 
@@ -1158,8 +1171,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.progress`
 
-- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
-  Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
+  Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.
+- **Previous** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+  ~~Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction~~
 
 ### `ui.lesson.progress.color-map`
 

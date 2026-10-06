@@ -1161,7 +1161,7 @@
     },
     {
       "id": "C4",
-      "title": "Content: revise lesson text to the voice standard (justify claims by explaining how; source language and setting; no slogans; remove repetition such as the doubled Gospel/Christ definitions in begin#words), drafted by module with before/after",
+      "title": "Content: rewrite each lesson as one script (one objective, its points in order, details elaborating each) in the content voice and depth, working lesson by lesson from docs/v7/LESSON_SCRIPTS.md; before/after per lesson",
       "state": "todo",
       "deps": [
         "S7"
@@ -1174,6 +1174,13 @@
         "bun run compile:pathway",
         "bun scripts/test-lesson-divider.mjs",
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Governed by content.lesson-shape.v1-2026-10-05 and content.voice.v2-2026-10-05. Regenerate the compiled scripts with bun scripts/lesson-scripts-export.mjs; after rewriting, rerun the divider and its tests and regenerate LESSON_CARDS.md, then the pagination review (S3.E) before S3.F."
+        }
       ]
     },
     {
