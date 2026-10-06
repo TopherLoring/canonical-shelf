@@ -685,7 +685,7 @@
     {
       "id": "S3.I",
       "title": "Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.H"
       ],
@@ -695,6 +695,15 @@
       "accept": [
         "bunx playwright test tests/redesign/lesson.spec.js",
         "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        }
       ]
     },
     {
