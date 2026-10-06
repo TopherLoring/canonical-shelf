@@ -29,7 +29,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.I` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -68,6 +67,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.D3a` | done | Codex | `codex/lesson-card-catalog-docs` | `S3.D3` | Regenerate the published catalog documentation for provisional lesson cards |
 | `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.H` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.C`, `X1`, `S3.D3` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
+| `S3.I` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
@@ -193,6 +193,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.I — Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test
 
+- 2026-10-06 (Claude): Done; acceptance passed (bunx playwright test tests/redesign/lesson-screen.spec.js tests/contracts/product-contract.spec.js; bun scripts/test-lesson-divider.mjs; bun run verify:fast).
 - 2026-10-06 (Claude): Acceptance corrected: it named tests/redesign/lesson.spec.js, which only exists on codex/redesign-lesson-path (never merged). It now runs the lesson-screen spec, the contract spec, the divider unit tests and verify:fast.
 - 2026-10-06 (Claude): Contract tests that assumed the old scene-based lesson (one step per section, .scene-rail dots, Study Desk) are rewritten for the redesigned lesson screen: sections list with per-step dots, sections spanning several steps, inline checks, Scripture contrast in light and dark for both the quoted block and the popover, objectives never inside the lesson, My Notes separate from the apparatus. tests/redesign/lesson-screen.spec.js covers the step body shapes, 'n of m', the popover and the notes editor. Lesson screen also gained the titlebar Feedback button (study focus hides the masthead) and escapes quoted Scripture. The old render-every-lesson test was never merged here (it lived on Codex's branch), so there is nothing to retire; the build-time divider tests cover every lesson without a browser.
 - 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.

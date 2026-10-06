@@ -685,7 +685,7 @@
     {
       "id": "S3.I",
       "title": "Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.H"
       ],
@@ -716,6 +716,11 @@
           "date": "2026-10-06",
           "by": "Claude",
           "text": "Acceptance corrected: it named tests/redesign/lesson.spec.js, which only exists on codex/redesign-lesson-path (never merged). It now runs the lesson-screen spec, the contract spec, the divider unit tests and verify:fast."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/lesson-screen.spec.js tests/contracts/product-contract.spec.js; bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
         }
       ]
     },
