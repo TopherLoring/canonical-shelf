@@ -450,7 +450,7 @@
     {
       "id": "S3.C",
       "title": "Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.B",
         "S3.B7",
@@ -483,6 +483,16 @@
           "date": "2026-10-06",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Portrait = phone layout (4:5 step body; type = box width / 21.7em, clamped 16-20px; at the reference iPhone box 348x435 it is 16.04px). Landscape (orientation landscape and width >= 700px) = desktop layout: sections rail | step | My Notes; 2:1 step body; type = box width / 36em (about 91 chars), clamped 15-22px. Box sized by container query units on .lesson-stage. Enlarged text scrolls inside the box."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ],
       "owner": "Claude",
