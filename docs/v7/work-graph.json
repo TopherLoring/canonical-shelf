@@ -727,7 +727,7 @@
     {
       "id": "S3.J",
       "title": "Step 3: Learning Path page (path, module and unit on one page)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "X1"
       ],
@@ -753,8 +753,15 @@
           "date": "2026-10-05",
           "by": "unknown",
           "text": "Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     },
     {
       "id": "S4",
