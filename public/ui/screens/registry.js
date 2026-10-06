@@ -33,8 +33,9 @@ export const SCREENS = Object.freeze({
   // Step 2 (phase 4): Bible reader
   bible: () => import('./reader.js'),
 
-  // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params)
-  course: null,
+  // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params; the lesson screen handles
+  // ?lesson= addresses, everything else stays on the current view until S3.J)
+  course: () => import('./lesson.js'),
 
   // Step 5 (phase 7): Study Topics
   topics: null,

@@ -3,6 +3,8 @@ import {THEMES} from './theme.js';
 import {BOOKS,parseReference} from './bible-books.js';
 
 export {challengeShape,challengeEvaluationMode,activityFor,lessonFor,masteryFor,checkChallenge,challengeFor,challengeCountFor} from './challenge-engine.js';
+// Shared with the redesigned lesson screen (public/ui/screens/lesson.js) so checks, prose and apparatus render the same way.
+export {challengeForm,proseMarkup,visualBlock,lessonApparatus,continuationFor};
 import {challengeShape,challengeEvaluationMode,activityFor,lessonFor,masteryFor} from './challenge-engine.js';
 
 let parsedCorpusSource=null;

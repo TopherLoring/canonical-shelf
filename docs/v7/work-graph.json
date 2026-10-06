@@ -636,7 +636,8 @@
         "public/ui/screens/registry.js",
         "public/learning.js",
         "public/ui/labels.js",
-        "tests/redesign/lesson-screen.spec.js"
+        "tests/redesign/lesson-screen.spec.js",
+        "public/study-notes.js"
       ],
       "accept": [
         "bun run verify:fast"
