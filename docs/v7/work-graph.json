@@ -1440,7 +1440,7 @@
     {
       "id": "M1",
       "title": "ROA manifest: map the lesson screen and new lesson build scripts for PR 60",
-      "state": "todo",
+      "state": "claimed",
       "deps": [],
       "owns": [
         ".roa/manifest.json",
@@ -1462,8 +1462,15 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed on codex/roa-manifest-repair."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/roa-manifest-repair"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"
