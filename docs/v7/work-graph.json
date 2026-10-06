@@ -727,7 +727,7 @@
     {
       "id": "S3.J",
       "title": "Step 3: Learning Path page (path, module and unit on one page)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "X1"
       ],
@@ -753,8 +753,20 @@
           "date": "2026-10-05",
           "by": "unknown",
           "text": "Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed on codex/s3j-learning-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed in isolated worktree for delegated implementation of the approved Learning Path design. Source scope is learning-path.js and .css; route wiring and browser coverage require a separate node. Manifest repair remains on hold."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/s3j-learning-path"
     },
     {
       "id": "S4",
