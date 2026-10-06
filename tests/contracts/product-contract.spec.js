@@ -121,46 +121,87 @@ test('cross-references follow the selected verse, even when the verse is chosen 
   await expect(page.locator('#v5-verse-inspect')).toHaveCount(0);
 });
 
-test('lesson progress: unlabeled dots (vertical on desktop, centered along the bottom on phones) navigate to any step',async({page})=>{
-  for(const [w,h,dir] of [[1440,900,'column'],[390,844,'row']]){
-    await page.setViewportSize({width:w,height:h});
-    await page.goto('/course?unit=c1.bible&lesson=c1-reading-kinds&scene=3');
-    const rail=page.locator('.scene-rail'),dots=rail.locator('a');
-    await expect(rail).toBeVisible();
-    expect(await rail.evaluate(el=>getComputedStyle(el).flexDirection)).toBe(dir);
-    await expect(rail.locator('.scene-rail__label').first()).toBeHidden();
-    const count=await dots.count();
-    expect(await dots.evaluateAll(a=>a.map(x=>x.dataset.state))).toEqual(Array.from({length:count},(_,i)=>i<2?'complete':i===2?'current':'upcoming'));
-    await expect(dots.first()).toHaveAttribute('aria-label',new RegExp(`Step 1 of ${count}`));
-    if(dir==='row'){const box=await rail.boundingBox();expect(Math.abs(box.x+box.width/2-w/2),'dots centered on phones').toBeLessThan(40)}
-    else{await dots.nth(4).hover();await expect(dots.nth(4).locator('.scene-rail__label'),'step name shows on hover on desktop').toBeVisible()}
-    await dots.nth(count-1).click();
-    await expect(page).toHaveURL(new RegExp(`scene=${count}(?:&|$)`));
-    await expect(rail.locator('a').nth(count-1)).toHaveAttribute('data-state','current');
-    await rail.locator('a').first().click();
-    await expect(rail.locator('a').first()).toHaveAttribute('data-state','current');
+const compiledLesson = async (request,id) => {
+  const data=await (await request.get('/data/catalog.json')).json();
+  const lesson=data.lessons.find(l=>l.id===id);
+  return {lesson,cards:lesson.sections.flatMap(section=>section.cards.map(card=>({...card,section})))};
+};
+
+test('lesson progress uses compiled steps, neutral counts and accessible section navigation',async({page,request})=>{
+  const {lesson,cards}=await compiledLesson(request,'c1-reading-kinds');
+  for(const [width,height] of [[1440,900],[390,844]]){
+    await page.setViewportSize({width,height});
+    await page.goto('/course?unit=c1.bible&lesson=c1-reading-kinds&step=3');
+    await expect(page.locator('[data-lesson-count]')).toHaveText(`3 of ${cards.length}`);
+    await expect(page.locator('.lesson-body')).toHaveAttribute('data-step-id',cards[2].id);
+    const bar=page.locator('.lesson-progress-bar');
+    await expect(bar).toHaveAttribute('aria-hidden','true');
+    await expect(bar.locator('li')).toHaveCount(cards.length);
+    await expect(bar.locator('li.is-done')).toHaveCount(2);
+    await expect(bar.locator('li.is-current')).toHaveCount(1);
+    const nav=width>700?page.locator('.lesson-rail'):page.locator('#lesson-steps-sheet');
+    if(width<700)await page.getByRole('button',{name:'All steps',exact:true}).click();
+    await expect(nav).toBeVisible();
+    const links=nav.locator('.lesson-sections a');
+    await expect(links).toHaveText(lesson.sections.map(s=>s.title));
+    await expect(nav.locator('[aria-current="step"]')).toHaveText(cards[2].section.title);
+    const last=cards.findIndex(c=>c.section.id===lesson.sections.at(-1).id)+1;
+    await links.last().click();
+    await expect(page).toHaveURL(new RegExp(`step=${last}(?:&|$)`));
+    await expect(page.locator('[data-lesson-count]')).toHaveText(`${last} of ${cards.length}`);
+    if(width<700)await page.getByRole('button',{name:'All steps',exact:true}).click();
+    await nav.locator('.lesson-sections a').first().click();
+    await expect(page.locator('[data-lesson-count]')).toHaveText(`1 of ${cards.length}`);
+    await page.locator('.lesson-continue').click();
+    await expect(page).toHaveURL(/step=2(?:&|$)/);
+    await page.locator('.lesson-back').click();
+    await expect(page).toHaveURL(/step=1(?:&|$)/);
   }
 });
 
-test('authored Lesson 1: one step per section, checks inline where written, readable Scripture in light and dark',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin&scene=2');
-  await expect(page.locator('.scene-rail a')).toHaveCount(8);
-  await expect(page.locator('.scene-rail a').nth(1)).toHaveAttribute('aria-label',/Read the passage/);
-  const scene=page.locator('.study-scene, main').first();
-  await expect(scene.locator('.study-scripture')).toBeVisible();
-  await expect(scene.locator('.inline-check')).toHaveCount(1);
-  const order=await page.evaluate(()=>{const r=document.querySelector('.study-scripture'),c=document.querySelector('.inline-check');return r.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING?'reading-then-check':'check-first'});
-  expect(order).toBe('reading-then-check');
-  for(const mode of ['light','dark']){
-    await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
-    const ratio=await page.locator('.study-scripture p:not(.eyebrow)').first().evaluate(el=>{
-      const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
-      const lum=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
-      const f=lum(rgb(getComputedStyle(el).color)),b=lum(rgb(getComputedStyle(el.closest('.study-scripture')).backgroundColor));
-      return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
-    });
-    expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+test('authored Lesson 1 preserves compiled cards, inline check order and readable Scripture in light and dark',async({page,request})=>{
+  test.slow();
+  const {lesson,cards}=await compiledLesson(request,'begin');
+  const seenChecks=[];
+  let readingIndex=-1,firstCheckIndex=-1;
+  for(const [index,card] of cards.entries()){
+    await page.goto(`/course?unit=c1.christianity&lesson=begin&step=${index+1}`);
+    const body=page.locator('.lesson-body');
+    await expect(body).toHaveAttribute('data-step-id',card.id);
+    await expect(page.locator('[data-lesson-count]')).toHaveText(`${index+1} of ${cards.length}`);
+    await expect(page.locator('#lesson-step-title')).toHaveText(card.section.title);
+    const checks=card.units.filter(u=>u.kind==='check');
+    await expect(body.locator('.inline-check')).toHaveCount(checks.length);
+    for(const check of checks){
+      const authoredIndex=card.section.blocks[check.block].index;
+      seenChecks.push(authoredIndex);
+      await expect(body.locator(`#check-${authoredIndex+1} form`)).toBeVisible();
+      if(firstCheckIndex<0)firstCheckIndex=index;
+    }
+    for(const reading of card.units.filter(u=>u.kind==='reading')){
+      if(readingIndex<0)readingIndex=index;
+      const scripture=reading.mode==='inline'?body.locator('.ui-scripture-block'):page.locator('.lesson-reading-dialog');
+      if(reading.mode!=='inline')await body.locator('[data-reading-open]').click();
+      await expect(scripture).toBeVisible();
+      await expect(scripture).toContainText(reading.text);
+      for(const mode of ['light','dark']){
+        await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
+        const ratio=await scripture.locator(reading.mode==='inline'?'blockquote':'p').first().evaluate(el=>{
+          const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
+          const lum=c=>rgb(c).map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+          let background=el;
+          while(background.parentElement&&getComputedStyle(background).backgroundColor==='rgba(0, 0, 0, 0)')background=background.parentElement;
+          const f=lum(getComputedStyle(el).color),b=lum(getComputedStyle(background).backgroundColor);
+          return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
+        });
+        expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+      }
+      if(reading.mode!=='inline')await scripture.getByRole('button',{name:'Close the passage'}).click();
+    }
   }
+  expect(seenChecks).toEqual(lesson.challenges.map((_,i)=>i));
+  expect(readingIndex).toBeGreaterThanOrEqual(0);
+  expect(firstCheckIndex).toBeGreaterThanOrEqual(readingIndex);
 });
 
 test('lesson objectives describe lessons on the unit overview and never appear inside the lesson',async({page})=>{
@@ -260,18 +301,68 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 
-test('guided lessons foreground learner copy and keep notes separate from study tools',async({page})=>{
-  await page.goto('/course?unit=c1.christianity&lesson=begin');
-  const scene=page.locator('.study-scene__inner');
-  await expect(scene.locator('.scene-objective')).toHaveCount(0);
-  await expect(scene.locator('.scene-callout')).toBeVisible();
-  await expect(scene.locator('.scene-prose').first()).toBeVisible();
+test('guided lessons foreground learner copy and keep one notes editor separate from study tools',async({page})=>{
+  for(const [width,height] of [[1440,900],[390,844]]){
+    await page.setViewportSize({width,height});
+    await page.goto('/course?unit=c1.christianity&lesson=begin');
+    const body=page.locator('.lesson-body');
+    await expect(body.locator('.scene-objective')).toHaveCount(0);
+    await expect(body.locator('.scene-callout')).toBeVisible();
+    await expect(body.locator('.scene-prose').first()).toBeVisible();
+    await expect(body.locator('[data-notes-mount]')).toHaveCount(0);
+    await expect(page.locator('.lesson-apparatus [data-notes-mount]')).toHaveCount(0);
+    await expect(page.locator('[data-notes-home] [data-note-text]')).toHaveCount(1);
+    if(width<700)await page.locator('[aria-controls="lesson-notes-sheet"]').click();
+    const home=page.locator(`[data-notes-home="${width>700?'side':'sheet'}"]`);
+    await expect(home.locator('[data-note-text]')).toBeVisible();
+    await home.locator('[data-note-text]').fill('A question about the lesson');
+    if(width<700){
+      await page.locator('#lesson-notes-sheet [data-dialog-close]').click();
+      await page.locator('.lesson-phone-tools [data-lesson-tool="deeper"]').click();
+      await expect(page.locator('#lesson-study-sheet .lesson-apparatus')).toBeVisible();
+      await expect(page.locator('#lesson-study-sheet [data-note-text]')).toHaveCount(0);
+      await page.locator('#lesson-study-sheet [data-dialog-close]').click();
+      await page.locator('[aria-controls="lesson-notes-sheet"]').click();
+    }else await expect(page.locator('.lesson-side .lesson-apparatus')).toBeVisible();
+    await expect(home.locator('[data-note-text]')).toHaveValue('A question about the lesson');
+  }
+});
 
-  const desk=page.locator('#study-apparatus');
-  await expect(desk).toBeVisible();
-  await expect(desk.locator('h2')).toHaveText('Study Desk');
-  await expect(desk.locator('[data-notes-mount] [data-note-text]')).toBeVisible();
-  await expect(desk.locator('.apparatus-module summary').first()).toContainText('Your notes');
+test('lesson Feedback opens by keyboard and retains lesson context on desktop and phone',async({page})=>{
+  for(const [width,height] of [[1440,900],[390,844]]){
+    await page.setViewportSize({width,height});
+    const route='/course?unit=c1.christianity&lesson=begin&step=3';
+    await page.goto(route);
+    const trigger=page.locator('.lesson-titlebar [data-feedback-open]');
+    await expect(trigger).toBeVisible();
+    await expect(page.locator('[data-feedback-open]:visible')).toHaveCount(1);
+    await expect(trigger).toHaveAttribute('aria-controls','feedback-panel');
+    await expect(trigger).toHaveAttribute('aria-expanded','false');
+    const stepId=await page.locator('.lesson-body').getAttribute('data-step-id');
+    await trigger.focus();await page.keyboard.press('Enter');
+    await expect(page.locator('#feedback-panel')).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded','true');
+    await expect(page.locator('#feedback-attached')).toContainText('lesson:begin');
+    await expect(page.locator('#feedback-attached')).toContainText(`${width}x${height}`);
+    const context=await page.evaluate(async()=> (await import('/screen-context.js')).screenContext());
+    expect(context.route).toBe(route);
+    expect(context.anchor).toBe('lesson:begin');
+    expect(context.label).toBe(await page.locator('#lesson-step-title').textContent());
+    expect(context.viewport).toBe(`${width}x${height}`);
+    await page.locator('#feedback-close').click();
+    await expect(page.locator('#feedback-panel')).toBeHidden();
+    await expect(trigger).toBeFocused();
+    await expect(trigger).toHaveAttribute('aria-expanded','false');
+    await expect(page).toHaveURL(new RegExp('lesson=begin&step=3$'));
+    await expect(page.locator('.lesson-body')).toHaveAttribute('data-step-id',stepId);
+    await page.locator('.lesson-close').click();
+    await expect(page.locator('.lesson-titlebar [data-feedback-open]')).toHaveCount(0);
+    await expect(page.locator('.masthead [data-feedback-open]')).toHaveCount(1);
+    if(width>700){
+      await expect(page.locator('[data-feedback-open]:visible')).toHaveCount(1);
+      await expect(page.locator('.masthead [data-feedback-open]')).toBeVisible();
+    }
+  }
 });
 
 test('desktop and narrow layouts do not create horizontal page overflow',{tag:'@smoke'},async({page})=>{

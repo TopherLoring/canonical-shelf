@@ -281,6 +281,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### R3 — Lesson: restore inline Feedback and update browser contracts for approved compiled steps
 
+- 2026-10-06 (Codex): Added exactly one inline lesson Feedback control using existing shared dialog/context and replaced three obsolete scene contracts with catalog-driven compiled-step navigation, check order, Scripture contrast and notes separation. RED Feedback regression verified; six focused contracts and all18 owned contracts pass with zero retries, and fast13 pass. Phone global shell suppression outside lessons is documented, not changed. Independent review/full gate next.
 - 2026-10-06 (Codex): Claimed on codex/r3-lesson-verification.
 - 2026-10-06 (Codex): Chris explicitly authorized this separate repair node, including completed Claude lesson source, after S3.J verification exposed four existing lesson failures. Preserve Feedback and learner-copy/notes/navigation/Scripture behavior; adapt obsolete markup expectations. Manifest repair stays on hold.
 

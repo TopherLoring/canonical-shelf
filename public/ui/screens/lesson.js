@@ -149,6 +149,7 @@ export async function mount(container, ctx) {
     <div class="lesson-card">
       <header class="lesson-titlebar">
         <nav class="lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
+        <button type="button" class="feedback-cta lesson-feedback" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
         <a href="${esc(exitHref)}" class="lesson-close" aria-label="Leave lesson">${icon('<path d="M6 6l12 12M18 6 6 18"/>')}</a>
       </header>
       ${progress}

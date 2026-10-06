@@ -52,6 +52,15 @@
   .lesson-crumbs a:hover { color: var(--color-text); text-decoration: underline; }
   .lesson-crumbs [aria-current="page"] { color: var(--color-text); font-weight: 600; }
   .lesson-crumb-sep { color: var(--color-text-muted); }
+  .lesson-feedback {
+    display: none; flex-shrink: 0; align-items: center; justify-content: center;
+    padding: var(--space-1) var(--space-2);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-control); background: var(--color-surface);
+    color: var(--color-text-secondary); font: inherit; font-weight: 500; cursor: pointer;
+  }
+  .lesson-feedback:hover { background: var(--color-surface-raised); color: var(--color-text); }
+  .study-focus-active .lesson-feedback { display: inline-flex; }
   .lesson-close { display: inline-flex; padding: var(--space-1); color: var(--color-text-secondary); border-radius: var(--radius-control); }
   .lesson-close:hover { color: var(--color-text); background: var(--color-surface-raised); }
 

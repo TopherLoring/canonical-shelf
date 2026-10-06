@@ -1369,6 +1369,11 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Claimed on codex/r3-lesson-verification."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Added exactly one inline lesson Feedback control using existing shared dialog/context and replaced three obsolete scene contracts with catalog-driven compiled-step navigation, check order, Scripture contrast and notes separation. RED Feedback regression verified; six focused contracts and all18 owned contracts pass with zero retries, and fast13 pass. Phone global shell suppression outside lessons is documented, not changed. Independent review/full gate next."
         }
       ],
       "owner": "Codex",
