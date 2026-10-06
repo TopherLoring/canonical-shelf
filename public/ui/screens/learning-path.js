@@ -34,6 +34,7 @@ export function mount(container, ctx) {
     return `${value.total && value.done === value.total ? 'Complete' : value.done ? 'In progress' : 'Not started'}${reviews ? ` · ${reviews} review${reviews === 1 ? '' : 's'} due` : ''}`;
   };
   const title = item => item.type === 'lesson' ? (lessonFor(data, item.sourceId)?.title || item.title) : `Checkpoint · ${units.find(unit => unit.id === item.unitId)?.title || item.title} · ${item.title}`;
+  const objective = item => item.type === 'lesson' ? lessonFor(data, item.sourceId)?.objective : '';
   const scope = (label, items, kind) => {
     const value = stats(items);
     return renderProgressScope({ scope: kind, label, status: count(value), value: value.done, max: value.total || 1 });
@@ -47,7 +48,7 @@ export function mount(container, ctx) {
     return `<details class="learning-path-group" data-unit="${esc(unit.id)}" ${unit.id === selectedUnit?.id ? 'open' : ''}>
       <summary><span class="learning-path-group-title">${esc(unit.title)}</span><span class="learning-path-status">${esc(status(items))}</span></summary>
       ${unit.scope ? `<p class="learning-path-group-copy">${esc(unit.scope)}</p>` : ''}
-      <ol aria-label="${esc(unit.title)} activities">${items.map((item, index) => `<li><a data-activity-link="${esc(item.id)}" href="${esc(activityHref(item.id))}"><span class="learning-path-number" aria-hidden="true">${index + 1}</span><span>${esc(title(item))}</span><span class="learning-path-activity-status">${completed.has(item.id) ? 'Complete' : 'Not started'}${due.has(item.id) ? ' · Review due' : ''}</span></a></li>`).join('')}</ol>
+      <ol aria-label="${esc(unit.title)} activities">${items.map((item, index) => `<li><a data-activity-link="${esc(item.id)}" href="${esc(activityHref(item.id))}"><span class="learning-path-number" aria-hidden="true">${index + 1}</span><span class="learning-path-activity-copy"><span>${esc(title(item))}</span>${objective(item) ? `<span class="learning-path-objective">${esc(objective(item))}</span>` : ''}</span><span class="learning-path-activity-status">${completed.has(item.id) ? 'Complete' : 'Not started'}${due.has(item.id) ? ' · Review due' : ''}</span></a></li>`).join('')}</ol>
     </details>`;
   }).join('');
   const nextPanel = renderPanel({ title: next && completed.has(next.id) ? 'Review' : 'Up next', className: 'learning-path-next', body: next ? `<p class="learning-path-context">${esc(course.title)} · ${esc(units.find(unit => unit.id === next.unitId)?.title || '')}</p><h3>${esc(title(next))}</h3><a class="learning-path-primary" data-activity-link="${esc(next.id)}" href="${esc(activityHref(next.id))}">${completed.has(next.id) ? 'Review activity' : next.type === 'lesson' ? 'Start lesson' : 'Start Checkpoint'}</a>` : '<p>No activities are available in this curriculum yet.</p>' });
@@ -70,7 +71,3 @@ export function mount(container, ctx) {
   container.addEventListener('click', onClick);
   return () => container.removeEventListener('click', onClick);
 }
-
-
-
-

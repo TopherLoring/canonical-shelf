@@ -41,3 +41,7 @@
 }
 
 @layer screens { .learning-path-screen .ui-rail-label { white-space: normal; overflow: visible; } }
+
+@layer screens {
+  .learning-path-objective { display: block; margin-top: var(--space-1); color: var(--color-text-secondary); font-size: var(--type-small); }
+}

@@ -768,6 +768,11 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Implemented approved Learning Path structure in owned source with real catalog ordering, title-only hierarchy, distinct authored Checkpoints, stable activity URLs and scored progress. Isolated browser probe passed navigation, aliases, disclosure, cancellation/cleanup, progress and 1440/390/320 layouts. Registry activation is separate S3.J2; source review next."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Restored unchanged authored lesson objectives after independent review identified an overview preservation gap. Corrected source probe and fast checks pass. Full verification remains blocked by existing lesson feedback and obsolete contracts; Chris authorized a separate repair node on 2026-10-06. Learning Path routing remains separate and inactive."
         }
       ],
       "owner": "Codex",
