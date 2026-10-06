@@ -1346,7 +1346,7 @@
     {
       "id": "R3",
       "title": "Lesson: restore inline Feedback and update browser contracts for approved compiled steps",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.H"
       ],
@@ -1374,6 +1374,16 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Added exactly one inline lesson Feedback control using existing shared dialog/context and replaced three obsolete scene contracts with catalog-driven compiled-step navigation, check order, Scripture contrast and notes separation. RED Feedback regression verified; six focused contracts and all18 owned contracts pass with zero retries, and fast13 pass. Phone global shell suppression outside lessons is documented, not changed. Independent review/full gate next."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Full CI=1 bun run verify passed all 150 browser tests without retries; task and final review accept the scoped lesson Feedback and compiled-card contract repair. Existing shared phone Feedback suppression outside lessons remains a separate issue. Next: close acceptance, commit completion, and present this isolated branch for publication approval; held PR 60 manifest repair remains untouched."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/contracts/product-contract.spec.js; bun run verify:fast)."
         }
       ],
       "owner": "Codex",

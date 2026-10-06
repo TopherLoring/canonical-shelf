@@ -30,7 +30,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `R3` | claimed | Codex | `codex/r3-lesson-verification` | `S3.H` | Lesson: restore inline Feedback and update browser contracts for approved compiled steps |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -53,6 +52,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `R2` | done | Codex | `codex/r2-top-bar-spacing` | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
+| `R3` | done | Codex | `codex/r3-lesson-verification` | `S3.H` | Lesson: restore inline Feedback and update browser contracts for approved compiled steps |
 | `S2` | done | Codex + Claude | `feature/redesign-p4-reader` |  | Step 2: Bible reader |
 | `S3.A` | done | Claude | `feature/redesign-p5-lesson-path` |  | Step 3: decisions and handoff doc |
 | `S3.A2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: handoff doc brought current (decisions, vocabulary, open questions) |
@@ -281,6 +281,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### R3 — Lesson: restore inline Feedback and update browser contracts for approved compiled steps
 
+- 2026-10-06 (Codex): Done; acceptance passed (bunx playwright test tests/contracts/product-contract.spec.js; bun run verify:fast).
+- 2026-10-06 (Codex): Full CI=1 bun run verify passed all 150 browser tests without retries; task and final review accept the scoped lesson Feedback and compiled-card contract repair. Existing shared phone Feedback suppression outside lessons remains a separate issue. Next: close acceptance, commit completion, and present this isolated branch for publication approval; held PR 60 manifest repair remains untouched.
 - 2026-10-06 (Codex): Added exactly one inline lesson Feedback control using existing shared dialog/context and replaced three obsolete scene contracts with catalog-driven compiled-step navigation, check order, Scripture contrast and notes separation. RED Feedback regression verified; six focused contracts and all18 owned contracts pass with zero retries, and fast13 pass. Phone global shell suppression outside lessons is documented, not changed. Independent review/full gate next.
 - 2026-10-06 (Codex): Claimed on codex/r3-lesson-verification.
 - 2026-10-06 (Codex): Chris explicitly authorized this separate repair node, including completed Claude lesson source, after S3.J verification exposed four existing lesson failures. Preserve Feedback and learner-copy/notes/navigation/Scripture behavior; adapt obsolete markup expectations. Manifest repair stays on hold.
