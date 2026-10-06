@@ -763,6 +763,11 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Claimed in isolated worktree for delegated implementation of the approved Learning Path design. Source scope is learning-path.js and .css; route wiring and browser coverage require a separate node. Manifest repair remains on hold."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Implemented approved Learning Path structure in owned source with real catalog ordering, title-only hierarchy, distinct authored Checkpoints, stable activity URLs and scored progress. Isolated browser probe passed navigation, aliases, disclosure, cancellation/cleanup, progress and 1440/390/320 layouts. Registry activation is separate S3.J2; source review next."
         }
       ],
       "owner": "Codex",

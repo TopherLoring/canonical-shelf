@@ -202,6 +202,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.J — Step 3: Learning Path page (path, module and unit on one page)
 
+- 2026-10-06 (Codex): Implemented approved Learning Path structure in owned source with real catalog ordering, title-only hierarchy, distinct authored Checkpoints, stable activity URLs and scored progress. Isolated browser probe passed navigation, aliases, disclosure, cancellation/cleanup, progress and 1440/390/320 layouts. Registry activation is separate S3.J2; source review next.
 - 2026-10-06 (Codex): Claimed in isolated worktree for delegated implementation of the approved Learning Path design. Source scope is learning-path.js and .css; route wiring and browser coverage require a separate node. Manifest repair remains on hold.
 - 2026-10-06 (Codex): Claimed on codex/s3j-learning-path.
 - 2026-10-05 (unknown): Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris.
