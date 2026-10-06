@@ -635,7 +635,7 @@
     {
       "id": "S3.H",
       "title": "Step 3: lesson screen renders locked parts (adapt Codex's lesson screen)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.C",
         "X1",
@@ -667,6 +667,16 @@
           "date": "2026-10-06",
           "by": "Claude",
           "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "public/ui/screens/lesson.js renders catalog cards (lesson.sections[].cards) as steps; /course?unit=&lesson=&step=n; checkpoints (?mastery=) still use the current view. Sections rail with step dots; progress 'n of m' plus segmented bar; tools open a study sheet (apparatus) on portrait, rail buttons on landscape; Questions jumps to the first step with a check; readings inline (ScriptureBlock) or link + native dialog popover with Open in the Bible; one My Notes editor moved between side column (landscape) and sheet (portrait); arrow keys page. Notes editor everywhere drops the in-person flag and Ask link (decisions), keeping existing flags. Not yet: Theologian tab behaviour (S6), Checkpoint screen, rotate hint."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ],
       "owner": "Claude",

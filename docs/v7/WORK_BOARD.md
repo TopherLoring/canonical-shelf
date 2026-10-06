@@ -17,18 +17,19 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
+- **S3.I** — Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 - **S5a** — Step 5: Study Topics
 - **S5b** — Step 5: Review & Practice
 - **S5c** — Step 5: Profile
+- **S6** — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.H` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.C`, `X1`, `S3.D3` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -39,13 +40,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S3.I` | waiting |  |  | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
+| `S3.I` | ready |  |  | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
 | `S3.J` | ready |  |  | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
 | `S4` | ready |  |  | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
 | `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
 | `S5b` | ready |  |  | `S2` | Step 5: Review & Practice |
 | `S5c` | ready |  |  | `S2` | Step 5: Profile |
-| `S6` | waiting |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
+| `S6` | ready |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
@@ -67,6 +68,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.D3` | done | Codex | `codex/lesson-catalog-cards` | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
 | `S3.D3a` | done | Codex | `codex/lesson-card-catalog-docs` | `S3.D3` | Regenerate the published catalog documentation for provisional lesson cards |
 | `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
+| `S3.H` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.C`, `X1`, `S3.D3` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
@@ -184,6 +186,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.H — Step 3: lesson screen renders locked parts (adapt Codex's lesson screen)
 
+- 2026-10-06 (Claude): Done; acceptance passed (bun run verify:fast).
+- 2026-10-06 (Claude): public/ui/screens/lesson.js renders catalog cards (lesson.sections[].cards) as steps; /course?unit=&lesson=&step=n; checkpoints (?mastery=) still use the current view. Sections rail with step dots; progress 'n of m' plus segmented bar; tools open a study sheet (apparatus) on portrait, rail buttons on landscape; Questions jumps to the first step with a check; readings inline (ScriptureBlock) or link + native dialog popover with Open in the Bible; one My Notes editor moved between side column (landscape) and sheet (portrait); arrow keys page. Notes editor everywhere drops the in-person flag and Ask link (decisions), keeping existing flags. Not yet: Theologian tab behaviour (S6), Checkpoint screen, rotate hint.
 - 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (Claude): Render the cards the build emits (S3.D3), not locked sources: card breaks are reviewed only after the content revision (redesign.sequence.content-after-templates-2026-10-05).
 - 2026-10-05 (unknown): Build the reading popover per ui.lesson.reading.inline-or-popover-2026-10-05: centered over a dimmed screen on phones, beside the link on desktop; passage scrolls inside; Open in the Bible; closes with close button, Escape, or the dimmed area; focus returns to the link. Inline readings use the ScriptureBlock look with extra padding, scriptureBed surface and the group stripe.
