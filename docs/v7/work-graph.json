@@ -1,6 +1,6 @@
 {
   "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "rules": [
     "Read the board, the node you will work on, and the decisions it cites before editing anything.",
     "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
@@ -1242,6 +1242,11 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Governed by content.lesson-shape.v1-2026-10-05 and content.voice.v2-2026-10-05. Regenerate the compiled scripts with bun scripts/lesson-scripts-export.mjs; after rewriting, rerun the divider and its tests and regenerate LESSON_CARDS.md, then the pagination review (S3.E) before S3.F."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Lesson 1 (begin) done and approved as the calibration lesson (content.lesson-01-approved-2026-10-06): docs/v7/content-revision/lesson-01-begin.steps.md + .meta.md. Source for rewrites is the pre-Codex text in content/pathway/legacy-ledger.json, not the current lesson files. Process: script in Chris voice -> Claude Doc review with comments -> divide by break rule v3 -> Chris adjusts -> approve. Paused until the redesign is done (Chris, 2026-10-06)."
         }
       ]
     },

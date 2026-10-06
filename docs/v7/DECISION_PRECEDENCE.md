@@ -32,6 +32,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `content.anchoring.universal-anchoring`
   One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
 
+### `content.lesson-revision`
+
+- **Approval** · 2026-10-06 · Chris · `content.lesson-01-approved-2026-10-06` · scope: Lesson 1 calibration rewrite and step division
+  Lesson 1 (begin) approved as the calibration lesson: 28 steps, stored in docs/v7/content-revision/lesson-01-begin.steps.md with its companion lesson-01-begin.meta.md. It is the reference for voice, depth, check style and step division for the remaining lessons. A check standing alone on its own step uses the full card and is exempt from the 637 limit. Content work resumes after the redesign.
+
 ### `content.lesson-shape`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `content.lesson-shape.v1-2026-10-05`

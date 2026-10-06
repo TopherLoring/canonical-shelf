@@ -1,6 +1,6 @@
 # Work board
 
-Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-05.
+Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-06.
 
 ## Rules every agent follows
 
@@ -260,6 +260,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### C4 — Content: rewrite each lesson as one script (one objective, its points in order, details elaborating each) in the content voice and depth, working lesson by lesson from docs/v7/LESSON_SCRIPTS.md; before/after per lesson
 
+- 2026-10-06 (Claude): Lesson 1 (begin) done and approved as the calibration lesson (content.lesson-01-approved-2026-10-06): docs/v7/content-revision/lesson-01-begin.steps.md + .meta.md. Source for rewrites is the pre-Codex text in content/pathway/legacy-ledger.json, not the current lesson files. Process: script in Chris voice -> Claude Doc review with comments -> divide by break rule v3 -> Chris adjusts -> approve. Paused until the redesign is done (Chris, 2026-10-06).
 - 2026-10-05 (Claude): Governed by content.lesson-shape.v1-2026-10-05 and content.voice.v2-2026-10-05. Regenerate the compiled scripts with bun scripts/lesson-scripts-export.mjs; after rewriting, rerun the divider and its tests and regenerate LESSON_CARDS.md, then the pagination review (S3.E) before S3.F.
 
 ### S3.D3a — Regenerate the published catalog documentation for provisional lesson cards
