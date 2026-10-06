@@ -188,6 +188,10 @@
 
   /* ---- Sheets and the reading popover (native dialog: focus is trapped, Escape closes) ---- */
   .lesson-sheet, .lesson-reading-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;                         /* centered over the dimmed page (phone panels are centered cards) */
+    height: fit-content;
     width: min(560px, calc(100vw - 2 * var(--space-4)));
     max-height: min(80dvh, 720px);
     padding: 0;
@@ -207,7 +211,7 @@
     border-bottom: var(--border-weight) solid var(--color-border);
   }
   .lesson-sheet h2, .lesson-reading-dialog h2 { margin: 0; font-family: var(--font-display); font-size: var(--type-h3); }
-  .lesson-sheet > .lesson-sections, .lesson-sheet > .lesson-apparatus, .lesson-sheet > [data-notes-mount] { padding: var(--space-3) var(--space-4); }
+  .lesson-sheet > .lesson-sections, .lesson-sheet > .lesson-apparatus, .lesson-sheet > .lesson-notes-home { padding: var(--space-3) var(--space-4); }
   .lesson-dialog-close { border: 0; background: none; font-size: 1.5rem; line-height: 1; color: var(--color-text-secondary); cursor: pointer; padding: var(--space-1); border-radius: var(--radius-control); }
   .lesson-dialog-close:hover { color: var(--color-text); background: var(--color-surface-raised); }
   .lesson-reading-text { padding: var(--space-3) var(--space-4); background: var(--color-scripture-bed); font-family: var(--font-reading); font-size: var(--type-lead); line-height: var(--leading-reading); }
