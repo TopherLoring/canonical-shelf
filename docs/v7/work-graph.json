@@ -450,7 +450,7 @@
     {
       "id": "S3.C",
       "title": "Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.B",
         "S3.B7",
@@ -478,8 +478,15 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Primary portrait layout: 4:5 step body, 49 characters per line, 1.55 line height (ui.lesson.card.portrait-layout-primary-fallback-2026-10-05). Size the type so 49 characters fill the box width; keep fallback D (54 x 17) switchable by one setting."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     },
     {
       "id": "S3.D",
@@ -626,7 +633,10 @@
       ],
       "owns": [
         "public/ui/screens/lesson.js",
-        "public/ui/screens/registry.js"
+        "public/ui/screens/registry.js",
+        "public/learning.js",
+        "public/ui/labels.js",
+        "tests/redesign/lesson-screen.spec.js"
       ],
       "accept": [
         "bun run verify:fast"
