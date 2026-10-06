@@ -635,7 +635,7 @@
     {
       "id": "S3.H",
       "title": "Step 3: lesson screen renders locked parts (adapt Codex's lesson screen)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.C",
         "X1",
@@ -662,8 +662,15 @@
           "date": "2026-10-05",
           "by": "Claude",
           "text": "Render the cards the build emits (S3.D3), not locked sources: card breaks are reviewed only after the content revision (redesign.sequence.content-after-templates-2026-10-05)."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
     },
     {
       "id": "S3.I",
