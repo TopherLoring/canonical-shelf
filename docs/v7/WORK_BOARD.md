@@ -29,6 +29,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `R3` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S2` | Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -73,6 +74,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
+| `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
 ## Handoff notes (latest first)
 
@@ -283,4 +285,15 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-05 (Codex): Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched.
 - 2026-10-05 (Codex): Claimed on codex/lesson-card-catalog-docs.
 - 2026-10-05 (Codex): S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions.
+
+### R3 — Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need
+
+- 2026-10-06 (Claude): Corrected: the failures reproduced here only because this sandbox has one CPU (see SW1). The edits are still right on their own: (1) seeding right after goto could race the app's startup write; (2) a reload straight after clicking a highlight colour can drop the queued save, so the spec now waits until the saved ranges show the colour; (3) the service worker pre-caches about 130 files on first visit, which is extra load when many browsers run at once and is irrelevant to these tests (verify:sw covers it). Chris's 12-core run failed 1 of 149 on the legacy-notes test; unconfirmed whether these edits remove it.
+- 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.
+- 2026-10-06 (Claude): Found from Chris's full run (148/149). Not caused by the notes-editor change: it fails identically with the old study-notes.js. The app renders the seeded note correctly when given time; the test needs to wait for [data-reader] before seeding.
+
+### SW1 — Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight
+
+- 2026-10-06 (Claude): RETRACTED. The sandbox where this was measured has ONE CPU: a reload takes 1.2 s alone and about 9.8 s with six browsers at once, which exceeds the 7 s expect timeout. Every "fails under parallel load" result (legacy notes, highlights) came from that starvation; the service worker only added install work. There is no evidence of a service-worker defect. If it ever shows up on a many-core machine with an idle CPU, reopen with a real reproduction.
+- 2026-10-06 (Claude): Found while chasing reader.spec "legacy notes remain readable" (148/149 on Chris's run). Reproduces only with the service worker allowed, 3+ browsers on one test server, and a reload right after the first visit: 0 of 6 pass at 3 workers, 6 of 6 with serviceWorkers blocked or 1 worker. After the reload the router starts one render and stalls in a fetch; /data/bsb-annotations/<n>.json (and sometimes font files) stay pending while the worker has no requests of its own in flight. NOT the cause: the notes-editor change (fails identically with the old file), waiting for the worker to control the page, waiting for its six-file data precache. Suspects to check: the /data/ cache-first handler awaits cache.put(response.clone()) before returning the response (a large body plus a tee can stall the page until the put completes); 129-file install precache; HTTP/1.1 six-connection limit on the test server. Likely harmless on HTTP/2 production, but a stalled first reload would be a real defect. Tests meanwhile: reader.spec.js blocks the service worker (R3).
 

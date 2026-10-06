@@ -1369,6 +1369,68 @@
       ],
       "owner": "Codex",
       "branch": "codex/lesson-card-catalog-docs"
+    },
+    {
+      "id": "R3",
+      "title": "Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need",
+      "state": "claimed",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "tests/redesign/reader.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/reader.spec.js --repeat-each=2",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Found from Chris's full run (148/149). Not caused by the notes-editor change: it fails identically with the old study-notes.js. The app renders the seeded note correctly when given time; the test needs to wait for [data-reader] before seeding."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Corrected: the failures reproduced here only because this sandbox has one CPU (see SW1). The edits are still right on their own: (1) seeding right after goto could race the app's startup write; (2) a reload straight after clicking a highlight colour can drop the queued save, so the spec now waits until the saved ranges show the colour; (3) the service worker pre-caches about 130 files on first visit, which is extra load when many browsers run at once and is irrelevant to these tests (verify:sw covers it). Chris's 12-core run failed 1 of 149 on the legacy-notes test; unconfirmed whether these edits remove it."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "SW1",
+      "title": "Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight",
+      "state": "dropped",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/sw.js",
+        "public/bootstrap.js"
+      ],
+      "accept": [
+        "bun run verify:sw",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Found while chasing reader.spec \"legacy notes remain readable\" (148/149 on Chris's run). Reproduces only with the service worker allowed, 3+ browsers on one test server, and a reload right after the first visit: 0 of 6 pass at 3 workers, 6 of 6 with serviceWorkers blocked or 1 worker. After the reload the router starts one render and stalls in a fetch; /data/bsb-annotations/<n>.json (and sometimes font files) stay pending while the worker has no requests of its own in flight. NOT the cause: the notes-editor change (fails identically with the old file), waiting for the worker to control the page, waiting for its six-file data precache. Suspects to check: the /data/ cache-first handler awaits cache.put(response.clone()) before returning the response (a large body plus a tee can stall the page until the put completes); 129-file install precache; HTTP/1.1 six-connection limit on the test server. Likely harmless on HTTP/2 production, but a stalled first reload would be a real defect. Tests meanwhile: reader.spec.js blocks the service worker (R3)."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "RETRACTED. The sandbox where this was measured has ONE CPU: a reload takes 1.2 s alone and about 9.8 s with six browsers at once, which exceeds the 7 s expect timeout. Every \"fails under parallel load\" result (legacy notes, highlights) came from that starvation; the service worker only added install work. There is no evidence of a service-worker defect. If it ever shows up on a many-core machine with an idle CPU, reopen with a real reproduction."
+        }
+      ]
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"
