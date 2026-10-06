@@ -25,9 +25,9 @@ export const TARGET = { min: 370, max: 420 };
 // A text-only card shorter than this, left at the end of a step, is merged back or flagged as an orphan.
 export const ORPHAN_CHARS = 120;
 // Break rule v2 (ui.lesson.card.break-rule-v2-2026-10-05): break at the last sentence end at or before 637; a new
-// paragraph adds 46; a block counts 49 plus 49 per 49-character line of its text.
+// paragraph adds 49; a block counts 49 plus 49 per 49-character line of its text.
 export const BREAK_AT = 637;
-export const PARAGRAPH_COST = 46;
+export const PARAGRAPH_COST = 49;
 export const BLOCK_COST = 49;
 export const LINE_CHARS = 49;
 export const VISUAL_LINES = 9;
@@ -203,7 +203,7 @@ export function divideLesson(lesson, { type, corpus }) {
   };
   // Lessons are their authored sections, each divided into steps (curriculum.lesson.sections-divided-2026-10-05).
   // Step break rule (ui.lesson.card.break-rule-v2-2026-10-05): count every character on a step, spaces and
-  // punctuation included, starting again on each step; each new paragraph after the first adds 46; a block counts 49
+  // punctuation included, starting again on each step; each new paragraph after the first adds 49; a block counts 49
   // plus 49 for each 49-character line of its text; a visual counts as its 9-line height. Break at the last sentence
   // end at or before 637. Sentences and blocks are never divided.
   const cards = [];

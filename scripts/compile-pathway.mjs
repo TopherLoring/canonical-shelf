@@ -5,7 +5,7 @@
 //
 // Lesson file syntax (field names follow docs/v7/data-dictionary.json):
 //   ---                                  JSON frontmatter between --- lines
-//   ## Section title {#anchor}           a section; becomes one progress dot and an outline anchor
+//   ## Section title {#anchor}           an authored section and stable outline anchor; contains provisional cards
 //   plain paragraphs                     prose
 //   > text                               a callout
 //   ::reading                            the primary reading (readingAddress) from the BSB text
@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 
 import { resolve, join } from 'node:path';
 import { parseOsis } from './lib/bible-books.mjs';
 import { parseLesson as parseLessonFile } from './lib/lesson-parse.mjs';
+import { divideLesson, loadContext } from './lesson-divider.mjs';
 
 const ROOT = process.cwd();
 const DIR = resolve(ROOT, 'content/pathway');
@@ -152,10 +153,14 @@ if (errors.length) { console.error(`compile-pathway FAILED:\n  - ${errors.join('
 
 // ---------- merge into the runtime catalog ----------
 const catalog = JSON.parse(readFileSync(CATALOG, 'utf8'));
+const dividerContext = loadContext(ROOT);
 for (const [id, { entry, meta, sections, checks, reflection, reading }] of compiled) {
   const lesson = catalog.lessons.find(l => l.id === id);
   if (!lesson) { console.error(`compile-pathway: catalog has no lesson ${id}`); process.exit(1); }
   const prose = sections.flatMap(s => s.blocks.filter(b => b.type === 'prose').map(b => b.text));
+  // Provisional layout output is rebuilt from the current script, never written into the source.
+  // Keep section identity and original blocks so navigation and check indices remain stable.
+  const divided = divideLesson({ meta, sections, checks, reflection }, dividerContext);
   Object.assign(lesson, {
     title: meta.title, objective: meta.objective, reading: meta.reading,
     ref: reading ? [reading.book, reading.chapter, reading.verseStart, reading.verseEnd] : lesson.ref,
@@ -166,7 +171,7 @@ for (const [id, { entry, meta, sections, checks, reflection, reading }] of compi
     // Spaced-review checks are kept: from the lesson file when it lists them, otherwise the existing ones.
     reviewChallenges: meta.reviewChecks || lesson.reviewChallenges || [],
     reflect: reflection?.prompt || '', model: reflection?.modelResponse || '',
-    sections: sections.map(s => ({ id: s.id, anchor: `lesson:${id}#${s.id}`, title: s.title, blocks: s.blocks })),
+    sections: sections.map((s, index) => ({ id: s.id, anchor: `lesson:${id}#${s.id}`, title: s.title, blocks: s.blocks, cards: divided.filter(c => c.section === s.id) })),
     teaches: entry.teaches || [], requires: entry.requires || [], outcomes: entry.outcomes || [],
     scriptureRefs: meta.scriptureRefs || [], authored: true
   });

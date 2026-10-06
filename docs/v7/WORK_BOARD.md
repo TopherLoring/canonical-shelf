@@ -17,7 +17,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **R2** — Every page starts close under the top bar: contract test fails on the lesson branch
 - **S3.C** — Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)
 - **S3.J** — Step 3: Learning Path page (path, module and unit on one page)
 - **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
@@ -30,7 +29,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.D3` | claimed | Claude | `feature/redesign-p5-lesson-path` | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -38,7 +36,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `C5` | waiting (Chris) |  |  | `C4` | Content: Chris approves each lesson revision batch |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `R2` | ready |  |  | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.C` | ready |  |  | `S3.B`, `S3.B7`, `S3.R` | Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps) |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
@@ -55,6 +52,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
+| `R2` | done | Codex | `codex/r2-top-bar-spacing` | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `S2` | done | Codex + Claude | `feature/redesign-p4-reader` |  | Step 2: Bible reader |
 | `S3.A` | done | Claude | `feature/redesign-p5-lesson-path` |  | Step 3: decisions and handoff doc |
 | `S3.A2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.A` | Step 3: handoff doc brought current (decisions, vocabulary, open questions) |
@@ -67,6 +65,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.B7` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.Q2` | Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape) |
 | `S3.D` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.B`, `S3.R` | Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests |
 | `S3.D2` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.S` | Divider: implement the Scripture reading rule from S3.S; attach "As you read X, notice..." to the reading's last card |
+| `S3.D3` | done | Codex | `codex/lesson-catalog-cards` | `S3.D2` | Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources |
+| `S3.D3a` | done | Codex | `codex/lesson-card-catalog-docs` | `S3.D3` | Regenerate the published catalog documentation for provisional lesson cards |
 | `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
@@ -92,6 +92,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### R2 — Every page starts close under the top bar: contract test fails on the lesson branch
 
+- 2026-10-05 (Codex): PR #66 merged into feature/redesign-p5-lesson-path after #65 merged into #64 and #64 merged into integration. Git merged the graph correctly but left its generated board stale; regenerating the board from the combined graph. All three nodes remain done; no source content changes. Next: finish the lesson templates before content revision and final break review. Main and production were not touched.
+- 2026-10-05 (Codex): Closed through bun run work done R2: spacing contract and verify:fast passed (12 smoke) with CI=1; full verify passed 144/144 and targeted spacing passed 10 repetitions. Board-only investigation; current runtime left unchanged. Next: publish codex/r2-top-bar-spacing as a draft PR into feature/redesign-p5-lesson-path for Chris's review. S3.J must check the replacement Learning Path screen's own top spacing; historical 62px gap was reproduced in the old screen, not shared frame/layout. No other node changed.
+- 2026-10-05 (Codex): Done; acceptance passed (bunx playwright test tests/contracts/product-contract.spec.js --grep "starts close under the top bar"; bun run verify:fast).
+- 2026-10-05 (Codex): Current integration verified: 10/10 repeated spacing contract runs and full bun run verify with CI=1 (144/144 browser tests; no retries reported; build/BSB/contracts/core passed). Historical failure reproduced twice at 62px on /course in 6f8c2ac; screen-owned learning-path.css causes it, not the frame/layout. Existing integration has removed that unfinished renderer. Next: close via work done, commit this board-only investigation, and present its draft PR for review; S3.J should rerun this contract when introducing the replacement screen.
+- 2026-10-05 (Codex): Historical reproduction confirmed on codex/redesign-lesson-path (6f8c2ac) in an ignored archive snapshot: /course first-text gap is 62px, failing the 48px contract on both initial run and retry. That branch mounts learning-path.js, whose screen CSS adds 28px frame margin-top plus internal padding. Current integration leaves course registry null and removes that unfinished screen; the same contract passes. Frame/layout are not the source, so no CSS change is warranted. Next: repeated current-branch contract check and full verify; hand the historical spacing issue to S3.J when its new screen is implemented.
+- 2026-10-05 (Codex): Claimed from the latest feature/redesign-p5-lesson-path at Chris's request. Scope is public/ui/components/frame.css and public/ui/layout.css. No implementation changed. Next: reproduce the top-bar spacing contract failure on the lesson branch, then fix only the owned frame/layout paths; preserve Claude's lesson work.
+- 2026-10-05 (Codex): Claimed on codex/r2-top-bar-spacing.
 - 2026-10-05 (Claude): Seen on Chris's run of codex/redesign-lesson-path; reproduce on that branch first to confirm whether the lesson screen or the frame causes it.
 
 ### X1 — Codex lesson branch committed and pushed (codex/redesign-lesson-path)
@@ -243,10 +250,23 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.D3 — Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources
 
-- 2026-10-05 (Claude): Claimed on feature/redesign-p5-lesson-path.
+- 2026-10-05 (Claude): Claude claimed S3.D3 locally but did not push the claim, so the shared-board check could not see it; Codex's S3.D3 is the one of record. Claude then changed the divider to break rule v2 (sections divided independently; divideLesson returns a flat list of steps tagged with section), and adapted compile-pathway to group them by section.
+- 2026-10-05 (Codex): Closed through work done: compile:pathway, divider tests, and verify:fast (12 smoke) passed; full verify passed 144/144 with CI=1 and no retries reported. Complete catalog consumer probe passes for all 119 lessons/1042 cards. Source-only change; generated llms.txt is owned by dependent S3.D3a and must accompany this change. New untracked docs/content-revisions files appeared independently and are excluded. Next: commit the source node and regenerate/document its dependent output before draft review.
+- 2026-10-05 (Codex): Done; acceptance passed (bun run compile:pathway; bun scripts/test-lesson-divider.mjs; bun run verify:fast).
+- 2026-10-05 (Codex): Implemented the approved provisional handoff: compile-pathway loads the existing divider context once and adds its complete cards to each authored section in the catalog. Source sections, blocks, anchors, lesson/activity IDs and challenge ordering stay intact; the source files and divider rules are unchanged. Consumer probe was red for missing cards, now passes across 119 lessons and 1042 cards; divider unit tests pass. Next: full verify, node acceptance, commit, then lesson CSS/renderer work. The 637/46 content rule and final break review remain deferred pending recovery/content revision.
+- 2026-10-05 (Codex): Continuing Chris's requested sequence: finish redesign templates before content/glossary revision and final break review. Emit provisional divider output in the catalog for the lesson renderer; preserve authored sections, source files, stable section/activity IDs, and current content. The pasted 637/46 counting changes are not published on the shared branch, so this node will expose current divider output without treating it as locked final pagination. No Claude-owned node changes. Next: verify and commit the claim, then wire the existing divider into compile-pathway.
+- 2026-10-05 (Codex): Claimed on codex/lesson-catalog-cards.
 - 2026-10-05 (Claude): Per redesign.sequence.content-after-templates-2026-10-05: the screen renders live divider output until the content revision is done; S3.G later locks reviewed cards.
 
 ### C4 — Content: rewrite each lesson as one script (one objective, its points in order, details elaborating each) in the content voice and depth, working lesson by lesson from docs/v7/LESSON_SCRIPTS.md; before/after per lesson
 
 - 2026-10-05 (Claude): Governed by content.lesson-shape.v1-2026-10-05 and content.voice.v2-2026-10-05. Regenerate the compiled scripts with bun scripts/lesson-scripts-export.mjs; after rewriting, rerun the divider and its tests and regenerate LESSON_CARDS.md, then the pagination review (S3.E) before S3.F.
+
+### S3.D3a — Regenerate the published catalog documentation for provisional lesson cards
+
+- 2026-10-05 (Codex): Closed through work done: generation and verify:fast (12 smoke) passed with CI=1. Combined catalog source and documentation already passed full verify 144/144, divider unit tests and all 119 lesson/1042 card consumer checks. Only generated llms.txt and this node's handoff are committed here. Next: review the stacked source/output drafts together before merging. Independently created content-revision files are left untouched.
+- 2026-10-05 (Codex): Done; acceptance passed (bun run generate:llms; bun run verify:fast).
+- 2026-10-05 (Codex): Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched.
+- 2026-10-05 (Codex): Claimed on codex/lesson-card-catalog-docs.
+- 2026-10-05 (Codex): S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions.
 

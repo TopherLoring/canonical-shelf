@@ -28,7 +28,13 @@ export function buildReport() {
     order.set(l.id, order.size);
     where.set(l.id, { module: mod.title || mod.id, unit: unitById[unit.unitId]?.title || unit.unitId });
   }
-  const lessons = divideAll().sort((a, b) => (order.get(a.lesson) ?? 1e9) - (order.get(b.lesson) ?? 1e9));
+  // The divider returns each lesson's steps tagged with their section; group them back by section for the report.
+  const groupSteps = l => {
+    const steps = [];
+    for (const c of l.cards) { if (!steps.length || steps.at(-1).id !== c.section) steps.push({ id: c.section, title: c.title, cards: [] }); steps.at(-1).cards.push(c); }
+    return { ...l, steps };
+  };
+  const lessons = divideAll().map(groupSteps).sort((a, b) => (order.get(a.lesson) ?? 1e9) - (order.get(b.lesson) ?? 1e9));
   const cards = lessons.flatMap(l => l.steps.flatMap(s => s.cards.map((c, i) => ({ lesson: l, step: s, card: c, index: i }))));
   // Seam flags computed here, from each card and the one before it in the same step.
   for (const x of cards) {

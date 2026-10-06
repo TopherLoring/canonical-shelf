@@ -73,13 +73,13 @@ const synthetic = {
   meta: { id: 'synthetic' }, checks: [{ title: 'Order', prompt: 'Put them in order.', items: ['One', 'Two', 'Three'] }], reflection: null,
   sections: [{ id: 'rule', title: 'Rule', blocks: [
     { type: 'prose', text: sentence.repeat(4).trim() },   // 80 + 3 x 81 = 323
-    { type: 'prose', text: sentence.repeat(4).trim() },   // + 46 + 80 = 449, + 81 = 530, + 81 = 611, + 81 = 692 > 637
+    { type: 'prose', text: sentence.repeat(4).trim() },   // + 49 + 80 = 452, + 81 = 533, + 81 = 614, + 81 = 695 > 637
     { type: 'check', index: 0 },                           // 49 + 49 x 5 = 294
   ] }],
 };
 const synthetic3 = divideLesson(synthetic, ctx);
 check(synthetic3.length === 2, `the synthetic section splits into 2 steps (got ${synthetic3.length})`);
-check(synthetic3[0].count === 323 + 46 + 80 + 81 + 81, `step 1 counts paragraph 1, 46 for paragraph 2, and the sentences that fit (got ${synthetic3[0].count})`);
+check(synthetic3[0].count === 323 + 49 + 80 + 81 + 81, `step 1 counts paragraph 1, 49 for paragraph 2, and the sentences that fit (got ${synthetic3[0].count})`);
 check(synthetic3[1].count === 80 + 294, `step 2 starts again and adds the check as 49 + 49 x 5 (got ${synthetic3[1].count})`);
 
 if (failures) { console.error(`test-lesson-divider: ${failures} failure(s)`); process.exit(1); }
