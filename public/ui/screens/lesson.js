@@ -67,7 +67,7 @@ function readingMarkup(unit, i, { esc }) {
   const reference = unit.reference || '';
   const contextHref = `/bible?q=${encodeURIComponent(reference)}`;
   if (unit.mode === 'inline') {
-    return renderScriptureBlock({ quote: unit.text, reference, group: groupKeyFor(reference), contextHref, className: 'lesson-reading-inline' });
+    return renderScriptureBlock({ quote: esc(unit.text), reference, group: groupKeyFor(reference), contextHref, className: 'lesson-reading-inline' });
   }
   const preview = unit.text.length > 90 ? `${unit.text.slice(0, 90).replace(/\s\S*$/, '')}…` : unit.text;
   const id = `lesson-reading-${i}`;

@@ -143,27 +143,40 @@ test('lesson navigation: the sections list (rail on desktop, All steps sheet on 
   }
 });
 
-test('authored Lesson 1: sections may span several steps, checks render inline, readable Scripture in light and dark',async({page})=>{
+test('authored lessons: sections may span several steps, checks render inline, Scripture is readable in light and dark (quoted inline and in the popover)',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
-  const list=page.locator('.lesson-rail .lesson-sections li');
-  await expect(list).not.toHaveCount(0);
-  // At least one section spans more than one step (break rule v3 divides a section into several steps).
+  await expect(page.locator('.lesson-rail .lesson-sections li').first()).toBeVisible();
   const perSection=await page.locator('.lesson-rail .lesson-sections li').evaluateAll(items=>items.map(li=>li.querySelectorAll('.lesson-section-dots span').length));
-  expect(Math.max(...perSection)).toBeGreaterThan(1);
-  // Step 13 (begin#read) holds an inline check.
-  await page.goto('/course?unit=c1.christianity&lesson=begin&step=13');
-  const check=page.locator('.lesson-body-text .inline-check');
-  await expect(check).toHaveCount(1);
+  expect(perSection.length).toBeGreaterThan(1);
+  expect(Math.max(...perSection),'at least one section spans several steps').toBeGreaterThan(1);
+
+  // A check renders inline on the step that holds it (begin step 4).
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=4');
+  await expect(page.locator('.lesson-body-text .inline-check')).toHaveCount(1);
+
+  // Contrast of a text element against the first opaque background at or above it.
+  const ratioOf=textSel=>page.evaluate(t=>{
+    const rgba=c=>c.match(/[\d.]+/g).map(Number);
+    const lum=([r,g,bl])=>[r,g,bl].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
+    const el=document.querySelector(t);
+    let bg=el;while(bg&&(rgba(getComputedStyle(bg).backgroundColor)[3]??1)===0)bg=bg.parentElement;
+    const f=lum(rgba(getComputedStyle(el).color)),b=lum(rgba(getComputedStyle(bg||document.body).backgroundColor));
+    return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
+  },textSel);
+
+  // A short reading is quoted on the card (c1-library-groups step 2); a long one opens a popover (begin step 3).
   for(const mode of ['light','dark']){
+    await page.goto('/course?unit=c1.bible&lesson=c1-library-groups&step=2');
     await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
-    const ratio=await page.locator('.lesson-reading-inline').first().evaluate(el=>{
-      const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);
-      const lum=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
-      const f=lum(rgb(getComputedStyle(el.querySelector('p') || el).color)),b=lum(rgb(getComputedStyle(el).backgroundColor));
-      return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
-    });
-    expect(ratio,`Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+    await expect(page.locator('.lesson-reading-inline')).toBeVisible();
+    expect(await ratioOf('.lesson-reading-inline .ui-scripture-block-quote'),`quoted Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
+
+    await page.goto('/course?unit=c1.christianity&lesson=begin&step=3');
+    await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
+    await page.locator('[data-reading-open]').first().click();
+    await expect(page.locator('.lesson-reading-dialog[open]')).toBeVisible();
+    expect(await ratioOf('.lesson-reading-dialog[open] .lesson-reading-text p'),`popover Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
   }
 });
 

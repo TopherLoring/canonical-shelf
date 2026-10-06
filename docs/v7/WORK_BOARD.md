@@ -193,6 +193,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.I — Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test
 
+- 2026-10-06 (Claude): Contract tests that assumed the old scene-based lesson (one step per section, .scene-rail dots, Study Desk) are rewritten for the redesigned lesson screen: sections list with per-step dots, sections spanning several steps, inline checks, Scripture contrast in light and dark for both the quoted block and the popover, objectives never inside the lesson, My Notes separate from the apparatus. tests/redesign/lesson-screen.spec.js covers the step body shapes, 'n of m', the popover and the notes editor. Lesson screen also gained the titlebar Feedback button (study focus hides the masthead) and escapes quoted Scripture. The old render-every-lesson test was never merged here (it lived on Codex's branch), so there is nothing to retire; the build-time divider tests cover every lesson without a browser.
 - 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.
 
 ### S3.J — Step 3: Learning Path page (path, module and unit on one page)
