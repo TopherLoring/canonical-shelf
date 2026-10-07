@@ -38,7 +38,8 @@
     ".src-archived/": "Archived earlier source; reference only, not built",
     ".roa/": "Project records and generated state (project-roa-kit)",
     ".roa-kit/": "Vendored project-roa-kit",
-    "public/ui/screens/learning-path.js": "Catalog-driven Learning Path screen for module, unit, lesson, and checkpoint navigation"
+    "public/ui/screens/learning-path.js": "Learning Path page: modules, unit accordions with lessons and Checkpoints, Capstones, Up next, and progress (no Module or Unit labels shown)",
+    "public/ui/screens/course.js": "Dispatches /course to the lesson screen (?lesson=) or the Learning Path page"
   },
   "invariants": [
     "Protestant 66-book canon; Berean Standard Bible is the default text",

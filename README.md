@@ -263,7 +263,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `.src-archived/` — Archived earlier source; reference only, not built
 - `.roa/` — Project records and generated state (project-roa-kit)
 - `.roa-kit/` — Vendored project-roa-kit
-- `public/ui/screens/learning-path.js` — Catalog-driven Learning Path screen for module, unit, lesson, and checkpoint navigation
+- `public/ui/screens/learning-path.js` — Learning Path page: modules, unit accordions with lessons and Checkpoints, Capstones, Up next, and progress (no Module or Unit labels shown)
+- `public/ui/screens/course.js` — Dispatches /course to the lesson screen (?lesson=) or the Learning Path page
 
 Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
 <!-- roa:end roa-readme -->
