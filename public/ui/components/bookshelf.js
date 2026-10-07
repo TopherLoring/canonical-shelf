@@ -1,55 +1,55 @@
-// Bookshelf Component (Reading Room design system)
-// Wall shelves displaying canonical books with verse-count widths and group colors.
-
+// Bookshelf Component (Reading Room design system).
 const esc = (s = '') => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 export function renderBookshelfBook({
   name = '',
+  number = '',
+  n = '',
   verses = 1000,
   group = 'law',
   isLean = false,
   href = '#',
+  selectable = false,
+  selected = false,
   className = ''
 } = {}) {
-  // Proportional width based on verse count (e.g. min 14px, max 38px)
-  const widthPx = Math.max(14, Math.min(38, Math.round(12 + (verses / 1500) * 16)));
+  const widthWeight = Math.max(1, Number(verses) || 1);
+  const bookNumber = Number(number || n);
   const leanClass = isLean ? 'is-lean' : '';
-
-  return `
-  <a href="${esc(href)}"
-    class="ui-bookshelf-book ${leanClass} ${esc(className)}"
-    data-group="${esc(group)}"
-    style="width: ${widthPx}px;"
-    title="${esc(name)} (${verses} verses)"
-    aria-label="${esc(name)}">
-  </a>`;
+  const shared = 'class="ui-bookshelf-book ' + leanClass + ' ' + esc(className) +
+    '" data-group="' + esc(group) + '" data-book-name="' + esc(name) +
+    '" style="--book-weight:' + widthWeight + '"';
+  const label = 'title="' + esc(name) + '" aria-label="' +
+    (selectable ? 'Select ' + esc(name) : esc(name)) + '"';
+  if (selectable) {
+    return '<button type="button" ' + shared + ' data-book-select="' + bookNumber +
+      '" aria-pressed="' + Boolean(selected) + '" ' + label +
+      '><span class="ui-bookshelf-book__name" aria-hidden="true">' + esc(name) + '</span></button>';
+  }
+  return '<a href="' + esc(href) + '" ' + shared + ' ' + label +
+    '><span class="ui-bookshelf-book__name" aria-hidden="true">' + esc(name) + '</span></a>';
 }
 
 export function renderBookshelfRow({
   title = '',
   countText = '',
-  books = [], // Array of { name, verses, group, isLean, href }
+  books = [],
+  fill = 100,
   className = ''
 } = {}) {
-  const booksHtml = books.map(b => renderBookshelfBook(b)).join('');
-
-  return `
-  <div class="ui-bookshelf-row ${esc(className)}">
-    <div class="ui-bookshelf-row-header">
-      <h3 class="ui-bookshelf-row-title">${esc(title)}</h3>
-      ${countText ? `<span class="ui-bookshelf-row-count">${esc(countText)}</span>` : ''}
-    </div>
-    <div class="ui-bookshelf-shelf">
-      ${booksHtml}
-    </div>
-  </div>`;
+  const booksHtml = books.map(book => renderBookshelfBook(book)).join('');
+  const fillWidth = Math.max(1, Math.min(100, Number(fill) || 100)) + '%';
+  const rowName = title || 'Books';
+  return '<section class="ui-bookshelf-row ' + esc(className) + '" aria-label="' + esc(rowName) + '">' +
+    '<div class="ui-bookshelf-row-header"><h2 class="ui-bookshelf-row-title">' + esc(title) + '</h2>' +
+    (countText ? '<span class="ui-bookshelf-row-count">' + esc(countText) + '</span>' : '') + '</div>' +
+    '<div class="ui-bookshelf-shelf" role="group" aria-label="' + esc(rowName) + ' books">' +
+    '<div class="ui-bookshelf-book-run" style="--books-fill:' + fillWidth + '">' +
+    '<span class="ui-bookshelf-bookend" aria-hidden="true"></span>' + booksHtml +
+    '<span class="ui-bookshelf-bookend" aria-hidden="true"></span></div></div></section>';
 }
 
-export function renderBookshelf({
-  rows = [], // Array of { title, countText, books }
-  className = ''
-} = {}) {
-  const rowsHtml = rows.map(r => renderBookshelfRow(r)).join('');
-  return `<div class="ui-bookshelf ${esc(className)}">${rowsHtml}</div>`;
+export function renderBookshelf({ rows = [], className = '' } = {}) {
+  return '<div class="ui-bookshelf ' + esc(className) + '">' +
+    rows.map(row => renderBookshelfRow(row)).join('') + '</div>';
 }
-

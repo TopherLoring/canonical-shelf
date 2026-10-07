@@ -759,7 +759,7 @@
     {
       "id": "S4",
       "title": "Step 4: Shelf home (bookshelf, two-line title, selected-book panel)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -779,6 +779,21 @@
           "date": "2026-10-07",
           "by": "Codex-S4",
           "text": "Claimed on codex/s4-shelf-home."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Implemented the Shelf home screen and proportional Bookshelf component; build, contract, BSB, service-worker, ROA, verify:fast and full verify passed (149/149). S5d owns registry activation; S4 stays claimed pending review. No push or PR."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Full verify passed (149/149) after verify:fast; S5d separately owns registry activation. S4 implementation is ready for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ]
     },
