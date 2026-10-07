@@ -28,7 +28,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S6` | claimed | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -73,6 +72,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
+| `S6` | done | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -208,6 +208,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 
+- 2026-10-07 (Codex-S6): Done; acceptance passed (bun run test:theologian; bun run verify:fast).
 - 2026-10-07 (Codex-S6): Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes.
 - 2026-10-07 (Codex-S6): Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification.
 - 2026-10-07 (Codex-S6): Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass.

@@ -821,7 +821,7 @@
     {
       "id": "S6",
       "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S3.H"
       ],
@@ -856,6 +856,11 @@
           "date": "2026-10-07",
           "by": "Codex-S6",
           "text": "Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Done; acceptance passed (bun run test:theologian; bun run verify:fast)."
         }
       ]
     },
