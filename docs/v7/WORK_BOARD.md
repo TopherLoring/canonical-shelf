@@ -210,6 +210,26 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-05 (unknown): Checkpoint is named plain 'Checkpoint' with the unit title (ui.naming.checkpoint-bare-2026-10-05). Open question for Chris: one Checkpoint per unit or per lesson.
 - 2026-10-05 (unknown): Per ui.naming.hide-module-unit-labels-2026-10-05: do not show the words Module or Unit to learners (titles only); Lesson and Step stay; keep 'Unit N Checkpoint'. Check tests/redesign/vocabulary-guard.spec.js for terms to adjust.
 
+### S4 — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
+
+- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+
+### S5a — Step 5: Study Topics
+
+- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+
+### S5b — Step 5: Review & Practice
+
+- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+
+### S5c — Step 5: Profile
+
+- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+
+### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
+
+- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+
 ### RD — Chris approves the redesign
 
 - 2026-10-05 (Claude): Chris approves the redesign after the content track (glossary and lesson revision) and locked card breaks are in place.

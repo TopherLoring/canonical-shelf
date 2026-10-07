@@ -800,6 +800,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+        }
       ]
     },
     {
@@ -815,6 +822,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+        }
       ]
     },
     {
@@ -830,6 +844,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+        }
       ]
     },
     {
@@ -845,6 +866,13 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+        }
       ]
     },
     {
@@ -862,6 +890,13 @@
       "accept": [
         "bun run test:theologian",
         "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+        }
       ]
     },
     {
