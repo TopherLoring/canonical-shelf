@@ -1,6 +1,6 @@
 {
   "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "rules": [
     "Read the board, the node you will work on, and the decisions it cites before editing anything.",
     "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
@@ -1440,7 +1440,7 @@
     {
       "id": "M1",
       "title": "ROA manifest: map the lesson screen and new lesson build scripts for PR 60",
-      "state": "claimed",
+      "state": "done",
       "deps": [],
       "owns": [
         ".roa/manifest.json",
@@ -1473,6 +1473,16 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Added the exact Learning Path screen mapping after S3.J’s base-aware ROA check exposed it; generated state and README are synced. Next run the node acceptance and close M1."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Done; acceptance passed (node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader; bun run verify:fast)."
         }
       ],
       "owner": "Codex",

@@ -1,6 +1,6 @@
 # Work board
 
-Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-06.
+Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-07.
 
 ## Rules every agent follows
 
@@ -29,7 +29,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `M1` | claimed | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -49,6 +48,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
+| `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
 | `R2` | done | Codex | `codex/r2-top-bar-spacing` | `S2` | Every page starts close under the top bar: contract test fails on the lesson branch |
 | `R3` | done | Claude | `feature/redesign-p5-lesson-path` | `S2` | Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need |
@@ -301,6 +301,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### M1 — ROA manifest: map the lesson screen and new lesson build scripts for PR 60
 
+- 2026-10-07 (Codex): Done; acceptance passed (node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader; bun run verify:fast).
+- 2026-10-07 (Codex): Added the exact Learning Path screen mapping after S3.J’s base-aware ROA check exposed it; generated state and README are synced. Next run the node acceptance and close M1.
 - 2026-10-06 (Codex): Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node.
 - 2026-10-06 (Codex): Claimed on codex/roa-manifest-repair.
 - 2026-10-06 (Codex): PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite.
