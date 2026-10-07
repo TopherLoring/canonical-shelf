@@ -17,11 +17,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **S4** — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
-- **S5a** — Step 5: Study Topics
-- **S5b** — Step 5: Review & Practice
-- **S5c** — Step 5: Profile
-- **S6** — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
+- **S7** — Step 7: remove legacy stylesheets and render paths; close the guards
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 
 ## All nodes
@@ -38,12 +34,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S4` | ready |  |  | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
-| `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
-| `S5b` | ready |  |  | `S2` | Step 5: Review & Practice |
-| `S5c` | ready |  |  | `S2` | Step 5: Profile |
-| `S6` | ready |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
-| `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | ready |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
@@ -73,6 +64,11 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
+| `S4` | done | Codex | `codex/s4-shelf-home` | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
+| `S5a` | done | Codex-S5a | `codex/s5a-study-topics` | `S2` | Step 5: Study Topics |
+| `S5b` | done | Codex-S5b | `codex/s5b-review-practice` | `S2` | Step 5: Review & Practice |
+| `S5c` | done | Codex-S5c | `codex/s5c-profile` | `S2` | Step 5: Profile |
+| `S6` | done | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -212,23 +208,52 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S4 — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 
-- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+- 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
+- 2026-10-07 (Codex): Imported existing done record from codex/s4-shelf-home at 5226ada; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
+- 2026-10-07 (Codex): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex): Reopened after independent review found saved-chapter, My Notes card, and bookshelf support placement issues; fix within existing S4-owned paths, then repeat serialized full verification.
+- 2026-10-07 (Codex-S4): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex-S4): Full verify passed (149/149) after verify:fast; S5d separately owns registry activation. S4 implementation is ready for review.
+- 2026-10-07 (Codex-S4): Implemented the Shelf home screen and proportional Bookshelf component; build, contract, BSB, service-worker, ROA, verify:fast and full verify passed (149/149). S5d owns registry activation; S4 stays claimed pending review. No push or PR.
+- 2026-10-07 (Codex-S4): Claimed on codex/s4-shelf-home.
 
 ### S5a — Step 5: Study Topics
 
-- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+- 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
+- 2026-10-07 (Codex): Imported existing done record from codex/s5a-study-topics at 87219ea; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
+- 2026-10-07 (Codex-S5a): Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d.
+- 2026-10-07 (Codex-S5a): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex-S5a): CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes.
+- 2026-10-07 (Codex-S5a): Built the Study Topics browse, search, selected-topic detail, glossary, Scripture references, Learning Path links, and topic-anchored notes in topics.js/topics.css. Targeted JS bundle and diff checks pass; next run verify:fast, then Chris runs full verify on laptop before S5a closes.
+- 2026-10-07 (Codex-S5a): Claimed on codex/s5a-study-topics.
 
 ### S5b — Step 5: Review & Practice
 
-- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+- 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
+- 2026-10-07 (Codex): Imported existing done record from codex/s5b-review-practice at 82cf8f1; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
+- 2026-10-07 (Codex-S5b): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex-S5b): Self-contained Review & Practice overview is implemented in the owned practice.js/practice.css files: due-review entry, optional game tiles, future-game list, and personal progress summary; module build and CI=1 verify:fast passed (13/13 smoke). Activation remains deferred to separate S5d because the practice screen registry path is outside S5b ownership. Keep this node claimed and pending Chris's full verification on laptop; do not mark done yet.
+- 2026-10-07 (Codex-S5b): Claimed on codex/s5b-review-practice.
 
 ### S5c — Step 5: Profile
 
-- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+- 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
+- 2026-10-07 (Codex): Imported existing done record from codex/s5c-profile at 8b763b6; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
+- 2026-10-07 (Codex-S5c): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex-S5c): Accessibility fix: Light/Dark/System radio group now has roving tabindex, wrapping arrow-key selection, and Home/End support. Static checks passed; post-fix CI=1 verify:fast and full CI=1 bun run verify passed (149/149, 2 workers). Focused keyboard browser regression test remains a separate test-path node/S5d scope.
+- 2026-10-07 (Codex-S5c): Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review.
+- 2026-10-07 (Codex-S5c): Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run.
+- 2026-10-07 (Codex-S5c): Claimed on codex/s5c-profile.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 
-- 2026-10-07 (Claude): Chris recorded "Approved the completed S4, S5a, S5b, S5c and S6 implementations" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude.
+- 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
+- 2026-10-07 (Codex): Imported existing done record from codex/s6-theologian at f63cf9c; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
+- 2026-10-07 (Codex-S6): Done; acceptance passed (bun run test:theologian; bun run verify:fast).
+- 2026-10-07 (Codex-S6): Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes.
+- 2026-10-07 (Codex-S6): Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification.
+- 2026-10-07 (Codex-S6): Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass.
+- 2026-10-07 (Codex-S6): Claimed on codex/s6-theologian.
 
 ### RD — Chris approves the redesign
 

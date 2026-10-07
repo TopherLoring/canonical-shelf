@@ -788,7 +788,7 @@
     {
       "id": "S4",
       "title": "Step 4: Shelf home (bookshelf, two-line title, selected-book panel)",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -801,18 +801,55 @@
       "accept": [
         "bun run verify:fast"
       ],
+      "owner": "Codex",
+      "branch": "codex/s4-shelf-home",
       "notes": [
         {
           "date": "2026-10-07",
-          "by": "Claude",
-          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+          "by": "Codex-S4",
+          "text": "Claimed on codex/s4-shelf-home."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Implemented the Shelf home screen and proportional Bookshelf component; build, contract, BSB, service-worker, ROA, verify:fast and full verify passed (149/149). S5d owns registry activation; S4 stays claimed pending review. No push or PR."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Full verify passed (149/149) after verify:fast; S5d separately owns registry activation. S4 implementation is ready for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Reopened after independent review found saved-chapter, My Notes card, and bookshelf support placement issues; fix within existing S4-owned paths, then repeat serialized full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s4-shelf-home at 5226ada; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
         }
       ]
     },
     {
       "id": "S5a",
       "title": "Step 5: Study Topics",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -823,18 +860,50 @@
       "accept": [
         "bun run verify:fast"
       ],
+      "owner": "Codex-S5a",
+      "branch": "codex/s5a-study-topics",
       "notes": [
         {
           "date": "2026-10-07",
-          "by": "Claude",
-          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+          "by": "Codex-S5a",
+          "text": "Claimed on codex/s5a-study-topics."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Built the Study Topics browse, search, selected-topic detail, glossary, Scripture references, Learning Path links, and topic-anchored notes in topics.js/topics.css. Targeted JS bundle and diff checks pass; next run verify:fast, then Chris runs full verify on laptop before S5a closes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5a-study-topics at 87219ea; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
         }
       ]
     },
     {
       "id": "S5b",
       "title": "Step 5: Review & Practice",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -845,18 +914,40 @@
       "accept": [
         "bun run verify:fast"
       ],
+      "owner": "Codex-S5b",
+      "branch": "codex/s5b-review-practice",
       "notes": [
         {
           "date": "2026-10-07",
-          "by": "Claude",
-          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+          "by": "Codex-S5b",
+          "text": "Claimed on codex/s5b-review-practice."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Self-contained Review & Practice overview is implemented in the owned practice.js/practice.css files: due-review entry, optional game tiles, future-game list, and personal progress summary; module build and CI=1 verify:fast passed (13/13 smoke). Activation remains deferred to separate S5d because the practice screen registry path is outside S5b ownership. Keep this node claimed and pending Chris's full verification on laptop; do not mark done yet."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5b-review-practice at 82cf8f1; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
         }
       ]
     },
     {
       "id": "S5c",
       "title": "Step 5: Profile",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -867,18 +958,50 @@
       "accept": [
         "bun run verify:fast"
       ],
+      "owner": "Codex-S5c",
+      "branch": "codex/s5c-profile",
       "notes": [
         {
           "date": "2026-10-07",
-          "by": "Claude",
-          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+          "by": "Codex-S5c",
+          "text": "Claimed on codex/s5c-profile."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Accessibility fix: Light/Dark/System radio group now has roving tabindex, wrapping arrow-key selection, and Home/End support. Static checks passed; post-fix CI=1 verify:fast and full CI=1 bun run verify passed (149/149, 2 workers). Focused keyboard browser regression test remains a separate test-path node/S5d scope."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5c-profile at 8b763b6; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
         }
       ]
     },
     {
       "id": "S6",
       "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
-      "state": "todo",
+      "state": "done",
       "deps": [
         "S3.H"
       ],
@@ -891,11 +1014,43 @@
         "bun run test:theologian",
         "bun run verify:fast"
       ],
+      "owner": "Codex-S6",
+      "branch": "codex/s6-theologian",
       "notes": [
         {
           "date": "2026-10-07",
-          "by": "Claude",
-          "text": "Chris recorded \"Approved the completed S4, S5a, S5b, S5c and S6 implementations\" (approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp, 2026-10-07). That implementation code is NOT on GitHub or in this repository (public/ui/screens has only reader, lesson, learning-path, course and registry; the registry still maps home, topics, practice and profile to null). The node stays open until the work lands on a pushed branch and its acceptance commands pass; nothing here was reviewed by Claude."
+          "by": "Codex-S6",
+          "text": "Claimed on codex/s6-theologian."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Done; acceptance passed (bun run test:theologian; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s6-theologian at f63cf9c; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
         }
       ]
     },
