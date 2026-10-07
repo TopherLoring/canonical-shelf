@@ -79,7 +79,10 @@ export function mount(container, ctx) {
       <section id="privacy" class="profile-screen__section profile-screen__section--privacy" aria-labelledby="profile-privacy-title">
         <header class="profile-screen__section-head"><p class="eyebrow">06 · Your data</p><h2 id="profile-privacy-title">Data &amp; privacy</h2><p>Review what is stored and manage the copy saved in this browser.</p></header>
         <div class="profile-screen__section-body">
-          <a class="profile-screen__backup" href="/practice#backup"><span><strong>Back up or restore progress</strong><small>Export a copy or restore one on this device.</small></span><span aria-hidden="true">↗</span></a>
+          <div class="profile-screen__backup" id="backup" role="group" aria-labelledby="profile-backup-title">
+            <span><strong id="profile-backup-title">Back up or restore progress</strong><small>Export a copy of your progress, or restore one on this device.</small></span>
+            <span class="profile-screen__backup-actions"><button class="button" type="button" id="export">Export</button><button class="button" type="button" id="import">Restore…</button></span>
+          </div>
           <button type="button" class="profile-screen__privacy-action" data-feedback-forget>Forget this browser’s anonymous feedback link</button>
           <p class="profile-screen__legal-links"><a href="/privacy.html">Privacy</a><a href="/data-retention.html">Data retention</a><a href="/storage.html">What is stored</a></p>
           <p class="section-note">Account deletion is available in Your account above.</p>

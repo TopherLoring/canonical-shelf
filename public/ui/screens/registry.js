@@ -41,7 +41,7 @@ export const SCREENS = Object.freeze({
   topics: () => import('./topics.js'),
 
   // Step 5 (phase 7): Review & Practice
-  practice: null,
+  practice: () => import('./practice.js'),
 
   // Step 5 (phase 7): Profile (S5c)
   profile: () => import('./profile.js')

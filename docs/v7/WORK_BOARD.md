@@ -231,6 +231,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5b — Step 5: Review & Practice
 
+- 2026-10-07 (Codex-S5b): Integrated: registry.practice wired (owns plain /practice only; ?mode=, ?arcade=, ?play= still render through practice-experience.js, so S7 cannot delete that file). Shared progress-bar no longer emits style= (CSP logged an error on every bar): width comes from data-fill via mountProgressBars, now also called by the lab. Rail top padding and screen padding for the R2 page-top rule. Found: /practice#backup never existed and no Export/Restore UI existed anywhere (handlers on #export/#import are in app.js); Profile now has the real buttons. tests/redesign/practice.spec.js (5) + Profile backup test. Flaky candidate: reader.spec 'Notes and Theologian share tab sizing' failed once under load in a 175-test serial run, passes alone (hit-test while the chat panel animates).
 - 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
 - 2026-10-07 (Codex): Imported existing done record from codex/s5b-review-practice at 82cf8f1; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
 - 2026-10-07 (Codex-S5b): Done; acceptance passed (bun run verify:fast).

@@ -56,6 +56,14 @@ test.describe('Profile', () => {
     await expect(page.locator('html')).toHaveAttribute('data-mode', 'dark');
   });
 
+  test('Back up or restore: Export downloads the progress file and Restore opens a file chooser', async ({ page }) => {
+    await page.goto('/profile#privacy');
+    const [download] = await Promise.all([page.waitForEvent('download'), page.locator('#backup #export').click()]);
+    expect(download.suggestedFilename()).toBe('canonical-shelf-progress.json');
+    const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.locator('#backup #import').click()]);
+    expect(chooser.isMultiple()).toBe(false);
+  });
+
   test('phone: no horizontal scroll, sections stack', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/profile');

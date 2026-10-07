@@ -22,7 +22,7 @@ export function renderProgressBar({
     aria-valuemin="0"
     aria-valuemax="${safeMax}"
     aria-label="${esc(ariaLabel)}">
-    <div class="ui-progress-bar-fill" style="width: ${percent}%;"></div>
+    <div class="ui-progress-bar-fill" data-fill="${percent}"></div>
   </div>`;
 }
 
