@@ -1451,7 +1451,8 @@
         "docs/DECISIONS.md",
         "SECURITY.md",
         ".gitattributes",
-        "tests/contracts/roa/"
+        "tests/contracts/roa/",
+        "README.md"
       ],
       "accept": [
         "node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader",
@@ -1467,6 +1468,11 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Claimed on codex/roa-manifest-repair."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node."
         }
       ],
       "owner": "Codex",
