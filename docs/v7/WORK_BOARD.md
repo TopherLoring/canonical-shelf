@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5c — Step 5: Profile
 
+- 2026-10-07 (Codex-S5c): Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review.
+- 2026-10-07 (Codex-S5c): Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run.
 - 2026-10-07 (Codex-S5c): Claimed on codex/s5c-profile.
 
 ### RD — Chris approves the redesign

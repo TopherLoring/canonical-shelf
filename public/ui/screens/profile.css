@@ -1,6 +1,139 @@
 @layer tokens, base, layout, components, screens, overrides;
 
-/* Profile (Step 5, phase 7). Arrangement only: grids, columns, spacing and positioning of shared components.
-   No colors, fonts or radii here; those come from theme roles and the components. */
+/* Profile layout only. Theme roles supply color, typography, borders, radii and shadows. */
 @layer screens {
+  main#main:has(> .profile-screen) {
+    padding-block: 0 var(--space-7);
+  }
+
+  .profile-screen {
+    width: min(100%, 1180px);
+    margin-inline: auto;
+    padding: var(--space-6) clamp(var(--space-4), 4vw, var(--space-7));
+  }
+
+  .profile-screen__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 300px);
+    align-items: end;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .profile-screen__title { max-width: 68ch; }
+  .profile-screen__title h1 { margin: var(--space-1) 0 var(--space-2); }
+  .profile-screen__title .lede { max-width: 62ch; }
+
+  .profile-screen__nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-3);
+    border: var(--border-weight) var(--border-style) var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .profile-screen__nav a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-width: 0;
+    padding: var(--space-1) 0;
+    color: var(--color-text);
+    font-size: var(--type-small);
+    text-decoration: none;
+  }
+
+  .profile-screen__nav a:hover { color: var(--color-action); text-decoration: underline; }
+  .profile-screen__nav a span { color: var(--color-text-muted); font-family: var(--font-label); font-size: var(--type-caption); }
+
+  .profile-screen__sections { display: grid; gap: var(--space-4); }
+
+  .profile-screen__section {
+    display: grid;
+    grid-template-columns: minmax(190px, .72fr) minmax(0, 1.55fr);
+    gap: var(--space-6);
+    padding: clamp(var(--space-4), 3vw, var(--space-6));
+    border: var(--border-weight) var(--border-style) var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    scroll-margin-top: calc(var(--space-6) + 68px);
+  }
+
+  .profile-screen__section-head h2 { margin: var(--space-1) 0 var(--space-2); }
+  .profile-screen__section-head > p:last-child { color: var(--color-text-secondary); font-size: var(--type-small); }
+  .profile-screen__section-body { min-width: 0; }
+  .profile-screen__section-body > :first-child { margin-top: 0; }
+  .profile-screen__section-body > :last-child { margin-bottom: 0; }
+
+  .profile-screen__mode { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .profile-screen__mode h3 { font-size: var(--type-body); }
+  .profile-screen__section .mode-toggle-group {
+    display: inline-grid;
+    grid-template-columns: repeat(3, max-content);
+    gap: var(--space-1);
+    max-width: 100%;
+    padding: var(--space-1);
+    border: var(--border-weight) var(--border-style) var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-sunken);
+  }
+  .profile-screen__section .mode-toggle-btn {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-chip);
+    color: var(--color-text);
+    font-size: var(--type-small);
+    font-weight: 600;
+  }
+  .profile-screen__section .mode-toggle-btn.is-selected { background: var(--color-action); color: var(--color-on-action); }
+  .profile-screen__section .mode-toggle-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+  .profile-screen__themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+
+  .profile-screen__field { display: grid; gap: var(--space-2); max-width: 420px; font-weight: 600; }
+  .profile-screen__field select { width: 100%; min-height: 44px; padding: var(--space-2) var(--space-3); }
+
+  .profile-screen__backup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-weight) var(--border-style) var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-raised);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .profile-screen__backup > span:first-child { display: grid; gap: var(--space-1); }
+  .profile-screen__backup small { color: var(--color-text-secondary); }
+  .profile-screen__backup:hover { border-color: var(--color-action); }
+
+  .profile-screen__privacy-action {
+    margin-top: var(--space-3);
+    padding: var(--space-2) 0;
+    color: var(--color-action);
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .profile-screen__legal-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); }
+  .profile-screen__section .section-note { margin-top: var(--space-3); color: var(--color-text-secondary); font-size: var(--type-small); }
+
+  @media (max-width: 760px) {
+    .profile-screen__intro { grid-template-columns: 1fr; align-items: stretch; gap: var(--space-4); }
+    .profile-screen__nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .profile-screen__section { grid-template-columns: 1fr; gap: var(--space-4); }
+  }
+
+  @media (max-width: 520px) {
+    .profile-screen { padding-inline: var(--space-3); }
+    .profile-screen__nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .profile-screen__themes { grid-template-columns: 1fr; }
+    .profile-screen__section .mode-toggle-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+    .profile-screen__section .mode-toggle-btn { padding-inline: var(--space-2); }
+  }
 }
