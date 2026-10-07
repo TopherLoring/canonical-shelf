@@ -10,6 +10,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: the left rail for moving between modes and the right panel for context, so a learner can move around without going back and forth. The older mode pages currently have no rail, oversized headings, uneven font sizes and large unused space; they are rebuilt into the three-pane layout after Chris has played with them live.
 - No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). The site title (masthead wordmark and the Home page title) is the only exception.
 - Accounts: sign-in gate before starting a course or taking notes (Sign in, Create account, Continue as guest; guest keeps progress and notes on the device only). Sign-in methods: Google, email, phone. Name or username required; email and/or phone plus password for login and security only (reminders and feedback replies possible later). Phone is a unique identifier with a password, no SMS or 2FA. Apple skipped for now. Everything editable on Profile after the creation flow, which is a popover card. Ships after RD on its own branch.
+- Accounts gate also covers feedback: the Sign in / Create account / Continue as guest choice appears before a lesson, My notes, or feedback. Passkey is an offered sign-in and create method alongside Google, email and phone.
 
 ## 2026-10-05
 

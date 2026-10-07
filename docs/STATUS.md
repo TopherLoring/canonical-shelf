@@ -47,7 +47,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | Topic | Current | Kind | Since |
 |---|---|---|---|
 | `account.sign-in` | Accounts use a passkey plus recovery codes; | Owner decision | undefined |
-| `accounts.signin.gate` | Accounts: | Owner decision | undefined |
+| `accounts.signin.gate` | Accounts gate also covers feedback: | Owner decision | undefined |
 | `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
