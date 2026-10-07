@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 
+- 2026-10-07 (Codex-S6): Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes.
+- 2026-10-07 (Codex-S6): Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification.
 - 2026-10-07 (Codex-S6): Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass.
 - 2026-10-07 (Codex-S6): Claimed on codex/s6-theologian.
 

@@ -846,6 +846,16 @@
           "date": "2026-10-07",
           "by": "Codex-S6",
           "text": "Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes."
         }
       ]
     },

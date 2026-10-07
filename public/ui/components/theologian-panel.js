@@ -7,7 +7,7 @@ function installStylesheet() {
   link.rel = 'stylesheet';
   link.href = href;
   link.dataset.component = 'theologian-panel';
-  document.head.append(link);
+  document.body.prepend(link);
 }
 
 function focusableWithin(panel) {

@@ -75,7 +75,6 @@
   z-index: var(--layer-dim-overlay);
   background: var(--color-dim-overlay);
 }
-#guide-open[aria-expanded="true"] { display: none; }
 html[data-theologian-modal="true"] { overflow: hidden; }
 
 @media (max-width: 640px) {
