@@ -40,6 +40,7 @@
     ".roa-kit/": "Vendored project-roa-kit",
     "public/ui/screens/learning-path.js": "Learning Path page: modules, unit accordions with lessons and Checkpoints, Capstones, Up next, and progress (no Module or Unit labels shown)",
     "public/ui/screens/course.js": "Dispatches /course to the lesson screen (?lesson=) or the Learning Path page",
+    "public/ui/screens/profile.js": "Profile: full screen with account, progress, My Notes, appearance (light/dark and themes), reading, and data & privacy",
     "public/ui/screens/shelf-home.js": "Shelf home: two shelves of 66 books sized by length, group legend, selected-book panel, Continue and My Notes cards"
   },
   "invariants": [

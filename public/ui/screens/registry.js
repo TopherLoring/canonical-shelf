@@ -43,6 +43,6 @@ export const SCREENS = Object.freeze({
   // Step 5 (phase 7): Review & Practice
   practice: null,
 
-  // Step 5 (phase 7): Profile
-  profile: null
+  // Step 5 (phase 7): Profile (S5c)
+  profile: () => import('./profile.js')
 });

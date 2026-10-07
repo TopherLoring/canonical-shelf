@@ -210,7 +210,7 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await bar.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
   await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','');
-  for(const id of ['you','progress','notes','appearance','reading','privacy'])await expect(page.locator(`#${id}.profile-section`)).toBeVisible();
+  for(const id of ['you','progress','notes','appearance','reading','privacy'])await expect(page.locator(`#${id}.profile-screen__section`)).toBeVisible();
   await expect(page.locator('#you [data-account-mount]')).not.toContainText('Checking your account');
   const cards=page.locator('#appearance [data-theme-option]');
   const target=await cards.nth(2).getAttribute('data-theme-option');
@@ -227,7 +227,7 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await page.goto('/profile#appearance');
   await expect(page.locator('#appearance')).toBeInViewport();
   // section links scroll to the section instead of re-rendering the page
-  await page.locator('.profile-sections a[href="#privacy"]').click();
+  await page.locator('.profile-screen__nav a[href="#privacy"]').click();
   await expect(page).toHaveURL(/\/profile#privacy$/);
   await expect(page.locator('#privacy')).toBeInViewport();
   // theme cards: name and description do not overlap and stay readable in dark mode

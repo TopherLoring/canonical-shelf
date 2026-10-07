@@ -238,6 +238,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5c — Step 5: Profile
 
+- 2026-10-07 (Codex-S5c): Integrated into feature/redesign-p5-lesson-path: registry.profile wired; theme-card and mode-toggle styles moved into profile.css (they lived only in legacy canonical-shelf.css, which S7 deletes); theme.js aria-pressed now a real true/false (was an empty attribute); page-top spacing for the R2 rule; contract/reader/font-readiness selectors updated; tests/redesign/profile.spec.js (4). No inline style= in the screen. Chris's full verify: 160/160 at 2 workers.
 - 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
 - 2026-10-07 (Codex): Imported existing done record from codex/s5c-profile at 8b763b6; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
 - 2026-10-07 (Codex-S5c): Done; acceptance passed (bun run verify:fast).
