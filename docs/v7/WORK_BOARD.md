@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5a — Step 5: Study Topics
 
+- 2026-10-07 (Codex-S5a): CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes.
+- 2026-10-07 (Codex-S5a): Built the Study Topics browse, search, selected-topic detail, glossary, Scripture references, Learning Path links, and topic-anchored notes in topics.js/topics.css. Targeted JS bundle and diff checks pass; next run verify:fast, then Chris runs full verify on laptop before S5a closes.
 - 2026-10-07 (Codex-S5a): Claimed on codex/s5a-study-topics.
 
 ### RD — Chris approves the redesign
