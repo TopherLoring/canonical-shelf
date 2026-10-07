@@ -776,7 +776,7 @@
     {
       "id": "S5a",
       "title": "Step 5: Study Topics",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -786,6 +786,15 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "owner": "Codex-S5a",
+      "branch": "codex/s5a-study-topics",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Claimed on codex/s5a-study-topics."
+        }
       ]
     },
     {
