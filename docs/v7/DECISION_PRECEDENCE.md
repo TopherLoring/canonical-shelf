@@ -647,6 +647,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.completed-screens`
+
+- **Approval** · 2026-10-07 · Chris · `approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp` · scope: S4, S5a, S5b, S5c, S6
+  Approved the completed S4, S5a, S5b, S5c and S6 implementations.
+
 ### `redesign.implementation.approach`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `redesign.implementation.approach`
