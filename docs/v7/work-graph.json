@@ -791,7 +791,7 @@
     {
       "id": "S5b",
       "title": "Step 5: Review & Practice",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -801,6 +801,15 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "owner": "Codex-S5b",
+      "branch": "codex/s5b-review-practice",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Claimed on codex/s5b-review-practice."
+        }
       ]
     },
     {
