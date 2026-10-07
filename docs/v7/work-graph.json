@@ -759,7 +759,7 @@
     {
       "id": "S4",
       "title": "Step 4: Shelf home (bookshelf, two-line title, selected-book panel)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -771,6 +771,15 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "owner": "Codex-S4",
+      "branch": "codex/s4-shelf-home",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Claimed on codex/s4-shelf-home."
+        }
       ]
     },
     {
