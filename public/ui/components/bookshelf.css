@@ -84,17 +84,17 @@
     padding: 0 5px;
   }
 
-  .ui-bookshelf-book-run::after {
+  .ui-bookshelf-support {
     position: absolute;
     bottom: -.65rem;
-    right: 8%;
     width: 12px;
     height: 10px;
     border-radius: 0 0 var(--radius-chip) var(--radius-chip);
     background: linear-gradient(90deg, var(--color-shelf-wood-dark), var(--color-shelf-wood));
     box-shadow: 0 3px 5px color-mix(in srgb, var(--color-text) 14%, transparent);
-    content: "";
   }
+
+  .ui-bookshelf-support--right { right: 8%; }
 
   .ui-bookshelf-bookend {
     position: relative;

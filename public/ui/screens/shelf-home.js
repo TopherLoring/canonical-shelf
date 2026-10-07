@@ -1,6 +1,8 @@
 import { LIBRARY_BOOKS, CATEGORIES, ERAS, CATEGORY_ORDER } from '../../library-data.js';
 import { renderBookshelf } from '../components/bookshelf.js';
 import { renderGroupChip } from '../components/group-chip.js';
+import { getState } from '../../db.js';
+import { noteHref } from '../../study-notes.js';
 
 // Counts from the bundled BSB corpus; used to scale book widths to their relative length.
 const VERSE_COUNTS = [1533,1213,859,1288,959,658,618,85,810,695,816,719,942,822,280,406,167,1070,2461,915,222,117,1292,1364,154,1273,357,197,73,146,21,48,105,47,56,53,38,211,55,1068,673,1149,878,1003,432,437,257,149,155,104,95,89,47,113,83,46,25,303,108,105,61,105,13,14,25,404];
@@ -9,14 +11,15 @@ function savedReading() {
   try {
     const state = JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1') || '{}');
     const book = Number(state.lastBook) || 0;
-    return book >= 1 && book <= 66 ? { book, chapter: Math.max(1, Number(state.lastChapter) || 1) } : null;
+    const chapter = Number(state.lastChapter);
+    return book >= 1 && book <= 66 ? { book, chapter: Number.isInteger(chapter) && chapter > 0 ? chapter : null } : null;
   } catch {
     return null;
   }
 }
 
 function bookPanel(book, reading, esc) {
-  const chapter = reading?.book === book.n ? Math.min(reading.chapter, book.ch) : null;
+  const chapter = reading?.book === book.n && reading.chapter > 0 ? Math.min(reading.chapter, book.ch) : null;
   const progress = chapter ? Math.round(chapter / book.ch * 100) : 0;
   const people = (book.people || []).slice(0, 6);
   const category = CATEGORIES[book.cat] || {};
@@ -56,6 +59,41 @@ function continueCard(data, state, activityHref, esc) {
     esc(activityHref(next.id)) + '">Continue</a></section>';
 }
 
+function noteText(note) {
+  return typeof note === 'string' ? note : String(note?.text || '');
+}
+
+function myNotesCard(entries, esc) {
+  const recent = entries.find(([, note]) => noteText(note).trim());
+  if (!recent) {
+    return '<section class="shelf-home-notes" data-home-notes aria-label="My Notes"><div><p class="eyebrow">My Notes</p>' +
+      '<h2>Keep what you notice close.</h2><p>Notes you write in the Bible, a lesson, or a Topic appear here.</p></div>' +
+      '<a href="/profile#notes">Open My Notes</a></section>';
+  }
+  const [key, note] = recent;
+  const text = noteText(note).trim();
+  const label = note.label || key;
+  const isScripture = key.startsWith('scripture:');
+  return '<section class="shelf-home-notes" data-home-notes aria-label="My Notes"><div><p class="eyebrow">My Notes · ' +
+    esc(label) + '</p><p class="shelf-home-notes__excerpt">' + esc(text.slice(0, 220)) +
+    (text.length > 220 ? '…' : '') + '</p></div><a href="' + esc(noteHref(key)) + '">' +
+    (isScripture ? 'Open in the Bible' : 'Open note') + ' →</a></section>';
+}
+
+async function loadMyNotes(container, esc) {
+  const card = container.querySelector('[data-home-notes]');
+  if (!card) return;
+  try {
+    const state = await getState();
+    if (!card.isConnected) return;
+    const entries = Object.entries(state.notes || {}).sort(([, a], [, b]) =>
+      String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
+    card.outerHTML = myNotesCard(entries, esc);
+  } catch {
+    if (card.isConnected) card.outerHTML = '<section class="shelf-home-notes" data-home-notes aria-label="My Notes"><p>My Notes are unavailable right now.</p><a href="/profile#notes">Open My Notes</a></section>';
+  }
+}
+
 export function mount(container, ctx) {
   const { data, state, esc, activityHref } = ctx;
   const reading = savedReading();
@@ -80,7 +118,7 @@ export function mount(container, ctx) {
       renderBookshelf({ rows, className: 'shelf-home-bookshelf' }) + '</section>' +
     '<ul class="shelf-home__legend" aria-label="The nine shelf groups">' +
       CATEGORY_ORDER.map(key => '<li>' + renderGroupChip({ group: key }) + '</li>').join('') + '</ul>' +
-      continueCard(data, state, activityHref, esc) + '</div>' +
+      continueCard(data, state, activityHref, esc) + myNotesCard([], esc) + '</div>' +
     '<aside class="shelf-book-panel" aria-label="Selected book">' +
       bookPanel(LIBRARY_BOOKS[selectedNumber - 1], reading, esc) + '</aside>' +
     '<p class="shelf-home__announcement" aria-live="polite"></p></section>';
@@ -101,5 +139,6 @@ export function mount(container, ctx) {
     if (announcement) announcement.textContent = 'Selected ' + book.name + ', book ' + book.n + ' of 66.';
   };
   container.addEventListener('click', onSelect);
+  loadMyNotes(container, esc);
   return () => container.removeEventListener('click', onSelect);
 }

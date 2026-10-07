@@ -772,7 +772,7 @@
       "accept": [
         "bun run verify:fast"
       ],
-      "owner": "Codex-S4",
+      "owner": "Codex",
       "branch": "codex/s4-shelf-home",
       "notes": [
         {
@@ -793,6 +793,16 @@
         {
           "date": "2026-10-07",
           "by": "Codex-S4",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Reopened after independent review found saved-chapter, My Notes card, and bookshelf support placement issues; fix within existing S4-owned paths, then repeat serialized full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
           "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ]

@@ -68,6 +68,42 @@
     font-size: .72rem;
   }
 
+  .shelf-home-notes {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+  }
+
+  .shelf-home-notes .eyebrow {
+    margin: 0 0 .35rem;
+    color: var(--color-text-muted);
+    font-size: .78rem;
+  }
+
+  .shelf-home-notes h2,
+  .shelf-home-notes__excerpt {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-reading);
+    line-height: 1.45;
+  }
+
+  .shelf-home-notes > a {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    color: var(--color-action);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .shelf-home-notes > a:hover { text-decoration: underline; }
+
   .shelf-home-continue {
     display: flex;
     align-items: center;
@@ -284,6 +320,14 @@
 
     .shelf-book-panel {
       grid-row: 2;
+    }
+
+    .shelf-home-notes {
+      flex-direction: column;
+    }
+
+    .shelf-home-notes > a {
+      align-self: flex-start;
     }
 
     .shelf-home-continue {

@@ -72,7 +72,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
-| `S4` | done | Codex-S4 | `codex/s4-shelf-home` | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
+| `S4` | done | Codex | `codex/s4-shelf-home` | `S2` | Step 4: Shelf home (bookshelf, two-line title, selected-book panel) |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S4 — Step 4: Shelf home (bookshelf, two-line title, selected-book panel)
 
+- 2026-10-07 (Codex): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex): Reopened after independent review found saved-chapter, My Notes card, and bookshelf support placement issues; fix within existing S4-owned paths, then repeat serialized full verification.
 - 2026-10-07 (Codex-S4): Done; acceptance passed (bun run verify:fast).
 - 2026-10-07 (Codex-S4): Full verify passed (149/149) after verify:fast; S5d separately owns registry activation. S4 implementation is ready for review.
 - 2026-10-07 (Codex-S4): Implemented the Shelf home screen and proportional Bookshelf component; build, contract, BSB, service-worker, ROA, verify:fast and full verify passed (149/149). S5d owns registry activation; S4 stays claimed pending review. No push or PR.

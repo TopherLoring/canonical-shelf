@@ -46,7 +46,8 @@ export function renderBookshelfRow({
     '<div class="ui-bookshelf-shelf" role="group" aria-label="' + esc(rowName) + ' books">' +
     '<div class="ui-bookshelf-book-run" style="--books-fill:' + fillWidth + '">' +
     '<span class="ui-bookshelf-bookend" aria-hidden="true"></span>' + booksHtml +
-    '<span class="ui-bookshelf-bookend" aria-hidden="true"></span></div></div></section>';
+    '<span class="ui-bookshelf-bookend" aria-hidden="true"></span></div>' +
+    '<span class="ui-bookshelf-support ui-bookshelf-support--right" aria-hidden="true"></span></div></section>';
 }
 
 export function renderBookshelf({ rows = [], className = '' } = {}) {
