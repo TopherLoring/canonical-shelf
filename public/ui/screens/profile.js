@@ -57,7 +57,7 @@ export function mount(container, ctx) {
           <div class="profile-screen__mode">
             <h3>Light or dark</h3>
             <div class="mode-toggle-group" role="radiogroup" aria-label="Light or dark">
-              ${[['light', 'Light'], ['dark', 'Dark'], ['system', 'Match my device']].map(([id, label]) => `<button class="mode-toggle-btn ${mode === id ? 'is-selected' : ''}" type="button" role="radio" data-mode-choice="${id}" aria-checked="${mode === id}">${label}</button>`).join('')}
+              ${[['light', 'Light'], ['dark', 'Dark'], ['system', 'Match my device']].map(([id, label]) => `<button class="mode-toggle-btn ${mode === id ? 'is-selected' : ''}" type="button" role="radio" data-mode-choice="${id}" aria-checked="${mode === id}" tabindex="${mode === id ? 0 : -1}">${label}</button>`).join('')}
             </div>
           </div>
           <div class="profile-screen__themes" role="group" aria-label="Choose a theme">
@@ -88,8 +88,45 @@ export function mount(container, ctx) {
     </div>
   `;
 
+  const modeButtons = [...root.querySelectorAll('[role="radio"][data-mode-choice]')];
+  const updateModeTabStop = selected => {
+    modeButtons.forEach(button => {
+      const checked = button === selected;
+      button.setAttribute('aria-checked', String(checked));
+      button.tabIndex = checked ? 0 : -1;
+      button.classList.toggle('is-selected', checked);
+    });
+  };
+  const onModeClick = event => {
+    const radio = event.target.closest?.('[role="radio"][data-mode-choice]');
+    if (radio && modeButtons.includes(radio)) updateModeTabStop(radio);
+  };
+  const onModeKeydown = event => {
+    const radio = event.target.closest?.('[role="radio"][data-mode-choice]');
+    const index = modeButtons.indexOf(radio);
+    if (index < 0) return;
+
+    let nextIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % modeButtons.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + modeButtons.length) % modeButtons.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = modeButtons.length - 1;
+    else return;
+
+    event.preventDefault();
+    const next = modeButtons[nextIndex];
+    next.click();
+    next.focus({ preventScroll: true });
+  };
+  root.addEventListener('click', onModeClick);
+  root.addEventListener('keydown', onModeKeydown);
+
   const progress = root.querySelector('[data-profile-progress]');
   if (progress) progress.append(progressPanelView({ data, state, esc }));
   container.replaceChildren(root);
-  return () => root.remove();
+  return () => {
+    root.removeEventListener('click', onModeClick);
+    root.removeEventListener('keydown', onModeKeydown);
+    root.remove();
+  };
 }

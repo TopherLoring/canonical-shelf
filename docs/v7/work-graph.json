@@ -806,7 +806,7 @@
     {
       "id": "S5c",
       "title": "Step 5: Profile",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -834,6 +834,16 @@
           "date": "2026-10-07",
           "by": "Codex-S5c",
           "text": "Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Accessibility fix: Light/Dark/System radio group now has roving tabindex, wrapping arrow-key selection, and Home/End support. Static checks passed; post-fix CI=1 verify:fast and full CI=1 bun run verify passed (149/149, 2 workers). Focused keyboard browser regression test remains a separate test-path node/S5d scope."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Done; acceptance passed (bun run verify:fast)."
         }
       ]
     },

@@ -28,7 +28,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S5c` | claimed | Codex-S5c | `codex/s5c-profile` | `S2` | Step 5: Profile |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -73,6 +72,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
+| `S5c` | done | Codex-S5c | `codex/s5c-profile` | `S2` | Step 5: Profile |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5c — Step 5: Profile
 
+- 2026-10-07 (Codex-S5c): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (Codex-S5c): Accessibility fix: Light/Dark/System radio group now has roving tabindex, wrapping arrow-key selection, and Home/End support. Static checks passed; post-fix CI=1 verify:fast and full CI=1 bun run verify passed (149/149, 2 workers). Focused keyboard browser regression test remains a separate test-path node/S5d scope.
 - 2026-10-07 (Codex-S5c): Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review.
 - 2026-10-07 (Codex-S5c): Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run.
 - 2026-10-07 (Codex-S5c): Claimed on codex/s5c-profile.
