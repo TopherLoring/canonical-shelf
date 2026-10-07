@@ -1623,6 +1623,11 @@
           "date": "2026-10-06",
           "by": "Claude",
           "text": "Done; acceptance passed (bunx playwright test tests/redesign/reader.spec.js --repeat-each=2; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris measured the full verify on his 12-core laptop: it fails at the default 6 workers and passes with $env:CI=1 (2 workers AND one retry). That supports load-sensitivity (not product bugs) but does not separate workers from the retry. playwright.config.js now defaults to 2 workers everywhere (PW_WORKERS overrides) and keeps the retry CI-only; next measurement: plain `bun run verify` (2 workers, no retry), and `CI=1 bun run verify` to list the tests reported \"flaky\"."
         }
       ],
       "owner": "Claude",
