@@ -727,7 +727,7 @@
     {
       "id": "S3.J",
       "title": "Step 3: Learning Path page (path, module and unit on one page)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "X1"
       ],
@@ -775,6 +775,11 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "RECONCILED with Codex's parallel build (codex/s3j-learning-path, 4 files, source only, registry untouched, never wired or browser-tested). Claude's version is the one of record: wired into the registry through ui/screens/course.js (so Codex's separate S3.J2 \"registry activation\" is done for this screen), mockup-faithful (modules rail with lesson counts, Capstones, phone picker), 6 browser specs. Taken from Codex's branch: painting progress-bar widths from script because the CSP ignores inline widths (Claude's page drew every bar full; fixed in the shared component as mountProgressBars), and the isCurrent guard. Not taken: progress counted as \"scored activities\" (the mockup counts lessons), unit scope paragraph. Still open from Codex's notes: a 320px-wide check. Why this happened twice: Claude's claim was committed locally but never reached GitHub, so the shared-board check could not see it. Claims must be pushed before work starts."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/learning-path.spec.js --workers=1; bun run verify:fast)."
         }
       ],
       "owner": "Claude",

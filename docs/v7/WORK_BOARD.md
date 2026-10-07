@@ -28,7 +28,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S3.J` | claimed | Claude | `feature/redesign-p5-lesson-path` | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -69,6 +68,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.E` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.D`, `S3.B7`, `S3.D2` | Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md) |
 | `S3.H` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.C`, `X1`, `S3.D3` | Step 3: lesson screen renders locked parts (adapt Codex's lesson screen) |
 | `S3.I` | done | Claude | `feature/redesign-p5-lesson-path` | `S3.H` | Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test |
+| `S3.J` | done | Claude | `feature/redesign-p5-lesson-path` | `X1` | Step 3: Learning Path page (path, module and unit on one page) |
 | `S3.Q` | done (Chris) |  |  |  | Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose |
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
@@ -202,6 +202,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.J — Step 3: Learning Path page (path, module and unit on one page)
 
+- 2026-10-07 (Claude): Done; acceptance passed (bunx playwright test tests/redesign/learning-path.spec.js --workers=1; bun run verify:fast).
 - 2026-10-07 (Claude): RECONCILED with Codex's parallel build (codex/s3j-learning-path, 4 files, source only, registry untouched, never wired or browser-tested). Claude's version is the one of record: wired into the registry through ui/screens/course.js (so Codex's separate S3.J2 "registry activation" is done for this screen), mockup-faithful (modules rail with lesson counts, Capstones, phone picker), 6 browser specs. Taken from Codex's branch: painting progress-bar widths from script because the CSP ignores inline widths (Claude's page drew every bar full; fixed in the shared component as mountProgressBars), and the isCurrent guard. Not taken: progress counted as "scored activities" (the mockup counts lessons), unit scope paragraph. Still open from Codex's notes: a 320px-wide check. Why this happened twice: Claude's claim was committed locally but never reached GitHub, so the shared-board check could not see it. Claims must be pushed before work starts.
 - 2026-10-07 (Claude): Learning Path page built to the confirmed mockup (docs/v7/mockups-2026-10-03/LearningPath.dc.html): modules rail with 'n of m lessons' and Capstones; the open module with units as accordions (one open at a time, address follows ?unit=); each unit lists numbered lessons with their objectives, its Checkpoint ('Checkpoint · <unit title>', never locked) and any older practice; Up next (first unfinished lesson, then the Checkpoint) and three progress bars (unit, module, path) counted in lessons. The words Module and Unit never appear (ui.naming.hide-module-unit-labels). Phone: one column, Up next first, picker instead of the rail, Progress last. /course now dispatches through ui/screens/course.js: ?lesson= -> lesson screen, ?mastery=, ?glossary= and unit.orientation stay on the old view until their steps. Rail component gained the optional sublabel line it already accepted. Old course/unit contract assertions rewritten for this page. Step counts are not shown on lesson rows (Chris has not decided; the copy rewrite will change them).
 - 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.
