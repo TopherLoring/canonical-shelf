@@ -7,7 +7,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(17rem, 21.25rem);
     gap: clamp(1.25rem, 2vw, 1.75rem);
     min-height: calc(100vh - 9rem);
-    padding: clamp(1rem, 2vw, 2rem);
+    padding: var(--space-1) clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);   /* first text sits within the page-top rule (R2) */
     align-items: start;
   }
 
@@ -93,6 +93,8 @@
     font-family: var(--font-reading);
     line-height: 1.45;
   }
+
+  .shelf-home-notes h2 { font-size: var(--type-h3); }
 
   .shelf-home-notes > a {
     flex: 0 0 auto;

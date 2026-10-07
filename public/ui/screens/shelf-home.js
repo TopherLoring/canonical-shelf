@@ -1,5 +1,5 @@
 import { LIBRARY_BOOKS, CATEGORIES, ERAS, CATEGORY_ORDER } from '../../library-data.js';
-import { renderBookshelf } from '../components/bookshelf.js';
+import { renderBookshelf, mountBookshelf } from '../components/bookshelf.js';
 import { renderGroupChip } from '../components/group-chip.js';
 import { getState } from '../../db.js';
 import { noteHref } from '../../study-notes.js';
@@ -18,6 +18,11 @@ function savedReading() {
   }
 }
 
+// The reading-position bar's width comes from data-progress, applied through the CSSOM (inline styles are blocked by the CSP).
+function paintPanel(panel) {
+  panel?.querySelectorAll('[data-progress]').forEach(bar => { bar.style.width = bar.dataset.progress + '%'; });
+}
+
 function bookPanel(book, reading, esc) {
   const chapter = reading?.book === book.n && reading.chapter > 0 ? Math.min(reading.chapter, book.ch) : null;
   const progress = chapter ? Math.round(chapter / book.ch * 100) : 0;
@@ -34,7 +39,7 @@ function bookPanel(book, reading, esc) {
     '<div class="shelf-book-panel__reading"><span>' + book.ch + ' chapters</span><span>' +
       (chapter ? 'Last opened · chapter ' + chapter : 'Ready to explore') + '</span></div>' +
     (chapter ? '<div class="shelf-book-panel__progress" role="progressbar" aria-label="' + esc(book.name) +
-      ' reading position" aria-valuenow="' + progress + '" aria-valuemin="0" aria-valuemax="100"><span style="width:' + progress + '%"></span></div>' : '') +
+      ' reading position" aria-valuenow="' + progress + '" aria-valuemin="0" aria-valuemax="100"><span data-progress="' + progress + '"></span></div>' : '') +
     '<a class="shelf-book-panel__resume" href="/bible?book=' + book.n + '&chapter=' + openChapter + '">' +
       (chapter ? 'Resume ' + esc(book.name) + ' ' + openChapter : 'Open ' + esc(book.name) + ' in the Bible') + '</a>' +
     '<a class="shelf-book-panel__overview" href="/bible?view=shelf&book=' + book.n + '&profile=1">Book overview</a>' +
@@ -100,6 +105,7 @@ export function mount(container, ctx) {
   let selectedNumber = reading?.book || 1;
   const books = LIBRARY_BOOKS.map(book => ({
     ...book,
+    group: book.cat,   // the shelf colours each book by its group
     verses: VERSE_COUNTS[book.n - 1] || 1,
     isLean: book.n === 66,
     selectable: true,
@@ -123,6 +129,8 @@ export function mount(container, ctx) {
       bookPanel(LIBRARY_BOOKS[selectedNumber - 1], reading, esc) + '</aside>' +
     '<p class="shelf-home__announcement" aria-live="polite"></p></section>';
 
+  mountBookshelf(container);
+  paintPanel(container.querySelector('.shelf-book-panel'));
   const onSelect = event => {
     const button = event.target.closest?.('[data-book-select]');
     if (!button || !container.contains(button)) return;
@@ -134,7 +142,7 @@ export function mount(container, ctx) {
       item.setAttribute('aria-pressed', String(Number(item.dataset.bookSelect) === number));
     });
     const panel = container.querySelector('.shelf-book-panel');
-    if (panel) panel.innerHTML = bookPanel(book, reading, esc);
+    if (panel) { panel.innerHTML = bookPanel(book, reading, esc); paintPanel(panel); }
     const announcement = container.querySelector('.shelf-home__announcement');
     if (announcement) announcement.textContent = 'Selected ' + book.name + ', book ' + book.n + ' of 66.';
   };

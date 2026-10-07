@@ -18,7 +18,7 @@ export function renderBookshelfBook({
   const leanClass = isLean ? 'is-lean' : '';
   const shared = 'class="ui-bookshelf-book ' + leanClass + ' ' + esc(className) +
     '" data-group="' + esc(group) + '" data-book-name="' + esc(name) +
-    '" style="--book-weight:' + widthWeight + '"';
+    '" data-book-weight="' + widthWeight + '"';
   const label = 'title="' + esc(name) + '" aria-label="' +
     (selectable ? 'Select ' + esc(name) : esc(name)) + '"';
   if (selectable) {
@@ -44,7 +44,7 @@ export function renderBookshelfRow({
     '<div class="ui-bookshelf-row-header"><h2 class="ui-bookshelf-row-title">' + esc(title) + '</h2>' +
     (countText ? '<span class="ui-bookshelf-row-count">' + esc(countText) + '</span>' : '') + '</div>' +
     '<div class="ui-bookshelf-shelf" role="group" aria-label="' + esc(rowName) + ' books">' +
-    '<div class="ui-bookshelf-book-run" style="--books-fill:' + fillWidth + '">' +
+    '<div class="ui-bookshelf-book-run" data-books-fill="' + fillWidth + '">' +
     '<span class="ui-bookshelf-bookend" aria-hidden="true"></span>' + booksHtml +
     '<span class="ui-bookshelf-bookend" aria-hidden="true"></span></div>' +
     '<span class="ui-bookshelf-support ui-bookshelf-support--right" aria-hidden="true"></span></div></section>';
@@ -53,4 +53,14 @@ export function renderBookshelfRow({
 export function renderBookshelf({ rows = [], className = '' } = {}) {
   return '<div class="ui-bookshelf ' + esc(className) + '">' +
     rows.map(row => renderBookshelfRow(row)).join('') + '</div>';
+}
+
+/**
+ * Sizes the books. A book's width follows its verse count and a short row can fill part of the shelf, both set as CSS
+ * custom properties. The page's security policy (style-src 'self') blocks inline style attributes, so the markup carries
+ * data attributes and this applies them through the CSSOM, which the policy allows. Call it after rendering a shelf.
+ */
+export function mountBookshelf(root = document) {
+  root.querySelectorAll('[data-book-weight]').forEach(book => book.style.setProperty('--book-weight', book.dataset.bookWeight));
+  root.querySelectorAll('[data-books-fill]').forEach(run => run.style.setProperty('--books-fill', run.dataset.booksFill));
 }

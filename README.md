@@ -265,6 +265,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `.roa-kit/` — Vendored project-roa-kit
 - `public/ui/screens/learning-path.js` — Learning Path page: modules, unit accordions with lessons and Checkpoints, Capstones, Up next, and progress (no Module or Unit labels shown)
 - `public/ui/screens/course.js` — Dispatches /course to the lesson screen (?lesson=) or the Learning Path page
+- `public/ui/screens/shelf-home.js` — Shelf home: two shelves of 66 books sized by length, group legend, selected-book panel, Continue and My Notes cards
 
 Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
 <!-- roa:end roa-readme -->

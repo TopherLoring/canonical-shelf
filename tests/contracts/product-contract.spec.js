@@ -38,7 +38,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/home');
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
-  await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
+  await expect(page.locator('main [data-book-select]')).toHaveCount(66);
   await page.locator('nav.primary a[href="/path"], nav.primary a[href="/course"]').click();
   await expect(page.locator('[data-learning-path]')).toBeVisible();
   await page.locator('.profile-link').click();
@@ -62,7 +62,7 @@ test('one navigation bar: destinations are tabs in the masthead; Home keeps the 
   await page.goto('/home');
   await expect(page.locator('nav:not(.site-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
   await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Learning Path','Bible','Study Topics','Review & Practice']);
-  await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
+  await expect(page.locator('main [data-book-select]')).toHaveCount(66);
 }); 
 
 test('one inline Feedback link on every screen and the Theologian tab everywhere, including lessons',async({page})=>{

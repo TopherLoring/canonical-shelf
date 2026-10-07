@@ -843,6 +843,11 @@
           "date": "2026-10-07",
           "by": "Chris",
           "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "INTEGRATED: codex/s4-shelf-home merged (source only) and wired into the registry (home -> shelf-home.js). Review found three defects that Codex's isolated probe could not see once the screen was live, all fixed: (1) the page security policy (style-src 'self') blocks inline style attributes, so every book was the same width (Psalms = Obadiah = Genesis = 21px) and the New Testament row did not fill 80%; the component now emits data-book-weight / data-books-fill and a new mountBookshelf() applies them through the CSSOM; the reading-position bar uses the same approach (data-progress); (2) the screen passed each book's cat but the component reads group, so all 66 books were the Law colour; (3) the notes card heading was oversized and the top padding broke the page-top rule (R2). Contract tests that counted 66 Bible links on Home now count the 66 shelf books; tests/redesign/shelf-home.spec.js (5 tests) added. 83 of 85 affected specs passed first run; the 2 failures were the padding and a legend assertion, both fixed. Same CSP pitfall applies to any component that renders style= in an HTML string (S5a/S5b/S5c/S6 to be checked)."
         }
       ]
     },

@@ -28,7 +28,7 @@
 
 export const SCREENS = Object.freeze({
   // Step 4 (phase 6): Shelf home
-  home: null,
+  home: () => import('./shelf-home.js'),
 
   // Step 2 (phase 4): Bible reader
   bible: () => import('./reader.js'),
