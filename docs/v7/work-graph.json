@@ -1455,6 +1455,57 @@
           "text": "RETRACTED. The sandbox where this was measured has ONE CPU: a reload takes 1.2 s alone and about 9.8 s with six browsers at once, which exceeds the 7 s expect timeout. Every \"fails under parallel load\" result (legacy notes, highlights) came from that starvation; the service worker only added install work. There is no evidence of a service-worker defect. If it ever shows up on a many-core machine with an idle CPU, reopen with a real reproduction."
         }
       ]
+    },
+    {
+      "id": "M1",
+      "title": "ROA manifest: map the lesson screen and new lesson build scripts for PR 60",
+      "state": "done",
+      "deps": [],
+      "owns": [
+        ".roa/manifest.json",
+        ".roa/state.json",
+        ".roa/guard-baseline.json",
+        "CHANGELOG.md",
+        "docs/STATUS.md",
+        "docs/DECISIONS.md",
+        "SECURITY.md",
+        ".gitattributes",
+        "tests/contracts/roa/",
+        "README.md"
+      ],
+      "accept": [
+        "node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed on codex/roa-manifest-repair."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Added the exact Learning Path screen mapping after S3.J’s base-aware ROA check exposed it; generated state and README are synced. Next run the node acceptance and close M1."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Done; acceptance passed (node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader; bun run verify:fast)."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/roa-manifest-repair"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"

@@ -242,6 +242,15 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 ## Repository map
 
+- `public/ui/screens/lesson.js` — Approved compiled lesson screen with section navigation, Scripture, checks, and notes
+- `scripts/calibrate-lesson-type.mjs` — Calibrates lesson text widths and layout budgets from shipped fonts
+- `scripts/lesson-cards-export.mjs` — Exports authored lesson content and compiled cards for review
+- `scripts/lesson-divider.mjs` — Build-time sentence-safe division of authored lesson sections into cards
+- `scripts/lesson-pagination-report.mjs` — Generates the review report for proposed lesson card breaks
+- `scripts/lesson-scripts-export.mjs` — Exports lessons as continuous scripts for the content revision process
+- `scripts/lib/lesson-parse.mjs` — Shared parser for lesson frontmatter, sections, checks, and reflections
+- `scripts/test-lesson-divider.mjs` — Unit tests for lesson sentence splitting and card division
+- `scripts/work.mjs` — CLI for reading and updating the shared agent work board
 - `public/highlights.js` — Persisted learner highlights, saved and synced with personal study state
 - `public/ui/screens/reader.js` — Redesigned Bible reader: Scripture apparatus, selection, notes, highlights, and study panels
 - `public/ui/legacy.css` — Pre-redesign stylesheets in the legacy cascade layer
@@ -254,6 +263,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `.src-archived/` — Archived earlier source; reference only, not built
 - `.roa/` — Project records and generated state (project-roa-kit)
 - `.roa-kit/` — Vendored project-roa-kit
+- `public/ui/screens/learning-path.js` — Catalog-driven Learning Path screen for module, unit, lesson, and checkpoint navigation
 
 Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
 <!-- roa:end roa-readme -->
