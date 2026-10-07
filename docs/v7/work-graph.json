@@ -821,7 +821,7 @@
     {
       "id": "S6",
       "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S3.H"
       ],
@@ -833,6 +833,15 @@
       "accept": [
         "bun run test:theologian",
         "bun run verify:fast"
+      ],
+      "owner": "Codex-S6",
+      "branch": "codex/s6-theologian",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Claimed on codex/s6-theologian."
+        }
       ]
     },
     {

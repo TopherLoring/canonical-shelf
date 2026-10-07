@@ -22,13 +22,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - **S5a** — Step 5: Study Topics
 - **S5b** — Step 5: Review & Practice
 - **S5c** — Step 5: Profile
-- **S6** — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `S6` | claimed | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -44,7 +44,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
 | `S5b` | ready |  |  | `S2` | Step 5: Review & Practice |
 | `S5c` | ready |  |  | `S2` | Step 5: Profile |
-| `S6` | ready |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
@@ -206,6 +205,10 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-05 (unknown): Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris.
 - 2026-10-05 (unknown): Checkpoint is named plain 'Checkpoint' with the unit title (ui.naming.checkpoint-bare-2026-10-05). Open question for Chris: one Checkpoint per unit or per lesson.
 - 2026-10-05 (unknown): Per ui.naming.hide-module-unit-labels-2026-10-05: do not show the words Module or Unit to learners (titles only); Lesson and Step stay; keep 'Unit N Checkpoint'. Check tests/redesign/vocabulary-guard.spec.js for terms to adjust.
+
+### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
+
+- 2026-10-07 (Codex-S6): Claimed on codex/s6-theologian.
 
 ### RD — Chris approves the redesign
 
