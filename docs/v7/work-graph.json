@@ -806,7 +806,7 @@
     {
       "id": "S5c",
       "title": "Step 5: Profile",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S2"
       ],
@@ -816,6 +816,15 @@
       ],
       "accept": [
         "bun run verify:fast"
+      ],
+      "owner": "Codex-S5c",
+      "branch": "codex/s5c-profile",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Claimed on codex/s5c-profile."
+        }
       ]
     },
     {
