@@ -1790,6 +1790,138 @@
       ],
       "owner": "Codex",
       "branch": "codex/roa-manifest-repair"
+    },
+    {
+      "id": "A1",
+      "title": "Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey; migration 0001; rate limits",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "worker/auth.ts",
+        "worker/migrations/",
+        "worker/index.ts"
+      ],
+      "accept": [
+        "bun run test:worker"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Own branch feature/accounts, started after Chris approves RD. Chris 2026-10-07: phone is only a unique identifier, no 2FA or verification; Apple skipped for now; name or username required; email and/or phone plus password. Supersedes the passkey-only account decision (passkey stays as an optional extra)."
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "Sign-in gate: first time a learner starts a course or adds a note, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile",
+      "state": "todo",
+      "deps": [
+        "A1"
+      ],
+      "owns": [
+        "public/ui/components/auth-gate.js",
+        "public/ui/components/auth-gate.css"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/auth-gate.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "One shared popover card; no per-screen copies. Not shown again after a choice."
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Create-account flow as a popover card: method (Google, email, phone) then name or username, then email and/or phone plus password, then done. Existing local progress and notes merge into the new account",
+      "state": "todo",
+      "deps": [
+        "A2"
+      ],
+      "owns": [
+        "public/ui/components/auth-flow.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/auth-flow.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Phone-only accounts have no password recovery without email; A5 decides the recovery path (recovery codes, per the earlier decision)."
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Profile 'You' section: edit name or username, email, phone, password; sign out; delete account; guest upgrade",
+      "state": "todo",
+      "deps": [
+        "A3"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/account-ui.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/profile.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Everything entered in the creation flow must be editable here (Chris 2026-10-07)."
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "title": "Security pass: password rules, enumeration-safe errors, lockout, recovery codes, CSP and cookie flags, delete-account data removal",
+      "state": "todo",
+      "deps": [
+        "A1"
+      ],
+      "owns": [
+        "worker/"
+      ],
+      "accept": [
+        "bun run test:worker"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Review before any real user signs up."
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "title": "Accounts: end-to-end tests (guest, email, phone, Google with a stub) and docs; Chris sign-off on the live flow",
+      "state": "todo",
+      "deps": [
+        "A4",
+        "A5"
+      ],
+      "owns": [
+        "tests/"
+      ],
+      "accept": [
+        "bun run verify"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Google needs a Google Cloud OAuth client id and secret from Chris; email sender (free tier) needs a key; both go in Worker secrets, never the repo."
+        }
+      ],
+      "gate": "chris"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"

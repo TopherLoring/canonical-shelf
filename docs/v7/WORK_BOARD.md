@@ -24,6 +24,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey; migration 0001; rate limits |
+| `A2` | waiting |  |  | `A1` | Sign-in gate: first time a learner starts a course or adds a note, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
+| `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone) then name or username, then email and/or phone plus password, then done. Existing local progress and notes merge into the new account |
+| `A4` | waiting |  |  | `A3` | Profile 'You' section: edit name or username, email, phone, password; sign out; delete account; guest upgrade |
+| `A5` | waiting |  |  | `A1` | Security pass: password rules, enumeration-safe errors, lockout, recovery codes, CSP and cookie flags, delete-account data removal |
+| `A6` | waiting (Chris) |  |  | `A4`, `A5` | Accounts: end-to-end tests (guest, email, phone, Google with a stub) and docs; Chris sign-off on the live flow |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -373,4 +379,28 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-06 (Codex): Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node.
 - 2026-10-06 (Codex): Claimed on codex/roa-manifest-repair.
 - 2026-10-06 (Codex): PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite.
+
+### A1 — Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey; migration 0001; rate limits
+
+- 2026-10-07 (Claude): Own branch feature/accounts, started after Chris approves RD. Chris 2026-10-07: phone is only a unique identifier, no 2FA or verification; Apple skipped for now; name or username required; email and/or phone plus password. Supersedes the passkey-only account decision (passkey stays as an optional extra).
+
+### A2 — Sign-in gate: first time a learner starts a course or adds a note, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile
+
+- 2026-10-07 (Claude): One shared popover card; no per-screen copies. Not shown again after a choice.
+
+### A3 — Create-account flow as a popover card: method (Google, email, phone) then name or username, then email and/or phone plus password, then done. Existing local progress and notes merge into the new account
+
+- 2026-10-07 (Claude): Phone-only accounts have no password recovery without email; A5 decides the recovery path (recovery codes, per the earlier decision).
+
+### A4 — Profile 'You' section: edit name or username, email, phone, password; sign out; delete account; guest upgrade
+
+- 2026-10-07 (Claude): Everything entered in the creation flow must be editable here (Chris 2026-10-07).
+
+### A5 — Security pass: password rules, enumeration-safe errors, lockout, recovery codes, CSP and cookie flags, delete-account data removal
+
+- 2026-10-07 (Claude): Review before any real user signs up.
+
+### A6 — Accounts: end-to-end tests (guest, email, phone, Google with a stub) and docs; Chris sign-off on the live flow
+
+- 2026-10-07 (Claude): Google needs a Google Cloud OAuth client id and secret from Chris; email sender (free tier) needs a key; both go in Worker secrets, never the repo.
 

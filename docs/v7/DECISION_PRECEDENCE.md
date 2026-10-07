@@ -10,6 +10,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `account.sign-in.passkey-recovery-codes`
   Accounts use a passkey plus recovery codes; no email for now
 
+### `accounts.signin.gate`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `accounts.gate-and-methods-2026-10-07`
+  Accounts: sign-in gate before starting a course or taking notes (Sign in, Create account, Continue as guest; guest keeps progress and notes on the device only). Sign-in methods: Google, email, phone. Name or username required; email and/or phone plus password for login and security only (reminders and feedback replies possible later). Phone is a unique identifier with a password, no SMS or 2FA. Apple skipped for now. Everything editable on Profile after the creation flow, which is a popover card. Ships after RD on its own branch.
+
 ### `arch.duplicate-renderers`
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
