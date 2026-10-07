@@ -29,6 +29,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `M1` | claimed | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -297,4 +298,10 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - 2026-10-06 (Claude): RETRACTED. The sandbox where this was measured has ONE CPU: a reload takes 1.2 s alone and about 9.8 s with six browsers at once, which exceeds the 7 s expect timeout. Every "fails under parallel load" result (legacy notes, highlights) came from that starvation; the service worker only added install work. There is no evidence of a service-worker defect. If it ever shows up on a many-core machine with an idle CPU, reopen with a real reproduction.
 - 2026-10-06 (Claude): Found while chasing reader.spec "legacy notes remain readable" (148/149 on Chris's run). Reproduces only with the service worker allowed, 3+ browsers on one test server, and a reload right after the first visit: 0 of 6 pass at 3 workers, 6 of 6 with serviceWorkers blocked or 1 worker. After the reload the router starts one render and stalls in a fetch; /data/bsb-annotations/<n>.json (and sometimes font files) stay pending while the worker has no requests of its own in flight. NOT the cause: the notes-editor change (fails identically with the old file), waiting for the worker to control the page, waiting for its six-file data precache. Suspects to check: the /data/ cache-first handler awaits cache.put(response.clone()) before returning the response (a large body plus a tee can stall the page until the put completes); 129-file install precache; HTTP/1.1 six-connection limit on the test server. Likely harmless on HTTP/2 production, but a stalled first reload would be a real defect. Tests meanwhile: reader.spec.js blocks the service worker (R3).
+
+### M1 — ROA manifest: map the lesson screen and new lesson build scripts for PR 60
+
+- 2026-10-06 (Codex): Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node.
+- 2026-10-06 (Codex): Claimed on codex/roa-manifest-repair.
+- 2026-10-06 (Codex): PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite.
 
