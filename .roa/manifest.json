@@ -37,7 +37,8 @@
     "docs/": "Architecture, verification contract, and historical plans (docs/v7/*-graph.json are provenance only)",
     ".src-archived/": "Archived earlier source; reference only, not built",
     ".roa/": "Project records and generated state (project-roa-kit)",
-    ".roa-kit/": "Vendored project-roa-kit"
+    ".roa-kit/": "Vendored project-roa-kit",
+    "public/ui/screens/learning-path.js": "Catalog-driven Learning Path screen for module, unit, lesson, and checkpoint navigation"
   },
   "invariants": [
     "Protestant 66-book canon; Berean Standard Bible is the default text",
