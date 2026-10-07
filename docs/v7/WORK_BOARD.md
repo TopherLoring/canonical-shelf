@@ -251,6 +251,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 
+- 2026-10-07 (Codex-S6): Integrated (source only changed public/theologian-chat.js open/close wiring; engine, policies, crisis paths, cloud calls untouched; test:theologian passes). Fixes: stylesheet was injected from JS into body (late, uncached): now a static link in index.html; theologian-panel.css/js added to the service worker shell list (without that the chat module import would fail offline) and sw stamp refreshed; manifest entry. Deviation to note for RD: desktop is a floating fixed panel at the right edge, not a column inside the reader (decision text says 'docked in the right column'); phone is the centered card with dim, inert background, focus trap, backdrop click closes. Not done: Scripture-cited section open by default, suggestions-inside-conversation and removable passage chip are the chat's own render and were left as they are. tests/redesign/theologian-panel.spec.js (3).
 - 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
 - 2026-10-07 (Codex): Imported existing done record from codex/s6-theologian at f63cf9c; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
 - 2026-10-07 (Codex-S6): Done; acceptance passed (bun run test:theologian; bun run verify:fast).
