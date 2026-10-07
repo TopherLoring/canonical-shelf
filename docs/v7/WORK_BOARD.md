@@ -28,7 +28,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S5a` | claimed | Codex-S5a | `codex/s5a-study-topics` | `S2` | Step 5: Study Topics |
 | `C1` | waiting |  |  | `S7` | Content: one glossary, one definition per term (single file lessons reference; optional per-lesson "in this lesson" notes); resolves the 59 terms defined differently across lessons |
 | `C2` | waiting |  |  | `C1` | Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module |
 | `C3` | waiting (Chris) |  |  | `C2` | Content: Chris approves each glossary batch (old and new side by side) |
@@ -73,6 +72,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.Q2` | done | Claude + Codex | `feature/redesign-p5-lesson-path` | `S3.Q` | Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values |
 | `S3.R` | done (Chris) |  |  | `S3.B7` | Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box |
 | `S3.S` | done (Chris) |  |  | `S3.D` | Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends) |
+| `S5a` | done | Codex-S5a | `codex/s5a-study-topics` | `S2` | Step 5: Study Topics |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -208,6 +208,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5a — Step 5: Study Topics
 
+- 2026-10-07 (Codex-S5a): Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d.
+- 2026-10-07 (Codex-S5a): Done; acceptance passed (bun run verify:fast).
 - 2026-10-07 (Codex-S5a): CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes.
 - 2026-10-07 (Codex-S5a): Built the Study Topics browse, search, selected-topic detail, glossary, Scripture references, Learning Path links, and topic-anchored notes in topics.js/topics.css. Targeted JS bundle and diff checks pass; next run verify:fast, then Chris runs full verify on laptop before S5a closes.
 - 2026-10-07 (Codex-S5a): Claimed on codex/s5a-study-topics.

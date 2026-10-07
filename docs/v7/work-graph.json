@@ -776,7 +776,7 @@
     {
       "id": "S5a",
       "title": "Step 5: Study Topics",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S2"
       ],
@@ -804,6 +804,16 @@
           "date": "2026-10-07",
           "by": "Codex-S5a",
           "text": "CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d."
         }
       ]
     },
