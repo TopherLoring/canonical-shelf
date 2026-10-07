@@ -72,6 +72,27 @@ test.describe('Learning Path', () => {
     await expect(page.locator('[data-path-start]')).toHaveText('Start Checkpoint');
   });
 
+  test('progress bars draw their value (empty at the start, partly full after some lessons), not full width', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/course?unit=c1.christianity');
+    await expect(path(page)).toBeVisible();
+    const widths = () => page.evaluate(() => [...document.querySelectorAll('[data-path-aside] .ui-progress-bar')].map(bar => {
+      const fill = bar.querySelector('.ui-progress-bar-fill');
+      return Math.round(fill.getBoundingClientRect().width / bar.getBoundingClientRect().width * 100);
+    }));
+    expect(await widths()).toEqual([0, 0, 0]);
+    await page.evaluate(async () => {
+      const db = await import('/db.js'); const state = await db.getState();
+      state.completed = ['lesson:begin']; await db.putState(state);
+    });
+    await page.reload();
+    await expect(path(page)).toBeVisible();
+    const after = await widths();
+    expect(after[0], 'the open unit is half done (1 of 2 lessons)').toBeGreaterThan(40);
+    expect(after[0]).toBeLessThan(60);
+    expect(after[2], 'the whole path barely moves (1 of 119)').toBeLessThan(5);
+  });
+
   test('Capstones open from the rail and list every Capstone', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/course');

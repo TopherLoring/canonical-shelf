@@ -10,7 +10,7 @@
 //
 // Addresses: /course, /course?course=<id>, /course?unit=<id>. Lessons (?lesson=), Checkpoints (?mastery=), the glossary
 // and the orientation unit stay on their own views.
-import { renderRail, renderPanel, renderProgressScopeGroup } from '../components/index.js';
+import { renderRail, renderPanel, renderProgressScopeGroup, mountProgressBars } from '../components/index.js';
 import { LABELS } from '../labels.js';
 
 export const handles = params =>
@@ -106,6 +106,7 @@ function unitMarkup(m, esc, activityHref, unit, open) {
 }
 
 export async function mount(container, ctx) {
+  if (ctx.isCurrent?.() === false) return;
   const { data, state, params, esc, navigate, activityHref } = ctx; // activityHref takes an activity id
   const m = buildModel(data, state);
   const courses = data.courses || [];
@@ -191,6 +192,7 @@ export async function mount(container, ctx) {
   </section>`;
 
   const root = container.querySelector('[data-learning-path]');
+  mountProgressBars(root);
   const capstoneList = root.querySelector('#path-capstones');
 
   const onToggle = event => {
@@ -203,7 +205,9 @@ export async function mount(container, ctx) {
       address.searchParams.set('unit', selected.id);
       address.searchParams.delete('course');
       history.replaceState(history.state, '', address);
-      root.querySelector('[data-path-aside]').innerHTML = asideHtml();
+      const aside = root.querySelector('[data-path-aside]');
+      aside.innerHTML = asideHtml();
+      mountProgressBars(aside);
     }
   };
   const onPick = event => { if (event.target.matches('[data-path-picker]')) navigate(`/course?course=${encodeURIComponent(event.target.value)}`); };

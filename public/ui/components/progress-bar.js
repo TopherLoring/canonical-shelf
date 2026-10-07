@@ -57,3 +57,17 @@ export function renderProgressScopeGroup({
   return `<div class="ui-progress-scope-group ${esc(className)}">${scopesHtml}</div>`;
 }
 
+/**
+ * Paints each bar's fill from its aria-valuenow / aria-valuemax. The inline width in the markup is not applied under the
+ * site's content security policy, so a bar mounted from an HTML string shows full until this runs. Call it after any
+ * render that includes bars (and after re-rendering them).
+ */
+export function mountProgressBars(container = document) {
+  container.querySelectorAll('.ui-progress-bar').forEach(bar => {
+    const fill = bar.querySelector('.ui-progress-bar-fill');
+    if (!fill) return;
+    const now = Number(bar.getAttribute('aria-valuenow')) || 0;
+    const max = Number(bar.getAttribute('aria-valuemax')) || 1;
+    fill.style.width = `${Math.min(100, Math.max(0, (now / max) * 100))}%`;
+  });
+}
