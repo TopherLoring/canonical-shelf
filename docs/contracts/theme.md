@@ -11,7 +11,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `shared.typeScale.lead` | length | 1.15rem | — |
 | `shared.typeScale.h3` | length | 1.3rem | — |
 | `shared.typeScale.h2` | length | 1.7rem | — |
-| `shared.typeScale.h1` | length | 2.3rem | — |
+| `shared.typeScale.h1` | length | 2rem | — |
 | `shared.lineHeights.tight` | number | 1.2 | min 1; max 2.4 |
 | `shared.lineHeights.normal` | number | 1.45 | min 1; max 2.4 |
 | `shared.lineHeights.reading` | number | 1.7 | min 1; max 2.4 |
@@ -31,6 +31,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `shared.layers.dimOverlay` | int | 40 | min 0 |
 | `shared.layers.theologian` | int | 50 | min 0 |
 | `shared.measures.measure-reading` | css-value | 72ch | — |
+| `shared.measures.type-max` | css-value | clamp(2rem, 2.8vw, 2.5rem) | — |
 | `shared.measures.home-shelf-height` | css-value | 111px | — |
 | `shared.measures.home-shelf-depth` | css-value | 10px | — |
 | `shared.fonts.serif` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |

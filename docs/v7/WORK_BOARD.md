@@ -268,6 +268,11 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-07 (Codex-S6): Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass.
 - 2026-10-07 (Codex-S6): Claimed on codex/s6-theologian.
 
+### S7 — Step 7: remove legacy stylesheets and render paths; close the guards
+
+- 2026-10-07 (unknown): Chris decision ui.type.max-genesis-2026-10-07: --type-max (Genesis size) caps all text; site title only exception. Guard: tests/redesign/type-cap.spec.js (15+ routes x phone/desktop/1920). Checkpoints now render on the lesson screen (?mastery=). Full redesign+contracts: 185 passed.
+- 2026-10-07 (unknown): Chris 2026-10-07: leave the practice modes (review, verse library, arcade, achievements) until he has played with them live; their rebuild must continue the rail and side panels (ui.practice.modes.continue-side-panes-2026-10-07). Checkpoints and Capstones now render on the lesson screen (one intro step and one check step; older practice keeps its own title); S7 may delete the old mastery view in learning.js after the contract tests pass. Unit check content wording fixed at source: title 'Checkpoint · <unit>' and 'This Checkpoint combines…' (was 'Unit Mastery' / 'This mastery check').
+
 ### RD — Chris approves the redesign
 
 - 2026-10-05 (Claude): Chris approves the redesign after the content track (glossary and lesson revision) and locked card breaks are in place.

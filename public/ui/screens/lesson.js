@@ -9,15 +9,52 @@
 // Address: /course?unit=<unit>&lesson=<lesson>&step=<n> (1-based). Progress reads "n of m", never "Step n of m"
 // (ui.lesson.progress.no-step-label-2026-10-05). Readings: quoted on the card when short, otherwise a link that opens
 // the passage in a popover (ui.lesson.reading.inline-or-popover-2026-10-05).
-import { challengeForm, proseMarkup, visualBlock, lessonApparatus, continuationFor, activityFor, lessonFor } from '../../learning.js';
+import { challengeForm, proseMarkup, visualBlock, lessonApparatus, continuationFor, activityFor, lessonFor, masteryFor } from '../../learning.js';
 import { renderMounts } from '../../study-notes.js';
 import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
 
-// Checkpoints (mastery) stay on the current view until the Checkpoint screen is built.
-export const handles = params => params.has('lesson') && !params.has('mastery');
+// Lessons (?lesson=) and Checkpoints (?mastery=). A Checkpoint is a one-step lesson: the same frame, progress, notes and
+// navigation, with the unit's check on the card (decisions ui.naming.checkpoint-bare-2026-10-05 and ui.naming.hide-module-unit-labels).
+export const handles = params => params.has('lesson') || params.has('mastery');
+
+/** A Checkpoint (unit check) or Capstone shaped like a lesson of one step, so the lesson screen can show it. */
+export function checkpointAsLesson(data, masteryId) {
+  const mastery = masteryFor(data, masteryId);
+  if (!mastery) return null;
+  const activityId = `mastery:${masteryId}`;
+  const activity = activityFor(data, activityId);
+  const unit = data.units?.find(u => u.id === activity?.unitId);
+  const course = data.courses?.find(c => c.id === (activity?.courseId || unit?.courseId));
+  const capstone = activity?.masteryType === 'course-capstone';
+  const older = activity?.masteryType === 'legacy';
+  // The unit's own check is "Checkpoint · <unit title>", the course's is "Capstone · <title>"; the older practice items
+  // under a unit ("More practice" on the Learning Path) keep their own titles.
+  const label = capstone ? LABELS.capstone : older ? 'Practice' : LABELS.unitCheck;
+  const subject = capstone ? (course?.title || '') : older ? (activity?.title || mastery.title || '') : (unit?.title || '');
+  const heading = older ? subject : subject ? `${label} · ${subject}` : label;
+  // The introduction and the check are separate steps, so the check always has the whole card (no scrolling).
+  const intro = [];
+  [mastery.dek, ...(mastery.body || [])].filter(Boolean).forEach(text => intro.push({ kind: 'sentence', text, paraStart: true }));
+  if (mastery.plain) intro.push({ kind: 'callout', text: mastery.plain });
+  const cards = [];
+  if (intro.length) cards.push({ id: 'checkpoint', title: heading, units: intro });
+  cards.push({ id: cards.length ? 'checkpoint-2' : 'checkpoint', title: heading, units: [{ kind: 'check', block: 0 }] });
+  return {
+    id: masteryId,
+    activityId,
+    title: mastery.challenge?.title || mastery.title || heading,
+    unitId: activity?.unitId || mastery.unitId || '',
+    isCheckpoint: true,
+    heading,
+    label,
+    challenges: [mastery.challenge],
+    vocab: [],
+    sections: [{ id: 'checkpoint', title: heading, blocks: [{ index: 0 }], cards }]
+  };
+}
 
 /** Every step of a lesson in order, with the section it belongs to. */
 export function lessonSteps(lesson) {
@@ -54,7 +91,7 @@ function stepBody(step, lesson, ctx) {
     else if (unit.kind === 'visual') out.push(visualBlock(lesson, esc));
     else if (unit.kind === 'check') {
       const index = step.blocks[unit.block]?.index ?? 0;
-      out.push(`<div class="inline-check" id="check-${index + 1}">${challengeForm(lesson.challenges[index], `lesson:${lesson.id}`, index, esc)}</div>`);
+      out.push(`<div class="inline-check" id="check-${index + 1}">${challengeForm(lesson.challenges[index], lesson.activityId || `lesson:${lesson.id}`, index, esc)}</div>`);
     } else if (unit.kind === 'reflect') {
       out.push(`<p class="scene-prose">${esc(lesson.reflect || '')}</p>${lesson.model ? `<details class="deep-reading"><summary>Compare with a model response</summary><p>${esc(lesson.model)}</p></details>` : ''}`);
     }
@@ -86,12 +123,14 @@ function readingMarkup(unit, i, { esc }) {
 
 export async function mount(container, ctx) {
   const { data, params, esc, navigate } = ctx;
-  const lessonId = params.get('lesson');
-  const lesson = lessonFor(data, lessonId);
+  const masteryId = params.get('mastery');
+  const lessonId = masteryId || params.get('lesson');
+  const lesson = masteryId ? checkpointAsLesson(data, masteryId) : lessonFor(data, lessonId);
   const steps = lessonSteps(lesson);
-  if (!lesson || !steps.length) { container.innerHTML = '<p class="notice">Lesson not found.</p>'; return; }
+  if (!lesson || !steps.length) { container.innerHTML = `<p class="notice">${masteryId ? 'Checkpoint' : 'Lesson'} not found.</p>`; return; }
 
-  const activityId = `lesson:${lessonId}`;
+  const checkpoint = Boolean(lesson.isCheckpoint);
+  const activityId = checkpoint ? lesson.activityId : `lesson:${lessonId}`;
   const activity = activityFor(data, activityId);
   const unitId = params.get('unit') || activity?.unitId || lesson.unitId;
   const unit = data.units?.find(u => u.id === unitId);
@@ -100,7 +139,7 @@ export async function mount(container, ctx) {
   const requested = Number(params.get('step'));
   const index = Number.isInteger(requested) && requested >= 1 ? Math.min(steps.length, requested) - 1 : 0;
   const step = steps[index];
-  const base = `/course?unit=${encodeURIComponent(unitId || '')}&lesson=${encodeURIComponent(lessonId)}`;
+  const base = `/course?unit=${encodeURIComponent(unitId || '')}&${checkpoint ? 'mastery' : 'lesson'}=${encodeURIComponent(lessonId)}`;
   const stepHref = i => `${base}&step=${i + 1}`;
   const exitHref = `/course?unit=${encodeURIComponent(unitId || '')}`;
   const next = continuationFor(data, activityId);
@@ -127,14 +166,14 @@ export async function mount(container, ctx) {
   const tools = `<div class="lesson-tools" role="group" aria-label="Study tools">
       <button type="button" data-lesson-tool="glossary" ${vocabCount ? '' : 'disabled'}>${icon('<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/>')}<span>Glossary${vocabCount ? ` · ${vocabCount}` : ''}</span></button>
       <button type="button" data-lesson-tool="questions" ${questionCount ? '' : 'disabled'}>${icon('<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.7M12 17h.01"/>')}<span>Questions${questionCount ? ` · ${questionCount}` : ''}</span></button>
-      <button type="button" data-lesson-tool="deeper">${icon('<path d="M12 4v12M6 10l6 6 6-6M5 20h14"/>')}<span>Go deeper</span></button>
+      <button type="button" data-lesson-tool="deeper" ${checkpoint ? 'disabled' : ''}>${icon('<path d="M12 4v12M6 10l6 6 6-6M5 20h14"/>')}<span>Go deeper</span></button>
     </div>`;
 
   const crumbs = [
     `<a href="/course">${esc(LABELS.learningPath)}</a>`,
     course ? `<a href="/course?course=${encodeURIComponent(course.id)}" class="lesson-crumb-wide">${esc(course.title)}</a>` : '',
     unit ? `<a href="${esc(exitHref)}" class="lesson-crumb-wide">${esc(unit.title)}</a>` : '',
-    `<span aria-current="page">${esc(LABELS.lesson)} ${lessonNumber}</span>`
+    `<span aria-current="page">${checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
   ].filter(Boolean).join('<span class="lesson-crumb-sep" aria-hidden="true">›</span>');
 
   const progress = `<div class="lesson-progress">
@@ -143,9 +182,12 @@ export async function mount(container, ctx) {
       <button type="button" class="lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog">All steps</button>
     </div>`;
 
-  const apparatus = lessonApparatus(lesson, esc, { title: step.sectionTitle, anchor: step.anchor });
+  const apparatus = checkpoint
+    ? `<details class="deep-reading" open><summary>About this ${esc(lesson.label.toLowerCase())}</summary><p>This activity evaluates understanding or reasoning, not whether you personally assent to a theological claim.</p></details>
+       <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
+    : lessonApparatus(lesson, esc, { title: step.sectionTitle, anchor: step.anchor });
 
-  container.innerHTML = `<section class="lesson-screen" data-lesson-screen data-study-focus aria-labelledby="lesson-step-title">
+  container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
     <div class="lesson-card">
       <header class="lesson-titlebar">
         <nav class="lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
@@ -164,14 +206,14 @@ export async function mount(container, ctx) {
         </aside>
         <article class="lesson-main">
           <header class="lesson-step-head">
-            <p class="lesson-eyebrow">${esc(lesson.title)}</p>
+            ${checkpoint ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
             <h1 id="lesson-step-title">${esc(step.sectionTitle)}</h1>
           </header>
           <div class="lesson-phone-tools">${tools}</div>
           <div class="lesson-stage"><div class="lesson-body" data-step-id="${esc(step.id)}" tabindex="0" aria-label="Step text"><div class="lesson-body-text">${stepBody(step, lesson, ctx)}</div></div></div>
           <footer class="lesson-nav">
             <a class="lesson-back" href="${esc(index > 0 ? stepHref(index - 1) : exitHref)}" ${index > 0 ? '' : 'aria-disabled="true"'}>Back</a>
-            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? 'Next lesson' : 'Return to unit'}</a>
+            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : 'Next lesson') : 'Return to unit'}</a>
           </footer>
         </article>
         <aside class="lesson-side" aria-label="${esc(LABELS.myNotes)}">

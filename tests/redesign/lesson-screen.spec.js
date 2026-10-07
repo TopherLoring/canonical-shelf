@@ -63,3 +63,59 @@ test.describe('Lesson screen', () => {
     await expect(page.locator('.lesson-screen')).not.toContainText('Ask the Theologian about this');
   });
 });
+
+test.describe('Checkpoints on the lesson screen', () => {
+  const UNIT = 'c1.christianity';
+  const CHECK = 'unit-c1-christianity-mastery';
+
+  test('a Checkpoint opens in the lesson frame as "Checkpoint · <unit title>", with no Mastery wording and no scrolling', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/course?unit=${UNIT}&mastery=${CHECK}`);
+    await expect(page.locator('[data-lesson-screen]')).toBeVisible();
+    await expect(page.locator('#lesson-step-title')).toHaveText('Checkpoint · Christianity in One View');
+    await expect(page.locator('.lesson-progress-count')).toHaveText('1 of 2');
+    await expect(page.locator('.lesson-body-text')).toContainText('This Checkpoint combines');
+    const chrome = (await page.locator('.lesson-titlebar, .lesson-rail, .lesson-step-head').allInnerTexts()).join(' ');
+    expect(chrome, 'headings, crumbs and rail never say Mastery').not.toMatch(/mastery/i);
+    await page.goto(`/course?unit=${UNIT}&mastery=${CHECK}&step=2`);
+    await expect(page.locator('.lesson-body-text .inline-check')).toHaveCount(1);
+    for (const size of [{ width: 1440, height: 900 }, { width: 1280, height: 720 }, { width: 390, height: 844 }]) {
+      await page.setViewportSize(size);
+      const fits = await page.evaluate(() => {
+        const body = document.querySelector('.lesson-body'); const b = body.getBoundingClientRect();
+        const submit = document.querySelector('.inline-check button[type=submit], .inline-check button:not([type])');
+        const last = document.querySelector('.inline-check label:last-of-type, .inline-check .choice:last-child') || submit;
+        const sb = submit.getBoundingClientRect(), lb = last.getBoundingClientRect();
+        return { noScroll: body.scrollHeight <= body.clientHeight + 1, submitInside: sb.bottom <= b.bottom + 1 && sb.top >= b.top, lastInside: lb.bottom <= b.bottom + 1 };
+      });
+      expect(fits, `the check fits its card at ${size.width}x${size.height}`).toEqual({ noScroll: true, submitInside: true, lastInside: true });
+    }
+  });
+
+  test('a Capstone is named "Capstone · <title>" and the older practice keeps its own title', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/course?unit=c1.synthesis&mastery=course-1-capstone');
+    await expect(page.locator('#lesson-step-title')).toHaveText(/^Capstone · /);
+    await page.goto(`/course?unit=${UNIT}&mastery=n.what`);
+    await expect(page.locator('#lesson-step-title')).toHaveText('Know what a book is doing before you quote it');
+  });
+
+  test('answering the Checkpoint shows the result, and the close link returns to the unit', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`/course?unit=${UNIT}&mastery=${CHECK}&step=2`);
+    const form = page.locator('.inline-check form').first();
+    await expect(form).toBeVisible();
+    await form.locator('label').first().click();
+    await form.locator('button[type=submit], button:not([type])').first().click();
+    await expect(page.locator('.inline-check')).toContainText(/correct|not quite|try|why/i);
+    await page.locator('.lesson-close').click();
+    await expect(page).toHaveURL(new RegExp(`unit=${UNIT.replace('.', '\\.')}`));
+  });
+
+  test('phone: a Checkpoint has no horizontal scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/course?unit=${UNIT}&mastery=${CHECK}`);
+    await expect(page.locator('[data-lesson-screen]')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+});

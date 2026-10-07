@@ -136,7 +136,9 @@ test('lesson navigation: the sections list (rail on desktop, All steps sheet on 
     await items.nth(count-1).locator('a').click();
     await expect(page).toHaveURL(/step=\d+/);
     await expect(page.locator('[data-lesson-count]')).toHaveText(/^\d+ of \d+$/);
+    const atLast=await page.locator('[data-lesson-count]').textContent();
     await page.locator('.lesson-back').click();
+    await expect(page.locator('[data-lesson-count]')).not.toHaveText(atLast);
     const before=await page.locator('[data-lesson-count]').textContent();
     await page.locator('.lesson-continue').click();
     await expect(page.locator('[data-lesson-count]')).not.toHaveText(before);

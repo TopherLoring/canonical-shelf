@@ -64012,10 +64012,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.christianity",
           "courseId": "module.canon",
-          "title": "Christianity in One View · Unit Mastery",
+          "title": "Checkpoint · Christianity in One View",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -64040,10 +64040,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.bible",
           "courseId": "module.canon",
-          "title": "What the Bible Is · Unit Mastery",
+          "title": "Checkpoint · What the Bible Is",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64073,10 +64073,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.story",
           "courseId": "module.canon",
-          "title": "The Biblical Story in One View · Unit Mastery",
+          "title": "Checkpoint · The Biblical Story in One View",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64107,10 +64107,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.synthesis",
           "courseId": "module.canon",
-          "title": "Putting the Map Together · Unit Mastery",
+          "title": "Checkpoint · Putting the Map Together",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "scenario",
@@ -64154,10 +64154,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.exodus",
           "courseId": "module.hebrew-scriptures",
-          "title": "Egypt and Exodus · Unit Mastery",
+          "title": "Checkpoint · Egypt and Exodus",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64186,10 +64186,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.sinai",
           "courseId": "module.hebrew-scriptures",
-          "title": "Sinai and Covenant · Unit Mastery",
+          "title": "Checkpoint · Sinai and Covenant",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64216,10 +64216,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.tabernacle",
           "courseId": "module.hebrew-scriptures",
-          "title": "Tabernacle, Ark and Presence · Unit Mastery",
+          "title": "Checkpoint · Tabernacle, Ark and Presence",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64249,10 +64249,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.sacrifice",
           "courseId": "module.hebrew-scriptures",
-          "title": "Sacrifice, Holiness and Sacred Time · Unit Mastery",
+          "title": "Checkpoint · Sacrifice, Holiness and Sacred Time",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64282,10 +64282,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.land-kings",
           "courseId": "module.hebrew-scriptures",
-          "title": "Land, Judges and Kings · Unit Mastery",
+          "title": "Checkpoint · Land, Judges and Kings",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64314,10 +64314,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.temple-kingdom",
           "courseId": "module.hebrew-scriptures",
-          "title": "Temple and Kingdom · Unit Mastery",
+          "title": "Checkpoint · Temple and Kingdom",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64344,10 +64344,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.genre",
           "courseId": "module.hebrew-scriptures",
-          "title": "Wisdom and Worship · Unit Mastery",
+          "title": "Checkpoint · Wisdom and Worship",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64380,10 +64380,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.prophets-exile",
           "courseId": "module.hebrew-scriptures",
-          "title": "Prophets, Exile and Destruction · Unit Mastery",
+          "title": "Checkpoint · Prophets, Exile and Destruction",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64413,10 +64413,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c2.restoration-hope",
           "courseId": "module.hebrew-scriptures",
-          "title": "Restoration and Prophetic Hope · Unit Mastery",
+          "title": "Checkpoint · Restoration and Prophetic Hope",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64446,10 +64446,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.after-exile",
           "courseId": "module.christ-event",
-          "title": "After the Exile · Unit Mastery",
+          "title": "Checkpoint · After the Exile",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -64474,10 +64474,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.greek-world",
           "courseId": "module.christ-event",
-          "title": "The Greek World · Unit Mastery",
+          "title": "Checkpoint · The Greek World",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64504,10 +64504,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.hasmonean-rome",
           "courseId": "module.christ-event",
-          "title": "Hasmoneans, Rome and Herod · Unit Mastery",
+          "title": "Checkpoint · Hasmoneans, Rome and Herod",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64534,10 +64534,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.jewish-life",
           "courseId": "module.christ-event",
-          "title": "Jewish Life and Jewish Diversity · Unit Mastery",
+          "title": "Checkpoint · Jewish Life and Jewish Diversity",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64573,10 +64573,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.expectation",
           "courseId": "module.christ-event",
-          "title": "Hope and Expectation · Unit Mastery",
+          "title": "Checkpoint · Hope and Expectation",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64606,10 +64606,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c3.enter-gospels",
           "courseId": "module.christ-event",
-          "title": "Entering the Gospels · Unit Mastery",
+          "title": "Checkpoint · Entering the Gospels",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "scenario",
@@ -64653,10 +64653,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.gospels",
           "courseId": "module.christ-event",
-          "title": "Four Gospels · Unit Mastery",
+          "title": "Checkpoint · Four Gospels",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64686,10 +64686,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.transmission",
           "courseId": "module.christ-event",
-          "title": "How We Got the Bible · Unit Mastery",
+          "title": "Checkpoint · How We Got the Bible",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64719,10 +64719,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.transmission",
           "courseId": "module.christ-event",
-          "title": "Text, Manuscripts and Transmission · Unit Mastery",
+          "title": "Checkpoint · Text, Manuscripts and Transmission",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64752,10 +64752,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.translation",
           "courseId": "module.christ-event",
-          "title": "Translation · Unit Mastery",
+          "title": "Checkpoint · Translation",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64785,10 +64785,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.kingdom",
           "courseId": "module.christ-event",
-          "title": "Jesus and the Kingdom · Unit Mastery",
+          "title": "Checkpoint · Jesus and the Kingdom",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64818,10 +64818,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.teaching",
           "courseId": "module.christ-event",
-          "title": "Jesus’ Teaching · Unit Mastery",
+          "title": "Checkpoint · Jesus’ Teaching",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64848,10 +64848,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.israel-story",
           "courseId": "module.christ-event",
-          "title": "Jesus and Israel’s Story · Unit Mastery",
+          "title": "Checkpoint · Jesus and Israel’s Story",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -64881,10 +64881,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.passion",
           "courseId": "module.christ-event",
-          "title": "Passion and Resurrection · Unit Mastery",
+          "title": "Checkpoint · Passion and Resurrection",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64913,10 +64913,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.pentecost",
           "courseId": "module.christ-event",
-          "title": "Pentecost and the Jerusalem Church · Unit Mastery",
+          "title": "Checkpoint · Pentecost and the Jerusalem Church",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64943,10 +64943,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.reading",
           "courseId": "module.christ-event",
-          "title": "Reading Somebody Else’s Mail · Unit Mastery",
+          "title": "Checkpoint · Reading Somebody Else’s Mail",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -64973,10 +64973,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.paul-gentiles",
           "courseId": "module.christ-event",
-          "title": "Paul and Gentile Inclusion · Unit Mastery",
+          "title": "Checkpoint · Paul and Gentile Inclusion",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -65003,10 +65003,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c4.expansion",
           "courseId": "module.christ-event",
-          "title": "Christianity Begins to Expand · Unit Mastery",
+          "title": "Checkpoint · Christianity Begins to Expand",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -65031,10 +65031,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.intertext",
           "courseId": "module.christ-event",
-          "title": "Scripture Interpreting Scripture · Unit Mastery",
+          "title": "Checkpoint · Scripture Interpreting Scripture",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65064,10 +65064,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.gospel-letters",
           "courseId": "module.christ-event",
-          "title": "Gospel and Letter Study · Unit Mastery",
+          "title": "Checkpoint · Gospel and Letter Study",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -65092,10 +65092,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.theology",
           "courseId": "module.synthesis",
-          "title": "Theology You Need Before Continuing · Unit Mastery",
+          "title": "Checkpoint · Theology You Need Before Continuing",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65125,10 +65125,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.god-christ",
           "courseId": "module.synthesis",
-          "title": "God and Christ · Unit Mastery",
+          "title": "Checkpoint · God and Christ",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65158,10 +65158,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.sin-salvation",
           "courseId": "module.synthesis",
-          "title": "Humanity, Sin and Salvation · Unit Mastery",
+          "title": "Checkpoint · Humanity, Sin and Salvation",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65191,10 +65191,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.providence-life",
           "courseId": "module.synthesis",
-          "title": "Providence and Christian Life · Unit Mastery",
+          "title": "Checkpoint · Providence and Christian Life",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -65219,10 +65219,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.practice",
           "courseId": "module.synthesis",
-          "title": "Christian Practice · Unit Mastery",
+          "title": "Checkpoint · Christian Practice",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65252,10 +65252,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.church-practice",
           "courseId": "module.synthesis",
-          "title": "Church and Practice · Unit Mastery",
+          "title": "Checkpoint · Church and Practice",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65285,10 +65285,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c1.traditions",
           "courseId": "module.synthesis",
-          "title": "Christians Do Not All Read the Same Way · Unit Mastery",
+          "title": "Checkpoint · Christians Do Not All Read the Same Way",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -65313,10 +65313,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.traditions",
           "courseId": "module.synthesis",
-          "title": "Christian Traditions · Unit Mastery",
+          "title": "Checkpoint · Christian Traditions",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "evidence",
@@ -65341,10 +65341,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.difficult",
           "courseId": "module.synthesis",
-          "title": "Difficult Texts and Questions · Unit Mastery",
+          "title": "Checkpoint · Difficult Texts and Questions",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -65377,10 +65377,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c5.interpretation",
           "courseId": "module.synthesis",
-          "title": "Building an Interpretation · Unit Mastery",
+          "title": "Checkpoint · Building an Interpretation",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "sequence",
@@ -65409,10 +65409,10 @@ Source: [/data/catalog.json](/data/catalog.json)
           "type": "unit-mastery",
           "unitId": "c6.final-hope",
           "courseId": "module.synthesis",
-          "title": "Resurrection and Final Hope · Unit Mastery",
+          "title": "Checkpoint · Resurrection and Final Hope",
           "dek": "Synthesize the unit before moving forward.",
           "body": [
-            "This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
+            "This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent."
           ],
           "challenge": {
             "kind": "match",
@@ -71809,7 +71809,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.christianity",
           "courseId": "module.canon",
-          "title": "Christianity in One View · Unit Mastery",
+          "title": "Checkpoint · Christianity in One View",
           "sourceId": "unit-c1-christianity-mastery"
         },
         {
@@ -71818,7 +71818,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.bible",
           "courseId": "module.canon",
-          "title": "What the Bible Is · Unit Mastery",
+          "title": "Checkpoint · What the Bible Is",
           "sourceId": "unit-c1-bible-mastery"
         },
         {
@@ -71827,7 +71827,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.story",
           "courseId": "module.canon",
-          "title": "The Biblical Story in One View · Unit Mastery",
+          "title": "Checkpoint · The Biblical Story in One View",
           "sourceId": "unit-c1-story-mastery"
         },
         {
@@ -71836,7 +71836,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.synthesis",
           "courseId": "module.canon",
-          "title": "Putting the Map Together · Unit Mastery",
+          "title": "Checkpoint · Putting the Map Together",
           "sourceId": "unit-c1-synthesis-mastery"
         },
         {
@@ -71845,7 +71845,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.exodus",
           "courseId": "module.hebrew-scriptures",
-          "title": "Egypt and Exodus · Unit Mastery",
+          "title": "Checkpoint · Egypt and Exodus",
           "sourceId": "unit-c2-exodus-mastery"
         },
         {
@@ -71854,7 +71854,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.sinai",
           "courseId": "module.hebrew-scriptures",
-          "title": "Sinai and Covenant · Unit Mastery",
+          "title": "Checkpoint · Sinai and Covenant",
           "sourceId": "unit-c2-sinai-mastery"
         },
         {
@@ -71863,7 +71863,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.tabernacle",
           "courseId": "module.hebrew-scriptures",
-          "title": "Tabernacle, Ark and Presence · Unit Mastery",
+          "title": "Checkpoint · Tabernacle, Ark and Presence",
           "sourceId": "unit-c2-tabernacle-mastery"
         },
         {
@@ -71872,7 +71872,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.sacrifice",
           "courseId": "module.hebrew-scriptures",
-          "title": "Sacrifice, Holiness and Sacred Time · Unit Mastery",
+          "title": "Checkpoint · Sacrifice, Holiness and Sacred Time",
           "sourceId": "unit-c2-sacrifice-mastery"
         },
         {
@@ -71881,7 +71881,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.land-kings",
           "courseId": "module.hebrew-scriptures",
-          "title": "Land, Judges and Kings · Unit Mastery",
+          "title": "Checkpoint · Land, Judges and Kings",
           "sourceId": "unit-c2-land-kings-mastery"
         },
         {
@@ -71890,7 +71890,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.temple-kingdom",
           "courseId": "module.hebrew-scriptures",
-          "title": "Temple and Kingdom · Unit Mastery",
+          "title": "Checkpoint · Temple and Kingdom",
           "sourceId": "unit-c2-temple-kingdom-mastery"
         },
         {
@@ -71899,7 +71899,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.genre",
           "courseId": "module.hebrew-scriptures",
-          "title": "Wisdom and Worship · Unit Mastery",
+          "title": "Checkpoint · Wisdom and Worship",
           "sourceId": "unit-c5-genre-mastery"
         },
         {
@@ -71908,7 +71908,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.prophets-exile",
           "courseId": "module.hebrew-scriptures",
-          "title": "Prophets, Exile and Destruction · Unit Mastery",
+          "title": "Checkpoint · Prophets, Exile and Destruction",
           "sourceId": "unit-c2-prophets-exile-mastery"
         },
         {
@@ -71917,7 +71917,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c2.restoration-hope",
           "courseId": "module.hebrew-scriptures",
-          "title": "Restoration and Prophetic Hope · Unit Mastery",
+          "title": "Checkpoint · Restoration and Prophetic Hope",
           "sourceId": "unit-c2-restoration-hope-mastery"
         },
         {
@@ -71926,7 +71926,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.after-exile",
           "courseId": "module.christ-event",
-          "title": "After the Exile · Unit Mastery",
+          "title": "Checkpoint · After the Exile",
           "sourceId": "unit-c3-after-exile-mastery"
         },
         {
@@ -71935,7 +71935,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.greek-world",
           "courseId": "module.christ-event",
-          "title": "The Greek World · Unit Mastery",
+          "title": "Checkpoint · The Greek World",
           "sourceId": "unit-c3-greek-world-mastery"
         },
         {
@@ -71944,7 +71944,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.hasmonean-rome",
           "courseId": "module.christ-event",
-          "title": "Hasmoneans, Rome and Herod · Unit Mastery",
+          "title": "Checkpoint · Hasmoneans, Rome and Herod",
           "sourceId": "unit-c3-hasmonean-rome-mastery"
         },
         {
@@ -71953,7 +71953,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.jewish-life",
           "courseId": "module.christ-event",
-          "title": "Jewish Life and Jewish Diversity · Unit Mastery",
+          "title": "Checkpoint · Jewish Life and Jewish Diversity",
           "sourceId": "unit-c3-jewish-life-mastery"
         },
         {
@@ -71962,7 +71962,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.expectation",
           "courseId": "module.christ-event",
-          "title": "Hope and Expectation · Unit Mastery",
+          "title": "Checkpoint · Hope and Expectation",
           "sourceId": "unit-c3-expectation-mastery"
         },
         {
@@ -71971,7 +71971,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c3.enter-gospels",
           "courseId": "module.christ-event",
-          "title": "Entering the Gospels · Unit Mastery",
+          "title": "Checkpoint · Entering the Gospels",
           "sourceId": "unit-c3-enter-gospels-mastery"
         },
         {
@@ -71980,7 +71980,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.gospels",
           "courseId": "module.christ-event",
-          "title": "Four Gospels · Unit Mastery",
+          "title": "Checkpoint · Four Gospels",
           "sourceId": "unit-c4-gospels-mastery"
         },
         {
@@ -71989,7 +71989,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.transmission",
           "courseId": "module.christ-event",
-          "title": "How We Got the Bible · Unit Mastery",
+          "title": "Checkpoint · How We Got the Bible",
           "sourceId": "unit-c1-transmission-mastery"
         },
         {
@@ -71998,7 +71998,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.transmission",
           "courseId": "module.christ-event",
-          "title": "Text, Manuscripts and Transmission · Unit Mastery",
+          "title": "Checkpoint · Text, Manuscripts and Transmission",
           "sourceId": "unit-c5-transmission-mastery"
         },
         {
@@ -72007,7 +72007,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.translation",
           "courseId": "module.christ-event",
-          "title": "Translation · Unit Mastery",
+          "title": "Checkpoint · Translation",
           "sourceId": "unit-c5-translation-mastery"
         },
         {
@@ -72016,7 +72016,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.kingdom",
           "courseId": "module.christ-event",
-          "title": "Jesus and the Kingdom · Unit Mastery",
+          "title": "Checkpoint · Jesus and the Kingdom",
           "sourceId": "unit-c4-kingdom-mastery"
         },
         {
@@ -72025,7 +72025,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.teaching",
           "courseId": "module.christ-event",
-          "title": "Jesus’ Teaching · Unit Mastery",
+          "title": "Checkpoint · Jesus’ Teaching",
           "sourceId": "unit-c4-teaching-mastery"
         },
         {
@@ -72034,7 +72034,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.israel-story",
           "courseId": "module.christ-event",
-          "title": "Jesus and Israel’s Story · Unit Mastery",
+          "title": "Checkpoint · Jesus and Israel’s Story",
           "sourceId": "unit-c4-israel-story-mastery"
         },
         {
@@ -72043,7 +72043,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.passion",
           "courseId": "module.christ-event",
-          "title": "Passion and Resurrection · Unit Mastery",
+          "title": "Checkpoint · Passion and Resurrection",
           "sourceId": "unit-c4-passion-mastery"
         },
         {
@@ -72052,7 +72052,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.pentecost",
           "courseId": "module.christ-event",
-          "title": "Pentecost and the Jerusalem Church · Unit Mastery",
+          "title": "Checkpoint · Pentecost and the Jerusalem Church",
           "sourceId": "unit-c4-pentecost-mastery"
         },
         {
@@ -72061,7 +72061,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.reading",
           "courseId": "module.christ-event",
-          "title": "Reading Somebody Else’s Mail · Unit Mastery",
+          "title": "Checkpoint · Reading Somebody Else’s Mail",
           "sourceId": "unit-c1-reading-mastery"
         },
         {
@@ -72070,7 +72070,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.paul-gentiles",
           "courseId": "module.christ-event",
-          "title": "Paul and Gentile Inclusion · Unit Mastery",
+          "title": "Checkpoint · Paul and Gentile Inclusion",
           "sourceId": "unit-c4-paul-gentiles-mastery"
         },
         {
@@ -72079,7 +72079,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c4.expansion",
           "courseId": "module.christ-event",
-          "title": "Christianity Begins to Expand · Unit Mastery",
+          "title": "Checkpoint · Christianity Begins to Expand",
           "sourceId": "unit-c4-expansion-mastery"
         },
         {
@@ -72088,7 +72088,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.intertext",
           "courseId": "module.christ-event",
-          "title": "Scripture Interpreting Scripture · Unit Mastery",
+          "title": "Checkpoint · Scripture Interpreting Scripture",
           "sourceId": "unit-c5-intertext-mastery"
         },
         {
@@ -72097,7 +72097,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.gospel-letters",
           "courseId": "module.christ-event",
-          "title": "Gospel and Letter Study · Unit Mastery",
+          "title": "Checkpoint · Gospel and Letter Study",
           "sourceId": "unit-c5-gospel-letters-mastery"
         },
         {
@@ -72106,7 +72106,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.theology",
           "courseId": "module.synthesis",
-          "title": "Theology You Need Before Continuing · Unit Mastery",
+          "title": "Checkpoint · Theology You Need Before Continuing",
           "sourceId": "unit-c1-theology-mastery"
         },
         {
@@ -72115,7 +72115,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.god-christ",
           "courseId": "module.synthesis",
-          "title": "God and Christ · Unit Mastery",
+          "title": "Checkpoint · God and Christ",
           "sourceId": "unit-c6-god-christ-mastery"
         },
         {
@@ -72124,7 +72124,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.sin-salvation",
           "courseId": "module.synthesis",
-          "title": "Humanity, Sin and Salvation · Unit Mastery",
+          "title": "Checkpoint · Humanity, Sin and Salvation",
           "sourceId": "unit-c6-sin-salvation-mastery"
         },
         {
@@ -72133,7 +72133,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.providence-life",
           "courseId": "module.synthesis",
-          "title": "Providence and Christian Life · Unit Mastery",
+          "title": "Checkpoint · Providence and Christian Life",
           "sourceId": "unit-c6-providence-life-mastery"
         },
         {
@@ -72142,7 +72142,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.practice",
           "courseId": "module.synthesis",
-          "title": "Christian Practice · Unit Mastery",
+          "title": "Checkpoint · Christian Practice",
           "sourceId": "unit-c1-practice-mastery"
         },
         {
@@ -72151,7 +72151,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.church-practice",
           "courseId": "module.synthesis",
-          "title": "Church and Practice · Unit Mastery",
+          "title": "Checkpoint · Church and Practice",
           "sourceId": "unit-c6-church-practice-mastery"
         },
         {
@@ -72160,7 +72160,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c1.traditions",
           "courseId": "module.synthesis",
-          "title": "Christians Do Not All Read the Same Way · Unit Mastery",
+          "title": "Checkpoint · Christians Do Not All Read the Same Way",
           "sourceId": "unit-c1-traditions-mastery"
         },
         {
@@ -72169,7 +72169,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.traditions",
           "courseId": "module.synthesis",
-          "title": "Christian Traditions · Unit Mastery",
+          "title": "Checkpoint · Christian Traditions",
           "sourceId": "unit-c6-traditions-mastery"
         },
         {
@@ -72178,7 +72178,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.difficult",
           "courseId": "module.synthesis",
-          "title": "Difficult Texts and Questions · Unit Mastery",
+          "title": "Checkpoint · Difficult Texts and Questions",
           "sourceId": "unit-c6-difficult-mastery"
         },
         {
@@ -72187,7 +72187,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c5.interpretation",
           "courseId": "module.synthesis",
-          "title": "Building an Interpretation · Unit Mastery",
+          "title": "Checkpoint · Building an Interpretation",
           "sourceId": "unit-c5-interpretation-mastery"
         },
         {
@@ -72196,7 +72196,7 @@ Source: [/data/catalog.json](/data/catalog.json)
           "masteryType": "unit-mastery",
           "unitId": "c6.final-hope",
           "courseId": "module.synthesis",
-          "title": "Resurrection and Final Hope · Unit Mastery",
+          "title": "Checkpoint · Resurrection and Final Hope",
           "sourceId": "unit-c6-final-hope-mastery"
         },
         {

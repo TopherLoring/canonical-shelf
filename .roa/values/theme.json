@@ -7,7 +7,7 @@
       "lead": "1.15rem",
       "h3": "1.3rem",
       "h2": "1.7rem",
-      "h1": "2.3rem"
+      "h1": "2rem"
     },
     "lineHeights": {
       "tight": 1.2,
@@ -37,6 +37,7 @@
     },
     "measures": {
       "measure-reading": "72ch",
+      "type-max": "clamp(2rem, 2.8vw, 2.5rem)",
       "home-shelf-height": "111px",
       "home-shelf-depth": "10px"
     },

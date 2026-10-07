@@ -133,6 +133,22 @@
   .lesson-body-text .scene-callout p { margin: 0; }
   .lesson-body-text .ui-scripture-block { font-size: 1.15em; }
   .lesson-body-text .inline-check { font-size: var(--type-body); line-height: var(--leading-normal); }
+  /* The check's choices and button read in the card's type, not the older small form type. */
+  .lesson-body-text .inline-check :is(.evidence-card, .answer-tile, .choice-card) span { font-size: var(--type-body); line-height: 1.35; }
+  .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) { padding: var(--space-1) var(--space-2); }
+  .lesson-body-text .inline-check :is(.evidence-board, .answer-tiles) { gap: var(--space-1); }
+  /* A Checkpoint's heading already says it is a check; its card is only the question. */
+  [data-checkpoint] .lesson-body-text .inline-check .eyebrow { display: none; }
+  .lesson-body-text .inline-check button[type="submit"] {
+    padding: var(--space-2) var(--space-4);
+    border: var(--border-weight) var(--border-style) var(--color-action);
+    border-radius: var(--radius-control);
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
   /* Readings longer than two sentences: a compact link that opens the passage (ui.lesson.reading.inline-or-popover) */
   .lesson-reading-link {
