@@ -1,6 +1,6 @@
 # Work board
 
-Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-07.
+Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-06.
 
 ## Rules every agent follows
 
@@ -44,8 +44,9 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S5a` | ready |  |  | `S2` | Step 5: Study Topics |
 | `S5b` | ready |  |  | `S2` | Step 5: Review & Practice |
 | `S5c` | ready |  |  | `S2` | Step 5: Profile |
+| `S5d` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c` | Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry |
 | `S6` | ready |  |  | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
-| `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | waiting |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J`, `S5d` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
@@ -306,4 +307,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-06 (Codex): Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node.
 - 2026-10-06 (Codex): Claimed on codex/roa-manifest-repair.
 - 2026-10-06 (Codex): PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite.
+
+### S5d — Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry
+
+- 2026-10-06 (Chris): Chris authorized a separate node because registry.js is outside the individual screen nodes. Register the completed Home, Topics, Practice, and Profile screens here; do not change their modules or other paths.
 

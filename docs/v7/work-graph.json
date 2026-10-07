@@ -1,6 +1,6 @@
 {
   "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
-  "updated": "2026-10-07",
+  "updated": "2026-10-06",
   "rules": [
     "Read the board, the node you will work on, and the decisions it cites before editing anything.",
     "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
@@ -846,7 +846,8 @@
         "S5c",
         "S6",
         "S3.I",
-        "S3.J"
+        "S3.J",
+        "S5d"
       ],
       "owns": [
         "public/ui/legacy.css",
@@ -1487,6 +1488,30 @@
       ],
       "owner": "Codex",
       "branch": "codex/roa-manifest-repair"
+    },
+    {
+      "id": "S5d",
+      "title": "Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry",
+      "state": "todo",
+      "deps": [
+        "S4",
+        "S5a",
+        "S5b",
+        "S5c"
+      ],
+      "owns": [
+        "public/ui/screens/registry.js"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Chris",
+          "text": "Chris authorized a separate node because registry.js is outside the individual screen nodes. Register the completed Home, Topics, Practice, and Profile screens here; do not change their modules or other paths."
+        }
+      ]
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"
