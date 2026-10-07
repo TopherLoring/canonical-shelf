@@ -773,6 +773,11 @@
           "date": "2026-10-06",
           "by": "Codex",
           "text": "Restored unchanged authored lesson objectives after independent review identified an overview preservation gap. Corrected source probe and fast checks pass. Full verification remains blocked by existing lesson feedback and obsolete contracts; Chris authorized a separate repair node on 2026-10-06. Learning Path routing remains separate and inactive."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Rebased onto P5 after the manifest repairs; base-aware ROA and verify:fast pass. Learning Path source is ready for review. Full verify on this exact branch remains for Chris's laptop run; registry activation and browser coverage stay in S3.J2."
         }
       ],
       "owner": "Codex",
