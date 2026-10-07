@@ -809,6 +809,11 @@
           "date": "2026-10-07",
           "by": "Codex-S5b",
           "text": "Claimed on codex/s5b-review-practice."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Self-contained Review & Practice overview is implemented in the owned practice.js/practice.css files: due-review entry, optional game tiles, future-game list, and personal progress summary; module build and CI=1 verify:fast passed (13/13 smoke). Activation remains deferred to separate S5d because the practice screen registry path is outside S5b ownership. Keep this node claimed and pending Chris's full verification on laptop; do not mark done yet."
         }
       ]
     },

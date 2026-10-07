@@ -208,6 +208,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5b — Step 5: Review & Practice
 
+- 2026-10-07 (Codex-S5b): Self-contained Review & Practice overview is implemented in the owned practice.js/practice.css files: due-review entry, optional game tiles, future-game list, and personal progress summary; module build and CI=1 verify:fast passed (13/13 smoke). Activation remains deferred to separate S5d because the practice screen registry path is outside S5b ownership. Keep this node claimed and pending Chris's full verification on laptop; do not mark done yet.
 - 2026-10-07 (Codex-S5b): Claimed on codex/s5b-review-practice.
 
 ### RD — Chris approves the redesign
