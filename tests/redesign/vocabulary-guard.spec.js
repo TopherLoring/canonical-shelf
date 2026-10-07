@@ -90,7 +90,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     // 1. Profile notes section heading
     await page.goto('/profile');
     await waitForAppReady(page);
-    const profileNotesTitle = page.locator('#notes-title');
+    const profileNotesTitle = page.locator('#notes h2');
     const profileNotesText = (await profileNotesTitle.innerText()).trim();
 
     // 2. Reader notes panel

@@ -220,6 +220,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S5a — Step 5: Study Topics
 
+- 2026-10-07 (Codex-S5a): Integrated: registry.topics wired. Fixed Codex's side panel (Scripture connections and Learning Path sections rendered twice from a triple-duplicated template). Legacy /topics?topic=<id> links (search results, related links) open the full topic page; mode=ask maps to questions; any topic id selects even outside the current group. Card links always carry the mode. Top spacing for the R2 rule. vocabulary-guard selector updated for Profile (also missed in S5c). tests/redesign/topics.spec.js (5). No inline style=.
 - 2026-10-07 (Chris): Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6).
 - 2026-10-07 (Codex): Imported existing done record from codex/s5a-study-topics at 87219ea; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update.
 - 2026-10-07 (Codex-S5a): Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d.

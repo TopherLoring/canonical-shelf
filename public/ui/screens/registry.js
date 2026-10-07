@@ -38,7 +38,7 @@ export const SCREENS = Object.freeze({
   course: () => import('./course.js'),
 
   // Step 5 (phase 7): Study Topics
-  topics: null,
+  topics: () => import('./topics.js'),
 
   // Step 5 (phase 7): Review & Practice
   practice: null,
