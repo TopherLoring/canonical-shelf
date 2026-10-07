@@ -208,6 +208,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 
+- 2026-10-07 (Codex-S6): Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass.
 - 2026-10-07 (Codex-S6): Claimed on codex/s6-theologian.
 
 ### RD — Chris approves the redesign
