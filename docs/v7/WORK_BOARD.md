@@ -34,7 +34,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S7` | ready |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | ready |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J`, `S5d` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
@@ -68,6 +68,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S5a` | done | Codex-S5a | `codex/s5a-study-topics` | `S2` | Step 5: Study Topics |
 | `S5b` | done | Codex-S5b | `codex/s5b-review-practice` | `S2` | Step 5: Review & Practice |
 | `S5c` | done | Codex-S5c | `codex/s5c-profile` | `S2` | Step 5: Profile |
+| `S5d` | done | claude | `feature/redesign-p5-lesson-path` | `S4`, `S5a`, `S5b`, `S5c` | Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry |
 | `S6` | done | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
@@ -248,6 +249,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-07 (Codex-S5c): Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review.
 - 2026-10-07 (Codex-S5c): Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run.
 - 2026-10-07 (Codex-S5c): Claimed on codex/s5c-profile.
+
+### S5d — Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry
+
+- 2026-10-07 (claude): Registry entries for home, topics, practice, profile were activated screen by screen during S4/S5a/S5b/S5c/S6 integration (each with its own tests); this node's acceptance (verify:fast: build, BSB, contracts, service worker, core, roa verify, work check, 19 smoke tests) passed. Also took codex/pr60-work-offline-fix (WORK_OFFLINE=1 now actually overrides the shared-board check) and added optional PW_CHROMIUM_PATH to playwright.config.js for machines whose Chromium build differs.
+- 2026-10-07 (claude): Done; acceptance passed (bun run verify:fast).
+- 2026-10-07 (claude): Claimed on feature/redesign-p5-lesson-path.
+- 2026-10-06 (Chris): Chris authorized a separate node because registry.js is outside the individual screen nodes. Register the completed Home, Topics, Practice, and Profile screens here; do not change their modules or other paths.
 
 ### S6 — Step 6: Theologian panel (docked desktop, centered phone, dim overlay)
 

@@ -126,8 +126,11 @@ if (cmd === 'check') {
     const behind = execSync(`git rev-list --count HEAD..FETCH_HEAD`, { encoding: 'utf8' }).trim();
     if (behind !== '0') fail(`your branch is ${behind} commit(s) behind ${shared} on GitHub. Merge or rebase onto it before claiming.`);
   } catch (e) {
-    if (e.status === undefined || process.env.WORK_OFFLINE) throw e;
-    fail(`could not read the shared board from origin/${shared}. Check the network, or set WORK_OFFLINE=1 only if you are sure no other agent is working.`);
+    if (e.status === undefined) throw e;
+    if (process.env.WORK_OFFLINE !== '1') {
+      fail(`could not read the shared board from origin/${shared}. Check the network, or set WORK_OFFLINE=1 only if you are sure no other agent is working.`);
+    }
+    console.warn(`work: WORK_OFFLINE=1; skipping the shared-board check for origin/${shared}.`);
   }
   if (n.state !== 'todo') fail(`${n.id} is ${n.state}${n.owner ? ` (owner ${n.owner})` : ''}`);
   if (!ready(g, n)) fail(`${n.id} is waiting on ${n.deps.filter(d => !['done', 'dropped'].includes(byId(g).get(d).state)).join(', ')}`);

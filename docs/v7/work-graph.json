@@ -1019,6 +1019,47 @@
       ]
     },
     {
+      "id": "S5d",
+      "title": "Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry",
+      "state": "done",
+      "deps": [
+        "S4",
+        "S5a",
+        "S5b",
+        "S5c"
+      ],
+      "owns": [
+        "public/ui/screens/registry.js"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Chris",
+          "text": "Chris authorized a separate node because registry.js is outside the individual screen nodes. Register the completed Home, Topics, Practice, and Profile screens here; do not change their modules or other paths."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Registry entries for home, topics, practice, profile were activated screen by screen during S4/S5a/S5b/S5c/S6 integration (each with its own tests); this node's acceptance (verify:fast: build, BSB, contracts, service worker, core, roa verify, work check, 19 smoke tests) passed. Also took codex/pr60-work-offline-fix (WORK_OFFLINE=1 now actually overrides the shared-board check) and added optional PW_CHROMIUM_PATH to playwright.config.js for machines whose Chromium build differs."
+        }
+      ],
+      "owner": "claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
       "id": "S6",
       "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
       "state": "done",
@@ -1090,7 +1131,8 @@
         "S5c",
         "S6",
         "S3.I",
-        "S3.J"
+        "S3.J",
+        "S5d"
       ],
       "owns": [
         "public/ui/legacy.css",
