@@ -1,6 +1,6 @@
 # Work board
 
-Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-06.
+Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand. Updated 2026-10-07.
 
 ## Rules every agent follows
 
@@ -201,6 +201,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S3.J — Step 3: Learning Path page (path, module and unit on one page)
 
+- 2026-10-07 (Claude): Learning Path page built to the confirmed mockup (docs/v7/mockups-2026-10-03/LearningPath.dc.html): modules rail with 'n of m lessons' and Capstones; the open module with units as accordions (one open at a time, address follows ?unit=); each unit lists numbered lessons with their objectives, its Checkpoint ('Checkpoint · <unit title>', never locked) and any older practice; Up next (first unfinished lesson, then the Checkpoint) and three progress bars (unit, module, path) counted in lessons. The words Module and Unit never appear (ui.naming.hide-module-unit-labels). Phone: one column, Up next first, picker instead of the rail, Progress last. /course now dispatches through ui/screens/course.js: ?lesson= -> lesson screen, ?mastery=, ?glossary= and unit.orientation stay on the old view until their steps. Rail component gained the optional sublabel line it already accepted. Old course/unit contract assertions rewritten for this page. Step counts are not shown on lesson rows (Chris has not decided; the copy rewrite will change them).
 - 2026-10-06 (Claude): Claimed on feature/redesign-p5-lesson-path.
 - 2026-10-05 (unknown): Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris.
 - 2026-10-05 (unknown): Checkpoint is named plain 'Checkpoint' with the unit title (ui.naming.checkpoint-bare-2026-10-05). Open question for Chris: one Checkpoint per unit or per lesson.

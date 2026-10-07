@@ -35,7 +35,7 @@ export const SCREENS = Object.freeze({
 
   // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params; the lesson screen handles
   // ?lesson= addresses, everything else stays on the current view until S3.J)
-  course: () => import('./lesson.js'),
+  course: () => import('./course.js'),
 
   // Step 5 (phase 7): Study Topics
   topics: null,

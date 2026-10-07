@@ -40,21 +40,21 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   for(const id of ['tpl-home','tpl-home-book','tpl-home-recent-item','tpl-progress-panel','tpl-progress-course-link','tpl-progress-recent-item','tpl-course-chooser','tpl-course-chooser-preview','tpl-course-landing','tpl-course-volume-link','tpl-course-detail','tpl-course-unit-card','tpl-unit-experience','tpl-unit-activity-step'])await expect(page.locator(`#${id}`)).toHaveCount(1);
   await expect(page.locator('main a[href^="/bible?book="]')).toHaveCount(66);
   await page.locator('nav.primary a[href="/path"], nav.primary a[href="/course"]').click();
-  await expect(page.locator('.course-volume-landing')).toBeVisible();
+  await expect(page.locator('[data-learning-path]')).toBeVisible();
   await page.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
   await expect(page.locator('[data-profile-progress] .progress-panel__summary')).toBeVisible();
   await page.goBack();
-  await expect(page.locator('.course-volume-landing')).toBeVisible();
-  const courseHref=await page.locator('.course-volume').first().getAttribute('href');
-  expect(courseHref).toBeTruthy();
-  await page.locator('.course-volume').first().click();
-  await expect(page.locator('.course-catalog-detail')).toBeVisible();
-  const unitHref=await page.locator('.journey-unit-card h2 a').first().getAttribute('href');
-  expect(unitHref).toBeTruthy();
-  await page.locator('.journey-unit-card h2 a').first().click();
-  await expect(page.locator('.unit-experience-hero')).toBeVisible();
-  await expect(page.locator('.activity-step')).not.toHaveCount(0);
+  await expect(page.locator('[data-learning-path]')).toBeVisible();
+  // Learning Path (redesigned, S3.J): a module in the rail, a unit's lessons, then the lesson itself.
+  const moduleHref=await page.locator('#path-modules a[href^="/course?course="]').nth(1).getAttribute('href');
+  expect(moduleHref).toBeTruthy();
+  await page.locator('#path-modules a[href^="/course?course="]').nth(1).click();
+  await expect(page.locator('[data-path-unit]')).not.toHaveCount(0);
+  const lessonLink=page.locator('[data-path-unit][open] a[data-activity-link^="lesson:"]').first();
+  expect(await lessonLink.getAttribute('href')).toMatch(/lesson=/);
+  await lessonLink.click();
+  await expect(page.locator('[data-lesson-screen]')).toBeVisible();
   expect(errors).toEqual([]);
 });
 

@@ -75,6 +75,15 @@
     white-space: nowrap;
   }
 
+  /* An optional second line under a rail label (for example "2 of 13 lessons"). */
+  .ui-rail-sublabel {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--type-caption);
+    font-weight: 400;
+    color: var(--color-text-secondary);
+  }
+
   .ui-rail-count,
   .ui-rail-badge {
     font-size: 13px;
