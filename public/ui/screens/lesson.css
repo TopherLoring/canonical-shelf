@@ -137,6 +137,34 @@
   .lesson-body-text .inline-check :is(.evidence-card, .answer-tile, .choice-card) span { font-size: var(--type-body); line-height: 1.35; }
   .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) { padding: var(--space-1) var(--space-2); }
   .lesson-body-text .inline-check :is(.evidence-board, .answer-tiles) { gap: var(--space-1); }
+  .lesson-body-text .inline-check fieldset[hidden] { display: none; }
+  .check-pager { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--type-small); color: var(--color-text-secondary); }
+  .check-pager button { padding: var(--space-1) var(--space-3); border: var(--border-weight) var(--border-style) var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); color: var(--color-text); font: inherit; font-weight: 600; cursor: pointer; }
+  .check-pager button[data-pager="next"] { border-color: var(--color-action); background: var(--color-action); color: var(--color-on-action); }
+  .check-pager button:disabled { opacity: .45; cursor: default; }
+  .check-pager [hidden] { display: none; }
+  /* Lists of choices never scroll inside the card: no inner max-height, tighter rows, two columns when the card is wide. */
+  .lesson-body-text .inline-check .sequence-board { max-height: none; overflow: visible; gap: 2px; }
+  .lesson-body-text .inline-check .sequence-card { padding: var(--space-1) var(--space-2); gap: var(--space-2); }
+  @media (min-width: 700px) {
+    .lesson-body-text .inline-check :is(.sequence-board, .evidence-board) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .lesson-body-text .inline-check .sequence-card { padding: 2px var(--space-2); }
+  .lesson-body-text .inline-check .sequence-card__controls button { min-height: 24px; min-width: 30px; line-height: 1; padding: 0 var(--space-1); }
+  .lesson-body-text .inline-check .sequence-card__index { font-size: var(--type-caption); }
+  .lesson-body-text .inline-check .challenge-prompt { font-size: var(--type-small); margin: 0; }
+  .lesson-body-text .inline-check .challenge h3, .lesson-body-text .inline-check h3 { margin: 0 0 var(--space-1); font-size: var(--type-lead); }
+  .lesson-body-text .inline-check .challenge-hint { margin: var(--space-1) 0; }
+  /* A long ordering (ten or twelve books) uses two columns at any width. */
+  .lesson-body-text .inline-check .sequence-board:has(> :nth-child(7)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-checkpoint] .lesson-step-head h1 { font-size: var(--type-lead); }
+  [data-checkpoint] .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) { padding: 2px var(--space-2); }
+  [data-checkpoint] .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) span { line-height: 1.25; }
+  [data-checkpoint] .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) span { padding: 4px var(--space-2); }
+  [data-checkpoint] .lesson-body-text .inline-check fieldset { padding: var(--space-1) var(--space-2); margin: 0; }
+  [data-checkpoint] .lesson-body-text .inline-check .check-pager { margin-top: var(--space-1); }
+  /* In a Checkpoint the card is the check itself; the study-tools row (glossary, questions, go deeper) has nothing to open. */
+  [data-checkpoint] .lesson-tools { display: none; }
   /* A Checkpoint's heading already says it is a check; its card is only the question. */
   [data-checkpoint] .lesson-body-text .inline-check .eyebrow { display: none; }
   .lesson-body-text .inline-check button[type="submit"] {

@@ -118,4 +118,20 @@ test.describe('Checkpoints on the lesson screen', () => {
     await expect(page.locator('[data-lesson-screen]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
+  test('a multi-question check shows one question at a time and never scrolls inside the card', async ({ page }) => {
+    for (const size of [{ width: 390, height: 844 }, { width: 1280, height: 720 }]) {
+      await page.setViewportSize(size);
+      await page.goto('/course?unit=c3.jewish-life&mastery=unit-c3-jewish-life-mastery&step=2');
+      const form = page.locator('.inline-check form').first();
+      await expect(form.locator('fieldset:visible')).toHaveCount(1);
+      await expect(form.locator('[data-pager-count]')).toHaveText('Question 1 of 5');
+      await expect(form.locator('[data-pager="next"]')).toBeDisabled();
+      await expect(form.locator('button[type=submit]')).toBeHidden();
+      await form.locator('fieldset:visible label').first().click();
+      await form.locator('[data-pager="next"]').click();
+      await expect(form.locator('[data-pager-count]')).toHaveText('Question 2 of 5');
+      const over = await page.evaluate(() => { const b = document.querySelector('.lesson-body'); return b.scrollHeight - b.clientHeight; });
+      expect(over).toBeLessThanOrEqual(1);
+    }
+  });
 });

@@ -36,12 +36,22 @@ export function checkpointAsLesson(data, masteryId) {
   const subject = capstone ? (course?.title || '') : older ? (activity?.title || mastery.title || '') : (unit?.title || '');
   const heading = older ? subject : subject ? `${label} · ${subject}` : label;
   // The introduction and the check are separate steps, so the check always has the whole card (no scrolling).
-  const intro = [];
-  [mastery.dek, ...(mastery.body || [])].filter(Boolean).forEach(text => intro.push({ kind: 'sentence', text, paraStart: true }));
-  if (mastery.plain) intro.push({ kind: 'callout', text: mastery.plain });
+  // A long introduction is cut at sentence ends into several cards (about 380 characters each) so none scrolls either.
   const cards = [];
-  if (intro.length) cards.push({ id: 'checkpoint', title: heading, units: intro });
-  cards.push({ id: cards.length ? 'checkpoint-2' : 'checkpoint', title: heading, units: [{ kind: 'check', block: 0 }] });
+  const pieces = [mastery.dek, ...(mastery.body || [])].filter(Boolean).flatMap(text => {
+    const sentences = String(text).match(/[^.!?]+[.!?]+["”’)]*\s*|[^.!?]+$/g) || [String(text)];
+    return sentences.map((sentence, i) => ({ kind: 'sentence', text: sentence.trim(), paraStart: i === 0 }));
+  });
+  if (mastery.plain) pieces.push({ kind: 'callout', text: mastery.plain });
+  let current = [], size = 0;
+  const flush = () => { if (current.length) cards.push({ id: cards.length ? `checkpoint-${cards.length + 1}` : 'checkpoint', title: heading, units: current }); current = []; size = 0; };
+  pieces.forEach(piece => {
+    if (current.length && size + piece.text.length > 380) flush();
+    if (!current.length) piece.paraStart = true;
+    current.push(piece); size += piece.text.length;
+  });
+  flush();
+  cards.push({ id: `checkpoint-${cards.length + 1}`, title: heading, units: [{ kind: 'check', block: 0 }] });
   return {
     id: masteryId,
     activityId,
@@ -119,6 +129,36 @@ function readingMarkup(unit, i, { esc }) {
       <div class="lesson-reading-text"><p>${esc(unit.text)}</p></div>
       <footer><a href="${esc(contextHref)}" class="lesson-reading-context">Open in the Bible</a></footer>
     </dialog>`;
+}
+
+// A check with several questions (matching, scenario, lanes, argument fields) shows one at a time inside the card,
+// so the card never scrolls. "Check response" appears with the last question.
+function mountCheckPager(root) {
+  root.querySelectorAll('.inline-check form.challenge').forEach(form => {
+    const groups = [...form.querySelectorAll('.challenge-controls fieldset')];
+    const submit = form.querySelector('.challenge-submit button[type="submit"]');
+    if (groups.length < 2 || !submit) return;
+    const bar = document.createElement('div');
+    bar.className = 'check-pager';
+    bar.innerHTML = '<button type="button" data-pager="back">Back</button><span data-pager-count aria-live="polite"></span><button type="button" data-pager="next">Next question</button>';
+    form.querySelector('.challenge-controls').after(bar);
+    const back = bar.querySelector('[data-pager="back"]'), nextBtn = bar.querySelector('[data-pager="next"]'), count = bar.querySelector('[data-pager-count]');
+    let at = 0;
+    const answered = group => !group.querySelector('input') || Boolean(group.querySelector('input:checked'));
+    const show = i => {
+      at = i;
+      groups.forEach((group, k) => { group.hidden = k !== i; });
+      count.textContent = `Question ${i + 1} of ${groups.length}`;
+      back.disabled = i === 0;
+      nextBtn.hidden = i === groups.length - 1;
+      nextBtn.disabled = !answered(groups[i]);
+      submit.hidden = i !== groups.length - 1;
+    };
+    form.addEventListener('change', () => { nextBtn.disabled = !answered(groups[at]); });
+    back.addEventListener('click', () => show(Math.max(0, at - 1)));
+    nextBtn.addEventListener('click', () => { if (answered(groups[at])) show(Math.min(groups.length - 1, at + 1)); });
+    show(0);
+  });
 }
 
 export async function mount(container, ctx) {
@@ -280,6 +320,7 @@ export async function mount(container, ctx) {
     if (event.key === 'ArrowRight' && !last) navigate(stepHref(index + 1));
     if (event.key === 'ArrowLeft' && index > 0) navigate(stepHref(index - 1));
   }
+  mountCheckPager(container);
   container.addEventListener('click', onClick);
   document.addEventListener('keydown', onKey);
   return () => {

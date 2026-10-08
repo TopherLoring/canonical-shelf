@@ -1,6 +1,6 @@
 {
   "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "rules": [
     "Read the board, the node you will work on, and the decisions it cites before editing anything.",
     "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
@@ -1153,6 +1153,11 @@
           "date": "2026-10-07",
           "by": "unknown",
           "text": "Chris decision ui.type.max-genesis-2026-10-07: --type-max (Genesis size) caps all text; site title only exception. Guard: tests/redesign/type-cap.spec.js (15+ routes x phone/desktop/1920). Checkpoints now render on the lesson screen (?mastery=). Full redesign+contracts: 185 passed."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "unknown",
+          "text": "Checkpoint fit: all 119 Checkpoint, Capstone and older practice items fit their card with no scrolling at 390x844 and 1280x720 (multi-question checks page one question at a time; long reorder lists use two columns; long introductions split across cards). Full redesign+contracts: 186 passed."
         }
       ]
     },
