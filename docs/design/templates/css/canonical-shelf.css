@@ -436,7 +436,7 @@
 .cs-passage__where { flex-grow: 1; padding-inline-start: calc(6 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); font-size: min(calc(14 * var(--u)), var(--type-cap)); color: var(--c-muted); }
 .cs-text-button { block-size: calc(40 * var(--u)); padding: 0 calc(12 * var(--u)); border: 0; border-radius: calc(10 * var(--u)); background: transparent; color: var(--c-text-2); font-size: min(calc(14 * var(--u)), var(--type-cap)); }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: min(calc(17 * var(--u)), var(--type-cap)); }
-.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: calc(36 * var(--u)) calc(48 * var(--u)); display: flex; justify-content: center; }
+.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: calc(18 * var(--u)) calc(48 * var(--u)) calc(36 * var(--u)); display: flex; justify-content: center; }   /* title starts near the top of the card (Chris, 2026-10-08) */
 .cs-passage__inner { max-inline-size: calc(600 * var(--u)); display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
 .cs-chapter { display: flex; align-items: stretch; gap: calc(14 * var(--u)); }
 .cs-chapter__bar { flex: 0 0 calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--group); }

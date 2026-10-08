@@ -134,7 +134,7 @@
 .cs-passage__where { flex-grow: 1; padding-inline-start: 6u; display: flex; align-items: center; gap: 8u; font-size: 14u; color: var(--c-muted); }
 .cs-text-button { block-size: 40u; padding: 0 12u; border: 0; border-radius: 10u; background: transparent; color: var(--c-text-2); font-size: 14u; }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: 17u; }
-.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 36u 48u; display: flex; justify-content: center; }
+.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 18u 48u 36u; display: flex; justify-content: center; }   /* title starts near the top of the card (Chris, 2026-10-08) */
 .cs-passage__inner { max-inline-size: 600u; display: flex; flex-direction: column; gap: 18u; }
 .cs-chapter { display: flex; align-items: stretch; gap: 14u; }
 .cs-chapter__bar { flex: 0 0 6u; border-radius: 3u; background: var(--group); }
