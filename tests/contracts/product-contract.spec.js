@@ -289,10 +289,13 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   await expect(body.locator('.scene-objective')).toHaveCount(0);
   await expect(body.locator('p').first()).toBeVisible();
 
-  // My Notes is its own column, separate from the Glossary / Go deeper apparatus.
+  // My Notes is its own card, separate from the Glossary / Go deeper apparatus (which opens from the rail's tools).
   await expect(page.locator('.lesson-side [data-note-text]')).toBeVisible();
-  await expect(page.locator('.lesson-side .lesson-apparatus details:has-text(\'Your notes\')')).toHaveCount(0);
-  await expect(page.locator('.lesson-side .lesson-apparatus summary').first()).not.toContainText('Your notes');
+  await page.locator('.lesson-rail [data-lesson-tool="deeper"]').click();
+  const sheet=page.locator('#lesson-study-sheet[open]');
+  await expect(sheet).toBeVisible();
+  await expect(sheet.locator('details:has-text(\'Your notes\')')).toHaveCount(0);
+  await expect(sheet.locator('summary').first()).not.toContainText('Your notes');
 });
 
 test('desktop and narrow layouts do not create horizontal page overflow',{tag:'@smoke'},async({page})=>{

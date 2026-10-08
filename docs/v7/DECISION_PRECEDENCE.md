@@ -1225,9 +1225,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.progress`
 
-- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
-  Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.
-- **Previous** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-progress-step-x-of-y-2026-10-08`
+  Lesson progress follows the template: on the phone the title bar shows 'Step x of y' with a dot chain. This replaces the earlier rule that progress is shown as 'N of M' without a 'Step' label.
+  *Why:* Chris 2026-10-08, already stated in the phone navigation decision (ui.phone.navigation): the lesson shows 'Step x of y' plus a dot chain
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
+  ~~Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.~~
+- **Prior** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
   ~~Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction~~
 
 ### `ui.lesson.progress.color-map`

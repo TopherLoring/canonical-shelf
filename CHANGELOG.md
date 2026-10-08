@@ -25,6 +25,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size
 - Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button
 - Per-theme fonts, the separate font choice and text size are built with the Profile screen port
+- Lesson progress follows the template: on the phone the title bar shows 'Step x of y' with a dot chain. This replaces the earlier rule that progress is shown as 'N of M' without a 'Step' label.
 
 ### Changed
 

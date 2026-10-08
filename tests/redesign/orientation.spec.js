@@ -1,5 +1,6 @@
 // Orientation (S11): the lesson screen, in the names the site uses now; not scored.
 import { test, expect } from '@playwright/test';
+import { overflowOf } from './lesson-helpers.js';
 
 test.use({ serviceWorkers: 'block' });
 
@@ -58,7 +59,7 @@ test.describe('Orientation', () => {
       const total = Number((await page.locator('[data-lesson-count]').innerText()).split(' of ')[1]);
       expect(total).toBe(17);
       for (let i = 0; i < total; i += 1) {
-        const over = await page.locator('.lesson-body').evaluate(el => el.scrollHeight - el.clientHeight);
+        const over = await overflowOf(page);
         expect(over, `step ${i + 1}`).toBeLessThanOrEqual(1);
         if (i < total - 1) await page.locator('.lesson-continue').click();
       }
@@ -79,8 +80,7 @@ test.describe('Orientation', () => {
     await page.goto(ORIENTATION + '&step=2');
     await expect(page.locator('[data-lesson-screen]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    const fits = await page.locator('.lesson-body').evaluate(el => el.scrollHeight <= el.clientHeight + 1);
-    expect(fits).toBe(true);
+    expect(await overflowOf(page)).toBeLessThanOrEqual(1);
   });
 
   test('the Shelf suggests the Orientation to someone new, and stops once it is seen or skipped', async ({ page }) => {

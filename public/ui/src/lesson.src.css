@@ -1,0 +1,238 @@
+/* Lesson screen (Step 3 of the redesign). The markup and measurements are the template's lesson screen
+   (docs/design/templates/css/src/screens.css, "Lesson"); the app adds what the template has no content for:
+   check forms, readings, the apparatus sheet, the section list for a lesson of many steps.
+   Lengths are board units (12u = calc(12 * var(--u))). Colours are the template roles (--c-*). Edit this file, not
+   public/ui/screens/lesson.css, which scripts/build-ui-css.mjs generates.
+
+   Desktop: a window frame with a title bar (breadcrumbs, close), the steps rail and the lesson card on the left, the
+   My Notes and Glossary cards on the right. Phone: the same frame; the title bar carries "Step n of m" and a dot chain,
+   the card is a plain article, Back and Continue sit in a bar below. The step flows in the frame; nothing is a fixed-shape
+   box (Chris 2026-10-08). */
+
+.lesson-screen { flex: 1 1 auto; min-block-size: 0; display: flex; flex-direction: column; }
+
+/* ---- Title bar ---- */
+.cs-titlebar { block-size: 48u; flex: none; padding: 0 16u 0 24u; display: flex; align-items: center; justify-content: space-between; gap: 6u; background: var(--c-subtle); border-block-end: 1u solid var(--c-hairline); }
+.cs-crumbs { display: flex; align-items: center; gap: 8u; min-inline-size: 0; font-size: 14u; color: var(--c-muted); white-space: nowrap; }
+.lesson-crumbs { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.cs-app .cs-crumbs a { color: var(--c-text-2); text-decoration: none; }
+.cs-app .cs-crumbs a:hover { color: var(--c-text); text-decoration: underline; }
+.cs-crumbs [aria-current="page"] { color: var(--c-text); font-weight: 600; }
+.lesson-close { flex: none; }
+.cs-crumbs__toggle, .lesson-phone-tools { display: none; }
+.cs-dots { display: flex; align-items: center; }
+.cs-dots span { position: relative; flex: none; inline-size: 12u; block-size: 12u; border-radius: 50%; background: var(--c-raised); border: 2u solid var(--c-border); box-sizing: border-box; }
+.cs-dots span + span { margin-inline-start: 26u; }
+.cs-dots span + span::before { content: ''; position: absolute; inset-block-start: 3u; inset-inline-end: 100%; inline-size: 26u; block-size: 2u; background: var(--c-border); }
+.cs-dots--dense span + span { margin-inline-start: 12u; }
+.cs-dots--dense span + span::before { inline-size: 12u; }
+/* Three states only (ui.lesson.progress.colors.three): completed is filled muted, current is the larger rose dot, new is hollow. */
+.cs-dots .is-done { background: var(--c-muted); border-color: var(--c-muted); }
+.cs-dots .is-done::before, .cs-dots .is-current::before { background: var(--c-muted); }
+.cs-dots .is-current { inline-size: 16u; block-size: 16u; margin-inline: -2u; background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 2u var(--c-accent); }
+.cs-dots .is-current + span { margin-inline-start: 24u; }
+.cs-dots .is-current + span::before { inline-size: 24u; inset-block-start: 3u; }
+.cs-dots span + .is-current { margin-inline-start: 24u; }
+.cs-dots--dense span + .is-current { margin-inline-start: 10u; }
+.cs-dots--dense .is-current + span { margin-inline-start: 10u; }
+.cs-dots--dense .is-current + span::before { inline-size: 10u; }
+/* A section of eight or more steps: smaller dots so the chain never reaches the close button. */
+.cs-dots--tight span { inline-size: 8u; block-size: 8u; border-width: 1.5u; }
+.cs-dots--tight span + span { margin-inline-start: 6u; }
+.cs-dots--tight span + span::before { inline-size: 6u; inset-block-start: 2.5u; block-size: 1.5u; }
+.cs-dots--tight .is-current { inline-size: 12u; block-size: 12u; margin-inline: -2u; }
+.cs-dots--tight span + .is-current, .cs-dots--tight .is-current + span { margin-inline-start: 6u; }
+.cs-dots--tight .is-current + span::before { inline-size: 6u; }
+
+/* ---- Window well ---- */
+.cs-window-well { flex: 1; min-block-size: 0; padding: 16u; gap: 16u; background: var(--c-sunken); display: grid; grid-template-columns: minmax(0, 1fr) 364u; }
+.cs-window-well > * { min-inline-size: 0; min-block-size: 0; }
+.cs-lesson-row { display: flex; gap: 16u; }
+.cs-lesson-row > * { min-block-size: 0; }
+
+/* ---- Steps rail ---- */
+.cs-rail--lesson { inline-size: 236u; flex: none; overflow: auto; }
+.cs-steps { display: flex; flex-direction: column; gap: 2u; margin: 0; padding: 0; list-style: none; }
+.cs-steps a { display: flex; align-items: center; gap: 10u; min-block-size: 40u; padding: 4u 10u; border-radius: 10u; color: var(--c-text-2); font-size: 14u; text-decoration: none; }
+.cs-steps a:hover { color: var(--c-text); }
+.cs-steps a[aria-current="step"] { background: var(--c-accent-tint); color: var(--c-text); font-weight: 600; }
+.cs-steps .cs-marker { inline-size: 26u; block-size: 26u; border-radius: 8u; font-size: 13u; }
+.cs-steps .is-done .cs-marker { border-color: var(--c-muted); color: var(--c-muted); }
+.lesson-section-text { display: flex; flex-direction: column; gap: 5u; min-inline-size: 0; }
+.lesson-section-title { overflow-wrap: anywhere; }
+.lesson-section-dots { display: flex; flex-wrap: wrap; gap: 4u; }
+.lesson-section-dots span { inline-size: 6u; block-size: 6u; border-radius: 50%; background: var(--c-border); }
+.lesson-section-dots .is-done { background: var(--c-muted); }
+.lesson-section-dots .is-current { background: var(--c-accent); }
+button.cs-rail__item { inline-size: 100%; border: 0; background: transparent; text-align: start; font-family: inherit; cursor: pointer; }
+button.cs-rail__item:hover:not(:disabled) { color: var(--c-text); }
+button.cs-rail__item:disabled { color: var(--c-disabled); cursor: default; }
+button.cs-rail__item.is-current { background: var(--c-accent-tint); }
+
+/* ---- Lesson card ---- */
+.cs-lesson-card { flex-grow: 1; min-inline-size: 0; padding: 32u 36u; display: flex; justify-content: center; overflow: auto; }
+.cs-lesson { inline-size: 100%; max-inline-size: 600u; display: flex; flex-direction: column; gap: 18u; }
+.cs-lesson__scroll { display: flex; flex-direction: column; gap: 18u; }
+.cs-lesson__head { display: flex; flex-direction: column; gap: 4u; }
+.cs-lesson__head > * { margin: 0; }
+.cs-lesson__head h1 { font-family: var(--f-display); font-size: 36u; font-weight: 600; line-height: 1.15; }
+.cs-lesson__head .cs-kicker { display: none; }
+.cs-lesson__prose { font-size: 17u; line-height: 1.65; }
+.cs-lesson__prose:focus-visible { outline: 2u solid var(--c-focus-ring); outline-offset: 4u; }
+.lesson-body-text { display: flex; flex-direction: column; gap: 18u; color: var(--c-text); }
+.lesson-body-text > * { margin: 0; }
+.lesson-body-text .scene-prose { font: inherit; line-height: inherit; color: inherit; max-inline-size: none; }
+.lesson-body-text .site-label { font-weight: 700; color: var(--c-text); }
+.cs-lesson__nav { display: flex; justify-content: space-between; align-items: center; gap: 12u; }
+
+/* Names of things in a step */
+.lesson-body-text .scene-callout { padding: 10u 14u; border-inline-start: 3u solid var(--c-accent); background: var(--c-sunken); border-radius: 10u; }
+.lesson-body-text .scene-callout p { margin: 0; }
+.lesson-body-text .scene-platform { display: grid; gap: 4u; margin: 0; font-size: 14u; color: var(--c-text-2); }
+.lesson-body-text .scene-platform > div { display: flex; gap: 10u; }
+.lesson-body-text .scene-platform dt { flex: 0 0 74u; }
+.lesson-body-text .scene-platform dd { margin: 0; }
+.lesson-body-text .scene-note { font-size: 14u; color: var(--c-muted); }
+.lesson-body-text .scene-list { padding-inline-start: 22u; list-style: disc; display: grid; gap: 8u; }
+.lesson-body-text .scene-actions { display: flex; flex-wrap: wrap; gap: 8u; }
+.lesson-body-text .scene-action { display: inline-flex; align-items: center; min-block-size: 40u; padding: 0 16u; border: 1u solid var(--c-border); border-radius: 10u; color: var(--c-text); font-weight: 600; text-decoration: none; }
+.lesson-body-text .scene-action.is-primary { border-color: var(--c-action); background: var(--c-action); color: var(--c-on-action); }
+
+/* Scripture quoted on the card is the template's quote: sunken, a group bar, reference and "Read in context" below. */
+.lesson-screen [data-group="law"] { --group: var(--g-law); } .lesson-screen [data-group="othist"] { --group: var(--g-history); }
+.lesson-screen [data-group="wisdom"] { --group: var(--g-wisdom); } .lesson-screen [data-group="major"] { --group: var(--g-major); }
+.lesson-screen [data-group="minor"] { --group: var(--g-minor); } .lesson-screen [data-group="gospel"] { --group: var(--g-gospels); }
+.lesson-screen [data-group="paul"] { --group: var(--g-paul); } .lesson-screen [data-group="general"] { --group: var(--g-general); }
+.lesson-screen [data-group="apoc"] { --group: var(--g-revelation); }
+.lesson-body-text .ui-scripture-block { padding: 18u 22u 18u 20u; border: 0; border-inline-start: 6u solid var(--group, var(--c-accent)); border-radius: 12u; background: var(--c-sunken); box-shadow: none; gap: 10u; }
+.lesson-body-text .ui-scripture-block-quote { font-family: var(--f-reading); font-size: 18u; line-height: 1.7; color: var(--c-text); }
+.lesson-body-text .ui-scripture-block-caption { gap: 10u; font-size: 14u; color: var(--c-muted); }
+.lesson-body-text .ui-scripture-block-meta { gap: 10u; }
+.lesson-body-text .ui-scripture-block-ref { font-size: 14u; font-weight: 400; color: var(--c-muted); }
+.lesson-body-text .ui-scripture-block-context { font-size: 14u; font-weight: 400; color: var(--c-action); }
+
+/* A reading longer than two sentences: a compact link that opens the passage */
+.lesson-reading-link { display: grid; gap: 2u; inline-size: 100%; text-align: start; padding: 12u 16u; font: inherit; color: var(--c-text); background: var(--c-sunken); border: 0; border-inline-start: 6u solid var(--group, var(--c-accent)); border-radius: 12u; cursor: pointer; }
+.lesson-reading-link:hover { background: var(--c-accent-tint); }
+.lesson-reading-ref { font-weight: 600; font-size: 14u; }
+.lesson-reading-version { color: var(--c-muted); font-weight: 400; }
+.lesson-reading-preview { font-family: var(--f-reading); font-size: 16u; color: var(--c-text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lesson-reading-cta { font-size: 13u; font-weight: 600; color: var(--c-action); }
+
+/* Checks inside the card */
+.lesson-body-text .inline-check { font-size: 16u; line-height: 1.5; }
+.lesson-body-text .inline-check :is(.evidence-card, .answer-tile, .choice-card) span { font-size: 16u; line-height: 1.35; }
+.lesson-body-text .inline-check :is(.evidence-card, .answer-tile) { padding: 4u 8u; }
+.lesson-body-text .inline-check :is(.evidence-board, .answer-tiles) { gap: 4u; }
+.lesson-body-text .inline-check fieldset[hidden] { display: none; }
+.lesson-body-text .inline-check .sequence-board { max-block-size: none; overflow: visible; gap: 2u; }
+.lesson-body-text .inline-check .sequence-card { padding: 2u 8u; gap: 8u; }
+.lesson-body-text .inline-check .sequence-card__controls button { min-block-size: 24u; min-inline-size: 30u; line-height: 1; padding: 0 4u; }
+.lesson-body-text .inline-check .sequence-card__index { font-size: 12u; }
+.lesson-body-text .inline-check .challenge-prompt { font-size: 14u; margin: 0; }
+.lesson-body-text .inline-check .challenge h3, .lesson-body-text .inline-check h3 { margin: 0 0 4u; font-size: 18u; }
+.lesson-body-text .inline-check .challenge-hint { margin: 4u 0; }
+.lesson-body-text .inline-check .sequence-board:has(> :nth-child(7)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lesson-body-text .inline-check :is(.sequence-board, .evidence-board) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lesson-body-text .inline-check button[type="submit"] { padding: 0 20u; block-size: 44u; border: 0; border-radius: 10u; background: var(--c-action); color: var(--c-on-action); font: inherit; font-weight: 600; cursor: pointer; }
+.check-pager { display: flex; align-items: center; justify-content: space-between; gap: 8u; margin-block-start: 8u; font-size: 14u; color: var(--c-text-2); }
+.check-pager button { padding: 6u 14u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); font: inherit; font-weight: 600; cursor: pointer; }
+.check-pager button[data-pager="next"] { border-color: var(--c-action); background: var(--c-action); color: var(--c-on-action); }
+.check-pager button:disabled { color: var(--c-disabled); cursor: default; }
+.check-pager [hidden] { display: none; }
+/* In a Checkpoint the card is the check itself. */
+[data-checkpoint] .lesson-body-text .inline-check .eyebrow { display: none; }
+[data-checkpoint] .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) { padding: 2u 8u; }
+[data-checkpoint] .lesson-body-text .inline-check :is(.evidence-card, .answer-tile) span { line-height: 1.25; padding: 4u 8u; }
+[data-checkpoint] .lesson-body-text .inline-check fieldset { padding: 4u 8u; margin: 0; }
+[data-checkpoint] .lesson-body-text .inline-check .check-pager { margin-block-start: 4u; }
+
+/* Back and Continue */
+.cs-app a.lesson-back { color: var(--c-text-2); }
+.cs-app a.lesson-back[aria-disabled="true"] { color: var(--c-disabled); pointer-events: none; }
+
+/* ---- Right column ---- */
+.lesson-side { min-block-size: 0; overflow: auto; }
+.cs-window-well .cs-panel { padding: 14u 16u 16u; gap: 14u; }
+.cs-notes { flex: 0 0 auto; block-size: 268u; border-color: var(--c-notes-edge); }
+.cs-notes--lesson { flex: none; min-block-size: 0; }
+.cs-notes--lesson:has(> [data-collapse-body][hidden]) { block-size: auto; }
+.cs-notes--lesson .cs-panel__title { display: flex; align-items: center; gap: 8u; }
+.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-accent); }
+.cs-notes__body { flex: 1; min-block-size: 0; display: flex; flex-direction: column; gap: 10u; }
+.cs-notes__body[hidden] { display: none; }
+.cs-notes__body [data-notes-mount] { flex: 1; min-block-size: 0; display: flex; flex-direction: column; }
+.lesson-screen .study-notes { flex: 1; min-block-size: 0; display: flex; flex-direction: column; gap: 8u; margin: 0; }
+.lesson-screen .study-notes__editor { flex: 1; min-block-size: 0; display: flex; flex-direction: column; gap: 6u; }
+.lesson-screen .study-notes__anchor { font-family: var(--f-body); font-size: 12u; color: var(--c-muted); }
+.lesson-screen .study-notes textarea, .cs-textarea { flex-grow: 1; inline-size: 100%; min-block-size: 0; padding: 10u 12u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); font-family: var(--f-body); font-size: 15u; line-height: 1.5; resize: none; box-sizing: border-box; }
+.lesson-screen .study-notes textarea::placeholder, .cs-textarea::placeholder { color: var(--c-muted); }
+.lesson-screen .study-notes__row { font-size: 12u; color: var(--c-muted); }
+.lesson-screen .study-notes__all, .lesson-screen .study-notes__related { font-size: 13u; }
+.cs-window-well .cs-fill { overflow: hidden; }
+.cs-terms { flex: 1; min-block-size: 0; overflow: auto; display: flex; flex-direction: column; gap: 14u; margin: 0; }
+.cs-terms > div { display: flex; flex-direction: column; gap: 3u; }
+.cs-terms dt { font-size: 15u; font-weight: 600; }
+.cs-terms dd { margin: 0; font-size: 15u; line-height: 1.55; color: var(--c-text-2); }
+button.lesson-link { padding: 0; border: 0; background: none; font: inherit; font-size: 14u; text-align: start; color: var(--c-action); cursor: pointer; }
+button.lesson-link:hover { text-decoration: underline; }
+
+/* ---- Sheets and the reading popover (native dialog: focus is trapped, Escape closes) ---- */
+.lesson-sheet, .lesson-reading-dialog { position: fixed; inset: 0; margin: auto; block-size: fit-content; inline-size: min(560u, calc(100vw - 32u)); max-block-size: min(80dvh, 720u); padding: 0; color: var(--c-text); background: var(--c-popover); border: 1u solid var(--c-popover-line); border-radius: 14u; box-shadow: var(--sh-popover); overflow: auto; font-family: var(--f-body); }
+.lesson-sheet::backdrop, .lesson-reading-dialog::backdrop { background: var(--c-dim); }
+.lesson-sheet > header, .lesson-reading-dialog > header { position: sticky; inset-block-start: 0; display: flex; align-items: center; justify-content: space-between; gap: 8u; padding: 12u 16u; background: var(--c-popover); border-block-end: 1u solid var(--c-hairline); }
+.lesson-sheet h2, .lesson-reading-dialog h2 { margin: 0; font-family: var(--f-display); font-size: 19u; font-weight: 600; }
+.lesson-sheet > .cs-steps, .lesson-sheet > .lesson-apparatus, .lesson-sheet > .lesson-notes-home { padding: 12u 16u; }
+.lesson-sheet-path { padding: 10u 16u 0; white-space: normal; flex-wrap: wrap; }
+.lesson-dialog-close { border: 0; background: none; font-size: 24u; line-height: 1; color: var(--c-text-2); cursor: pointer; padding: 4u 8u; border-radius: 10u; }
+.lesson-dialog-close:hover { color: var(--c-text); background: var(--c-sunken); }
+.lesson-reading-text { padding: 12u 16u; background: var(--c-scripture); font-family: var(--f-reading); font-size: 18u; line-height: 1.7; }
+.lesson-reading-text p { margin: 0; }
+.lesson-reading-dialog > footer { padding: 12u 16u; border-block-start: 1u solid var(--c-hairline); }
+.lesson-reading-context { font-weight: 600; color: var(--c-action); }
+.lesson-sheet .lesson-apparatus { font-size: 15u; }
+
+/* ---- Phone ---- */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .lesson-screen .cs-titlebar { block-size: 52u; padding: 0 6u 0 14u; }
+  .lesson-crumbs { display: none; }
+  .lesson-sheet-path { display: flex; }
+  .cs-crumbs__toggle { flex-grow: 1; padding: 0; border: 0; background: transparent; display: flex; flex-direction: row; align-items: center; gap: 12u; min-inline-size: 0; text-align: start; color: var(--c-text); font-family: inherit; cursor: pointer; }
+  .cs-crumbs__step { flex: none; font-size: 15u; font-weight: 600; color: var(--c-text); white-space: nowrap; }
+  .cs-crumbs__where { display: inline-flex; align-items: center; color: var(--c-muted); }
+  .cs-crumbs__where .cs-icon { inline-size: 12u; block-size: 12u; }
+  .cs-titlebar .cs-dots { flex: none; }
+  .cs-crumbs__toggle { overflow: hidden; }
+
+  .cs-window-well { display: flex; flex-direction: column; padding: 0; gap: 0; background: var(--c-raised); }
+  .cs-lesson-row { flex: 1; min-block-size: 0; gap: 0; }
+  .cs-rail--lesson { display: none; }
+  .lesson-side { display: none; }
+  .cs-lesson-card { padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; overflow: hidden; justify-content: stretch; }
+  .cs-lesson { max-inline-size: none; gap: 0; min-block-size: 0; }
+  .cs-lesson__scroll { flex: 1; min-block-size: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16u 16u 12u; gap: 12u; }
+  .cs-lesson__head { gap: 2u; }
+  .cs-lesson__head .cs-sub { display: none; }
+  .cs-lesson__head .cs-kicker { display: block; }
+  .cs-lesson__head h1 { font-size: 28u; }
+  .cs-lesson__prose { font-size: 16u; line-height: 1.6; }
+  .lesson-body-text { gap: 12u; }
+  .lesson-body-text .ui-scripture-block-quote { font-size: 17u; }
+  .lesson-body-text .inline-check :is(.sequence-board, .evidence-board) { grid-template-columns: minmax(0, 1fr); }
+  .lesson-body-text .inline-check .sequence-board:has(> :nth-child(7)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-toolgrid { display: grid; gap: 6u; }
+  .lesson-phone-tools { display: grid; }
+  .cs-toolgrid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cs-toolgrid button { block-size: 50u; min-inline-size: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3u; border: 1u solid var(--c-hairline); border-radius: 10u; background: var(--c-raised); color: var(--c-text-2); font-family: inherit; font-size: 11u; white-space: nowrap; cursor: pointer; }
+  .cs-toolgrid button:disabled { color: var(--c-disabled); cursor: default; }
+  .cs-toolgrid .cs-icon { inline-size: 18u; block-size: 18u; }
+  .cs-lesson__nav { flex: none; block-size: 60u; padding: 0 12u; border-block-start: 1u solid var(--c-hairline); background: var(--c-raised); }
+  .cs-app .cs-lesson__nav a.lesson-back { background: var(--c-raised); color: var(--c-text-2); border: 1u solid var(--c-hairline); padding: 0 16u; font-weight: 400; }
+  .cs-lesson__nav .lesson-back[aria-disabled="true"] { color: var(--c-disabled); }
+  .cs-lesson__nav .cs-button--continue { block-size: 44u; padding: 0 22u; }
+}
+
+/* On a wide screen the My Notes edge tab is not needed: My Notes has its own card. */
+@container app (min-width: 761px) and (min-aspect-ratio: 4/5) {
+  .lesson-notes-tab { display: none; }
+}

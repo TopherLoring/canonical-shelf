@@ -3,15 +3,16 @@
 // Renders the steps the build already divided (catalog: lesson.sections[].cards; decisions
 // curriculum.lesson.sections-divided-2026-10-05 and ui.lesson.card.break-rule-v3-2026-10-05). Nothing is measured at
 // runtime. One screen, two layouts chosen by the screen's shape (ui.lesson.card.orientation-2026-10-05): portrait uses
-// the phone layout, landscape the desktop layout. The step body is a 4:5 box in portrait and a 2:1 box in landscape
-// (ui.lesson.card.portrait-4x5, ui.lesson.card.landscape-2x1, ui.lesson.card.step-body-scope-2026-10-05).
+// the phone layout, landscape the desktop layout. The step flows in the window frame; there is no fixed-shape box
+// (Chris 2026-10-08, superseding ui.lesson.card.portrait-4x5 and landscape-2x1). The markup is the template's lesson
+// screen (docs/design/templates: titlebar, steps rail, lesson card, My Notes and Glossary cards).
 //
-// Address: /course?unit=<unit>&lesson=<lesson>&step=<n> (1-based). Progress reads "n of m", never "Step n of m"
-// (ui.lesson.progress.no-step-label-2026-10-05). Readings: quoted on the card when short, otherwise a link that opens
+// Address: /course?unit=<unit>&lesson=<lesson>&step=<n> (1-based). The phone title bar reads "Step n of m" with a dot
+// chain (Chris 2026-10-08, superseding ui.lesson.progress.no-step-label-2026-10-05). Readings: quoted on the card when short, otherwise a link that opens
 // the passage in a popover (ui.lesson.reading.inline-or-popover-2026-10-05).
-import { challengeForm, proseMarkup, visualBlock, lessonApparatus, continuationFor, activityFor, lessonFor, masteryFor } from '../../learning.js';
+import { challengeForm, proseMarkup, visualBlock, lessonApparatus, vocabEntries, continuationFor, activityFor, lessonFor, masteryFor } from '../../learning.js';
 import { renderMounts } from '../../study-notes.js';
-import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
+import { renderScriptureBlock, renderEdgeTab, setFrameVariant } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
@@ -223,36 +224,53 @@ export async function mount(container, ctx) {
     if (!sections.length || sections.at(-1).id !== s.sectionId) sections.push({ id: s.sectionId, title: s.sectionTitle, first: i, steps: [] });
     sections.at(-1).steps.push(i);
   });
-  const sectionList = `<ol class="lesson-sections">${sections.map(section => {
+  const ic = (path, label = '') => `<svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}${label}</svg>`;
+  const ICONS = {
+    glossary: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+    question: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.4M12 17v.5"/>',
+    deeper: '<path d="M12 4v13M6 11l6 6 6-6"/><path d="M5 20h14"/>',
+    pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    close: '<path d="M6 6l12 12M18 6 6 18"/>',
+    up: '<path d="m6 15 6-6 6 6"/>',
+    down: '<path d="m6 9 6 6 6-6"/>'
+  };
+
+  // Sections in order (the rail and the phone's "All steps" sheet): a marker, the title, and the section's steps as dots.
+  const sectionList = `<ol class="cs-steps lesson-sections">${sections.map((section, n) => {
     const current = section.steps.includes(index);
     const done = section.steps.at(-1) < index;
     return `<li class="${current ? 'is-current' : ''}${done ? ' is-done' : ''}">
-      <a href="${esc(stepHref(section.first))}" ${current ? 'aria-current="step"' : ''}>${esc(section.title)}</a>
-      <span class="lesson-section-dots" aria-hidden="true">${section.steps.map(i => `<span class="${i === index ? 'is-current' : i < index ? 'is-done' : ''}"></span>`).join('')}</span>
+      <a href="${esc(stepHref(section.first))}" ${current ? 'aria-current="step"' : ''}>
+        <span class="cs-marker${current ? ' cs-marker--current' : ''}" aria-hidden="true">${n + 1}</span>
+        <span class="cs-grow lesson-section-text"><span class="lesson-section-title">${esc(section.title)}</span>
+          <span class="lesson-section-dots" aria-hidden="true">${section.steps.map(i => `<span class="${i === index ? 'is-current' : i < index ? 'is-done' : ''}"></span>`).join('')}</span></span>
+      </a>
     </li>`;
   }).join('')}</ol>`;
 
-  const vocabCount = Array.isArray(lesson.vocab) ? lesson.vocab.length : Object.keys(lesson.vocab || {}).length;
+  const terms = vocabEntries(lesson);
+  const vocabCount = terms.length;
   const questionCount = lesson.challenges?.length || 0;
-  const icon = path => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
-  const tools = `<div class="lesson-tools" role="group" aria-label="Study tools">
-      <button type="button" data-lesson-tool="glossary" ${vocabCount ? '' : 'disabled'}>${icon('<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/>')}<span>Glossary${vocabCount ? ` · ${vocabCount}` : ''}</span></button>
-      <button type="button" data-lesson-tool="questions" ${questionCount ? '' : 'disabled'}>${icon('<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.7M12 17h.01"/>')}<span>Questions${questionCount ? ` · ${questionCount}` : ''}</span></button>
-      <button type="button" data-lesson-tool="deeper" ${checkpoint ? 'disabled' : ''}>${icon('<path d="M12 4v12M6 10l6 6 6-6M5 20h14"/>')}<span>Go deeper</span></button>
-    </div>`;
+  const stepText = step.units.map(u => [u.text, ...(u.items || [])].filter(Boolean).join(' ')).join(' ').toLowerCase();
+  const stepTerms = terms.filter(([term]) => stepText.includes(String(term).toLowerCase())).slice(0, 4);
+  const toolDefs = [
+    { id: 'glossary', icon: ICONS.glossary, label: 'Glossary', count: vocabCount, off: !vocabCount },
+    { id: 'questions', icon: ICONS.question, label: 'Questions', count: questionCount, off: !questionCount },
+    { id: 'deeper', icon: ICONS.deeper, label: 'Go deeper', count: 0, off: checkpoint || orientation }
+  ];
+  const railTools = toolDefs.map((t, n) => `<button type="button" class="cs-rail__item${n === 0 && !t.off ? ' is-current' : ''}" data-lesson-tool="${t.id}" ${t.off ? 'disabled' : ''}>${ic(t.icon)}<span class="cs-grow">${t.label}</span>${t.count ? `<span class="cs-count">${t.count}</span>` : ''}</button>`).join('');
+  const phoneTools = checkpoint || orientation ? '' : `<nav class="cs-toolgrid cs-toolgrid--3 lesson-phone-tools" aria-label="Study tools for this step">${toolDefs.map(t => `<button type="button" data-lesson-tool="${t.id}" ${t.off ? 'disabled' : ''}>${ic(t.icon)}<span>${t.label}${t.count ? ` · ${t.count}` : ''}</span></button>`).join('')}</nav>`;
 
+  const lessonLabel = orientation ? 'Orientation' : checkpoint ? lesson.label : `${LABELS.lesson} ${lessonNumber}`;
   const crumbs = [
     `<a href="/course">${esc(LABELS.learningPath)}</a>`,
-    course ? `<a href="/course?course=${encodeURIComponent(course.id)}" class="lesson-crumb-wide">${esc(course.title)}</a>` : '',
-    unit ? `<a href="${esc(exitHref)}" class="lesson-crumb-wide">${esc(unit.title)}</a>` : '',
-    `<span aria-current="page">${orientation ? 'Orientation' : checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
+    course ? `<a href="/course?course=${encodeURIComponent(course.id)}">${esc(course.title)}</a>` : '',
+    unit ? `<a href="${esc(exitHref)}">${esc(unit.title)}</a>` : '',
+    `<span aria-current="page">${esc(lessonLabel)}</span>`
   ].filter(Boolean).join('<span class="lesson-crumb-sep" aria-hidden="true">›</span>');
 
-  const progress = `<div class="lesson-progress">
-      <span class="lesson-progress-count" data-lesson-count>${index + 1} of ${steps.length}</span>
-      <ol class="lesson-progress-bar" aria-hidden="true">${steps.map((_, i) => `<li class="${i < index ? 'is-done' : i === index ? 'is-current' : ''}"></li>`).join('')}</ol>
-      <button type="button" class="lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog">All steps</button>
-    </div>`;
+  const where = `Step ${index + 1} of ${steps.length}`;
+  const dotSteps = sections.find(s => s.steps.includes(index))?.steps || [index];
 
   const apparatus = orientation
     ? `<details class="deep-reading" open><summary>About the orientation</summary><p>A short tour of how the site works. It is not scored and does not count toward any module.</p></details>
@@ -262,65 +280,76 @@ export async function mount(container, ctx) {
        <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
     : lessonApparatus(lesson, esc, { title: step.sectionTitle, anchor: step.anchor });
 
+  const notesCard = `<section class="cs-card cs-panel cs-notes cs-notes--lesson" aria-label="${esc(LABELS.myNotes)}">
+      <div class="cs-split cs-split--center"><h2 class="cs-panel__title">${ic(ICONS.pen)}${esc(LABELS.myNotes)}</h2>
+        <button type="button" class="cs-icon-button cs-icon-button--small" data-collapse="lesson-notes" aria-label="Collapse ${esc(LABELS.myNotes)}" aria-expanded="true">${ic(ICONS.up)}</button></div>
+      <div class="cs-notes__body lesson-notes-home" data-collapse-body="lesson-notes" data-notes-home="side"></div>
+    </section>`;
+  const glossaryCard = checkpoint || orientation || !vocabCount ? '' : `<section class="cs-card cs-panel cs-fill" aria-label="Glossary for this step">
+      <h2 class="cs-panel__title">Glossary</h2>
+      ${stepTerms.length
+        ? `<dl class="cs-terms">${stepTerms.map(([term, definition]) => `<div><dt>${esc(term)}</dt><dd>${esc(definition)}</dd></div>`).join('')}</dl>`
+        : '<p class="cs-caption">No glossary terms in this step.</p>'}
+      <button type="button" class="cs-panel__foot lesson-link" data-lesson-tool="glossary">All ${vocabCount} term${vocabCount === 1 ? '' : 's'} in this lesson</button>
+    </section>`;
+
+  const sheetHead = title => `<header><h2>${title}</h2><button type="button" class="lesson-dialog-close" data-dialog-close aria-label="Close">×</button></header>`;
   container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint || orientation ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
-    <div class="lesson-card">
-      <header class="lesson-titlebar">
-        <nav class="lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
-        <div class="lesson-titlebar-utilities">
-          <button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
-          <a href="${esc(exitHref)}" class="lesson-close" aria-label="Leave lesson">${icon('<path d="M6 6l12 12M18 6 6 18"/>')}</a>
-        </div>
-      </header>
-      ${progress}
-      <div class="lesson-layout">
-        <aside class="lesson-rail" aria-label="Sections">
-          <p class="lesson-rail-heading">${esc(lesson.title)}</p>
+    <header class="cs-titlebar lesson-titlebar">
+      <nav class="cs-crumbs lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
+      <button type="button" class="cs-crumbs__toggle lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog" aria-label="${esc(where)}. Show all steps and the full path">
+        <span class="cs-crumbs__step" data-lesson-count-phone>${esc(where)}</span>
+        <span class="cs-dots${dotSteps.length > 7 ? ' cs-dots--tight' : dotSteps.length > 5 ? ' cs-dots--dense' : ''}" aria-hidden="true">${dotSteps.map(i => `<span class="${i === index ? 'is-current' : i < index ? 'is-done' : ''}"></span>`).join('')}</span>
+        <span class="cs-crumbs__where">${ic(ICONS.down)}</span>
+      </button>
+      <a href="${esc(exitHref)}" class="cs-icon-button cs-icon-button--small lesson-close" aria-label="Leave lesson">${ic(ICONS.close)}</a>
+    </header>
+    <div class="cs-window-well cs-window-well--lesson">
+      <section class="cs-lesson-row" aria-label="Lesson">
+        <nav class="cs-card cs-rail cs-rail--lesson lesson-rail" aria-label="Lesson navigation">
+          <span class="cs-rail__label">Steps · <span data-lesson-count>${index + 1} of ${steps.length}</span></span>
           ${sectionList}
-          <p class="lesson-rail-heading">For this step</p>
-          ${tools}
-        </aside>
-        <article class="lesson-main">
-          <header class="lesson-step-head">
-            ${checkpoint || orientation ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
-            <h1 id="lesson-step-title">${esc(step.sectionTitle)}</h1>
-          </header>
-          <div class="lesson-phone-tools">${tools}</div>
-          <div class="lesson-stage"><div class="lesson-body" data-step-id="${esc(step.id)}" tabindex="0" aria-label="Step text"><div class="lesson-body-text">${stepBody(step, lesson, ctx)}</div></div></div>
-          <footer class="lesson-nav">
-            <a class="lesson-back" href="${esc(index > 0 ? stepHref(index - 1) : exitHref)}" ${index > 0 ? '' : 'aria-disabled="true"'}>Back</a>
-            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : orientation ? 'Begin the Learning Path' : 'Next lesson') : 'Return to unit'}</a>
-          </footer>
-        </article>
-        <aside class="lesson-side" aria-label="${esc(LABELS.myNotes)}">
-          <h2 class="lesson-side-heading">${esc(LABELS.myNotes)}</h2>
-          <div class="lesson-notes-home" data-notes-home="side"></div>
-          <div class="lesson-apparatus">${apparatus}</div>
-        </aside>
-      </div>
+          ${checkpoint || orientation ? '' : `<span class="cs-rail__section">For this step</span>${railTools}`}
+        </nav>
+        <div class="cs-card cs-lesson-card">
+          <article class="cs-lesson lesson-main">
+            <div class="cs-lesson__scroll lesson-stage">
+              <div class="cs-lesson__head">
+                ${checkpoint || orientation ? '' : `<span class="cs-sub">${esc(lesson.title)}</span>`}
+                <span class="cs-kicker">${esc(lessonLabel)}</span>
+                <h1 id="lesson-step-title">${esc(step.sectionTitle)}</h1>
+              </div>
+              ${phoneTools}
+              <div class="cs-lesson__prose lesson-body" data-step-id="${esc(step.id)}" tabindex="0" aria-label="Step text"><div class="lesson-body-text">${stepBody(step, lesson, ctx)}</div></div>
+            </div>
+            <footer class="cs-lesson__nav lesson-nav">
+              <a class="cs-button cs-button--ghost lesson-back" href="${esc(index > 0 ? stepHref(index - 1) : exitHref)}" ${index > 0 ? '' : 'aria-disabled="true"'}>Back</a>
+              <a class="cs-button cs-button--continue lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : orientation ? 'Begin the Learning Path' : 'Next lesson') : 'Return to unit'}</a>
+            </footer>
+          </article>
+        </div>
+      </section>
+      <aside class="cs-stack lesson-side" aria-label="Notes and study content">${notesCard}${glossaryCard}</aside>
     </div>
     ${renderEdgeTab({ type: 'notes', targetId: 'lesson-notes-sheet', className: 'lesson-notes-tab' })}
-    <dialog class="lesson-sheet" id="lesson-steps-sheet" aria-label="All steps"><header><h2>${esc(lesson.title)}</h2><button type="button" class="lesson-dialog-close" data-dialog-close aria-label="Close">×</button></header>${sectionList}</dialog>
-    <dialog class="lesson-sheet" id="lesson-study-sheet" aria-label="Study tools"><header><h2>${esc(step.sectionTitle)}</h2><button type="button" class="lesson-dialog-close" data-dialog-close aria-label="Close">×</button></header><div class="lesson-apparatus">${apparatus}</div></dialog>
-    <dialog class="lesson-sheet" id="lesson-notes-sheet" aria-label="${esc(LABELS.myNotes)}"><header><h2>${esc(LABELS.myNotes)}</h2><button type="button" class="lesson-dialog-close" data-dialog-close aria-label="Close">×</button></header><div class="lesson-notes-home" data-notes-home="sheet"></div></dialog>
+    <dialog class="lesson-sheet" id="lesson-steps-sheet" aria-label="All steps">${sheetHead(esc(lesson.title))}<nav class="cs-crumbs lesson-sheet-path" aria-label="Where this lesson is">${crumbs}</nav>${sectionList}</dialog>
+    <dialog class="lesson-sheet" id="lesson-study-sheet" aria-label="Study tools">${sheetHead(esc(step.sectionTitle))}<div class="lesson-apparatus">${apparatus}</div></dialog>
+    <dialog class="lesson-sheet" id="lesson-notes-sheet" aria-label="${esc(LABELS.myNotes)}">${sheetHead(esc(LABELS.myNotes))}<div class="lesson-notes-home" data-notes-home="sheet"></div></dialog>
   </section>`;
 
   enhanceLearningVisuals(container.querySelector('.lesson-body'));
-  // The apparatus brings its own notes section; the lesson has one My Notes editor instead (side column in
-  // landscape, sheet in portrait), so the editor exists once and its ids stay unique.
+  const restoreFrame = setFrameVariant('window');
+  // The apparatus brings its own notes section; the lesson has one My Notes editor instead (the aside on a wide screen, a
+  // sheet on the phone), so the editor exists once and its ids stay unique.
   container.querySelectorAll('.lesson-apparatus [data-notes-mount]').forEach(m => (m.closest('details') || m).remove());
   const notes = document.createElement('div');
   notes.dataset.notesMount = '';
-  const landscape = window.matchMedia('(orientation: landscape) and (min-width: 700px)');
-  const placeNotes = () => container.querySelector(`[data-notes-home="${landscape.matches ? 'side' : 'sheet'}"]`)?.append(notes);
+  notes.className = 'study-notes';
+  const phone = window.matchMedia('(max-width: 760px), (max-aspect-ratio: 4/5)');
+  const placeNotes = () => container.querySelector(`[data-notes-home="${phone.matches ? 'sheet' : 'side'}"]`)?.append(notes);
   placeNotes();
-  landscape.addEventListener('change', placeNotes);
+  phone.addEventListener('change', placeNotes);
   renderMounts();
-  // The screen fills the viewport below wherever it starts (the lesson hides the top bar in focus mode).
-  const screen = container.querySelector('.lesson-screen');
-  const fit = () => screen.style.setProperty('--lesson-top', `${Math.max(0, Math.round(screen.getBoundingClientRect().top + window.scrollY))}px`);
-  fit();
-  window.addEventListener('resize', fit);
-
   const openDialog = id => { const d = container.querySelector(`#${CSS.escape(id)}`); if (d && !d.open) d.showModal(); };
   function onClick(event) {
     const t = event.target;
@@ -329,6 +358,16 @@ export async function mount(container, ctx) {
     const sheet = t.closest('[data-sheet-open]');
     if (sheet) { openDialog(sheet.dataset.sheetOpen); return; }
     if (t.closest('[data-edge-tab="notes"]')) { openDialog('lesson-notes-sheet'); return; }
+    const collapse = t.closest('[data-collapse]');
+    if (collapse) {
+      const body = container.querySelector(`[data-collapse-body="${CSS.escape(collapse.dataset.collapse)}"]`);
+      const open = collapse.getAttribute('aria-expanded') !== 'true';
+      if (body) body.hidden = !open;
+      collapse.setAttribute('aria-expanded', String(open));
+      collapse.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} ${LABELS.myNotes}`);
+      collapse.querySelector('path')?.setAttribute('d', open ? 'm6 15 6-6 6 6' : 'm6 9 6 6 6-6');
+      return;
+    }
     const tool = t.closest('[data-lesson-tool]');
     if (tool) {
       if (tool.dataset.lessonTool === 'questions') {
@@ -361,7 +400,7 @@ export async function mount(container, ctx) {
   return () => {
     container.removeEventListener('click', onClick);
     document.removeEventListener('keydown', onKey);
-    landscape.removeEventListener('change', placeNotes);
-    window.removeEventListener('resize', fit);
+    phone.removeEventListener('change', placeNotes);
+    restoreFrame();
   };
 }

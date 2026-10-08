@@ -167,7 +167,7 @@
 .cs-frame { margin: calc(28 * var(--u)); min-block-size: 0; min-inline-size: 0; border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(16 * var(--u)); box-shadow: var(--sh-frame); overflow: hidden; }
 .cs-frame--well { display: grid; gap: calc(16 * var(--u)); padding: calc(16 * var(--u)); background: var(--c-sunken); }
 .cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) calc(340 * var(--u)); gap: calc(28 * var(--u)); padding: calc(20 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)) calc(32 * var(--u)); background: var(--c-surface); }
-.cs-frame--window { display: flex; flex-direction: column; background: var(--c-raised); }
+.cs-frame--window { display: flex; flex-direction: column; padding: 0; background: var(--c-raised); }
 .cs-cols--path { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
 .cs-cols--reader { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
 .cs-cols--topics { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
@@ -295,12 +295,11 @@
 .cs-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.1rem; }
 .cs-footer__links a { color: var(--c-text-2); font-size: .84rem; text-underline-offset: 0.22em; }
 .cs-footer__links a:hover, .cs-footer__links a:focus-visible { color: var(--c-text); }
-body.study-focus-active .cs-footer { display: none; }
-
-/* Focus mode (lessons): chrome steps away, the frame fills the app. */
-body.study-focus-active .cs-top,
-body.study-focus-active .cs-tabbar { display: none; }
-body.study-focus-active .cs-shell { grid-template-rows: minmax(0, 1fr); }
-body.study-focus-active .cs-frame { margin: 0 var(--edge-tab-w) 0 0; border: 0; border-radius: 0; box-shadow: none; background: var(--c-sunken); }
+/* Focus mode (lessons): on the phone the bottom bar steps away and the lesson's title bar is the navigation. On a wide
+   screen the top bar stays. The footer stays below the first screen on both. */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  body.study-focus-active .cs-tabbar { display: none; }
+  body.study-focus-active .cs-shell { grid-template-rows: minmax(0, 1fr); }
+}
 
 }

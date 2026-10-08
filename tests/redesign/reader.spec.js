@@ -338,16 +338,19 @@ test.describe('Bible reader', () => {
     await expect(page.locator('[data-reader-text]')).not.toContainText('&#1504;');
   });
 
-  test('legacy lesson focus still fills the viewport after stylesheet layering', async ({ page }) => {
+  test('lesson focus: the window frame stays inside the app and clear of the edge-tab strip (top bar stays on a wide screen)', async ({ page }) => {
     await page.goto('/course?unit=c1.christianity&lesson=begin');
     await expect(page.locator('body')).toHaveClass(/study-focus-active/);
+    await expect(page.locator('#main')).toHaveClass(/cs-frame--window/);
+    await expect(page.locator('.cs-top'), 'the desktop top bar is not hidden by focus mode').toBeVisible();
     const frame = await page.locator('#main').boundingBox();
-    expect(frame.x).toBe(0);
-    expect(frame.y).toBe(0);
-    // The frame fills the app except the strip reserved for the edge tabs.
     const tab = await page.locator('#guide-open').boundingBox();
-    expect(Math.abs(frame.width - (page.viewportSize().width - tab.width))).toBeLessThanOrEqual(1);
-    expect(frame.height).toBe(page.viewportSize().height);
+    const { width, height } = page.viewportSize();
+    expect(frame.x).toBeGreaterThanOrEqual(0);
+    expect(frame.y, 'the frame sits under the top bar').toBeGreaterThan(0);
+    expect(frame.x + frame.width, 'the frame never reaches the edge-tab strip').toBeLessThanOrEqual(tab.x + 1);
+    expect(frame.x + frame.width).toBeLessThanOrEqual(width);
+    expect(frame.y + frame.height).toBeLessThanOrEqual(height + 1);
   });
 
   test('highlights persist across reloads and can be removed',{tag:'@smoke'}, async ({ page }) => {
