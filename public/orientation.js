@@ -54,7 +54,7 @@ export const ORIENTATION_LESSON={
         },
         {
           id:'notes',
-          p:['**My Notes** sits beside the text for the verse you are on, with optional help: word meanings, background, and sources. You can change the translation in your **Profile**.'],
+          p:['**My Notes** sits beside the text for the verse you are on, with optional help: word meanings, background, and sources. For the Hebrew or Greek behind a word, ask the **Theologian**: it sets out the original-language evidence and what that evidence can and cannot settle. You can change the translation in your **Profile**.'],
           desktop:'My Notes is a pane beside the text.',
           phone:'My Notes is the tab on the right edge; it opens a sheet.',
           actions:[{label:'Open the Bible',href:'/bible'}]
@@ -107,7 +107,7 @@ export const ORIENTATION_LESSON={
         {
           id:'draws',
           p:['The **Theologian** answers from the Bible text, the material on this site, the published Statement of Faith, and a set of vetted sources.',
-            'It can explain positions the site does not hold, but it labels them as positions, not as the site’s teaching. During a scored check it will help you reason but will not pick the answer.']
+            'It can explain positions the site does not hold, but it labels them as positions, not as the site’s teaching. During a scored check it will not pick the answer: it explains terms, points you to the evidence, and helps you test the reasoning behind each option.']
         },
         {
           id:'privacy',
@@ -141,11 +141,11 @@ export const ORIENTATION_LESSON={
       cards:[
         {
           id:'review',
-          p:['**Review & Practice** brings back what you have already learned, at growing intervals, so finishing something and still remembering it later are tracked separately. Games there never change your Learning Path progress.']
+          p:['**Review & Practice** uses spaced repetition. What you finish in scored work comes back after growing gaps: 1, 3, 7, 14, 30, then 60 days. Pass a review and the next gap is longer; miss it and the gap starts over at one day. Games there never change your Learning Path progress.']
         },
         {
           id:'profile',
-          p:['Your **Profile** holds the look of the site, your translation, and your account. The order and meaning of everything stay the same whichever look you choose.'],
+          p:['Your **Profile** holds the look of the site (its theme, its typography, and the text size: small, normal or large), your translation, and your account. The order and meaning of everything stay the same whichever look you choose.'],
           actions:[{label:'Open your Profile',href:'/profile'},{label:'Begin the Learning Path',href:ORIENTATION_START_HREF,primary:true}]
         }
       ]

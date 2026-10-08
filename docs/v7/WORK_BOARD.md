@@ -38,7 +38,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `C5` | waiting (Chris) |  |  | `C4` | Content: Chris approves each lesson revision batch |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
+| `P11` | waiting |  |  | `S11` | Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD |
+| `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G`, `P11` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9`, `S11` | Step 7: remove legacy stylesheets and render paths; close the guards |
@@ -441,4 +442,8 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - 2026-10-08 (Claude): Claimed on feature/s11-orientation.
 - 2026-10-07 (Claude): Chris 2026-10-07: orientation should match the redesign in verbiage and design.
+
+### P11 — Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD
+
+- 2026-10-07 (Claude): Chris 2026-10-07: add a typography picker and a Small / Normal / Large text size picker to the Appearance settings. Each theme has a default typography group, but any theme's font bucket can be chosen separately; themes control colors, surface textures, lines/borders, and style. Typography is the whole site. Plan to confirm before building: how typography groups are defined in the theme contract (.roa/values/theme.json), which fonts ship, and the text-size scale (root size multiplier).
 

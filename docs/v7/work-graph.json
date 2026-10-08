@@ -1178,7 +1178,8 @@
       "deps": [
         "S7",
         "C3",
-        "S3.G"
+        "S3.G",
+        "P11"
       ],
       "owns": [],
       "accept": [],
@@ -2127,6 +2128,29 @@
       ],
       "owner": "Claude",
       "branch": "feature/s11-orientation"
+    },
+    {
+      "id": "P11",
+      "title": "Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD",
+      "state": "todo",
+      "deps": [
+        "S11"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/ui/screens/profile.css",
+        "public/theme.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/profile.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: add a typography picker and a Small / Normal / Large text size picker to the Appearance settings. Each theme has a default typography group, but any theme's font bucket can be chosen separately; themes control colors, surface textures, lines/borders, and style. Typography is the whole site. Plan to confirm before building: how typography groups are defined in the theme contract (.roa/values/theme.json), which fonts ship, and the text-size scale (root size multiplier)."
+        }
+      ]
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"
