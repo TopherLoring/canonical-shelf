@@ -330,4 +330,58 @@
   .practice-screen__mode .practice-run__submit { position: static; border-radius: var(--radius-control); }
 
   .practice-screen__mode a:not(.button) { overflow-wrap: anywhere; }
+
+  /* Cards sit on a sunken well, as the lesson's panes do: the frame is the surface, the well is one step down, and
+     every card inside lifts off it with a border and a shadow of its own. */
+  .practice-screen {
+    background: var(--color-surface-sunken);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-4, 16px);
+    margin: 0 var(--space-4, 16px) var(--space-4, 16px);
+  }
+
+  .practice-screen .ui-rail,
+  .practice-screen .ui-game-tile,
+  .practice-screen .practice-screen__due,
+  .practice-screen .practice-screen__stat-card,
+  .practice-screen__mode .verse-library-toolbar,
+  .practice-screen__mode .custom-translation-panel,
+  .practice-screen__mode .verse-library-filters,
+  .practice-screen__mode .verse-library-card,
+  .practice-screen__mode .arcade-config,
+  .practice-screen__mode .arcade-library a,
+  .practice-screen__mode .achievement-card,
+  .practice-screen__mode .practice-question,
+  .practice-screen__mode .practice-status,
+  .practice-screen__mode .practice-dashboard__card,
+  .practice-screen__mode .review-item,
+  .practice-screen__mode .level-card,
+  .practice-screen__mode .round-result,
+  .practice-screen__mode .practice-theme-grid a,
+  .practice-screen__mode .topic-card {
+    background: var(--color-surface);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .practice-screen__mode .verse-library-filters,
+  .practice-screen__mode .verse-library-toolbar { padding: var(--space-4, 16px); }
+
+  .practice-screen__mode .practice-status > div { background: transparent; }
+
+  .practice-screen .ui-game-tile:hover,
+  .practice-screen__mode .arcade-library a:hover,
+  .practice-screen__mode .level-card:hover { box-shadow: var(--shadow-frame); border-color: var(--color-action); }
+
+  .practice-screen__mode .achievement-card[data-earned="true"] {
+    background: var(--color-action-subtle);
+  }
+
+  .practice-screen__mode .verse-library-card blockquote { background: var(--color-scripture-bed); }
+
+  @media (max-width: 640px) {
+    .practice-screen { margin-inline: var(--space-2, 8px); padding: var(--space-3, 12px); }
+  }
 }
