@@ -1,0 +1,90 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Search (Step 9). Same arrangement as Study Topics: result types on the left, results in the middle, the selected
+   result explained on the right. Colors, fonts and radii come from theme roles. */
+@layer screens {
+  .search-screen {
+    display: grid;
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(250px, 320px);
+    gap: clamp(12px, 1.4vw, 20px);
+    min-height: 0;
+  }
+
+  .search-groups { position: sticky; top: 0; align-self: start; display: flex; flex-direction: column; gap: 3px; padding: 0 10px 16px; }
+  .search-groups__label { margin: 0 10px 7px; font-family: var(--font-label); font-size: var(--type-caption); color: var(--color-text-muted); line-height: 1.2; }
+  .search-groups > a {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+    min-height: 40px; padding: 6px 10px;
+    border-left: 3px solid transparent; border-radius: var(--radius-control);
+    color: var(--color-text); text-decoration: none; font-size: var(--type-small);
+  }
+  .search-groups > a:hover { background: var(--color-surface-sunken); }
+  .search-groups > a[aria-current="page"] { background: var(--color-surface-sunken); border-left-color: var(--color-action); font-weight: 600; }
+  .search-groups__count { flex: 0 0 auto; color: var(--color-text-muted); font-size: var(--type-caption); }
+
+  .search-main { min-width: 0; padding: 2px var(--space-1) var(--space-5); display: grid; align-content: start; gap: var(--space-3); }
+  .search-heading { display: grid; gap: var(--space-1); padding-top: var(--space-1); }
+  .search-heading .eyebrow, .search-heading h1, .search-heading p { margin: 0; }
+  .search-heading > p:last-child { color: var(--color-text-secondary); }
+
+  .search-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-2); }
+  .search-form input[type="search"] {
+    min-width: 0; min-height: 44px; padding: 0 var(--space-3);
+    border: 1px solid var(--color-border); border-radius: var(--radius-control);
+    background: var(--color-surface); color: inherit; font: inherit;
+  }
+
+  .search-ask {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3);
+    padding: var(--space-3); border: 1px solid var(--color-border); border-left: 3px solid var(--color-action);
+    border-radius: var(--radius-card); background: var(--color-surface);
+  }
+  .search-ask > div { display: grid; gap: 2px; min-width: 0; flex: 1 1 14rem; }
+  .search-ask span { font-size: var(--type-small); color: var(--color-text-secondary); }
+  .search-ask .button { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .search-section { display: grid; gap: var(--space-2); }
+  .search-section__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+  .search-section__head h2 { margin: 0; }
+  .search-section__head span { color: var(--color-text-muted); font-size: var(--type-small); }
+  .search-list { display: grid; gap: var(--space-2); }
+  .search-card {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: var(--space-3);
+    min-width: 0; padding: var(--space-3);
+    border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface);
+    color: var(--color-text); text-decoration: none;
+  }
+  .search-card:hover, .search-card.is-selected { border-color: var(--color-action); }
+  .search-card__copy { display: grid; align-content: start; gap: 4px; min-width: 0; }
+  .search-card__copy small { color: var(--color-text-muted); }
+  .search-card__copy strong { line-height: 1.25; }
+  .search-card__copy > span { line-height: 1.45; color: var(--color-text-secondary); display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .search-more { justify-self: start; font-size: var(--type-small); }
+
+  .search-context { align-self: start; position: sticky; top: 0; max-height: calc(100dvh - 8rem); overflow: auto; padding: var(--space-4); display: grid; align-content: start; gap: var(--space-3); }
+  .search-context > * { margin: 0; }
+  .search-context__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  .search-screen .button, .search-screen button[type="submit"] {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-control);
+    background: var(--color-surface); color: var(--color-text); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  }
+  .search-screen .button--primary, .search-screen button[type="submit"] { border-color: var(--color-action); background: var(--color-action); color: var(--color-on-action); }
+
+  @media (max-width: 1040px) {
+    .search-screen { grid-template-columns: minmax(170px, 210px) minmax(0, 1fr); }
+    .search-context { grid-column: 2; position: static; max-height: 42vh; }
+  }
+
+  @media (max-width: 680px) {
+    /* Inside the card: room on the left, and on the right enough to clear the Theologian tab. */
+    .search-screen { grid-template-columns: minmax(0, 1fr); padding: var(--space-3) var(--space-7) var(--space-4) var(--space-4); }
+    .search-groups { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 0; }
+    .search-groups__label { grid-column: 1 / -1; margin: 0 4px; }
+    .search-groups > a { min-width: 0; padding: 6px; }
+    .search-context { grid-column: auto; position: static; max-height: none; padding: var(--space-3); }
+    .search-form { grid-template-columns: minmax(0, 1fr); }
+    .search-form .button { justify-self: start; }
+  }
+}

@@ -11,7 +11,10 @@ function libraryRedirect(params) {
   if (reader.handles(params) || overview.handles(params)) return null;
   const view = params.get('view');
   if (view === 'shelf' || view === 'books') return '/home';
-  if (params.has('profile') || params.get('q') || (view && view !== 'reader')) return null;
+  const q = (params.get('q') || '').trim();
+  // A word (not a reference) is a Scripture search; it lives on the search screen.
+  if (q && !params.has('profile') && !(view && view !== 'reader')) return `/search?q=${encodeURIComponent(q)}&type=scripture`;
+  if (params.has('profile') || q || (view && view !== 'reader')) return null;
   const book = Number(params.get('book'));
   if (book >= 1 && book <= 66) return `/bible?book=${book}&chapter=1`;
   try {

@@ -255,7 +255,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `public/ui/screens/bible.js` — The /bible route: dispatches to the reader or the Book overview and Timeline screen
 - `public/ui/screens/book-overview.css` — Book overview and Timeline layout: list, selected book or timeline, and reading panel
 - `public/ui/screens/book-overview.js` — Book overview and Timeline screen: books by group on the left, the selected book or the timeline, and a reading panel
-- `public/ui/screens/search.js` — Search results screen (S9; a placeholder that handles nothing until built)
+- `public/ui/screens/search.js` — Search: reference goes to the reader, otherwise grouped results with the selected result explained on the right and an Ask the Theologian row for questions
+- `public/ui/screens/search.css` — Search screen arrangement (Study Topics layout)
 - `public/ui/screens/reader.js` — Redesigned Bible reader: Scripture apparatus, selection, notes, highlights, and study panels
 - `public/ui/legacy.css` — Pre-redesign stylesheets in the legacy cascade layer
 - `public/` — The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/

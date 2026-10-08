@@ -1990,7 +1990,7 @@
     {
       "id": "S9",
       "title": "Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S5a",
         "S8"
@@ -2012,6 +2012,16 @@
           "date": "2026-10-08",
           "by": "Claude",
           "text": "Claimed on feature/s9-search."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Search screen built on the Topics layout; questions searched by content words; /bible?q= and /course?glossary= redirect"
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/search.spec.js)."
         }
       ],
       "owner": "Claude",
