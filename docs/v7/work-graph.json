@@ -2161,7 +2161,7 @@
     {
       "id": "S12",
       "title": "Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S11"
       ],
@@ -2183,6 +2183,11 @@
           "date": "2026-10-08",
           "by": "Claude",
           "text": "Claimed on feature/s12-practice-frames."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/practice.spec.js)."
         }
       ],
       "owner": "Claude",
