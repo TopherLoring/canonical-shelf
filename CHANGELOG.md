@@ -51,6 +51,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Bible desktop template is locked as it stands after the Copy removal; it changes only on Chris's request.
 - Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); the right pane's content is left to the agent.
 - Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian. (agent default)
+- The Lesson desktop template is locked as it stands after the My Notes edit; it changes only on Chris's request.
 
 ## 2026-10-07
 

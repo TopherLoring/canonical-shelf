@@ -238,6 +238,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.progress.templates-2026-10-08` | Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.lesson.reading` | Lesson readings (::reading): | Owner decision | undefined |
+| `ui.lesson.template-locked-2026-10-08` | The Lesson desktop template is locked as it stands after the My Notes edit; | Owner decision | undefined |
 | `ui.lesson.titlebar-2026-10-08` | The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'. | Owner decision | undefined |
 | `ui.naming` | Learners are not shown the level names "Module" and "Unit"; | Owner decision | undefined |
 | `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |

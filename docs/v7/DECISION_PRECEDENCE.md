@@ -1297,6 +1297,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.reading.inline-or-popover-2026-10-05`
   Lesson readings (::reading): a passage of one or two sentences or less is quoted on the card as a Scripture block, with extra padding, the Scripture surface color (scriptureBed), the Bible group's color stripe, and the Scripture font. A longer passage appears on the card as a compact Scripture link (reference, version and a one-line preview in the group's colors) that opens the full passage in a popover: centered over a dimmed screen on phones, beside the link on desktop; the passage scrolls inside the popover, which offers Open in the Bible, and closes with its close button, Escape, or a tap on the dimmed area, returning to the same card.
 
+### `ui.lesson.template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-template-locked`
+  The Lesson desktop template is locked as it stands after the My Notes edit; it changes only on Chris's request.
+  *Why:* Chris artifact comment: lock page after notes edit
+
 ### `ui.lesson.titlebar-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-card-title-is-lesson-or-section-title`
