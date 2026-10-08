@@ -1580,6 +1580,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
+### `ui.shelf.phone-template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `shelf-phone-template-locked`
+  The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.
+  *Why:* Chris artifact comment: lock this page
+
 ### `ui.shelf.template-locked-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `shelf-template-locked`

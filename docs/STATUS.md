@@ -283,6 +283,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.shelf.phone-template-locked-2026-10-08` | The Shelf phone template is locked as it stands; | Owner decision | undefined |
 | `ui.shelf.template-locked-2026-10-08` | The Shelf desktop template is locked as it stands; | Owner decision | undefined |
 | `ui.sizing.proportional-2026-10-08` | Nothing on desktop or phone has fixed sizes or dimensions; | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
