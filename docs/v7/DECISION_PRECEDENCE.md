@@ -1410,6 +1410,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.
   *Why:* Artifact comments 4c7400bd and d938b323
 
+### `ui.path.phone.gain-expandable`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-what-you-ll-gain-moves-from-`
+  Phone Learning Path: 'What you'll gain' moves from a bubble into an expandable row at the top of the open unit, above the lessons.
+  *Why:* Artifact comment 34860370: gain should move
+
 ### `ui.path.phone.inline-button`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-the-inline-lesson-start-open`
@@ -1741,6 +1747,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `phone-study-topics-carries-the-rose-accent-like-`
   Phone Study Topics carries the rose accent like the other screens: rose edge and label on the question menu, rose-tinted sub topic numbers.
   *Why:* Artifact comment b1c79f41
+
+### `ui.topics.questions-vs-topics`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `study-topics-the-questions-category-lists-the-12`
+  Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.
+  *Why:* Chris, chat: Questions preload the Theologian chat without sending; the other study topics list curated items and clicking loads their content
 
 ### `ui.topics.right-pane-2026-10-08`
 

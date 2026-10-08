@@ -11,7 +11,7 @@ const chrome = params.get('chrome') !== '0';
 const dockShell = params.get('shell') === 'dock';   // the phone's dock format: top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge
 // Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
-const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, sheet: params.get('sheet') || '', sopen: params.has('sopen') ? Number(params.get('sopen')) : -1, lopen: params.has('lopen') ? Number(params.get('lopen')) : -1, mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
+const st = { cat: Number(params.get('cat')) || 0, topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, sheet: params.get('sheet') || '', sopen: params.has('sopen') ? Number(params.get('sopen')) : -1, lopen: params.has('lopen') ? Number(params.get('lopen')) : -1, mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
 let dockBook = 0;
 
 const NAV = [
@@ -62,7 +62,7 @@ function render(next) {
   ctx.dock = ds;
   app.dataset.shell = ds ? 'dock' : 'std';
   app.dataset.focus = String(!!screen.focus && !ds);
-  const cols = typeof screen.cols === 'function' ? screen.cols(view) : screen.cols;
+  const cols = typeof screen.cols === 'function' ? screen.cols(view, st) : screen.cols;
   const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}`;
   app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone && screen.overlay ? screen.overlay(st) : ''}${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
   app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
@@ -77,7 +77,9 @@ const decide = () => {
 };
 new ResizeObserver(() => render(decide())).observe(app);
 render(decide());
+if (params.has('ask')) setTimeout(() => show(askHtml(params.get('ask'))), 400);
 
+const askHtml = q => `<h2>Theologian</h2><p>Your question is loaded and ready to send. Nothing is sent until you press Send. The template sends nothing.</p><label class="cs-askbox"><span class="cs-visually-hidden">Message to the Theologian</span><textarea rows="4">${q}</textarea></label><button type="button" class="cs-button" disabled>Send</button>`;
 function show(html) {
   const dialog = app.querySelector('.cs-dialog');
   dialog.querySelector('.cs-dialog__body').innerHTML = html;
@@ -100,6 +102,9 @@ function wire() {
     layout = ''; render(decide());
   }));
   // The module is a drop-down card (phone).
+  app.querySelector('[data-type-select]')?.addEventListener('change', event => { const n = Number(event.target.value); if (Number.isNaN(n)) return; st.cat = n; st.topic = 0; st.sub = 0; layout = ''; render(decide()); });
+  // Questions load into the Theologian chat, ready to send. The template sends nothing.
+  app.querySelectorAll('[data-ask]').forEach(b => b.addEventListener('click', () => show(askHtml(b.dataset.ask))));
   app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
   app.querySelector('[data-mod-select]')?.addEventListener('change', event => { st.mod = Number(event.target.value); layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
@@ -132,7 +137,7 @@ function wire() {
     const q = event.target.value.trim().toLowerCase();
     let n = 0;
     app.querySelectorAll('.cs-topic').forEach(a => { a.hidden = !!q && !a.textContent.toLowerCase().includes(q); if (!a.hidden) n++; });
-    app.querySelector('.cs-result-count').textContent = n ? `Showing ${n} of 12 questions` : 'No questions match. Try another word.';
+    app.querySelector('.cs-result-count').textContent = n ? `Showing ${n} results` : 'Nothing matches. Try another word.';
   });
   app.querySelectorAll('.cs-unit__head').forEach(b => b.addEventListener('click', () => {
     const open = b.getAttribute('aria-expanded') === 'true';

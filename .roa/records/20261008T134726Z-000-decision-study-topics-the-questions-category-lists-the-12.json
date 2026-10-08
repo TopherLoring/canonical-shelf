@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "study-topics-the-questions-category-lists-the-12",
+  "topic": "ui.topics.questions-vs-topics",
+  "date": "2026-10-08",
+  "text": "Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.",
+  "rationale": "Chris, chat: Questions preload the Theologian chat without sending; the other study topics list curated items and clicking loads their content",
+  "by": "Chris"
+}

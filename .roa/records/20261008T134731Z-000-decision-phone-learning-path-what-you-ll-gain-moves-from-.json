@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-learning-path-what-you-ll-gain-moves-from-",
+  "topic": "ui.path.phone.gain-expandable",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path: 'What you'll gain' moves from a bubble into an expandable row at the top of the open unit, above the lessons.",
+  "rationale": "Artifact comment 34860370: gain should move",
+  "by": "Chris"
+}

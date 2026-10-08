@@ -70,6 +70,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Study Topics: Sources and Other views are footnotes (superscript markers in the text, footnotes at the bottom of the sub topic), not main content. The question menu is smaller and subtle, with texture and shadow instead of a border. Sub topics are shown closed.
 - Phone Study Topics carries the rose accent like the other screens: rose edge and label on the question menu, rose-tinted sub topic numbers.
 - Phone Study Topics: the other questions in the category are listed in an expandable section below the sub topics.
+- Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.
+- Phone Learning Path: 'What you'll gain' moves from a bubble into an expandable row at the top of the open unit, above the lessons.
 
 ## 2026-10-07
 

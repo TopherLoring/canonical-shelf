@@ -522,3 +522,7 @@
 .cs-morefq__item { display: flex; flex-direction: column; gap: 2u; padding: 10u 0; border-block-start: 1u solid var(--c-row); text-decoration: none; color: inherit; }
 .cs-morefq__title { font-size: 14u; font-weight: 600; color: var(--c-text); }
 .cs-morefq__text { font-size: 13u; line-height: 1.4; color: var(--c-text-2); }
+button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
+.cs-topic__ask { display: inline-flex; align-items: center; gap: 4u; margin-block-start: 4u; font-size: 13u; font-weight: 600; color: var(--c-action); }
+.cs-topic__ask .cs-icon { inline-size: 14u; block-size: 14u; order: 2; }
+.cs-askbox textarea { inline-size: 100%; padding: 10u 12u; border: 1u solid var(--c-border); border-radius: 10u; font: inherit; font-size: 15u; background: var(--c-raised); color: var(--c-text); resize: none; }
