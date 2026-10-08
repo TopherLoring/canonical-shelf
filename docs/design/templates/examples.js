@@ -9,6 +9,10 @@ const GROUPS = {
 const tag = (g, label = GROUPS[g]) => `<span class="cs-tag" data-group="${g}"><span class="cs-tag__dot"></span>${label}</span>`;
 const bar = (pct, label, tone = '') => `<div class="cs-bar${tone ? ` cs-bar--${tone}` : ''}" role="progressbar" aria-label="${label}" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><span style="--pct:${pct}%"></span></div>`;
 
+// The phone's dock format (?shell=dock): top bar with search and menu, five labelled tabs, My Notes and Theologian docked above them.
+export const ctx = { dock: false };
+const backlink = (href, label) => `<a class="cs-backlink" href="${href}">${i.left}<span>${label}</span></a>`;
+
 // A scrollable menu bar (phone): chips or icons in a row that scrolls sideways, with arrows that show which way it can scroll.
 const hscroll = (label, items) => `<div class="cs-hscroll" role="group" aria-label="${label}"><button type="button" class="cs-hscroll__arrow cs-hscroll__arrow--prev" aria-label="Scroll left">${i.left}</button><nav class="cs-chiprow cs-hscroll__track" aria-label="${label}">${items}</nav><button type="button" class="cs-hscroll__arrow cs-hscroll__arrow--next" aria-label="Scroll right">${i.right}</button></div>`;
 
@@ -80,13 +84,16 @@ const bookDock = n => {
   <div class="cs-dock__main"><div class="cs-dock__text"><strong id="dock-title">${name}</strong><span>${first ? GENESIS.tagline : 'Tap Details for the overview'}</span></div>
   <a class="cs-button cs-button--compact" href="?screen=reader">${first ? 'Resume Genesis 3' : `Open ${name}`}</a><a class="cs-dock__details" href="?screen=reader">Details</a></div>`;
 };
+const bookCard = `<aside class="cs-card cs-bookcard" aria-label="Selected book"><span class="cs-book__meta">${tag('law')}Book 1 of 66 · 50 chapters</span><div class="cs-book__head"><h2>Genesis</h2><span class="cs-book__tagline">${GENESIS.tagline}</span></div><p class="cs-book__synopsis">${GENESIS.synopsis}</p><div class="cs-split"><span>Reading chapter 3</span><span>6%</span></div>${bar(6, 'Genesis reading progress')}<a class="cs-button cs-button--block" href="?screen=reader">Resume Genesis 3</a><a class="cs-book__overview" href="?screen=reader">Details</a></aside>`;
 const shelfIntro = `<div class="cs-shelf-intro"><h1 class="cs-title">The Canonical<br><em>Shelf</em></h1><p>Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div>`;
 const shelfCase = `<section class="cs-shelf" aria-label="Bookshelf">${shelfRow(0, 39, 'Old Testament · 39 books', 'Genesis')}${shelfRow(39, 66, 'New Testament · 27 books', 'Genesis')}</section>`;
 
 const shelf = {
   frame: 'shelf',
   desktop: () => `<div class="cs-shelf-main">${shelfIntro}${shelfCase}${legend}${continueCards}</div>${bookPanel}`,
-  phone: () => `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${startHere}</div><aside class="cs-dock" aria-label="Selected book">${bookDock(0)}</aside>`,
+  phone: () => ctx.dock
+    ? `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${bookCard}${startHere}</div>`
+    : `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${startHere}</div><aside class="cs-dock" aria-label="Selected book">${bookDock(0)}</aside>`,
   dock: true
 };
 
@@ -160,6 +167,7 @@ const lessonAside = `<aside class="cs-stack" aria-label="Notes and study content
 </aside>`;
 const lessonTitlebar = full => full
   ? `<div class="cs-titlebar"><nav class="cs-crumbs" aria-label="Breadcrumb"><a href="?screen=path">Learning Path</a><span aria-hidden="true">›</span><a href="?screen=path">${modules[0].title}</a><span aria-hidden="true">›</span><a href="?screen=path">${units[1].title}</a><span aria-hidden="true">›</span><span aria-current="page">${lessons[0][0]}</span></nav><a class="cs-icon-button cs-icon-button--small" href="?screen=path" aria-label="Leave lesson">${i.close}</a></div>`
+  : ctx.dock ? `<div class="cs-titlebar">${backlink('?screen=path', 'Learning Path')}<button type="button" class="cs-crumbs__toggle cs-crumbs__toggle--end" aria-expanded="false" aria-label="Show full path: Learning Path, ${modules[0].title}, ${units[1].title}, ${lessons[0][0]}"><span class="cs-crumbs__step">1 of 6</span></button></div>`
   : `<div class="cs-titlebar"><nav class="cs-crumbs" aria-label="Breadcrumb"><button type="button" class="cs-crumbs__toggle" aria-expanded="false" aria-label="Show full path: Learning Path, ${modules[0].title}, ${units[1].title}, ${lessons[0][0]}"><span class="cs-crumbs__step">1 of 6</span><span class="cs-crumbs__where"><strong>${lessons[0][0]}</strong>${i.down}</span></button></nav><a class="cs-icon-button cs-icon-button--small" href="?screen=path" aria-label="Leave lesson">${i.close}</a></div>`;
 const lesson = {
   frame: 'window', current: 'path', focus: true,
@@ -200,7 +208,7 @@ const reader = {
   frame: 'well', cols: 'reader', current: 'reader', surface: 'scripture', focus: true,
   desktop: () => `${readerRail}${readerPassage}${readerAside}`,
   phone: () => `<article class="cs-phone-article cs-phone-article--reader">
-    <div class="cs-phone-chapter" data-group="law"><span class="cs-chapter__bar"></span><div class="cs-grow"><span class="cs-chapter__group">Law · Berean Standard Bible</span><button type="button" class="cs-chapter-picker" aria-label="Choose book and chapter, currently Genesis 1">Genesis 1${i.down}</button></div><button type="button" class="cs-square-button cs-square-button--large" aria-label="Reading options: text size, translation">${i.more}</button><a class="cs-square-button cs-square-button--large" href="?screen=shelf" aria-label="Close the Bible and choose a book on the Shelf">${i.close}</a></div>
+    ${ctx.dock ? backlink('?screen=shelf', 'Shelf') : ''}<div class="cs-phone-chapter" data-group="law"><span class="cs-chapter__bar"></span><div class="cs-grow"><span class="cs-chapter__group">Law · Berean Standard Bible</span><button type="button" class="cs-chapter-picker" aria-label="Choose book and chapter, currently Genesis 1">Genesis 1${i.down}</button></div><button type="button" class="cs-square-button cs-square-button--large" aria-label="Reading options: text size, translation">${i.more}</button>${ctx.dock ? '' : `<a class="cs-square-button cs-square-button--large" href="?screen=shelf" aria-label="Close the Bible and choose a book on the Shelf">${i.close}</a>`}</div>
     <nav class="cs-toolgrid cs-toolgrid--6" aria-label="Study tools for Genesis">${[['overview','Overview'],['timeline','Timeline'],['themes','Themes'],['people','People'],['places','Places'],['maps','Maps']].map(([ic, l]) => `<a href="#">${i[ic]}${l}</a>`).join('')}</nav>
     <p class="cs-scripture cs-scripture--phone"><span class="cs-anchor">${selectionBar.replace('<button type="button" class="cs-selection__action">Copy</button>', '')}</span><span class="cs-verse cs-verse--noted"><sup>1</sup>In the beginning God created the heavens and the earth.</span><button type="button" class="cs-footnote" aria-label="Footnote a: context for Genesis 1">a</button><span class="cs-verse cs-verse--selected"><sup>2</sup>Now the earth was <mark>formless and void</mark>, and darkness was over the surface of the deep. And the Spirit of God was hovering over the surface of the waters.</span><button type="button" class="cs-footnote" aria-label="Footnote b: 3 cross-references for Genesis 1:2">b</button> <sup>3</sup>And God said, “Let there be light,” and there was light. <sup>4</sup>And God saw that the light was good, and He separated the light from the darkness.</p></article>`
 };

@@ -249,6 +249,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
+| `ui.phone.dock-format-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |
 | `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
@@ -256,7 +257,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.no-hscroll` | Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
-| `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
+| `ui.phone.theologian-position` | In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar). | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.practice.modes.panes` | Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |

@@ -244,7 +244,7 @@
 .cs-stats { gap: 12u; }
 .cs-due-count { color: var(--c-accent); font-weight: 600; }
 
-.cs-backlink { align-self: flex-start; display: inline-flex; align-items: center; gap: 4u; text-align: start; min-block-size: 36u; padding: 0 10u 0 4u; border: 0; background: transparent; color: var(--c-action); font-size: 15u; font-weight: 600; }
+.cs-backlink { align-self: flex-start; text-decoration: none; display: inline-flex; align-items: center; gap: 4u; text-align: start; min-block-size: 36u; padding: 0 10u 0 4u; border: 0; background: transparent; color: var(--c-action); font-size: 15u; font-weight: 600; }
 .cs-backlink .cs-icon { inline-size: 16u; block-size: 16u; }
 
 /* ================= Phone variants ================= */
@@ -441,6 +441,15 @@
 .cs-app .cs-hscroll .cs-hscroll__track { flex: 1; min-inline-size: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
 .cs-hscroll__track::-webkit-scrollbar { display: none; }
 .cs-hscroll__track > a { flex: none; scroll-snap-align: start; white-space: nowrap; }
+
+/* ---- Phone dock format: selected book as a card, back links, step label ---- */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-bookcard { padding: 16u; display: flex; flex-direction: column; gap: 8u; }
+  .cs-bookcard .cs-book__head h2 { font-size: 28u; }
+  .cs-bookcard .cs-book__synopsis { font-size: 15u; line-height: 1.5; }
+  .cs-frame--window .cs-titlebar .cs-crumbs__toggle--end { flex-grow: 0; flex-direction: row; }
+  .cs-phone-article--reader > .cs-backlink { margin-block: -6u -4u; }
+}
 
 /* Board details that differ per screen */
 .cs-cols--path .cs-heading { padding-block-end: 4u; }

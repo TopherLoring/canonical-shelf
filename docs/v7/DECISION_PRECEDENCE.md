@@ -1353,6 +1353,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-module-on-the-learning-path-is-highl`
   The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 
+### `ui.phone.dock-format-2026-10-08`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `phone-dock-format-exploration`
+  Dock-format exploration for the phone (?shell=dock): top bar with search and menu, five labelled tabs, My Notes and Theologian as right-edge tabs, back links on the lesson and Bible. Exploration only; not adopted.
+  *Why:* Chris asked what the screens look like in the reference format with all planned features kept
+
 ### `ui.phone.focus-screens-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `phone-lesson-and-bible-focus-screens`
@@ -1403,9 +1409,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.phone.theologian-position`
 
-- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v2`
-  Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value.
-- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
+- **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-stays-on-the-side`
+  In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar).
+  *Why:* Chris, 2026-10-08: 'keep theologian on the side' (on the dock-format exploration)
+- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v2`
+  ~~Phone edge tabs, fixed on every screen: Theologian bottom edge 168px from the screen bottom (well clear of the lesson Back/Continue footer, which tops out at 104px), My Notes 12px above it (bottom 298px). Supersedes the 116px value.~~
+- **Prior** · 2026-10-03 · Owner decision (Chris) · `ui.phone.theologian-position.v1`
   ~~On phones the Theologian tab keeps one fixed position on every screen: right edge, bottom edge 116px from the screen bottom (clears the lesson Back/Continue footer); content cards use equal 10px side margins and only body text is padded to clear the tab. Option A (My Notes button in the header) and option B (My Notes edge tab 12px above the Theologian) are both mocked; choice pending.~~
 
 ### `ui.polish.2026-10-03`

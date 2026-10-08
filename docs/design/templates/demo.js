@@ -1,6 +1,6 @@
 // Mounts one template screen. The layout follows the shape of the space the app is given, not the device:
 // phone layout when the app is narrower than 761 units or taller than 5:4; desktop otherwise. CSS does the scaling.
-import { screens, books, bookDock, peekPane } from './examples.js';
+import { screens, books, bookDock, peekPane, ctx } from './examples.js';
 import { icons as i } from './icons.js';
 
 const params = new URLSearchParams(location.search);
@@ -8,6 +8,7 @@ const key = Object.hasOwn(screens, params.get('screen')) ? params.get('screen') 
 const screen = screens[key];
 const current = screen.current || key;
 const chrome = params.get('chrome') !== '0';
+const dockShell = params.get('shell') === 'dock';   // the phone's dock format: top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge
 // Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
 const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, mod: Number(params.get('mod')) || 0 };
@@ -33,6 +34,9 @@ const topBar = phone => `<header class="cs-top">
 
 const tabBar = `<nav class="cs-tabbar" aria-label="Primary">${NAV.map(([id, label, short]) => `<a href="?screen=${id}" aria-label="${label}"${cur(id)}>${ICON[id]}<span>${short}</span></a>`).join('')}<button type="button" class="cs-tabbar__extra" aria-label="Search">${i.search}<span>Search</span></button><a href="#" aria-label="Profile and feedback">${i.profile}<span>You</span></a></nav>`;
 
+const topBarDock = `<header class="cs-top cs-top--dock"><a class="cs-brand" href="?screen=shelf" aria-label="The Canonical Shelf, home">${i.logo}<span class="cs-wordmark">The Canonical <em>Shelf</em></span></a><button type="button" class="cs-icon-button cs-top__search" aria-label="Search">${i.search}</button><button type="button" class="cs-icon-button" data-guide="menu" aria-label="Menu: profile, feedback">${i.menu}</button></header>`;
+const bottomDock = `<div class="cs-bottom"><nav class="cs-tabbar" aria-label="Primary">${NAV.map(([id, label, short]) => `<a href="?screen=${id}" aria-label="${label}"${cur(id)}>${ICON[id]}<span>${short}</span></a>`).join('')}</nav></div>`;
+
 const statusBar = `<div class="cs-status" aria-hidden="true"><span class="cs-status__time">9:41</span><span class="cs-status__island"></span><span class="cs-status__icons">
   <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect></svg>
   <svg viewBox="0 0 16 12"><path d="M8 2.6c2.3 0 4.4.9 6 2.4l1.3-1.4A10.6 10.6 0 0 0 8 .6 10.6 10.6 0 0 0 .7 3.6L2 5c1.6-1.5 3.7-2.4 6-2.4Zm0 3.8c1.3 0 2.5.5 3.4 1.3l1.3-1.4A6.8 6.8 0 0 0 8 4.4c-1.8 0-3.4.7-4.7 1.9l1.3 1.4c.9-.8 2.1-1.3 3.4-1.3ZM8 12l2.3-2.5A3.2 3.2 0 0 0 8 8.4c-.9 0-1.7.4-2.3 1.1L8 12Z"></path></svg>
@@ -53,10 +57,13 @@ function render(next) {
   const phone = next === 'phone';
   app.dataset.layout = next;
   app.dataset.chrome = phone && chrome ? 'device' : 'none';
-  app.dataset.focus = String(!!screen.focus);
+  const ds = phone && dockShell;
+  ctx.dock = ds;
+  app.dataset.shell = ds ? 'dock' : 'std';
+  app.dataset.focus = String(!!screen.focus && !ds);
   const cols = typeof screen.cols === 'function' ? screen.cols(view) : screen.cols;
   const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? '' : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone ? (screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
   app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
   if (phone && screen.dock) paintDock();
@@ -114,6 +121,7 @@ function wire() {
   });
   app.querySelectorAll('[data-guide]').forEach(b => b.addEventListener('click', () => show(b.dataset.guide === 'notes'
     ? '<h2>My Notes</h2><p>Connect this tab to the app’s notes panel. The template saves nothing.</p>'
+    : b.dataset.guide === 'menu' ? '<h2>Menu</h2><p>Profile, appearance, account and Feedback live here. The template opens nothing.</p>'
     : '<h2>Theologian</h2><p>Connect this tab to the app’s Theologian. The template sends nothing.</p>')));
   app.querySelectorAll('.cs-spine').forEach(b => b.addEventListener('click', () => {
     if (layout === 'phone' && screen.dock) { dockBook = books.findIndex(x => x[1] === b.dataset.book); paintDock(); return; }

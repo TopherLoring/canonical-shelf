@@ -298,6 +298,19 @@
 .cs-status__icons svg:last-child { block-size: calc(13 * var(--u)); }
 .cs-home { position: absolute; inset-block-end: calc(8 * var(--u)); inset-inline-start: 50%; translate: -50% 0; inline-size: calc(134 * var(--u)); block-size: calc(5 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--c-text); z-index: var(--z-popover); }
 
+/* ---- Phone dock format (?shell=dock): top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge ---- */
+.cs-bottom { display: none; }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-app[data-shell="dock"] .cs-shell { grid-template-rows: calc(56 * var(--u)) minmax(0, 1fr) auto; }
+  .cs-app[data-shell="dock"][data-chrome="device"] .cs-shell { grid-template-rows: calc(47 * var(--u)) calc(56 * var(--u)) minmax(0, 1fr) auto; }
+  .cs-top--dock { gap: calc(2 * var(--u)); padding: 0 calc(6 * var(--u)) 0 calc(14 * var(--u)); }
+  .cs-top--dock .cs-brand { flex: 1 1 auto; gap: calc(8 * var(--u)); }
+  .cs-top--dock .cs-logo { inline-size: calc(22 * var(--u)); block-size: calc(22 * var(--u)); }
+  .cs-top--dock .cs-wordmark { font-size: calc(19 * var(--u)); }
+  .cs-bottom { display: flex; flex-direction: column; background: var(--c-surface); }
+  .cs-bottom .cs-tabbar { border-block-start: 0; }
+}
+
 /* The six screens. Values come from the matching board; lengths are in board units (u). */
 
 /* ================= Shelf (Main.dc.html) ================= */
@@ -544,7 +557,7 @@
 .cs-stats { gap: calc(12 * var(--u)); }
 .cs-due-count { color: var(--c-accent); font-weight: 600; }
 
-.cs-backlink { align-self: flex-start; display: inline-flex; align-items: center; gap: calc(4 * var(--u)); text-align: start; min-block-size: calc(36 * var(--u)); padding: 0 calc(10 * var(--u)) 0 calc(4 * var(--u)); border: 0; background: transparent; color: var(--c-action); font-size: calc(15 * var(--u)); font-weight: 600; }
+.cs-backlink { align-self: flex-start; text-decoration: none; display: inline-flex; align-items: center; gap: calc(4 * var(--u)); text-align: start; min-block-size: calc(36 * var(--u)); padding: 0 calc(10 * var(--u)) 0 calc(4 * var(--u)); border: 0; background: transparent; color: var(--c-action); font-size: calc(15 * var(--u)); font-weight: 600; }
 .cs-backlink .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); }
 
 /* ================= Phone variants ================= */
@@ -741,6 +754,15 @@
 .cs-app .cs-hscroll .cs-hscroll__track { flex: 1; min-inline-size: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
 .cs-hscroll__track::-webkit-scrollbar { display: none; }
 .cs-hscroll__track > a { flex: none; scroll-snap-align: start; white-space: nowrap; }
+
+/* ---- Phone dock format: selected book as a card, back links, step label ---- */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-bookcard { padding: calc(16 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+  .cs-bookcard .cs-book__head h2 { font-size: calc(28 * var(--u)); }
+  .cs-bookcard .cs-book__synopsis { font-size: calc(15 * var(--u)); line-height: 1.5; }
+  .cs-frame--window .cs-titlebar .cs-crumbs__toggle--end { flex-grow: 0; flex-direction: row; }
+  .cs-phone-article--reader > .cs-backlink { margin-block: calc(-6 * var(--u)) calc(-4 * var(--u)); }
+}
 
 /* Board details that differ per screen */
 .cs-cols--path .cs-heading { padding-block-end: calc(4 * var(--u)); }

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "phone-dock-format-exploration",
+  "topic": "ui.phone.dock-format-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Dock-format exploration for the phone (?shell=dock): top bar with search and menu, five labelled tabs, My Notes and Theologian as right-edge tabs, back links on the lesson and Bible. Exploration only; not adopted.",
+  "rationale": "Chris asked what the screens look like in the reference format with all planned features kept",
+  "by": "Claude-agent"
+}

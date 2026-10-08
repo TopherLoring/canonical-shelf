@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian-stays-on-the-side",
+  "topic": "ui.phone.theologian-position",
+  "date": "2026-10-08",
+  "text": "In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar).",
+  "rationale": "Chris, 2026-10-08: 'keep theologian on the side' (on the dock-format exploration)",
+  "by": "Chris"
+}

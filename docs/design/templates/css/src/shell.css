@@ -178,3 +178,16 @@
 .cs-status__icons svg { block-size: 12u; inline-size: auto; fill: currentColor; }
 .cs-status__icons svg:last-child { block-size: 13u; }
 .cs-home { position: absolute; inset-block-end: 8u; inset-inline-start: 50%; translate: -50% 0; inline-size: 134u; block-size: 5u; border-radius: 3u; background: var(--c-text); z-index: var(--z-popover); }
+
+/* ---- Phone dock format (?shell=dock): top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge ---- */
+.cs-bottom { display: none; }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-app[data-shell="dock"] .cs-shell { grid-template-rows: 56u minmax(0, 1fr) auto; }
+  .cs-app[data-shell="dock"][data-chrome="device"] .cs-shell { grid-template-rows: 47u 56u minmax(0, 1fr) auto; }
+  .cs-top--dock { gap: 2u; padding: 0 6u 0 14u; }
+  .cs-top--dock .cs-brand { flex: 1 1 auto; gap: 8u; }
+  .cs-top--dock .cs-logo { inline-size: 22u; block-size: 22u; }
+  .cs-top--dock .cs-wordmark { font-size: 19u; }
+  .cs-bottom { display: flex; flex-direction: column; background: var(--c-surface); }
+  .cs-bottom .cs-tabbar { border-block-start: 0; }
+}

@@ -35,6 +35,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Study Topics: categories on the left and topics (overview and description) in the middle, with the highlighted topic's sub topics on the right. Selecting a topic moves the topic list to the left, its sub topics to the middle, and the selected sub topic's content, sources and other views to the right. Phone: type, topic and sub topic flow with scrollable menus, a drop-down built into the topic title, and extra content inline or on tap with footnotes.
 - For Learning Path and Study Topics, where Chris's statements in one message conflict, the last idea is the default.
 - Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content. (agent default)
+- In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar).
+- Dock-format exploration for the phone (?shell=dock): top bar with search and menu, five labelled tabs, My Notes and Theologian as right-edge tabs, back links on the lesson and Bible. Exploration only; not adopted. (agent default)
 
 ## 2026-10-07
 

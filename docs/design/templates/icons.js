@@ -33,6 +33,8 @@ export const icons = {
   timeline: line('<path d="M3 12h18"></path><circle cx="7" cy="12" r="2"></circle><circle cx="15" cy="12" r="2"></circle>'),
   themes: line('<path d="M4 4h7l9 9-7 7-9-9z"></path><circle cx="8.5" cy="8.5" r="1.4"></circle>'),
   note: line('<path d="M5 4h10l4 4v12H5z"></path>', 2, 'stroke-linejoin="round"'),
+  menu: line('<path d="M4 7h16M4 12h16M4 17h16"></path>', 2, ''),
+  scholar: line('<path d="M3 9.5 12 5l9 4.5-9 4.5z"></path><path d="M7 12v4c1.4 1.4 3 2 5 2s3.6-.6 5-2v-4"></path>'),
   more: '<svg class="cs-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg>',
   shield: line('<path d="M12 3 4 7v6c0 4 3.4 7 8 8 4.6-1 8-4 8-8V7z"></path>'),
   check: line('<path d="M9 12l2 2 4-4"></path>'),
