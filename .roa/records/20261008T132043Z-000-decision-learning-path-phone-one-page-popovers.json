@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning-path-phone-one-page-popovers",
+  "topic": "ui.learning-path.phone-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path is one page like the reference image: the module as a drop-down card with its progress, then the units as drop-downs (the current unit open to its lessons). Tapping a lesson opens its overview as a popover; What you'll gain in a unit opens the unit's objectives as a popover. Names only.",
+  "rationale": "Chris, 2026-10-08, with a reference image: closer to this, use drop menus where it makes sense, tap loads the unit what-you-gain popover and/or lesson overviews. Supersedes the three-level phone default",
+  "by": "Chris"
+}

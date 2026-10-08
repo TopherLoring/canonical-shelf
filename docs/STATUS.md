@@ -224,7 +224,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.learning-path.main-2026-10-08` | Learning Path main content follows the plan's main column: | Owner decision | undefined |
-| `ui.learning-path.phone-2026-10-08` | undefined | Agent default | undefined |
+| `ui.learning-path.phone-2026-10-08` | Phone Learning Path is one page like the reference image: | Owner decision | undefined |
 | `ui.learning-path.progress-2026-10-08` | Learning Path: | Owner decision | undefined |
 | `ui.learning-path.right-pane-2026-10-08` | Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: | Owner decision | undefined |
 | `ui.learning-path.structure-2026-10-08` | Learning Path: | Owner decision | undefined |

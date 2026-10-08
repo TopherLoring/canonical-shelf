@@ -1178,8 +1178,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.learning-path.phone-2026-10-08`
 
-- **Current** · 2026-10-08 · Agent default (Claude-agent) · `learning-path-phone-three-levels`
-  Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-phone-one-page-popovers`
+  Phone Learning Path is one page like the reference image: the module as a drop-down card with its progress, then the units as drop-downs (the current unit open to its lessons). Tapping a lesson opens its overview as a popover; What you'll gain in a unit opens the unit's objectives as a popover. Names only.
+  *Why:* Chris, 2026-10-08, with a reference image: closer to this, use drop menus where it makes sense, tap loads the unit what-you-gain popover and/or lesson overviews. Supersedes the three-level phone default
+- **Previous** · 2026-10-08 · Agent default (Claude-agent) · `learning-path-phone-three-levels`
+  ~~Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.~~
   *Why:* Chris described desktop only; phone follows the same levels
 
 ### `ui.learning-path.progress-2026-10-08`

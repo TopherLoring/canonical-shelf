@@ -109,7 +109,7 @@
 .cs-marker--locked .cs-icon { inline-size: 13u; block-size: 13u; }
 .cs-tag { display: inline-flex; align-items: center; gap: 6u; block-size: 22u; padding: 0 8u; border-radius: 6u; background: color-mix(in srgb, var(--group) 12%, transparent); color: var(--c-text); font-size: 12u; font-weight: 600; line-height: 1; white-space: nowrap; }
 .cs-tag__dot { inline-size: 8u; block-size: 8u; border-radius: 2u; background: var(--group); }
-.cs-bar { block-size: 6u; border-radius: 3u; background: var(--c-hairline); overflow: hidden; }
+.cs-bar { flex: none; block-size: 6u; border-radius: 3u; background: var(--c-hairline); overflow: hidden; }
 .cs-bar > span { display: block; block-size: 100%; inline-size: var(--pct); border-radius: 3u; background: var(--c-action); }
 .cs-bar--gold > span { background: var(--c-gold); }
 .cs-progress-row { display: flex; flex-direction: column; gap: 6u; }

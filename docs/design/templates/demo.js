@@ -11,7 +11,7 @@ const chrome = params.get('chrome') !== '0';
 const dockShell = params.get('shell') === 'dock';   // the phone's dock format: top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge
 // Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
-const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
+const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, sheet: params.get('sheet') || '', mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
 let dockBook = 0;
 
 const NAV = [
@@ -64,7 +64,7 @@ function render(next) {
   app.dataset.focus = String(!!screen.focus && !ds);
   const cols = typeof screen.cols === 'function' ? screen.cols(view) : screen.cols;
   const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone && screen.overlay ? screen.overlay(st) : ''}${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
   app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
   if (phone && screen.dock) paintDock();
@@ -96,9 +96,11 @@ function wire() {
   // data-go links change the screen's page and selection, then redraw (Path: modules, a module, a unit; Topics: browse, a topic).
   app.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', event => {
     event.preventDefault();
-    a.dataset.go.split(';').forEach(pair => { const [k, v] = pair.split('='); if (k === 'view') view = v; else st[k] = Number(v); });
+    a.dataset.go.split(';').forEach(pair => { const [k, v] = pair.split('='); if (k === 'view') view = v; else if (k === 'sheet') st.sheet = v; else st[k] = Number(v); });
     layout = ''; render(decide());
   }));
+  // The module is a drop-down card (phone).
+  app.querySelector('[data-mod-select]')?.addEventListener('change', event => { st.mod = Number(event.target.value); layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
   app.querySelectorAll('[data-collapse]').forEach(b => b.addEventListener('click', () => {
     const body = app.querySelector(`[data-collapse-body="${b.dataset.collapse}"]`); if (!body) return;

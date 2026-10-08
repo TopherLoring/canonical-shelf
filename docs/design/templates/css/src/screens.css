@@ -408,6 +408,29 @@
 .cs-lessonpane .cs-button--block { margin-block-start: 4u; }
 
 /* ---- Study Topics: sub topics and content ---- */
+.cs-modpick { position: relative; display: flex; align-items: center; gap: 12u; padding: 14u 16u; border-radius: 14u; background: var(--c-action-subtle); color: var(--c-text); }
+.cs-modpick__text { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 3u; }
+.cs-modpick__title { font-family: var(--f-display); font-size: 20u; font-weight: 600; line-height: 1.2; }
+.cs-modpick > .cs-icon { inline-size: 18u; block-size: 18u; flex: none; color: var(--c-text-2); }
+.cs-modpick select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+.cs-unitacc__title { flex: 1; font-family: var(--f-display); font-size: 17u; font-weight: 600; }
+.cs-unitacc__check { display: inline-flex; color: var(--c-correct); }
+.cs-unitacc__check .cs-icon { inline-size: 18u; block-size: 18u; }
+.cs-statuschip { padding: 3u 9u; border-radius: 8u; background: var(--c-accent-tint); color: var(--c-accent-ink); font-size: 12u; font-weight: 600; white-space: nowrap; }
+.cs-unit__lessons button.cs-unit__link { border: 0; background: transparent; text-align: start; font: inherit; padding: 0; cursor: pointer; }
+.cs-unit__lessons button.cs-unit__link > .cs-icon { inline-size: 16u; block-size: 16u; color: var(--c-muted); }
+.cs-sheet, .cs-scrim { display: none; }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-scrim { display: block; position: absolute; inset: 0; z-index: var(--z-popover); background: var(--c-dim); }
+  .cs-sheet { display: flex; flex-direction: column; position: absolute; inset-inline: 0; inset-block-end: 0; max-block-size: 80%; z-index: var(--z-popover); background: var(--c-raised); border: 1u solid var(--c-border); border-block-end: 0; border-radius: 20u 20u 0 0; box-shadow: var(--sh-tab); box-sizing: border-box; }
+  .cs-app[data-chrome="device"] .cs-sheet { padding-block-end: 26u; }
+  .cs-sheet__grab { align-self: center; inline-size: 40u; block-size: 4u; margin-block: 8u 0; border-radius: 2u; background: var(--c-strong); }
+  .cs-sheet__top { display: flex; justify-content: flex-end; padding: 4u 8u 0; }
+  .cs-sheet__body { display: flex; flex-direction: column; gap: 10u; padding: 0 20u 18u; overflow: auto; }
+  .cs-sheet__title { font-family: var(--f-display); font-size: 24u; font-weight: 600; line-height: 1.2; }
+  .cs-sheet__body p { font-size: 15u; line-height: 1.5; color: var(--c-text-2); }
+  .cs-sheet__body .cs-objective { color: var(--c-text); font-weight: 500; }
+}
 .cs-subacc { display: flex; flex-direction: column; gap: 6u; margin-block-start: 6u; }
 .cs-acc { border: 1u solid var(--c-hairline); border-radius: 10u; background: var(--c-raised); }
 .cs-acc > summary { display: flex; align-items: center; gap: 10u; padding: 10u 12u; font-size: 15u; font-weight: 600; color: var(--c-text); cursor: pointer; list-style: none; }

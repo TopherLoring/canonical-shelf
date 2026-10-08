@@ -58,6 +58,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.
 - The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; it changes only on Chris's request.
 - Phone Study Topics is one page: title, search, type drop-down, then the question cards. The selected question opens in place to expandable sub topics, each opening to its text with Sources and Other views as further drop-downs. No separate topic page, no Open topic button.
+- Phone Learning Path is one page like the reference image: the module as a drop-down card with its progress, then the units as drop-downs (the current unit open to its lessons). Tapping a lesson opens its overview as a popover; What you'll gain in a unit opens the unit's objectives as a popover. Names only.
 
 ## 2026-10-07
 
