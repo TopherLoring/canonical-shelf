@@ -67,8 +67,9 @@
 .cs-module { display: flex; flex-direction: column; gap: 6u; padding: 10u 12u; border-radius: 10u; text-decoration: none; }
 .cs-module__kicker { font-size: 12u; font-weight: 600; color: var(--c-muted); }
 .cs-module__title { font-size: 14u; line-height: 1.35; color: var(--c-text); }
-.cs-module.is-current { background: var(--c-action-subtle); }
-.cs-module.is-current .cs-module__kicker { color: var(--c-action); }
+.cs-module.is-current { background: var(--c-accent-tint); }   /* the lesson's current-step rose (Chris, 2026-10-08) */
+.cs-module.is-current .cs-module__kicker { color: var(--c-accent); }
+.cs-module.is-current .cs-bar > span { background: var(--c-accent); }
 .cs-module.is-current .cs-module__title { font-weight: 600; }
 .cs-cols--path .cs-column { gap: 12u; }
 .cs-unit { padding: 14u 18u; display: flex; flex-direction: column; gap: 8u; }
@@ -252,8 +253,9 @@
   .cs-book__head h2 { font-size: 34u; }
 
   /* Learning Path */
-  .cs-module-switch { display: flex; flex-direction: column; gap: 6u; padding: 14u 16u; text-decoration: none; background: var(--c-action-subtle); border-color: transparent; }
-  .cs-module-switch .cs-module__kicker { color: var(--c-action); }
+  .cs-module-switch { display: flex; flex-direction: column; gap: 6u; padding: 14u 16u; text-decoration: none; background: var(--c-accent-tint); border-color: transparent; }
+  .cs-module-switch .cs-module__kicker { color: var(--c-accent); }
+  .cs-module-switch .cs-bar > span { background: var(--c-accent); }
   .cs-module-switch .cs-module__title { font-weight: 600; font-size: 16u; }
   .cs-cols--path .cs-column { gap: 12u; }
   .cs-unit { padding: 12u 14u; }

@@ -365,8 +365,9 @@
 .cs-module { display: flex; flex-direction: column; gap: calc(6 * var(--u)); padding: calc(10 * var(--u)) calc(12 * var(--u)); border-radius: calc(10 * var(--u)); text-decoration: none; }
 .cs-module__kicker { font-size: calc(12 * var(--u)); font-weight: 600; color: var(--c-muted); }
 .cs-module__title { font-size: calc(14 * var(--u)); line-height: 1.35; color: var(--c-text); }
-.cs-module.is-current { background: var(--c-action-subtle); }
-.cs-module.is-current .cs-module__kicker { color: var(--c-action); }
+.cs-module.is-current { background: var(--c-accent-tint); }   /* the lesson's current-step rose (Chris, 2026-10-08) */
+.cs-module.is-current .cs-module__kicker { color: var(--c-accent); }
+.cs-module.is-current .cs-bar > span { background: var(--c-accent); }
 .cs-module.is-current .cs-module__title { font-weight: 600; }
 .cs-cols--path .cs-column { gap: calc(12 * var(--u)); }
 .cs-unit { padding: calc(14 * var(--u)) calc(18 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
@@ -550,8 +551,9 @@
   .cs-book__head h2 { font-size: calc(34 * var(--u)); }
 
   /* Learning Path */
-  .cs-module-switch { display: flex; flex-direction: column; gap: calc(6 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)); text-decoration: none; background: var(--c-action-subtle); border-color: transparent; }
-  .cs-module-switch .cs-module__kicker { color: var(--c-action); }
+  .cs-module-switch { display: flex; flex-direction: column; gap: calc(6 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)); text-decoration: none; background: var(--c-accent-tint); border-color: transparent; }
+  .cs-module-switch .cs-module__kicker { color: var(--c-accent); }
+  .cs-module-switch .cs-bar > span { background: var(--c-accent); }
   .cs-module-switch .cs-module__title { font-weight: 600; font-size: calc(16 * var(--u)); }
   .cs-cols--path .cs-column { gap: calc(12 * var(--u)); }
   .cs-unit { padding: calc(12 * var(--u)) calc(14 * var(--u)); }

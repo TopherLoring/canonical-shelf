@@ -11,6 +11,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone layout: add a phone status bar with the camera island at the top of phone mockups and templates, and move the five main destinations to a bottom tab bar like the template (Shelf, Path, Bible, Topics, Review). My Notes and Theologian stay as right-edge tabs.
 - Nothing on desktop or phone has fixed sizes or dimensions; everything is proportionate to the viewport and adapts to the container and size it is rendered in.
 - Fix the template to match the plan (the approved boards); the corrected template is the visual base for the redesign.
+- The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 
 ## 2026-10-07
 

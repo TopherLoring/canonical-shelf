@@ -1278,6 +1278,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
   The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
 
+### `ui.path.current-module-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-module-on-the-learning-path-is-highl`
+  The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
+
 ### `ui.phone.my-notes`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
