@@ -18,13 +18,8 @@
   "deeper": "Source: Jennings on patronage (Journal of Greco-Roman Christianity and Judaism, vol. 6). The link is under Sources.",
   "drawers": [
     {
-      "title": "Do I have to believe this to keep going?",
-      "body": "No. Every check in this guide asks whether you understood, never whether you agree. You can study the claim, question it, and decide for yourself.",
-      "tag": "Explore"
-    },
-    {
       "title": "Why start with Paul and not with Genesis?",
-      "body": "Because this short passage is the earliest written summary of what the first Christians proclaimed. Knowing the center first gives the rest of the library a place to connect.",
+      "body": "Because everything else connects to the center. Christianity stands on one claim: Jesus died, was buried, was raised, and appeared to witnesses. This passage is the oldest written summary of that claim, older than any of the Gospels. Establish that foundation first, and every other book on the shelf has something to connect to.",
       "tag": "Explore"
     }
   ],

@@ -185,11 +185,6 @@ function lessonApparatus(lesson,esc,scene){
   modules+=apparatusModule('Your notes','private',`<section class="study-notes" data-notes-mount aria-label="Your notes"></section>`,{open:true});
   if(scene)modules+=apparatusModule(`This step · ${esc(scene.label||scene.role)}`,'current',`<p><strong>${esc(scene.title)}</strong></p><p>Use the study tools below for evidence, vocabulary, and interpretive boundaries relevant to this lesson.</p>`);
   modules+=apparatusModule('Passage','text',`<p><strong>${esc(lesson.reading||'Lesson reading')}</strong></p><p>The lesson begins with the biblical text or primary evidence. Explanatory claims remain distinguishable from what the source states directly.</p>`);
-  if(lesson.id==='begin'){
-    modules+=apparatusModule('Transmission','evidence',`<p>Paul says he “received” and “passed on” the proclamation. This supports discussion of transmitted tradition; it does not by itself reconstruct the exact date or wording of every earlier form.</p>`);
-    modules+=apparatusModule('Corinth','context',`<p>The letter addresses an existing congregation. Social status, communal meals, patronage, and public honor can illuminate questions in 1 Corinthians, but background evidence should not be used to invent the private motive of every participant.</p>`);
-    modules+=apparatusModule('Interpretive limit','boundary',`<p>The sequence of death, burial, resurrection, and appearances establishes the proclamation. This passage alone does not settle every theory of atonement, historical reconstruction, or later doctrinal formulation.</p>`);
-  }
   if(vocab.length)modules+=apparatusModule('Glossary','lexical',`<dl class="apparatus-vocab">${vocab.map(([term,definition])=>`<div><dt>${esc(term)}</dt><dd>${esc(definition)}</dd></div>`).join('')}</dl>`);
   if(lesson.deeper)modules+=apparatusModule('Go deeper','deeper',`<p>${esc(lesson.deeper)}</p>`);
   for(const drawer of lesson.drawers||[])modules+=apparatusModule(drawer.title||'Explore',drawer.tag||'optional',Array.isArray(drawer.body)?drawer.body.map(p=>`<p>${esc(p)}</p>`).join(''):`<p>${esc(drawer.body||'')}</p>`);
