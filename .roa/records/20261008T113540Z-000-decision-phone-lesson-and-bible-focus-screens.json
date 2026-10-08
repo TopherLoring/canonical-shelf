@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-lesson-and-bible-focus-screens",
+  "topic": "ui.phone.focus-screens-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone lesson hides the top bar; the title bar reads Step x of y with close at the right; the tracker is a chain of dots. Phone Bible hides the top bar and has a close button that reveals the shelf selector.",
+  "rationale": "Chris comments on the phone lesson and Bible templates",
+  "by": "Chris"
+}

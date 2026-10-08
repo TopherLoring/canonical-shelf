@@ -616,6 +616,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `process.decision-authority.decision-authority`
   Chris's current request outranks every document. Contradictions are raised explicitly for approve/reject. His latest decision per topic is current and needs no reconfirmation, including reverts. Yes/proceed approves the proposal at hand only; aesthetic dislikes mean adjust, not lock. Agent-written rules (e.g. DECISION_PRECEDENCE.md 'locked'/'forbidden' items) are not owner decisions
 
+### `process.design-compare-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `design-compare-to-plan-required`
+  Every design change is compared against its plan board before it is called done (against the current template where no board exists), with each difference listed as directed or unintended.
+  *Why:* Chris: the redesign build drifted heavily from the plan; add a compare-to-plan-or-template requirement for all designs before done
+
 ### `process.experience-first`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `process.experience-first.from-precedence-doc`
@@ -1132,6 +1138,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Values now live in the design-tokens contract; layout items are open to Chris's redesign feedback
 
+### `ui.desktop.pane-widths-2026-10-08`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `desktop-pane-widths-240-340`
+  Path, Bible, Study Topics and Review desktop panes share widths: left 240, right 340.
+  *Why:* Chris asked whether the Topics and Review panes should match the other pages
+
 ### `ui.frame.phone`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.frame.phone.v1`
@@ -1295,6 +1307,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-module-on-the-learning-path-is-highl`
   The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 
+### `ui.phone.focus-screens-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-lesson-and-bible-focus-screens`
+  Phone lesson hides the top bar; the title bar reads Step x of y with close at the right; the tracker is a chain of dots. Phone Bible hides the top bar and has a close button that reveals the shelf selector.
+  *Why:* Chris comments on the phone lesson and Bible templates
+
 ### `ui.phone.learning-path-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-overview-first`
@@ -1311,10 +1329,23 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `phone-layout-add-a-phone-status-bar-with-the-cam`
   Phone layout: add a phone status bar with the camera island at the top of phone mockups and templates, and move the five main destinations to a bottom tab bar like the template (Shelf, Path, Bible, Topics, Review). My Notes and Theologian stay as right-edge tabs.
 
+### `ui.phone.navigation-2026-10-08`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `phone-navigation-bottom-bar-seven`
+  Phone navigation is one bottom bar on every screen except the lesson and the Bible: the five destinations plus Search and You (profile and feedback); no top bar on phone.
+  *Why:* Chris asked for one consistent location, top or bottom, with the full range of the Build top bar; bottom bar chosen and approved (agree)
+- **Approval** · 2026-10-08 · Chris · `phone-navigation-bottom-bar-approved` · scope: phone navigation proposal: bottom bar on every screen except the lesson and Bible
+  Agree: bottom bar as the phone's one navigation.
+
 ### `ui.phone.no-hscroll`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
   The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.
+
+### `ui.phone.shelf-2026-10-08`
+
+- **Approval** · 2026-10-08 · Chris · `phone-shelf-docked-book-bar-approved` · scope: docked selected-book bar proposal for the phone Shelf
+  Phone Shelf: the selected book docks above the bottom bar (title, tagline, Resume, Details) instead of a popover; the full overview lives under the Bible's Overview tool.
 
 ### `ui.phone.tabs`
 
@@ -1470,6 +1501,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
   Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
+
+### `ui.topics-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-list-no-right-pane-topic-page-has-one`
+  Study Topics list page uses only the left rail and the main column. Selecting a question opens its own page, and the right pane (key passages, how readers differ, ask the Theologian, studied in the Learning Path) appears only there.
 
 ### `ui.type.max-genesis-2026-10-07`
 

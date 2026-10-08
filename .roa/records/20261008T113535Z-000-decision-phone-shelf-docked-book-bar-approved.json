@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "phone-shelf-docked-book-bar-approved",
+  "topic": "ui.phone.shelf-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Shelf: the selected book docks above the bottom bar (title, tagline, Resume, Details) instead of a popover; the full overview lives under the Bible's Overview tool.",
+  "scope": "docked selected-book bar proposal for the phone Shelf",
+  "by": "Chris"
+}

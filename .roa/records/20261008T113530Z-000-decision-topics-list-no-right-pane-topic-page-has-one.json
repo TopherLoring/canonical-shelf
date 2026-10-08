@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-list-no-right-pane-topic-page-has-one",
+  "topic": "ui.topics-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Study Topics list page uses only the left rail and the main column. Selecting a question opens its own page, and the right pane (key passages, how readers differ, ask the Theologian, studied in the Learning Path) appears only there.",
+  "by": "Chris"
+}

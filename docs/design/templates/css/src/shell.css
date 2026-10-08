@@ -54,6 +54,7 @@
 .cs-cols--path { grid-template-columns: 240u minmax(0, 1fr) 340u; }
 .cs-cols--reader { grid-template-columns: 240u minmax(0, 1fr) 340u; }
 .cs-cols--topics { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-cols--topics-list { grid-template-columns: 240u minmax(0, 1fr); }
 .cs-cols--practice { grid-template-columns: 240u minmax(0, 1fr) 340u; }
 .cs-frame > * { min-inline-size: 0; min-block-size: 0; }
 .cs-frame--well > * { overflow: auto; }

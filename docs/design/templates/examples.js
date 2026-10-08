@@ -70,22 +70,12 @@ const startHere = `<section class="cs-start" aria-label="Start here"><span class
   <a class="cs-card cs-continue__card" href="?screen=lesson"><span class="cs-caption">Learning Path · Module 1 · Unit 2 · Lesson 1</span><span class="cs-continue__title">Meet the library: nine kinds of books</span><span class="cs-split"><span class="cs-continue__go">Continue the lesson →</span><span class="cs-caption">2 of 13 lessons</span></span>${bar(15, 'Module 1 progress')}</a>
   <a class="cs-card cs-continue__card" href="?screen=reader"><span class="cs-caption">My Notes · Genesis 1:2</span><span class="cs-continue__note">What does “the deep” mean here? Bring this up on Sunday.</span><span class="cs-continue__go">Open in the Bible →</span></a></section>`;
 const GENESIS = { tagline: 'Origins, and one chosen family', synopsis: 'God makes a world and people break it: a garden, a murder, a flood, a tower. Then he picks one man, Abraham, promises him land and descendants, and follows that family four generations into Egypt.', begin: 'Chapters 1–3 for the beginning, then 37–50 for the Joseph story.', people: ['Adam','Noah','Abraham','Sarah','Jacob','Joseph'], setting: 'Prehistory to roughly 1800–1600 BC' };
-// The book panel as a bottom sheet (phone). Close, Previous book and Next book are always in reach.
-const bookSheet = n => {
+// Phone: the selected book docks above the bottom bar (title, tagline, Resume, Details). The full overview is the Bible's Overview tool.
+const bookDock = n => {
   const [g, name, ch] = BOOKS[n], first = name === 'Genesis';
-  const prev = BOOKS[n - 1], next = BOOKS[n + 1];
-  return `<span class="cs-sheet__grab" aria-hidden="true"></span>
-  <div class="cs-sheet__top"><span class="cs-book__meta">${tag(g)}Book ${n + 1} of 66</span><button type="button" class="cs-icon-button cs-icon-button--small" data-sheet-close aria-label="Close book overview">${i.close}</button></div>
-  <div class="cs-sheet__body">
-    <div class="cs-book__head"><h2 id="sheet-title">${name}</h2>${first ? `<span class="cs-book__tagline">${GENESIS.tagline}</span>` : ''}</div>
-    ${first ? `<p class="cs-book__synopsis">${GENESIS.synopsis}</p>` : `<p class="cs-book__synopsis cs-muted">The app supplies ${name}’s tagline, synopsis and starting points here.</p>`}
-    <div class="cs-split"><span>${chapters(ch)}</span><span>${first ? 'Reading chapter 3' : 'Not started'}</span></div>
-    ${first ? bar(6, 'Genesis reading progress') : ''}
-    <a class="cs-button cs-button--block cs-button--tall" href="?screen=reader">${first ? 'Resume Genesis 3' : `Open ${name}`}</a>
-    <a class="cs-book__overview" href="?screen=reader">Book overview</a>
-    ${first ? `<dl class="cs-book__facts"><div><dt>Where to begin</dt><dd>${GENESIS.begin}</dd></div><div><dt>People</dt><dd class="cs-chips">${GENESIS.people.map(p => `<a href="#">${p}</a>`).join('')}</dd></div><div><dt>Setting</dt><dd>${GENESIS.setting}</dd></div></dl>` : ''}
-  </div>
-  <div class="cs-sheet__nav"><button type="button" class="cs-button cs-button--outline" data-sheet-step="-1"${prev ? '' : ' disabled'}>${i.left}<span>${prev ? prev[1] : 'Previous'}</span></button><button type="button" class="cs-button cs-button--outline" data-sheet-step="1"${next ? '' : ' disabled'}><span>${next ? next[1] : 'Next'}</span>${i.right}</button></div>`;
+  return `<span class="cs-dock__meta">${tag(g)}<span>Book ${n + 1} of 66 · ${chapters(ch)}</span></span>
+  <div class="cs-dock__main"><div class="cs-dock__text"><strong id="dock-title">${name}</strong><span>${first ? GENESIS.tagline : 'Tap Details for the overview'}</span></div>
+  <a class="cs-button cs-button--compact" href="?screen=reader">${first ? 'Resume Genesis 3' : `Open ${name}`}</a><a class="cs-dock__details" href="?screen=reader">Details</a></div>`;
 };
 const shelfIntro = `<div class="cs-shelf-intro"><h1 class="cs-title">The Canonical<br><em>Shelf</em></h1><p>Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div>`;
 const shelfCase = `<section class="cs-shelf" aria-label="Bookshelf">${shelfRow(0, 39, 'Old Testament · 39 books', 'Genesis')}${shelfRow(39, 66, 'New Testament · 27 books', 'Genesis')}</section>`;
@@ -93,8 +83,8 @@ const shelfCase = `<section class="cs-shelf" aria-label="Bookshelf">${shelfRow(0
 const shelf = {
   frame: 'shelf',
   desktop: () => `<div class="cs-shelf-main">${shelfIntro}${shelfCase}${legend}${continueCards}</div>${bookPanel}`,
-  phone: () => `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${startHere}</div>`,
-  sheet: true
+  phone: () => `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${startHere}</div><aside class="cs-dock" aria-label="Selected book">${bookDock(0)}</aside>`,
+  dock: true
 };
 
 /* ---------------- Learning Path ---------------- */
@@ -131,6 +121,36 @@ const path = {
   frame: 'well', cols: 'path',
   desktop: () => `${pathRail}${pathMain}${pathAside}`,
   phone: view => view === 'module' ? pathModule() : pathOverview()
+};
+
+/* ---------------- Learning Path options (design comparison) ---------------- */
+// A: a book's contents page. B: shelf-native, units as volumes on a plank.
+const ROMAN = ['I', 'II', 'III', 'IV'];
+const tocUnits = [['Christianity in One View', 'Complete', 'done'], ['What the Bible Is', 'In progress · 0 of 5', 'active'], ['The Biblical Story in One View', '6 lessons'], ['Putting the Map Together', 'Review and connect']];
+const tocLessons = () => `<ol class="cs-toc__lessons" aria-label="Unit 2 lessons">${lessons.map((l, k) => `<li${k === 0 ? ' class="is-current"' : ''}>${k === 0 ? '<span class="cs-toc__ribbon" aria-hidden="true"></span>' : ''}<span class="cs-toc__lnum">${k + 1}</span><span class="cs-toc__ltitle">${l}</span><span class="cs-toc__leader"></span>${k === 0 ? '<a class="cs-button cs-button--small" href="?screen=lesson">Start</a>' : `<span class="cs-caption">${[8, 6, 9, 10, 7][k]} min</span>`}</li>`).join('')}<li class="is-check"><span class="cs-toc__lnum">${i.check}</span><span class="cs-toc__ltitle">Unit 2 Checkpoint</span><span class="cs-toc__leader"></span><span class="cs-caption">After the lessons</span></li></ol>`;
+const tocUnit = ([t, st, tone], n) => `<li class="cs-toc__unit${tone ? ` is-${tone}` : ''}"><div class="cs-toc__row"><span class="cs-toc__num">${ROMAN[n]}</span><span class="cs-toc__title">${t}</span><span class="cs-toc__leader"></span><span class="cs-toc__state">${tone === 'done' ? `${i.check}` : ''}${st}</span></div>${tone === 'active' ? tocLessons() : ''}</li>`;
+const pathA = {
+  frame: 'well', cols: 'path', current: 'path',
+  desktop: () => `${pathRail}<section class="cs-card cs-toc" aria-label="Module 1 contents"><header class="cs-toc__head"><span class="cs-kicker">Module 1 of 4</span><h1>Reading the Bible Well</h1><span class="cs-toc__subtitle">The Library and Its Story</span><span class="cs-sub">4 units · 13 lessons · 2 done</span>${bar(15, 'Module 1 progress')}</header><ol class="cs-toc__list">${tocUnits.map(tocUnit).join('')}</ol></section>${pathAside}`,
+  phone: () => `<div class="cs-scroll"><div class="cs-heading"><span class="cs-kicker">Learning Path</span><h1>Contents</h1><span class="cs-sub">Module 1 of 4 · 2 of 13 lessons</span></div>
+    <section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-upnext__title">Meet the library: nine kinds of books</span><a class="cs-button cs-button--block" href="?screen=lesson">Start lesson</a></section>
+    <section class="cs-card cs-toc cs-toc--phone" aria-label="Contents"><ol class="cs-toc__list">${modules.map(([k, t, st], n) => `<li class="cs-toc__part${n === 0 ? ' is-current' : ''}"><div class="cs-toc__row cs-toc__row--part"><span class="cs-toc__num">${n + 1}</span><span class="cs-toc__title">${t}</span></div><div class="cs-toc__partmeta"><span class="cs-caption">${k.split(' · ')[1]}</span><span class="cs-toc__leader"></span><span class="cs-caption">${n === 0 ? '2 of 13' : 'Not started'}</span></div>${n === 0 ? `<ol class="cs-toc__list cs-toc__list--nested">${tocUnits.map(tocUnit).join('')}</ol>` : ''}</li>`).join('')}</ol></section></div>`
+};
+
+const volGroups = ['law', 'history', 'wisdom', 'major'];
+const volume = (t, n, sel, done, w = 1) => `<button type="button" class="cs-spine cs-vol${sel ? ' is-selected' : ''}${done ? ' is-done' : ''}" data-group="${volGroups[n]}" aria-pressed="${!!sel}" aria-label="Unit ${n + 1}: ${t}${done ? ', complete' : ''}" style="--h:${168 + (n % 2) * 16};--w:${w}"><span class="cs-spine__cap"></span><span class="cs-vol__num">${n + 1}</span><span class="cs-vol__title">${t}</span><span class="cs-spine__cap cs-spine__cap--low"></span>${done ? `<span class="cs-vol__done">${i.check}</span>` : ''}</button>`;
+const unitShelf = (label, sel) => `<section class="cs-shelf cs-shelf--units" aria-label="${label}"><div class="cs-shelf-row cs-vol-row"><span class="cs-bookend"></span>${tocUnits.map(([t], n) => volume(t, n, n === sel, n === 0)).join('')}<span class="cs-shelf-room" style="--w:1"></span><span class="cs-bookend"></span></div><div class="cs-plank"><span class="cs-plank__foot"></span><span class="cs-plank__foot cs-plank__foot--end"></span><span class="cs-plaque">${label}</span></div></section>`;
+const miniShelf = (n, current) => `<span class="cs-mini${current ? ' is-current' : ''}" aria-hidden="true">${[0, 1, 2, 3].map(k => `<i data-group="${volGroups[(k + n) % 4]}"${current && k === 0 ? ' class="is-done"' : ''}></i>`).join('')}</span>`;
+const pathBRail = `<nav class="cs-card cs-rail" aria-label="Learning Path modules"><span class="cs-rail__label">Learning Path · 4 modules</span>${modules.map(([k, t, s, p], n) => `<a class="cs-module${n === 0 ? ' is-current' : ''}" href="#"${n === 0 ? ' aria-current="true"' : ''}>${miniShelf(n, n === 0)}<span class="cs-module__kicker">${k}</span><span class="cs-module__title">${t}</span><span class="cs-caption">${s}</span></a>`).join('')}<span class="cs-rail__section">Across the path</span><a class="cs-rail__item" href="#">${i.shield}<span class="cs-grow">Capstones</span><span class="cs-count">6</span></a></nav>`;
+const unitLessons = `<section class="cs-card cs-unit is-open cs-unit--pulled"><div class="cs-unit__head" aria-label="Unit 2"><span class="cs-unit__num">Unit 2</span><span class="cs-unit__title">What the Bible Is</span><span class="cs-unit__status cs-unit__status--active">In progress · 0 of 5</span></div>
+  <ol class="cs-unit__lessons" aria-label="Unit 2 lessons">${lessons.map((l, k) => `<li${k === 0 ? ' class="is-current"' : ''}><span class="cs-marker${k === 0 ? ' cs-marker--current' : ''}">${k + 1}</span><span class="cs-unit__lesson">${l}</span>${k === 0 ? '<a class="cs-button cs-button--small" href="?screen=lesson">Start</a>' : ''}</li>`).join('')}</ol></section>`;
+const pathB = {
+  frame: 'well', cols: 'path', current: 'path',
+  desktop: () => `${pathBRail}<section class="cs-column" aria-label="Module 1"><div class="cs-heading"><span class="cs-kicker">Module 1 of 4</span><h1>Reading the Bible Well: The Library and Its Story</h1><span class="cs-sub">4 units · 13 lessons · pull a unit off the shelf to see its lessons</span></div>${unitShelf('Module 1 · 4 units', 1)}${unitLessons}</section>${pathAside}`,
+  phone: () => `<div class="cs-scroll"><div class="cs-heading"><span class="cs-kicker">Learning Path</span><h1>Your shelf</h1><span class="cs-sub">Module 1 of 4 · 2 of 13 lessons</span></div>
+    <section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-upnext__title">Meet the library: nine kinds of books</span><a class="cs-button cs-button--block" href="?screen=lesson">Start lesson</a></section>
+    <section class="cs-card cs-modshelf is-current" aria-label="Module 1"><div class="cs-split cs-split--center"><span class="cs-module__kicker">Module 1 · 4 units</span><span class="cs-modcard__status">Current</span></div><span class="cs-module__title">Reading the Bible Well: The Library and Its Story</span>${unitShelf('4 units · 2 of 13 lessons', 1)}${unitLessons}</section>
+    ${modules.slice(1).map(([k, t, st], n) => `<section class="cs-card cs-modshelf is-later" aria-label="${t}"><div class="cs-split cs-split--center"><span class="cs-module__kicker">${k}</span><span class="cs-modcard__status">${n === 0 ? 'Up next' : 'Not started'}</span></div><span class="cs-module__title">${t}</span>${miniShelf(n + 1, false)}</section>`).join('')}</div>`
 };
 
 /* ---------------- Lesson ---------------- */
@@ -215,14 +235,28 @@ const studied = [['Module 1 · Unit 2','What the Bible Is'],['Module 3 · Unit 8
 const topicGroups = [['Questions', '12', true], ['Theology & doctrine'], ['Christian life'], ['Biblical concepts'], ['Difficult questions']];
 const topicsRail = `<nav class="cs-card cs-rail" aria-label="Topic groups"><span class="cs-rail__label">Browse</span>${topicGroups.map(([l, c, cur]) => `<a class="cs-rail__item${cur ? ' is-current' : ''}" href="#"${cur ? ' aria-current="true"' : ''}><span class="cs-grow">${l}</span>${c ? `<span class="cs-count">${c}</span>` : ''}</a>`).join('')}<span class="cs-rail__section">Look up a word</span><a class="cs-rail__item" href="#">${i.glossary}<span class="cs-grow">Glossary</span></a></nav>`;
 const topicsSearch = `<label class="cs-search">${i.search}<span class="cs-visually-hidden">Search topics and the glossary</span><input id="topic-search" type="search" placeholder="Search topics and the glossary"></label>`;
-const topicsGrid = `<div class="cs-topic-grid">${topics.map(([t, d], k) => `<a class="cs-topic" href="#" data-topic="${k}"${k === 1 ? ' aria-current="true"' : ''}><span class="cs-topic__title">${t}</span><span class="cs-topic__text">${d}</span></a>`).join('')}</div><span class="cs-result-count" aria-live="polite">Showing 8 of 12 questions</span>`;
-const topicDetail = `<section class="cs-card cs-panel cs-topic-detail"><span class="cs-caption cs-caption--label">Question</span><h2 data-topic-title>${topics[1][0]}</h2><p data-topic-text>${topics[1][1]}</p><a class="cs-button cs-button--block" href="#">Open topic</a></section>`;
-const topicStudied = `<section class="cs-card cs-panel cs-studied"><span class="cs-caption cs-caption--label">Studied in the Learning Path</span>${studied.map(([k, t]) => `<a href="?screen=path"><span class="cs-kicker cs-kicker--small">${k}</span><span>${t}</span></a>`).join('')}</section>`;
+const topicsGrid = `<div class="cs-topic-grid">${topics.map(([t, d], k) => `<a class="cs-topic" href="#" data-view="topic" data-topic="${k}"><span class="cs-topic__title">${t}</span><span class="cs-topic__text">${d}</span></a>`).join('')}</div><span class="cs-result-count" aria-live="polite">Showing 8 of 12 questions</span>`;
 const topicsHeading = `<div class="cs-heading"><span class="cs-kicker">Study Topics</span><h1>Questions</h1><span class="cs-sub">Start with a question, then inspect Scripture, context, and interpretation.</span></div>`;
+const topicSections = [['Scripture','What the texts say, in the order they were written.'],['Context','Who wrote it, to whom, and what was going on around them.'],['Interpretation','How readers have understood it, and where they differ.']];
+const keyPassages = [['law','Deuteronomy 4:2','Do not add to what I command you, nor take away from it.'],['gospels','Luke 1:1–4'],['paul','2 Timothy 3:16–17']];
+const topicMain = k => `<section class="cs-column" aria-label="${topics[k][0]}"><button type="button" class="cs-backlink" data-view="list">${i.left}<span>All questions</span></button>
+  <div class="cs-heading"><span class="cs-kicker">Question</span><h1>${topics[k][0]}</h1><span class="cs-sub">${topics[k][1]}</span></div>
+  ${topicSections.map(([t, d], n) => `<a class="cs-card cs-topic-section" href="#"><span class="cs-topic-section__num">${n + 1}</span><span class="cs-grow"><span class="cs-topic-section__title">${t}</span><span class="cs-topic-section__text">${d}</span></span>${i.right}</a>`).join('')}</section>`;
+const topicStudied = `<section class="cs-card cs-panel cs-studied"><span class="cs-caption cs-caption--label">Studied in the Learning Path</span>${studied.slice(0, 3).map(([k, t]) => `<a href="?screen=path"><span class="cs-kicker cs-kicker--small">${k}</span><span>${t}</span></a>`).join('')}</section>`;
+const topicPane = `<aside class="cs-stack" aria-label="About this question">
+  <section class="cs-card cs-panel"><span class="cs-caption cs-caption--label">Key passages</span><ul class="cs-refs">${keyPassages.map(([g, r, t]) => `<li data-group="${g}"><span class="cs-refs__bar"></span><div class="cs-grow"><div class="cs-refs__head"><a href="?screen=reader">${r}<span class="cs-visually-hidden">, ${GROUPS[g]}</span></a></div>${t ? `<p>${t}</p>` : ''}</div></li>`).join('')}</ul></section>
+  <section class="cs-card cs-panel"><span class="cs-caption cs-caption--label">How readers differ</span><dl class="cs-terms"><div><dt>Text first</dt><dd>Start from the earliest manuscripts and let them set the limits.</dd></div><div><dt>Tradition first</dt><dd>Read through the church’s long use of these books.</dd></div><div><dt>Both together</dt><dd>Weigh the evidence and the tradition, and say which is doing the work.</dd></div></dl></section>
+  <button type="button" class="cs-card cs-ask" data-guide="theologian">Ask the Theologian about this question ${i.right}</button>
+  ${topicStudied}</aside>`;
+const topicChips = `<nav class="cs-chiprow" aria-label="Topic groups">${topicGroups.map(([l, c, cur]) => `<a href="#"${cur ? ' aria-current="true"' : ''}>${l}${c ? ` <span>${c}</span>` : ''}</a>`).join('')}<a href="#">${i.glossary}Glossary</a></nav>`;
 const topicsPage = {
-  frame: 'well', cols: 'topics', current: 'topics',
-  desktop: () => `${topicsRail}<section class="cs-column" aria-label="Questions">${topicsHeading}${topicsSearch}${topicsGrid}</section><aside class="cs-stack" aria-label="Selected topic">${topicDetail}${topicStudied}</aside>`,
-  phone: () => `<div class="cs-scroll">${topicsHeading}${topicsSearch}<nav class="cs-chiprow" aria-label="Topic groups">${topicGroups.map(([l, c, cur]) => `<a href="#"${cur ? ' aria-current="true"' : ''}>${l}${c ? ` <span>${c}</span>` : ''}</a>`).join('')}<a href="#">${i.glossary}Glossary</a></nav>${topicDetail}${topicsGrid}${topicStudied}</div>`
+  frame: 'well', cols: view => view === 'topic' ? 'topics' : 'topics-list', current: 'topics',
+  desktop: (view, k = 1) => view === 'topic'
+    ? `${topicsRail}${topicMain(k)}${topicPane}`
+    : `${topicsRail}<section class="cs-column" aria-label="Questions">${topicsHeading}${topicsSearch}${topicsGrid}</section>`,
+  phone: (view, k = 1) => view === 'topic'
+    ? `<div class="cs-scroll">${topicMain(k)}${topicPane}</div>`
+    : `<div class="cs-scroll">${topicsHeading}${topicsSearch}${topicChips}${topicsGrid}</div>`
 };
 
 /* ---------------- Review & Practice ---------------- */
@@ -250,8 +284,8 @@ const practice = {
   phone: () => `<div class="cs-scroll"><nav class="cs-chiprow" aria-label="Review and practice"><a href="#" aria-current="true">Due for review <span>3</span></a><a href="#">Verse library</a><a href="#">Games <span>3</span></a><a href="#">Achievements</a></nav>${practiceMain}${practiceAside}</div>`
 };
 
-export const screens = { shelf, path, lesson, reader, topics: topicsPage, practice };
+export const screens = { shelf, path, 'path-a': pathA, 'path-b': pathB, lesson, reader, topics: topicsPage, practice };
 export const topicList = topics;
 
 export const books = BOOKS;
-export { bookSheet };
+export { bookDock };

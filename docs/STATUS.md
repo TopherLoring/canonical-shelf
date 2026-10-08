@@ -128,6 +128,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `privacy.retention` | undefined | Agent default | undefined |
 | `process.authority-order` | undefined | Agent default | undefined |
 | `process.decision-authority` | Chris's current request outranks every document. | Owner decision | undefined |
+| `process.design-compare-2026-10-08` | Every design change is compared against its plan board before it is called done (against the current template where no board exists), with each difference li... | Owner decision | undefined |
 | `process.experience-first` | undefined | Agent default | undefined |
 | `process.guards` | undefined | Agent default | undefined |
 | `process.kit.starter` | Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards o... | Owner decision | undefined |
@@ -209,6 +210,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.desktop.pane-widths-2026-10-08` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
@@ -228,9 +230,11 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
+| `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |
 | `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
+| `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
@@ -258,6 +262,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
+| `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 

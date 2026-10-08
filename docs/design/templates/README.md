@@ -37,7 +37,11 @@ Edit `css/src/*.css`, then run `bun docs/design/templates/build.mjs` (or `node`)
 
 ## Phone
 
-The phone screens follow `PhoneLesson.dc.html` and `PhoneReader.dc.html` inside the frame, with two changes Chris made on 2026-10-08: a phone status bar with the camera island at the top, and the five destinations in a bottom tab bar (Shelf, Path, Bible, Topics, Review) instead of the icon row at the top. My Notes and Theologian stay as right-edge tabs at their recorded positions. Shelf, Learning Path, Study Topics and Review & Practice have no phone board; their phone layouts are built from the desktop content in the phone frame.
+The phone screens follow `PhoneLesson.dc.html` and `PhoneReader.dc.html` inside the frame, with changes Chris directed on 2026-10-08: a phone status bar with the camera island; no top bar; one bottom bar (Shelf, Path, Bible, Topics, Review, Search, You) on every screen except the lesson and the Bible, which are focus screens with a close button; "Step x of y" in the lesson title bar with a chain-of-dots tracker; the Shelf's selected book docked above the bar. My Notes and Theologian stay as right-edge tabs at their recorded positions. Shelf, Learning Path, Study Topics and Review & Practice have no phone board; their phone layouts are built from the desktop content in the phone frame.
+
+## Compare before done
+
+Every design change is compared to its plan board before it is called done (Chris, 2026-10-08). Where no board exists (phone Shelf, phone Learning Path, the topic page, the Learning Path options) it is compared to the current template instead. Capture at 1440 × 900 and 390 × 844, put plan and template side by side, and list each difference as directed by Chris or unintended. Fix the unintended ones.
 
 ## Known differences from the boards
 
