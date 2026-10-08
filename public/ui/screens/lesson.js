@@ -15,6 +15,7 @@ import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
+import { ORIENTATION_LESSON, ORIENTATION_LESSON_ID, ORIENTATION_UNIT_ID, ORIENTATION_START_HREF, markOrientationSeen } from '../../orientation.js';
 
 // Lessons (?lesson=) and Checkpoints (?mastery=). A Checkpoint is a one-step lesson: the same frame, progress, notes and
 // navigation, with the unit's check on the card (decisions ui.naming.checkpoint-bare-2026-10-05 and ui.naming.hide-module-unit-labels).
@@ -66,6 +67,26 @@ export function checkpointAsLesson(data, masteryId) {
   };
 }
 
+/** The Orientation shaped like a lesson: each scene is a section, cut at sentence ends into cards (about 380 characters). */
+export function orientationAsLesson() {
+  const sections = ORIENTATION_LESSON.scenes.map(scene => {
+    const cards = [];
+    let current = [], size = 0;
+    const flush = () => { if (current.length) cards.push({ id: `${scene.id}-${cards.length + 1}`, title: scene.title, units: current }); current = []; size = 0; };
+    const add = (unit, length) => { if (current.length && size + length > 380) flush(); current.push(unit); size += length; };
+    (scene.paragraphs || []).forEach(text => {
+      const sentences = String(text).match(/[^.!?]+[.!?]+["”’)]*\s*|[^.!?]+$/g) || [String(text)];
+      sentences.forEach((sentence, i) => add({ kind: 'sentence', text: sentence.trim(), paraStart: i === 0 }, sentence.length));
+    });
+    if (scene.bullets?.length) add({ kind: 'list', items: scene.bullets }, scene.bullets.join('').length);
+    if (scene.callout) add({ kind: 'callout', text: scene.callout }, scene.callout.length);
+    if (scene.actions?.length) add({ kind: 'actions', items: scene.actions }, 0);
+    flush();
+    return { id: scene.id, title: scene.title, blocks: [], cards };
+  });
+  return { id: ORIENTATION_LESSON_ID, activityId: `orientation:${ORIENTATION_LESSON_ID}`, title: ORIENTATION_LESSON.title, unitId: ORIENTATION_UNIT_ID, isOrientation: true, challenges: [], vocab: [], sections };
+}
+
 /** Every step of a lesson in order, with the section it belongs to. */
 export function lessonSteps(lesson) {
   return (lesson?.sections || []).flatMap(section => (section.cards || []).map(card => ({
@@ -97,6 +118,8 @@ function stepBody(step, lesson, ctx) {
     }
     flush();
     if (unit.kind === 'callout') out.push(`<aside class="scene-callout"><p>${esc(unit.text)}</p></aside>`);
+    else if (unit.kind === 'list') out.push(`<ul class="scene-list">${unit.items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`);
+    else if (unit.kind === 'actions') out.push(`<p class="scene-actions">${unit.items.map(item => `<a class="scene-action${item.primary ? ' is-primary' : ''}" href="${esc(item.href)}">${esc(item.label)}</a>`).join('')}</p>`);
     else if (unit.kind === 'reading') out.push(readingMarkup(unit, i, ctx));
     else if (unit.kind === 'visual') out.push(visualBlock(lesson, esc));
     else if (unit.kind === 'check') {
@@ -165,12 +188,13 @@ export async function mount(container, ctx) {
   const { data, params, esc, navigate } = ctx;
   const masteryId = params.get('mastery');
   const lessonId = masteryId || params.get('lesson');
-  const lesson = masteryId ? checkpointAsLesson(data, masteryId) : lessonFor(data, lessonId);
+  const orientation = !masteryId && lessonId === ORIENTATION_LESSON_ID;
+  const lesson = masteryId ? checkpointAsLesson(data, masteryId) : orientation ? orientationAsLesson() : lessonFor(data, lessonId);
   const steps = lessonSteps(lesson);
   if (!lesson || !steps.length) { container.innerHTML = `<p class="notice">${masteryId ? 'Checkpoint' : 'Lesson'} not found.</p>`; return; }
 
   const checkpoint = Boolean(lesson.isCheckpoint);
-  const activityId = checkpoint ? lesson.activityId : `lesson:${lessonId}`;
+  const activityId = checkpoint || orientation ? lesson.activityId : `lesson:${lessonId}`;
   const activity = activityFor(data, activityId);
   const unitId = params.get('unit') || activity?.unitId || lesson.unitId;
   const unit = data.units?.find(u => u.id === unitId);
@@ -181,9 +205,10 @@ export async function mount(container, ctx) {
   const step = steps[index];
   const base = `/course?unit=${encodeURIComponent(unitId || '')}&${checkpoint ? 'mastery' : 'lesson'}=${encodeURIComponent(lessonId)}`;
   const stepHref = i => `${base}&step=${i + 1}`;
-  const exitHref = `/course?unit=${encodeURIComponent(unitId || '')}`;
-  const next = continuationFor(data, activityId);
+  const exitHref = orientation ? '/course' : `/course?unit=${encodeURIComponent(unitId || '')}`;
+  const next = orientation ? { href: ORIENTATION_START_HREF } : continuationFor(data, activityId);
   const last = index === steps.length - 1;
+  if (orientation && last) markOrientationSeen();
 
   // Sections in order, each with its steps as dots (the rail and the phone's "All steps" sheet).
   const sections = [];
@@ -213,7 +238,7 @@ export async function mount(container, ctx) {
     `<a href="/course">${esc(LABELS.learningPath)}</a>`,
     course ? `<a href="/course?course=${encodeURIComponent(course.id)}" class="lesson-crumb-wide">${esc(course.title)}</a>` : '',
     unit ? `<a href="${esc(exitHref)}" class="lesson-crumb-wide">${esc(unit.title)}</a>` : '',
-    `<span aria-current="page">${checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
+    `<span aria-current="page">${orientation ? 'Orientation' : checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
   ].filter(Boolean).join('<span class="lesson-crumb-sep" aria-hidden="true">›</span>');
 
   const progress = `<div class="lesson-progress">
@@ -222,12 +247,15 @@ export async function mount(container, ctx) {
       <button type="button" class="lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog">All steps</button>
     </div>`;
 
-  const apparatus = checkpoint
+  const apparatus = orientation
+    ? `<details class="deep-reading" open><summary>About the orientation</summary><p>A short tour of how the site works. It is not scored and does not count toward any module.</p></details>
+       <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
+    : checkpoint
     ? `<details class="deep-reading" open><summary>About this ${esc(lesson.label.toLowerCase())}</summary><p>This activity evaluates understanding or reasoning, not whether you personally assent to a theological claim.</p></details>
        <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
     : lessonApparatus(lesson, esc, { title: step.sectionTitle, anchor: step.anchor });
 
-  container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
+  container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint || orientation ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
     <div class="lesson-card">
       <header class="lesson-titlebar">
         <nav class="lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
@@ -246,7 +274,7 @@ export async function mount(container, ctx) {
         </aside>
         <article class="lesson-main">
           <header class="lesson-step-head">
-            ${checkpoint ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
+            ${checkpoint || orientation ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
             <h1 id="lesson-step-title">${esc(step.sectionTitle)}</h1>
           </header>
           <div class="lesson-phone-tools">${tools}</div>

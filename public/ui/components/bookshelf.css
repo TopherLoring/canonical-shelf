@@ -128,6 +128,7 @@
   .ui-bookshelf-book::before,
   .ui-bookshelf-book::after {
     position: absolute;
+    top: 0;
     left: 18%;
     width: 1px;
     height: 100%;
@@ -153,7 +154,7 @@
 
   .ui-bookshelf-book.is-lean,
   .ui-bookshelf-book[data-group="apoc"] {
-    transform: rotate(7deg);
+    transform: rotate(-7deg);
     transform-origin: bottom left;
   }
 
@@ -165,7 +166,7 @@
 
   .ui-bookshelf-book.is-lean:hover,
   .ui-bookshelf-book[data-group="apoc"]:hover {
-    transform: translateY(-4px) rotate(7deg);
+    transform: translateY(-4px) rotate(-7deg);
   }
 
   .ui-bookshelf-book[aria-pressed="true"] {
