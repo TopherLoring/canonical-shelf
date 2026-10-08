@@ -411,9 +411,9 @@ test.describe('Bible reader', () => {
     await page.locator('.reader-steps a[aria-label^="Next chapter"]').click();
     await expect(page).toHaveURL(/book=2&chapter=1/);
     await expect(page.locator('.reader-title-heading')).toHaveText('Exodus 1');
-    await page.locator('.reader-toolbar [data-reader-picker] summary').click();
-    await page.locator('.reader-toolbar [data-reader-book]').selectOption('43');
-    await page.locator('.reader-toolbar [data-reader-chapters] a', { hasText: /^3$/ }).click();
+    await page.locator('.reader-title [data-reader-picker] summary').click();
+    await page.locator('.reader-title [data-reader-book]').selectOption('43');
+    await page.locator('.reader-title [data-reader-chapters] a', { hasText: /^3$/ }).click();
     await expect(page.locator('.reader-title-heading')).toHaveText('John 3');
   });
 

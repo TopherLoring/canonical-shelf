@@ -163,6 +163,11 @@
   .reader-title[data-group="paul"], .reader-phone-title[data-group="paul"] { --group-color: var(--bible-paul); }
   .reader-title[data-group="general"], .reader-phone-title[data-group="general"] { --group-color: var(--bible-general); }
   .reader-title[data-group="apoc"], .reader-phone-title[data-group="apoc"] { --group-color: var(--bible-apoc); }
+  /* The title is the book and chapter selector: the picker sits over the heading, invisible, and opens below it. */
+  .reader-title { position: relative; }
+  .reader-title .reader-picker { position: absolute; inset: 0; }
+  .reader-title .reader-picker-button { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: transparent; opacity: 0; }
+  .reader-title-heading::after { content: " ▾"; font-size: .5em; color: var(--color-text-muted); }
   .reader-title-group { margin: 0; font-family: var(--font-body); font-weight: 700; font-size: var(--type-small); color: var(--group-color); }
   .reader-title-heading { margin: 0; font-family: var(--font-display); font-size: var(--type-h1); line-height: var(--leading-tight); color: var(--color-text); }
   .reader-title-version { margin: var(--space-1) 0 0; font-family: var(--font-body); font-size: var(--type-small); color: var(--color-text-muted); }

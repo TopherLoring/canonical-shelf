@@ -319,7 +319,6 @@ export async function mount(container, ctx) {
     <div class="reader-rail-wrap" data-reader-rail>${renderRail({ sections: railSections(selected), ariaLabel: 'Study tools', id: 'reader-rail' })}</div>
     <article class="reader-card" data-reader-card>
       <header class="reader-toolbar">
-        ${pickerMarkup(book, chapter, esc)}
         <div class="reader-steps">${prevLink}${nextLink}</div>
         <div class="reader-meta">${renderGroupChip({ group: meta.cat })}<span class="reader-meta-count">Chapter ${chapter} of ${meta.ch}</span></div>
         <div class="reader-toolbar-end">
@@ -347,6 +346,7 @@ export async function mount(container, ctx) {
         <header class="reader-title" data-group="${meta.cat}">
           <p class="reader-title-group">${esc(groupLabel)}</p>
           <h1 class="reader-title-heading">${esc(name)} ${chapter}</h1>
+          ${pickerMarkup(book, chapter, esc)}
           <p class="reader-title-version">Berean Standard Bible</p>
         </header>
       <div class="reader-scroll" data-reader-scroll>
