@@ -1516,6 +1516,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Review & Practice: the scrollable mode menu sits under the page title and description (above the due card).
   *Why:* Chris artifact comment: move scroll menu beneath the review and practice title (or match the reference direction); first option taken
 
+### `ui.review.phone-template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `review-phone-template-locked`
+  The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; it changes only on Chris's request.
+  *Why:* Chris artifact comment: i think this page is good after any unaddressed edits
+
 ### `ui.review.template-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `review-keeps-template`

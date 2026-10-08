@@ -56,6 +56,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Learning Path desktop templates (module page and unit page) are locked as they stand once the current comments are addressed; they change only on Chris's request.
 - The Shelf desktop template is locked as it stands; it changes only on Chris's request. The open 'Read first' vs 'Where to begin' question (conflict-read-first) still applies to its book panel label.
 - The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.
+- The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; it changes only on Chris's request.
 
 ## 2026-10-07
 
