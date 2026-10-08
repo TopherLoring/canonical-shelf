@@ -13,12 +13,6 @@
       "text": ".response-is-correct{position:relative;border-color:#25754a!important;box-shadow:inset 3px 0 0 #25754a!important;background:color-mix(in srgb,#e7f5ec 78%,var(--",
       "count": 6
     },
-    "css-important|public/practice.css": {
-      "rule": "css-important",
-      "file": "public/practice.css",
-      "text": "@media(max-width:780px){.practice-status{grid-template-columns:1fr 1fr}.practice-status>div:first-child{grid-column:1/-1}.arcade-config{grid-template-columns:1f",
-      "count": 2
-    },
     "css-important|public/styles.css": {
       "rule": "css-important",
       "file": "public/styles.css",
@@ -96,12 +90,6 @@
       "file": "public/library.css",
       "text": ".shelf-cabinet{display:grid;grid-template-columns:minmax(0,39fr) minmax(0,27fr);gap:1rem;padding:0;background:transparent}.shelf-testament{display:flex;flex-dir",
       "count": 2
-    },
-    "css-z-index-literal|public/practice.css": {
-      "rule": "css-z-index-literal",
-      "file": "public/practice.css",
-      "text": ".practice-run-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem}.practice-run-head>p,.practice-run-head>h1{grid-column:1}.run-meter{grid-colum",
-      "count": 1
     },
     "css-z-index-literal|public/styles.css": {
       "rule": "css-z-index-literal",

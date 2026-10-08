@@ -12,7 +12,8 @@ const src = join(root, 'public/ui/src');
 const OUTPUTS = {
   'public/ui/shell.css': ['tokens.src.css', 'shell.src.css'],
   'public/ui/components/edge-tab.css': ['edge-tab.src.css'],
-  'public/ui/screens/lesson.css': { layer: 'screens', parts: ['lesson.src.css'] }
+  'public/ui/screens/lesson.css': { layer: 'screens', parts: ['lesson.src.css'] },
+  'public/ui/screens/practice.css': { layer: 'screens', parts: ['practice.src.css'] }
 };
 const units = /(^|[^\w.#-])(-?\d*\.?\d+)u(?![\w-])/g;
 const check = process.argv.includes('--check');

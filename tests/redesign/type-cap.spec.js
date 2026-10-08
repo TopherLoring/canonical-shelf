@@ -22,7 +22,7 @@ for (const [name, size] of [['desktop', { width: 1280, height: 800 }], ['phone',
     const offenders = [];
     for (const route of ROUTES) {
       await page.goto(route);
-      await page.waitForSelector('main > *');
+      await page.waitForSelector('main > *:visible');
       await page.waitForTimeout(300);
       const found = await page.evaluate(sel => {
         const probe = document.createElement('span');

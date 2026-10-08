@@ -9,5 +9,5 @@ import { expect } from '@playwright/test';
  */
 export async function waitForAppReady(page) {
   await expect(page.locator('#guide-open')).toBeEnabled({ timeout: 15000 });
-  await expect(page.locator('main > *').first()).toBeVisible({ timeout: 15000 });
+  await expect(page.locator('main > *:visible').first()).toBeVisible({ timeout: 15000 });
 }
