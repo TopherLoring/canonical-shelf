@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-right-pane-overview-and-subtopic-cards",
+  "topic": "ui.topics.right-pane-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views.",
+  "rationale": "Chris artifact comment: overview, separate sub topic list/selection area",
+  "by": "Chris"
+}

@@ -1684,8 +1684,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.topics.right-pane-2026-10-08`
 
-- **Current** · 2026-10-08 · Agent default (Claude-agent) · `topics-right-pane-content`
-  Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-right-pane-overview-and-subtopic-cards`
+  Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views.
+  *Why:* Chris artifact comment: overview, separate sub topic list/selection area
+- **Previous** · 2026-10-08 · Agent default (Claude-agent) · `topics-right-pane-content`
+  ~~Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian.~~
   *Why:* Chris asked the agent to work out the right pane; content types are adjustable
 
 ### `ui.topics.structure-2026-10-08`

@@ -298,7 +298,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topics.desktop-2026-10-08` | Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); | Owner decision | undefined |
 | `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is one page: | Owner decision | undefined |
 | `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
-| `ui.topics.right-pane-2026-10-08` | undefined | Agent default | undefined |
+| `ui.topics.right-pane-2026-10-08` | Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views. | Owner decision | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
