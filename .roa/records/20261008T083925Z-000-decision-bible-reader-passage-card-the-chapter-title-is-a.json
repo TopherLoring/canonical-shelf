@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "bible-reader-passage-card-the-chapter-title-is-a",
+  "topic": "ui.bible.passage-card-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Bible reader passage card: the chapter title is at the top of the card (no toolbar above it); previous and next chapter buttons are static, centered vertically on the left and right sides of the card; BSB and text size sit at the right of the title row.",
+  "rationale": "Chris: book title at the top of the card; nav buttons static and centered on either side, or at the bottom (side chosen)",
+  "by": "Chris"
+}

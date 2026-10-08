@@ -15,6 +15,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint.
 - Desktop Bible reader: the chapter title in the passage (Genesis 1 ▾) is the book and chapter picker, as on the phone; the toolbar has no separate picker button.
 - No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.
+- Bible reader passage card: the chapter title is at the top of the card (no toolbar above it); previous and next chapter buttons are static, centered vertically on the left and right sides of the card; BSB and text size sit at the right of the title row.
 
 ## 2026-10-07
 

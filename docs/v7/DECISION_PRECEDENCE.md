@@ -1088,6 +1088,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.bible.notes-panel.feedback-2026-09-26`
   Bible notes panel needs a different name and smaller title typography
 
+### `ui.bible.passage-card-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `bible-reader-passage-card-the-chapter-title-is-a`
+  Bible reader passage card: the chapter title is at the top of the card (no toolbar above it); previous and next chapter buttons are static, centered vertically on the left and right sides of the card; BSB and text size sit at the right of the title row.
+  *Why:* Chris: book title at the top of the card; nav buttons static and centered on either side, or at the bottom (side chosen)
+
 ### `ui.bible.phone`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.phone.v1`

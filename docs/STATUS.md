@@ -202,6 +202,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.ask` | The Bible reader toolbar has no Ask button. | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
+| `ui.bible.passage-card-2026-10-08` | Bible reader passage card: | Owner decision | undefined |
 | `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
 | `ui.bible.phone.board` | undefined | Agent default | undefined |
 | `ui.bible.picker.title-2026-10-08` | Desktop Bible reader: | Owner decision | undefined |

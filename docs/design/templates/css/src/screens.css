@@ -123,7 +123,11 @@
 
 /* ================= Bible reader (Reader.dc.html) ================= */
 .cs-rail--reader .cs-rail__item { min-block-size: 42u; padding: 0 12u; }
-.cs-passage { display: flex; flex-direction: column; background: var(--c-scripture); overflow: hidden; }
+.cs-passage { position: relative; display: flex; flex-direction: column; background: var(--c-scripture); overflow: hidden; }
+/* Chapter arrows stay put, centered on each side of the passage card (Chris, 2026-10-08). */
+.cs-chapter-nav { position: absolute; inset-block-start: 50%; translate: 0 -50%; z-index: var(--z-raised); box-shadow: var(--sh-card); }
+.cs-chapter-nav--prev { inset-inline-start: 12u; }
+.cs-chapter-nav--next { inset-inline-end: 12u; }
 .cs-frame--well > .cs-passage { overflow: hidden; }
 .cs-passage__bar { block-size: 59u; flex: none; padding: 0 28u; display: flex; align-items: center; gap: 10u; border-block-end: 1u solid var(--c-hairline); }
 .cs-select-button { block-size: 40u; padding: 0 16u; display: flex; align-items: center; gap: 8u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); font-size: 15u; font-weight: 700; }
@@ -134,7 +138,9 @@
 .cs-passage__where { flex-grow: 1; padding-inline-start: 6u; display: flex; align-items: center; gap: 8u; font-size: 14u; color: var(--c-muted); }
 .cs-text-button { block-size: 40u; padding: 0 12u; border: 0; border-radius: 10u; background: transparent; color: var(--c-text-2); font-size: 14u; }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: 17u; }
-.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 18u 48u 36u; display: flex; justify-content: center; }   /* title starts near the top of the card (Chris, 2026-10-08) */
+.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 24u 64u 36u; display: flex; justify-content: center; }   /* the chapter title is the top of the card (Chris, 2026-10-08) */
+.cs-passage__inner { flex: 1; }
+.cs-chapter > .cs-chapter__tools { display: flex; flex-direction: row; align-items: flex-start; gap: 4u; margin-inline-start: auto; }
 .cs-passage__inner { max-inline-size: 600u; display: flex; flex-direction: column; gap: 18u; }
 .cs-chapter { display: flex; align-items: stretch; gap: 14u; }
 .cs-chapter__bar { flex: 0 0 6u; border-radius: 3u; background: var(--group); }
