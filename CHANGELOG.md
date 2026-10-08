@@ -47,6 +47,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Copy is removed from the reader's selection bar (highlight colors and + Note only).
 - Resolved "The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?": Remove Copy.
 - My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).
+- The Review & Practice template (desktop) is locked as it stands; it changes only on Chris's request.
 
 ## 2026-10-07
 

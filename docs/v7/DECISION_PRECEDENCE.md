@@ -1498,6 +1498,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Review & Practice keeps its current template (desktop).
   *Why:* Chris, 2026-10-08: 'path and review keep the template' (the Path part is superseded by the Learning Path structure below)
 
+### `ui.review.template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `review-template-locked`
+  The Review & Practice template (desktop) is locked as it stands; it changes only on Chris's request.
+  *Why:* Chris artifact comment on the Review & Practice template: 'good, lockit'
+
 ### `ui.scripture.group-color`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.scripture.group-color.v1`

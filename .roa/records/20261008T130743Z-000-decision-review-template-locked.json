@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "review-template-locked",
+  "topic": "ui.review.template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Review & Practice template (desktop) is locked as it stands; it changes only on Chris's request.",
+  "rationale": "Chris artifact comment on the Review & Practice template: 'good, lockit'",
+  "by": "Chris"
+}
