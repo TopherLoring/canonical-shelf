@@ -416,6 +416,9 @@
 
 /* ---- Scrollable menu bar (phone): the arrows show which way it can scroll ---- */
 .cs-typepicker { position: relative; display: inline-flex; align-items: center; gap: 8u; align-self: flex-start; min-block-size: 36u; padding: 0 10u 0 14u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); font-size: 14u; font-weight: 600; color: var(--c-action); }
+.cs-scroll > .cs-typepicker { align-self: stretch; justify-content: space-between; }
+.cs-topic__main { display: flex; flex-direction: column; gap: 6u; color: var(--c-text); text-decoration: none; }
+.cs-app a.cs-topic__main { color: var(--c-text); }
 .cs-typepicker .cs-icon { inline-size: 16u; block-size: 16u; color: var(--c-muted); }
 .cs-typepicker select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
 .cs-titlepicker { position: relative; display: inline-flex; align-items: center; gap: 8u; align-self: flex-start; font-family: var(--f-display); font-size: 28u; font-weight: 600; line-height: 1.1; color: var(--c-text); }

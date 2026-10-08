@@ -257,7 +257,10 @@ const askCard = `<button type="button" class="cs-card cs-ask" data-guide="theolo
 const contentPane = (k, j) => { const s = subTopics(k)[j]; return `<aside class="cs-stack" aria-label="${s[0]}"><section class="cs-card cs-panel cs-subcontent"><span class="cs-caption cs-caption--label">${s[0]}</span><p>${s[2]}</p><span class="cs-caption cs-caption--label">Sources</span>${refList()}<span class="cs-caption cs-caption--label">Other views</span>${viewsList()}</section>${studiedCard()}${askCard}</aside>`; };
 // Phone
 const subMenu = (k, j) => hscroll('Sub topics', subTopics(k).map(([t], n) => `<a href="#" data-go="sub=${n}"${n === j ? ' aria-current="true"' : ''}>${t}</a>`).join(''));
-const titlePicker = k => `<div class="cs-heading"><label class="cs-typepicker"><span>Questions</span>${i.down}<select aria-label="Choose a topic type" data-type-select>${topicGroups.map(([l], n) => `<option${n === 0 ? ' selected' : ''}>${l}</option>`).join('')}<option>Glossary</option></select></label><label class="cs-titlepicker"><span class="cs-titlepicker__text">${topics[k][0]}</span>${i.down}<select aria-label="Choose a question" data-topic-select>${topics.map(([t], n) => `<option value="${n}"${n === k ? ' selected' : ''}>${t}</option>`).join('')}</select></label><span class="cs-sub">${topics[k][1]}</span></div>`;
+const typePicker = `<label class="cs-typepicker"><span>Questions</span>${i.down}<select aria-label="Choose a topic type" data-type-select>${topicGroups.map(([l], n) => `<option${n === 0 ? ' selected' : ''}>${l}</option>`).join('')}<option>Glossary</option></select></label>`;
+const titlePicker = k => `<div class="cs-heading"><button type="button" class="cs-backlink" data-go="view=">${i.left}<span>Questions</span></button><label class="cs-titlepicker"><span class="cs-titlepicker__text">${topics[k][0]}</span>${i.down}<select aria-label="Choose a question" data-topic-select>${topics.map(([t], n) => `<option value="${n}"${n === k ? ' selected' : ''}>${t}</option>`).join('')}</select></label><span class="cs-sub">${topics[k][1]}</span></div>`;
+// Phone browse page, as the reference: title, search, a type drop-down, then the topic cards; the selected one offers Open topic.
+const phoneTopicCards = k => `<div class="cs-topic-grid">${topics.map(([t, d], n) => `<div class="cs-topic${n === k ? ' is-open' : ''}"${n === k ? ' aria-current="true"' : ''}><a class="cs-topic__main" href="#" data-go="topic=${n}"><span class="cs-topic__title">${t}</span><span class="cs-topic__text">${d}</span></a>${n === k ? `<a class="cs-button cs-button--block" href="#" data-go="view=topic;topic=${n};sub=0">Open topic</a>` : ''}</div>`).join('')}</div><span class="cs-result-count" aria-live="polite">Showing 8 of 12 questions</span>`;
 const footnote = (id, label, open) => `<button type="button" class="cs-footnote" data-fn-toggle="${id}" aria-expanded="${open}" aria-label="Footnote ${id}: ${label}">${id}</button>`;
 const phoneContent = (k, j) => { const s = subTopics(k)[j]; return `<section class="cs-card cs-panel cs-subcontent"><span class="cs-caption cs-caption--label">${s[0]}</span><p class="cs-phone-prose">${s[2]}${footnote('a', 'sources', true)}</p><div class="cs-fn" data-fn="a"><span class="cs-caption cs-caption--label">Sources</span>${refList()}</div><p class="cs-phone-prose">Careful readers do not all weigh this the same way.${footnote('b', 'other views', false)}</p><div class="cs-fn" data-fn="b" hidden><span class="cs-caption cs-caption--label">Other views</span>${viewsList()}</div></section>${studiedCard()}${askCard}`; };
 const topicsPage = {
@@ -265,7 +268,9 @@ const topicsPage = {
   desktop: (view, st) => view === 'topic'
     ? `${topicListRail(st.topic)}${subCards(st.topic, st.sub)}${contentPane(st.topic, st.sub)}`
     : `${topicsRail}<section class="cs-column" aria-label="Questions">${topicsHeading}${topicsSearch}${topicCards(st.topic)}</section>${peekPane(st.topic)}`,
-  phone: (view, st) => `<div class="cs-scroll">${titlePicker(st.topic)}${subMenu(st.topic, st.sub)}${phoneContent(st.topic, st.sub)}</div>`
+  phone: (view, st) => view === 'topic'
+    ? `<div class="cs-scroll">${titlePicker(st.topic)}${subMenu(st.topic, st.sub)}${phoneContent(st.topic, st.sub)}</div>`
+    : `<div class="cs-scroll"><div class="cs-heading"><h1>Study Topics</h1><span class="cs-sub">Start with a question, then inspect Scripture, context, and interpretation.</span></div>${topicsSearch}${typePicker}${phoneTopicCards(st.topic)}</div>`
 };
 export { peekPane };
 
