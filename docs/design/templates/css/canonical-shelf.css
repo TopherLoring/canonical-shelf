@@ -827,3 +827,6 @@
 .cs-footnotes__item { display: flex; gap: calc(8 * var(--u)); }
 .cs-footnotes__mark { flex: none; font-size: calc(11 * var(--u)); font-weight: 700; color: var(--c-accent-ink); vertical-align: super; }
 .cs-footnotes__item > div { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-inline-size: 0; }
+.cs-topicpick { border-inline-start: calc(4 * var(--u)) solid var(--c-accent); }
+.cs-topicpick .cs-kicker { color: var(--c-accent-ink); }
+.cs-acc .cs-sublist__num { background: var(--c-accent-mark); color: var(--c-accent-ink); }

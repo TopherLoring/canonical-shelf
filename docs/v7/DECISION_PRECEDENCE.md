@@ -1730,6 +1730,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Study Topics: Sources and Other views are footnotes (superscript markers in the text, footnotes at the bottom of the sub topic), not main content. The question menu is smaller and subtle, with texture and shadow instead of a border. Sub topics are shown closed.
   *Why:* Artifact comment 50d3dabf
 
+### `ui.topics.phone.rose-accent`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-study-topics-carries-the-rose-accent-like-`
+  Phone Study Topics carries the rose accent like the other screens: rose edge and label on the question menu, rose-tinted sub topic numbers.
+  *Why:* Artifact comment b1c79f41
+
 ### `ui.topics.right-pane-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-right-pane-overview-and-subtopic-cards`

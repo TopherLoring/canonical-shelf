@@ -514,3 +514,6 @@
 .cs-footnotes__item { display: flex; gap: 8u; }
 .cs-footnotes__mark { flex: none; font-size: 11u; font-weight: 700; color: var(--c-accent-ink); vertical-align: super; }
 .cs-footnotes__item > div { display: flex; flex-direction: column; gap: 6u; min-inline-size: 0; }
+.cs-topicpick { border-inline-start: 4u solid var(--c-accent); }
+.cs-topicpick .cs-kicker { color: var(--c-accent-ink); }
+.cs-acc .cs-sublist__num { background: var(--c-accent-mark); color: var(--c-accent-ink); }
