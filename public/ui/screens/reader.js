@@ -332,6 +332,7 @@ export async function mount(container, ctx) {
           ${pickerMarkup(book, chapter, esc).replace('id="reader-book-select"', 'id="reader-book-select-phone"').replace('for="reader-book-select"', 'for="reader-book-select-phone"').replace('id="reader-chapter-label"', 'id="reader-chapter-label-phone"').replace('aria-labelledby="reader-chapter-label"', 'aria-labelledby="reader-chapter-label-phone"')}
           <p class="reader-title-version">Berean Standard Bible</p>
         </div>
+        <a class="reader-close" href="/home" aria-label="Close Bible"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
         <details class="reader-more" data-reader-more>
           <summary class="reader-more-button" aria-label="More reading options">${ICONS.more}</summary>
           <div class="reader-more-popup">

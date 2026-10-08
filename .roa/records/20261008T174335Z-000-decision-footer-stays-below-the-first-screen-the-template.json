@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "footer-stays-below-the-first-screen-the-template",
+  "topic": "shell.footer",
+  "date": "2026-10-08",
+  "text": "Footer stays below the first screen; the template has none",
+  "by": "Chris"
+}

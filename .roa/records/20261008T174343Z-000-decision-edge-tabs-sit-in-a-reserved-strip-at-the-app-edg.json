@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "edge-tabs-sit-in-a-reserved-strip-at-the-app-edg",
+  "topic": "shell.edge-tabs",
+  "date": "2026-10-08",
+  "text": "Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size",
+  "by": "Chris"
+}

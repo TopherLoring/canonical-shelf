@@ -3,6 +3,7 @@
 
 /* Defined on the shell, where --u exists, so the scaled shadows resolve. */
 .cs-shell {
+  --edge-tab-w: 28u; /* edge tabs sit in this strip; the frame never extends into it */
   --c-page: var(--color-page);
   --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
   --c-surface: var(--color-surface);

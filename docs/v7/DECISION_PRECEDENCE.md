@@ -397,6 +397,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Feedback and review snapshots never automatically attach Journal writing, private reflections, lesson notes, profile or account data, inferred beliefs, or unrelated chat history. Anonymous reply routing uses a random browser-scoped identifier; the server stores only a one-way SHA-256 routing key; IP addresses are never feedback identity; the learner may forget the link at any time. Account deletion de-identifies retained feedback
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification. Snapshot contents and the reason requirement follow owner decision theologian.review
 
+### `fonts.profile`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `per-theme-fonts-the-separate-font-choice-and-tex`
+  Per-theme fonts, the separate font choice and text size are built with the Profile screen port
+
 ### `launch.readiness`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `launch.readiness.polish-before-launch`
@@ -709,6 +714,26 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-24 · Agent default (Claude) · `safety.crisis.from-precedence-doc`
   content/theology/crisis-policy.json is the crisis-safety policy. A deterministic crisis layer runs before normal generation for credible first-person suicide or self-harm indicators: immediate danger goes to 911/emergency services; U.S. crisis offers call or text 988; encourage a trusted person present and distance from means; stay conversational. Pastoral response (God's love and presence, prayer alongside human help, referral to trusted clergy, praying on request) is expected, but prayer never replaces or delays urgent help. Prohibited: shame, threats of hell or punishment, implying weak faith, prayer-alone advice, promised healing, silent third-party contact, IP-based identity, permanent risk labels, converting crisis chat into feedback
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification
+
+### `shell.edge-tabs`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `edge-tabs-sit-in-a-reserved-strip-at-the-app-edg`
+  Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size
+
+### `shell.footer`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `footer-stays-below-the-first-screen-the-template`
+  Footer stays below the first screen; the template has none
+
+### `shell.offline-notice`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-offline-update-line-moves-into-profile-data-`
+  The offline/update line moves into Profile (Data & privacy); no notice strip under the top bar
+
+### `shell.phone-nav`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `bottom-bar-is-the-standard-on-every-phone-screen`
+  Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button
 
 ### `theme.default`
 

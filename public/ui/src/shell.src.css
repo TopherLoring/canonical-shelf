@@ -135,7 +135,7 @@
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: 16u; }
   .cs-top { display: none; }
-  .cs-frame { margin: 10u; }
+  .cs-frame { margin: 10u var(--edge-tab-w) 10u 10u; }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }
   .cs-frame--well.cs-cols--reader { background: var(--c-surface); }
@@ -154,6 +154,9 @@
   .cs-tabbar .cs-icon { inline-size: 21u; block-size: 21u; }
   .cs-tabbar a[aria-current="page"] { color: var(--c-action); font-weight: 600; box-shadow: inset 0 2u 0 var(--c-action); }
   .cs-tabbar__extra { border-inline-start: 1u solid var(--c-hairline); }
+  /* The Bible is a focus screen on the phone: no bar, a close button in the reader header. */
+  body[data-current-route="bible"] .cs-tabbar { display: none; }
+  body[data-current-route="bible"] .cs-shell { grid-template-rows: minmax(0, 1fr); }
 }
 
 
@@ -168,10 +171,6 @@
 .cs-icon-button[aria-current], .cs-icon-button.is-active { color: var(--c-action); }
 .cs-feedback:hover, .cs-icon-button:hover { color: var(--c-text); }
 
-/* Offline and update notice: one quiet line under the top bar, only while it has text. */
-.cs-notice { position: absolute; inset-inline: 0; inset-block-start: 64u; z-index: var(--z-raised); margin: 0; padding: 4u 32u; font-size: 13u; color: var(--c-text-2); background: var(--c-surface); border-block-end: 1u solid var(--c-border); }
-@container app (max-width: 760px) or (max-aspect-ratio: 4/5) { .cs-notice { inset-block-start: 0; padding: 4u 16u; } }
-.cs-notice:empty { display: none; }
 
 /* ---- Footer: the legal and About links, just below the app's first screen ---- */
 .cs-footer { background: var(--c-page); color: var(--c-text-2); }
@@ -183,7 +182,6 @@ body.study-focus-active .cs-footer { display: none; }
 
 /* Focus mode (lessons): chrome steps away, the frame fills the app. */
 body.study-focus-active .cs-top,
-body.study-focus-active .cs-tabbar,
-body.study-focus-active .cs-notice { display: none; }
+body.study-focus-active .cs-tabbar { display: none; }
 body.study-focus-active .cs-shell { grid-template-rows: minmax(0, 1fr); }
-body.study-focus-active .cs-frame { margin: 0; border: 0; border-radius: 0; box-shadow: none; background: var(--c-sunken); }
+body.study-focus-active .cs-frame { margin: 0 var(--edge-tab-w) 0 0; border: 0; border-radius: 0; box-shadow: none; background: var(--c-sunken); }

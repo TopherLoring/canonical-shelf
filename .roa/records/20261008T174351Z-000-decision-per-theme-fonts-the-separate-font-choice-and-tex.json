@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "per-theme-fonts-the-separate-font-choice-and-tex",
+  "topic": "fonts.profile",
+  "date": "2026-10-08",
+  "text": "Per-theme fonts, the separate font choice and text size are built with the Profile screen port",
+  "by": "Chris"
+}

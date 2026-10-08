@@ -20,6 +20,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.
 - Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values.
 - No horizontal scrolling anywhere; menus are drop-downs, so the no-hscroll exception is moot.
+- Footer stays below the first screen; the template has none
+- The offline/update line moves into Profile (Data & privacy); no notice strip under the top bar
+- Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size
+- Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button
+- Per-theme fonts, the separate font choice and text size are built with the Profile screen port
 
 ## 2026-10-07
 

@@ -86,6 +86,7 @@ export function mount(container, ctx) {
           <button type="button" class="profile-screen__privacy-action" data-feedback-forget>Forget this browser’s anonymous feedback link</button>
           <p class="profile-screen__legal-links"><a href="/privacy.html">Privacy</a><a href="/data-retention.html">Data retention</a><a href="/storage.html">What is stored</a></p>
           <p class="section-note">Account deletion is available in Your account above.</p>
+          <p class="section-note" role="status"><strong>Offline access:</strong> <span id="pwa-status" data-state="${esc(window.canonPwaStatus?.state || '')}">${esc(window.canonPwaStatus?.text || 'Online. Saved content is available offline.')}</span></p>
         </div>
       </section>
     </div>

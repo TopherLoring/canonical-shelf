@@ -48,6 +48,16 @@
     font-family: var(--font-body);
   }
   .reader-phone-head, .reader-phone-tools { display: none; }
+  /* Phone: the Bible is a focus screen; this closes it back to the Shelf. */
+  .reader-close { display: none; }
+  @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+    .reader-close {
+      display: grid; place-items: center; flex: none; order: 3;
+      width: 44px; height: 44px; border: var(--border-weight) solid var(--color-border);
+      border-radius: var(--radius-control); color: var(--color-text); background: var(--color-surface); text-decoration: none;
+    }
+    .reader-phone-head .reader-more { order: 2; }
+  }
 
   .reader-picker { position: relative; }
   .reader-picker-button {

@@ -113,6 +113,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `doctrine.trinity-incarnation` | Superseded by the 2026-10-02 reconciliation: | Owner decision | undefined |
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
+| `fonts.profile` | Per-theme fonts, the separate font choice and text size are built with the Profile screen port | Owner decision | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
 | `learning.games` | The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned... | Owner decision | undefined |
 | `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
@@ -140,6 +141,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
+| `shell.edge-tabs` | Edge tabs sit in a reserved strip at the app edge; | Owner decision | undefined |
+| `shell.footer` | Footer stays below the first screen; | Owner decision | undefined |
+| `shell.offline-notice` | The offline/update line moves into Profile (Data & privacy); | Owner decision | undefined |
+| `shell.phone-nav` | Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button | Owner decision | undefined |
 | `theme.default` | Reading Room is the default theme: | Owner decision | undefined |
 | `theologian.authority` | Treat the Statement of Faith as the correct governing doctrinal stance while allowing competing evidence and conflicting views to be presented. | Owner decision | undefined |
 | `theologian.chat-design` | Theologian chat design (approved): | Owner decision | undefined |
