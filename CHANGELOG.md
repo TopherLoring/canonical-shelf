@@ -23,6 +23,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone lesson hides the top bar; the title bar reads Step x of y with close at the right; the tracker is a chain of dots. Phone Bible hides the top bar and has a close button that reveals the shelf selector.
 - Phone navigation is one bottom bar on every screen except the lesson and the Bible: the five destinations plus Search and You (profile and feedback); no top bar on phone. (agent default)
 - Path, Bible, Study Topics and Review desktop panes share widths: left 240, right 340. (agent default)
+- Lesson Glossary card: remove the "Terms in this step" line and make "Glossary" the card title, larger.
 
 ## 2026-10-07
 

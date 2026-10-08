@@ -154,7 +154,7 @@ const lessonCard = `<div class="cs-card cs-lesson-card"><div class="cs-lesson">
 </div></div>`;
 const lessonAside = `<aside class="cs-stack" aria-label="Notes and study content">
   <button type="button" class="cs-card cs-notes-toggle" aria-expanded="false">${i.pen}<span class="cs-grow">My Notes</span><span class="cs-notes-toggle__add">Add a note</span>${i.down}</button>
-  <section class="cs-card cs-panel cs-fill" aria-label="Glossary for this step"><div><span class="cs-caption cs-caption--label">Glossary</span><h2 class="cs-panel__title">Terms in this step</h2></div>
+  <section class="cs-card cs-panel cs-fill" aria-label="Glossary for this step"><h2 class="cs-panel__title">Glossary</h2>
     <dl class="cs-terms"><div><dt>Old Testament</dt><dd>The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.</dd></div><div><dt>New Testament</dt><dd>The 27 books written by the first Christians about Jesus and the early church, written in Greek.</dd></div></dl>
     <a class="cs-panel__foot" href="?screen=topics">All 4 terms in this lesson</a></section>
 </aside>`;

@@ -1165,6 +1165,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-10-08 · Chris · `learning-path-option-b-shelf-disliked`
   I don't like the shelf-native Learning Path option (B: units as volumes on a plank).
 
+### `ui.lesson-glossary-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-glossary-card-title-only`
+  Lesson Glossary card: remove the "Terms in this step" line and make "Glossary" the card title, larger.
+  *Why:* Chris artifact comment: remove the terms in this step line and increase the word glossary
+
 ### `ui.lesson.card`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v3-2026-10-05`

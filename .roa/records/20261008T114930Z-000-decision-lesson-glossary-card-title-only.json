@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-glossary-card-title-only",
+  "topic": "ui.lesson-glossary-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Lesson Glossary card: remove the \"Terms in this step\" line and make \"Glossary\" the card title, larger.",
+  "rationale": "Chris artifact comment: remove the terms in this step line and increase the word glossary",
+  "by": "Chris"
+}
