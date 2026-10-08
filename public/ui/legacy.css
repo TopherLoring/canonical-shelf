@@ -9,16 +9,10 @@
 
 @import url('/styles.css') layer(legacy);
 @import url('/learning.css') layer(legacy);
-@import url('/bible.css') layer(legacy);
 @import url('/library.css') layer(legacy);
 @import url('/practice.css') layer(legacy);
 @import url('/utility-panels.css') layer(legacy);
 @import url('/theologian-chat.css') layer(legacy);
 @import url('/experience.css') layer(legacy);
-@import url('/course-experience.css') layer(legacy);
 @import url('/footer.css') layer(legacy);
 @import url('/canonical-shelf.css') layer(legacy);
-@import url('/bible-state.css') layer(legacy);
-@import url('/topics-experience.css') layer(legacy);
-@import url('/learning-visuals.css') layer(legacy);
-@import url('/search-experience.css') layer(legacy);
