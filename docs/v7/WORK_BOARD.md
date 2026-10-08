@@ -18,13 +18,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **S7** — Step 7: remove legacy stylesheets and render paths; close the guards
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `S11` | claimed | Claude | `feature/s11-orientation` | `S9` | Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it |
 | `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits |
 | `A2` | waiting |  |  | `A1` | Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
 | `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account |
@@ -41,7 +41,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S7` | ready |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9`, `S11` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
@@ -436,4 +436,9 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 - 2026-10-07 (Claude): Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths.
 - 2026-10-08 (Codex): Claimed on codex/s10-about.
 - 2026-10-07 (Claude): Chris 2026-10-07: approved; same two-pane layout as Topics.
+
+### S11 — Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it
+
+- 2026-10-08 (Claude): Claimed on feature/s11-orientation.
+- 2026-10-07 (Claude): Chris 2026-10-07: orientation should match the redesign in verbiage and design.
 
