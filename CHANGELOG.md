@@ -48,6 +48,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Resolved "The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?": Remove Copy.
 - My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).
 - The Review & Practice template (desktop) is locked as it stands; it changes only on Chris's request.
+- The Bible desktop template is locked as it stands after the Copy removal; it changes only on Chris's request.
+- Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); the right pane's content is left to the agent.
+- Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian. (agent default)
 
 ## 2026-10-07
 

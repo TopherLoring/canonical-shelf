@@ -1481,6 +1481,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-notes-drawer-2026-10-04`
   My Notes opens saved notes with edit and delete icons and an add-note button or input. Sort notes by verse, then date/time. Remove the in-person discussion checkbox and Ask the Theologian action from the reader notes editor, extending the input downward. Notes and Theologian slide in from the right. The notes card remains below the Theologian tab; the Theologian tab and chat stay above other visible panels. Remove Copy from the reader highlight/note actions.
 
+### `ui.reader.template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `bible-template-locked`
+  The Bible desktop template is locked as it stands after the Copy removal; it changes only on Chris's request.
+  *Why:* Chris artifact comment: lock page after copy edit
+
 ### `ui.reader.viewport`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-fixed-header-2026-10-04`
@@ -1616,6 +1622,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-list-no-right-pane-topic-page-has-one`
   Study Topics list page uses only the left rail and the main column. Selecting a question opens its own page, and the right pane (key passages, how readers differ, ask the Theologian, studied in the Learning Path) appears only there.
 
+### `ui.topics.desktop-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-desktop-like-plan-pane-open`
+  Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); the right pane's content is left to the agent.
+  *Why:* Chris artifact comments on the Topic page: 'look like this but figure out the right pane', 'the whole page'. Supersedes the separate topic state
+
 ### `ui.topics.phone-structure-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-like-reference`
@@ -1627,6 +1639,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-type-dropdown`
   Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).
   *Why:* Chris artifact comment: replace this with a drop menu, replacing the category label beneath it
+
+### `ui.topics.right-pane-2026-10-08`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `topics-right-pane-content`
+  Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian.
+  *Why:* Chris asked the agent to work out the right pane; content types are adjustable
 
 ### `ui.topics.structure-2026-10-08`
 

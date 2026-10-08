@@ -266,6 +266,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.copy-2026-10-08` | Copy is removed from the reader's selection bar (highlight colors and + Note only). | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
+| `ui.reader.template-locked-2026-10-08` | The Bible desktop template is locked as it stands after the Copy removal; | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
 | `ui.review.phone-menu-2026-10-08` | Phone Review & Practice: | Owner decision | undefined |
 | `ui.review.template-2026-10-08` | Review & Practice keeps its current template (desktop). | Owner decision | undefined |
@@ -288,8 +289,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
+| `ui.topics.desktop-2026-10-08` | Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); | Owner decision | undefined |
 | `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is structured like the reference image: | Owner decision | undefined |
 | `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.right-pane-2026-10-08` | undefined | Agent default | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "bible-template-locked",
+  "topic": "ui.reader.template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Bible desktop template is locked as it stands after the Copy removal; it changes only on Chris's request.",
+  "rationale": "Chris artifact comment: lock page after copy edit",
+  "by": "Chris"
+}

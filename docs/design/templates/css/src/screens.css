@@ -405,6 +405,13 @@
 .cs-lessonpane .cs-button--block { margin-block-start: 4u; }
 
 /* ---- Study Topics: sub topics and content ---- */
+.cs-sublist { display: flex; flex-direction: column; gap: 2u; }
+.cs-sublist a { display: flex; align-items: center; gap: 10u; padding: 8u 10u; border-radius: 8u; font-size: 14u; color: var(--c-text-2); text-decoration: none; }
+.cs-app .cs-sublist a { color: var(--c-text-2); }
+.cs-sublist a[aria-current="true"] { background: var(--c-subtle); color: var(--c-text); font-weight: 600; }
+.cs-sublist__num { inline-size: 22u; block-size: 22u; flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 6u; background: var(--c-row); font-size: 12u; color: var(--c-text-2); }
+.cs-subbody { display: flex; flex-direction: column; gap: 10u; padding-block-start: 12u; border-block-start: 1u solid var(--c-hairline); }
+.cs-subbody p { font-size: 15u; line-height: 1.55; color: var(--c-text-2); }
 .cs-subpeek { display: flex; flex-direction: column; gap: 12u; }
 .cs-subpeek li { display: flex; flex-direction: column; gap: 2u; padding-block-end: 12u; border-block-end: 1u solid var(--c-row); }
 .cs-subpeek li:last-child { border: 0; padding: 0; }

@@ -718,6 +718,13 @@
 .cs-lessonpane .cs-button--block { margin-block-start: calc(4 * var(--u)); }
 
 /* ---- Study Topics: sub topics and content ---- */
+.cs-sublist { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+.cs-sublist a { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(8 * var(--u)) calc(10 * var(--u)); border-radius: calc(8 * var(--u)); font-size: calc(14 * var(--u)); color: var(--c-text-2); text-decoration: none; }
+.cs-app .cs-sublist a { color: var(--c-text-2); }
+.cs-sublist a[aria-current="true"] { background: var(--c-subtle); color: var(--c-text); font-weight: 600; }
+.cs-sublist__num { inline-size: calc(22 * var(--u)); block-size: calc(22 * var(--u)); flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: calc(6 * var(--u)); background: var(--c-row); font-size: calc(12 * var(--u)); color: var(--c-text-2); }
+.cs-subbody { display: flex; flex-direction: column; gap: calc(10 * var(--u)); padding-block-start: calc(12 * var(--u)); border-block-start: calc(1 * var(--u)) solid var(--c-hairline); }
+.cs-subbody p { font-size: calc(15 * var(--u)); line-height: 1.55; color: var(--c-text-2); }
 .cs-subpeek { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
 .cs-subpeek li { display: flex; flex-direction: column; gap: calc(2 * var(--u)); padding-block-end: calc(12 * var(--u)); border-block-end: calc(1 * var(--u)) solid var(--c-row); }
 .cs-subpeek li:last-child { border: 0; padding: 0; }

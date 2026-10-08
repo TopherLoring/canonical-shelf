@@ -1,6 +1,6 @@
 // Mounts one template screen. The layout follows the shape of the space the app is given, not the device:
 // phone layout when the app is narrower than 761 units or taller than 5:4; desktop otherwise. CSS does the scaling.
-import { screens, books, bookDock, peekPane, ctx } from './examples.js';
+import { screens, books, bookDock, ctx } from './examples.js';
 import { icons as i } from './icons.js';
 
 const params = new URLSearchParams(location.search);
@@ -99,12 +99,6 @@ function wire() {
     a.dataset.go.split(';').forEach(pair => { const [k, v] = pair.split('='); if (k === 'view') view = v; else st[k] = Number(v); });
     layout = ''; render(decide());
   }));
-  // Hovering or focusing a topic previews its sub topics on the right; choosing it opens it.
-  app.querySelectorAll('[data-peek]').forEach(a => ['mouseenter', 'focus'].forEach(ev => a.addEventListener(ev, () => {
-    const pane = app.querySelector('[data-peek-pane]'); if (!pane) return;
-    app.querySelectorAll('[data-peek]').forEach(x => x.toggleAttribute('aria-current', x === a));
-    pane.outerHTML = peekPane(Number(a.dataset.peek));
-  })));
   // The topic title is its own drop-down (phone).
   app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
