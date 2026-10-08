@@ -408,6 +408,17 @@
 .cs-lessonpane .cs-button--block { margin-block-start: 4u; }
 
 /* ---- Study Topics: sub topics and content ---- */
+.cs-subacc { display: flex; flex-direction: column; gap: 6u; margin-block-start: 6u; }
+.cs-acc { border: 1u solid var(--c-hairline); border-radius: 10u; background: var(--c-raised); }
+.cs-acc > summary { display: flex; align-items: center; gap: 10u; padding: 10u 12u; font-size: 15u; font-weight: 600; color: var(--c-text); cursor: pointer; list-style: none; }
+.cs-acc > summary::-webkit-details-marker { display: none; }
+.cs-acc > summary > .cs-icon { inline-size: 16u; block-size: 16u; flex: none; color: var(--c-muted); }
+.cs-acc[open] > summary > .cs-icon { rotate: 180deg; }
+.cs-acc__body { display: flex; flex-direction: column; gap: 8u; padding: 0 12u 12u; }
+.cs-acc__body p { font-size: 15u; line-height: 1.5; color: var(--c-text-2); }
+.cs-acc--depth { border: 0; background: var(--c-subtle); }
+.cs-acc--depth > summary { font-size: 13u; font-weight: 600; color: var(--c-text-2); padding: 8u 12u; }
+.cs-topic.is-open { gap: 6u; }
 .cs-sublist { display: flex; flex-direction: column; gap: 2u; }
 .cs-sublist a { display: flex; align-items: center; gap: 10u; padding: 8u 10u; border-radius: 8u; font-size: 14u; color: var(--c-text-2); text-decoration: none; }
 .cs-app .cs-sublist a { color: var(--c-text-2); }

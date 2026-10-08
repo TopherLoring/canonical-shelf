@@ -99,8 +99,6 @@ function wire() {
     a.dataset.go.split(';').forEach(pair => { const [k, v] = pair.split('='); if (k === 'view') view = v; else st[k] = Number(v); });
     layout = ''; render(decide());
   }));
-  // The topic title is its own drop-down (phone).
-  app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
   app.querySelectorAll('[data-collapse]').forEach(b => b.addEventListener('click', () => {
     const body = app.querySelector(`[data-collapse-body="${b.dataset.collapse}"]`); if (!body) return;

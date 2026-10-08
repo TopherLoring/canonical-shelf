@@ -57,6 +57,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Shelf desktop template is locked as it stands; it changes only on Chris's request. The open 'Read first' vs 'Where to begin' question (conflict-read-first) still applies to its book panel label.
 - The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.
 - The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; it changes only on Chris's request.
+- Phone Study Topics is one page: title, search, type drop-down, then the question cards. The selected question opens in place to expandable sub topics, each opening to its text with Sources and Other views as further drop-downs. No separate topic page, no Open topic button.
 
 ## 2026-10-07
 

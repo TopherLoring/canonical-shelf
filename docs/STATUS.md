@@ -296,7 +296,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
 | `ui.topics.desktop-2026-10-08` | Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); | Owner decision | undefined |
-| `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is structured like the reference image: | Owner decision | undefined |
+| `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is one page: | Owner decision | undefined |
 | `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.right-pane-2026-10-08` | undefined | Agent default | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |

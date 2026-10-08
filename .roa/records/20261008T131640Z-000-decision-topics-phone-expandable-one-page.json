@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-phone-expandable-one-page",
+  "topic": "ui.topics.phone-structure-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics is one page: title, search, type drop-down, then the question cards. The selected question opens in place to expandable sub topics, each opening to its text with Sources and Other views as further drop-downs. No separate topic page, no Open topic button.",
+  "rationale": "Chris artifact comment: retain the layout with search etc from the main screen, expandable sub topics, expandable depth, drop menus where appropriate. Supersedes topics-phone-like-reference's Open topic page",
+  "by": "Chris"
+}

@@ -1666,8 +1666,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.topics.phone-structure-2026-10-08`
 
-- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-like-reference`
-  Phone Study Topics is structured like the reference image: title and description, search, a type drop-down, then the topic cards with the selected card offering Open topic; Open topic leads to the topic page (title drop-down, sub topic menu, content).
+- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-expandable-one-page`
+  Phone Study Topics is one page: title, search, type drop-down, then the question cards. The selected question opens in place to expandable sub topics, each opening to its text with Sources and Other views as further drop-downs. No separate topic page, no Open topic button.
+  *Why:* Chris artifact comment: retain the layout with search etc from the main screen, expandable sub topics, expandable depth, drop menus where appropriate. Supersedes topics-phone-like-reference's Open topic page
+- **Previous** · 2026-10-08 · Owner decision (Chris) · `topics-phone-like-reference`
+  ~~Phone Study Topics is structured like the reference image: title and description, search, a type drop-down, then the topic cards with the selected card offering Open topic; Open topic leads to the topic page (title drop-down, sub topic menu, content).~~
   *Why:* Chris, 2026-10-08: 'structure study topics like the image i provided'. Supersedes the phone flow without a browse page
 
 ### `ui.topics.phone-type-2026-10-08`
