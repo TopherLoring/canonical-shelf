@@ -1669,6 +1669,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
 
+### `ui.theologian.cited-inline`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-scripture-cited-lists-the-references-`
+  Theologian 'Scripture cited' lists the references inline separated by commas, not one per line.
+  *Why:* Chris, chat
+
 ### `ui.theologian.contrast`
 
 - **Current** · 2026-09-27 · Owner decision (Chris) · `ui.theologian.contrast.keep`

@@ -860,10 +860,9 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .cs-theo__citedhead { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); border: 0; background: transparent; font: inherit; color: inherit; cursor: pointer; }
 .cs-theo__citedhead .cs-icon, .cs-theo__rate .cs-icon, .cs-theo__refs .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
 .cs-theo__rate { display: inline-flex; gap: calc(14 * var(--u)); color: var(--c-muted); }
-.cs-theo__refs { list-style: none; display: flex; flex-direction: column; border-block-start: calc(1 * var(--u)) solid var(--c-row); }
-.cs-theo__refs li { display: flex; align-items: center; justify-content: space-between; padding: calc(10 * var(--u)) 0; border-block-end: calc(1 * var(--u)) solid var(--c-row); font-size: calc(13 * var(--u)); font-weight: 600; }
-.cs-theo__refs li::before { content: ''; inline-size: calc(3 * var(--u)); block-size: calc(14 * var(--u)); margin-inline-end: calc(8 * var(--u)); border-radius: calc(2 * var(--u)); background: var(--c-group, var(--c-action)); }
-.cs-theo__refs li a { flex: 1; text-decoration: underline; color: var(--c-action); }
+.cs-theo__refs { font-size: calc(13 * var(--u)); font-weight: 600; line-height: 1.6; }
+.cs-theo__refs span { display: inline-block; padding-inline-start: calc(8 * var(--u)); border-inline-start: calc(3 * var(--u)) solid var(--c-group, var(--c-action)); }
+.cs-theo__refs a { text-decoration: underline; color: var(--c-action); }
 .cs-theo__suggest { display: flex; flex-direction: column; align-items: flex-end; gap: calc(6 * var(--u)); font-size: calc(11 * var(--u)); color: var(--c-muted); }
 .cs-theo__suggest button { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(8 * var(--u)) calc(12 * var(--u)); border: 0; border-radius: calc(10 * var(--u)); background: var(--c-row); color: var(--c-text); font: inherit; font-size: calc(13 * var(--u)); }
 .cs-theo__suggest .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
@@ -884,8 +883,6 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .cs-theo__read ul { list-style: disc; }
 .cs-frame--theo.cs-cols--reader { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(450 * var(--u)); }
 .cs-theo__body { gap: calc(12 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)); font-size: calc(15 * var(--u)); line-height: 1.55; }
-.cs-theo__refs li { padding: calc(8 * var(--u)) 0; }
 .cs-theo__user { font-size: calc(15 * var(--u)); }
-.cs-theo__refs li a { font-size: calc(13 * var(--u)); }
 .cs-theo__suggest { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; }
 .cs-theo__suggest > span { flex: 1 1 100%; text-align: end; }

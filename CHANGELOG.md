@@ -73,6 +73,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.
 - Phone Learning Path: 'What you'll gain' moves from a bubble into an expandable row at the top of the open unit, above the lessons.
 - Templates build the Theologian chat from the approved boards and theologian.chat-design.v1: docked right column on desktop, centered card on phone, dim and click-to-close, no edge tab while open. Choosing a Study Topics question opens it with the question loaded in the message box, unsent. (agent default)
+- Theologian 'Scripture cited' lists the references inline separated by commas, not one per line.
 
 ## 2026-10-07
 

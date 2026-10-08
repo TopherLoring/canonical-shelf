@@ -297,6 +297,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
 | `ui.templates.match-plan-2026-10-08` | Fix the template to match the plan (the approved boards); | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
+| `ui.theologian.cited-inline` | Theologian 'Scripture cited' lists the references inline separated by commas, not one per line. | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.theologian.templates-build` | undefined | Agent default | undefined |
