@@ -41,6 +41,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Learning Path main content follows the plan's main column: units as cards with serif titles and a status, the current unit open to its lessons with a Start button; a selected unit shows the plan's open unit card.
 - On phones, My Notes is a side tab only in lessons and the Bible reader; the Theologian tab is on every screen.
 - Phone Review & Practice: the scrollable mode menu sits under the page title and description (above the due card).
+- Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: the module on the module page, the unit on the unit page (with the selected lesson's description and objective, progress and Next).
 
 ## 2026-10-07
 

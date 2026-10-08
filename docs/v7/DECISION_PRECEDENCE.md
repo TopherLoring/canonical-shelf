@@ -1182,6 +1182,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.
   *Why:* Chris described desktop only; phone follows the same levels
 
+### `ui.learning-path.right-pane-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-right-pane-what-you-gain`
+  Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: the module on the module page, the unit on the unit page (with the selected lesson's description and objective, progress and Next).
+  *Why:* Chris, 2026-10-08: restore the what you'll gain from this section in the right pane
+
 ### `ui.learning-path.structure-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-three-pane-flow`

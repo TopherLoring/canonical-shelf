@@ -228,6 +228,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.learning-path.main-2026-10-08` | Learning Path main content follows the plan's main column: | Owner decision | undefined |
 | `ui.learning-path.phone-2026-10-08` | undefined | Agent default | undefined |
+| `ui.learning-path.right-pane-2026-10-08` | Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: | Owner decision | undefined |
 | `ui.learning-path.structure-2026-10-08` | Learning Path: | Owner decision | undefined |
 | `ui.lesson-glossary-2026-10-08` | Lesson Glossary card: | Owner decision | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
