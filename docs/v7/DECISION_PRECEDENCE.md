@@ -1194,6 +1194,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Learning Path: modules on the left; the module's description and its units with progress in the middle; next, progress and objectives on the right. Selecting a unit lists the units on the left, the unit's description and lessons in the middle, and the selected lesson's description and objective with progress and next on the right.
   *Why:* Chris, 2026-10-08. Where his statements about the Path conflict, the last idea wins
 
+### `ui.learning-path.unit-pane-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `path-unit-no-next-block`
+  Learning Path unit page: no Up next / Next block in the right pane.
+  *Why:* Chris artifact comment: remove the up next block
+
 ### `ui.lesson-glossary-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-glossary-card-title-only`
