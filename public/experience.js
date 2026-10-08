@@ -1,11 +1,7 @@
-import {topicsView} from './topics-experience.js';
-
 const RECENT_KEY='canonical-shelf-recent-v1';
 const safeJson=(raw,fallback)=>{try{return JSON.parse(raw)}catch{return fallback}};
 
 // Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
-
-export {topicsView};
 
 export function recentActivity(){
   try{return safeJson(localStorage.getItem(RECENT_KEY)||'[]',[]).filter(item=>item&&item.href&&item.title).slice(0,12)}catch{return[]}

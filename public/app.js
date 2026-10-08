@@ -1,15 +1,12 @@
-import {profileView} from './profile.js';
 import {getState,recordResult,recordReview,dueReviews,exportState,importState} from './db.js';
 import {courseView} from './learning.js';
 import {challengeFor,challengeCountFor,challengeEvaluationMode,checkChallenge} from './challenge-engine.js';
 import {bibleView} from './bible.js';
 import {parseCorpus,parseReference,BOOKS} from './bible-books.js';
 import {buildTheologianResponse} from './theologian.js';
-import {topicsView,recentEntryForRoute,recordRecent} from './experience.js';
+import {recentEntryForRoute,recordRecent} from './experience.js';
 import {practiceView,checkPracticeGame} from './practice-experience.js';
 import {finishPracticeRun,activatePracticeRun} from './practice-engine.js';
-import {homeView,progressPanelView} from './progress-experience.js';
-import {courseLandingView,courseDetailView,unitExperienceView} from './course-experience.js';
 import {enhanceLearningVisuals} from './learning-visuals.js';
 import {enhanceBibleState} from './bible-state.js';
 import {searchExperienceView} from './search-experience.js';
@@ -93,19 +90,11 @@ function releaseScreen(){
   try{cleanup()}catch(error){console.error('screen cleanup failed',error)}
 }
 
+// Learning Path, unit, module, lesson and Checkpoint addresses are redesigned screens (learning-path.js, lesson.js).
+// Only the glossary and the orientation unit still come through the older course view.
 function courseRouteView(p){
   if(!data.units.length)return shell('Pathway','Migration required','<p class="notice">Run bun run migrate.</p>');
-  if(p.has('lesson')||p.has('mastery')||p.has('glossary'))return courseView(data,state,p,esc,corpus);
-  const rawUnit=p.get('unit');
-  if(rawUnit){
-    if(rawUnit==='unit.orientation')return courseView(data,state,p,esc,corpus);
-    const unitId=data.units.some(u=>u.id===rawUnit)?rawUnit:(data.legacyUnitAliases?.[rawUnit]||rawUnit),unit=data.units.find(u=>u.id===unitId);
-    if(!unit)return courseView(data,state,p,esc,corpus);
-    return unitExperienceView({data,state,unit,course:data.courses.find(c=>c.id===unit.courseId),esc});
-  }
-  const courseId=p.get('course');
-  if(courseId){const course=data.courses.find(c=>c.id===(data.legacyCourseAliases?.[courseId]||courseId));return course?courseDetailView({data,state,course,esc}):'<p class="notice">Module not found.</p>'}
-  return courseLandingView({data,state,esc});
+  return courseView(data,state,p,esc,corpus);
 }
 
 async function render(){
@@ -136,10 +125,8 @@ async function render(){
     if(r==='search')view=searchExperienceView({query:p.get('q')||'',data,corpus,esc});
     else if(r==='course')view=courseRouteView(p);
     else if(r==='bible')view=bibleView(corpus,p,esc);
-    else if(r==='topics')view=topicsView({data,params:p,esc});
     else if(r==='practice')view=practiceView({data,state,params:p,esc,dueReviews,activityHref});
-    else if(r==='profile')view=profileView({data,state,esc,progressNode:progressPanelView({data,state,esc})});
-    else view=homeView({data,state,esc});
+    else view=shell('Not found','Canonical Shelf','<p class="notice" role="status">That page was not found.</p>');
 
     if(typeof view==='string'){
       main.innerHTML=view;
