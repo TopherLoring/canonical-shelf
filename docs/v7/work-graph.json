@@ -1990,7 +1990,7 @@
     {
       "id": "S9",
       "title": "Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S5a",
         "S8"
@@ -2007,8 +2007,15 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "Chris 2026-10-07: approved. Glossary links (?glossary=) redirect into Study Topics glossary mode. Check whether the Orientation unit is a normal Learning Path unit."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s9-search."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/s9-search"
     },
     {
       "id": "S10",
