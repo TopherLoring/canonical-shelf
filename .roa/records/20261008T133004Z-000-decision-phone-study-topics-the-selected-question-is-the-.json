@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-study-topics-the-selected-question-is-the-",
+  "topic": "ui.topics.phone.focus",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics: the selected question is the visual focus (bordered card, navy drop-down menu, sub topics inside); the type drop-down above is demoted to a quiet text control.",
+  "rationale": "Artifact comment f57c195e",
+  "by": "Chris"
+}

@@ -1706,6 +1706,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Study Topics: choosing a question is a drop menu; its sub topics appear as expandable content.
   *Why:* Artifact comment b3cb49db
 
+### `ui.topics.phone.focus`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-study-topics-the-selected-question-is-the-`
+  Phone Study Topics: the selected question is the visual focus (bordered card, navy drop-down menu, sub topics inside); the type drop-down above is demoted to a quiet text control.
+  *Why:* Artifact comment f57c195e
+
 ### `ui.topics.right-pane-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-right-pane-overview-and-subtopic-cards`
