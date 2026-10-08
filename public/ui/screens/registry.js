@@ -31,7 +31,7 @@ export const SCREENS = Object.freeze({
   home: () => import('./shelf-home.js'),
 
   // Step 2 (phase 4): Bible reader
-  bible: () => import('./reader.js'),
+  bible: () => import('./bible.js'),
 
   // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params; the lesson screen handles
   // ?lesson= addresses, everything else stays on the current view until S3.J)
@@ -44,5 +44,8 @@ export const SCREENS = Object.freeze({
   practice: () => import('./practice.js'),
 
   // Step 5 (phase 7): Profile (S5c)
-  profile: () => import('./profile.js')
+  profile: () => import('./profile.js'),
+
+  // Step 9: Search results (placeholder until S9 replaces the module)
+  search: () => import('./search.js')
 });

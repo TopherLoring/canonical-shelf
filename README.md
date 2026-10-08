@@ -252,6 +252,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `scripts/test-lesson-divider.mjs` — Unit tests for lesson sentence splitting and card division
 - `scripts/work.mjs` — CLI for reading and updating the shared agent work board
 - `public/highlights.js` — Persisted learner highlights, saved and synced with personal study state
+- `public/ui/screens/bible.js` — The /bible route: dispatches to the reader or the Book overview and Timeline screen
+- `public/ui/screens/book-overview.js` — Book overview and Timeline screen (S8; a placeholder that handles nothing until built)
+- `public/ui/screens/search.js` — Search results screen (S9; a placeholder that handles nothing until built)
 - `public/ui/screens/reader.js` — Redesigned Bible reader: Scripture apparatus, selection, notes, highlights, and study panels
 - `public/ui/legacy.css` — Pre-redesign stylesheets in the legacy cascade layer
 - `public/` — The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/

@@ -1956,7 +1956,7 @@
       "owns": [
         "public/ui/screens/book-overview.js",
         "public/ui/screens/book-overview.css",
-        "public/ui/screens/registry.js"
+        "public/ui/screens/bible.js"
       ],
       "accept": [
         "bunx playwright test tests/redesign/book-overview.spec.js"
@@ -1986,8 +1986,7 @@
       ],
       "owns": [
         "public/ui/screens/search.js",
-        "public/ui/screens/search.css",
-        "public/ui/screens/registry.js"
+        "public/ui/screens/search.css"
       ],
       "accept": [
         "bunx playwright test tests/redesign/search.spec.js"
@@ -2003,14 +2002,23 @@
     {
       "id": "S10",
       "title": "Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S5a"
       ],
       "owns": [
-        "public/ui/screens/about.js",
+        "public/about-page.js",
+        "public/about.html",
+        "public/app.js",
+        "public/data-retention.html",
+        "public/privacy.html",
+        "public/storage.html",
+        "public/sw.js",
+        "public/terms.html",
         "public/ui/screens/about.css",
-        "public/ui/screens/registry.js"
+        "public/ui/screens/about.js",
+        "public/ui/screens/registry.js",
+        "tests/redesign/about.spec.js"
       ],
       "accept": [
         "bunx playwright test tests/redesign/about.spec.js"
@@ -2020,8 +2028,15 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "Chris 2026-10-07: approved; same two-pane layout as Topics."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Claimed on codex/s10-about."
         }
-      ]
+      ],
+      "owner": "Codex",
+      "branch": "codex/s10-about"
     }
   ],
   "integrationBranch": "feature/redesign-p5-lesson-path"

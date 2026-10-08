@@ -18,13 +18,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 ## Ready to start
 
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
-- **S10** — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
 | `S8` | claimed | Claude | `feature/s8-book-overview` | `S5a` | Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview) |
+| `S10` | claimed | Codex | `codex/s10-about` | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
 | `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits |
 | `A2` | waiting |  |  | `A1` | Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
 | `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account |
@@ -44,7 +44,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `S9` | waiting |  |  | `S5a`, `S8` | Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in |
-| `S10` | ready |  |  | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
@@ -422,5 +421,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S10 — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
 
+- 2026-10-08 (Codex): Claimed on codex/s10-about.
 - 2026-10-07 (Claude): Chris 2026-10-07: approved; same two-pane layout as Topics.
 
