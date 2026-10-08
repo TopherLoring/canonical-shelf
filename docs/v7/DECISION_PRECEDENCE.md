@@ -1682,6 +1682,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The Theologian tab uses the primary call-to-action colors (--button-primary-bg / --button-primary-text)
   *Why:* First of Chris's three listed options; inverse or a Theologian-specific scheme remain open
 
+### `ui.theologian.templates-build`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `templates-build-the-theologian-chat-from-the-app`
+  Templates build the Theologian chat from the approved boards and theologian.chat-design.v1: docked right column on desktop, centered card on phone, dim and click-to-close, no edge tab while open. Choosing a Study Topics question opens it with the question loaded in the message box, unsent.
+  *Why:* Chris asked to cross-reference the Theologian decisions against the redesign file
+
 ### `ui.topbar`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.topbar.redesign`

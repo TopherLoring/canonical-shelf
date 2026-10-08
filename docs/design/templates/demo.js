@@ -63,10 +63,11 @@ function render(next) {
   app.dataset.shell = ds ? 'dock' : 'std';
   app.dataset.focus = String(!!screen.focus && !ds);
   const cols = typeof screen.cols === 'function' ? screen.cols(view, st) : screen.cols;
-  const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone && screen.overlay ? screen.overlay(st) : ''}${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
-  app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
+  const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}${theo.open && !phone ? ' cs-frame--theo' : ''}`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? (ds ? topBarDock : '') : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${theo.open ? theoPanel() : ''}${phone && screen.overlay ? screen.overlay(st) : ''}${phone ? (ds ? bottomDock : screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${theo.open ? '' : edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  if (!theo.open) app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
+  const tb = app.querySelector('.cs-theo__body'); if (tb) tb.scrollTop = tb.scrollHeight;
   if (phone && screen.dock) paintDock();
 }
 
@@ -75,11 +76,13 @@ const decide = () => {
   const { width, height } = app.getBoundingClientRect();
   return width <= 760 || width / height <= 0.8 ? 'phone' : 'desktop';
 };
+// Theologian chat (theologian.chat-design.v1): docked in the right column on desktop, a centered card on the phone; everything else is dimmed and a click on the dim closes it; no tab while open.
+const theo = { open: params.has('theo') || params.has('ask'), prefill: params.get('ask') || '' };
+const theoContext = () => key === 'reader' ? 'You’re reading Genesis 1:2' : key === 'lesson' ? 'You’re in A library, not a book' : key === 'topics' ? 'You’re in Study Topics' : key === 'path' ? 'You’re in the Learning Path' : 'You’re on the ' + key[0].toUpperCase() + key.slice(1);
+const theoPanel = () => `<div class="cs-theo-dim" data-theo-close></div><section class="cs-theo" role="dialog" aria-label="Theologian"><header class="cs-theo__head"><div class="cs-theo__title"><h2>Theologian</h2><span>${theoContext()}</span></div><button type="button" class="cs-theo__btn cs-theo__btn--text">New chat</button><button type="button" class="cs-theo__btn cs-theo__btn--icon" aria-label="New chat">${i.pen}</button><button type="button" class="cs-theo__btn" aria-label="More">${i.more}</button><button type="button" class="cs-theo__btn" data-theo-close aria-label="Close">${i.close}</button></header><div class="cs-theo__body">${theo.prefill ? '<p class="cs-theo__empty">Your question is loaded in the message box. Nothing is sent until you press send.</p>' : `<p class="cs-theo__user">What does “hovering” mean in Genesis 1:2?</p><p>The Hebrew word here, <em>ruach</em>, can mean “spirit,” “wind,” or “breath,” so translations differ: the BSB reads “the Spirit of God,” while some, like the NRSV, read “a wind from God.”</p><p>The verb “hovering” appears again in Deuteronomy 32:11, of an eagle hovering over its young, which suggests watchful care rather than motion alone.</p><div class="cs-theo__read"><strong>How it has been read</strong><ul><li>Many Jewish interpreters read it as God’s presence, or a divine wind, over the waters.</li><li>Christian tradition commonly reads it as the Holy Spirit, active in creation.</li></ul></div><p>The text itself doesn’t settle which reading is right.</p><div class="cs-theo__cited"><button type="button" class="cs-theo__citedhead" aria-expanded="true">${i.up}<span>Scripture cited · 2</span></button><span class="cs-theo__rate">${i.thumbUp}${i.thumbDown}${i.flag}</span></div><ul class="cs-theo__refs"><li data-group="law"><a href="?screen=reader">Deuteronomy 32:11</a>${i.down}</li><li data-group="law"><a href="?screen=reader">Genesis 1:2</a>${i.down}</li></ul><div class="cs-theo__suggest"><span>Suggested</span><button type="button">${i.reply}Compare translations</button><button type="button">${i.reply}Where else is <em>ruach</em> used?</button></div>`}</div><footer class="cs-theo__foot">${theo.prefill || key !== 'reader' ? '' : '<span class="cs-theo__chip" data-group="law"><span class="cs-tag__dot"></span>Genesis 1:2 ×</span>'}<label class="cs-theo__input"><span class="cs-visually-hidden">Message to the Theologian</span><textarea rows="${theo.prefill ? 3 : 1}" placeholder="Write a message…">${theo.prefill}</textarea><button type="button" class="cs-theo__send" aria-label="Send">${i.send}</button></label><small>The Theologian can make mistakes. Check what it says against Scripture.</small></footer></section>`;
 new ResizeObserver(() => render(decide())).observe(app);
 render(decide());
-if (params.has('ask')) setTimeout(() => show(askHtml(params.get('ask'))), 400);
 
-const askHtml = q => `<h2>Theologian</h2><p>Your question is loaded and ready to send. Nothing is sent until you press Send. The template sends nothing.</p><label class="cs-askbox"><span class="cs-visually-hidden">Message to the Theologian</span><textarea rows="4">${q}</textarea></label><button type="button" class="cs-button" disabled>Send</button>`;
 function show(html) {
   const dialog = app.querySelector('.cs-dialog');
   dialog.querySelector('.cs-dialog__body').innerHTML = html;
@@ -104,7 +107,8 @@ function wire() {
   // The module is a drop-down card (phone).
   app.querySelector('[data-type-select]')?.addEventListener('change', event => { const n = Number(event.target.value); if (Number.isNaN(n)) return; st.cat = n; st.topic = 0; st.sub = 0; layout = ''; render(decide()); });
   // Questions load into the Theologian chat, ready to send. The template sends nothing.
-  app.querySelectorAll('[data-ask]').forEach(b => b.addEventListener('click', () => show(askHtml(b.dataset.ask))));
+  app.querySelectorAll('[data-ask]').forEach(b => b.addEventListener('click', () => { theo.open = true; theo.prefill = b.dataset.ask; render(decide()); app.querySelector('.cs-theo textarea')?.focus(); }));
+  app.querySelectorAll('[data-theo-close]').forEach(b => b.addEventListener('click', () => { theo.open = false; theo.prefill = ''; render(decide()); }));
   app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
   app.querySelector('[data-mod-select]')?.addEventListener('change', event => { st.mod = Number(event.target.value); layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
@@ -125,7 +129,7 @@ function wire() {
     next.addEventListener('click', () => track.scrollBy({ left: track.clientWidth * 0.7, behavior: 'smooth' }));
     track.addEventListener('scroll', sync, { passive: true }); sync();
   });
-  app.querySelectorAll('[data-guide]').forEach(b => b.addEventListener('click', () => show(b.dataset.guide === 'notes'
+  app.querySelectorAll('[data-guide]').forEach(b => b.addEventListener('click', () => b.dataset.guide === 'theologian' ? (theo.open = true, theo.prefill = '', render(decide())) : show(b.dataset.guide === 'notes'
     ? '<h2>My Notes</h2><p>Connect this tab to the app’s notes panel. The template saves nothing.</p>'
     : b.dataset.guide === 'menu' ? '<h2>Menu</h2><p>Profile, appearance, account and Feedback live here. The template opens nothing.</p>'
     : '<h2>Theologian</h2><p>Connect this tab to the app’s Theologian. The template sends nothing.</p>')));

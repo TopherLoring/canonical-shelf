@@ -22,6 +22,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Conflict:** To fit the phone Shelf above the fold I hid the intro paragraph and set the title on one line. The decisions keep the current intro and the two-line title with the intro beside it. Keep the phone Shelf as I made it, or restore the intro (the cards then fall below the fold)? (`conflict-phone-shelf-intro`, owner: Chris, since 2026-10-08)
   - Request: Show the bottom of the phone Shelf and the start-here and progress cards before scrolling
   - Conflicts with `ui.shelf.intro.current`: “Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.”
+- **Decided Theologian behavior with no drawn state: the flag form (six reasons, authored reason mandatory), the ellipsis menu (save transcript, export, share), and Chris's replies as an unread system message. Should I design them for the templates now?** (`theologian-undrawn-states`, owner: unassigned, since 2026-10-08)
 
 ## Phases
 
@@ -298,6 +299,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
+| `ui.theologian.templates-build` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
