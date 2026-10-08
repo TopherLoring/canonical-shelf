@@ -744,6 +744,9 @@
 .cs-fn { display: flex; flex-direction: column; gap: calc(8 * var(--u)); padding: calc(12 * var(--u)) calc(14 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-subtle); }
 
 /* ---- Scrollable menu bar (phone): the arrows show which way it can scroll ---- */
+.cs-typepicker { position: relative; display: inline-flex; align-items: center; gap: calc(8 * var(--u)); align-self: flex-start; min-block-size: calc(36 * var(--u)); padding: 0 calc(10 * var(--u)) 0 calc(14 * var(--u)); border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); font-size: calc(14 * var(--u)); font-weight: 600; color: var(--c-action); }
+.cs-typepicker .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); color: var(--c-muted); }
+.cs-typepicker select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
 .cs-titlepicker { position: relative; display: inline-flex; align-items: center; gap: calc(8 * var(--u)); align-self: flex-start; font-family: var(--f-display); font-size: calc(28 * var(--u)); font-weight: 600; line-height: 1.1; color: var(--c-text); }
 .cs-titlepicker .cs-icon { inline-size: calc(20 * var(--u)); block-size: calc(20 * var(--u)); flex: none; color: var(--c-muted); }
 .cs-titlepicker select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }

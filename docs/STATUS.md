@@ -284,6 +284,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
+| `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |

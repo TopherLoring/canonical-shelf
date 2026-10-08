@@ -1571,6 +1571,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-list-no-right-pane-topic-page-has-one`
   Study Topics list page uses only the left rail and the main column. Selecting a question opens its own page, and the right pane (key passages, how readers differ, ask the Theologian, studied in the Learning Path) appears only there.
 
+### `ui.topics.phone-type-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-type-dropdown`
+  Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).
+  *Why:* Chris artifact comment: replace this with a drop menu, replacing the category label beneath it
+
 ### `ui.topics.structure-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `study-topics-type-topic-subtopic-flow`

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-phone-type-dropdown",
+  "topic": "ui.topics.phone-type-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).",
+  "rationale": "Chris artifact comment: replace this with a drop menu, replacing the category label beneath it",
+  "by": "Chris"
+}

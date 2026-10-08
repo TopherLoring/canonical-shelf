@@ -37,6 +37,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content. (agent default)
 - In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar).
 - Dock-format exploration for the phone (?shell=dock): top bar with search and menu, five labelled tabs, My Notes and Theologian as right-edge tabs, back links on the lesson and Bible. Exploration only; not adopted. (agent default)
+- Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).
 
 ## 2026-10-07
 
