@@ -1188,6 +1188,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
 
+### `ui.lesson.current-step-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-step-in-the-lesson-s-section-list-is`
+  The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.
+
 ### `ui.lesson.progress`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
@@ -1277,6 +1282,19 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
   The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
+
+### `ui.panes.cards-on-well-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `every-redesigned-screen-uses-the-same-card-treat`
+  Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.
+  *Why:* Chris 2026-10-07: practice card was all one card with shadows only around the main card; lesson and Study Topics were wrong; all redesign work should already follow his stated preferences
+- **Overridden default** · 2026-10-08 · Agent default (Claude) · `correction-to-ui-panes-cards-on-well-2026-10-07-`
+  ~~Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them.~~
+
+### `ui.panes.spacing-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `leave-generous-room-between-the-main-content-and`
+  Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.
 
 ### `ui.phone.my-notes`
 

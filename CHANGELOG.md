@@ -8,6 +8,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
+- Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.
+- Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.
+- The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.
+- Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them. (agent default)
 
 ## 2026-10-07
 

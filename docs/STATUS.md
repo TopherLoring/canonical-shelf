@@ -211,6 +211,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
+| `ui.lesson.current-step-2026-10-07` | The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker. | Owner decision | undefined |
 | `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
@@ -225,6 +226,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
+| `ui.panes.cards-on-well-2026-10-07` | Every redesigned screen uses the same card treatment: | Owner decision | undefined |
+| `ui.panes.spacing-2026-10-07` | Leave generous room between the main content and the side panes and between panes and the frame edges and top; | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |

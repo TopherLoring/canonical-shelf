@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "correction-to-ui-panes-cards-on-well-2026-10-07-",
+  "topic": "ui.panes.cards-on-well-2026-10-07",
+  "date": "2026-10-08",
+  "text": "Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them.",
+  "by": "Claude"
+}
