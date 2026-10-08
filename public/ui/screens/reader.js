@@ -500,7 +500,7 @@ export async function mount(container, ctx) {
     }
     if (which === 'context') {
       return `${head('Context', meta.name)}<p class="reader-panel-hook">${esc(meta.hook || '')}</p><p class="reader-panel-text">${esc(meta.syn || '')}</p>
-        <dl class="reader-facts"><dt>Where to begin</dt><dd>${esc(meta.read || '')}</dd><dt>Setting</dt><dd>${esc(meta.when || '')}</dd><dt>Who wrote it</dt><dd>${esc(meta.who || '')}</dd></dl>
+        <dl class="reader-facts"><dt>Read first</dt><dd>${esc(meta.read || '')}</dd><dt>Setting</dt><dd>${esc(meta.when || '')}</dd><dt>Who wrote it</dt><dd>${esc(meta.who || '')}</dd></dl>
         <p><a class="reader-panel-link" href="/bible?book=${book}&profile=1">Book overview</a></p>`;
     }
     if (which === 'highlights') {

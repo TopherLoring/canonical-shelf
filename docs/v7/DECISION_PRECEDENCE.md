@@ -1348,6 +1348,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Previous** · 2026-10-04 · Owner decision (Chris) · `reader-lessons-scroll-2026-10-04`
   ~~The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.~~
 
+### `ui.search.and.library`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `ui.read-first-search-routing-2026-10-07`
+  Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
+
 ### `ui.shelf`
 
 - **Feedback** · 2026-09-26 · Chris · `ui.shelf.feedback-2026-09-25`

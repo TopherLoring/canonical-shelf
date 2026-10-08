@@ -17,8 +17,9 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
-- **S7** — Step 7: remove legacy stylesheets and render paths; close the guards
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
+- **S8** — Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview)
+- **S10** — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
 
 ## All nodes
 
@@ -40,8 +41,11 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S7` | ready |  |  | `S4`, `S5a`, `S5b`, `S5c`, `S6`, `S3.I`, `S3.J`, `S5d` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
+| `S8` | ready |  |  | `S5a` | Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview) |
+| `S9` | waiting |  |  | `S5a`, `S8` | Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in |
+| `S10` | ready |  |  | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
@@ -276,6 +280,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S7 — Step 7: remove legacy stylesheets and render paths; close the guards
 
+- 2026-10-07 (Claude): Experiment branch experiment/drop-legacy: with every legacy stylesheet removed all 186 tests pass, but the Bible library/Timeline/book profile, Search, Glossary, Orientation, practice modes and the static pages render unstyled. S8-S10 replace all but the practice modes (deferred by Chris). S7 deletes the legacy layer after them. Legacy files archived in canonical-shelf-legacy-2026-10-07.zip.
 - 2026-10-08 (unknown): Checkpoint fit: all 119 Checkpoint, Capstone and older practice items fit their card with no scrolling at 390x844 and 1280x720 (multi-question checks page one question at a time; long reorder lists use two columns; long introductions split across cards). Full redesign+contracts: 186 passed.
 - 2026-10-07 (unknown): Chris decision ui.type.max-genesis-2026-10-07: --type-max (Genesis size) caps all text; site title only exception. Guard: tests/redesign/type-cap.spec.js (15+ routes x phone/desktop/1920). Checkpoints now render on the lesson screen (?mastery=). Full redesign+contracts: 185 passed.
 - 2026-10-07 (unknown): Chris 2026-10-07: leave the practice modes (review, verse library, arcade, achievements) until he has played with them live; their rebuild must continue the rail and side panels (ui.practice.modes.continue-side-panes-2026-10-07). Checkpoints and Capstones now render on the lesson screen (one intro step and one check step; older practice keeps its own title); S7 may delete the old mastery view in learning.js after the contract tests pass. Unit check content wording fixed at source: title 'Checkpoint · <unit>' and 'This Checkpoint combines…' (was 'Unit Mastery' / 'This mastery check').
@@ -406,4 +411,16 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 ### A6 — Accounts: end-to-end tests (guest, email, phone, Google with a stub) and docs; Chris sign-off on the live flow
 
 - 2026-10-07 (Claude): Google needs a Google Cloud OAuth client id and secret from Chris; email sender (free tier) needs a key; both go in Worker secrets, never the repo.
+
+### S8 — Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview)
+
+- 2026-10-07 (Claude): Chris 2026-10-07: approved. Maps (already disabled) is dropped. The Shelf book panel keeps its Book overview link.
+
+### S9 — Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in
+
+- 2026-10-07 (Claude): Chris 2026-10-07: approved. Glossary links (?glossary=) redirect into Study Topics glossary mode. Check whether the Orientation unit is a normal Learning Path unit.
+
+### S10 — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
+
+- 2026-10-07 (Claude): Chris 2026-10-07: approved; same two-pane layout as Topics.
 

@@ -43,7 +43,7 @@ function bookPanel(book, reading, esc) {
     '<a class="shelf-book-panel__resume" href="/bible?book=' + book.n + '&chapter=' + openChapter + '">' +
       (chapter ? 'Resume ' + esc(book.name) + ' ' + openChapter : 'Open ' + esc(book.name) + ' in the Bible') + '</a>' +
     '<a class="shelf-book-panel__overview" href="/bible?view=shelf&book=' + book.n + '&profile=1">Book overview</a>' +
-    '<dl class="shelf-book-panel__details"><div><dt>Where to begin</dt><dd>' +
+    '<dl class="shelf-book-panel__details"><div><dt>Read first</dt><dd>' +
       esc(book.read || 'Start with chapter 1 of ' + book.name + '.') + '</dd></div>' +
     (people.length ? '<div><dt>People</dt><dd class="shelf-book-panel__people">' +
       people.map(person => '<span>' + esc(person) + '</span>').join('') + '</dd></div>' : '') +
