@@ -67,7 +67,8 @@ test.describe('Phase 0: Nav and dock invariant positions across routes', () => {
     let baselineItemBoxes = null;
     let baselineRoute = null;
 
-    for (const route of ROUTES) {
+    // Lesson and Bible are focus screens on the phone (no bottom bar); the bar must sit identically on the rest.
+    for (const route of ROUTES.filter(r => r.name !== 'Reader' && r.name !== 'Lesson')) {
       await page.goto(route.path);
       await waitForAppReady(page);
 

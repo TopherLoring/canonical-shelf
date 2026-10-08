@@ -317,6 +317,8 @@
     .lesson-crumb-wide { display: none; }
     .lesson-crumb-wide + .lesson-crumb-sep { display: none; }
     .lesson-main { padding: var(--space-3); }
+    /* Decision 2026-10-08: the step body flows and fills the window; no fixed 4:5 box. */
+    .lesson-body { width: 100cqw; height: 100cqh; aspect-ratio: auto; }
   }
 
   @media (prefers-reduced-motion: no-preference) {

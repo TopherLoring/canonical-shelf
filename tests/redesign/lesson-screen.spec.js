@@ -6,7 +6,7 @@ import { test, expect } from '@playwright/test';
 const lesson = (step = 1) => `/course?unit=c1.christianity&lesson=begin&step=${step}`;
 
 test.describe('Lesson screen', () => {
-  test('portrait: the step body is a 4:5 box at about 16px, with no sideways scroll', { tag: '@smoke' }, async ({ page }) => {
+  test('portrait: the step body fills the window (no fixed box) at about 16px, with no sideways scroll', { tag: '@smoke' }, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(lesson(2));
     const body = page.locator('.lesson-body');
@@ -15,7 +15,7 @@ test.describe('Lesson screen', () => {
       const b = document.querySelector('.lesson-body');
       return { w: b.clientWidth, h: b.clientHeight, font: parseFloat(getComputedStyle(document.querySelector('.lesson-body-text')).fontSize), scroll: document.documentElement.scrollWidth };
     });
-    expect(Math.abs(m.w / m.h - 0.8)).toBeLessThan(0.02);
+    expect(m.h, 'the body fills the window instead of a fixed 4:5 box').toBeGreaterThan(m.w * 1.05);
     expect(m.font).toBeGreaterThanOrEqual(16);
     expect(m.font).toBeLessThan(17);
     expect(m.scroll).toBeLessThanOrEqual(390);

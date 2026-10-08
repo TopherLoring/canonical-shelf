@@ -344,7 +344,9 @@ test.describe('Bible reader', () => {
     const frame = await page.locator('#main').boundingBox();
     expect(frame.x).toBe(0);
     expect(frame.y).toBe(0);
-    expect(frame.width).toBe(page.viewportSize().width);
+    // The frame fills the app except the strip reserved for the edge tabs.
+    const tab = await page.locator('#guide-open').boundingBox();
+    expect(Math.abs(frame.width - (page.viewportSize().width - tab.width))).toBeLessThanOrEqual(1);
     expect(frame.height).toBe(page.viewportSize().height);
   });
 
