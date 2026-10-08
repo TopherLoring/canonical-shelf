@@ -59,3 +59,17 @@ Every design change is compared to its plan board before it is called done (Chri
 2. Add the mixed roles in `tokens.css` to the theme contract (`.roa/values/theme.json`) so the app and the templates share them.
 3. Delete the old stylesheet rules that screen replaces in the same change.
 4. Accept the screen only when its capture matches the board (desktop 1440 × 900, phone 390 × 844).
+
+## Surface layers per screen
+
+The screens differ in how many surfaces sit between the page and the content, and that changes how much and which color shows (Chris, 2026-10-08: the reader was chosen to look different). Keep the layers in the theme contract so every theme changes them together.
+
+| Screen | Frame | Layers, back to front |
+| --- | --- | --- |
+| Shelf | `shelf` | page, surface (frame), raised (cards) |
+| Learning Path, Study Topics, Review & Practice | `well` | page, sunken (well), raised (cards) |
+| Bible reader | `well` | page, sunken (well), raised (reading page with the scripture surface) |
+| Lesson | `window` | page, raised (window), subtle (title bar, cards) |
+| Theologian panel | overlay | dim, raised (panel), theologian header role |
+
+On the phone the `well` and `shelf` frames drop to one surface layer inside the card.

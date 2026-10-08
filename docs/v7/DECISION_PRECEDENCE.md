@@ -1693,6 +1693,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Color differences between screens are deliberate: the reader was chosen to look different, and a screen with more or fewer surface layers shows a different amount and type of color. This is the cause of the color-theme inconsistency.
   *Why:* Chris, chat 2026-10-08
 
+### `ui.theologian.cited-expand`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-scripture-cited-tapping-an-address-op`
+  Theologian Scripture cited: tapping an address opens its verse text under the comma line, one at a time. The per-screen surface layers are documented in the template README and are to move into the theme contract so theme switching stays consistent.
+  *Why:* Chris, chat: 5 and 6
+
 ### `ui.theologian.cited-inline`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-scripture-cited-lists-the-references-`
@@ -1717,6 +1723,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Agent default (Claude-agent) · `templates-build-the-theologian-chat-from-the-app`
   Templates build the Theologian chat from the approved boards and theologian.chat-design.v1: docked right column on desktop, centered card on phone, dim and click-to-close, no edge tab while open. Choosing a Study Topics question opens it with the question loaded in the message box, unsent.
   *Why:* Chris asked to cross-reference the Theologian decisions against the redesign file
+
+### `ui.theologian.undrawn-states-existing`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-flag-form-menu-and-chris-reply-messag`
+  Theologian flag form, menu and Chris-reply message are not redesigned in the templates: they match the existing Theologian design in the app (public/theologian-chat.js).
+  *Why:* Chris, chat
 
 ### `ui.theologian.undrawn-states-not-now`
 

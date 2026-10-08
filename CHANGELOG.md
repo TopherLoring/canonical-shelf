@@ -84,6 +84,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now.
 - Resolved "Decided Theologian behavior with no drawn state: the flag form (six reasons, authored reason mandatory), the ellipsis menu (save transcript, export, share), and Chris's replies as an unread system message. Should I design them for the templates now?": Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now.
 - Color differences between screens are deliberate: the reader was chosen to look different, and a screen with more or fewer surface layers shows a different amount and type of color. This is the cause of the color-theme inconsistency.
+- Theologian flag form, menu and Chris-reply message are not redesigned in the templates: they match the existing Theologian design in the app (public/theologian-chat.js).
+- Theologian Scripture cited: tapping an address opens its verse text under the comma line, one at a time. The per-screen surface layers are documented in the template README and are to move into the theme contract so theme switching stays consistent.
 
 ## 2026-10-07
 

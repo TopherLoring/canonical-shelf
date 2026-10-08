@@ -862,7 +862,8 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .cs-theo__rate { display: inline-flex; gap: calc(14 * var(--u)); color: var(--c-muted); }
 .cs-theo__refs { font-size: calc(13 * var(--u)); font-weight: 600; line-height: 1.6; }
 .cs-theo__refs span { display: inline-block; padding-inline-start: calc(8 * var(--u)); border-inline-start: calc(3 * var(--u)) solid var(--c-group, var(--c-action)); }
-.cs-theo__refs a { text-decoration: underline; color: var(--c-action); }
+.cs-theo__refs button { border: 0; background: transparent; padding: 0; font: inherit; text-decoration: underline; color: var(--c-action); cursor: pointer; }
+.cs-theo__verse { margin: 0; padding: calc(8 * var(--u)) calc(12 * var(--u)); border-inline-start: calc(3 * var(--u)) solid var(--c-group, var(--c-action)); background: var(--c-subtle); border-radius: calc(8 * var(--u)); font-family: var(--f-reading); font-size: calc(14 * var(--u)); line-height: 1.5; }
 .cs-theo__suggest { display: flex; flex-direction: column; align-items: flex-end; gap: calc(6 * var(--u)); font-size: calc(11 * var(--u)); color: var(--c-muted); }
 .cs-theo__suggest button { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(8 * var(--u)) calc(12 * var(--u)); border: 0; border-radius: calc(10 * var(--u)); background: var(--c-row); color: var(--c-text); font: inherit; font-size: calc(13 * var(--u)); }
 .cs-theo__suggest .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }

@@ -291,10 +291,12 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.templates.match-plan-2026-10-08` | Fix the template to match the plan (the approved boards); | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theme.reader-surface-layers` | Color differences between screens are deliberate: | Owner decision | undefined |
+| `ui.theologian.cited-expand` | Theologian Scripture cited: | Owner decision | undefined |
 | `ui.theologian.cited-inline` | Theologian 'Scripture cited' lists the references inline separated by commas, not one per line. | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.theologian.templates-build` | undefined | Agent default | undefined |
+| `ui.theologian.undrawn-states-existing` | Theologian flag form, menu and Chris-reply message are not redesigned in the templates: | Owner decision | undefined |
 | `ui.theologian.undrawn-states-not-now` | Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now. | Owner decision | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
