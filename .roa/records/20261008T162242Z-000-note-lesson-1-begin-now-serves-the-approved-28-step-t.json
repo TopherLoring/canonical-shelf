@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-08",
+  "text": "Lesson 1 (begin) now serves the approved 28-step text from the 10-06 review; lesson files accept ::step for authored step breaks"
+}
