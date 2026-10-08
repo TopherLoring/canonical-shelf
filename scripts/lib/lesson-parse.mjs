@@ -30,6 +30,7 @@ export function parseLesson(text, file, fail = message => { throw new Error(mess
     if (!cur) { if (line.trim()) fail(`${file}: text before the first "## Section {#anchor}" heading`); continue; }
     if (/^::reading\s*$/.test(line)) { flush(); cur.blocks.push({ type: 'reading' }); continue; }
     if (/^::visual\s*$/.test(line)) { flush(); cur.blocks.push({ type: 'visual' }); continue; }
+    if (/^::step\s*$/.test(line)) { flush(); cur.blocks.push({ type: 'step' }); continue; }
     if (/^> /.test(line)) { flush(); cur.blocks.push({ type: 'callout', text: line.slice(2).trim() }); continue; }
     if (!line.trim()) { flush(); continue; }
     para.push(line.trim());

@@ -153,8 +153,8 @@ test('authored lessons: sections may span several steps, checks render inline, S
   expect(perSection.length).toBeGreaterThan(1);
   expect(Math.max(...perSection),'at least one section spans several steps').toBeGreaterThan(1);
 
-  // A check renders inline on the step that holds it (begin step 4).
-  await page.goto('/course?unit=c1.christianity&lesson=begin&step=4');
+  // A check renders inline on the step that holds it (begin step 13, the approved Lesson 1).
+  await page.goto('/course?unit=c1.christianity&lesson=begin&step=13');
   await expect(page.locator('.lesson-body-text .inline-check')).toHaveCount(1);
 
   // Contrast of a text element against the first opaque background at or above it.
@@ -167,14 +167,14 @@ test('authored lessons: sections may span several steps, checks render inline, S
     return (Math.max(f,b)+.05)/(Math.min(f,b)+.05);
   },textSel);
 
-  // A short reading is quoted on the card (c1-library-groups step 2); a long one opens a popover (begin step 3).
+  // A short reading is quoted on the card (c1-library-groups step 2); a long one opens a popover (begin step 8).
   for(const mode of ['light','dark']){
     await page.goto('/course?unit=c1.bible&lesson=c1-library-groups&step=2');
     await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
     await expect(page.locator('.lesson-reading-inline')).toBeVisible();
     expect(await ratioOf('.lesson-reading-inline .ui-scripture-block-quote'),`quoted Scripture contrast in ${mode} mode`).toBeGreaterThanOrEqual(4.5);
 
-    await page.goto('/course?unit=c1.christianity&lesson=begin&step=3');
+    await page.goto('/course?unit=c1.christianity&lesson=begin&step=8');
     await page.evaluate(m=>document.documentElement.setAttribute('data-mode',m),mode);
     await page.locator('[data-reading-open]').first().click();
     await expect(page.locator('.lesson-reading-dialog[open]')).toBeVisible();
@@ -287,7 +287,6 @@ test('guided lessons foreground learner copy and keep notes separate from study 
   await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
   const body=page.locator('.lesson-body-text');
   await expect(body.locator('.scene-objective')).toHaveCount(0);
-  await expect(body.locator('.scene-callout')).toBeVisible();
   await expect(body.locator('p').first()).toBeVisible();
 
   // My Notes is its own column, separate from the Glossary / Go deeper apparatus.

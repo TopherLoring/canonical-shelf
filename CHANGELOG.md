@@ -26,6 +26,11 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button
 - Per-theme fonts, the separate font choice and text size are built with the Profile screen port
 
+### Changed
+
+- Lesson 1 (begin) now serves the approved 28-step text from the 10-06 review; lesson files accept ::step for authored step breaks
+- Lesson 1 study tools: dropped the three Lesson-1-only panels and the 'Do I have to believe this' panel; 'Why start with Paul' rewritten in the course voice
+
 ## 2026-10-07
 
 ### Decided

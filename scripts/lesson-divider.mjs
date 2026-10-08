@@ -123,6 +123,8 @@ function stepUnits(section, lesson, corpus) {
       units.push({ kind: 'reading', block: b, text, mode: 'pending', reference: lesson.meta.reading || '' });
     } else if (block.type === 'visual') {
       units.push({ kind: 'visual', block: b });
+    } else if (block.type === 'step') {
+      units.push({ kind: 'break', block: b });
     }
   }
   return units;
@@ -215,9 +217,13 @@ export function divideLesson(lesson, { type, corpus }) {
     }
     const steps = [];
     let step = [], count = 0;
+    // Authored breaks (content.lesson-01-approved-2026-10-06): a section revised and approved step by step carries
+    // "::step" markers, and its steps are exactly the approved ones. Other sections are divided by the rule.
+    const authored = units.some(u => u.kind === 'break');
     for (const u of units) {
+      if (u.kind === 'break') { if (step.length) steps.push(step); step = []; count = 0; continue; }
       const c = unitCost(u, step.length === 0);
-      if (step.length && count + c > BREAK_AT) { steps.push(step); step = [u]; count = unitCost(u, true); }
+      if (!authored && step.length && count + c > BREAK_AT) { steps.push(step); step = [u]; count = unitCost(u, true); }
       else { step.push(u); count += c; }
     }
     if (step.length) steps.push(step);
@@ -229,7 +235,7 @@ export function divideLesson(lesson, { type, corpus }) {
       if (m.lines > geo.primary.lines) flags.push('tall');
       if (i > 0 && us.every(u => u.kind === 'sentence' || u.kind === 'callout') && n < ORPHAN_CHARS) flags.push('orphan');
       if (i > 0 && us.every(u => !(u.kind === 'sentence' || u.kind === 'callout')) && steps[i - 1].at(-1)?.kind === 'sentence') flags.push('block-alone');
-      cards.push({ id: i === 0 ? section.id : `${section.id}-${i + 1}`, title: section.title, section: section.id, sectionStep: i + 1, sectionSteps: steps.length, units: us, chars: m.chars, count: n, paragraphs: m.paragraphs, lines: m.lines, flags });
+      cards.push({ id: i === 0 ? section.id : `${section.id}-${i + 1}`, title: section.title, section: section.id, sectionStep: i + 1, sectionSteps: steps.length, authored, units: us, chars: m.chars, count: n, paragraphs: m.paragraphs, lines: m.lines, flags });
     });
   }
   return cards;

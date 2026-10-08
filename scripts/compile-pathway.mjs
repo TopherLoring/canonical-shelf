@@ -9,6 +9,7 @@
 //   plain paragraphs                     prose
 //   > text                               a callout
 //   ::reading                            the primary reading (readingAddress) from the BSB text
+//   ::step                               an authored step break; a section with any keeps exactly its authored steps
 //   ```check  {JSON}  ```                a scored check placed exactly here in the prose
 //   ```reflect {"prompt","modelResponse"} ```   an unscored reflection
 //

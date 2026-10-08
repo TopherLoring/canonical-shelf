@@ -45,7 +45,7 @@ for (const lesson of all) {
     check(cards.length >= 1, `${lesson.lesson}#${section.id}: every section produces at least one step`);
     // Word-for-word, in order, within the section: nothing moves between sections.
     const fromCards = cards.flatMap(c => c.units).map(u => (u.kind === 'sentence' || u.kind === 'callout' ? u.text : `[${u.kind}]`));
-    const fromSource = section.blocks.flatMap(b => (b.type === 'prose' ? sentences(b.text) : b.type === 'callout' ? [b.text] : [`[${b.type}]`]));
+    const fromSource = section.blocks.filter(b => b.type !== 'step').flatMap(b => (b.type === 'prose' ? sentences(b.text) : b.type === 'callout' ? [b.text] : [`[${b.type}]`]));
     check(JSON.stringify(fromCards) === JSON.stringify(fromSource), `${lesson.lesson}#${section.id}: steps must hold the section's content in order, unchanged`);
     cards.forEach((card, i) => {
       steps++;
@@ -58,7 +58,7 @@ for (const lesson of all) {
       else if (card.count > BREAK_AT) check(card.flags.includes('over-ceiling'), `${lesson.lesson}#${card.id}: a single unit over ${BREAK_AT} must be flagged`);
       // The break is at the LAST sentence end at or before 637: the next step's first unit would not have fitted.
       const next = cards[i + 1];
-      if (next) check(card.count + unitCost(next.units[0], false) > BREAK_AT, `${lesson.lesson}#${card.id}: broke early (${card.count} + ${unitCost(next.units[0], false)} would fit)`);
+      if (next && !card.authored) check(card.count + unitCost(next.units[0], false) > BREAK_AT, `${lesson.lesson}#${card.id}: broke early (${card.count} + ${unitCost(next.units[0], false)} would fit)`);
       for (const u of card.units.filter(u => u.kind === 'reading')) {
         const n = sentences(u.text).length;
         check(u.mode === (n <= 2 && u.text.length <= 300 ? 'inline' : 'link'), `${lesson.lesson}#${card.id}: ${u.reference} (${n} sentences, ${u.text.length} chars) is ${u.mode}`);
