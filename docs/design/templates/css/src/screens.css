@@ -235,8 +235,8 @@
   .cs-app .cs-chiprow a { display: inline-flex; align-items: center; gap: 6u; min-block-size: 36u; padding: 0 12u; border-radius: 10u; border: 1u solid var(--c-hairline); background: var(--c-raised); font-size: 14u; color: var(--c-text-2); text-decoration: none; }
   .cs-chiprow a .cs-icon { inline-size: 16u; block-size: 16u; }
   .cs-chiprow a span { color: var(--c-muted); font-size: 13u; }
-  .cs-app .cs-chiprow a[aria-current="true"] { background: var(--c-action-subtle); border-color: transparent; color: var(--c-action); font-weight: 600; }
-  .cs-chiprow a[aria-current="true"] span { color: var(--c-action); }
+  .cs-app .cs-chiprow a[aria-current="true"] { background: var(--c-accent-tint); border-color: transparent; color: var(--c-text); font-weight: 600; }
+  .cs-chiprow a[aria-current="true"] span { color: var(--c-accent); }
 
   /* Shelf */
   .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 10u; }

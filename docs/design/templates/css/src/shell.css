@@ -94,10 +94,12 @@
 .cs-rail--reader .cs-rail__item { gap: 12u; }
 .cs-rail--lesson .cs-rail__item { min-block-size: 38u; padding: 0 10u; font-size: 14u; }
 .cs-rail--lesson .cs-rail__item .cs-icon { inline-size: 17u; block-size: 17u; }
-.cs-rail__item.is-current { font-weight: 600; color: var(--c-action); background: var(--c-action-subtle); }
+/* The current item in every left pane uses the lesson's current-step rose (Chris, 2026-10-08). */
+.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-accent-tint); }
+.cs-rail__item.is-current .cs-icon { color: var(--c-accent); }
 .cs-count { font-size: 13u; font-weight: 400; color: var(--c-muted); }
-.cs-rail__item.is-current .cs-count { color: var(--c-action); }
-.cs-rail--reader .cs-rail__item.is-current .cs-count, .cs-rail--lesson .cs-rail__item.is-current .cs-count { color: var(--c-muted); }
+.cs-rail__item.is-current .cs-count { color: var(--c-accent); }
+
 
 /* ---- Markers, tags, bars, chips ---- */
 .cs-marker { inline-size: 24u; block-size: 24u; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 2u solid var(--c-strong); border-radius: 7u; font-size: 12u; color: var(--c-muted); }

@@ -234,6 +234,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
 | `ui.practice.modes.panes` | Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
+| `ui.rail.current-item-2026-10-08` | Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint. | Owner decision | undefined |
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |

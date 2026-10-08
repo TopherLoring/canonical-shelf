@@ -12,6 +12,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Nothing on desktop or phone has fixed sizes or dimensions; everything is proportionate to the viewport and adapts to the container and size it is rendered in.
 - Fix the template to match the plan (the approved boards); the corrected template is the visual base for the redesign.
 - The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
+- Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint.
 
 ## 2026-10-07
 

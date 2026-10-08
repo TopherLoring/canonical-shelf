@@ -213,10 +213,12 @@
 .cs-rail--reader .cs-rail__item { gap: calc(12 * var(--u)); }
 .cs-rail--lesson .cs-rail__item { min-block-size: calc(38 * var(--u)); padding: 0 calc(10 * var(--u)); font-size: calc(14 * var(--u)); }
 .cs-rail--lesson .cs-rail__item .cs-icon { inline-size: calc(17 * var(--u)); block-size: calc(17 * var(--u)); }
-.cs-rail__item.is-current { font-weight: 600; color: var(--c-action); background: var(--c-action-subtle); }
+/* The current item in every left pane uses the lesson's current-step rose (Chris, 2026-10-08). */
+.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-accent-tint); }
+.cs-rail__item.is-current .cs-icon { color: var(--c-accent); }
 .cs-count { font-size: calc(13 * var(--u)); font-weight: 400; color: var(--c-muted); }
-.cs-rail__item.is-current .cs-count { color: var(--c-action); }
-.cs-rail--reader .cs-rail__item.is-current .cs-count, .cs-rail--lesson .cs-rail__item.is-current .cs-count { color: var(--c-muted); }
+.cs-rail__item.is-current .cs-count { color: var(--c-accent); }
+
 
 /* ---- Markers, tags, bars, chips ---- */
 .cs-marker { inline-size: calc(24 * var(--u)); block-size: calc(24 * var(--u)); flex: none; display: inline-flex; align-items: center; justify-content: center; border: calc(2 * var(--u)) solid var(--c-strong); border-radius: calc(7 * var(--u)); font-size: calc(12 * var(--u)); color: var(--c-muted); }
@@ -533,8 +535,8 @@
   .cs-app .cs-chiprow a { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); min-block-size: calc(36 * var(--u)); padding: 0 calc(12 * var(--u)); border-radius: calc(10 * var(--u)); border: calc(1 * var(--u)) solid var(--c-hairline); background: var(--c-raised); font-size: calc(14 * var(--u)); color: var(--c-text-2); text-decoration: none; }
   .cs-chiprow a .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); }
   .cs-chiprow a span { color: var(--c-muted); font-size: calc(13 * var(--u)); }
-  .cs-app .cs-chiprow a[aria-current="true"] { background: var(--c-action-subtle); border-color: transparent; color: var(--c-action); font-weight: 600; }
-  .cs-chiprow a[aria-current="true"] span { color: var(--c-action); }
+  .cs-app .cs-chiprow a[aria-current="true"] { background: var(--c-accent-tint); border-color: transparent; color: var(--c-text); font-weight: 600; }
+  .cs-chiprow a[aria-current="true"] span { color: var(--c-accent); }
 
   /* Shelf */
   .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: calc(10 * var(--u)); }

@@ -1326,6 +1326,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
+### `ui.rail.current-item-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `every-left-pane-on-every-screen-highlights-its-c`
+  Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint.
+
 ### `ui.reader.apparatus`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`
