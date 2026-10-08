@@ -19,6 +19,7 @@
 
 .cs-shell {
   --u: min(100cqw / 1440, 100cqh / 900);
+  --type-cap: 23u;   /* the site title in the top bar; nothing is larger (Chris, 2026-10-08) */
   position: relative; inline-size: 100%; block-size: 100%;
   display: grid; grid-template-rows: 64u minmax(0, 1fr);
   background-color: var(--c-page);
@@ -147,6 +148,7 @@
   .cs-brand { flex: 1 1 auto; gap: 8u; }
   .cs-logo { inline-size: 22u; block-size: 22u; }
   .cs-wordmark { font-size: 19u; }
+  .cs-shell { --type-cap: 19u; }
   .cs-frame { margin: 10u; }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "no-text-on-any-screen-is-larger-than-the-site-ti",
+  "topic": "ui.type.max-genesis-2026-10-07",
+  "date": "2026-10-08",
+  "text": "No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.",
+  "by": "Chris"
+}

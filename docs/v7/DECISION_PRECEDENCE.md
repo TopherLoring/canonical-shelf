@@ -1459,6 +1459,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
   Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
 
+### `ui.type.max-genesis-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `no-text-on-any-screen-is-larger-than-the-site-ti`
+  No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.
+
 ### `ui.type.max-size`
 
 - **Current** · 2026-10-07 · Owner decision (Chris) · `ui.type.max-genesis-2026-10-07`

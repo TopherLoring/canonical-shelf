@@ -256,6 +256,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
+| `ui.type.max-genesis-2026-10-07` | No text on any screen is larger than the site title in the top bar (the wordmark); | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 
 ## Open feedback (adjust, not locked)
