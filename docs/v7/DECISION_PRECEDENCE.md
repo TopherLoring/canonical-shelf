@@ -611,6 +611,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Authority order: the owner's current request, then owner decision records, then AI_INSTRUCTIONS.md, then domain docs and source contracts, then generated artifacts; historical plans and audits are provenance only
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
 
+### `process.conflict-order-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `last-idea-wins-path-and-topics`
+  For Learning Path and Study Topics, where Chris's statements in one message conflict, the last idea is the default.
+
 ### `process.decision-authority`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `process.decision-authority.decision-authority`
@@ -1165,6 +1170,18 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-10-08 · Chris · `learning-path-option-b-shelf-disliked`
   I don't like the shelf-native Learning Path option (B: units as volumes on a plank).
 
+### `ui.learning-path.phone-2026-10-08`
+
+- **Current** · 2026-10-08 · Agent default (Claude-agent) · `learning-path-phone-three-levels`
+  Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.
+  *Why:* Chris described desktop only; phone follows the same levels
+
+### `ui.learning-path.structure-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-three-pane-flow`
+  Learning Path: modules on the left; the module's description and its units with progress in the middle; next, progress and objectives on the right. Selecting a unit lists the units on the left, the unit's description and lessons in the middle, and the selected lesson's description and objective with progress and next on the right.
+  *Why:* Chris, 2026-10-08. Where his statements about the Path conflict, the last idea wins
+
 ### `ui.lesson-glossary-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-glossary-card-title-only`
@@ -1240,6 +1257,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.colors.three`
   Lesson progress dots use exactly three colors: completed, current, and new (not yet taught)
 
+### `ui.lesson.progress.templates-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-progress-dot-chain-one-of-n`
+  Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); either wording is allowed. Templates use '1 of N'.
+  *Why:* Chris, 2026-10-08: 'dot chain and Step 1 of 2 or simply 1 of 2'
+
 ### `ui.lesson.rails`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.lesson.rails.v1`
@@ -1249,6 +1272,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.reading.inline-or-popover-2026-10-05`
   Lesson readings (::reading): a passage of one or two sentences or less is quoted on the card as a Scripture block, with extra padding, the Scripture surface color (scriptureBed), the Bible group's color stripe, and the Scripture font. A longer passage appears on the card as a compact Scripture link (reference, version and a one-line preview in the group's colors) that opens the full passage in a popover: centered over a dimmed screen on phones, beside the link on desktop; the passage scrolls inside the popover, which offers Open in the Bible, and closes with its close button, Escape, or a tap on the dimmed area, returning to the same card.
+
+### `ui.lesson.titlebar-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-card-title-is-lesson-or-section-title`
+  The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'.
+  *Why:* Chris, 2026-10-08
 
 ### `ui.naming`
 
@@ -1276,6 +1305,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
   Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
+
+### `ui.naming.templates-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `templates-module-unit-use-names`
+  Learners see module and unit names, not the level words: Module 1 / Unit 2 labels and 'N units' counts are replaced by the titles (Learning Path > Reading the Bible Well > What the Bible Is > the lesson). The decided name 'Unit N Checkpoint' stays.
+  *Why:* Chris, 2026-10-08: 'module/units use names'
 
 ### `ui.naming.unit-check`
 
@@ -1350,8 +1385,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.phone.no-hscroll`
 
-- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
-  The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-menu-bars-scroll-with-arrows`
+  Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. The page itself still never scrolls sideways.
+  *Why:* Chris, 2026-10-08: scrollable horizontal text and/or icon menu bar with directional arrows. Narrows ui.phone.no-hscroll.v1 for menu bars
+- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
+  ~~The phone view never scrolls horizontally anywhere; rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid). My Notes and Theologian are side-by-side folder-style tabs at the bottom of the phone screen, with My Notes in a different shade from the Theologian.~~
 
 ### `ui.phone.shelf-2026-10-08`
 
@@ -1405,6 +1443,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-fixed-header-2026-10-04`
   Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.
+
+### `ui.review.template-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `review-keeps-template`
+  Review & Practice keeps its current template (desktop).
+  *Why:* Chris, 2026-10-08: 'path and review keep the template' (the Path part is superseded by the Learning Path structure below)
 
 ### `ui.scripture.group-color`
 
@@ -1518,6 +1562,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-list-no-right-pane-topic-page-has-one`
   Study Topics list page uses only the left rail and the main column. Selecting a question opens its own page, and the right pane (key passages, how readers differ, ask the Theologian, studied in the Learning Path) appears only there.
 
+### `ui.topics.structure-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `study-topics-type-topic-subtopic-flow`
+  Study Topics: categories on the left and topics (overview and description) in the middle, with the highlighted topic's sub topics on the right. Selecting a topic moves the topic list to the left, its sub topics to the middle, and the selected sub topic's content, sources and other views to the right. Phone: type, topic and sub topic flow with scrollable menus, a drop-down built into the topic title, and extra content inline or on tap with footnotes.
+  *Why:* Chris, 2026-10-08. Supersedes the list page with no right pane. Where his statements about Study Topics conflict, the last idea wins
+
 ### `ui.type.max-genesis-2026-10-07`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `type-cap-removed-plan-sizes` · reverts `no-text-on-any-screen-is-larger-than-the-site-ti`
@@ -1543,6 +1593,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-08: **Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands?** → Dot chain, labelled '1 of N' (or 'Step 1 of N'). (decision `lesson-progress-dot-chain-one-of-n`)
+- 2026-10-08: **Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards?** → Use names: hide the level words and show the titles. (decision `templates-module-unit-use-names`)
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch
 - 2026-10-04: **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** → Checkpoint (picked by Claude at Chris's request) (decision `ui.naming.unit-check.checkpoint`)
 - 2026-10-04: **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** → Approved: Reading the Bible Well: The Library and Its Story (decision `curriculum.module1.title.v2`)

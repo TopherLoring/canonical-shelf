@@ -244,7 +244,7 @@
 .cs-stats { gap: 12u; }
 .cs-due-count { color: var(--c-accent); font-weight: 600; }
 
-.cs-backlink { align-self: flex-start; display: inline-flex; align-items: center; gap: 4u; min-block-size: 36u; padding: 0 10u 0 4u; border: 0; background: transparent; color: var(--c-action); font-size: 15u; font-weight: 600; }
+.cs-backlink { align-self: flex-start; display: inline-flex; align-items: center; gap: 4u; text-align: start; min-block-size: 36u; padding: 0 10u 0 4u; border: 0; background: transparent; color: var(--c-action); font-size: 15u; font-weight: 600; }
 .cs-backlink .cs-icon { inline-size: 16u; block-size: 16u; }
 
 /* ================= Phone variants ================= */
@@ -277,8 +277,7 @@
   .cs-dock__text span { font-family: var(--f-display); font-size: 14u; font-style: italic; color: var(--c-text-2); }
   .cs-dock .cs-button { grid-area: btn; }
   .cs-dock__details { grid-area: det; justify-self: center; font-size: 13u; font-weight: 600; }
-  /* Contents page on a phone: unit and lesson lines stay on one row; leaders and minutes give way to the title. */
-  .cs-toc--phone .cs-toc__row { flex-wrap: nowrap; }
+}
   .cs-toc--phone .cs-toc__title { flex: 1; min-inline-size: 0; }
   .cs-toc--phone .cs-toc__leader, .cs-toc--phone .cs-toc__lessons .cs-caption { display: none; }
   .cs-toc--phone .cs-toc__lessons li { flex-wrap: nowrap; align-items: flex-start; min-block-size: 36u; padding-block: 4u; }
@@ -337,7 +336,7 @@
   .cs-dots .is-current + span::before { inline-size: 24u; inset-block-start: 3u; }
   .cs-phone-article { flex: 1; min-block-size: 0; overflow-y: auto; padding: 16u 16u 12u; display: flex; flex-direction: column; gap: 12u; }
   .cs-phone-article .cs-lesson__head { gap: 2u; }
-  .cs-phone-article .cs-lesson__head .cs-sub { font-size: 13u; }
+  .cs-phone-article .cs-lesson__head .cs-sub { display: none; }   /* the title bar already names the lesson */
   .cs-phone-article .cs-lesson__head h1 { font-size: 28u; }
   .cs-toolgrid { display: grid; gap: 6u; }
   .cs-toolgrid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -387,56 +386,61 @@
   .cs-coming { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ---- Topic page ---- */
-.cs-topic-section { display: flex; align-items: center; gap: 16u; padding: 18u 20u; color: var(--c-text); text-decoration: none; }
-.cs-app a.cs-topic-section { color: var(--c-text); }
-.cs-topic-section__num { inline-size: 32u; block-size: 32u; flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 8u; background: var(--c-subtle); font-family: var(--f-display); font-size: 16u; font-weight: 600; color: var(--c-text-2); }
-.cs-topic-section__title { display: block; font-family: var(--f-display); font-size: 20u; font-weight: 600; }
-.cs-topic-section__text { display: block; font-size: 14u; line-height: 1.45; color: var(--c-muted); margin-block-start: 2u; }
-.cs-topic-section > .cs-icon { color: var(--c-muted); }
+/* ---- Topic and Path pages ---- */
 .cs-ask { display: flex; align-items: center; justify-content: space-between; gap: 10u; padding: 14u 18u; font-size: 15u; font-weight: 600; color: var(--c-action); text-align: start; }
 .cs-ask .cs-icon { inline-size: 16u; block-size: 16u; }
 .cs-refs p { font-size: 14u; line-height: 1.45; color: var(--c-text-2); }
 
-/* ================= Learning Path option A: contents page ================= */
-.cs-toc { padding: 28u 36u 32u; display: flex; flex-direction: column; gap: 22u; overflow: auto; }
-.cs-toc__head { display: flex; flex-direction: column; gap: 4u; padding-block-end: 18u; border-block-end: 2u solid var(--c-text); }
-.cs-toc__head h1 { font-family: var(--f-display); font-size: 34u; font-weight: 600; line-height: 1.1; }
-.cs-toc__subtitle { font-family: var(--f-display); font-size: 20u; font-style: italic; color: var(--c-text-2); }
-.cs-toc__head .cs-bar { margin-block-start: 8u; }
-.cs-toc__list { display: flex; flex-direction: column; gap: 16u; }
-.cs-toc__row { display: flex; align-items: baseline; gap: 12u; }
-.cs-toc__num { inline-size: 34u; flex: none; font-family: var(--f-display); font-size: 18u; font-style: italic; color: var(--c-muted); }
-.cs-toc__title { font-family: var(--f-display); font-size: 22u; font-weight: 600; color: var(--c-text); }
-.cs-toc__leader { flex: 1; min-inline-size: 16u; border-block-end: 2u dotted var(--c-strong); translate: 0 -4u; }
-.cs-toc__state { display: inline-flex; align-items: center; gap: 6u; font-size: 13u; color: var(--c-muted); white-space: nowrap; }
-.cs-toc__state .cs-icon { inline-size: 14u; block-size: 14u; }
-.cs-toc__unit.is-done .cs-toc__state { color: var(--c-correct); font-weight: 600; }
-.cs-toc__unit.is-active .cs-toc__state { color: var(--c-accent); font-weight: 600; }
-.cs-toc__unit:not(.is-done):not(.is-active) .cs-toc__title { color: var(--c-text-2); font-weight: 500; }
-.cs-toc__lessons { margin: 10u 0 6u 46u; display: flex; flex-direction: column; gap: 2u; }
-.cs-toc__lessons li { position: relative; display: flex; align-items: center; gap: 12u; min-block-size: 40u; }
-.cs-toc__lnum { inline-size: 22u; flex: none; display: inline-flex; justify-content: flex-start; font-size: 14u; color: var(--c-muted); }
-.cs-toc__lnum .cs-icon { inline-size: 14u; block-size: 14u; }
-.cs-toc__ltitle { font-family: var(--f-reading); font-size: 16u; color: var(--c-text-2); }
-.cs-toc__lessons li.is-current .cs-toc__ltitle { color: var(--c-text); font-weight: 600; }
-.cs-toc__lessons li.is-current .cs-toc__lnum { color: var(--c-accent); font-weight: 700; }
-.cs-toc__lessons li.is-check .cs-toc__ltitle { font-style: italic; }
-/* The current lesson carries a rose bookmark in the margin. */
-.cs-toc__ribbon { position: absolute; inset-inline-start: -30u; inset-block-start: -3u; inline-size: 14u; block-size: 26u; background: var(--c-accent); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
-.cs-toc--phone { padding: 18u 16u 20u; gap: 14u; }
-.cs-toc--phone .cs-toc__title { font-size: 18u; }
-.cs-toc__part { display: flex; flex-direction: column; gap: 4u; }
-.cs-toc__row--part .cs-toc__num { font-size: 20u; font-style: normal; color: var(--c-text); }
-.cs-toc__partmeta { display: flex; align-items: baseline; gap: 10u; margin-inline-start: 46u; }
-.cs-toc__part.is-current .cs-toc__partmeta .cs-caption:last-child { color: var(--c-accent); font-weight: 600; }
-.cs-toc__list--nested { margin: 8u 0 4u 12u; gap: 10u; padding-inline-start: 12u; border-inline-start: 2u solid var(--c-hairline); }
-.cs-toc__list--nested .cs-toc__title { font-size: 16u; }
-.cs-toc__list--nested .cs-toc__num { inline-size: 26u; font-size: 15u; }
-.cs-toc__list--nested .cs-toc__lessons { margin-inline-start: 38u; }
-.cs-toc__list--nested .cs-toc__ltitle { font-size: 14u; }
-.cs-toc__list--nested .cs-toc__lessons li { flex-wrap: wrap; }
-.cs-toc__list--nested .cs-toc__ribbon { inset-inline-start: -26u; }
+
+/* ---- Learning Path: modules, units, lessons ---- */
+.cs-lede { font-family: var(--f-reading); font-size: 16u; line-height: 1.6; color: var(--c-text-2); }
+.cs-unitcard { display: flex; flex-direction: column; gap: 6u; padding: 14u 18u; color: var(--c-text); text-decoration: none; }
+.cs-app a.cs-unitcard { color: var(--c-text); }
+.cs-unitcard__title { font-family: var(--f-display); font-size: 20u; font-weight: 600; }
+.cs-unitcard__text { font-size: 14u; line-height: 1.45; color: var(--c-muted); }
+.cs-goals { display: flex; flex-direction: column; gap: 8u; }
+.cs-goals li { display: flex; gap: 8u; align-items: flex-start; font-size: 14u; line-height: 1.4; color: var(--c-text-2); }
+.cs-goals .cs-icon { inline-size: 16u; block-size: 16u; margin-block-start: 1u; color: var(--c-accent); }
+.cs-lessonlist { display: flex; flex-direction: column; gap: 8u; }
+.cs-lessonrow { display: flex; align-items: center; gap: 12u; padding: 10u 14u; border-radius: 12u; border: 1u solid var(--c-hairline); background: var(--c-raised); color: var(--c-text); text-decoration: none; }
+.cs-app a.cs-lessonrow { color: var(--c-text); }
+.cs-lessonrow.is-selected { border-color: var(--c-action); box-shadow: 0 0 0 2u var(--c-focus-ring); }
+.cs-lessonrow__text { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 1u; }
+.cs-lessonrow__title { font-size: 15u; }
+.cs-lessonrow.is-current .cs-lessonrow__title { font-weight: 600; }
+.cs-lessonrow--check { border-style: dashed; color: var(--c-muted); }
+.cs-lessonpane { gap: 10u; }
+.cs-lessonpane p { font-size: 15u; line-height: 1.5; color: var(--c-text-2); }
+.cs-lessonpane .cs-objective { color: var(--c-text); font-weight: 500; }
+.cs-lessonpane .cs-button--block { margin-block-start: 4u; }
+
+/* ---- Study Topics: sub topics and content ---- */
+.cs-subpeek { display: flex; flex-direction: column; gap: 12u; }
+.cs-subpeek li { display: flex; flex-direction: column; gap: 2u; padding-block-end: 12u; border-block-end: 1u solid var(--c-row); }
+.cs-subpeek li:last-child { border: 0; padding: 0; }
+.cs-subpeek__title { font-family: var(--f-display); font-size: 17u; font-weight: 600; }
+.cs-subpeek__text { font-size: 14u; line-height: 1.45; color: var(--c-muted); }
+.cs-subcard { display: flex; align-items: center; gap: 14u; padding: 16u 18u; color: var(--c-text); text-decoration: none; }
+.cs-app a.cs-subcard { color: var(--c-text); }
+.cs-subcard.is-selected { border-color: var(--c-action); box-shadow: 0 0 0 2u var(--c-focus-ring); }
+.cs-subcard__num { inline-size: 30u; block-size: 30u; flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 8u; background: var(--c-subtle); font-family: var(--f-display); font-size: 15u; font-weight: 600; color: var(--c-text-2); }
+.cs-subcard__title { display: block; font-family: var(--f-display); font-size: 19u; font-weight: 600; }
+.cs-subcard__text { display: block; margin-block-start: 2u; font-size: 14u; line-height: 1.45; color: var(--c-muted); }
+.cs-subcontent { gap: 10u; }
+.cs-subcontent p { font-size: 15u; line-height: 1.55; color: var(--c-text-2); }
+.cs-fn { display: flex; flex-direction: column; gap: 8u; padding: 12u 14u; border-radius: 10u; background: var(--c-subtle); }
+
+/* ---- Scrollable menu bar (phone): the arrows show which way it can scroll ---- */
+.cs-titlepicker { position: relative; display: inline-flex; align-items: center; gap: 8u; align-self: flex-start; font-family: var(--f-display); font-size: 28u; font-weight: 600; line-height: 1.1; color: var(--c-text); }
+.cs-titlepicker .cs-icon { inline-size: 20u; block-size: 20u; flex: none; color: var(--c-muted); }
+.cs-titlepicker select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+.cs-hscroll { display: flex; align-items: center; gap: 4u; min-inline-size: 0; }
+.cs-hscroll__arrow { flex: none; inline-size: 30u; block-size: 36u; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 1u solid var(--c-hairline); border-radius: 10u; background: var(--c-raised); color: var(--c-text-2); }
+.cs-hscroll__arrow .cs-icon { inline-size: 16u; block-size: 16u; }
+.cs-hscroll__arrow:disabled { opacity: 0.35; cursor: default; }
+.cs-app .cs-hscroll .cs-hscroll__track { flex: 1; min-inline-size: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+.cs-hscroll__track::-webkit-scrollbar { display: none; }
+.cs-hscroll__track > a { flex: none; scroll-snap-align: start; white-space: nowrap; }
 
 /* Board details that differ per screen */
 .cs-cols--path .cs-heading { padding-block-end: 4u; }

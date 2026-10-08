@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-menu-bars-scroll-with-arrows",
+  "topic": "ui.phone.no-hscroll",
+  "date": "2026-10-08",
+  "text": "Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. The page itself still never scrolls sideways.",
+  "rationale": "Chris, 2026-10-08: scrollable horizontal text and/or icon menu bar with directional arrows. Narrows ui.phone.no-hscroll.v1 for menu bars",
+  "by": "Chris"
+}

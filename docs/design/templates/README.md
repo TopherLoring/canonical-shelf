@@ -12,6 +12,10 @@ python3 -m http.server 4175
 
 Then open `http://localhost:4175/docs/design/templates/preview.html`, pick a screen and a size. `screen.html?screen=lesson` opens one screen at the size of the window. Screens: `shelf`, `path`, `lesson`, `reader`, `topics`, `practice`. Add `&chrome=0` to hide the phone status bar.
 
+## Screen states
+
+`screen.html?screen=path` is the module page; add `&view=unit` for a unit's lessons (phone also has `&view=module`). `screen=topics` browses topics; add `&view=topic` for a topic's sub topics and content. Links marked `data-go` switch states in the preview.
+
 ## How sizing works
 
 Nothing has a fixed size. Every length in `css/src` is written in board units (`24u`), and `build.mjs` turns them into `calc(24 * var(--u))`.

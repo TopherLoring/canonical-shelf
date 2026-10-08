@@ -1,6 +1,6 @@
 // Mounts one template screen. The layout follows the shape of the space the app is given, not the device:
 // phone layout when the app is narrower than 761 units or taller than 5:4; desktop otherwise. CSS does the scaling.
-import { screens, topicList, books, bookDock } from './examples.js';
+import { screens, books, bookDock, peekPane } from './examples.js';
 import { icons as i } from './icons.js';
 
 const params = new URLSearchParams(location.search);
@@ -8,8 +8,9 @@ const key = Object.hasOwn(screens, params.get('screen')) ? params.get('screen') 
 const screen = screens[key];
 const current = screen.current || key;
 const chrome = params.get('chrome') !== '0';
+// Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
-let topicIdx = Number(params.get('topic')) || 1;
+const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, mod: Number(params.get('mod')) || 0 };
 let dockBook = 0;
 
 const NAV = [
@@ -55,7 +56,7 @@ function render(next) {
   app.dataset.focus = String(!!screen.focus);
   const cols = typeof screen.cols === 'function' ? screen.cols(view) : screen.cols;
   const frameClass = `cs-frame cs-frame--${screen.frame}${cols ? ` cs-cols--${cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? '' : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, topicIdx) : screen.desktop(view, topicIdx)}</main>${phone ? (screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? '' : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(view, st) : screen.desktop(view, st)}</main>${phone ? (screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
   app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
   if (phone && screen.dock) paintDock();
@@ -84,13 +85,33 @@ function paintDock() {
 }
 
 function wire() {
-  // data-view links switch the screen's own pages (Path: overview and module; Topics: list and one topic).
-  app.querySelectorAll('[data-view]').forEach(a => a.addEventListener('click', event => {
+  // data-go links change the screen's page and selection, then redraw (Path: modules, a module, a unit; Topics: browse, a topic).
+  app.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', event => {
     event.preventDefault();
-    view = a.dataset.view === 'list' || a.dataset.view === 'overview' ? '' : a.dataset.view;
-    if (a.dataset.topic) topicIdx = Number(a.dataset.topic);
+    a.dataset.go.split(';').forEach(pair => { const [k, v] = pair.split('='); if (k === 'view') view = v; else st[k] = Number(v); });
     layout = ''; render(decide());
   }));
+  // Hovering or focusing a topic previews its sub topics on the right; choosing it opens it.
+  app.querySelectorAll('[data-peek]').forEach(a => ['mouseenter', 'focus'].forEach(ev => a.addEventListener(ev, () => {
+    const pane = app.querySelector('[data-peek-pane]'); if (!pane) return;
+    app.querySelectorAll('[data-peek]').forEach(x => x.toggleAttribute('aria-current', x === a));
+    pane.outerHTML = peekPane(Number(a.dataset.peek));
+  })));
+  // The topic title is its own drop-down (phone).
+  app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
+  // Footnote letters open and close their note in place.
+  app.querySelectorAll('[data-fn-toggle]').forEach(b => b.addEventListener('click', () => {
+    const note = app.querySelector(`.cs-fn[data-fn="${b.dataset.fnToggle}"]`); if (!note) return;
+    note.hidden = !note.hidden; b.setAttribute('aria-expanded', String(!note.hidden));
+  }));
+  // Scrollable menu bars: the arrows show which way the bar can scroll, and scroll it.
+  app.querySelectorAll('.cs-hscroll').forEach(box => {
+    const track = box.querySelector('.cs-hscroll__track'), prev = box.querySelector('.cs-hscroll__arrow--prev'), next = box.querySelector('.cs-hscroll__arrow--next');
+    const sync = () => { prev.disabled = track.scrollLeft <= 1; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1; };
+    prev.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth * 0.7, behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: track.clientWidth * 0.7, behavior: 'smooth' }));
+    track.addEventListener('scroll', sync, { passive: true }); sync();
+  });
   app.querySelectorAll('[data-guide]').forEach(b => b.addEventListener('click', () => show(b.dataset.guide === 'notes'
     ? '<h2>My Notes</h2><p>Connect this tab to the app’s notes panel. The template saves nothing.</p>'
     : '<h2>Theologian</h2><p>Connect this tab to the app’s Theologian. The template sends nothing.</p>')));

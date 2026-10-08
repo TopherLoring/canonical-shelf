@@ -13,12 +13,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Conflict:** Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards? (`conflict-module-unit-labels`, owner: Chris, since 2026-10-08)
-  - Request: Compare all templates with the decision log
-  - Conflicts with `ui.naming.hide-module-unit-labels-2026-10-05`: “Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear”
-- **Conflict:** Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands? (`conflict-step-n-of-m`, owner: Chris, since 2026-10-08)
-  - Request: Compare all templates with the decision log
-  - Conflicts with `ui.lesson.progress.no-step-label-2026-10-05`: “Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.”
 - **Conflict:** The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template? (`conflict-copy-action`, owner: Chris, since 2026-10-08)
   - Request: Compare all templates with the decision log
   - Conflicts with `ui.reader.notes`: “Remove Copy from the reader highlight/note actions.”
@@ -145,6 +139,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `privacy.posture` | undefined | Agent default | undefined |
 | `privacy.retention` | undefined | Agent default | undefined |
 | `process.authority-order` | undefined | Agent default | undefined |
+| `process.conflict-order-2026-10-08` | For Learning Path and Study Topics, where Chris's statements in one message conflict, the last idea is the default. | Owner decision | undefined |
 | `process.decision-authority` | Chris's current request outranks every document. | Owner decision | undefined |
 | `process.design-compare-2026-10-08` | Every design change is compared against its plan board before it is called done (against the current template where no board exists), with each difference li... | Owner decision | undefined |
 | `process.experience-first` | undefined | Agent default | undefined |
@@ -231,18 +226,23 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.desktop.pane-widths-2026-10-08` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
+| `ui.learning-path.phone-2026-10-08` | undefined | Agent default | undefined |
+| `ui.learning-path.structure-2026-10-08` | Learning Path: | Owner decision | undefined |
 | `ui.lesson-glossary-2026-10-08` | Lesson Glossary card: | Owner decision | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
+| `ui.lesson.progress.templates-2026-10-08` | Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.lesson.reading` | Lesson readings (::reading): | Owner decision | undefined |
+| `ui.lesson.titlebar-2026-10-08` | The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'. | Owner decision | undefined |
 | `ui.naming` | Learners are not shown the level names "Module" and "Unit"; | Owner decision | undefined |
 | `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
+| `ui.naming.templates-2026-10-08` | Learners see module and unit names, not the level words: | Owner decision | undefined |
 | `ui.naming.unit-check` | Where Checkpoints appear is not fixed per unit or per lesson; | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
@@ -254,7 +254,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
 | `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
-| `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
+| `ui.phone.no-hscroll` | Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
@@ -264,6 +264,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
+| `ui.review.template-2026-10-08` | Review & Practice keeps its current template (desktop). | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
 | `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
@@ -282,6 +283,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
+| `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 

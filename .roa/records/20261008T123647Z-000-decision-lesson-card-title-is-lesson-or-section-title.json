@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-card-title-is-lesson-or-section-title",
+  "topic": "ui.lesson.titlebar-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'.",
+  "rationale": "Chris, 2026-10-08",
+  "by": "Chris"
+}

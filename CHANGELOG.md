@@ -24,6 +24,17 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone navigation is one bottom bar on every screen except the lesson and the Bible: the five destinations plus Search and You (profile and feedback); no top bar on phone. (agent default)
 - Path, Bible, Study Topics and Review desktop panes share widths: left 240, right 340. (agent default)
 - Lesson Glossary card: remove the "Terms in this step" line and make "Glossary" the card title, larger.
+- Learners see module and unit names, not the level words: Module 1 / Unit 2 labels and 'N units' counts are replaced by the titles (Learning Path > Reading the Bible Well > What the Bible Is > the lesson). The decided name 'Unit N Checkpoint' stays.
+- Resolved "Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards?": Use names: hide the level words and show the titles.
+- Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); either wording is allowed. Templates use '1 of N'.
+- Resolved "Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands?": Dot chain, labelled '1 of N' (or 'Step 1 of N').
+- Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. The page itself still never scrolls sideways.
+- The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'.
+- Review & Practice keeps its current template (desktop).
+- Learning Path: modules on the left; the module's description and its units with progress in the middle; next, progress and objectives on the right. Selecting a unit lists the units on the left, the unit's description and lessons in the middle, and the selected lesson's description and objective with progress and next on the right.
+- Study Topics: categories on the left and topics (overview and description) in the middle, with the highlighted topic's sub topics on the right. Selecting a topic moves the topic list to the left, its sub topics to the middle, and the selected sub topic's content, sources and other views to the right. Phone: type, topic and sub topic flow with scrollable menus, a drop-down built into the topic title, and extra content inline or on tap with footnotes.
+- For Learning Path and Study Topics, where Chris's statements in one message conflict, the last idea is the default.
+- Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content. (agent default)
 
 ## 2026-10-07
 

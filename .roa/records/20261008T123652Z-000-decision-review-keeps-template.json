@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "review-keeps-template",
+  "topic": "ui.review.template-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Review & Practice keeps its current template (desktop).",
+  "rationale": "Chris, 2026-10-08: 'path and review keep the template' (the Path part is superseded by the Learning Path structure below)",
+  "by": "Chris"
+}

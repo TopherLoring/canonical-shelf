@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning-path-three-pane-flow",
+  "topic": "ui.learning-path.structure-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Learning Path: modules on the left; the module's description and its units with progress in the middle; next, progress and objectives on the right. Selecting a unit lists the units on the left, the unit's description and lessons in the middle, and the selected lesson's description and objective with progress and next on the right.",
+  "rationale": "Chris, 2026-10-08. Where his statements about the Path conflict, the last idea wins",
+  "by": "Chris"
+}
