@@ -573,3 +573,11 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .cs-theo__user { font-size: 15u; }
 .cs-theo__suggest { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; }
 .cs-theo__suggest > span { flex: 1 1 100%; text-align: end; }
+
+.cs-touch { list-style: none; display: flex; flex-direction: column; }
+.cs-touch li { display: grid; grid-template-columns: 84u minmax(0, 1fr); gap: 2u 10u; padding: 10u 0; border-block-start: 1u solid var(--c-row); font-size: 14u; }
+.cs-touch li:first-child { border-block-start: 0; }
+.cs-touch .cs-muted { grid-column: 2; font-size: 12u; }
+.cs-touch a { font-weight: 600; color: var(--c-text); text-decoration: none; }
+.cs-guides { list-style: none; display: flex; flex-direction: column; gap: 6u; font-size: 14u; }
+.cs-guides a { color: var(--c-action); }

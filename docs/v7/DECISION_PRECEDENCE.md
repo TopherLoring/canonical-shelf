@@ -1762,8 +1762,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.topics.questions-vs-topics`
 
-- **Current** · 2026-10-08 · Owner decision (Chris) · `study-topics-the-questions-category-lists-the-12`
-  Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `study-topics-questions-choosing-a-question-opens`
+  Study Topics questions: choosing a question opens its authored page (the question, Learning Path touchpoints, related topic guides, with key passages, where Christians differ, Studied in the Learning Path and Ask the Theologian in the right pane). Ask the Theologian is a separate choice and opens the chat with the question loaded, not sent. Supersedes the same-day decision that choosing a question opens the chat directly.
+  *Why:* Artifact comment 0be4a57e
+- **Previous** · 2026-10-08 · Owner decision (Chris) · `study-topics-the-questions-category-lists-the-12`
+  ~~Study Topics: the Questions category lists the 12 questions and choosing one loads it into the Theologian chat, ready to send and not sent; the other categories list curated topics (overview, sub topics, sources as footnotes) and choosing one loads its content. Questions have no right pane on desktop. This refines the earlier 'topic selection loads content' for the Questions category.~~
   *Why:* Chris, chat: Questions preload the Theologian chat without sending; the other study topics list curated items and clicking loads their content
 
 ### `ui.topics.right-pane-2026-10-08`

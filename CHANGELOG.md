@@ -74,6 +74,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Learning Path: 'What you'll gain' moves from a bubble into an expandable row at the top of the open unit, above the lessons.
 - Templates build the Theologian chat from the approved boards and theologian.chat-design.v1: docked right column on desktop, centered card on phone, dim and click-to-close, no edge tab while open. Choosing a Study Topics question opens it with the question loaded in the message box, unsent. (agent default)
 - Theologian 'Scripture cited' lists the references inline separated by commas, not one per line.
+- Study Topics questions: choosing a question opens its authored page (the question, Learning Path touchpoints, related topic guides, with key passages, where Christians differ, Studied in the Learning Path and Ask the Theologian in the right pane). Ask the Theologian is a separate choice and opens the chat with the question loaded, not sent. Supersedes the same-day decision that choosing a question opens the chat directly.
 
 ## 2026-10-07
 

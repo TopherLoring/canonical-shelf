@@ -886,3 +886,11 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .cs-theo__user { font-size: calc(15 * var(--u)); }
 .cs-theo__suggest { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; }
 .cs-theo__suggest > span { flex: 1 1 100%; text-align: end; }
+
+.cs-touch { list-style: none; display: flex; flex-direction: column; }
+.cs-touch li { display: grid; grid-template-columns: calc(84 * var(--u)) minmax(0, 1fr); gap: calc(2 * var(--u)) calc(10 * var(--u)); padding: calc(10 * var(--u)) 0; border-block-start: calc(1 * var(--u)) solid var(--c-row); font-size: calc(14 * var(--u)); }
+.cs-touch li:first-child { border-block-start: 0; }
+.cs-touch .cs-muted { grid-column: 2; font-size: calc(12 * var(--u)); }
+.cs-touch a { font-weight: 600; color: var(--c-text); text-decoration: none; }
+.cs-guides { list-style: none; display: flex; flex-direction: column; gap: calc(6 * var(--u)); font-size: calc(14 * var(--u)); }
+.cs-guides a { color: var(--c-action); }
