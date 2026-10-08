@@ -306,6 +306,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topics.phone.dropmenu` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.phone.focus` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.phone.footnotes-subtle-menu` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.other-questions` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.phone.rose-accent` | Phone Study Topics carries the rose accent like the other screens: | Owner decision | undefined |
 | `ui.topics.right-pane-2026-10-08` | Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views. | Owner decision | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |

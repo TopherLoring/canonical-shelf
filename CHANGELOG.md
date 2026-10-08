@@ -69,6 +69,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Learning Path: the inline lesson Start/Open button is compact, not full width.
 - Phone Study Topics: Sources and Other views are footnotes (superscript markers in the text, footnotes at the bottom of the sub topic), not main content. The question menu is smaller and subtle, with texture and shadow instead of a border. Sub topics are shown closed.
 - Phone Study Topics carries the rose accent like the other screens: rose edge and label on the question menu, rose-tinted sub topic numbers.
+- Phone Study Topics: the other questions in the category are listed in an expandable section below the sub topics.
 
 ## 2026-10-07
 
