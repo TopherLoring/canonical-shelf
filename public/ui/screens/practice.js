@@ -1,6 +1,7 @@
 // Step 5 (phase 7): Review & Practice overview.
-// This screen owns the plain /practice address. The detailed review, verse library, game and achievement
-// modes (?mode=, ?arcade=, ?play=) still render through the existing practice experience (S7 decides their fate).
+// This screen owns every /practice address. The overview is built here; the detailed review, verse library,
+// game and achievement modes (?mode=, ?arcade=, ?play=) keep their own content (rebuilt later) but open inside
+// the same frame: the rail on the left, the mode in the middle, the progress panel on the right.
 import { renderGameTile, renderProgressBar, renderRail } from '../components/index.js';
 import { mountProgressBars } from '../components/progress-bar.js';
 import { practiceStateSummary } from '../../practice-state.js';
@@ -11,6 +12,7 @@ const ICONS = Object.freeze({
   sequence: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h11M4 12h7M4 18h13"></path><path d="m15 9 3 3-3 3"></path></svg>',
   memory: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="8" height="7" rx="1.5"></rect><rect x="13" y="12" width="8" height="7" rx="1.5"></rect><path d="M7 15v.01M17 8v.01"></path></svg>',
   discovery: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5M8 10.5h5M10.5 8v5"></path></svg>',
+  overview: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>',
   award: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"></circle><path d="m8.5 13.5-1.5 7 5-3 5 3-1.5-7"></path></svg>'
 });
 
@@ -37,6 +39,43 @@ function dueDescription(due, data, esc) {
     : `${due.length} item${due.length === 1 ? '' : 's'} are ready to revisit.`;
 }
 
+function practiceRail(dueCount, active) {
+  const item = (key, href, label, icon, extra = {}) => ({ href, label, icon, isActive: key === active, ...extra });
+  return renderRail({
+    ariaLabel: 'Review and practice',
+    className: 'practice-screen__rail',
+    sections: [
+      { title: '', items: [item('overview', '/practice', 'Overview', ICONS.overview)] },
+      { title: 'Review', items: [item('review', '/practice?mode=review', 'Due for review', ICONS.review, { count: dueCount })] },
+      { title: 'Practice', items: [
+        item('verses', '/practice?mode=verses', 'Verse library', ICONS.books),
+        item('arcade', '/practice?mode=arcade', 'Games', ICONS.discovery)
+      ] },
+      { title: '', items: [item('achievements', '/practice?mode=achievements', 'Achievements', ICONS.award)] }
+    ]
+  });
+}
+
+function statsAside({ due, summary, reviewCount, state, achievementProgress }) {
+  return `<aside class="practice-screen__stats" aria-label="Your progress">
+      <section class="ui-game-tile practice-screen__stat-card">
+        <p class="eyebrow">Review</p>
+        <dl>
+          <div><dt>Items you’re keeping</dt><dd>${reviewCount}</dd></div>
+          <div><dt>Due now</dt><dd>${due.length}</dd></div>
+          <div><dt>Next review</dt><dd>${nextReviewLabel(state)}</dd></div>
+        </dl>
+      </section>
+      <section class="ui-game-tile practice-screen__stat-card">
+        <p class="eyebrow">Practice</p>
+        <dl><div><dt>Games played</dt><dd>${summary.state.arcade.plays}</dd></div></dl>
+        <div class="practice-screen__achievement-label"><span>Achievements</span><span>${summary.achievements} of ${summary.totalAchievements}</span></div>
+        ${achievementProgress}
+        <p>Practice is for your own learning. There are no streaks or leaderboards.</p>
+      </section>
+    </aside>`;
+}
+
 function overview({ container, data, state, db, activityHref, esc }) {
   const due = dueFor(db, state);
   const summary = practiceStateSummary();
@@ -47,18 +86,7 @@ function overview({ container, data, state, db, activityHref, esc }) {
     return `<a class="practice-review-row" href="${href}"><span>${esc(activity?.title || entry.id)}</span><span>${entry.intervalDays}-day interval</span></a>`;
   }).join('');
 
-  const rail = renderRail({
-    ariaLabel: 'Review and practice',
-    className: 'practice-screen__rail',
-    sections: [
-      { title: 'Review', items: [{ href: '/practice?mode=review', label: 'Due for review', icon: ICONS.review, count: due.length, isActive: true }] },
-      { title: 'Practice', items: [
-        { href: '/practice?mode=verses', label: 'Verse library', icon: ICONS.books },
-        { href: '/practice?mode=arcade', label: 'Games', icon: ICONS.discovery }
-      ] },
-      { title: '', items: [{ href: '/practice?mode=achievements', label: 'Achievements', icon: ICONS.award }] }
-    ]
-  });
+  const rail = practiceRail(due.length, 'overview');
 
   const games = [
     { title: 'Sequence Repair', description: 'Put a shuffled run of Bible books back in canonical order.', badge: 'Book order', icon: ICONS.sequence, href: '/practice?mode=arcade&game=sequence&scope=all' },
@@ -109,30 +137,41 @@ function overview({ container, data, state, db, activityHref, esc }) {
         </ul>
       </section>
 
-      <aside class="practice-screen__stats" aria-label="Your progress">
-        <section class="ui-game-tile practice-screen__stat-card">
-          <p class="eyebrow">Review</p>
-          <dl>
-            <div><dt>Items you’re keeping</dt><dd>${reviewCount}</dd></div>
-            <div><dt>Due now</dt><dd>${due.length}</dd></div>
-            <div><dt>Next review</dt><dd>${nextReviewLabel(state)}</dd></div>
-          </dl>
-        </section>
-        <section class="ui-game-tile practice-screen__stat-card">
-          <p class="eyebrow">Practice</p>
-          <dl><div><dt>Games played</dt><dd>${summary.state.arcade.plays}</dd></div></dl>
-          <div class="practice-screen__achievement-label"><span>Achievements</span><span>${summary.achievements} of ${summary.totalAchievements}</span></div>
-          ${achievementProgress}
-          <p>Practice is for your own learning. There are no streaks or leaderboards.</p>
-        </section>
-      </aside>
+      ${statsAside({ due, summary, reviewCount, state, achievementProgress })}
     </div>`;
 }
 
-/** The redesigned overview owns only the plain /practice address; existing modes keep their current renderer. */
-export const handles = params => !params.has('mode') && !params.has('arcade') && !params.has('play');
+const MODE_RAIL = Object.freeze({ review: 'review', verses: 'verses', arcade: 'arcade', achievements: 'achievements' });
+const BACK_LINK = '<p><a href="/practice">← Practice overview</a></p>';
 
-export function mount(container, context) {
-  overview({ container, ...context });
+/** A mode keeps its own content; the frame supplies the rail, the progress panel and the way back to the overview. */
+async function mode({ container, data, state, db, activityHref, esc, params }) {
+  const { practiceView } = await import('../../practice-experience.js');
+  const due = dueFor(db, state);
+  const summary = practiceStateSummary();
+  const reviewCount = Object.keys(state.reviewSchedule || {}).length;
+  const active = params.has('arcade') || params.has('play') ? 'arcade' : (MODE_RAIL[params.get('mode')] || '');
+  const view = practiceView({ data, state, params, esc, dueReviews: db.dueReviews, activityHref });
+  const content = (typeof view === 'string' ? view : view.outerHTML).replace(BACK_LINK, '');
+  const achievementProgress = renderProgressBar({
+    value: summary.achievements,
+    max: summary.totalAchievements,
+    ariaLabel: 'Achievements earned',
+    className: 'practice-screen__progress'
+  });
+  container.innerHTML = `
+    <div class="practice-screen" data-practice-mode="${esc(params.get('mode') || (params.has('play') ? 'play' : 'arcade'))}">
+      ${practiceRail(due.length, active)}
+      <section class="practice-screen__main practice-screen__mode" aria-label="Practice">${content}</section>
+      ${statsAside({ due, summary, reviewCount, state, achievementProgress })}
+    </div>`;
+}
+
+export const handles = () => true;
+
+export async function mount(container, context) {
+  const { params } = context;
+  if (params.has('mode') || params.has('arcade') || params.has('play')) await mode({ container, ...context });
+  else overview({ container, ...context });
   mountProgressBars(container);
 }

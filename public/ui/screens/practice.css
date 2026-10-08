@@ -212,25 +212,28 @@
       padding: var(--space-3, 12px);
     }
 
+    /* On a phone the rail is one wrapped row of links: no section titles or dividers, full labels. */
     .practice-screen__rail {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-content: start;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
       gap: var(--space-2, 8px);
     }
 
     .practice-screen__rail .ui-rail-section {
-      min-width: 0;
+      display: contents;
     }
 
-    .practice-screen__rail .ui-rail-section-title {
-      padding-inline: var(--space-2, 8px);
+    .practice-screen__rail .ui-rail-section-title,
+    .practice-screen__rail .ui-rail-divider {
+      display: none;
     }
 
     .practice-screen__rail .ui-rail-link {
-      min-height: 40px;
-      padding-inline: var(--space-2, 8px);
-      white-space: normal;
+      min-height: 44px;
+      padding-inline: var(--space-3, 12px);
+      white-space: nowrap;
+      width: auto;
     }
 
     .practice-screen__stats {
@@ -264,4 +267,67 @@
       flex-direction: column;
     }
   }
+
+  /* The modes (review, verse library, games, achievements) keep their own content inside the frame. Their buttons,
+     headings and filter rows are given the frame's look here so nothing depends on the old stylesheets. */
+  .practice-screen .button,
+  .practice-screen button.button {
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    border-radius: var(--radius-control);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .practice-screen .button--primary {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+
+  .practice-screen .button--primary:hover {
+    background: var(--color-action-hover);
+  }
+
+  .practice-screen__mode > .section,
+  .practice-screen__mode > header,
+  .practice-screen__mode .practice-dashboard__head {
+    padding: var(--space-2, 8px) var(--space-1, 4px) 0;
+  }
+
+  .practice-screen__mode .lede {
+    max-width: 62ch;
+    font-size: var(--type-body);
+    line-height: 1.55;
+  }
+
+  .practice-screen__mode h1 { margin-block: 0; }
+
+  .practice-screen__mode .verse-library-filters {
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  }
+
+  .practice-screen__mode .verse-filter-search { grid-column: 1 / -1; }
+
+  .practice-screen__mode .verse-library-toolbar,
+  .practice-screen__mode .arcade-config { grid-template-columns: minmax(0, 1fr); }
+
+  .practice-screen__mode .arcade-config { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
+
+  .practice-screen__mode .verse-library-grid,
+  .practice-screen__mode .arcade-library,
+  .practice-screen__mode .achievement-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+
+  .practice-screen__mode .practice-run__submit { position: static; border-radius: var(--radius-control); }
+
+  .practice-screen__mode a:not(.button) { overflow-wrap: anywhere; }
 }

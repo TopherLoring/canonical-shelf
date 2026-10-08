@@ -1,4 +1,4 @@
-// Review & Practice overview (S5b): the plain /practice address; detailed modes stay on the existing view.
+// Review & Practice (S5b overview, S12 mode frames): every /practice address opens in the same frame (rail, progress panel); the mode's own content is rebuilt later.
 import { test, expect } from '@playwright/test';
 
 test.use({ serviceWorkers: 'block' });
@@ -10,7 +10,7 @@ test.describe('Review & Practice', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/practice');
     await expect(page.locator('.practice-screen h1')).toHaveText('Review & Practice');
-    await expect(page.locator('.practice-screen__rail a')).toHaveCount(4);
+    await expect(page.locator('.practice-screen__rail a')).toHaveCount(5);
     await expect(page.locator('.practice-screen__due')).toBeVisible();
     await expect(page.locator('.practice-screen__game')).toHaveCount(3);
     await expect(page.locator('.practice-screen__stat-card')).toHaveCount(2);
@@ -41,11 +41,53 @@ test.describe('Review & Practice', () => {
     expect(parseFloat(m.painted)).toBeCloseTo(m.expected, 1);
   });
 
-  test('other modes keep working from the overview address', async ({ page }) => {
-    await page.goto('/practice?mode=arcade');
-    await expect(page.locator('main')).not.toBeEmpty();
+  const MODES = [
+    { path: '/practice?mode=review', active: 'Due for review', heading: /due/i },
+    { path: '/practice?mode=verses', active: 'Verse library', heading: /Verse Library/ },
+    { path: '/practice?mode=arcade', active: 'Games', heading: /Arcade/ },
+    { path: '/practice?mode=achievements', active: 'Achievements', heading: /./ },
+    { path: '/practice?mode=arcade&game=sequence&scope=all', active: 'Games', heading: /./ }
+  ];
+
+  for (const mode of MODES) {
+    test(`${mode.path} opens inside the practice frame with its rail item highlighted`, async ({ page }) => {
+      await page.goto(mode.path);
+      await expect(page.locator('.practice-screen__mode h1').first()).toHaveText(mode.heading);
+      await expect(page.locator('.practice-screen__rail a')).toHaveCount(5);
+      await expect(page.locator('.practice-screen__rail a.is-active, .practice-screen__rail a[aria-current]')).toHaveText(new RegExp(mode.active));
+      await expect(page.locator('.practice-screen__stat-card')).toHaveCount(2);
+      await expect(page.locator('.practice-screen__mode a[href="/practice"]', { hasText: 'Practice overview' })).toHaveCount(0);
+    });
+  }
+
+  test('a game still runs and checks inside the frame', async ({ page }) => {
+    await page.goto('/practice?mode=arcade&game=sequence&scope=all');
+    await expect(page.locator('.practice-screen__mode')).toBeVisible();
+    await page.goto('/practice?arcade=sequence&scope=all');
+    const form = page.locator('[data-practice-run]');
+    await expect(form).toBeVisible();
+    await form.locator('button[type="submit"]').click();
+    await expect(form.locator('.feedback')).not.toBeEmpty();
+  });
+
+  test('a mode button is styled by the frame (padded, bordered, not bare text)', async ({ page }) => {
     await page.goto('/practice?mode=verses');
-    await expect(page.locator('main')).not.toBeEmpty();
+    const primary = page.locator('.practice-screen__mode .button--primary').first();
+    await expect(primary).toBeVisible();
+    const m = await primary.evaluate(el => { const c = getComputedStyle(el); return { pad: parseFloat(c.paddingLeft), bg: c.backgroundColor }; });
+    expect(m.pad).toBeGreaterThan(8);
+    expect(m.bg).not.toBe('rgba(0, 0, 0, 0)');
+  });
+
+  test('phone: every mode fits without sideways scroll and the rail shows full labels', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    for (const mode of MODES) {
+      await page.goto(mode.path);
+      await expect(page.locator('.practice-screen__mode')).toBeVisible();
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), mode.path).toBe(true);
+      const truncated = await page.locator('.practice-screen__rail .ui-rail-label').evaluateAll(els => els.filter(el => el.scrollWidth > el.clientWidth + 1).length);
+      expect(truncated, mode.path).toBe(0);
+    }
   });
 
   test('phone: no horizontal scroll', async ({ page }) => {
