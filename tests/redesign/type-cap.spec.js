@@ -17,6 +17,7 @@ const SITE_TITLE = '.brand-wordmark, .brand-wordmark *, .shelf-home__intro h1, .
 
 for (const [name, size] of [['desktop', { width: 1280, height: 800 }], ['phone', { width: 390, height: 844 }], ['wide', { width: 1920, height: 1000 }]]) {
   test(`${name}: no text is larger than the Genesis title (site title excepted)`, async ({ page }) => {
+    test.setTimeout(120_000); // one page load per route (20+ routes) is slow on a shared CPU
     await page.setViewportSize(size);
     const offenders = [];
     for (const route of ROUTES) {
