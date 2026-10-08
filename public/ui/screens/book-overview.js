@@ -16,14 +16,14 @@ export function handles(params) {
   return params.has('profile') && Boolean(BOOK_BY_NUMBER.get(Number(params.get('book'))));
 }
 
-function leftList(active, timelineActive, label, esc) {
+function leftList(active, timelineActive, esc) {
   const groups = CATEGORY_ORDER.map(key => {
     const books = LIBRARY_BOOKS.filter(book => book.cat === key);
     return `<section class="book-nav__group" aria-label="${esc(CATEGORIES[key].name)}"><p class="book-nav__label">${esc(CATEGORIES[key].name)}</p>
       ${books.map(book => `<a href="${esc(overviewHref(book.n))}" ${active === book.n ? 'aria-current="page"' : ''}><span>${esc(book.name)}</span><span class="book-nav__count">${book.ch}</span></a>`).join('')}
     </section>`;
   }).join('');
-  return `<div class="book-nav-wrap" data-book-nav-wrap><button type="button" class="book-nav-toggle" aria-expanded="false" aria-controls="book-nav">${esc(label)}<span aria-hidden="true">▾</span></button><nav class="book-nav" id="book-nav" aria-label="Books and timeline">
+  return `<div class="book-nav-wrap" data-book-nav-wrap><nav class="book-nav" id="book-nav" aria-label="Books and timeline">
     <p class="book-nav__label">Orientation</p>
     <a href="${esc(TIMELINE_HREF)}" ${timelineActive ? 'aria-current="page"' : ''}><span>Timeline</span></a>
     ${groups}
@@ -42,6 +42,7 @@ function bookMain(book, esc) {
   return `<header class="book-heading">
       <p class="eyebrow">Book ${String(book.n).padStart(2, '0')} of 66 · ${esc(category.testament === 'OT' ? 'Old Testament' : 'New Testament')}</p>
       <h1 id="book-overview-title">${esc(book.name)}</h1>
+      <button type="button" class="book-title-toggle" data-book-nav-toggle aria-expanded="false" aria-controls="book-nav" aria-label="${esc(book.name)}: choose a book"></button>
       ${renderGroupChip({ group: book.cat, label: category.name })}
     </header>
     <p class="book-hook">${esc(book.hook)}</p>
@@ -68,8 +69,11 @@ function bookContext(book, esc) {
     <p class="ui-panel-eyebrow">Read first</p>
     <p class="book-context__read">${esc(book.read || `Start with chapter 1 of ${book.name}.`)}</p>
     <a class="book-context__start" href="/bible?book=${book.n}&chapter=1">Read ${esc(book.name)} from chapter 1</a>
-    <h2 class="ui-panel-title">Chapters</h2>
-    <div class="book-chapters">${chapters}</div>
+    <div class="book-chapters-wrap" data-book-chapters>
+      <button type="button" class="book-chapters-toggle" data-book-chapters-toggle aria-expanded="false" aria-controls="book-chapters">Chapters <span>${book.ch}</span><span aria-hidden="true">▾</span></button>
+      <h2 class="ui-panel-title book-chapters-title">Chapters</h2>
+      <div class="book-chapters" id="book-chapters">${chapters}</div>
+    </div>
   </aside>`;
 }
 
@@ -80,7 +84,7 @@ function timelineMain(focus, esc) {
     return `<article class="timeline-era"><div><p class="eyebrow">${esc(range(era.a, era.b))}</p><h3>${esc(era.name)}</h3></div>
       <div class="timeline-books">${books.map(book => `<a href="${esc(overviewHref(book.n))}" ${focus === book.n ? 'aria-current="true"' : ''}>${esc(book.name)}</a>`).join('')}</div></article>`;
   }).join('');
-  return `<header class="book-heading"><p class="eyebrow">Canon &amp; timeline</p><h1 id="book-overview-title">Timeline</h1></header>
+  return `<header class="book-heading"><p class="eyebrow">Canon &amp; timeline</p><h1 id="book-overview-title">Timeline</h1><button type="button" class="book-title-toggle" data-book-nav-toggle aria-expanded="false" aria-controls="book-nav" aria-label="${esc('Timeline')}: choose a book"></button></header>
     <p class="book-hook">Shelf order is not historical order.</p>
     <p class="book-synopsis">This view keeps broad story-setting eras and anchor events without pretending composition dates or historical reconstructions are uncontested.</p>
     ${focused ? `<p class="notice"><strong>${esc(focused.name)}</strong> sits in ${esc(ERAS.find(era => era.k === focused.era)?.name || focused.era)}.</p>` : ''}
@@ -101,21 +105,25 @@ export async function mount(container, ctx) {
   const timeline = params.get('view') === 'timeline';
   const book = timeline ? null : BOOK_BY_NUMBER.get(Number(params.get('book')));
   const focus = timeline ? Number(params.get('book')) || 0 : 0;
-  container.innerHTML = `<section class="book-screen" data-book-screen aria-labelledby="book-overview-title">
-    ${leftList(book?.n || 0, timeline, book?.name || 'Timeline', esc)}
+  container.innerHTML = `<section class="book-screen" data-book-screen data-kind="${book ? 'book' : 'timeline'}" aria-labelledby="book-overview-title">
+    ${leftList(book?.n || 0, timeline, esc)}
     <div class="book-main">${book ? bookMain(book, esc) : timelineMain(focus, esc)}</div>
     ${book ? bookContext(book, esc) : timelineContext(esc)}
   </section>`;
   mountProgressBars(container);
   // The list is always open beside the page on a wide screen; on a phone it is a collapsed "choose a book" bar.
   const wrap = container.querySelector('[data-book-nav-wrap]');
-  const toggle = wrap.querySelector('.book-nav-toggle');
+  const toggle = container.querySelector('[data-book-nav-toggle]');
+  const chapters = container.querySelector('[data-book-chapters]');
+  const chaptersToggle = container.querySelector('[data-book-chapters-toggle]');
   const wide = window.matchMedia('(min-width: 681px)');
-  const setOpen = open => { wrap.toggleAttribute('data-open', open); toggle.setAttribute('aria-expanded', String(open)); };
-  const sync = () => setOpen(wide.matches);
+  const setNav = open => { wrap.toggleAttribute('data-open', open); toggle.setAttribute('aria-expanded', String(open)); };
+  const setChapters = open => { chapters?.toggleAttribute('data-open', open); chaptersToggle?.setAttribute('aria-expanded', String(open)); };
+  const sync = () => { setNav(wide.matches); setChapters(wide.matches); };
   sync();
   wide.addEventListener('change', sync);
-  toggle.addEventListener('click', () => setOpen(!wrap.hasAttribute('data-open')));
+  toggle.addEventListener('click', () => setNav(!wrap.hasAttribute('data-open')));
+  chaptersToggle?.addEventListener('click', () => setChapters(!chapters.hasAttribute('data-open')));
   // Bring the current book into view inside the list only (scrollIntoView would also scroll the page).
   const current = container.querySelector('.book-nav [aria-current]');
   if (current && wide.matches) wrap.scrollTop += current.getBoundingClientRect().top - wrap.getBoundingClientRect().top - wrap.clientHeight / 3;
