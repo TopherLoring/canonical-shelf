@@ -253,6 +253,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
+| `ui.path.phone.bubble-inline` | Phone Learning Path: | Owner decision | undefined |
 | `ui.phone.dock-format-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |
 | `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
@@ -298,6 +299,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.topics.desktop-2026-10-08` | Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); | Owner decision | undefined |
 | `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is one page: | Owner decision | undefined |
 | `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.dropmenu` | Phone Study Topics: | Owner decision | undefined |
 | `ui.topics.right-pane-2026-10-08` | Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views. | Owner decision | undefined |
 | `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
 | `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |

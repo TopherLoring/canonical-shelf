@@ -11,7 +11,7 @@ const chrome = params.get('chrome') !== '0';
 const dockShell = params.get('shell') === 'dock';   // the phone's dock format: top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge
 // Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
-const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, sheet: params.get('sheet') || '', mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
+const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, sheet: params.get('sheet') || '', lopen: params.has('lopen') ? Number(params.get('lopen')) : -1, mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
 let dockBook = 0;
 
 const NAV = [
@@ -100,6 +100,7 @@ function wire() {
     layout = ''; render(decide());
   }));
   // The module is a drop-down card (phone).
+  app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
   app.querySelector('[data-mod-select]')?.addEventListener('change', event => { st.mod = Number(event.target.value); layout = ''; render(decide()); });
   // Collapsible panels (My Notes): open by default, the chevron folds the body away.
   app.querySelectorAll('[data-collapse]').forEach(b => b.addEventListener('click', () => {

@@ -1398,6 +1398,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-module-on-the-learning-path-is-highl`
   The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 
+### `ui.path.phone.bubble-inline`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-what-you-ll-gain-opens-a-bub`
+  Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.
+  *Why:* Artifact comments 4c7400bd and d938b323
+
 ### `ui.phone.dock-format-2026-10-08`
 
 - **Current** · 2026-10-08 · Agent default (Claude-agent) · `phone-dock-format-exploration`
@@ -1681,6 +1687,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `topics-phone-type-dropdown`
   Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).
   *Why:* Chris artifact comment: replace this with a drop menu, replacing the category label beneath it
+
+### `ui.topics.phone.dropmenu`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-study-topics-choosing-a-question-is-a-drop`
+  Phone Study Topics: choosing a question is a drop menu; its sub topics appear as expandable content.
+  *Why:* Artifact comment b3cb49db
 
 ### `ui.topics.right-pane-2026-10-08`
 

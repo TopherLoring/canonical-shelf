@@ -60,6 +60,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Study Topics is one page: title, search, type drop-down, then the question cards. The selected question opens in place to expandable sub topics, each opening to its text with Sources and Other views as further drop-downs. No separate topic page, no Open topic button.
 - Phone Learning Path is one page like the reference image: the module as a drop-down card with its progress, then the units as drop-downs (the current unit open to its lessons). Tapping a lesson opens its overview as a popover; What you'll gain in a unit opens the unit's objectives as a popover. Names only.
 - Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views.
+- Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.
+- Phone Study Topics: choosing a question is a drop menu; its sub topics appear as expandable content.
 
 ## 2026-10-07
 
