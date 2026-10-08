@@ -54,7 +54,7 @@ test.describe('Phase 0: Nav and dock invariant positions across routes', () => {
           const base = baselineItemBoxes[i];
           expect(Math.abs(item.x - base.x), `Nav item "${item.text}" X on ${route.name} matches ${baselineRoute}`).toBeLessThanOrEqual(1.5);
           expect(Math.abs(item.y - base.y), `Nav item "${item.text}" Y on ${route.name} matches ${baselineRoute}`).toBeLessThanOrEqual(1.5);
-          expect(Math.abs(item.width - base.width), `Nav item "${item.text}" width on ${route.name} matches ${baselineRoute}`).toBeLessThanOrEqual(2);
+          expect(Math.abs(item.width - base.width), `Nav item "${item.text}" width on ${route.name} matches ${baselineRoute} (the current tab is set heavier)`).toBeLessThanOrEqual(4);
           expect(Math.abs(item.height - base.height), `Nav item "${item.text}" height on ${route.name} matches ${baselineRoute}`).toBeLessThanOrEqual(2);
         }
       }
@@ -71,7 +71,7 @@ test.describe('Phase 0: Nav and dock invariant positions across routes', () => {
       await page.goto(route.path);
       await waitForAppReady(page);
 
-      const navLocator = page.locator('nav.primary');
+      const navLocator = page.locator('nav.cs-tabbar');
       const box = await navLocator.boundingBox();
       expect(box, `Nav primary should be visible on phone ${route.name}`).not.toBeNull();
 

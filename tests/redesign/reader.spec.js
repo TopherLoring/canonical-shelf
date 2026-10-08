@@ -209,11 +209,13 @@ test.describe('Bible reader', () => {
     for (const width of [390, 641, 841, 960, 961, 1100, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto('/profile#notes');
-      await expect(page.locator('.masthead')).toBeVisible();
-      expect(await page.evaluate(() => {
-        const boxes = [...document.querySelectorAll('.masthead nav.primary a, .masthead-tools')].map(el => el.getBoundingClientRect());
+      const phoneLayout = width <= 760;
+      await expect(page.locator(phoneLayout ? '.cs-tabbar' : '.cs-top')).toBeVisible();
+      await expect(page.locator(phoneLayout ? '.cs-top' : '.cs-tabbar')).toBeHidden();
+      expect(await page.evaluate(phone => {
+        const boxes = [...document.querySelectorAll(phone ? '.cs-tabbar a' : '.cs-top .cs-nav a, .cs-top__tools')].map(el => el.getBoundingClientRect());
         return boxes.every((a, i) => a.left >= 0 && a.right <= innerWidth && boxes.slice(i + 1).every(b => a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom));
-      })).toBe(true);
+      }, phoneLayout)).toBe(true);
     }
   });
   test('the chapter heading stays fixed while the passage scrolls inside the viewport', async ({ page }) => {
@@ -225,7 +227,7 @@ test.describe('Bible reader', () => {
     expect(after.y).toBe(before.y);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(page.viewportSize().height);
-    await expect(page.locator('.site-footer')).toBeHidden();
+    await expect(page.locator('.cs-footer')).toBeHidden();
   });
   test('notes keep multiple entries per verse, ordered by verse then creation time, and support edit and delete', async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3&start=16');
@@ -449,7 +451,9 @@ test.describe('Bible reader on a phone', () => {
     await expect(theo).toBeEnabled();
     const nb = await notes.boundingBox(), tb = await theo.boundingBox();
     expect(nb.width).toBe(tb.width);
-    expect(nb.height).toBe(tb.height);
+    // Heights follow the boards: My Notes 104u, Theologian 118u on the phone; Notes sits above Theologian.
+    expect(nb.height).toBeLessThan(tb.height);
+    expect(nb.y + nb.height).toBeLessThanOrEqual(tb.y);
     expect(await theo.evaluate(el => {
       const probe = document.createElement('span'); probe.style.color = 'var(--color-edge-theologian)'; document.body.append(probe);
       const match = getComputedStyle(el).backgroundColor === getComputedStyle(probe).color; probe.remove(); return match;

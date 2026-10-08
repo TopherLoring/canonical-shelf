@@ -16,7 +16,7 @@ export function mountTheologianPanel({ panel, openButton, onClose } = {}) {
     backdrop.hidden = true;
     backdrop.dataset.theologianBackdrop = '';
     backdrop.setAttribute('aria-hidden', 'true');
-    document.body.insertBefore(backdrop, panel);
+    panel.parentNode.insertBefore(backdrop, panel);
   }
 
   panel.setAttribute('role', 'dialog');
@@ -27,8 +27,14 @@ export function mountTheologianPanel({ panel, openButton, onClose } = {}) {
   const originalInert = new Map();
 
   function setBackgroundInert(inert) {
-    for (const child of document.body.children) {
-      if (child === panel || child === backdrop) continue;
+    const keep = new Set([panel, backdrop]);
+    for (let node = panel.parentElement; node && node !== document.body; node = node.parentElement) keep.add(node);
+    const siblings = [];
+    for (let node = panel; node && node !== document.body; node = node.parentElement) {
+      for (const child of node.parentElement.children) siblings.push(child);
+    }
+    for (const child of siblings) {
+      if (keep.has(child)) continue;
       if (inert) {
         if (!originalInert.has(child)) originalInert.set(child, child.inert);
         child.inert = true;

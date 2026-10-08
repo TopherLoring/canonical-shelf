@@ -11,7 +11,7 @@
    (16px Source Sans 3 in the reference iPhone box, ui.lesson.card.type-16px-2026-10-05) and about 91 in landscape.
    Text larger than the box (a learner's enlarged type) scrolls inside it; it never clips. */
 @layer screens {
-  body:has([data-lesson-screen]) > .site-footer { display: none; }
+  body:has([data-lesson-screen]) > .cs-footer { display: none; }
   main#main:has(> .lesson-screen) { padding: 0; }
 
   .lesson-screen {

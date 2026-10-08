@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="/ui/legacy.css">
   <link rel="stylesheet" href="/ui/base.css">
   <link rel="stylesheet" href="/ui/layout.css">
-  <link rel="stylesheet" href="/ui/components/app-shell.css">
-  <link rel="stylesheet" href="/ui/components/frame.css">
+  <link rel="stylesheet" href="/ui/shell.css">
   <link rel="stylesheet" href="/ui/components/rail.css">
   <link rel="stylesheet" href="/ui/components/panel.css">
   <link rel="stylesheet" href="/ui/components/edge-tab.css">
@@ -44,77 +43,76 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="masthead">
-    <a class="brand" href="/home" aria-label="Canonical Shelf home">
-      <!-- Placeholder mark (three book spines) until Chris chooses a logo. -->
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="5" y="7" width="6" height="19" rx="1.2"/><rect x="13" y="4" width="6" height="22" rx="1.2"/><rect x="21.5" y="9" width="6" height="17" rx="1.2" transform="rotate(8 24.5 17.5)"/><rect x="3" y="27" width="26" height="2" rx="1"/></svg>
-    </a>
-    <nav class="primary" aria-label="Primary">
-      <a href="/home" data-route="home" aria-label="Shelf">
-        <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><rect x="4" y="6" width="3.5" height="14"></rect><rect x="8.5" y="4" width="3.5" height="16"></rect><path d="m14 7.5 3.4-.9 3.1 13.4-3.4.8z"></path></svg>
-        <span class="nav-label" data-phone-label="Shelf">Shelf</span>
-      </a>
-      <a href="/path" data-route="course" aria-label="Learning Path">
-        <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M8 18h6.5a3.5 3.5 0 0 0 0-7h-5a3.5 3.5 0 0 1 0-7H16"></path></svg>
-        <span class="nav-label" data-phone-label="Path">Learning Path</span>
-      </a>
-      <a href="/bible" data-route="bible" aria-label="Bible">
-        <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"></path><path d="M12 6.5v13"></path></svg>
-        <span class="nav-label" data-phone-label="Bible">Bible</span>
-      </a>
-      <a href="/topics" data-route="topics" aria-label="Study Topics">
-        <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7l9 9-7 7-9-9z"></path><circle cx="8.5" cy="8.5" r="1.5"></circle></svg>
-        <span class="nav-label" data-phone-label="Topics">Study Topics</span>
-      </a>
-      <a href="/practice" data-route="practice" aria-label="Review &amp; Practice">
-        <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v4.5h-4.5"></path><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg>
-        <span class="nav-label" data-phone-label="Review">Review &amp; Practice</span>
-      </a>
-    </nav>
-    <div class="masthead-tools">
-      <form id="global-search" class="search" role="search" action="/search" method="get" data-open="false">
-        <button type="button" class="search-toggle" aria-controls="q" aria-expanded="false" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
-        <label class="sr-only" for="q">Search the Bible, topics, glossary, and Learning Path</label>
-        <input id="q" name="q" type="search" placeholder="Search the Bible, topics, glossary" autocomplete="off">
-        <button type="submit" class="sr-only">Search</button>
-      </form>
-      <button type="button" class="feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
-      <a class="profile-link" href="/profile" data-route="profile" aria-label="Your profile"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/></svg></a>
-    </div>
-  </header>
-  <p id="pwa-status" class="pwa-status" role="status" aria-live="polite"></p>
-  <main id="main" class="app-frame" tabindex="-1" aria-live="polite"></main>
-  <aside id="guide" class="guide" hidden aria-labelledby="guide-title" data-open="false">
-    <div class="guide-head">
-      <h2 id="guide-title">Theologian</h2>
-      <div class="guide-head__actions">
-        <button id="guide-menu-button" class="guide-menu-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="guide-menu" aria-label="Conversation options">⋯</button>
-        <div id="guide-menu" class="guide-menu" role="menu" hidden>
-          <button type="button" role="menuitem" data-theologian-new-chat>New chat</button>
-          <button type="button" role="menuitem" data-theologian-save>Save to my profile</button>
-          <button type="button" role="menuitem" data-theologian-export>Download as a text file</button>
-          <button type="button" role="menuitem" data-theologian-share>Share…</button>
+  <div class="cs-app" id="app">
+    <div class="cs-shell">
+      <header class="cs-top masthead">
+        <a class="cs-brand brand" href="/home" aria-label="The Canonical Shelf, home">
+          <svg class="cs-logo brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="5" y="7" width="6" height="19" rx="1.5"/><rect x="13" y="4" width="6" height="22" rx="1.5"/><rect x="21" y="9" width="6" height="17" rx="1.5"/></svg>
+          <span class="cs-wordmark brand-wordmark">The Canonical <em>Shelf</em></span>
+        </a>
+        <nav class="cs-nav primary" aria-label="Primary">
+        <a href="/home" data-route="home" aria-label="Shelf"><span class="nav-label" data-phone-label="Shelf">Shelf</span></a>
+        <a href="/path" data-route="course" aria-label="Learning Path"><span class="nav-label" data-phone-label="Path">Learning Path</span></a>
+        <a href="/bible" data-route="bible" aria-label="Bible"><span class="nav-label" data-phone-label="Bible">Bible</span></a>
+        <a href="/topics" data-route="topics" aria-label="Study Topics"><span class="nav-label" data-phone-label="Topics">Study Topics</span></a>
+        <a href="/practice" data-route="practice" aria-label="Review & Practice"><span class="nav-label" data-phone-label="Review">Review & Practice</span></a>
+        </nav>
+        <div class="cs-top__tools masthead-tools">
+          <form id="global-search" class="cs-search search" role="search" action="/search" method="get" data-open="false">
+            <button type="button" class="cs-icon-button cs-top__search search-toggle" aria-controls="q" aria-expanded="false" aria-label="Search"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+            <label class="sr-only" for="q">Search the Bible, topics, glossary, and Learning Path</label>
+            <input id="q" name="q" type="search" placeholder="Search the Bible, topics, glossary" autocomplete="off">
+            <button type="submit" class="sr-only">Search</button>
+          </form>
+          <button type="button" class="cs-feedback feedback-cta" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-panel" aria-expanded="false">Feedback</button>
+          <a class="cs-icon-button cs-top__profile profile-link" href="/profile" data-route="profile" aria-label="Your profile"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1.4-3.6 4.2-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></a>
         </div>
-        <button id="guide-close" type="button" aria-label="Close Theologian">×</button>
+      </header>
+      <p id="pwa-status" class="cs-notice pwa-status" role="status" aria-live="polite"></p>
+      <main id="main" class="cs-frame cs-frame--page app-frame" tabindex="-1" aria-live="polite"></main>
+      <nav class="cs-tabbar" aria-label="Primary on phones">
+      <a href="/home" data-route="home" aria-label="Shelf"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><rect x="4" y="6" width="3.5" height="14"></rect><rect x="8.5" y="4" width="3.5" height="16"></rect><path d="m14 7.5 3.4-.9 3.1 13.4-3.4.8z"></path></svg><span>Shelf</span></a>
+      <a href="/path" data-route="course" aria-label="Learning Path"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M8 18h6.5a3.5 3.5 0 0 0 0-7h-5a3.5 3.5 0 0 1 0-7H16"></path></svg><span>Path</span></a>
+      <a href="/bible" data-route="bible" aria-label="Bible"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"></path><path d="M12 6.5v13"></path></svg><span>Bible</span></a>
+      <a href="/topics" data-route="topics" aria-label="Study Topics"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7l9 9-7 7-9-9z"></path><circle cx="8.5" cy="8.5" r="1.5"></circle></svg><span>Topics</span></a>
+      <a href="/practice" data-route="practice" aria-label="Review & Practice"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v4.5h-4.5"></path><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span>Review</span></a>
+        <a class="cs-tabbar__extra" href="/search" data-route="search" aria-label="Search"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><span>Search</span></a>
+        <a href="/profile" data-route="profile" aria-label="Profile and feedback"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1.4-3.6 4.2-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg><span>You</span></a>
+      </nav>
+    <aside id="guide" class="guide" hidden aria-labelledby="guide-title" data-open="false">
+      <div class="guide-head">
+        <h2 id="guide-title">Theologian</h2>
+        <div class="guide-head__actions">
+          <button id="guide-menu-button" class="guide-menu-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="guide-menu" aria-label="Conversation options">⋯</button>
+          <div id="guide-menu" class="guide-menu" role="menu" hidden>
+            <button type="button" role="menuitem" data-theologian-new-chat>New chat</button>
+            <button type="button" role="menuitem" data-theologian-save>Save to my profile</button>
+            <button type="button" role="menuitem" data-theologian-export>Download as a text file</button>
+            <button type="button" role="menuitem" data-theologian-share>Share…</button>
+          </div>
+          <button id="guide-close" type="button" aria-label="Close Theologian">×</button>
+        </div>
       </div>
+      <div id="guide-body"></div>
+    </aside>
+    <button id="guide-open" class="ui-edge-tab ui-edge-tab--theologian" data-edge-tab="theologian" type="button" aria-controls="guide" aria-expanded="false" disabled aria-disabled="true"><svg class="ui-edge-tab-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg><span class="ui-edge-tab-label">Theologian</span><span class="theologian-tab__badge" data-unread-count hidden></span><span class="sr-only" data-unread-label></span></button>
+    <aside id="feedback-panel" class="utility-panel" hidden aria-labelledby="feedback-title">
+      <div class="utility-panel__head"><div><p class="eyebrow">Canonical Shelf</p><h2 id="feedback-title">Feedback</h2><p>Tell Chris about content, how something works, an interpretation, an idea, or ask him a question directly.</p></div><button id="feedback-close" class="utility-panel__close" type="button" aria-label="Close feedback">×</button></div>
+      <form id="feedback-form" class="utility-form">
+        <label>About<select name="category"><option value="content">Content</option><option value="function">How something works</option><option value="interpretation">An interpretation</option><option value="suggestion">A suggestion</option><option value="question">A question for Chris</option></select></label>
+        <label>Your message<textarea name="message" maxlength="4000" rows="5" placeholder="Write as much or as little as you like."></textarea></label>
+        <label>Contact information <span class="meta">optional</span><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email, if you want a reply by email too"></label>
+        <p id="feedback-attached" class="privacy-note"></p>
+        <p class="privacy-note">Replies come back to this browser as a message on the Theologian tab, without identifying you. The server keeps only a one-way hash of a random browser code, never your IP address. <button type="button" class="link-button" data-feedback-forget>Forget this browser's feedback link</button></p>
+        <div class="utility-form__actions"><button class="button" type="submit">Send feedback</button><span id="feedback-status" class="utility-status" role="status" aria-live="polite"></span></div>
+      </form>
+    </aside>
+
     </div>
-    <div id="guide-body"></div>
-  </aside>
-  <button id="guide-open" class="ui-edge-tab ui-edge-tab--theologian" data-edge-tab="theologian" type="button" aria-controls="guide" aria-expanded="false" disabled aria-disabled="true"><svg class="ui-edge-tab-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg><span class="ui-edge-tab-label">Theologian</span><span class="theologian-tab__badge" data-unread-count hidden></span><span class="sr-only" data-unread-label></span></button>
-  <aside id="feedback-panel" class="utility-panel" hidden aria-labelledby="feedback-title">
-    <div class="utility-panel__head"><div><p class="eyebrow">Canonical Shelf</p><h2 id="feedback-title">Feedback</h2><p>Tell Chris about content, how something works, an interpretation, an idea, or ask him a question directly.</p></div><button id="feedback-close" class="utility-panel__close" type="button" aria-label="Close feedback">×</button></div>
-    <form id="feedback-form" class="utility-form">
-      <label>About<select name="category"><option value="content">Content</option><option value="function">How something works</option><option value="interpretation">An interpretation</option><option value="suggestion">A suggestion</option><option value="question">A question for Chris</option></select></label>
-      <label>Your message<textarea name="message" maxlength="4000" rows="5" placeholder="Write as much or as little as you like."></textarea></label>
-      <label>Contact information <span class="meta">optional</span><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email, if you want a reply by email too"></label>
-      <p id="feedback-attached" class="privacy-note"></p>
-      <p class="privacy-note">Replies come back to this browser as a message on the Theologian tab, without identifying you. The server keeps only a one-way hash of a random browser code, never your IP address. <button type="button" class="link-button" data-feedback-forget>Forget this browser's feedback link</button></p>
-      <div class="utility-form__actions"><button class="button" type="submit">Send feedback</button><span id="feedback-status" class="utility-status" role="status" aria-live="polite"></span></div>
-    </form>
-  </aside>
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <nav class="site-footer__links" aria-label="About, legal, and policy">
+  </div>
+  <footer class="cs-footer">
+    <div class="cs-footer__inner">
+      <nav class="cs-footer__links" aria-label="About, legal, and policy">
         <a href="/about.html#faith">Statement of Faith</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>

@@ -4,7 +4,7 @@
    from a theme role (no raw values). Desktop: modules | the open module | up next and progress. Phone: one column with
    "Up next" first and a picker in place of the modules rail. Reference: mockups-2026-10-03/LearningPath.dc.html. */
 @layer screens {
-  main#main:has(> .path-screen) { padding: 0; flex: 1; min-height: 0; margin-bottom: var(--space-3); overflow: hidden; }
+  main#main:has(> .path-screen) { padding: 0; min-height: 0; overflow: hidden; }
   .path-screen {
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr) 320px;

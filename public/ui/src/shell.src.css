@@ -1,0 +1,189 @@
+/* Shell: backdrop, top bar, frame, cards, rails, buttons, edge tabs, phone tab bar and device chrome.
+   Every length is written in board units (u). build.mjs turns 12u into calc(12 * var(--u)).
+   Desktop: one u is 1/1440 of the app's width or 1/900 of its height, whichever is smaller, so a 1440 × 900 window
+   reproduces the boards exactly and any other size scales them; the middle column takes whatever width is left.
+   Phone: one u is 1/390 of the app's width (the phone boards are 390 wide); the page scrolls inside the frame. */
+
+.cs-app { container: app / size; inline-size: 100%; block-size: 100dvh; overflow: hidden; }
+/* Chrome (top bar, bottom bar, edge tabs) uses the boards' box model: buttons, form fields and the frame boxes are
+   border-box and everything else content-box. Screens keep their own until they are ported (Step 3). */
+.cs-top *, .cs-top *::before, .cs-top *::after, .cs-tabbar *, .cs-tabbar *::before, .cs-tabbar *::after { box-sizing: content-box; }
+.cs-top, .cs-top :where(button, input, textarea, select, a.cs-icon-button), .cs-tabbar, .cs-tabbar :where(a, button) { box-sizing: border-box; }
+.cs-top :where(h1, h2, h3, p, ol, ul), .cs-tabbar :where(ol, ul) { margin: 0; padding: 0; list-style: none; }
+.cs-top :where(button, input), .cs-tabbar :where(button) { font-family: inherit; font-size: 13.333u; line-height: normal; color: inherit; }
+.cs-top button, .cs-tabbar button { cursor: pointer; }
+.cs-top :where(a), .cs-tabbar :where(a) { color: var(--c-action); }
+.cs-top :where(a, button, input):focus-visible, .cs-tabbar :where(a, button):focus-visible { outline: 2u solid var(--c-action); outline-offset: 2u; }
+.cs-app [hidden] { display: none; }
+.cs-visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.cs-shell {
+  --u: calc(min(100cqw / 1440, 100cqh / 900) * var(--text-size-factor, 1));
+  position: relative; inline-size: 100%; block-size: 100%;
+  display: grid; grid-template-rows: 64u minmax(0, 1fr);
+  background-color: var(--c-page);
+  background-image: radial-gradient(var(--c-page-dot) 1u, transparent 1u);
+  background-size: 5u 5u;
+  color: var(--c-text); font-family: var(--f-body); font-size: 16u; line-height: normal;
+}
+.cs-icon { inline-size: 18u; block-size: 18u; flex: none; }
+
+/* ---- Top bar ---- */
+.cs-top { display: flex; align-items: center; gap: 28u; padding: 0 32u; background: var(--c-surface); border-block-end: 1u solid var(--c-border); }
+.cs-brand { flex: 0 0 248u; display: flex; align-items: center; gap: 10u; color: var(--c-text); text-decoration: none; }
+.cs-logo { inline-size: 26u; block-size: 26u; fill: var(--c-action); flex: none; }
+.cs-wordmark { font-family: var(--f-wordmark); font-size: 23u; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.cs-wordmark em { font-style: italic; color: var(--c-text-2); }
+.cs-nav { flex: 1; display: flex; gap: 4u; }
+.cs-nav a { padding: 10u 2u 8u; margin: 0 10u; border-block-end: 2u solid transparent; font-size: 13u; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text-2); text-decoration: none; white-space: nowrap; }
+.cs-nav a[aria-current="page"] { font-weight: 700; color: var(--c-text); border-block-end-color: var(--c-action); }
+.cs-icon-button { inline-size: 44u; block-size: 44u; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 10u; background: transparent; color: var(--c-text-2); }
+.cs-top__search .cs-icon { inline-size: 20u; block-size: 20u; }
+.cs-top__profile .cs-icon { inline-size: 22u; block-size: 22u; }
+.cs-icon-button--small { inline-size: 36u; block-size: 36u; color: var(--c-muted); }
+.cs-icon-button--small .cs-icon { inline-size: 16u; block-size: 16u; }
+.cs-icon-button--tiny { inline-size: 36u; block-size: 36u; border-radius: 8u; color: var(--c-muted); }
+.cs-icon-button--tiny .cs-icon { inline-size: 16u; block-size: 16u; }
+.cs-feedback { block-size: 36u; padding: 0 16u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text-2); font-size: 14u; }
+
+/* ---- Frame ---- */
+.cs-frame { margin: 28u; min-block-size: 0; min-inline-size: 0; border: 1u solid var(--c-border); border-radius: 16u; box-shadow: var(--sh-frame); overflow: hidden; }
+.cs-frame--well { display: grid; gap: 16u; padding: 16u; background: var(--c-sunken); }
+.cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) 340u; gap: 28u; padding: 20u 24u 20u 32u; background: var(--c-surface); }
+.cs-frame--window { display: flex; flex-direction: column; background: var(--c-raised); }
+.cs-cols--path { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-cols--reader { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-cols--topics { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-cols--topics-list { grid-template-columns: 240u minmax(0, 1fr); }
+.cs-cols--practice { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-frame--page { display: block; overflow: auto; overscroll-behavior: contain; background: var(--c-surface); }
+.cs-frame > * { min-inline-size: 0; min-block-size: 0; }
+.cs-frame--well > * { overflow: auto; }
+
+/* ---- Cards and panels ---- */
+.cs-card { background: var(--c-raised); border: 1u solid var(--c-hairline); border-radius: 14u; box-shadow: var(--sh-card); }
+.cs-panel { padding: 18u; display: flex; flex-direction: column; gap: 10u; }
+.cs-panel__title { font-family: var(--f-display); font-size: 19u; font-weight: 600; }
+.cs-panel__foot { margin-block-start: auto; font-size: 14u; }
+.cs-stack { display: flex; flex-direction: column; gap: 14u; min-block-size: 0; }
+.cs-fill { flex: 1 1 auto; min-block-size: 0; overflow: auto; }
+.cs-column { display: flex; flex-direction: column; gap: 14u; }
+.cs-heading { display: flex; flex-direction: column; gap: 4u; padding: 6u 4u 0; }
+.cs-heading h1 { font-family: var(--f-display); font-size: 34u; font-weight: 600; }
+.cs-kicker { font-size: 13u; font-weight: 600; color: var(--c-action); }
+.cs-kicker--small { font-size: 12u; }
+.cs-sub { font-size: 14u; color: var(--c-muted); }
+.cs-caption { font-size: 12u; color: var(--c-muted); }
+.cs-caption--label { font-size: 13u; }
+.cs-caption--fine { line-height: 1.45; }
+.cs-muted { color: var(--c-muted); }
+.cs-grow { flex-grow: 1; min-inline-size: 0; }
+.cs-split { display: flex; justify-content: space-between; gap: 12u; font-size: 14u; }
+.cs-split--center { align-items: center; }
+.cs-end { display: flex; justify-content: flex-end; }
+.cs-link { display: inline-flex; align-items: center; gap: 4u; color: var(--c-action); font-weight: 600; }
+.cs-link .cs-icon { inline-size: 14u; block-size: 14u; }
+
+/* ---- Rails ---- */
+.cs-rail { padding: 18u 10u; display: flex; flex-direction: column; gap: 2u; }
+.cs-rail--reader, .cs-rail--lesson { padding: 20u 12u; gap: 4u; }
+.cs-rail__label { padding: 0 12u 8u; font-size: 13u; color: var(--c-muted); }
+.cs-rail--lesson .cs-rail__label { padding: 0 10u 6u; }
+.cs-rail__section { margin: 14u 12u 6u; padding-block-start: 14u; border-block-start: 1u solid var(--c-hairline); font-size: 13u; color: var(--c-muted); }
+.cs-rail--reader .cs-rail__section { margin: 18u 12u 8u; padding-block-start: 18u; }
+.cs-rail--lesson .cs-rail__section { margin: 16u 10u 6u; padding-block-start: 16u; }
+.cs-rail__item { display: flex; align-items: center; gap: 10u; min-block-size: 42u; padding: 6u 12u; border-radius: 10u; font-size: 15u; color: var(--c-text-2); text-decoration: none; }
+.cs-rail--reader .cs-rail__item { gap: 12u; }
+.cs-rail--lesson .cs-rail__item { min-block-size: 38u; padding: 0 10u; font-size: 14u; }
+.cs-rail--lesson .cs-rail__item .cs-icon { inline-size: 17u; block-size: 17u; }
+/* The current item in every left pane uses the lesson's current-step rose (Chris, 2026-10-08). */
+.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-accent-tint); }
+.cs-rail__item.is-current .cs-icon { color: var(--c-accent); }
+.cs-count { font-size: 13u; font-weight: 400; color: var(--c-muted); }
+.cs-rail__item.is-current .cs-count { color: var(--c-accent); }
+
+
+/* ---- Markers, tags, bars, chips ---- */
+.cs-marker { inline-size: 24u; block-size: 24u; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 2u solid var(--c-strong); border-radius: 7u; font-size: 12u; color: var(--c-muted); }
+.cs-marker--current { border: 0; background: var(--c-accent); color: var(--c-on-action); font-weight: 600; }
+.cs-marker--locked { border-style: dashed; }
+.cs-marker--locked .cs-icon { inline-size: 13u; block-size: 13u; }
+.cs-tag { display: inline-flex; align-items: center; gap: 6u; block-size: 22u; padding: 0 8u; border-radius: 6u; background: color-mix(in srgb, var(--group) 12%, transparent); color: var(--c-text); font-size: 12u; font-weight: 600; line-height: 1; white-space: nowrap; }
+.cs-tag__dot { inline-size: 8u; block-size: 8u; border-radius: 2u; background: var(--group); }
+.cs-bar { flex: none; block-size: 6u; border-radius: 3u; background: var(--c-hairline); overflow: hidden; }
+.cs-bar > span { display: block; block-size: 100%; inline-size: var(--pct); border-radius: 3u; background: var(--c-action); }
+.cs-bar--gold > span { background: var(--c-gold); }
+.cs-progress-row { display: flex; flex-direction: column; gap: 6u; }
+[data-group="law"] { --group: var(--g-law); } [data-group="history"] { --group: var(--g-history); } [data-group="wisdom"] { --group: var(--g-wisdom); }
+[data-group="major"] { --group: var(--g-major); } [data-group="minor"] { --group: var(--g-minor); } [data-group="gospels"] { --group: var(--g-gospels); }
+[data-group="paul"] { --group: var(--g-paul); } [data-group="general"] { --group: var(--g-general); } [data-group="revelation"] { --group: var(--g-revelation); }
+
+/* ---- Buttons ---- */
+.cs-button { display: inline-flex; align-items: center; justify-content: center; gap: 8u; block-size: 44u; padding: 0 20u; border: 0; border-radius: 10u; background: var(--c-action); color: var(--c-on-action); font-size: 15u; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.cs-app a.cs-button { color: var(--c-on-action); }
+.cs-button--block { display: flex; align-self: stretch; margin-block-start: 4u; }
+.cs-button--tall { block-size: 48u; font-size: 16u; margin-block-start: 2u; }
+.cs-button--small { block-size: 34u; padding: 0 14u; font-size: 14u; }
+.cs-button--compact { block-size: 36u; padding: 0 18u; font-size: 14u; }
+.cs-button--continue { block-size: 48u; padding: 0 30u; font-size: 16u; }
+.cs-button--ghost { background: transparent; color: var(--c-text-2); padding: 0 16u; font-weight: 400; }
+.cs-button--outline { background: var(--c-raised); color: var(--c-text-2); border: 1u solid var(--c-hairline); padding: 0 16u; font-weight: 400; }
+.cs-button:disabled { color: var(--c-disabled); cursor: default; }
+
+
+/* ---- Phone layout ---- */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: 16u; }
+  .cs-top { display: none; }
+  .cs-frame { margin: 10u; }
+  .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
+  .cs-frame--shelf { background: var(--c-surface); }
+  .cs-frame--well.cs-cols--reader { background: var(--c-surface); }
+  .cs-scroll { flex: 1; min-block-size: 0; overflow: auto; display: flex; flex-direction: column; gap: 14u; padding: 16u 24u 24u 16u; }
+  .cs-heading { padding: 0; }
+  .cs-heading h1 { font-size: 28u; }
+  .cs-panel { padding: 16u; }
+}
+
+/* Bottom bar (phone): the one navigation on every phone screen. The five destinations, then Search and Profile
+   (Feedback lives under Profile). Lesson and Bible are focus screens: no bar, a close button instead. */
+.cs-tabbar { display: none; }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-tabbar { display: flex; padding: 0 2u; background: var(--c-surface); border-block-start: 1u solid var(--c-border); }
+  .cs-tabbar :where(a, button) { flex: 1 1 0; min-inline-size: 0; block-size: 56u; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3u; color: var(--c-text-2); font-family: inherit; font-size: 9.5u; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; box-sizing: border-box; }
+  .cs-tabbar .cs-icon { inline-size: 21u; block-size: 21u; }
+  .cs-tabbar a[aria-current="page"] { color: var(--c-action); font-weight: 600; box-shadow: inset 0 2u 0 var(--c-action); }
+  .cs-tabbar__extra { border-inline-start: 1u solid var(--c-hairline); }
+}
+
+
+/* ---- Top bar: search field (the template draws only the icon; the app opens a field to its left) ---- */
+.cs-top__tools { display: flex; align-items: center; gap: 12u; margin-inline-start: auto; flex: none; }
+.cs-top__tools .cs-top__search, .cs-top__tools .cs-top__profile { position: relative; }
+.cs-top__tools { margin-inline-end: 0; }
+.cs-search { position: relative; display: flex; align-items: center; }
+.cs-search input { position: absolute; inset-inline-end: 0; inline-size: 0; opacity: 0; pointer-events: none; block-size: 36u; padding: 0 12u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-surface); color: var(--c-text); font-size: 14u; transition: inline-size var(--motion-base) var(--motion-easing), opacity var(--motion-base) var(--motion-easing); }
+.cs-search[data-open="true"] input { inline-size: 240u; opacity: 1; pointer-events: auto; z-index: var(--z-raised); }
+.cs-search[data-open="true"] .cs-top__search { position: relative; z-index: var(--z-popover); }
+.cs-icon-button[aria-current], .cs-icon-button.is-active { color: var(--c-action); }
+.cs-feedback:hover, .cs-icon-button:hover { color: var(--c-text); }
+
+/* Offline and update notice: one quiet line under the top bar, only while it has text. */
+.cs-notice { position: absolute; inset-inline: 0; inset-block-start: 64u; z-index: var(--z-raised); margin: 0; padding: 4u 32u; font-size: 13u; color: var(--c-text-2); background: var(--c-surface); border-block-end: 1u solid var(--c-border); }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) { .cs-notice { inset-block-start: 0; padding: 4u 16u; } }
+.cs-notice:empty { display: none; }
+
+/* ---- Footer: the legal and About links, just below the app's first screen ---- */
+.cs-footer { background: var(--c-page); color: var(--c-text-2); }
+.cs-footer__inner { padding: 1.25rem 2rem 1.75rem; display: flex; justify-content: center; }
+.cs-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.1rem; }
+.cs-footer__links a { color: var(--c-text-2); font-size: .84rem; text-underline-offset: 0.22em; }
+.cs-footer__links a:hover, .cs-footer__links a:focus-visible { color: var(--c-text); }
+body.study-focus-active .cs-footer { display: none; }
+
+/* Focus mode (lessons): chrome steps away, the frame fills the app. */
+body.study-focus-active .cs-top,
+body.study-focus-active .cs-tabbar,
+body.study-focus-active .cs-notice { display: none; }
+body.study-focus-active .cs-shell { grid-template-rows: minmax(0, 1fr); }
+body.study-focus-active .cs-frame { margin: 0; border: 0; border-radius: 0; box-shadow: none; background: var(--c-sunken); }

@@ -35,7 +35,7 @@
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "color:#1b1d22;",
-      "count": 66
+      "count": 63
     },
     "css-raw-color|public/learning.css": {
       "rule": "css-raw-color",
@@ -65,13 +65,13 @@
       "rule": "css-raw-color",
       "file": "public/utility-panels.css",
       "text": ".guide .evidence{border-top-color:#ffffff20}.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}.guide",
-      "count": 25
+      "count": 22
     },
     "css-z-index-literal|public/canonical-shelf.css": {
       "rule": "css-z-index-literal",
       "file": "public/canonical-shelf.css",
       "text": ".library-first-book:hover,.library-first-book:focus-visible{transform:translateY(-5px);filter:brightness(1.14);z-index:3}.library-first-book:hover span,.library",
-      "count": 3
+      "count": 2
     },
     "css-z-index-literal|public/experience.css": {
       "rule": "css-z-index-literal",
@@ -107,7 +107,7 @@
       "rule": "css-z-index-literal",
       "file": "public/styles.css",
       "text": ".guide-open{position:fixed;right:1rem;bottom:1rem;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);pad",
-      "count": 4
+      "count": 3
     },
     "css-z-index-literal|public/theologian-chat.css": {
       "rule": "css-z-index-literal",
@@ -119,7 +119,7 @@
       "rule": "css-z-index-literal",
       "file": "public/utility-panels.css",
       "text": ".utility-fab{position:fixed;z-index:22;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);padding:.58rem",
-      "count": 3
+      "count": 2
     }
   }
 }

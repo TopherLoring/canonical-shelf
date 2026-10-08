@@ -53,7 +53,7 @@ test('a reader waiting for its font cannot replace a newer profile destination',
   try {
     await page.goto('/bible?book=19&chapter=119&start=105', { waitUntil: 'domcontentloaded' });
     await pending.requested;
-    await page.getByRole('link', { name: 'Your profile', exact: true }).click();
+    await page.getByRole('link', { name: 'Profile and feedback', exact: true }).click();
     await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
     pending.release();
     await page.evaluate(() => document.fonts.load('400 16px "Reader Test"'));

@@ -31,11 +31,9 @@
   }
 
   /* App shell header placement */
-  .masthead, .app-shell-header {
-    position: sticky;
-    top: 0;
+  .cs-top {
+    position: relative;
     z-index: var(--layer-nav);
-    width: 100%;
   }
 
   /* Phone edge-tabs dock */

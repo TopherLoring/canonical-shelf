@@ -60,8 +60,8 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
 
 test('one navigation bar: destinations are tabs in the masthead; Home keeps the canonical library',async({page})=>{
   await page.goto('/home');
-  await expect(page.locator('nav:not(.site-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
-  await expect(page.locator('.masthead nav.primary a')).toHaveText(['Shelf','Learning Path','Bible','Study Topics','Review & Practice']);
+  await expect(page.locator('nav:visible:not(.cs-footer__links)'),'one navigation bar besides the policy links in the footer').toHaveCount(1);
+  await expect(page.locator('.cs-top .cs-nav a')).toHaveText(['Shelf','Learning Path','Bible','Study Topics','Review & Practice']);
   await expect(page.locator('main [data-book-select]')).toHaveCount(66);
 }); 
 
@@ -197,7 +197,7 @@ test('lesson objectives describe lessons on the unit overview and never appear i
 test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full screen with appearance',async({page})=>{
   await page.goto('/home');
   const bar=page.locator('header.masthead');
-  await expect(bar.locator('.brand')).not.toContainText('Canonical Shelf');
+  await expect(bar.locator('.cs-wordmark'),'Home shows the logo mark only').toBeHidden();
   await expect(bar.locator(':scope > *')).toHaveCount(3);
   await expect(bar.locator('.masthead-tools > *')).toHaveCount(3);
   await page.goto('/bible');
@@ -211,7 +211,7 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
   await expect(page).toHaveURL(/\/search\?q=covenant/);
   await bar.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
-  await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','');
+  await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','page');
   for(const id of ['you','progress','notes','appearance','reading','privacy'])await expect(page.locator(`#${id}.profile-screen__section`)).toBeVisible();
   await expect(page.locator('#you [data-account-mount]')).not.toContainText('Checking your account');
   const cards=page.locator('#appearance [data-theme-option]');
@@ -243,7 +243,8 @@ test('each page starts close under the top bar (no large blank band); Home has n
   for(const u of ['/home','/course','/bible?book=43&chapter=1','/bible?book=43&profile=1','/bible?view=timeline','/search?q=grace','/topics','/practice','/profile']){
     await page.goto(u);
     await expect(page.locator('main')).not.toBeEmpty();
-    const gap=await page.evaluate(()=>{const bar=document.querySelector('header.masthead').getBoundingClientRect().bottom;const w=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT,{acceptNode:n=>n.textContent.trim()&&n.parentElement.offsetParent!==null?1:3});const t=w.nextNode();return t.parentElement.getBoundingClientRect().top-bar});
+    // Measured from the frame's top edge: the frame itself floats 28 board units under the bar by design.
+    const gap=await page.evaluate(()=>{const frame=document.querySelector('main').getBoundingClientRect().top;const w=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT,{acceptNode:n=>n.textContent.trim()&&n.parentElement.offsetParent!==null?1:3});const t=w.nextNode();return t.parentElement.getBoundingClientRect().top-frame});
     expect(gap,`space above the first text on ${u}`).toBeLessThanOrEqual(48);
   }
   await page.goto('/home');
