@@ -255,6 +255,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
 | `ui.path.phone.bubble-inline` | Phone Learning Path: | Owner decision | undefined |
+| `ui.path.phone.inline-button` | Phone Learning Path: | Owner decision | undefined |
 | `ui.path.phone.inline-no-objective` | Phone Learning Path: | Owner decision | undefined |
 | `ui.phone.dock-format-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |

@@ -510,3 +510,5 @@
 .cs-typepicker--block { align-self: stretch; justify-content: flex-start; min-block-size: 44u; }
 .cs-typepicker--block > .cs-icon:first-child { color: var(--c-action); }
 .cs-typepicker--block .cs-grow { text-align: start; }
+
+.cs-lessonopen .cs-button { align-self: flex-start; }
