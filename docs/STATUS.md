@@ -207,15 +207,18 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.fonts.selection` | Fonts: | Owner decision | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
+| `ui.lesson.current-step-2026-10-07` | The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker. | Owner decision | undefined |
 | `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
 | `ui.lesson.reading` | Lesson readings (::reading): | Owner decision | undefined |
+| `ui.lesson.step-shape` | Lesson step shape: | Owner decision | undefined |
 | `ui.naming` | Learners are not shown the level names "Module" and "Unit"; | Owner decision | undefined |
 | `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
@@ -224,8 +227,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
+| `ui.notes.edge-tab` | My Notes edge tab appears on Lesson and Bible, plus any other screen where it is useful, not on every screen. | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
+| `ui.panes.cards-on-well-2026-10-07` | Every redesigned screen uses the same card treatment: | Owner decision | undefined |
+| `ui.panes.spacing-2026-10-07` | Leave generous room between the main content and the side panes and between panes and the frame edges and top; | Owner decision | undefined |
+| `ui.panes.widths` | Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values. | Owner decision | undefined |
+| `ui.path.overview` | Learning Path overview exists in the template: | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
+| `ui.phone.navigation` | Phone navigation follows the template: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
@@ -237,6 +246,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
+| `ui.scrolling.no-hscroll` | No horizontal scrolling anywhere; | Owner decision | undefined |
 | `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
 | `ui.search.and.library` | Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
@@ -246,6 +256,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
+| `ui.theme.template-roles` | Default theme follows the template: | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |

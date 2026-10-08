@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "default-theme-follows-the-template-the-template-",
+  "topic": "ui.theme.template-roles",
+  "date": "2026-10-08",
+  "text": "Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.",
+  "by": "Chris"
+}

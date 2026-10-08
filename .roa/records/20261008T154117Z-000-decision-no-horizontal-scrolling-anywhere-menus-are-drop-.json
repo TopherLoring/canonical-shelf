@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "no-horizontal-scrolling-anywhere-menus-are-drop-",
+  "topic": "ui.scrolling.no-hscroll",
+  "date": "2026-10-08",
+  "text": "No horizontal scrolling anywhere; menus are drop-downs, so the no-hscroll exception is moot.",
+  "by": "Chris"
+}

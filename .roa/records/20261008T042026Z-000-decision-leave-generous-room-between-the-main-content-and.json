@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "leave-generous-room-between-the-main-content-and",
+  "topic": "ui.panes.spacing-2026-10-07",
+  "date": "2026-10-08",
+  "text": "Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.",
+  "by": "Chris"
+}

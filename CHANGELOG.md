@@ -8,6 +8,18 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
+- Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.
+- Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.
+- The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.
+- Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them. (agent default)
+- Lesson step shape: lesson content is authored or generated to a length budget, so the fixed 2:1 / 4:5 step box is not needed. The lesson body flows inside the window frame, as in the template. The content-length cap stays as a content guard (type-cap.spec.js), not as a layout box.
+- Phone navigation follows the template: status bar and camera island appear in the preview only, never in the app; no top bar on phone; one bottom bar on every screen (Shelf, Path, Bible, Topics, Review, Search, You). Lesson and Bible are focus screens with a close button; the lesson shows 'Step x of y' plus a chain of dots; the Shelf's selected book docks above the bar. Chris may veto after seeing it.
+- My Notes edge tab appears on Lesson and Bible, plus any other screen where it is useful, not on every screen. Supersedes the 2026-10-03 every-phone-screen decision.
+- Learning Path overview exists in the template: the module overview is the default view (rail, module main, Up next, objectives).
+- Fonts: each theme has its own font family; fonts are also selectable separately from the theme in Profile settings; text size can be changed in the reader and in site settings; board units (--u) multiply by the user text-size factor.
+- Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.
+- Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values.
+- No horizontal scrolling anywhere; menus are drop-downs, so the no-hscroll exception is moot.
 
 ## 2026-10-07
 

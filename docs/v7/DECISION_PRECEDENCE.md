@@ -1120,6 +1120,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Values now live in the design-tokens contract; layout items are open to Chris's redesign feedback
 
+### `ui.fonts.selection`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `fonts-each-theme-has-its-own-font-family-fonts-a`
+  Fonts: each theme has its own font family; fonts are also selectable separately from the theme in Profile settings; text size can be changed in the reader and in site settings; board units (--u) multiply by the user text-size factor.
+
 ### `ui.frame.phone`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.frame.phone.v1`
@@ -1188,6 +1193,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
 
+### `ui.lesson.current-step-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-step-in-the-lesson-s-section-list-is`
+  The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.
+
 ### `ui.lesson.progress`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
@@ -1214,6 +1224,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.reading.inline-or-popover-2026-10-05`
   Lesson readings (::reading): a passage of one or two sentences or less is quoted on the card as a Scripture block, with extra padding, the Scripture surface color (scriptureBed), the Bible group's color stripe, and the Scripture font. A longer passage appears on the card as a compact Scripture link (reference, version and a one-line preview in the group's colors) that opens the full passage in a popover: centered over a dimmed screen on phones, beside the link on desktop; the passage scrolls inside the popover, which offers Open in the Bible, and closes with its close button, Escape, or a tap on the dimmed area, returning to the same card.
+
+### `ui.lesson.step-shape`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-step-shape-lesson-content-is-authored-or-`
+  Lesson step shape: lesson content is authored or generated to a length budget, so the fixed 2:1 / 4:5 step box is not needed. The lesson body flows inside the window frame, as in the template. The content-length cap stays as a content guard (type-cap.spec.js), not as a layout box.
 
 ### `ui.naming`
 
@@ -1273,15 +1288,48 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Previous** · 2026-10-04 · Owner decision (Chris) · `tablet-full-navigation-2026-10-04`
   ~~Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.~~
 
+### `ui.notes.edge-tab`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `my-notes-edge-tab-appears-on-lesson-and-bible-pl`
+  My Notes edge tab appears on Lesson and Bible, plus any other screen where it is useful, not on every screen. Supersedes the 2026-10-03 every-phone-screen decision.
+
 ### `ui.notes.naming`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
   The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
 
+### `ui.panes.cards-on-well-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `every-redesigned-screen-uses-the-same-card-treat`
+  Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.
+  *Why:* Chris 2026-10-07: practice card was all one card with shadows only around the main card; lesson and Study Topics were wrong; all redesign work should already follow his stated preferences
+- **Overridden default** · 2026-10-08 · Agent default (Claude) · `correction-to-ui-panes-cards-on-well-2026-10-07-`
+  ~~Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them.~~
+
+### `ui.panes.spacing-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `leave-generous-room-between-the-main-content-and`
+  Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.
+
+### `ui.panes.widths`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `pane-widths-are-fixed-where-that-makes-sense-and`
+  Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values.
+
+### `ui.path.overview`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-overview-exists-in-the-template-th`
+  Learning Path overview exists in the template: the module overview is the default view (rail, module main, Up next, objectives).
+
 ### `ui.phone.my-notes`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
   Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
+
+### `ui.phone.navigation`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-navigation-follows-the-template-status-bar`
+  Phone navigation follows the template: status bar and camera island appear in the preview only, never in the app; no top bar on phone; one bottom bar on every screen (Shelf, Path, Bible, Topics, Review, Search, You). Lesson and Bible are focus screens with a close button; the lesson shows 'Step x of y' plus a chain of dots; the Shelf's selected book docks above the bar. Chris may veto after seeing it.
 
 ### `ui.phone.no-hscroll`
 
@@ -1340,6 +1388,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `dynamic-width-content-scroll-2026-10-04`
   Layout width should adapt dynamically to available screen width. Where scrolling is needed and should not move the whole page, it should occur within the content container.
+
+### `ui.scrolling.no-hscroll`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `no-horizontal-scrolling-anywhere-menus-are-drop-`
+  No horizontal scrolling anywhere; menus are drop-downs, so the no-hscroll exception is moot.
 
 ### `ui.scrolling.reader-lessons`
 
@@ -1404,6 +1457,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
+
+### `ui.theme.template-roles`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `default-theme-follows-the-template-the-template-`
+  Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.
 
 ### `ui.theologian.contrast`
 

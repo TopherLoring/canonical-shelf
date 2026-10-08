@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-navigation-follows-the-template-status-bar",
+  "topic": "ui.phone.navigation",
+  "date": "2026-10-08",
+  "text": "Phone navigation follows the template: status bar and camera island appear in the preview only, never in the app; no top bar on phone; one bottom bar on every screen (Shelf, Path, Bible, Topics, Review, Search, You). Lesson and Bible are focus screens with a close button; the lesson shows 'Step x of y' plus a chain of dots; the Shelf's selected book docks above the bar. Chris may veto after seeing it.",
+  "by": "Chris"
+}

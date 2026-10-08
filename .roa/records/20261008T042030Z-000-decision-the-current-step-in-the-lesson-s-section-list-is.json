@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "the-current-step-in-the-lesson-s-section-list-is",
+  "topic": "ui.lesson.current-step-2026-10-07",
+  "date": "2026-10-08",
+  "text": "The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.",
+  "by": "Chris"
+}
