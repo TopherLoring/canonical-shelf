@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.naming.unit-check.checkpoint.v2",
+  "topic": "ui.naming.unit-check",
+  "date": "2026-10-04",
+  "text": "The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.",
+  "supersedes": [
+    "ui.naming.unit-check.checkpoint"
+  ],
+  "by": "Chris"
+}

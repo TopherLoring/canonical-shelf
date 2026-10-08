@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "design-compare-to-plan-required",
+  "topic": "process.design-compare-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Every design change is compared against its plan board before it is called done (against the current template where no board exists), with each difference listed as directed or unintended.",
+  "rationale": "Chris: the redesign build drifted heavily from the plan; add a compare-to-plan-or-template requirement for all designs before done",
+  "by": "Chris"
+}

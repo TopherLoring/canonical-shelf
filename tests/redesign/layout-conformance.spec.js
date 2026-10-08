@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import * as path from 'path';
 import * as fs from 'fs';
 import { waitForAppReady } from './test-helpers.js';
 
@@ -13,40 +12,33 @@ const ROUTES = [
   { id: 'practice', name: 'Review & Practice', path: '/practice' }
 ];
 
-const SNAPSHOT_DIR = path.resolve('tests/redesign/snapshots');
-
-test.beforeAll(() => {
-  if (!fs.existsSync(SNAPSHOT_DIR)) {
-    fs.mkdirSync(SNAPSHOT_DIR, { recursive: true });
-  }
-});
-
 test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
   for (const route of ROUTES) {
-    test(`render and capture desktop baseline (1440x900): ${route.name}`, async ({ page }) => {
+    test(`render and capture desktop baseline (1440x900): ${route.name}`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width: 1440, height: 900 });
       const resp = await page.goto(route.path);
       expect(resp?.ok(), `${route.name} (${route.path}) should load`).toBeTruthy();
       await waitForAppReady(page);
 
-      const screenshotPath = path.join(SNAPSHOT_DIR, `desktop-${route.id}.png`);
+      const screenshotPath = testInfo.outputPath(`desktop-${route.id}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: false });
       expect(fs.existsSync(screenshotPath), `Desktop snapshot for ${route.name} captured`).toBeTruthy();
     });
 
-    test(`render and capture phone baseline (390x844): ${route.name}`, async ({ page }) => {
+    test(`render and capture phone baseline (390x844): ${route.name}`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width: 390, height: 844 });
       const resp = await page.goto(route.path);
       expect(resp?.ok(), `${route.name} (${route.path}) should load`).toBeTruthy();
       await waitForAppReady(page);
 
-      const screenshotPath = path.join(SNAPSHOT_DIR, `phone-${route.id}.png`);
+      const screenshotPath = testInfo.outputPath(`phone-${route.id}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: false });
       expect(fs.existsSync(screenshotPath), `Phone snapshot for ${route.name} captured`).toBeTruthy();
     });
   }
 
   test('no scrolling on any lesson screen at default text size on desktop (1440x900)', async ({ page }) => {
+    test.slow();
     await page.setViewportSize({ width: 1440, height: 900 });
     const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
     const overflowingScenes = [];
@@ -70,6 +62,7 @@ test.describe('Phase 0: Layout conformance & baseline snapshots', () => {
   });
 
   test('no scrolling on any lesson screen at default text size on phone (390x844)', async ({ page }) => {
+    test.slow();
     await page.setViewportSize({ width: 390, height: 844 });
     const scenes = [1, 2, 3, 4, 5, 6, 7, 8];
     const overflowingScenes = [];

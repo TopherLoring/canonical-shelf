@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-copy-action",
+  "date": "2026-10-08",
+  "text": "The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?",
+  "request": "Compare all templates with the decision log",
+  "source": "ui.reader.notes",
+  "sourceText": "Remove Copy from the reader highlight/note actions.",
+  "owner": "Chris"
+}

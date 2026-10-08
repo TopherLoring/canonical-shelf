@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "read-first-label",
+  "topic": "ui.shelf.read-first",
+  "date": "2026-10-08",
+  "text": "Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). Applied to the Shelf template; no other change to the locked Shelf.",
+  "rationale": "Chris, chat 2026-10-08",
+  "by": "Chris"
+}

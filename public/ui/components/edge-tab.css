@@ -1,0 +1,95 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* EdgeTab component: fixed vertical tabs for Theologian and My Notes */
+  .ui-edge-tab {
+    position: fixed;
+    right: 0;
+    width: 28px;
+    z-index: var(--layer-edge-tabs);
+    padding: 0;
+    border: var(--border-weight) solid var(--color-border);
+    border-right: 0;
+    border-radius: 12px 0 0 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    box-shadow: -3px 0 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+    transition: transform var(--motion-fast) var(--motion-easing), opacity var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-edge-tab:hover {
+    transform: translateX(-2px);
+  }
+
+  .ui-edge-tab:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .ui-edge-tab.is-hidden,
+  .ui-edge-tab[aria-expanded="true"] {
+    display: none;
+  }
+
+  .ui-edge-tab--theologian {
+    z-index: var(--layer-theologian);
+    background-color: var(--color-edge-theologian);
+    color: var(--color-on-action);
+    bottom: 120px;
+    height: 132px;
+  }
+
+  #guide.guide { z-index: var(--layer-theologian); }
+
+  .ui-edge-tab--notes {
+    background-color: var(--color-edge-notes);
+    color: var(--color-on-accent);
+    bottom: 260px;
+    height: 132px;
+  }
+
+  html[data-mode="dark"] .ui-edge-tab,
+  [data-mode="dark"] .ui-edge-tab {
+    color: var(--color-text);
+  }
+
+  /* Phone positioning */
+  @media (max-width: 640px) {
+    .ui-edge-tab--notes {
+      bottom: 298px;
+      height: 118px;
+    }
+
+    .ui-edge-tab--theologian {
+      bottom: 168px;
+      height: 118px;
+    }
+  }
+
+  .ui-edge-tab-chevron {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    color: inherit;
+  }
+
+  .ui-edge-tab--theologian[aria-expanded="true"] { display: flex; }
+
+  .ui-edge-tab-label {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: inherit;
+    white-space: nowrap;
+  }
+}
+

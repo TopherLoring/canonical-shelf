@@ -1,4 +1,4 @@
-import { parseReference, parseCorpus, BOOKS } from "./bible.js";
+import { parseReference, parseCorpus, BOOKS } from "./bible-books.js";
 
 export function scriptureResults(q, corpus) {
   const ref = parseReference(q);

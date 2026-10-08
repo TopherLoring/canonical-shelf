@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-phone-shelf-intro",
+  "date": "2026-10-08",
+  "text": "To fit the phone Shelf above the fold I hid the intro paragraph and set the title on one line. The decisions keep the current intro and the two-line title with the intro beside it. Keep the phone Shelf as I made it, or restore the intro (the cards then fall below the fold)?",
+  "request": "Show the bottom of the phone Shelf and the start-here and progress cards before scrolling",
+  "source": "ui.shelf.intro.current",
+  "sourceText": "Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.",
+  "owner": "Chris"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-review-practice-the-mode-menu-is-an-icon-d",
+  "topic": "ui.practice.phone.mode-droplist",
+  "date": "2026-10-08",
+  "text": "Phone Review & Practice: the mode menu is an icon drop list (replaces the scrollable bar), under the title and description.",
+  "rationale": "Artifact comment 9de9efb2",
+  "by": "Chris"
+}

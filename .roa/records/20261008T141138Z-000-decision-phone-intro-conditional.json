@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-intro-conditional",
+  "topic": "ui.shelf.phone-intro",
+  "date": "2026-10-08",
+  "text": "The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. Tested: with the intro the second Pick up card falls below the fold, so it stays hidden.",
+  "rationale": "Chris, chat 2026-10-08",
+  "by": "Chris"
+}

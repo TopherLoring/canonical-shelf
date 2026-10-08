@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "path-unit-no-next-block",
+  "topic": "ui.learning-path.unit-pane-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Learning Path unit page: no Up next / Next block in the right pane.",
+  "rationale": "Chris artifact comment: remove the up next block",
+  "by": "Chris"
+}

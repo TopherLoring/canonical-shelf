@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "desktop-bible-reader-the-chapter-title-in-the-pa",
+  "topic": "ui.bible.picker.title-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Desktop Bible reader: the chapter title in the passage (Genesis 1 ▾) is the book and chapter picker, as on the phone; the toolbar has no separate picker button.",
+  "rationale": "Chris offered: title as the selector, or a wider toolbar picker with a smaller chapter title; title chosen to match the phone and keep the plan's title size",
+  "by": "Chris"
+}

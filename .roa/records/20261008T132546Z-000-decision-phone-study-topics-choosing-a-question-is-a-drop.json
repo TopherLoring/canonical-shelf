@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-study-topics-choosing-a-question-is-a-drop",
+  "topic": "ui.topics.phone.dropmenu",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics: choosing a question is a drop menu; its sub topics appear as expandable content.",
+  "rationale": "Artifact comment b3cb49db",
+  "by": "Chris"
+}

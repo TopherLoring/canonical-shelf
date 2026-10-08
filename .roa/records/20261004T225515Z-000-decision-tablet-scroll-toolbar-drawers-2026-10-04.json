@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "tablet-scroll-toolbar-drawers-2026-10-04",
+  "topic": "ui.tablet.responsive-options",
+  "date": "2026-10-04",
+  "text": "For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.",
+  "by": "Chris"
+}

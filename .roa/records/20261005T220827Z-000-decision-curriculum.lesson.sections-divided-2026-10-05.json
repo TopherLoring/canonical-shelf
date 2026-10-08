@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.lesson.sections-divided-2026-10-05",
+  "topic": "curriculum.lesson.pagination",
+  "date": "2026-10-05",
+  "text": "Lessons are generated as their authored sections, each divided into steps (cards): sections stay the boundaries the script was written with, and each section is divided independently. Supersedes the continuous-script rule in curriculum.lesson.card-is-step-script-2026-10-05 (every card is still a step).",
+  "supersedes": [
+    "curriculum.lesson.card-is-step-script-2026-10-05"
+  ],
+  "by": "Chris"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-study-topics-the-other-questions-in-the-ca",
+  "topic": "ui.topics.phone.other-questions",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics: the other questions in the category are listed in an expandable section below the sub topics.",
+  "rationale": "Artifact comment a101a1c1",
+  "by": "Chris"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "conflict-phone-shelf-intro",
+  "date": "2026-10-08",
+  "text": "The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. Tested: with the intro the second Pick up card falls below the fold, so it stays hidden.",
+  "decision": "phone-intro-conditional"
+}

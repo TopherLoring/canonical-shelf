@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-study-topics-sources-and-other-views-are-f",
+  "topic": "ui.topics.phone.footnotes-subtle-menu",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics: Sources and Other views are footnotes (superscript markers in the text, footnotes at the bottom of the sub topic), not main content. The question menu is smaller and subtle, with texture and shadow instead of a border. Sub topics are shown closed.",
+  "rationale": "Artifact comment 50d3dabf",
+  "by": "Chris"
+}

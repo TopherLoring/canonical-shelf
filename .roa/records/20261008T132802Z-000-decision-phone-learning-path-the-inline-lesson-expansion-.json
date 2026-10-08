@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-learning-path-the-inline-lesson-expansion-",
+  "topic": "ui.path.phone.inline-no-objective",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path: the inline lesson expansion shows the description and Start/Open lesson only; the objective is removed.",
+  "rationale": "Artifact comment 8b86002c",
+  "by": "Chris"
+}

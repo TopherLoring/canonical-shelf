@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "accounts.gate-covers-feedback-passkey-2026-10-07",
+  "topic": "accounts.signin.gate",
+  "date": "2026-10-07",
+  "text": "Accounts gate also covers feedback: the Sign in / Create account / Continue as guest choice appears before a lesson, My notes, or feedback. Passkey is an offered sign-in and create method alongside Google, email and phone.",
+  "by": "Chris"
+}

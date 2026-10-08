@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning-path-template-locked",
+  "topic": "ui.learning-path.template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Learning Path desktop templates (module page and unit page) are locked as they stand once the current comments are addressed; they change only on Chris's request.",
+  "rationale": "Chris artifact comment: 'ok after comments have been addressed lock this'. The comments on the Path are addressed with the Progress move",
+  "by": "Chris"
+}

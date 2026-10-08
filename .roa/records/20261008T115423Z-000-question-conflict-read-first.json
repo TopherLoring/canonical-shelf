@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-read-first",
+  "date": "2026-10-08",
+  "text": "The Shelf book panel in the template (from the board) labels the starting chapters 'Where to begin'. The decision from 2026-10-08 renames it 'Read first'. Apply 'Read first' to the template?",
+  "request": "Compare all templates with the decision log",
+  "source": "ui.read-first-search-routing-2026-10-07",
+  "sourceText": "Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin').",
+  "owner": "Chris"
+}

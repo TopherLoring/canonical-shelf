@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning.checkpoint.in-review-practice-2026-10-05",
+  "topic": "learning.games",
+  "date": "2026-10-05",
+  "text": "Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.",
+  "rationale": "Owner stated that checkpoints are also in Review & Practice with randomly generated content",
+  "by": "Chris"
+}

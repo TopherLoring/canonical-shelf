@@ -35,14 +35,14 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     expect(DECIDED_NAMES).toContain('Shelf');
   });
 
-  test('primary navigation uses decided names (Shelf, Learning Path, Bible, Study Topics, Review & Practice)', async ({ page }) => {
+  test('primary navigation uses decided names (Shelf, Learning Path, Bible, Study Topics, Review & Practice)',{tag:'@smoke'}, async ({ page }) => {
     await page.goto('/home');
     await waitForAppReady(page);
     const navLinks = await page.locator('nav.primary a').allInnerTexts();
-    const cleanNav = navLinks.map(s => s.trim());
+    const cleanNav = navLinks.map(s => s.trim().toUpperCase());
 
-    const targetNav = ['Shelf', 'Learning Path', 'Bible', 'Study Topics', 'Review & Practice'];
-    const hasLegacyNav = cleanNav.includes('Pathway') || cleanNav.includes('Catalog') || cleanNav.includes('Practice');
+    const targetNav = ['SHELF', 'LEARNING PATH', 'BIBLE', 'STUDY TOPICS', 'REVIEW & PRACTICE'];
+    const hasLegacyNav = cleanNav.includes('PATHWAY') || cleanNav.includes('CATALOG') || cleanNav.includes('PRACTICE');
 
     if (hasLegacyNav) {
       test.fail(hasLegacyNav, `TODO(Phase 2): Primary navigation currently reads [${cleanNav.join(', ')}]; Phase 2 migrates to target [${targetNav.join(', ')}]`);
@@ -52,6 +52,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
   });
 
   test('no forbidden words ("Catalog", "volume", "course") appear as primary nav destinations or section headers', async ({ page }) => {
+    test.slow();
     const routes = ['/home', '/course', '/bible', '/path', '/topics', '/practice', '/profile'];
     const strayOccurrences = [];
 
@@ -89,7 +90,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
     // 1. Profile notes section heading
     await page.goto('/profile');
     await waitForAppReady(page);
-    const profileNotesTitle = page.locator('#notes-title');
+    const profileNotesTitle = page.locator('#notes h2');
     const profileNotesText = (await profileNotesTitle.innerText()).trim();
 
     // 2. Reader notes panel

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "reader-fixed-header-2026-10-04",
+  "topic": "ui.reader.viewport",
+  "date": "2026-10-04",
+  "text": "Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.",
+  "by": "Chris"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "learning-path-phone-three-levels",
+  "topic": "ui.learning-path.phone-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.",
+  "rationale": "Chris described desktop only; phone follows the same levels",
+  "by": "Claude-agent"
+}

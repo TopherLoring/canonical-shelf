@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "nothing-on-desktop-or-phone-has-fixed-sizes-or-d",
+  "topic": "ui.sizing.proportional-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Nothing on desktop or phone has fixed sizes or dimensions; everything is proportionate to the viewport and adapts to the container and size it is rendered in.",
+  "by": "Chris"
+}

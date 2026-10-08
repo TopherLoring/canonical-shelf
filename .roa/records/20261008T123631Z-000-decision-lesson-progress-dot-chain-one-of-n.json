@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-progress-dot-chain-one-of-n",
+  "topic": "ui.lesson.progress.templates-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); either wording is allowed. Templates use '1 of N'.",
+  "rationale": "Chris, 2026-10-08: 'dot chain and Step 1 of 2 or simply 1 of 2'",
+  "by": "Chris"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.portrait-4x5-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "The portrait lesson text box is 4:5 (width:height, 0.80:1), replacing the roughly 3:5 in ui.lesson.card.orientation-2026-10-05. It spans about 89% of the viewport width and 51.5-52% of its height (390x844: ~348x435 pt; 430x932: ~383x480; 375x667: ~334x418). Landscape stays about 5:3. Proposed container: width 100%, aspect-ratio 4/5, max-height calc(100dvh - 380px), overflow-y auto.",
+  "rationale": "Owner specified the portrait text box ratio and dimensions",
+  "by": "Chris"
+}

@@ -1,5 +1,5 @@
 import {conversationQuery,conversationalReply,isConversationFollowUp,bookshelfQuestion,bookshelfDescription} from './theologian-cloud.js';
-import {parseReference,parseCorpus,BOOKS} from './bible.js';
+import {parseReference,parseCorpus,BOOKS} from './bible-books.js';
 import {queryStudyIndex,studyTerms,topicEvidenceDetail,lessonEvidenceDetail,bookEvidenceDetail,verseEvidenceDetail} from './study-index.js';
 
 const sourceScore=(source,terms)=>{const text=`${source.title||''} ${source.author||''} ${source.publication||''} ${(source.supports||[]).join(' ')}`.toLowerCase();return terms.reduce((score,term)=>score+(text.includes(term)?1:0),0)};

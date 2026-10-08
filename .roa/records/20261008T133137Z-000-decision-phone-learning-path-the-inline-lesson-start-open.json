@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-learning-path-the-inline-lesson-start-open",
+  "topic": "ui.path.phone.inline-button",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path: the inline lesson Start/Open button is compact, not full width.",
+  "rationale": "Artifact comment bc761916",
+  "by": "Chris"
+}

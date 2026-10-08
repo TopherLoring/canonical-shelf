@@ -1,0 +1,11 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "type-cap-removed-plan-sizes",
+  "topic": "ui.type.max-genesis-2026-10-07",
+  "date": "2026-10-08",
+  "text": "Type sizes on every screen return to the plan's sizes: the site-title size cap is removed (page headings 34, lesson title 36, Bible chapter title 44, Shelf book title 40; phone at plan sizes).",
+  "rationale": "Chris, 2026-10-08 on the Review & Practice plan image: 'I was wrong, this is the correct title/header font size/book name size'",
+  "reverts": "no-text-on-any-screen-is-larger-than-the-site-ti",
+  "by": "Chris"
+}

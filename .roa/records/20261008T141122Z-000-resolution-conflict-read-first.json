@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "conflict-read-first",
+  "date": "2026-10-08",
+  "text": "Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). Applied to the Shelf template; no other change to the locked Shelf.",
+  "decision": "read-first-label"
+}

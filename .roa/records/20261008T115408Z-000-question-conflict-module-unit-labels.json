@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-module-unit-labels",
+  "date": "2026-10-08",
+  "text": "Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards?",
+  "request": "Compare all templates with the decision log",
+  "source": "ui.naming.hide-module-unit-labels-2026-10-05",
+  "sourceText": "Learners are not shown the level names \"Module\" and \"Unit\"; only their titles (and numbers where needed) appear",
+  "owner": "Chris"
+}

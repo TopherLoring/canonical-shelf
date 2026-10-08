@@ -7,7 +7,7 @@
       "lead": "1.15rem",
       "h3": "1.3rem",
       "h2": "1.7rem",
-      "h1": "2.3rem"
+      "h1": "2rem"
     },
     "lineHeights": {
       "tight": 1.2,
@@ -28,20 +28,16 @@
       "base": "200ms",
       "easing": "ease"
     },
-    "bibleCategories": {
-      "law": "#274c8e",
-      "history-ot": "#8b5e34",
-      "wisdom": "#2c7a6b",
-      "major-prophets": "#6a3475",
-      "minor-prophets": "#bc8a1c",
-      "gospel": "#b7362c",
-      "history-nt": "#4f7c2a",
-      "paul": "#a8476b",
-      "general": "#455a75",
-      "apocalypse": "#26292f"
+    "layers": {
+      "nav": 10,
+      "edgeTabs": 20,
+      "popups": 30,
+      "dimOverlay": 40,
+      "theologian": 50
     },
     "measures": {
       "measure-reading": "72ch",
+      "type-max": "clamp(2rem, 2.8vw, 2.5rem)",
       "home-shelf-height": "111px",
       "home-shelf-depth": "10px"
     },
@@ -55,80 +51,13 @@
     "scholarly-graphite": {
       "name": "Baseline (migration only)",
       "description": "The site's current look, mapped onto the 10 color roles as the baseline before new themes.",
-      "style": {
-        "fontDisplay": {
-          "$ref": "shared.fonts.serif"
-        },
-        "fontBody": {
-          "$ref": "shared.fonts.sans"
-        },
-        "fontLabel": {
-          "$ref": "shared.fonts.mono"
-        },
-        "radiusSmall": "7px",
-        "radiusLarge": "15px",
-        "borderWeight": "1px",
-        "shadowRaised": "0 8px 24px #0000000d",
-        "shadowOverlay": "0 22px 58px #0005",
-        "texture": "none",
-        "illustrations": "none",
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
-        },
-        "borderStyle": "solid",
-        "radiusMedium": "15px"
-      },
-      "modes": {
-        "light": {
-          "page": "#f0f2f4",
-          "surface": "#ffffff",
-          "surfaceSunken": "#e4e7ea",
-          "border": "#c5c9ce",
-          "text": "#202428",
-          "textMuted": "#7d8187",
-          "action": "#24272d",
-          "onAction": "#f7f7f4",
-          "correct": "#1f6b3a",
-          "incorrect": "#a3262e",
-          "surfaceRaised": "#ffffff",
-          "textSecondary": "#555b62",
-          "accent": "#24272d",
-          "onAccent": "#f7f7f4"
-        },
-        "dark": {
-          "page": "#15171a",
-          "surface": "#1f2226",
-          "surfaceSunken": "#1b1d20",
-          "border": "#4a4f57",
-          "text": "#f5f6f8",
-          "textMuted": "#80868d",
-          "action": "#e9ebee",
-          "onAction": "#15171a",
-          "correct": "#7cc796",
-          "incorrect": "#f08a8f",
-          "surfaceRaised": "#1f2226",
-          "textSecondary": "#a2a8af",
-          "accent": "#e9ebee",
-          "onAccent": "#15171a"
-        }
-      },
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
       "hidden": true,
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
-      "fontImports": [
-        "/fonts/fonts.css"
-      ]
-    },
-    "reading-room": {
-      "name": "Reading Room",
-      "description": "Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
-      "fontImports": [
-        "/fonts/fonts.css"
-      ],
       "style": {
         "fontDisplay": {
           "$ref": "shared.fonts.serif"
@@ -136,31 +65,40 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
-        },
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "3px",
-        "radiusMedium": "4px",
-        "radiusLarge": "6px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
         "borderWeight": "1px",
-        "borderStyle": "solid",
-        "shadowRaised": "0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a",
-        "shadowOverlay": "0 6px 18px #141b2d1f",
-        "backdrop": "none",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
         "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#F7F7F5",
+          "page": "#EDEEF0",
           "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#EDEEF0",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
           "border": "#D6D9DF",
           "text": "#141B2D",
           "textSecondary": "#3D4657",
@@ -169,10 +107,35 @@
           "onAction": "#FFFFFF",
           "accent": "#A04E68",
           "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
           "correct": "#2F6B4F",
           "incorrect": "#A3283B",
-          "shadowRaised": "0 1px 1px #141b2d0d, 0 2px 4px #141b2d0a",
-          "shadowOverlay": "0 6px 18px #141b2d1f",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
             "#1F3A6E",
             "#A04E68",
@@ -180,13 +143,22 @@
             "#3E5B8F",
             "#C98AA0",
             "#8A93A6"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
           "page": "#0D1321",
           "surface": "#141B2D",
           "surfaceRaised": "#1B2338",
           "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
           "border": "#2A344C",
           "text": "#EEF0F4",
           "textSecondary": "#C3C9D5",
@@ -195,10 +167,35 @@
           "onAction": "#0D1321",
           "accent": "#E2A3B5",
           "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
           "correct": "#86C79A",
           "incorrect": "#F08A9A",
-          "shadowRaised": "0 1px 2px #00000059",
-          "shadowOverlay": "0 8px 22px #00000080",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
             "#A9C1EC",
             "#E2A3B5",
@@ -206,18 +203,189 @@
             "#7E9BD1",
             "#C77F96",
             "#6B7590"
-          ]
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
+        }
+      }
+    },
+    "reading-room": {
+      "name": "Reading Room",
+      "description": "Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose.",
+      "fontImports": [
+        "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap",
+        "https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+      ],
+      "style": {
+        "fontDisplay": {
+          "$ref": "shared.fonts.serif"
+        },
+        "fontBody": "'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif",
+        "fontLabel": {
+          "$ref": "shared.fonts.mono"
+        },
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
+        "fontReading": "Literata,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif",
+        "borderStyle": "solid",
+        "backdrop": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
+      },
+      "modes": {
+        "light": {
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
+          "surfaceRaised": "#FFFFFF",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
+          "onAction": "#FFFFFF",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+          "ornaments": [
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
+        },
+        "dark": {
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
+          "ornaments": [
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "paper": {
       "name": "Paper",
       "description": "Folded broadsheet and stationery on a drafting table: crisp, archival, analog.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
       ],
       "style": {
         "fontDisplay": {
@@ -226,179 +394,331 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
-        },
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "2px",
-        "radiusLarge": "4px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
         "borderWeight": "1px",
-        "borderStyle": "solid",
-        "shadowRaised": "0 1px 1px #1f1d1a0d, 0 2px 4px #1f1d1a0a",
-        "shadowOverlay": "0 6px 16px #1f1d1a1a",
-        "backdrop": "none",
-        "texture": "radial-gradient(#2b292708 1px, transparent 1px) 0 0 / 4px 4px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "radiusMedium": "3px",
-        "surfaceFilter": "contrast(101%) brightness(99%)",
-        "borderFilter": "none"
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#F6F2EA",
-          "surface": "#FBF9F4",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#EFE9DE",
-          "border": "#D9D1C3",
-          "text": "#1F1D1A",
-          "textSecondary": "#4F4A43",
-          "textMuted": "#857C71",
-          "action": "#5A4632",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#B89A6A",
-          "onAccent": "#1F1D1A",
-          "correct": "#2F6B3A",
-          "incorrect": "#9E2B2B",
-          "shadowRaised": "0 1px 1px #1f1d1a0d, 0 2px 4px #1f1d1a0a",
-          "shadowOverlay": "0 6px 16px #1f1d1a1a",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#8C7A6B",
-            "#B89A6A",
-            "#A8977F",
-            "#6F5E4C",
-            "#C9B89A",
-            "#7D6B58"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#171614",
-          "surface": "#1F1D1A",
-          "surfaceRaised": "#282522",
-          "surfaceSunken": "#141311",
-          "border": "#3A3530",
-          "text": "#ECE6DA",
-          "textSecondary": "#BDB3A3",
-          "textMuted": "#8A8174",
-          "action": "#D8C3A0",
-          "onAction": "#171614",
-          "accent": "#B89A6A",
-          "onAccent": "#171614",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
           "correct": "#86C79A",
-          "incorrect": "#F08A8A",
-          "shadowRaised": "0 1px 2px #00000059",
-          "shadowOverlay": "0 8px 20px #00000080",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#8C7A6B",
-            "#B89A6A",
-            "#A8977F",
-            "#6F5E4C",
-            "#C9B89A",
-            "#7D6B58"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "library": {
       "name": "Library",
       "description": "An Oxford reading room after hours: timber, green baize, brass, and lamplight.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
       ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
+      "nativeMode": "dark",
       "style": {
         "fontDisplay": {
           "$ref": "shared.fonts.serif"
         },
         "fontBody": {
-          "$ref": "shared.fonts.serif"
-        },
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
+          "$ref": "shared.fonts.sans"
         },
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "2px",
-        "radiusLarge": "6px",
-        "borderWeight": "2px",
-        "borderStyle": "double",
-        "shadowRaised": "0 2px 4px #3c28191a",
-        "shadowOverlay": "0 10px 24px #3c281926",
-        "backdrop": "none",
-        "texture": "radial-gradient(ellipse at 50% -10%, #c5a0591a, transparent 60%)",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "radiusMedium": "4px",
-        "surfaceFilter": "sepia(6%)",
-        "borderFilter": "none"
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#F3ECE1",
-          "surface": "#FBF7F0",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#EAE0D0",
-          "border": "#D3C3AE",
-          "text": "#2A1D14",
-          "textSecondary": "#5A4636",
-          "textMuted": "#8B7563",
-          "action": "#7A5520",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#5E6B4E",
+          "accent": "#A04E68",
           "onAccent": "#FFFFFF",
-          "correct": "#2F6B3A",
-          "incorrect": "#9E2A2B",
-          "shadowRaised": "0 2px 4px #3c28191a",
-          "shadowOverlay": "0 10px 24px #3c281926",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#7A5520",
-            "#9C7A45",
-            "#5E6B4E",
-            "#6B4A2E",
-            "#B08D57",
-            "#4E3A26"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#16100C",
-          "surface": "#1F1712",
-          "surfaceRaised": "#2A2019",
-          "surfaceSunken": "#120D0A",
-          "border": "#4A3A2C",
-          "text": "#EADCC2",
-          "textSecondary": "#C8B89B",
-          "textMuted": "#938466",
-          "action": "#C9A45C",
-          "onAction": "#16100C",
-          "accent": "#7D8A68",
-          "onAccent": "#16100C",
-          "correct": "#8CC79E",
-          "incorrect": "#F0937F",
-          "shadowRaised": "0 2px 6px #00000080",
-          "shadowOverlay": "0 14px 32px #000000b3, inset 0 0 12px #c9a45c0d",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#C9A45C",
-            "#9C7A45",
-            "#7D8A68",
-            "#8A6A45",
-            "#D8B978",
-            "#5C4630"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
-      },
-      "nativeMode": "dark"
+      }
     },
     "collegiate": {
       "name": "Collegiate",
       "description": "An Ivy League prospectus: limestone, navy blazers, crimson ribbons, athletic gold.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
       ],
       "style": {
         "fontDisplay": {
@@ -407,83 +727,166 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
+        "fontLabel": {
+          "$ref": "shared.fonts.mono"
+        },
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
         "fontReading": {
           "$ref": "shared.fonts.serif"
         },
-        "fontLabel": {
-          "$ref": "shared.fonts.sans"
-        },
-        "radiusSmall": "0px",
-        "radiusLarge": "4px",
-        "borderWeight": "2px",
         "borderStyle": "solid",
-        "shadowRaised": "0 1px 2px #0c1b331a",
-        "shadowOverlay": "0 8px 18px #0c1b3326",
         "backdrop": "none",
-        "texture": "linear-gradient(#8B1E2D, #8B1E2D) top / 100% 4px no-repeat",
-        "illustrations": "none",
-        "radiusMedium": "2px",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#F5F5F2",
-          "surface": "#FFFFFF",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#ECECE6",
-          "border": "#0C1B33",
-          "text": "#0C1B33",
-          "textSecondary": "#3B4A63",
-          "textMuted": "#6B778A",
-          "action": "#8B1E2D",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#C9A227",
-          "onAccent": "#0C1B33",
-          "correct": "#1F6B3A",
-          "incorrect": "#B3261E",
-          "shadowRaised": "0 1px 2px #0c1b331a",
-          "shadowOverlay": "0 8px 18px #0c1b3326",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#0C1B33",
-            "#8B1E2D",
-            "#C9A227"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#0A1322",
-          "surface": "#111D31",
-          "surfaceRaised": "#182741",
-          "surfaceSunken": "#08101C",
-          "border": "#2C3D5C",
-          "text": "#EEF2F8",
-          "textSecondary": "#B3BFD1",
-          "textMuted": "#7D8BA1",
-          "action": "#cc4758",
-          "onAction": "#FFFFFF",
-          "accent": "#E2BF4F",
-          "onAccent": "#0A1322",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
           "correct": "#86C79A",
-          "incorrect": "#F08A8F",
-          "shadowRaised": "0 2px 6px #00000066",
-          "shadowOverlay": "0 10px 24px #00000099",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#6F8FC7",
-            "#CC4758",
-            "#E2BF4F"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "stained-glass": {
       "name": "Stained Glass",
       "description": "A cathedral rose window: jewel panes held in dark lead.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
       ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
+      "nativeMode": "dark",
       "style": {
         "fontDisplay": {
           "$ref": "shared.fonts.serif"
@@ -491,177 +894,330 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
+        "fontLabel": {
+          "$ref": "shared.fonts.mono"
+        },
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
         "fontReading": {
           "$ref": "shared.fonts.serif"
         },
-        "fontLabel": {
-          "$ref": "shared.fonts.serif"
-        },
-        "radiusSmall": "1px",
-        "radiusLarge": "6px",
-        "borderWeight": "3px",
         "borderStyle": "solid",
-        "shadowRaised": "0 2px 12px #0a5bc41f",
-        "shadowOverlay": "0 10px 28px #b8263d1f, 0 2px 12px #0a5bc426",
-        "backdrop": "blur(14px)",
-        "texture": "repeating-linear-gradient(0deg, #0b0d1240 0 2px, transparent 2px 120px), repeating-linear-gradient(90deg, #0b0d1240 0 2px, transparent 2px 120px), conic-gradient(from 45deg at 50% 50%, color-mix(in srgb, var(--ornament-1) 13%, transparent) 0 60deg, color-mix(in srgb, var(--ornament-2) 13%, transparent) 60deg 120deg, color-mix(in srgb, var(--ornament-3) 13%, transparent) 120deg 180deg, color-mix(in srgb, var(--ornament-4) 13%, transparent) 180deg 240deg, color-mix(in srgb, var(--ornament-5) 13%, transparent) 240deg 300deg, color-mix(in srgb, var(--ornament-6) 13%, transparent) 300deg 360deg) 0 0 / 240px 240px",
-        "illustrations": "none",
-        "radiusMedium": "3px",
-        "surfaceFilter": "saturate(125%)",
-        "borderFilter": "drop-shadow(0 1px 1px #0000004d)"
+        "backdrop": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#EEF2F6",
-          "surface": "#FFFFFFCC",
-          "surfaceRaised": "#FFFFFFF0",
-          "surfaceSunken": "#E4EAF1",
-          "border": "#161B24",
-          "text": "#111A26",
-          "textSecondary": "#34465E",
-          "textMuted": "#66788F",
-          "action": "#0A5BC4",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
+          "surfaceRaised": "#FFFFFF",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#B8263D",
+          "accent": "#A04E68",
           "onAccent": "#FFFFFF",
-          "correct": "#0F7A4F",
-          "incorrect": "#B4232F",
-          "shadowRaised": "0 2px 12px #0a5bc41f",
-          "shadowOverlay": "0 10px 28px #b8263d1f, 0 2px 12px #0a5bc426",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#0A5BC4",
-            "#B8263D",
-            "#D89A0E",
-            "#0F7A4F",
-            "#6B2FA8",
-            "#0E8A93"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#07080C",
-          "surface": "#10131DE6",
-          "surfaceRaised": "#171C2AF0",
-          "surfaceSunken": "#05060A",
-          "border": "#000000",
-          "text": "#EEF2FB",
-          "textSecondary": "#B6C2DC",
-          "textMuted": "#7A88A8",
-          "action": "#3970e8",
-          "onAction": "#FFFFFF",
-          "accent": "#D23A52",
-          "onAccent": "#FFFFFF",
-          "correct": "#5FD6A0",
-          "incorrect": "#FF8F9A",
-          "shadowRaised": "0 0 16px #3f7bff29",
-          "shadowOverlay": "0 0 32px #3f7bff40, inset 0 0 18px #d23a521a",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#3970E8",
-            "#D23A52",
-            "#F2B41C",
-            "#2BB37A",
-            "#9A5CF0",
-            "#22B8C2"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
-      },
-      "nativeMode": "dark"
+      }
     },
     "fun": {
       "name": "Fun",
       "description": "A toy box and sticker sheet: bouncy pills, comic outlines, pop-art shadows.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
       ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
       "style": {
         "fontDisplay": {
-          "$ref": "shared.fonts.sans"
+          "$ref": "shared.fonts.serif"
         },
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
-        "fontReading": {
-          "$ref": "shared.fonts.sans"
-        },
         "fontLabel": {
-          "$ref": "shared.fonts.sans"
+          "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "16px",
-        "radiusLarge": "9999px",
-        "borderWeight": "2px",
-        "borderStyle": "solid",
-        "shadowRaised": "3px 3px 0 #1C1A17",
-        "shadowOverlay": "5px 5px 0 #1C1A17",
-        "backdrop": "none",
-        "texture": "radial-gradient(#ff6b8b1a 1.5px, transparent 1.5px) 0 0 / 22px 22px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "radiusMedium": "28px",
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#FFFBEA",
-          "surface": "#FFFFFF",
-          "surfaceRaised": "#FFF6C7",
-          "surfaceSunken": "#FFF3D6",
-          "border": "#1C1A17",
-          "text": "#1C1A17",
-          "textSecondary": "#4A453F",
-          "textMuted": "#857D74",
-          "action": "#d63a65",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
+          "surfaceRaised": "#FFFFFF",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#1FBFB8",
-          "onAccent": "#1C1A17",
-          "correct": "#2B8A3E",
-          "incorrect": "#C92A2A",
-          "shadowRaised": "3px 3px 0 #1C1A17",
-          "shadowOverlay": "5px 5px 0 #1C1A17",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#D63A65",
-            "#1FBFB8",
-            "#FFD23F",
-            "#4D96FF",
-            "#9B5DE5"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#1A1322",
-          "surface": "#251B31",
-          "surfaceRaised": "#332544",
-          "surfaceSunken": "#150F1C",
-          "border": "#000000",
-          "text": "#FFF7EE",
-          "textSecondary": "#D6C6E3",
-          "textMuted": "#9A88AB",
-          "action": "#FF6D95",
-          "onAction": "#1A1322",
-          "accent": "#3DE0D2",
-          "onAccent": "#1A1322",
-          "correct": "#69DB7C",
-          "incorrect": "#FF8787",
-          "shadowRaised": "3px 3px 0 #000000",
-          "shadowOverlay": "5px 5px 0 #000000",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#FF6D95",
-            "#3DE0D2",
-            "#FFE066",
-            "#6FB1FF",
-            "#B388FF"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "watercolor": {
       "name": "Watercolor",
       "description": "A wet-media pad: soft washes, feathered edges, organic shapes.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
       ],
       "style": {
         "fontDisplay": {
@@ -670,84 +1226,164 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
-        "fontReading": {
-          "$ref": "shared.fonts.sans"
-        },
         "fontLabel": {
-          "$ref": "shared.fonts.sans"
+          "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "8px 14px 10px 16px",
-        "radiusLarge": "32px 48px 38px 56px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
         "borderWeight": "1px",
-        "borderStyle": "solid",
-        "shadowRaised": "0 6px 22px #4f74861a",
-        "shadowOverlay": "0 14px 36px #d88f9126",
-        "backdrop": "blur(4px)",
-        "texture": "radial-gradient(circle at 18% 8%, #6e94a62e, transparent 42%), radial-gradient(circle at 86% 28%, #de939524, transparent 46%)",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "radiusMedium": "18px 28px 20px 32px",
-        "surfaceFilter": "blur(0.2px)",
-        "borderFilter": "blur(0.5px)"
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#FBF9F5",
-          "surface": "#FFFFFFB8",
-          "surfaceRaised": "#F4F7F8E0",
-          "surfaceSunken": "#F1F4F5",
-          "border": "#6E94A633",
-          "text": "#2F3D43",
-          "textSecondary": "#56666D",
-          "textMuted": "#869399",
-          "action": "#4F7486",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
+          "surfaceRaised": "#FFFFFF",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#d99193",
-          "onAccent": "#2F3D43",
-          "correct": "#2F7A55",
-          "incorrect": "#B04A5A",
-          "shadowRaised": "0 6px 22px #4f74861a",
-          "shadowOverlay": "0 14px 36px #d88f9126",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#4F7486",
-            "#D99193",
-            "#8FA89B",
-            "#B7A6D1"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#111820",
-          "surface": "#1A232DCC",
-          "surfaceRaised": "#22303DDB",
-          "surfaceSunken": "#0E141B",
-          "border": "#8FB4C433",
-          "text": "#E3ECF0",
-          "textSecondary": "#A4B7C0",
-          "textMuted": "#6F828B",
-          "action": "#93B8C8",
-          "onAction": "#111820",
-          "accent": "#E6A3A5",
-          "onAccent": "#111820",
-          "correct": "#8FD3AE",
-          "incorrect": "#F0A3B0",
-          "shadowRaised": "0 6px 24px #0000004d",
-          "shadowOverlay": "0 14px 36px #93b8c81f",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#93B8C8",
-            "#E6A3A5",
-            "#9CC2AE",
-            "#C6B6E3"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "illustrated": {
       "name": "Sketch Book",
       "description": "A Moleskine sketchbook: pencil lines, hand lettering, taped-down cards.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
+      ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
       ],
       "style": {
         "fontDisplay": {
@@ -756,156 +1392,322 @@
         "fontBody": {
           "$ref": "shared.fonts.sans"
         },
-        "fontReading": {
-          "$ref": "shared.fonts.serif"
-        },
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "255px 15px 225px 15px / 15px 225px 15px 255px",
-        "radiusLarge": "240px 25px 230px 20px / 25px 230px 20px 240px",
-        "borderWeight": "1.5px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
+        "borderWeight": "1px",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
+        "illustrations": "none",
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
         "borderStyle": "solid",
-        "shadowRaised": "2px 2px 0 #2b2a2799",
-        "shadowOverlay": "3px 4px 0 #2b2a27b3",
         "backdrop": "none",
-        "texture": "repeating-linear-gradient(0deg, #a2c2d014 0 1px, transparent 1px 26px), repeating-linear-gradient(90deg, #a2c2d014 0 1px, transparent 1px 26px)",
-        "illustrations": "sketch",
-        "radiusMedium": "225px 20px 240px 18px / 20px 240px 18px 225px",
-        "surfaceFilter": "contrast(105%) brightness(98%)",
-        "borderFilter": "none"
+        "surfaceFilter": "none",
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#F7F4EC",
-          "surface": "#FDFBF6",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#F0ECE2",
-          "border": "#2B2A27",
-          "text": "#232220",
-          "textSecondary": "#4B4945",
-          "textMuted": "#7D7A73",
-          "action": "#2F5D85",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#E3826A",
-          "onAccent": "#232220",
-          "correct": "#2F6B3A",
-          "incorrect": "#A3262E",
-          "shadowRaised": "2px 2px 0 #2b2a2799",
-          "shadowOverlay": "3px 4px 0 #2b2a27b3",
+          "accent": "#A04E68",
+          "onAccent": "#FFFFFF",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#2F5D85",
-            "#E3826A",
-            "#A2C2D0"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#1B1B1A",
-          "surface": "#252523",
-          "surfaceRaised": "#2F2F2C",
-          "surfaceSunken": "#171716",
-          "border": "#D9D6CE",
-          "text": "#EFECE5",
-          "textSecondary": "#C3BFB6",
-          "textMuted": "#8B877E",
-          "action": "#A9C9E6",
-          "onAction": "#1B1B1A",
-          "accent": "#EB967F",
-          "onAccent": "#1B1B1A",
-          "correct": "#8FD3A3",
-          "incorrect": "#F29A93",
-          "shadowRaised": "2px 2px 0 #d9d6ce66",
-          "shadowOverlay": "3px 4px 0 #d9d6ce80",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
+          "correct": "#86C79A",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#A9C9E6",
-            "#EB967F",
-            "#7FA6B8"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
       }
     },
     "midnight-study": {
       "name": "Midnight Study",
       "description": "3 a.m. at the desk: deep navy, clean technical lines, one warm lamp.",
-      "fontSources": [
-        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
-      ],
       "fontImports": [
         "/fonts/fonts.css"
       ],
+      "fontSources": [
+        "https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap"
+      ],
+      "nativeMode": "dark",
       "style": {
         "fontDisplay": {
-          "$ref": "shared.fonts.mono"
+          "$ref": "shared.fonts.serif"
         },
         "fontBody": {
-          "$ref": "shared.fonts.sans"
-        },
-        "fontReading": {
           "$ref": "shared.fonts.sans"
         },
         "fontLabel": {
           "$ref": "shared.fonts.mono"
         },
-        "radiusSmall": "3px",
-        "radiusLarge": "8px",
+        "radiusChip": "6px",
+        "radiusControl": "10px",
+        "radiusCard": "14px",
+        "radiusFrame": "16px",
+        "radiusSmall": "6px",
+        "radiusMedium": "10px",
+        "radiusLarge": "14px",
         "borderWeight": "1px",
-        "borderStyle": "solid",
-        "shadowRaised": "0 1px 3px #131a2714",
-        "shadowOverlay": "0 6px 16px #131a271f",
-        "backdrop": "none",
-        "texture": "radial-gradient(ellipse at 50% -10%, #f5a6231a, transparent 55%)",
+        "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+        "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
+        "shadowRaised": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+        "texture": "radial-gradient(#141b2d06 1px, transparent 1px) 0 0 / 4px 4px",
         "illustrations": "none",
-        "radiusMedium": "6px",
+        "fontReading": {
+          "$ref": "shared.fonts.serif"
+        },
+        "borderStyle": "solid",
+        "backdrop": "none",
         "surfaceFilter": "none",
-        "borderFilter": "none"
+        "borderFilter": "none",
+        "radiusBar": "3px",
+        "radiusMarker": "8px"
       },
       "modes": {
         "light": {
-          "page": "#ECEFF5",
-          "surface": "#F7F8FB",
+          "page": "#EDEEF0",
+          "surface": "#FCFCFB",
           "surfaceRaised": "#FFFFFF",
-          "surfaceSunken": "#E3E8F0",
-          "border": "#CBD3E1",
-          "text": "#131A27",
-          "textSecondary": "#43516A",
-          "textMuted": "#74839C",
-          "action": "#2A5FD6",
+          "surfaceSunken": "#F7F7F5",
+          "scriptureBed": "#FCFCFB",
+          "border": "#D6D9DF",
+          "text": "#141B2D",
+          "textSecondary": "#3D4657",
+          "textMuted": "#5F6778",
+          "action": "#1F3A6E",
           "onAction": "#FFFFFF",
-          "accent": "#a5690f",
+          "accent": "#A04E68",
           "onAccent": "#FFFFFF",
-          "correct": "#2F6B3A",
-          "incorrect": "#A3262E",
-          "shadowRaised": "0 1px 3px #131a2714",
-          "shadowOverlay": "0 6px 16px #131a271f",
+          "noteMarker": "#A04E68",
+          "correct": "#2F6B4F",
+          "incorrect": "#A3283B",
+          "edgeTheologian": "#1B2338",
+          "edgeNotes": "#7A3A52",
+          "chatSurface": "#FCFCFB",
+          "chatUser": "#EDEEF0",
+          "dimOverlay": "#141B2D47",
+          "selection": "#1F3A6E59",
+          "highlight": {
+            "yellow": "#F2D477",
+            "green": "#BFE3C6",
+            "blue": "#C9D8F2",
+            "rose": "#F3C9D6"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #141b2d14, 0 8px 20px #141b2d1f",
+          "shadowFrame": "0 2px 6px #141b2d17, 0 16px 40px #141b2d2e",
+          "shadowOverlay": "0 4px 10px #141b2d26, 0 22px 56px #141b2d52",
           "ornaments": [
-            "#2A5FD6",
-            "#A5690F"
-          ]
+            "#1F3A6E",
+            "#A04E68",
+            "#5F6778",
+            "#3E5B8F",
+            "#C98AA0",
+            "#8A93A6"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         },
         "dark": {
-          "page": "#0A0E16",
-          "surface": "#111724",
-          "surfaceRaised": "#192134",
-          "surfaceSunken": "#080B12",
-          "border": "#243049",
-          "text": "#DDE4F0",
-          "textSecondary": "#9AA8BF",
-          "textMuted": "#66748C",
-          "action": "#5A9CF0",
-          "onAction": "#0A0E16",
-          "accent": "#F2A93B",
-          "onAccent": "#0A0E16",
+          "page": "#0D1321",
+          "surface": "#141B2D",
+          "surfaceRaised": "#1B2338",
+          "surfaceSunken": "#0A0F1A",
+          "scriptureBed": "#141B2D",
+          "border": "#2A344C",
+          "text": "#EEF0F4",
+          "textSecondary": "#C3C9D5",
+          "textMuted": "#949CAE",
+          "action": "#A9C1EC",
+          "onAction": "#0D1321",
+          "accent": "#E2A3B5",
+          "onAccent": "#0D1321",
+          "noteMarker": "#E2A3B5",
           "correct": "#86C79A",
-          "incorrect": "#F08A8F",
-          "shadowRaised": "0 4px 12px #00000080",
-          "shadowOverlay": "0 0 24px #f2a93b14, 0 10px 28px #000000b3",
+          "incorrect": "#F08A9A",
+          "edgeTheologian": "#252E45",
+          "edgeNotes": "#9B4D68",
+          "chatSurface": "#141B2D",
+          "chatUser": "#1B2338",
+          "dimOverlay": "#00000080",
+          "selection": "#A9C1EC59",
+          "highlight": {
+            "yellow": "#735818",
+            "green": "#265A37",
+            "blue": "#274B80",
+            "rose": "#6E3042"
+          },
+          "bibleCategories": {
+            "law": "#2B4A7E",
+            "othist": "#7A5E48",
+            "wisdom": "#3F6E68",
+            "major": "#5E4677",
+            "minor": "#B08A3E",
+            "gospel": "#9E4048",
+            "paul": "#A35A73",
+            "general": "#56657D",
+            "apoc": "#2A2F3D"
+          },
+          "shadowCard": "0 1px 3px #00000059, 0 8px 20px #00000080",
+          "shadowFrame": "0 2px 6px #00000066, 0 16px 40px #00000099",
+          "shadowOverlay": "0 4px 10px #00000080, 0 22px 56px #000000cc",
           "ornaments": [
-            "#5A9CF0",
-            "#F2A93B"
-          ]
+            "#A9C1EC",
+            "#E2A3B5",
+            "#949CAE",
+            "#7E9BD1",
+            "#C77F96",
+            "#6B7590"
+          ],
+          "shelfWood": "#553621",
+          "shelfWoodLight": "#6B4630",
+          "shelfWoodDark": "#3E2617",
+          "shelfWoodEdge": "#2E1C11",
+          "shelfWoodHighlight": "#8A6246",
+          "shelfIron": "#1E1E22",
+          "shelfIronLight": "#55555E",
+          "shelfIronEdge": "#121214"
         }
-      },
-      "nativeMode": "dark"
+      }
     }
   },
   "default": {

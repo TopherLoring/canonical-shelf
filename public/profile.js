@@ -3,7 +3,7 @@
 // data controls. Account and notes sections fill themselves in after the route renders.
 import { THEMES, currentTheme, currentMode } from './theme.js';
 
-const SECTIONS = [['you', 'You'], ['progress', 'Progress'], ['notes', 'Notes'], ['appearance', 'Appearance'], ['reading', 'Reading'], ['privacy', 'Data & privacy']];
+const SECTIONS = [['you', 'You'], ['progress', 'Progress'], ['notes', 'My Notes'], ['appearance', 'Appearance'], ['reading', 'Reading'], ['privacy', 'Data & privacy']];
 
 export function profileView({ data, state, esc, progressNode }) {
   const root = document.createElement('div');
@@ -20,7 +20,7 @@ export function profileView({ data, state, esc, progressNode }) {
     </header>
     <section id="you" class="profile-section" aria-labelledby="you-title"><h2 id="you-title">You</h2><div data-account-mount><p class="meta">Checking your account…</p></div></section>
     <section id="progress" class="profile-section" aria-labelledby="progress-title-profile"><h2 id="progress-title-profile">Progress</h2><div data-profile-progress></div></section>
-    <section id="notes" class="profile-section" aria-labelledby="notes-title"><h2 id="notes-title">Notes</h2><div data-profile-notes></div></section>
+    <section id="notes" class="profile-section" aria-labelledby="notes-title"><h2 id="notes-title">My Notes</h2><div data-profile-notes></div></section>
     <section id="appearance" class="profile-section" aria-labelledby="appearance-title-profile">
       <h2 id="appearance-title-profile">Appearance</h2>
       <p class="section-note">Themes change colors, lines, and type. Where things are on the screen stays the same in every theme.</p>

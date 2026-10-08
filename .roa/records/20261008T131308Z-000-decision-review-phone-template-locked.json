@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "review-phone-template-locked",
+  "topic": "ui.review.phone-template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; it changes only on Chris's request.",
+  "rationale": "Chris artifact comment: i think this page is good after any unaddressed edits",
+  "by": "Chris"
+}

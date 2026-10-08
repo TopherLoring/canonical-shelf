@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "shelf-template-locked",
+  "topic": "ui.shelf.template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Shelf desktop template is locked as it stands; it changes only on Chris's request. The open 'Read first' vs 'Where to begin' question (conflict-read-first) still applies to its book panel label.",
+  "rationale": "Chris artifact comment: lock this page",
+  "by": "Chris"
+}

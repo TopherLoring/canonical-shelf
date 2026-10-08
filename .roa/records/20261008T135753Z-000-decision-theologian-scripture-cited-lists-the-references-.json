@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian-scripture-cited-lists-the-references-",
+  "topic": "ui.theologian.cited-inline",
+  "date": "2026-10-08",
+  "text": "Theologian 'Scripture cited' lists the references inline separated by commas, not one per line.",
+  "rationale": "Chris, chat",
+  "by": "Chris"
+}

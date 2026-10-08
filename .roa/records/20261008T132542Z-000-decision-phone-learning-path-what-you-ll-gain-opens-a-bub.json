@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-learning-path-what-you-ll-gain-opens-a-bub",
+  "topic": "ui.path.phone.bubble-inline",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.",
+  "rationale": "Artifact comments 4c7400bd and d938b323",
+  "by": "Chris"
+}

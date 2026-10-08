@@ -31,7 +31,7 @@ None declared in an env example file.
 | `generate:wrangler` | `bun scripts/write-wrangler.mjs` |
 | `generate:curriculum-reference` | `bun scripts/generate-curriculum-reference.mjs` |
 | `generate:llms` | `bun scripts/generate-llms.mjs` |
-| `prepare:content` | `bun run migrate && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
+| `prepare:content` | `bun run migrate && bun scripts/publish-bsb-annotations.mjs && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
 | `verify:bsb` | `bun scripts/bsb-integrity.mjs` |
 | `verify:contract` | `bun scripts/verify-product-contract.mjs` |
 | `verify:deployment` | `bun scripts/verify-deployment.mjs` |
@@ -42,6 +42,9 @@ None declared in an env example file.
 | `test:feedback` | `bun scripts/test-feedback.mjs` |
 | `test:theologian` | `bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs` |
 | `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
+| `work` | `bun scripts/work.mjs` |
+| `test:smoke` | `playwright test --grep @smoke` |
+| `verify:fast` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run verify:sw && bun run test:core && node .roa-kit/roa.mjs verify && bun scripts/work.mjs check && bun run test:smoke` |
 | `test:browser` | `playwright test` |
 | `test:redesign` | `playwright test tests/redesign` |
 | `test` | `bun run test:core && bun run test:browser` |

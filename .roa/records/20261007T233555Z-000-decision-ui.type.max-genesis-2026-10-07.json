@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.type.max-genesis-2026-10-07",
+  "topic": "ui.type.max-size",
+  "date": "2026-10-07",
+  "text": "No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). The site title (masthead wordmark and the Home page title) is the only exception.",
+  "by": "Chris"
+}

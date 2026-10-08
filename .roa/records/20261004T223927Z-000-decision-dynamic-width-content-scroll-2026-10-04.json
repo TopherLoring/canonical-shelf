@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "dynamic-width-content-scroll-2026-10-04",
+  "topic": "ui.scrolling.container-width",
+  "date": "2026-10-04",
+  "text": "Layout width should adapt dynamically to available screen width. Where scrolling is needed and should not move the whole page, it should occur within the content container.",
+  "by": "Chris"
+}

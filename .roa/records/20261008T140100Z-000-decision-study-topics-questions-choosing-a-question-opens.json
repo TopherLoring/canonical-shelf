@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "study-topics-questions-choosing-a-question-opens",
+  "topic": "ui.topics.questions-vs-topics",
+  "date": "2026-10-08",
+  "text": "Study Topics questions: choosing a question opens its authored page (the question, Learning Path touchpoints, related topic guides, with key passages, where Christians differ, Studied in the Learning Path and Ask the Theologian in the right pane). Ask the Theologian is a separate choice and opens the chat with the question loaded, not sent. Supersedes the same-day decision that choosing a question opens the chat directly.",
+  "rationale": "Artifact comment 0be4a57e",
+  "by": "Chris"
+}

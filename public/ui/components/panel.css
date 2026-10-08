@@ -1,0 +1,91 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* Panel component: surface container with card or frame elevation */
+  .ui-panel {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: var(--color-surface);
+    border: var(--border-weight) solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .ui-panel--raised {
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+  }
+
+  .ui-panel--frame {
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-frame);
+    border-radius: var(--radius-frame);
+  }
+
+  .ui-panel--sunken {
+    background-color: var(--color-surface-sunken);
+    box-shadow: none;
+    border-radius: var(--radius-control);
+  }
+
+  .ui-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-weight) solid var(--color-border);
+    flex-shrink: 0;
+  }
+
+  .ui-panel-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .ui-panel-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.2;
+  }
+
+  .ui-panel-title {
+    margin: 0;
+    font-family: var(--font-display, Cambria, Georgia, serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: var(--leading-tight);
+  }
+
+  .ui-panel-header-action {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .ui-panel-body {
+    padding: var(--space-4);
+    flex-grow: 1;
+    min-height: 0;
+    box-sizing: border-box;
+  }
+
+  .ui-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-top: var(--border-weight) solid var(--color-border);
+    background-color: var(--color-surface);
+    flex-shrink: 0;
+  }
+}
+

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "study-topics-type-topic-subtopic-flow",
+  "topic": "ui.topics.structure-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Study Topics: categories on the left and topics (overview and description) in the middle, with the highlighted topic's sub topics on the right. Selecting a topic moves the topic list to the left, its sub topics to the middle, and the selected sub topic's content, sources and other views to the right. Phone: type, topic and sub topic flow with scrollable menus, a drop-down built into the topic title, and extra content inline or on tap with footnotes.",
+  "rationale": "Chris, 2026-10-08. Supersedes the list page with no right pane. Where his statements about Study Topics conflict, the last idea wins",
+  "by": "Chris"
+}

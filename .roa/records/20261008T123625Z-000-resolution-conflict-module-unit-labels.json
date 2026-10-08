@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "conflict-module-unit-labels",
+  "date": "2026-10-08",
+  "text": "Use names: hide the level words and show the titles.",
+  "decision": "templates-module-unit-use-names"
+}

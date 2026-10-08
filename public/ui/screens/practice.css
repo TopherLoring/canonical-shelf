@@ -1,0 +1,333 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Review & Practice (Step 5, phase 7). Arrangement only: grids, columns, spacing and positioning of shared components.
+   No colors, fonts or radii here; those come from theme roles and the components. */
+@layer screens {
+  .practice-screen {
+    display: grid;
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(220px, 280px);
+    align-items: start;
+    gap: var(--space-4, 16px);
+    min-width: 0;
+    padding: 0 var(--space-4, 16px) var(--space-4, 16px);
+  }
+
+  .practice-screen__rail { padding-top: var(--space-1, 4px); }
+
+  .practice-screen__rail,
+  .practice-screen__stats,
+  .practice-screen__main {
+    min-width: 0;
+  }
+
+  .practice-screen__main,
+  .practice-screen__stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4, 16px);
+  }
+
+  .practice-screen__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1, 4px);
+    padding: var(--space-2, 8px) var(--space-1, 4px) 0;
+  }
+
+  .practice-screen__heading > *,
+  .practice-screen__due-copy > * {
+    margin-block: 0;
+  }
+
+  .practice-screen__heading h1 {
+    margin: 0;
+  }
+
+  .practice-screen__heading > p:last-child {
+    max-width: 62ch;
+  }
+
+  .practice-screen__due {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-4, 16px);
+    row-gap: var(--space-3, 12px);
+    padding: var(--space-5, 20px);
+  }
+
+  .practice-screen__due-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1, 4px);
+    min-width: 0;
+  }
+
+  .practice-screen__due-copy h2,
+  .practice-screen__section-head h2 {
+    margin: 0;
+  }
+
+  .practice-screen__due > .button {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  .practice-screen__due-list {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2, 8px);
+  }
+
+  .practice-review-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2, 8px);
+    min-width: 0;
+    padding-block: var(--space-1, 4px);
+    text-decoration: none;
+  }
+
+  .practice-review-row span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .practice-review-row span:last-child {
+    flex-shrink: 0;
+  }
+
+  .practice-screen__section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3, 12px);
+    padding-inline: var(--space-1, 4px);
+  }
+
+  .practice-screen__section-head h2 {
+    margin: 0;
+  }
+
+  .practice-screen__section-head--later {
+    margin-top: var(--space-2, 8px);
+  }
+
+  .practice-screen__games {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: var(--space-3, 12px);
+  }
+
+  .practice-screen__game {
+    min-width: 0;
+  }
+
+  .practice-screen__stats {
+    position: sticky;
+    top: calc(64px + var(--space-4, 16px));
+  }
+
+  .practice-screen__stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 12px);
+    padding: var(--space-4, 16px);
+  }
+
+  .practice-screen__stat-card > * {
+    margin-block: 0;
+  }
+
+  .practice-screen__stat-card dl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 12px);
+    margin: 0;
+  }
+
+  .practice-screen__stat-card dl > div,
+  .practice-screen__achievement-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2, 8px);
+  }
+
+  .practice-screen__stat-card dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .practice-screen__progress {
+    width: 100%;
+  }
+
+  .practice-screen__coming {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2, 8px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .practice-screen__coming li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1, 4px);
+    min-width: 0;
+    padding: var(--space-3, 12px);
+  }
+
+  @media (max-width: 1100px) {
+    .practice-screen {
+      grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+    }
+
+    .practice-screen__stats {
+      position: static;
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .practice-screen__games {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .practice-screen {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3, 12px);
+      padding: var(--space-3, 12px);
+    }
+
+    /* On a phone the rail is one wrapped row of links: no section titles or dividers, full labels. */
+    .practice-screen__rail {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: var(--space-2, 8px);
+    }
+
+    .practice-screen__rail .ui-rail-section {
+      display: contents;
+    }
+
+    .practice-screen__rail .ui-rail-section-title,
+    .practice-screen__rail .ui-rail-divider {
+      display: none;
+    }
+
+    .practice-screen__rail .ui-rail-link {
+      min-height: 44px;
+      padding-inline: var(--space-3, 12px);
+      white-space: nowrap;
+      width: auto;
+    }
+
+    .practice-screen__stats {
+      grid-column: auto;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .practice-screen__games,
+    .practice-screen__coming {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .practice-screen__due {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+      padding: var(--space-4, 16px);
+    }
+
+    .practice-screen__due > .button {
+      grid-column: 1;
+      grid-row: auto;
+      justify-self: start;
+    }
+
+    .practice-screen__due-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .practice-screen__section-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  /* The modes (review, verse library, games, achievements) keep their own content inside the frame. Their buttons,
+     headings and filter rows are given the frame's look here so nothing depends on the old stylesheets. */
+  .practice-screen .button,
+  .practice-screen button.button {
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    border-radius: var(--radius-control);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .practice-screen .button--primary {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+
+  .practice-screen .button--primary:hover {
+    background: var(--color-action-hover);
+  }
+
+  .practice-screen__mode > .section,
+  .practice-screen__mode > header,
+  .practice-screen__mode .practice-dashboard__head {
+    padding: var(--space-2, 8px) var(--space-1, 4px) 0;
+  }
+
+  .practice-screen__mode .lede {
+    max-width: 62ch;
+    font-size: var(--type-body);
+    line-height: 1.55;
+  }
+
+  .practice-screen__mode h1 { margin-block: 0; }
+
+  .practice-screen__mode .verse-library-filters {
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  }
+
+  .practice-screen__mode .verse-filter-search { grid-column: 1 / -1; }
+
+  .practice-screen__mode .verse-library-toolbar,
+  .practice-screen__mode .arcade-config { grid-template-columns: minmax(0, 1fr); }
+
+  .practice-screen__mode .arcade-config { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
+
+  .practice-screen__mode .verse-library-grid,
+  .practice-screen__mode .arcade-library,
+  .practice-screen__mode .achievement-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+
+  .practice-screen__mode .practice-run__submit { position: static; border-radius: var(--radius-control); }
+
+  .practice-screen__mode a:not(.button) { overflow-wrap: anywhere; }
+}

@@ -198,7 +198,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `generate:wrangler` | `bun scripts/write-wrangler.mjs` |
 | `generate:curriculum-reference` | `bun scripts/generate-curriculum-reference.mjs` |
 | `generate:llms` | `bun scripts/generate-llms.mjs` |
-| `prepare:content` | `bun run migrate && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
+| `prepare:content` | `bun run migrate && bun scripts/publish-bsb-annotations.mjs && bun run compile:pathway && bun run data:crossref && bun run generate:curriculum-reference && bun run generate:llms` |
 | `verify:bsb` | `bun scripts/bsb-integrity.mjs` |
 | `verify:contract` | `bun scripts/verify-product-contract.mjs` |
 | `verify:deployment` | `bun scripts/verify-deployment.mjs` |
@@ -209,6 +209,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `test:feedback` | `bun scripts/test-feedback.mjs` |
 | `test:theologian` | `bun scripts/test-theologian-cloud.mjs && bun scripts/test-theologian-crisis.mjs` |
 | `test:core` | `bun run test:assessment && bun run test:sync && bun run test:d1 && bun run test:feedback && bun run test:theologian` |
+| `work` | `bun scripts/work.mjs` |
+| `test:smoke` | `playwright test --grep @smoke` |
+| `verify:fast` | `bun run build:app && bun run verify:bsb && bun run verify:contract && bun run verify:sw && bun run test:core && node .roa-kit/roa.mjs verify && bun scripts/work.mjs check && bun run test:smoke` |
 | `test:browser` | `playwright test` |
 | `test:redesign` | `playwright test tests/redesign` |
 | `test` | `bun run test:core && bun run test:browser` |
@@ -239,6 +242,23 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 
 ## Repository map
 
+- `public/ui/screens/lesson.js` — Approved compiled lesson screen with section navigation, Scripture, checks, and notes
+- `scripts/calibrate-lesson-type.mjs` — Calibrates lesson text widths and layout budgets from shipped fonts
+- `scripts/lesson-cards-export.mjs` — Exports authored lesson content and compiled cards for review
+- `scripts/lesson-divider.mjs` — Build-time sentence-safe division of authored lesson sections into cards
+- `scripts/lesson-pagination-report.mjs` — Generates the review report for proposed lesson card breaks
+- `scripts/lesson-scripts-export.mjs` — Exports lessons as continuous scripts for the content revision process
+- `scripts/lib/lesson-parse.mjs` — Shared parser for lesson frontmatter, sections, checks, and reflections
+- `scripts/test-lesson-divider.mjs` — Unit tests for lesson sentence splitting and card division
+- `scripts/work.mjs` — CLI for reading and updating the shared agent work board
+- `public/highlights.js` — Persisted learner highlights, saved and synced with personal study state
+- `public/ui/screens/bible.js` — The /bible route: dispatches to the reader or the Book overview and Timeline screen
+- `public/ui/screens/book-overview.css` — Book overview and Timeline layout: list, selected book or timeline, and reading panel
+- `public/ui/screens/book-overview.js` — Book overview and Timeline screen: books by group on the left, the selected book or the timeline, and a reading panel
+- `public/ui/screens/search.js` — Search: reference goes to the reader, otherwise grouped results with the selected result explained on the right and an Ask the Theologian row for questions
+- `public/ui/screens/search.css` — Search screen arrangement (Study Topics layout)
+- `public/ui/screens/reader.js` — Redesigned Bible reader: Scripture apparatus, selection, notes, highlights, and study panels
+- `public/ui/legacy.css` — Pre-redesign stylesheets in the legacy cascade layer
 - `public/` — The SPA: index.html shell, feature modules, CSS, service worker, generated data under public/data/
 - `content/` — Authored curriculum, topics, theology policy, statement of faith, and vendored data (content/vendor/)
 - `worker/` — Cloudflare Worker: auth, sync, Theologian, feedback APIs
@@ -248,6 +268,15 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `.src-archived/` — Archived earlier source; reference only, not built
 - `.roa/` — Project records and generated state (project-roa-kit)
 - `.roa-kit/` — Vendored project-roa-kit
+- `public/ui/screens/learning-path.js` — Learning Path page: modules, unit accordions with lessons and Checkpoints, Capstones, Up next, and progress (no Module or Unit labels shown)
+- `public/ui/screens/course.js` — Dispatches /course to the lesson screen (?lesson=) or the Learning Path page
+- `public/ui/components/theologian-panel.js` — Theologian panel shell: open/close, centered card with dimmed, inert background and focus trap on phones; the chat engine is untouched
+- `public/ui/screens/practice.js` — Review & Practice overview: due-for-review card, game tiles, stats; review, verse library, games and achievements modes stay on the existing practice view
+- `public/ui/screens/profile.js` — Profile: full screen with account, progress, My Notes, appearance (light/dark and themes), reading, and data & privacy
+- `public/ui/screens/topics.js` — Study Topics: browse groups, search, selected-topic reference panel, full topic page with notes, and the Glossary
+- `public/ui/screens/about.js` — About and policies: two-pane information screen with verbatim policy content
+- `public/ui/screens/about.css` — About and policies screen layout
+- `public/ui/screens/shelf-home.js` — Shelf home: two shelves of 66 books sized by length, group legend, selected-book panel, Continue and My Notes cards
 
 Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)
 <!-- roa:end roa-readme -->

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-template-locked",
+  "topic": "ui.lesson.template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Lesson desktop template is locked as it stands after the My Notes edit; it changes only on Chris's request.",
+  "rationale": "Chris artifact comment: lock page after notes edit",
+  "by": "Chris"
+}

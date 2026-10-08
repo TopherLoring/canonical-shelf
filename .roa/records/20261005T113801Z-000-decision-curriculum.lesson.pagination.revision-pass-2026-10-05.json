@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "curriculum.lesson.pagination.revision-pass-2026-10-05",
+  "topic": "curriculum.rewrite.preservation",
+  "date": "2026-10-05",
+  "text": "One-time revision pass for lesson pagination, a scoped exception to curriculum.rewrite.preservation: wording may change only where a part boundary falls badly (an orphaned line, a check separated from its setup, a sentence too long for one part). Every edit is listed before and after in a review document and applied only after Chris approves it. All other lesson text stays word-for-word, checked automatically.",
+  "scope": "Step 3 lesson pagination revision pass",
+  "by": "Chris"
+}

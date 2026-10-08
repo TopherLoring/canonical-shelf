@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.naming.hide-module-unit-labels-2026-10-05",
+  "topic": "ui.naming",
+  "date": "2026-10-05",
+  "text": "Learners are not shown the level names \"Module\" and \"Unit\"; only their titles (and numbers where needed) appear, for example Learning Path > Reading the Bible Well > What the Bible Is > Lesson 1. \"Lesson\" and \"Step\" stay visible. The per-unit check keeps its decided name, \"Unit N Checkpoint\" (ui.naming.unit-check.checkpoint.v2). Module and unit IDs and file structure are unchanged.",
+  "rationale": "Owner: learners do not need to know a module is a module or a unit a unit",
+  "by": "Chris"
+}

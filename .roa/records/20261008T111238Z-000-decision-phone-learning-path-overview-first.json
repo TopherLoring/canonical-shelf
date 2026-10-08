@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-learning-path-overview-first",
+  "topic": "ui.phone.learning-path-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Learning Path opens on an overview before any module is selected: up next, every module with its status (current, up next, not started) and progress. Selecting a module opens its units as the next page.",
+  "rationale": "Chris: 'there should be a learning path overview, with current or previous or up next' before anything is selected; the module detail is the next page",
+  "by": "Chris"
+}

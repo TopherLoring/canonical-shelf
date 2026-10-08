@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "phone-navigation-bottom-bar-approved",
+  "topic": "ui.phone.navigation-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Agree: bottom bar as the phone's one navigation.",
+  "scope": "phone navigation proposal: bottom bar on every screen except the lesson and Bible",
+  "by": "Chris"
+}

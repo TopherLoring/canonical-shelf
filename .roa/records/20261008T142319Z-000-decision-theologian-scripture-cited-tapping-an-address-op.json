@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian-scripture-cited-tapping-an-address-op",
+  "topic": "ui.theologian.cited-expand",
+  "date": "2026-10-08",
+  "text": "Theologian Scripture cited: tapping an address opens its verse text under the comma line, one at a time. The per-screen surface layers are documented in the template README and are to move into the theme contract so theme switching stays consistent.",
+  "rationale": "Chris, chat: 5 and 6",
+  "by": "Chris"
+}

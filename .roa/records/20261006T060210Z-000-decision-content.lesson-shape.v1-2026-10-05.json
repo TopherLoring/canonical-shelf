@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "content.lesson-shape.v1-2026-10-05",
+  "topic": "content.lesson-shape",
+  "date": "2026-10-05",
+  "text": "Lesson shape: every lesson reads as one script, the way a lecture, sermon or lesson plan flows: one objective (the lesson's objective field), several points (the authored sections, in order), and details that elaborate each point. The content revision rewrites each lesson as a whole script in the content voice and at that depth, working from the compiled scripts (docs/v7/LESSON_SCRIPTS.md), not by patching sentences.",
+  "by": "Chris"
+}

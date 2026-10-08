@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-desktop-like-plan-pane-open",
+  "topic": "ui.topics.desktop-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); the right pane's content is left to the agent.",
+  "rationale": "Chris artifact comments on the Topic page: 'look like this but figure out the right pane', 'the whole page'. Supersedes the separate topic state",
+  "by": "Chris"
+}

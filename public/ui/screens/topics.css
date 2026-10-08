@@ -1,0 +1,350 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Study Topics (Step 5, phase 7). Arrangement only: grids, columns, spacing and positioning of shared components.
+   No colors, fonts or radii here; those come from theme roles and the components. */
+@layer screens {
+  .topics-screen {
+    display: grid;
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(250px, 320px);
+    gap: clamp(12px, 1.4vw, 20px);
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .topics-groups,
+  .topics-context {
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .topics-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 4px 10px 16px;
+  }
+
+  .topics-groups__label {
+    margin: 0 10px 7px;
+  }
+
+  .topics-groups__label--secondary {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .topics-groups > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 40px;
+    padding: 6px 10px;
+    text-decoration: none;
+  }
+
+  .topics-groups__count {
+    flex: 0 0 auto;
+  }
+
+  .topics-main {
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    padding: 2px 4px 18px;
+  }
+
+  .topics-heading {
+    display: grid;
+    gap: 4px;
+    padding: 6px 4px 12px;
+  }
+
+  .topics-heading .eyebrow,
+  .topics-heading h1,
+  .topics-heading > p:last-child {
+    margin: 0;
+  }
+
+  .topics-search {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    margin: 6px 0 16px;
+    padding: 0 12px;
+  }
+
+  .topics-search svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .topics-search input[type="search"] {
+    min-width: 0;
+    min-height: 40px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  .topics-search button {
+    min-height: 34px;
+  }
+
+  .topics-results__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 4px 8px;
+  }
+
+  .topics-results__head h2,
+  .topics-results__head p {
+    margin: 0;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 10px;
+  }
+
+  .topics-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 10px;
+    min-width: 0;
+    padding: 14px;
+    text-decoration: none;
+  }
+
+  .topics-card__number,
+  .topics-card__arrow {
+    flex: 0 0 auto;
+  }
+
+  .topics-card__copy {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .topics-card__copy > strong {
+    line-height: 1.25;
+  }
+
+  .topics-card__copy > span:not(.topics-card__refs) {
+    line-height: 1.45;
+  }
+
+  .topics-card__refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .topics-reference-chip {
+    max-width: 100%;
+  }
+
+  .topics-results__count {
+    margin: 12px 4px;
+  }
+
+  .topics-context {
+    align-self: stretch;
+    padding: 16px;
+  }
+
+  .topics-context__head,
+  .topics-context__section {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding-bottom: 14px;
+  }
+
+  .topics-context__section {
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .topics-context__head > *,
+  .topics-context__section > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .topics-context__note,
+  .topics-context__empty {
+    margin: 0;
+  }
+
+  .topics-context__section ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .topics-context__section li > a {
+    display: grid;
+    gap: 2px;
+    text-decoration: none;
+  }
+
+  .topics-context__section li small {
+    line-height: 1.35;
+  }
+
+  .topics-context__actions {
+    padding-top: 8px;
+  }
+
+  .topics-reference-list {
+    display: grid;
+    gap: 6px;
+  }
+
+  .topics-detail {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    max-width: 74ch;
+    padding: 4px 4px 20px;
+  }
+
+  .topics-detail > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .topics-detail__lede {
+    line-height: 1.6;
+  }
+
+  .topics-detail-section {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .topics-detail-section > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .topics-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+  }
+
+  .topics-glossary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .topics-glossary__card {
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .topics-glossary__card > :first-child {
+    margin-top: 0;
+  }
+
+  .topics-glossary__card > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1040px) {
+    .topics-screen {
+      grid-template-columns: minmax(170px, 210px) minmax(0, 1fr);
+      overflow: auto;
+    }
+
+    .topics-context {
+      grid-column: 2;
+      max-height: 42vh;
+    }
+
+    .topics-main {
+      overflow: visible;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .topics-screen {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      height: auto;
+      overflow: visible;
+    }
+
+    .topics-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      padding: 8px;
+    }
+
+    .topics-groups__label {
+      grid-column: 1 / -1;
+      margin: 2px 4px;
+    }
+
+    .topics-groups__label--secondary {
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    .topics-groups > a {
+      min-width: 0;
+      padding: 6px;
+    }
+
+    .topics-main {
+      overflow: visible;
+      padding: 0 2px;
+    }
+
+    .topics-grid,
+    .topics-glossary {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .topics-context {
+      grid-column: auto;
+      max-height: none;
+    }
+
+    .topics-detail {
+      max-width: none;
+    }
+
+    .topics-search {
+      grid-template-columns: 18px minmax(0, 1fr);
+    }
+
+    .topics-search button {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "phone-navigation-bottom-bar-seven",
+  "topic": "ui.phone.navigation-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone navigation is one bottom bar on every screen except the lesson and the Bible: the five destinations plus Search and You (profile and feedback); no top bar on phone.",
+  "rationale": "Chris asked for one consistent location, top or bottom, with the full range of the Build top bar; bottom bar chosen and approved (agree)",
+  "by": "Claude-agent"
+}

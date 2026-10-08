@@ -1,4 +1,4 @@
-import {parseReference,parseCorpus} from './bible.js';
+import {parseReference,parseCorpus} from './bible-books.js';
 import {LIBRARY_BOOKS,CATEGORIES} from './library-data.js';
 import {VERSES} from './verse-data.js';
 

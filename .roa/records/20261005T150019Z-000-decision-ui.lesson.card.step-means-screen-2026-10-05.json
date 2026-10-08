@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.step-means-screen-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a \"step\" means one screen: everything the learner sees before pressing Continue. It is not an entry in the lesson's step list; the pagination docs call that screen a \"part\". The 833, 784 and 735 ceilings apply to each screen.",
+  "rationale": "Owner clarified how he uses the word step",
+  "by": "Chris"
+}

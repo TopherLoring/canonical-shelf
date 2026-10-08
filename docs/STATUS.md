@@ -12,9 +12,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **Ratify or change the high-stakes policies carried over from the old rules document: doctrine.statement-of-faith, doctrine.interpretive-foundation, theologian.learner-agency, theologian.privacy, feedback.privacy, safety.crisis, privacy.posture, privacy.retention. Until then they stay enforced as agent defaults** (`ratify-high-stakes-policies`, owner: Chris, since 2026-09-26)
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
-- **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** (`unit-check-label`, owner: Chris, since 2026-10-03)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** (`module1-title`, owner: Chris, since 2026-10-04)
 
 ## Phases
 
@@ -49,11 +47,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | Topic | Current | Kind | Since |
 |---|---|---|---|
 | `account.sign-in` | Accounts use a passkey plus recovery codes; | Owner decision | undefined |
+| `accounts.signin.gate` | Accounts gate also covers feedback: | Owner decision | undefined |
 | `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
+| `content.lesson-shape` | Lesson shape: | Owner decision | undefined |
 | `content.reachability` | undefined | Agent default | undefined |
+| `content.voice` | Content voice reference example (refines content.voice.v1-2026-10-05): | Owner decision | undefined |
 | `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. | Owner decision | undefined |
 | `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; | Owner decision | undefined |
 | `curriculum.content-review` | undefined | Agent default | undefined |
@@ -65,7 +66,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
 | `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
+| `curriculum.lesson.pagination` | Lessons are generated as their authored sections, each divided into steps (cards): | Owner decision | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
+| `curriculum.module1.title` | Module 1 is titled 'Reading the Bible Well: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
 | `curriculum.path1.library` | The first path's second unit opens with two lessons: | Owner decision | undefined |
 | `curriculum.path1.overlap` | undefined | Agent default | undefined |
@@ -101,7 +104,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `design.themes.set` | The site will offer 8 very different themes built on the theme contract: | Owner decision | undefined |
 | `design.themes.sketch-book-name` | The Illustrated theme is named Sketch Book | Owner decision | undefined |
 | `design.themes.spec` | The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; | Owner decision | undefined |
-| `design.typography.no-all-caps` | No all caps anywhere: | Owner decision | undefined |
+| `design.typography.caps` | No capitalization rule is enforced while the redesign is built: | Owner decision | undefined |
 | `doctrine.difficult-texts` | Difficult ethical texts (conquest, slavery, restrictions on women) get direct, contextual treatment with competing interpretations; | Owner decision | undefined |
 | `doctrine.interpretive-foundation` | undefined | Agent default | undefined |
 | `doctrine.prayer-miracles-healing` | Prayer is taught as relationship with God (petition, gratitude, lament, listening); | Owner decision | undefined |
@@ -111,11 +114,12 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
-| `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `learning.games` | The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned... | Owner decision | undefined |
 | `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
 | `notes` | Two context-aware text features built into the layout, never floating: | Owner decision | undefined |
+| `notes.discuss-flag` | The in-person discussion flag on notes was a reason notes exist, not an intended feature; | Owner decision | undefined |
 | `notes.lesson-hidden` | Notes are hidden by default only in lessons. | Owner decision | undefined |
 | `orientation.scope` | Orientation teaches how to use the site, what kinds of material exist, and why the Pathway is ordered the way it is; | Owner decision | undefined |
 | `platform.offline` | Offline access is not a requirement | Owner decision | undefined |
@@ -123,7 +127,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `privacy.posture` | undefined | Agent default | undefined |
 | `privacy.retention` | undefined | Agent default | undefined |
 | `process.authority-order` | undefined | Agent default | undefined |
+| `process.conflict-order-2026-10-08` | For Learning Path and Study Topics, where Chris's statements in one message conflict, the last idea is the default. | Owner decision | undefined |
 | `process.decision-authority` | Chris's current request outranks every document. | Owner decision | undefined |
+| `process.design-compare-2026-10-08` | Every design change is compared against its plan board before it is called done (against the current template where no board exists), with each difference li... | Owner decision | undefined |
 | `process.experience-first` | undefined | Agent default | undefined |
 | `process.guards` | undefined | Agent default | undefined |
 | `process.kit.starter` | Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards o... | Owner decision | undefined |
@@ -131,6 +137,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
 | `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
+| `redesign.sequence` | Sequence: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
@@ -197,38 +204,116 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.ask` | The Bible reader toolbar has no Ask button. | Owner decision | undefined |
 | `ui.bible.crossrefs` | Cross-references show verse addresses only (no 'Citation' label), in a lighter weight for readability, as the last expandable detail level of the Bible side ... | Owner decision | undefined |
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
+| `ui.bible.passage-card-2026-10-08` | Bible reader passage card: | Owner decision | undefined |
 | `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
+| `ui.bible.phone.board` | undefined | Agent default | undefined |
+| `ui.bible.picker.title-2026-10-08` | Desktop Bible reader: | Owner decision | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
+| `ui.desktop.pane-widths-2026-10-08` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
+| `ui.learning-path.main-2026-10-08` | Learning Path main content follows the plan's main column: | Owner decision | undefined |
+| `ui.learning-path.phone-2026-10-08` | Phone Learning Path is one page like the reference image: | Owner decision | undefined |
+| `ui.learning-path.progress-2026-10-08` | Learning Path: | Owner decision | undefined |
+| `ui.learning-path.right-pane-2026-10-08` | Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: | Owner decision | undefined |
+| `ui.learning-path.structure-2026-10-08` | Learning Path: | Owner decision | undefined |
+| `ui.learning-path.template-locked-2026-10-08` | The Learning Path desktop templates (module page and unit page) are locked as they stand once the current comments are addressed; | Owner decision | undefined |
+| `ui.learning-path.unit-pane-2026-10-08` | Learning Path unit page: | Owner decision | undefined |
+| `ui.lesson-glossary-2026-10-08` | Lesson Glossary card: | Owner decision | undefined |
+| `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
-| `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
+| `ui.lesson.notes-2026-10-08` | My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1). | Owner decision | undefined |
+| `ui.lesson.phone.titlebar-dots` | Phone lesson: | Owner decision | undefined |
+| `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
+| `ui.lesson.progress.templates-2026-10-08` | Lesson progress is a chain of dots with a text label of '1 of N' (or 'Step 1 of N'); | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
-| `ui.naming` | undefined | Agent default | undefined |
+| `ui.lesson.reading` | Lesson readings (::reading): | Owner decision | undefined |
+| `ui.lesson.template-locked-2026-10-08` | The Lesson desktop template is locked as it stands after the My Notes edit; | Owner decision | undefined |
+| `ui.lesson.titlebar-2026-10-08` | The lesson card's title bar names the lesson (and/or the section), not 'Unit N · Lesson N'. | Owner decision | undefined |
+| `ui.naming` | Learners are not shown the level names "Module" and "Unit"; | Owner decision | undefined |
+| `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
+| `ui.naming.templates-2026-10-08` | Learners see module and unit names, not the level words: | Owner decision | undefined |
+| `ui.naming.unit-check` | Where Checkpoints appear is not fixed per unit or per lesson; | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
+| `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
+| `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
-| `ui.phone.my-notes` | Phone: | Owner decision | undefined |
-| `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
+| `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
+| `ui.path.phone.bubble-inline` | Phone Learning Path: | Owner decision | undefined |
+| `ui.path.phone.gain-expandable` | Phone Learning Path: | Owner decision | undefined |
+| `ui.path.phone.inline-button` | Phone Learning Path: | Owner decision | undefined |
+| `ui.path.phone.inline-no-objective` | Phone Learning Path: | Owner decision | undefined |
+| `ui.phone.dock-format-2026-10-08` | undefined | Agent default | undefined |
+| `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |
+| `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
+| `ui.phone.my-notes` | On phones, My Notes is a side tab only in lessons and the Bible reader; | Owner decision | undefined |
+| `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
+| `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
+| `ui.phone.no-hscroll` | Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. | Owner decision | undefined |
+| `ui.phone.study-links.row` | On the phone Bible the six book study links stay in one row of six (1x6). | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
-| `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
+| `ui.phone.theologian-position` | In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar). | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
+| `ui.practice.modes.panes` | Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: | Owner decision | undefined |
+| `ui.practice.phone.mode-droplist` | Phone Review & Practice: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
+| `ui.rail.current-item-2026-10-08` | Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint. | Owner decision | undefined |
+| `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
+| `ui.reader.copy-2026-10-08` | Copy is removed from the reader's selection bar (highlight colors and + Note only). | Owner decision | undefined |
+| `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
+| `ui.reader.template-locked-2026-10-08` | The Bible desktop template is locked as it stands after the Copy removal; | Owner decision | undefined |
+| `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
+| `ui.review.phone-menu-2026-10-08` | Phone Review & Practice: | Owner decision | undefined |
+| `ui.review.phone-template-locked-2026-10-08` | The Review & Practice phone template is approved as it stands, with its edits (the mode menu under the title) in; | Owner decision | undefined |
+| `ui.review.template-2026-10-08` | Review & Practice keeps its current template (desktop). | Owner decision | undefined |
+| `ui.review.template-locked-2026-10-08` | The Review & Practice template (desktop) is locked as it stands; | Owner decision | undefined |
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
+| `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
+| `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
+| `ui.search.and.library` | Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
 | `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
+| `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.shelf.phone-intro` | The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. | Owner decision | undefined |
+| `ui.shelf.phone-template-locked-2026-10-08` | The Shelf phone template is locked as it stands; | Owner decision | undefined |
+| `ui.shelf.read-first` | Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). | Owner decision | undefined |
+| `ui.shelf.template-locked-2026-10-08` | The Shelf desktop template is locked as it stands; | Owner decision | undefined |
+| `ui.sizing.proportional-2026-10-08` | Nothing on desktop or phone has fixed sizes or dimensions; | Owner decision | undefined |
+| `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
+| `ui.templates.match-plan-2026-10-08` | Fix the template to match the plan (the approved boards); | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
+| `ui.theme.reader-surface-layers` | Color differences between screens are deliberate: | Owner decision | undefined |
+| `ui.theologian.cited-expand` | Theologian Scripture cited: | Owner decision | undefined |
+| `ui.theologian.cited-inline` | Theologian 'Scripture cited' lists the references inline separated by commas, not one per line. | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
+| `ui.theologian.templates-build` | undefined | Agent default | undefined |
+| `ui.theologian.undrawn-states-existing` | Theologian flag form, menu and Chris-reply message are not redesigned in the templates: | Owner decision | undefined |
+| `ui.theologian.undrawn-states-not-now` | Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now. | Owner decision | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
+| `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
+| `ui.topics.desktop-2026-10-08` | Study Topics desktop looks like the plan (categories left, search and a two-column grid of topic cards in the middle, the selected topic in the right pane); | Owner decision | undefined |
+| `ui.topics.phone-structure-2026-10-08` | Phone Study Topics is one page: | Owner decision | undefined |
+| `ui.topics.phone-type-2026-10-08` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.dropmenu` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.focus` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.footnotes-subtle-menu` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.other-questions` | Phone Study Topics: | Owner decision | undefined |
+| `ui.topics.phone.rose-accent` | Phone Study Topics carries the rose accent like the other screens: | Owner decision | undefined |
+| `ui.topics.questions-vs-topics` | Study Topics questions: | Owner decision | undefined |
+| `ui.topics.right-pane-2026-10-08` | Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views. | Owner decision | undefined |
+| `ui.topics.structure-2026-10-08` | Study Topics: | Owner decision | undefined |
+| `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
+| `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 
 ## Open feedback (adjust, not locked)
 
@@ -237,6 +322,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `ui.bible`: Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole (undefined)
 - `ui.theme.palettes`: The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign (undefined)
 - `ui.course-shelf`: Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between (undefined)
+- `ui.learning-path-2026-10-08`: I don't like the shelf-native Learning Path option (B: units as volumes on a plank). (undefined)
 
 Full history: [decision log](v7/DECISION_PRECEDENCE.md) · [changelog](../CHANGELOG.md)
 

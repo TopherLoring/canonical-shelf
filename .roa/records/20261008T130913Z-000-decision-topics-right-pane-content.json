@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "topics-right-pane-content",
+  "topic": "ui.topics.right-pane-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Study Topics right pane: the selected question, its overview, a selectable sub topic list, the selected sub topic's text, its sources (group-colored references) and other views, then Studied in the Learning Path and Ask the Theologian.",
+  "rationale": "Chris asked the agent to work out the right pane; content types are adjustable",
+  "by": "Claude-agent"
+}

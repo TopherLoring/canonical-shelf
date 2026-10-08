@@ -12,7 +12,10 @@
     "Composition": "The writing and shaping of a text, which may occur later than its setting."
   },
   "deeper": "A shelf category can contain several genres. Likewise, a book’s narrated era and its date of composition need not coincide; some placements remain debated.",
-  "drawers": []
+  "drawers": [],
+  "carries": {
+    "p1": "superseded:ui.naming.groups.v1"
+  }
 }
 ---
 ## Three ways to place a book {#orient}
@@ -20,7 +23,7 @@
 
 This lesson closes the unit and opens the next one, where the story of the Bible begins. Before you start reading that story, it helps to know three different ways a book can be placed: where it sits on the shelf, when the events it describes happened, and when it was written. They are not the same, and mixing them up causes a lot of confusion.
 
-This course uses a 66-book Protestant shelf. Its nine navigation groups are Law/Pentateuch, Historical Books, Poetry/Wisdom, Major Prophets, Minor Prophets, Gospels/History, Pauline Letters, General Letters, and Prophecy. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision.
+This course uses a 66-book Protestant shelf. Its nine navigation groups are Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul’s Letters, General Letters, and Revelation. These are organizational labels, not nine pure literary genres: a single book can contain narrative, poetry, law, or vision.
 
 ## Read the passage with the question in view {#read}
 ::reading

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "topics-phone-like-reference",
+  "topic": "ui.topics.phone-structure-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Study Topics is structured like the reference image: title and description, search, a type drop-down, then the topic cards with the selected card offering Open topic; Open topic leads to the topic page (title drop-down, sub topic menu, content).",
+  "rationale": "Chris, 2026-10-08: 'structure study topics like the image i provided'. Supersedes the phone flow without a browse page",
+  "by": "Chris"
+}

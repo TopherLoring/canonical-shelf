@@ -14,7 +14,7 @@ export function selectedVerse() {
   const n = el ? Number(String(el.id || '').replace(/^v/, '')) : 0;
   if (n) return n;
   // A verse clicked before the reader finished loading is remembered on the reader itself.
-  const remembered = Number(document.querySelector('.reader.scripture')?.dataset.selectedVerse || 0);
+  const remembered = Number(document.querySelector('[data-reader]')?.dataset.selectedVerse || document.querySelector('.reader.scripture')?.dataset.selectedVerse || 0);
   return remembered || null;
 }
 
@@ -30,10 +30,11 @@ export function rememberVerse(p) {
 export function currentPassage() {
   if (location.pathname !== '/bible') return null;
   const params = new URLSearchParams(location.search);
-  const book = Number(params.get('book') || 0), chapter = Number(params.get('chapter') || 0);
+  const reader = document.querySelector('[data-reader]');
+  const book = Number(reader?.dataset.book || params.get('book') || 0), chapter = Number(reader?.dataset.chapter || params.get('chapter') || 0);
   if (!book || !chapter) return null;
-  const verse = selectedVerse() || Number(params.get('start') || 0) || null;
-  const end = verse ? (selectedVerse() ? verse : Number(params.get('end') || verse)) : null;
+  const verse = reader ? Number(reader.dataset.selectedVerse) || null : selectedVerse() || Number(params.get('start') || 0) || null;
+  const end = verse ? (reader ? Number(reader.dataset.selectedEnd) || verse : selectedVerse() ? verse : Number(params.get('end') || verse)) : null;
   const address = { book, chapter, verseStart: verse, verseEnd: end };
   const label = `${bookName(book)} ${chapter}${verse ? `:${verse}${end && end > verse ? `–${end}` : ''}` : ''}`;
   return { address, osis: osisOf(address), label };

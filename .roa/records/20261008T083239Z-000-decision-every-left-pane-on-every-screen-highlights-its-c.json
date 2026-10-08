@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "every-left-pane-on-every-screen-highlights-its-c",
+  "topic": "ui.rail.current-item-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint.",
+  "by": "Chris"
+}

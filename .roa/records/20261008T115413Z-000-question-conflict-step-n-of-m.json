@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-step-n-of-m",
+  "date": "2026-10-08",
+  "text": "Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands?",
+  "request": "Compare all templates with the decision log",
+  "source": "ui.lesson.progress.no-step-label-2026-10-05",
+  "sourceText": "Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.",
+  "owner": "Chris"
+}

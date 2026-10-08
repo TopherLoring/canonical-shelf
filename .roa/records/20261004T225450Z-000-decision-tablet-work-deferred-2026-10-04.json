@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "tablet-work-deferred-2026-10-04",
+  "topic": "ui.nav.tablet",
+  "date": "2026-10-04",
+  "text": "Defer tablet-specific layout work and comparisons for now; finish the current recovery on desktop and phone.",
+  "supersedes": [
+    "tablet-full-navigation-2026-10-04"
+  ],
+  "by": "Chris"
+}

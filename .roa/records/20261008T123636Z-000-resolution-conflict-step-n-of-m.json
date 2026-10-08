@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "conflict-step-n-of-m",
+  "date": "2026-10-08",
+  "text": "Dot chain, labelled '1 of N' (or 'Step 1 of N').",
+  "decision": "lesson-progress-dot-chain-one-of-n"
+}

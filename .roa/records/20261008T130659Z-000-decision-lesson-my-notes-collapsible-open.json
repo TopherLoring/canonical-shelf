@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-my-notes-collapsible-open",
+  "topic": "ui.lesson.notes-2026-10-08",
+  "date": "2026-10-08",
+  "text": "My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).",
+  "rationale": "Chris artifact comment: my notes collapsible but open by default",
+  "by": "Chris"
+}

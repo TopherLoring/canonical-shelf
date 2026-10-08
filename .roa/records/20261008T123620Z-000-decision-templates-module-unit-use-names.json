@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "templates-module-unit-use-names",
+  "topic": "ui.naming.templates-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Learners see module and unit names, not the level words: Module 1 / Unit 2 labels and 'N units' counts are replaced by the titles (Learning Path > Reading the Bible Well > What the Bible Is > the lesson). The decided name 'Unit N Checkpoint' stays.",
+  "rationale": "Chris, 2026-10-08: 'module/units use names'",
+  "by": "Chris"
+}

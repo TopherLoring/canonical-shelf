@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian-flag-form-menu-and-chris-reply-messag",
+  "topic": "ui.theologian.undrawn-states-existing",
+  "date": "2026-10-08",
+  "text": "Theologian flag form, menu and Chris-reply message are not redesigned in the templates: they match the existing Theologian design in the app (public/theologian-chat.js).",
+  "rationale": "Chris, chat",
+  "by": "Chris"
+}

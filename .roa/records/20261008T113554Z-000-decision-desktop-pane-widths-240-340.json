@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "default",
+  "id": "desktop-pane-widths-240-340",
+  "topic": "ui.desktop.pane-widths-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Path, Bible, Study Topics and Review desktop panes share widths: left 240, right 340.",
+  "rationale": "Chris asked whether the Topics and Review panes should match the other pages",
+  "by": "Claude-agent"
+}

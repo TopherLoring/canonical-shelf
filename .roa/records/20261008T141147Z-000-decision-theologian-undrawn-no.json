@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "theologian-undrawn-no",
+  "topic": "ui.theologian.undrawn-states-not-now",
+  "date": "2026-10-08",
+  "text": "Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now.",
+  "rationale": "Chris, chat 2026-10-08",
+  "by": "Chris"
+}

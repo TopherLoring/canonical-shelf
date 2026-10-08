@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "shelf-phone-template-locked",
+  "topic": "ui.shelf.phone-template-locked-2026-10-08",
+  "date": "2026-10-08",
+  "text": "The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.",
+  "rationale": "Chris artifact comment: lock this page",
+  "by": "Chris"
+}

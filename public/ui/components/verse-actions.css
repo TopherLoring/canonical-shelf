@@ -1,0 +1,63 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  /* VerseActions: floating toolbar for highlighting and notes */
+  .ui-verse-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: var(--radius-control);
+    background-color: var(--color-inverse, var(--color-text));
+    color: var(--color-on-inverse, var(--color-page));
+    box-shadow: var(--shadow-overlay);
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    z-index: var(--layer-popups);
+    box-sizing: border-box;
+  }
+
+  .ui-verse-action-color {
+    width: 24px;
+    height: 24px;
+    border: 2px solid color-mix(in srgb, var(--color-on-inverse) 20%, transparent);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0;
+    transition: transform var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-verse-action-color:hover {
+    transform: scale(1.1);
+  }
+
+  .ui-verse-action-color[data-color="yellow"] { background-color: var(--color-highlight-yellow); }
+  .ui-verse-action-color[data-color="green"] { background-color: var(--color-highlight-green); }
+  .ui-verse-action-color[data-color="blue"] { background-color: var(--color-highlight-blue); }
+  .ui-verse-action-color[data-color="rose"] { background-color: var(--color-highlight-rose); }
+
+  .ui-verse-actions-divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 4px;
+    background-color: color-mix(in srgb, var(--color-on-inverse) 20%, transparent);
+  }
+
+  .ui-verse-action-btn {
+    height: 28px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: var(--color-on-inverse);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-verse-action-btn:hover {
+    background-color: color-mix(in srgb, var(--color-on-inverse) 15%, transparent);
+  }
+}
+

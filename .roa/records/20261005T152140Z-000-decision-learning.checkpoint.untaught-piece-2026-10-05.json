@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning.checkpoint.untaught-piece-2026-10-05",
+  "topic": "learning.games",
+  "date": "2026-10-05",
+  "text": "The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.",
+  "rationale": "Owner added the untaught piece to the Checkpoint mix",
+  "by": "Chris"
+}

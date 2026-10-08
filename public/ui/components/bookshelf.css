@@ -1,0 +1,228 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer components {
+  .ui-bookshelf {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2.2vh, 1.5rem);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ui-bookshelf-row {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    min-width: 0;
+  }
+
+  .ui-bookshelf-row-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: 0 .5rem;
+  }
+
+  .ui-bookshelf-row-title {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .ui-bookshelf-row-count {
+    color: var(--color-text-muted);
+    font-size: .8rem;
+  }
+
+  .ui-bookshelf-shelf {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    width: 100%;
+    height: 9.25rem;
+  }
+
+  .ui-bookshelf-shelf::before {
+    position: absolute;
+    inset: auto 0 0;
+    height: 1.125rem;
+    border: 1px solid var(--color-shelf-wood-edge);
+    border-radius: var(--radius-control);
+    background:
+      repeating-linear-gradient(178deg, transparent 0 .18rem, color-mix(in srgb, var(--color-shelf-wood-dark) 50%, transparent) .2rem, transparent .28rem),
+      repeating-linear-gradient(90deg, transparent 0 2.25rem, color-mix(in srgb, var(--color-shelf-wood-light) 36%, transparent) 2.3rem, transparent 2.5rem),
+      linear-gradient(180deg, var(--color-shelf-wood-light), var(--color-shelf-wood) 58%, var(--color-shelf-wood-dark));
+    box-shadow: inset 0 1px 0 var(--color-shelf-wood-highlight), 0 .5rem .75rem color-mix(in srgb, var(--color-text) 18%, transparent);
+    content: "";
+  }
+
+  .ui-bookshelf-shelf::after {
+    position: absolute;
+    bottom: -.65rem;
+    left: 8%;
+    width: 12px;
+    height: 10px;
+    border-radius: 0 0 var(--radius-chip) var(--radius-chip);
+    background: linear-gradient(90deg, var(--color-shelf-wood-dark), var(--color-shelf-wood));
+    box-shadow: 0 3px 5px color-mix(in srgb, var(--color-text) 14%, transparent);
+    content: "";
+  }
+
+  .ui-bookshelf-book-run {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    box-sizing: border-box;
+    width: var(--books-fill, 100%);
+    height: calc(100% - 1.125rem);
+    margin-bottom: 1.125rem;
+    padding: 0 5px;
+  }
+
+  .ui-bookshelf-support {
+    position: absolute;
+    bottom: -.65rem;
+    width: 12px;
+    height: 10px;
+    border-radius: 0 0 var(--radius-chip) var(--radius-chip);
+    background: linear-gradient(90deg, var(--color-shelf-wood-dark), var(--color-shelf-wood));
+    box-shadow: 0 3px 5px color-mix(in srgb, var(--color-text) 14%, transparent);
+  }
+
+  .ui-bookshelf-support--right { right: 8%; }
+
+  .ui-bookshelf-bookend {
+    position: relative;
+    flex: 0 0 7px;
+    height: 76%;
+    border: 1px solid var(--color-shelf-iron-edge);
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(90deg, var(--color-shelf-iron), var(--color-shelf-iron-light) 50%, var(--color-shelf-iron));
+    box-shadow: 1px 0 3px color-mix(in srgb, var(--color-text) 18%, transparent);
+  }
+
+  .ui-bookshelf-book {
+    position: relative;
+    display: block;
+    flex: var(--book-weight, 1) 1 0;
+    min-width: 5px;
+    height: clamp(3.75rem, 8vh, 5.125rem);
+    box-sizing: border-box;
+    padding: 0;
+    overflow: visible;
+    border: 1px solid color-mix(in srgb, var(--color-text) 28%, transparent);
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+    background-color: var(--color-surface-sunken);
+    color: var(--color-page);
+    cursor: pointer;
+    appearance: none;
+    transition: transform var(--motion-fast) var(--motion-easing), filter var(--motion-fast) var(--motion-easing);
+  }
+
+  .ui-bookshelf-book::before,
+  .ui-bookshelf-book::after {
+    position: absolute;
+    top: 0;
+    left: 18%;
+    width: 1px;
+    height: 100%;
+    background: color-mix(in srgb, var(--color-page) 30%, transparent);
+    content: "";
+    pointer-events: none;
+  }
+
+  .ui-bookshelf-book::after {
+    left: auto;
+    right: 18%;
+  }
+
+  .ui-bookshelf-book[data-group="law"] { background-color: var(--bible-law); }
+  .ui-bookshelf-book[data-group="othist"] { background-color: var(--bible-othist); }
+  .ui-bookshelf-book[data-group="wisdom"] { background-color: var(--bible-wisdom); }
+  .ui-bookshelf-book[data-group="major"] { background-color: var(--bible-major); }
+  .ui-bookshelf-book[data-group="minor"] { background-color: var(--bible-minor); }
+  .ui-bookshelf-book[data-group="gospel"] { background-color: var(--bible-gospel); }
+  .ui-bookshelf-book[data-group="paul"] { background-color: var(--bible-paul); }
+  .ui-bookshelf-book[data-group="general"] { background-color: var(--bible-general); }
+  .ui-bookshelf-book[data-group="apoc"] { background-color: var(--bible-apoc); }
+
+  .ui-bookshelf-book.is-lean,
+  .ui-bookshelf-book[data-group="apoc"] {
+    transform: rotate(-7deg);
+    transform-origin: bottom left;
+  }
+
+  .ui-bookshelf-book:hover {
+    z-index: var(--layer-popups);
+    filter: brightness(1.08);
+    transform: translateY(-4px);
+  }
+
+  .ui-bookshelf-book.is-lean:hover,
+  .ui-bookshelf-book[data-group="apoc"]:hover {
+    transform: translateY(-4px) rotate(-7deg);
+  }
+
+  .ui-bookshelf-book[aria-pressed="true"] {
+    outline: 2px solid var(--color-action);
+    outline-offset: 2px;
+    filter: brightness(1.08);
+  }
+
+  .ui-bookshelf-book__name {
+    position: absolute;
+    bottom: calc(100% + .35rem);
+    left: 50%;
+    display: none;
+    width: max-content;
+    max-width: min(12rem, 45vw);
+    padding: .2rem .45rem;
+    transform: translateX(-50%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-chip);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+    color: var(--color-text);
+    font-size: .72rem;
+    line-height: 1.2;
+    white-space: normal;
+    pointer-events: none;
+  }
+
+  .ui-bookshelf-book:is(:hover, :focus-visible) .ui-bookshelf-book__name {
+    display: block;
+  }
+
+  .ui-bookshelf-book:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 760px) {
+    .ui-bookshelf-shelf {
+      height: 8rem;
+    }
+
+    .ui-bookshelf-book {
+      min-width: 4px;
+      height: 4.5rem;
+    }
+
+    .ui-bookshelf-book-run {
+      gap: 1px;
+      padding: 0 3px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-bookshelf-book {
+      transition: none;
+    }
+  }
+}

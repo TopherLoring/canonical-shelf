@@ -53,7 +53,7 @@
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "color:#1b1d22;",
-      "count": 71
+      "count": 66
     },
     "css-raw-color|public/learning-visuals.css": {
       "rule": "css-raw-color",
@@ -149,7 +149,7 @@
       "rule": "css-z-index-literal",
       "file": "public/styles.css",
       "text": ".guide-open{position:fixed;right:1rem;bottom:1rem;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);pad",
-      "count": 5
+      "count": 4
     },
     "css-z-index-literal|public/theologian-chat.css": {
       "rule": "css-z-index-literal",
@@ -162,30 +162,6 @@
       "file": "public/utility-panels.css",
       "text": ".utility-fab{position:fixed;z-index:22;border:1px solid var(--button-border);background:var(--button-primary-bg);color:var(--button-primary-text);padding:.58rem",
       "count": 3
-    },
-    "js-head-inject|public/bible-state.js": {
-      "rule": "js-head-inject",
-      "file": "public/bible-state.js",
-      "text": "document.head.append(link);",
-      "count": 1
-    },
-    "js-head-inject|public/experience.js": {
-      "rule": "js-head-inject",
-      "file": "public/experience.js",
-      "text": "document.head.append(link);",
-      "count": 1
-    },
-    "js-head-inject|public/learning-visuals.js": {
-      "rule": "js-head-inject",
-      "file": "public/learning-visuals.js",
-      "text": "document.head.append(link);",
-      "count": 1
-    },
-    "js-head-inject|public/search-experience.js": {
-      "rule": "js-head-inject",
-      "file": "public/search-experience.js",
-      "text": "const link=document.createElement('link');link.rel='stylesheet';link.href='/search-experience.css';link.dataset.canonicalSearch='';document.head.append(link);",
-      "count": 1
     }
   }
 }
