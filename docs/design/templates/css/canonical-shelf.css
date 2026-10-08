@@ -6,7 +6,8 @@
    theme contract when the screens move into the app. */
 @import url('../../../../public/theme.css');
 
-.cs-app {
+/* Defined on the shell, where --u exists, so the scaled shadows resolve. */
+.cs-shell {
   --c-page: var(--color-page);
   --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
   --c-surface: var(--color-surface);
@@ -422,7 +423,7 @@
 .cs-passage { display: flex; flex-direction: column; background: var(--c-scripture); overflow: hidden; }
 .cs-frame--well > .cs-passage { overflow: hidden; }
 .cs-passage__bar { block-size: calc(59 * var(--u)); flex: none; padding: 0 calc(28 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); border-block-end: calc(1 * var(--u)) solid var(--c-hairline); }
-.cs-select-button { block-size: calc(40 * var(--u)); padding: 0 calc(16 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); color: var(--c-text); font-size: calc(15 * var(--u)); font-weight: 600; }
+.cs-select-button { block-size: calc(40 * var(--u)); padding: 0 calc(16 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); color: var(--c-text); font-size: calc(15 * var(--u)); font-weight: 700; }
 .cs-select-button .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
 .cs-square-button { inline-size: calc(40 * var(--u)); block-size: calc(40 * var(--u)); flex: none; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); color: var(--c-text); }
 .cs-square-button .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); }
@@ -442,11 +443,13 @@
 .cs-scripture sup { font-family: var(--f-body); font-size: calc(11 * var(--u)); font-weight: 600; color: var(--c-muted); margin-inline-end: calc(3 * var(--u)); }
 .cs-verse--noted { padding: calc(2 * var(--u)) 0; background: var(--c-accent-mark); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .cs-verse--noted sup { color: var(--c-accent); }
-.cs-verse--selected { padding: calc(2 * var(--u)) 0; border-radius: calc(4 * var(--u)); box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-selection); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cs-verse--selected { padding: calc(2 * var(--u)) 0; border-radius: calc(4 * var(--u)); box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-selection); text-decoration: underline dotted var(--color-note-marker); text-decoration-thickness: calc(2 * var(--u)); text-underline-offset: calc(5 * var(--u)); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .cs-verse--selected sup { color: var(--c-action); }
 .cs-scripture mark { padding: calc(1 * var(--u)) 0; border-radius: calc(3 * var(--u)); background: var(--c-hl-yellow); color: inherit; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.cs-anchor { position: relative; display: inline-block; inline-size: 0; block-size: 0; vertical-align: top; }
-.cs-selection { position: absolute; inset-block-end: calc(8 * var(--u)); inset-inline-start: 0; display: flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-popover); box-shadow: var(--sh-popover); font-family: var(--f-body); z-index: var(--z-popover); white-space: nowrap; }
+.cs-anchor { position: relative; display: inline-block; inline-size: 0; block-size: 0; vertical-align: top; anchor-name: --cs-selection; }
+/* The selection menu opens as a popover, so it sits in the top layer above every pane; it is anchored to the verse. */
+.cs-selection:not(:popover-open) { display: none; }
+.cs-selection { position: fixed; position-anchor: --cs-selection; inset: auto; margin: 0; border: 0; inset-block-end: calc(anchor(top) + calc(8 * var(--u))); inset-inline-start: anchor(left); color: var(--c-raised); overflow: visible; display: flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(6 * var(--u)) calc(8 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-popover); box-shadow: var(--sh-popover); font-family: var(--f-body); z-index: var(--z-popover); white-space: nowrap; }
 .cs-swatch-button { inline-size: calc(22 * var(--u)); block-size: calc(22 * var(--u)); padding: 0; border: calc(2 * var(--u)) solid var(--shine-20); border-radius: calc(6 * var(--u)); }
 .cs-swatch-button[data-hl="yellow"] { background: var(--c-hl-yellow); } .cs-swatch-button[data-hl="green"] { background: var(--c-hl-green); }
 .cs-swatch-button[data-hl="blue"] { background: var(--c-hl-blue); } .cs-swatch-button[data-hl="rose"] { background: var(--c-hl-rose); }
@@ -598,7 +601,7 @@
   .cs-scripture--phone .cs-verse--noted sup, .cs-scripture--phone .cs-verse--selected sup { color: var(--c-muted); }
   .cs-scripture--phone .cs-verse--selected { padding: 0; }
   .cs-scripture--phone .cs-footnote { margin: 0 calc(6 * var(--u)) 0 calc(2 * var(--u)); }
-  .cs-scripture--phone .cs-selection { inset-block-end: auto; inset-block-start: calc(-2 * var(--u)); border-radius: calc(12 * var(--u)); box-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) var(--ink-30); }
+  .cs-scripture--phone .cs-selection { inset-block-end: auto; inset-block-start: calc(anchor(top) - calc(2 * var(--u))); border-radius: calc(12 * var(--u)); box-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) var(--ink-30); }
 
   /* Study Topics */
   .cs-topic-grid { grid-template-columns: minmax(0, 1fr); }

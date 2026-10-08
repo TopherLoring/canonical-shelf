@@ -125,7 +125,7 @@
 .cs-passage { display: flex; flex-direction: column; background: var(--c-scripture); overflow: hidden; }
 .cs-frame--well > .cs-passage { overflow: hidden; }
 .cs-passage__bar { block-size: 59u; flex: none; padding: 0 28u; display: flex; align-items: center; gap: 10u; border-block-end: 1u solid var(--c-hairline); }
-.cs-select-button { block-size: 40u; padding: 0 16u; display: flex; align-items: center; gap: 8u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); font-size: 15u; font-weight: 600; }
+.cs-select-button { block-size: 40u; padding: 0 16u; display: flex; align-items: center; gap: 8u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); font-size: 15u; font-weight: 700; }
 .cs-select-button .cs-icon { inline-size: 14u; block-size: 14u; }
 .cs-square-button { inline-size: 40u; block-size: 40u; flex: none; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text); }
 .cs-square-button .cs-icon { inline-size: 16u; block-size: 16u; }
@@ -145,11 +145,13 @@
 .cs-scripture sup { font-family: var(--f-body); font-size: 11u; font-weight: 600; color: var(--c-muted); margin-inline-end: 3u; }
 .cs-verse--noted { padding: 2u 0; background: var(--c-accent-mark); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .cs-verse--noted sup { color: var(--c-accent); }
-.cs-verse--selected { padding: 2u 0; border-radius: 4u; box-shadow: 0 0 0 2u var(--c-selection); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cs-verse--selected { padding: 2u 0; border-radius: 4u; box-shadow: 0 0 0 2u var(--c-selection); text-decoration: underline dotted var(--color-note-marker); text-decoration-thickness: 2u; text-underline-offset: 5u; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .cs-verse--selected sup { color: var(--c-action); }
 .cs-scripture mark { padding: 1u 0; border-radius: 3u; background: var(--c-hl-yellow); color: inherit; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.cs-anchor { position: relative; display: inline-block; inline-size: 0; block-size: 0; vertical-align: top; }
-.cs-selection { position: absolute; inset-block-end: 8u; inset-inline-start: 0; display: flex; align-items: center; gap: 6u; padding: 6u 8u; border-radius: 10u; background: var(--c-popover); box-shadow: var(--sh-popover); font-family: var(--f-body); z-index: var(--z-popover); white-space: nowrap; }
+.cs-anchor { position: relative; display: inline-block; inline-size: 0; block-size: 0; vertical-align: top; anchor-name: --cs-selection; }
+/* The selection menu opens as a popover, so it sits in the top layer above every pane; it is anchored to the verse. */
+.cs-selection:not(:popover-open) { display: none; }
+.cs-selection { position: fixed; position-anchor: --cs-selection; inset: auto; margin: 0; border: 0; inset-block-end: calc(anchor(top) + 8u); inset-inline-start: anchor(left); color: var(--c-raised); overflow: visible; display: flex; align-items: center; gap: 6u; padding: 6u 8u; border-radius: 10u; background: var(--c-popover); box-shadow: var(--sh-popover); font-family: var(--f-body); z-index: var(--z-popover); white-space: nowrap; }
 .cs-swatch-button { inline-size: 22u; block-size: 22u; padding: 0; border: 2u solid var(--shine-20); border-radius: 6u; }
 .cs-swatch-button[data-hl="yellow"] { background: var(--c-hl-yellow); } .cs-swatch-button[data-hl="green"] { background: var(--c-hl-green); }
 .cs-swatch-button[data-hl="blue"] { background: var(--c-hl-blue); } .cs-swatch-button[data-hl="rose"] { background: var(--c-hl-rose); }
@@ -301,7 +303,7 @@
   .cs-scripture--phone .cs-verse--noted sup, .cs-scripture--phone .cs-verse--selected sup { color: var(--c-muted); }
   .cs-scripture--phone .cs-verse--selected { padding: 0; }
   .cs-scripture--phone .cs-footnote { margin: 0 6u 0 2u; }
-  .cs-scripture--phone .cs-selection { inset-block-end: auto; inset-block-start: -2u; border-radius: 12u; box-shadow: 0 10u 24u var(--ink-30); }
+  .cs-scripture--phone .cs-selection { inset-block-end: auto; inset-block-start: calc(anchor(top) - 2u); border-radius: 12u; box-shadow: 0 10u 24u var(--ink-30); }
 
   /* Study Topics */
   .cs-topic-grid { grid-template-columns: minmax(0, 1fr); }

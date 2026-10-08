@@ -50,7 +50,8 @@ function render(next) {
   app.dataset.layout = next;
   app.dataset.chrome = phone && chrome ? 'device' : 'none';
   const frameClass = `cs-frame cs-frame--${screen.frame}${screen.cols ? ` cs-cols--${screen.cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${topBar(phone)}<main class="${frameClass}">${phone ? screen.phone() : screen.desktop()}</main>${phone ? tabBar : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}</div><dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog>`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${topBar(phone)}<main class="${frameClass}">${phone ? screen.phone() : screen.desktop()}</main>${phone ? tabBar : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
 }
 

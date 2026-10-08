@@ -4,7 +4,8 @@
    theme contract when the screens move into the app. */
 @import url('../../../../public/theme.css');
 
-.cs-app {
+/* Defined on the shell, where --u exists, so the scaled shadows resolve. */
+.cs-shell {
   --c-page: var(--color-page);
   --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
   --c-surface: var(--color-surface);
