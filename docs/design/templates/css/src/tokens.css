@@ -1,0 +1,115 @@
+/* Template roles. Every color comes from the app's generated theme (public/theme.css, from .roa/values/theme.json),
+   so the templates follow the theme and the guard's no-raw-color rule. Roles the theme does not have yet are mixed
+   from theme roles; each mix lands within a few levels of the board color named beside it. Add these roles to the
+   theme contract when the screens move into the app. */
+@import url('../../../../public/theme.css');
+
+.cs-app {
+  --c-page: var(--color-page);
+  --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
+  --c-surface: var(--color-surface);
+  --c-raised: var(--color-surface-raised);
+  --c-sunken: var(--color-surface-sunken);
+  --c-subtle: color-mix(in srgb, var(--color-surface-raised) 94%, var(--color-action));       /* board #F2F3F6 */
+  --c-scripture: var(--color-scripture-bed);
+
+  --c-text: var(--color-text);
+  --c-text-2: var(--color-text-secondary);
+  --c-muted: var(--color-text-muted);
+  --c-disabled: color-mix(in srgb, var(--color-border) 72%, var(--color-text-secondary));    /* #A9AFBB */
+
+  --c-action: var(--color-action);
+  --c-action-subtle: var(--color-action-subtle);
+  --c-on-action: var(--color-on-action);
+  --c-accent: var(--color-accent);
+  --c-accent-tint: color-mix(in srgb, var(--color-surface-raised) 88%, var(--color-accent));  /* #F6E9EE */
+  --c-accent-wash: color-mix(in srgb, var(--color-surface-raised) 95%, var(--color-accent));  /* #FBF4F6 */
+  --c-accent-mark: color-mix(in srgb, var(--color-surface-raised) 86%, var(--color-accent));  /* #F6E3EA */
+  --c-accent-ink: color-mix(in srgb, var(--color-accent) 31%, var(--color-edge-notes));      /* #8A3D57 */
+  --c-notes-edge: color-mix(in srgb, var(--color-surface-raised) 84%, var(--color-accent));   /* #EFE2E7 */
+  --c-correct: var(--color-correct);
+  --c-gold: var(--bible-minor);
+
+  --c-hairline: color-mix(in srgb, var(--color-page) 95%, var(--color-action));              /* #E3E5EA */
+  --c-row: color-mix(in srgb, var(--color-surface-raised) 17%, var(--color-page));           /* #F0F1F4 */
+  --c-border: var(--color-border);
+  --c-strong: color-mix(in srgb, var(--color-border) 85%, var(--color-text-muted));          /* #C3C8D1 */
+  --c-selection: var(--color-selection);
+  --c-focus-ring: color-mix(in srgb, var(--color-action) 20%, transparent);
+
+  --c-tab-theologian: var(--color-edge-theologian);
+  --c-tab-theologian-edge: color-mix(in srgb, var(--color-edge-theologian) 80%, var(--color-text-muted)); /* #2A344C */
+  --c-tab-theologian-ink: color-mix(in srgb, var(--color-surface-raised) 61%, var(--color-border));      /* #EEF0F4 */
+  --c-tab-notes: var(--color-edge-notes);
+  --c-tab-notes-edge: color-mix(in srgb, var(--color-text) 45%, var(--bible-gospel));        /* #5E2B3F */
+
+  --c-hl-yellow: var(--color-highlight-yellow);
+  --c-hl-green: var(--color-highlight-green);
+  --c-hl-blue: var(--color-highlight-blue);
+  --c-hl-rose: var(--color-highlight-rose);
+  --c-popover: var(--color-text);
+  --c-popover-line: color-mix(in srgb, white 20%, transparent);
+  --c-dim: var(--color-dim-overlay);
+
+  --g-law: var(--bible-law);
+  --g-history: var(--bible-othist);
+  --g-wisdom: var(--bible-wisdom);
+  --g-major: var(--bible-major);
+  --g-minor: var(--bible-minor);
+  --g-gospels: var(--bible-gospel);
+  --g-paul: var(--bible-paul);
+  --g-general: var(--bible-general);
+  --g-revelation: var(--bible-apoc);
+
+  --c-wood-light: var(--color-shelf-wood-light);
+  --c-wood: var(--color-shelf-wood);
+  --c-wood-dark: var(--color-shelf-wood-dark);
+  --c-wood-edge: var(--color-shelf-wood-edge);
+  --c-wood-shine: var(--color-shelf-wood-highlight);
+  --c-plaque: color-mix(in srgb, var(--color-surface-raised) 78%, var(--bible-minor));       /* #F1E6D4 */
+  --c-iron: var(--color-shelf-iron);
+  --c-iron-light: var(--color-shelf-iron-light);
+  --c-iron-edge: var(--color-shelf-iron-edge);
+  --c-gilt: color-mix(in srgb, var(--color-surface-raised) 43%, var(--bible-minor));         /* #D9C38A */
+
+  --c-art-paper: color-mix(in srgb, var(--color-surface) 88%, var(--bible-minor));           /* #F2EDE4 */
+  --c-art-blue: color-mix(in srgb, var(--color-surface-raised) 93%, var(--color-action));    /* #EEF1F7 */
+  --c-art-green: color-mix(in srgb, var(--color-surface-raised) 91%, var(--bible-wisdom));   /* #EEF3F1 */
+
+  /* Shadow and light tints, as transparent mixes of the text color and white */
+  --ink-8: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --ink-9: color-mix(in srgb, var(--color-text) 9%, transparent);
+  --ink-12: color-mix(in srgb, var(--color-text) 12%, transparent);
+  --ink-15: color-mix(in srgb, var(--color-text) 15%, transparent);
+  --ink-18: color-mix(in srgb, var(--color-text) 18%, transparent);
+  --ink-20: color-mix(in srgb, var(--color-text) 20%, transparent);
+  --ink-22: color-mix(in srgb, var(--color-text) 22%, transparent);
+  --ink-25: color-mix(in srgb, var(--color-text) 25%, transparent);
+  --ink-30: color-mix(in srgb, var(--color-text) 30%, transparent);
+  --shine-3: color-mix(in srgb, white 3%, transparent);
+  --shine-4: color-mix(in srgb, white 4%, transparent);
+  --shine-6: color-mix(in srgb, white 6%, transparent);
+  --shine-20: color-mix(in srgb, white 20%, transparent);
+  --shine-25: color-mix(in srgb, white 25%, transparent);
+  --shade-7: color-mix(in srgb, black 7%, transparent);
+  --shade-8: color-mix(in srgb, black 8%, transparent);
+  --shade-20: color-mix(in srgb, black 20%, transparent);
+  --shade-25: color-mix(in srgb, black 25%, transparent);
+
+  /* Elevation (lengths scale with --u) */
+  --sh-card: 0 calc(1 * var(--u)) calc(3 * var(--u)) var(--ink-8), 0 calc(8 * var(--u)) calc(20 * var(--u)) var(--ink-12);
+  --sh-frame: 0 calc(2 * var(--u)) calc(6 * var(--u)) var(--ink-9), 0 calc(16 * var(--u)) calc(40 * var(--u)) var(--ink-18);
+  --sh-popover: 0 calc(8 * var(--u)) calc(20 * var(--u)) var(--ink-25);
+  --sh-tab: calc(-3 * var(--u)) 0 calc(8 * var(--u)) var(--ink-12);
+
+  /* Layers come from the theme */
+  --z-raised: var(--layer-nav);
+  --z-tabs: var(--layer-edge-tabs);
+  --z-popover: var(--layer-popups);
+
+  /* Type families */
+  --f-wordmark: Caladea, Cambria, Charter, Georgia, serif;
+  --f-display: Newsreader, Georgia, serif;
+  --f-reading: Literata, Georgia, serif;
+  --f-body: 'Source Sans 3', system-ui, sans-serif;
+}

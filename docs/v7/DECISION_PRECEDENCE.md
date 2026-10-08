@@ -1283,6 +1283,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
   Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
 
+### `ui.phone.nav.bottom-bar-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-layout-add-a-phone-status-bar-with-the-cam`
+  Phone layout: add a phone status bar with the camera island at the top of phone mockups and templates, and move the five main destinations to a bottom tab bar like the template (Shelf, Path, Bible, Topics, Review). My Notes and Theologian stay as right-edge tabs.
+
 ### `ui.phone.no-hscroll`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.no-hscroll.v1`
@@ -1383,10 +1388,20 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
+### `ui.sizing.proportional-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `nothing-on-desktop-or-phone-has-fixed-sizes-or-d`
+  Nothing on desktop or phone has fixed sizes or dimensions; everything is proportionate to the viewport and adapts to the container and size it is rendered in.
+
 ### `ui.tablet.responsive-options`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
   For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
+
+### `ui.templates.match-plan-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `fix-the-template-to-match-the-plan-the-approved-`
+  Fix the template to match the plan (the approved boards); the corrected template is the visual base for the redesign.
 
 ### `ui.theme.default`
 

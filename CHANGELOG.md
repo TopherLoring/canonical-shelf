@@ -8,6 +8,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
+- Phone layout: add a phone status bar with the camera island at the top of phone mockups and templates, and move the five main destinations to a bottom tab bar like the template (Shelf, Path, Bible, Topics, Review). My Notes and Theologian stay as right-edge tabs.
+- Nothing on desktop or phone has fixed sizes or dimensions; everything is proportionate to the viewport and adapts to the container and size it is rendered in.
+- Fix the template to match the plan (the approved boards); the corrected template is the visual base for the redesign.
 
 ## 2026-10-07
 

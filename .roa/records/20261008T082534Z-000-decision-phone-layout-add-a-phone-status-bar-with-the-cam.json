@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-layout-add-a-phone-status-bar-with-the-cam",
+  "topic": "ui.phone.nav.bottom-bar-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone layout: add a phone status bar with the camera island at the top of phone mockups and templates, and move the five main destinations to a bottom tab bar like the template (Shelf, Path, Bible, Topics, Review). My Notes and Theologian stay as right-edge tabs.",
+  "by": "Chris"
+}

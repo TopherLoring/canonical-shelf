@@ -226,6 +226,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
+| `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
@@ -244,7 +245,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.sizing.proportional-2026-10-08` | Nothing on desktop or phone has fixed sizes or dimensions; | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
+| `ui.templates.match-plan-2026-10-08` | Fix the template to match the plan (the approved boards); | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
