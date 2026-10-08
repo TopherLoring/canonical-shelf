@@ -14,7 +14,7 @@
     display: grid;
     grid-template-columns: var(--reader-rail-w) minmax(0, 1fr) var(--reader-aside-w);
     gap: var(--reader-gap);
-    padding: var(--space-4);
+    padding: calc(var(--space-4) - 2px) var(--space-4) var(--space-4);
     height: calc(100dvh - 112px);
     min-height: 0;
     box-sizing: border-box;

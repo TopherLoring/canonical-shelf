@@ -240,7 +240,7 @@ test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full
 });
 
 test('each page starts close under the top bar (no large blank band); Home has no 66-books line',async({page})=>{
-  for(const u of ['/home','/course','/bible','/topics','/practice','/profile']){
+  for(const u of ['/home','/course','/bible?book=43&chapter=1','/bible?book=43&profile=1','/bible?view=timeline','/topics','/practice','/profile']){
     await page.goto(u);
     await expect(page.locator('main')).not.toBeEmpty();
     const gap=await page.evaluate(()=>{const bar=document.querySelector('header.masthead').getBoundingClientRect().bottom;const w=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT,{acceptNode:n=>n.textContent.trim()&&n.parentElement.offsetParent!==null?1:3});const t=w.nextNode();return t.parentElement.getBoundingClientRect().top-bar});

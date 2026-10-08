@@ -11,6 +11,7 @@ const ROUTES = [
   '/bible?book=1&chapter=1', '/topics', '/topics?mode=glossary', '/practice', '/practice?mode=arcade',
   '/practice?mode=verses', '/practice?mode=review', '/practice?mode=achievements', '/profile', '/search?q=grace', '/about', '/course?course=c1', '/topics?glossary=grace',
   '/practice?mode=campaign', '/practice?mode=context',
+  '/bible?book=43&profile=1', '/bible?view=timeline',
 ];
 const SITE_TITLE = '.brand-wordmark, .brand-wordmark *, .shelf-home__intro h1, .shelf-home__intro h1 *';
 

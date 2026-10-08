@@ -14,6 +14,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 8. A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.
 9. Leave the node handoff-ready at every commit: `bun run work note <id> "what changed, what is next"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.
 10. Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done.
+11. Shared generated files: any node may add the manifest lines (.roa/manifest.json) for the new governed files it creates, and regenerate .roa/state.json and README.md with `bun .roa-kit/roa.mjs sync` after merging the latest integration branch. Never hand-edit the generated files, never reformat or reorder manifest lines, never touch another node's lines. These paths are never listed in a node's owns.
 
 ## Ready to start
 
@@ -421,6 +422,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S10 — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
 
+- 2026-10-07 (Claude): Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths.
 - 2026-10-08 (Codex): Claimed on codex/s10-about.
 - 2026-10-07 (Claude): Chris 2026-10-07: approved; same two-pane layout as Topics.
 

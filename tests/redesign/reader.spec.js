@@ -423,13 +423,13 @@ test.describe('Bible reader', () => {
     await expect(page.locator('#v16')).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('other Bible pages stay on their current views', async ({ page }) => {
+  test('the Timeline and Book overview are their own screen, not the reader', async ({ page }) => {
     await page.goto('/bible?view=timeline');
     await expect(page.locator('[data-reader]')).toHaveCount(0);
-    await expect(page.locator('.bible-timeline')).toBeVisible();
+    await expect(page.locator('.timeline-era').first()).toBeVisible();
     await page.goto('/bible?book=43&profile=1');
     await expect(page.locator('[data-reader]')).toHaveCount(0);
-    await expect(page.locator('[data-book-drawer]')).toBeVisible();
+    await expect(page.locator('[data-book-screen]')).toBeVisible();
   });
 });
 

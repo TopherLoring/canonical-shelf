@@ -1,0 +1,107 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Book overview and Timeline (Step 8). Same arrangement as Study Topics: a list on the left, the selected item in the
+   middle, a reading panel on the right. Colors, fonts and radii come from theme roles. */
+@layer screens {
+  .book-screen {
+    display: grid;
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr) minmax(250px, 320px);
+    gap: clamp(12px, 1.4vw, 20px);
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* The page scrolls as a whole (as in Study Topics); the 66-book list stays in view beside it and scrolls on its own. */
+  .book-nav-wrap { position: sticky; top: 0; align-self: start; max-height: calc(100dvh - 8rem); min-height: 0; overflow: auto; }
+  .book-nav-toggle { display: none; }
+  .book-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px 16px; }
+  .book-nav__group { display: flex; flex-direction: column; gap: 2px; }
+  .book-nav__label {
+    margin: var(--space-3) var(--space-2) var(--space-1);
+    font-family: var(--font-label);
+    font-size: var(--type-caption);
+    color: var(--color-text-muted);
+  }
+  .book-nav > .book-nav__label:first-child { margin-top: 0; line-height: 1.2; }
+  .book-nav a {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+    min-height: 34px; padding: var(--space-1) var(--space-2);
+    border-left: 3px solid transparent; border-radius: var(--radius-control);
+    color: var(--color-text); text-decoration: none; font-size: var(--type-small);
+  }
+  .book-nav a:hover { background: var(--color-surface-sunken); }
+  .book-nav a[aria-current="page"] { background: var(--color-surface-sunken); border-left-color: var(--color-action); font-weight: 600; }
+  .book-nav__count { color: var(--color-text-muted); font-size: var(--type-caption); }
+
+  .book-main { min-width: 0; min-height: 0; overflow: auto; padding: 2px var(--space-1) var(--space-5); display: grid; align-content: start; gap: var(--space-3); }
+  .book-heading { display: grid; justify-items: start; gap: var(--space-1); padding-top: var(--space-1); }
+  .book-heading .eyebrow, .book-heading h1 { margin: 0; }
+  .book-hook { margin: 0; font-family: var(--font-display); font-size: var(--type-lead); line-height: var(--leading-tight); color: var(--color-text); }
+  .book-synopsis { margin: 0; max-width: var(--measure-reading); line-height: var(--leading-reading); color: var(--color-text-secondary); }
+  .book-length { display: grid; gap: var(--space-1); max-width: 28rem; font-size: var(--type-small); color: var(--color-text-secondary); }
+
+  .book-facts { display: grid; gap: var(--space-2); margin: 0; max-width: var(--measure-reading); }
+  .book-facts > div { display: grid; grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr); gap: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+  .book-facts dt { font-family: var(--font-label); font-size: var(--type-small); color: var(--color-text-muted); }
+  .book-facts dd { margin: 0; }
+
+  .book-badges { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+  .book-badges li { padding: 2px var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-chip); font-size: var(--type-caption); color: var(--color-text-secondary); }
+  .book-boundary { margin: 0; max-width: var(--measure-reading); font-size: var(--type-small); color: var(--color-text-muted); }
+
+  .book-stepper { display: flex; justify-content: space-between; gap: var(--space-3); }
+  .book-stepper a { display: grid; gap: 2px; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-text); text-decoration: none; }
+  .book-stepper small { color: var(--color-text-muted); }
+
+  .book-context { align-self: start; position: sticky; top: 0; max-height: calc(100dvh - 8rem); min-height: 0; overflow: auto; padding: var(--space-4); display: grid; align-content: start; gap: var(--space-3); }
+  .book-context > * { margin: 0; }
+  .book-context__read { line-height: var(--leading-normal); }
+  .book-context__start {
+    justify-self: start; padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control); background: var(--color-action); color: var(--color-on-action);
+    font-weight: 600; text-decoration: none;
+  }
+  .book-chapters { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr)); gap: var(--space-1); }
+  .book-chapters a {
+    display: grid; place-items: center; min-height: 34px;
+    border: 1px solid var(--color-border); border-radius: var(--radius-control);
+    color: var(--color-text); text-decoration: none; font-size: var(--type-small);
+  }
+  .book-chapters a:hover { border-color: var(--color-action); }
+
+  .timeline-era-list { display: grid; gap: var(--space-2); }
+  .timeline-era { display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr); gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); }
+  .timeline-era .eyebrow, .timeline-era h3 { margin: 0; }
+  .timeline-books { display: flex; flex-wrap: wrap; gap: var(--space-1); align-content: start; }
+  .timeline-books a { padding: 2px var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-chip); color: var(--color-text); text-decoration: none; font-size: var(--type-small); }
+  .timeline-books a[aria-current="true"] { border-color: var(--color-action); background: var(--color-surface-sunken); font-weight: 600; }
+
+  .timeline-anchors, .story-arc { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+  .timeline-anchors li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: var(--space-2); font-size: var(--type-small); }
+  .story-arc li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: var(--space-2); font-size: var(--type-small); }
+  .story-arc li > span { color: var(--color-text-muted); }
+  .story-arc em { display: block; font-style: normal; color: var(--color-text-secondary); }
+  .story-arc p { margin: 2px 0 0; color: var(--color-text-secondary); }
+
+  @media (max-width: 1040px) {
+    .book-screen { grid-template-columns: minmax(170px, 210px) minmax(0, 1fr); overflow: auto; }
+    .book-context { grid-column: 2; position: static; max-height: 42vh; }
+    .book-main { overflow: visible; }
+  }
+
+  @media (max-width: 680px) {
+    .book-screen { grid-template-columns: minmax(0, 1fr); height: auto; overflow: visible; }
+    .book-nav-wrap { position: static; max-height: none; overflow: visible; }
+    .book-nav-toggle {
+      display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px;
+      padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-control);
+      background: var(--color-surface); color: var(--color-text); font: inherit; font-weight: 600; cursor: pointer;
+    }
+    .book-nav-wrap:not([data-open]) .book-nav { display: none; }
+    .book-nav-wrap[data-open] .book-nav { max-height: 50vh; overflow: auto; }
+    .book-main { overflow: visible; padding: 0 2px; }
+    .book-context { grid-column: auto; position: static; max-height: none; }
+    .book-facts > div, .timeline-era { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  }
+}

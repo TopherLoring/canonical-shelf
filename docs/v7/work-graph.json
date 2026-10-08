@@ -11,7 +11,8 @@
     "One node, one branch, one draft PR. Nothing merges without Chris's approval.",
     "A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.",
     "Leave the node handoff-ready at every commit: `bun run work note <id> \"what changed, what is next\"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.",
-    "Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done."
+    "Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done.",
+    "Shared generated files: any node may add the manifest lines (.roa/manifest.json) for the new governed files it creates, and regenerate .roa/state.json and README.md with `bun .roa-kit/roa.mjs sync` after merging the latest integration branch. Never hand-edit the generated files, never reformat or reorder manifest lines, never touch another node's lines. These paths are never listed in a node's owns."
   ],
   "nodes": [
     {
@@ -2033,6 +2034,11 @@
           "date": "2026-10-08",
           "by": "Codex",
           "text": "Claimed on codex/s10-about."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths."
         }
       ],
       "owner": "Codex",
