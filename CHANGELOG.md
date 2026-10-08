@@ -67,6 +67,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Study Topics: the selected question is the visual focus (bordered card, navy drop-down menu, sub topics inside); the type drop-down above is demoted to a quiet text control.
 - Phone Review & Practice: the mode menu is an icon drop list (replaces the scrollable bar), under the title and description.
 - Phone Learning Path: the inline lesson Start/Open button is compact, not full width.
+- Phone Study Topics: Sources and Other views are footnotes (superscript markers in the text, footnotes at the bottom of the sub topic), not main content. The question menu is smaller and subtle, with texture and shadow instead of a border. Sub topics are shown closed.
 
 ## 2026-10-07
 

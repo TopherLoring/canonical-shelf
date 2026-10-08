@@ -500,11 +500,6 @@
 .cs-topicpick > .cs-icon { inline-size: 18u; block-size: 18u; flex: none; color: var(--c-text-2); }
 .cs-topicpick select { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
 
-.cs-focuscard { display: flex; flex-direction: column; gap: 12u; padding: 10u 10u 14u; border: 2u solid var(--c-action); border-radius: 16u; background: var(--c-raised); }
-.cs-focuscard .cs-topicpick { background: var(--c-action); color: var(--c-on-action); }
-.cs-focuscard .cs-topicpick .cs-kicker, .cs-focuscard .cs-topicpick > .cs-icon { color: var(--c-on-action); }
-.cs-focuscard > .cs-phone-prose, .cs-focuscard > .cs-caption { padding-inline: 6u; }
-.cs-focuscard > .cs-subacc { margin-block-start: 0; }
 .cs-scroll > .cs-typepicker { border-color: transparent; background: transparent; min-block-size: 28u; padding: 0; justify-content: flex-start; align-self: flex-start; font-size: 13u; }
 
 .cs-typepicker--block { align-self: stretch; justify-content: flex-start; min-block-size: 44u; }
@@ -512,3 +507,10 @@
 .cs-typepicker--block .cs-grow { text-align: start; }
 
 .cs-lessonopen .cs-button { align-self: flex-start; }
+
+.cs-topicpick { padding: 9u 14u; border-radius: 12u; background-color: var(--c-action-subtle); background-image: repeating-linear-gradient(135deg, var(--ink-8) 0 1u, transparent 1u 7u); box-shadow: inset 0 1u 0 var(--c-raised), 0 3u 8u var(--ink-15); }
+.cs-topicpick__title { font-size: 16u; line-height: 1.25; }
+.cs-footnotes { display: flex; flex-direction: column; gap: 10u; margin-block-start: 10u; padding-block-start: 10u; border-block-start: 1u solid var(--c-row); font-size: 13u; }
+.cs-footnotes__item { display: flex; gap: 8u; }
+.cs-footnotes__mark { flex: none; font-size: 11u; font-weight: 700; color: var(--c-accent-ink); vertical-align: super; }
+.cs-footnotes__item > div { display: flex; flex-direction: column; gap: 6u; min-inline-size: 0; }
