@@ -1160,6 +1160,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar
   *Why:* Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered
 
+### `ui.learning-path-2026-10-08`
+
+- **Feedback** · 2026-10-08 · Chris · `learning-path-option-b-shelf-disliked`
+  I don't like the shelf-native Learning Path option (B: units as volumes on a plank).
+
 ### `ui.lesson.card`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v3-2026-10-05`

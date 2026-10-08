@@ -45,7 +45,7 @@ function practiceRail(dueCount, active) {
     ariaLabel: 'Review and practice',
     className: 'practice-screen__rail',
     sections: [
-      { title: '', items: [item('overview', '/practice', 'Overview', ICONS.overview)] },
+      { title: 'Review & Practice', items: [item('overview', '/practice', 'Overview', ICONS.overview)] },
       { title: 'Review', items: [item('review', '/practice?mode=review', 'Due for review', ICONS.review, { count: dueCount })] },
       { title: 'Practice', items: [
         item('verses', '/practice?mode=verses', 'Verse library', ICONS.books),

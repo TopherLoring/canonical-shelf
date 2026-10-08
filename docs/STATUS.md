@@ -273,6 +273,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `ui.bible`: Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole (undefined)
 - `ui.theme.palettes`: The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign (undefined)
 - `ui.course-shelf`: Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between (undefined)
+- `ui.learning-path-2026-10-08`: I don't like the shelf-native Learning Path option (B: units as volumes on a plank). (undefined)
 
 Full history: [decision log](v7/DECISION_PRECEDENCE.md) · [changelog](../CHANGELOG.md)
 
