@@ -1949,7 +1949,7 @@
     {
       "id": "S8",
       "title": "Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview)",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S5a"
       ],
@@ -1966,8 +1966,15 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "Chris 2026-10-07: approved. Maps (already disabled) is dropped. The Shelf book panel keeps its Book overview link."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s8-book-overview."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/s8-book-overview"
     },
     {
       "id": "S9",
