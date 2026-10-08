@@ -2161,7 +2161,7 @@
     {
       "id": "S12",
       "title": "Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later",
-      "state": "todo",
+      "state": "claimed",
       "deps": [
         "S11"
       ],
@@ -2178,8 +2178,15 @@
           "date": "2026-10-08",
           "by": "Claude",
           "text": "Chris 2026-10-07: the practice page must match the redesign; only the individual practice content is deferred (ui.practice.modes.continue-side-panes-2026-10-07). S7 depends on this so legacy styles can be deleted."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s12-practice-frames."
         }
-      ]
+      ],
+      "owner": "Claude",
+      "branch": "feature/s12-practice-frames"
     },
     {
       "id": "L1",

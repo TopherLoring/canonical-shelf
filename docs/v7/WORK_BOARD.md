@@ -20,12 +20,12 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 - **P11** — Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD
-- **S12** — Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
+| `S12` | claimed | Claude | `feature/s12-practice-frames` | `S11` | Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later |
 | `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits |
 | `A2` | waiting |  |  | `A1` | Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
 | `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account |
@@ -48,7 +48,6 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
 | `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9`, `S11`, `S12` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
-| `S12` | ready |  |  | `S11` | Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
@@ -456,6 +455,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S12 — Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later
 
+- 2026-10-08 (Claude): Claimed on feature/s12-practice-frames.
 - 2026-10-08 (Claude): Chris 2026-10-07: the practice page must match the redesign; only the individual practice content is deferred (ui.practice.modes.continue-side-panes-2026-10-07). S7 depends on this so legacy styles can be deleted.
 
 ### L1 — Lexicon data: build static, sharded original-language word data from the Berean BSB translation tables and concordance (aligned Hebrew/Greek word, transliteration, morphology, BSB renderings, per-lemma usage range and occurrences). No Strong's or other dictionary glosses
