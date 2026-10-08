@@ -68,6 +68,17 @@ async function loadCrossrefs(book, chapter) {
   return crossrefCache.get(key);
 }
 
+// Layout and verse scrolling must use the settled theme metrics. Loading only the normal face
+// would still allow bold/italic prose or footnotes to move a deep-linked verse afterward.
+async function themeFontsReady() {
+  if (!document.fonts?.load) return;
+  const computed = getComputedStyle(document.documentElement);
+  const families = [...new Set(['--font-body', '--font-reading'].map(role => computed.getPropertyValue(role).trim()).filter(Boolean))];
+  await Promise.all(families.flatMap(family => ['normal', 'italic'].flatMap(fontStyle => [400, 600, 700].map(weight =>
+    document.fonts.load(`${fontStyle} ${weight} 16px ${family}`, 'AaĀ').catch(() => [])
+  ))));
+}
+
 // One psalm is "Psalm 23"; the book is "Psalms".
 const bookLabel = b => (b === 19 ? 'Psalm' : bookByNumber(b)?.name || `Book ${b}`);
 const refLabel = ([b, c, v1, v2]) => `${bookLabel(b)} ${c}:${v1}${v2 && v2 !== v1 ? `–${v2}` : ''}`;
@@ -264,7 +275,11 @@ export async function mount(container, ctx) {
   const osisBook = OSIS[book - 1];
   const rows = parseCorpus(corpus).filter(r => r.bn === book && r.chapter === chapter);
   const groupLabel = groupName(meta.cat);
-  const [annotations, highlights] = await Promise.all([loadAnnotations(book, chapter), chapterHighlights(osisBook, chapter, { details: true }).catch(() => ({}))]);
+  const [annotations, highlights] = await Promise.all([
+    loadAnnotations(book, chapter),
+    chapterHighlights(osisBook, chapter, { details: true }).catch(() => ({})),
+    themeFontsReady()
+  ]);
   if (ctx.isCurrent?.() === false) return;
   const { prev, next } = neighbours(book, chapter);
   let size = SIZES[0];
@@ -304,7 +319,6 @@ export async function mount(container, ctx) {
     <div class="reader-rail-wrap" data-reader-rail>${renderRail({ sections: railSections(selected), ariaLabel: 'Study tools', id: 'reader-rail' })}</div>
     <article class="reader-card" data-reader-card>
       <header class="reader-toolbar">
-        ${pickerMarkup(book, chapter, esc)}
         <div class="reader-steps">${prevLink}${nextLink}</div>
         <div class="reader-meta">${renderGroupChip({ group: meta.cat })}<span class="reader-meta-count">Chapter ${chapter} of ${meta.ch}</span></div>
         <div class="reader-toolbar-end">
@@ -332,6 +346,7 @@ export async function mount(container, ctx) {
         <header class="reader-title" data-group="${meta.cat}">
           <p class="reader-title-group">${esc(groupLabel)}</p>
           <h1 class="reader-title-heading">${esc(name)} ${chapter}</h1>
+          ${pickerMarkup(book, chapter, esc)}
           <p class="reader-title-version">Berean Standard Bible</p>
         </header>
       <div class="reader-scroll" data-reader-scroll>
@@ -485,7 +500,7 @@ export async function mount(container, ctx) {
     }
     if (which === 'context') {
       return `${head('Context', meta.name)}<p class="reader-panel-hook">${esc(meta.hook || '')}</p><p class="reader-panel-text">${esc(meta.syn || '')}</p>
-        <dl class="reader-facts"><dt>Where to begin</dt><dd>${esc(meta.read || '')}</dd><dt>Setting</dt><dd>${esc(meta.when || '')}</dd><dt>Who wrote it</dt><dd>${esc(meta.who || '')}</dd></dl>
+        <dl class="reader-facts"><dt>Read first</dt><dd>${esc(meta.read || '')}</dd><dt>Setting</dt><dd>${esc(meta.when || '')}</dd><dt>Who wrote it</dt><dd>${esc(meta.who || '')}</dd></dl>
         <p><a class="reader-panel-link" href="/bible?book=${book}&profile=1">Book overview</a></p>`;
     }
     if (which === 'highlights') {

@@ -20,7 +20,7 @@ export function renderRailLink({
     : '';
   const iconHtml = icon ? `<span class="ui-rail-icon" aria-hidden="true">${icon}</span>` : '';
 
-  return `<a href="${esc(href)}" class="ui-rail-link ${activeClass}" ${currentAttr} ${idAttr}>${iconHtml}<span class="ui-rail-label">${esc(label)}</span>${countHtml}</a>`;
+  return `<a href="${esc(href)}" class="ui-rail-link ${activeClass}" ${currentAttr} ${idAttr}>${iconHtml}<span class="ui-rail-label">${esc(label)}${sublabel ? `<small class="ui-rail-sublabel">${esc(sublabel)}</small>` : ''}</span>${countHtml}</a>`;
 }
 
 export function renderRail({

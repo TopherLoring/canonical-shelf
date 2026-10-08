@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.lesson.card-is-step-script-2026-10-05",
+  "topic": "curriculum.lesson.pagination",
+  "date": "2026-10-05",
+  "text": "Every card is a step. A lesson is one continuous authored script; the break rule alone decides where each card (step) begins and ends, so authored section boundaries are no longer step boundaries. Each step's title is the heading of the section it begins in; a heading that falls mid-card appears inside the card as a subheading, counts like a new paragraph (+49 plus its characters), and never ends a card. A step that begins exactly at a section keeps that section's id; others take <section>-2, -3. Supersedes 'content never moves between steps' in curriculum.lesson.pagination.build-time-2026-10-05.",
+  "by": "Chris"
+}

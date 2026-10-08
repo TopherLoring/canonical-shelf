@@ -1,0 +1,97 @@
+#guide.guide {
+  position: fixed;
+  top: auto;
+  right: 28px;
+  bottom: 24px;
+  left: auto;
+  z-index: var(--layer-theologian);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  box-sizing: border-box;
+  width: min(452px, calc(100vw - 56px));
+  height: min(680px, calc(100dvh - 88px));
+  min-height: 0;
+  padding: var(--space-4);
+  overflow: hidden;
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-frame);
+  background: var(--color-chat-surface, var(--color-surface));
+  color: var(--color-text);
+  box-shadow: var(--shadow-overlay);
+  opacity: 0;
+  transform: translateX(calc(100% + 48px));
+  transition: transform var(--motion-fast, 120ms) var(--motion-easing, ease), opacity var(--motion-fast, 120ms) var(--motion-easing, ease);
+}
+
+#guide.guide[hidden] { display: none; }
+#guide.guide[data-open="true"] { opacity: 1; transform: translateX(0); }
+#guide.guide:focus { outline: none; }
+#guide .guide-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-weight) solid var(--color-border);
+  color: var(--color-text);
+}
+#guide .guide-head h2 { margin: 0; color: var(--color-text); }
+#guide .guide-head button { color: var(--color-text); }
+#guide-body { display: flex; min-height: 0; overflow: hidden; }
+#guide .theologian-chat { display: flex; flex: 1; flex-direction: column; min-height: 0; gap: var(--space-2); }
+#guide .theologian-chat__stream { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+
+#guide .chat-message--assistant .chat-message__bubble {
+  border-color: var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+}
+#guide .chat-message--user .chat-message__bubble {
+  background: var(--color-chat-user, var(--color-surface-sunken));
+  color: var(--color-text);
+}
+#guide .chat-message__label,
+#guide .chat-message__actions button,
+#guide .theologian-chat__empty p,
+#guide .theologian-chat__privacy { color: var(--color-text-secondary); }
+#guide .theologian-chat__suggestions button {
+  border-color: var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+}
+#guide .theologian-chat__composer { border-color: var(--color-border); background: var(--color-chat-surface, var(--color-surface)); }
+#guide .theologian-chat__composer-row { border-color: var(--color-border); background: var(--color-surface-raised); }
+#guide .theologian-chat__composer textarea { color: var(--color-text); }
+#guide .theologian-chat__composer button[type="submit"] {
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-on-action);
+}
+
+.theologian-panel__backdrop[hidden] { display: none; }
+.theologian-panel__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-dim-overlay);
+  background: var(--color-dim-overlay);
+}
+html[data-theologian-modal="true"] { overflow: hidden; }
+
+@media (max-width: 640px) {
+  #guide.guide {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    width: min(440px, calc(100vw - 32px));
+    height: min(720px, calc(100dvh - 40px));
+    padding: var(--space-3);
+    border-radius: var(--radius-frame);
+    transform: translate(-50%, calc(-50% + 12px));
+  }
+  #guide.guide[data-open="true"] { transform: translate(-50%, -50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #guide.guide { transition: none; }
+}

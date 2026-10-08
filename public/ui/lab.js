@@ -26,6 +26,8 @@ import {
   renderBookshelf,
   renderGameTile
 } from './components/index.js';
+import { mountProgressBars } from './components/progress-bar.js';
+import { mountBookshelf } from './components/bookshelf.js';
 
 const main = document.querySelector('#lab-main');
 
@@ -376,6 +378,8 @@ function buildShowcase() {
 
   // Mount interactive handlers
   mountScriptureRef(main);
+  mountProgressBars(main);
+  mountBookshelf(main);
   mountEdgeTab(main);
 }
 

@@ -47,11 +47,14 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | Topic | Current | Kind | Since |
 |---|---|---|---|
 | `account.sign-in` | Accounts use a passkey plus recovery codes; | Owner decision | undefined |
+| `accounts.signin.gate` | Accounts gate also covers feedback: | Owner decision | undefined |
 | `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
+| `content.lesson-shape` | Lesson shape: | Owner decision | undefined |
 | `content.reachability` | undefined | Agent default | undefined |
+| `content.voice` | Content voice reference example (refines content.voice.v1-2026-10-05): | Owner decision | undefined |
 | `curriculum.apparatus` | Deeper-learning exploration and footnotes (the apparatus) can be written at any time, independently of lesson prose. | Owner decision | undefined |
 | `curriculum.authoring` | Learner-facing content is authored from a basic outline, in lesson sequence; | Owner decision | undefined |
 | `curriculum.content-review` | undefined | Agent default | undefined |
@@ -63,6 +66,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `curriculum.invariants` | undefined | Agent default | undefined |
 | `curriculum.lesson.no-scroll` | A lesson screen must never require scrolling: | Owner decision | undefined |
 | `curriculum.lesson.no-scroll.check` | undefined | Agent default | undefined |
+| `curriculum.lesson.pagination` | Lessons are generated as their authored sections, each divided into steps (cards): | Owner decision | undefined |
 | `curriculum.module1` | Module 1 opens like the original v4 sequence: | Owner decision | undefined |
 | `curriculum.module1.title` | Module 1 is titled 'Reading the Bible Well: | Owner decision | undefined |
 | `curriculum.objective-display` | A lesson's objective is not shown inside the lesson; | Owner decision | undefined |
@@ -110,7 +114,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `feedback` | Exactly one visible, non-floating, non-distracting feedback CTA on every screen for content, function, interpretation, suggestions, or direct questions to Ch... | Owner decision | undefined |
 | `feedback.privacy` | undefined | Agent default | undefined |
 | `launch.readiness` | Do not show the tool to the primary learner until the core surfaces are visually polished | Owner decision | undefined |
-| `learning.games` | Confirmed ledger D013: | Owner decision | undefined |
+| `learning.games` | The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned... | Owner decision | undefined |
 | `learning.games.direction` | Games (to be designed after the modules are written): | Owner decision | undefined |
 | `navigation.bars` | Keep one navigation bar at the top of the screen; | Owner decision | undefined |
 | `navigation.hierarchy` | Modules drive the content beneath them (modules, then units, then lessons; | Owner decision | undefined |
@@ -131,6 +135,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.pull-requests` | undefined | Agent default | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
 | `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
+| `redesign.sequence` | Sequence: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
@@ -204,16 +209,18 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
+| `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
-| `ui.lesson.progress` | Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: | Owner decision | undefined |
+| `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
 | `ui.lesson.rails` | The lesson layout mirrors the Bible reader: | Owner decision | undefined |
-| `ui.naming` | undefined | Agent default | undefined |
+| `ui.lesson.reading` | Lesson readings (::reading): | Owner decision | undefined |
+| `ui.naming` | Learners are not shown the level names "Module" and "Unit"; | Owner decision | undefined |
 | `ui.naming.groups` | The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revel... | Owner decision | undefined |
 | `ui.naming.levels` | Curriculum level names are Learning Path, Module, Unit, Lesson, and Capstone. | Owner decision | undefined |
 | `ui.naming.sections` | Study Topics replaces Catalog/Topics; | Owner decision | undefined |
-| `ui.naming.unit-check` | The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): | Owner decision | undefined |
+| `ui.naming.unit-check` | Where Checkpoints appear is not fixed per unit or per lesson; | Owner decision | undefined |
 | `ui.nav.brand` | Shelf home header: | Owner decision | undefined |
 | `ui.nav.responsive` | The navigation remains one row. | Owner decision | undefined |
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
@@ -223,6 +230,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | Phone edge tabs, fixed on every screen: | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
+| `ui.practice.modes.panes` | Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: | Owner decision | undefined |
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
@@ -230,6 +238,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.scripture.group-color` | Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. | Owner decision | undefined |
 | `ui.scrolling.container-width` | Layout width should adapt dynamically to available screen width. | Owner decision | undefined |
 | `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
+| `ui.search.and.library` | Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
 | `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
@@ -241,6 +250,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
+| `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 
 ## Open feedback (adjust, not locked)
 

@@ -7,12 +7,6 @@
       "text": "@media(prefers-reduced-motion:reduce){.library-first-book,.course-volume{transition:none!important}}",
       "count": 1
     },
-    "css-important|public/course-experience.css": {
-      "rule": "css-important",
-      "file": "public/course-experience.css",
-      "text": ".course-journey-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:end;padding:2.3rem 0 1.5rem}.course-journey-intro h2{max-width:",
-      "count": 2
-    },
     "css-important|public/learning.css": {
       "rule": "css-important",
       "file": "public/learning.css",
@@ -37,29 +31,11 @@
       "text": ".study-layout.study-layout--theologian{grid-template-columns:22px minmax(0,1fr) 280px minmax(320px,360px)!important}",
       "count": 22
     },
-    "css-raw-color|public/bible-state.css": {
-      "rule": "css-raw-color",
-      "file": "public/bible-state.css",
-      "text": ".shelf-spine[data-learned=\"true\"]::after{content:\"\";position:absolute;right:.18rem;top:.2rem;width:.42rem;height:.42rem;border-radius:50%;background:var(--color",
-      "count": 2
-    },
-    "css-raw-color|public/bible.css": {
-      "rule": "css-raw-color",
-      "file": "public/bible.css",
-      "text": ".canonical-shelf{padding:1rem 0 3rem}.shelf-row{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:1rem;align-items:end;margin:0 0 1.25rem}.shelf-row h3",
-      "count": 1
-    },
     "css-raw-color|public/canonical-shelf.css": {
       "rule": "css-raw-color",
       "file": "public/canonical-shelf.css",
       "text": "color:#1b1d22;",
       "count": 66
-    },
-    "css-raw-color|public/learning-visuals.css": {
-      "rule": "css-raw-color",
-      "file": "public/learning-visuals.css",
-      "text": ".semantic-stack{display:grid;gap:.34rem}.semantic-stack section{display:grid;grid-template-columns:5rem minmax(0,1fr);gap:.75rem;align-items:center;padding:.65r",
-      "count": 7
     },
     "css-raw-color|public/learning.css": {
       "rule": "css-raw-color",
@@ -91,18 +67,6 @@
       "text": ".guide .evidence{border-top-color:#ffffff20}.guide .evidence h3,.guide .evidence h4,.guide .evidence p,.guide .evidence li,.guide .result a{color:#f1f2f2}.guide",
       "count": 25
     },
-    "css-z-index-literal|public/bible-state.css": {
-      "rule": "css-z-index-literal",
-      "file": "public/bible-state.css",
-      "text": ".shelf-spine[data-learned=\"true\"]::after{content:\"\";position:absolute;right:.18rem;top:.2rem;width:.42rem;height:.42rem;border-radius:50%;background:var(--color",
-      "count": 1
-    },
-    "css-z-index-literal|public/bible.css": {
-      "rule": "css-z-index-literal",
-      "file": "public/bible.css",
-      "text": "body.book-drawer-active{overflow:hidden}.book-drawer-background{filter:none}.book-drawer-scrim{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,va",
-      "count": 3
-    },
     "css-z-index-literal|public/canonical-shelf.css": {
       "rule": "css-z-index-literal",
       "file": "public/canonical-shelf.css",
@@ -119,12 +83,6 @@
       "rule": "css-z-index-literal",
       "file": "public/footer.css",
       "text": ".site-footer{margin-top:clamp(3rem,8vw,7rem);border-top:1px solid var(--color-border-default);background:color-mix(in srgb,var(--color-surface-primary) 92%,tran",
-      "count": 1
-    },
-    "css-z-index-literal|public/learning-visuals.css": {
-      "rule": "css-z-index-literal",
-      "file": "public/learning-visuals.css",
-      "text": ".semantic-timeline{position:relative;list-style:none;margin:0;padding:.1rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(7.4rem,1fr));gap:.65rem}",
       "count": 1
     },
     "css-z-index-literal|public/learning.css": {

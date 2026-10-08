@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.step-body-scope-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "The lesson box ratios (4:5 portrait, 2:1 landscape), the line and character counts (49 x 17 portrait, 91 across landscape) and the per-step character ceilings apply only to the step body: the area holding a step's authored body content (prose, Scripture blocks, checks, visuals). Everything else on the lesson screen sits outside that box and is sized separately: the step eyebrow and title, the step progress bar and 'Step N of M' line, the study-tool buttons (Glossary, Questions, Go deeper), the step list and My Notes columns, the edge tabs, and Back and Continue.",
+  "by": "Chris"
+}

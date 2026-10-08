@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.landscape-columns-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Landscape lesson columns are adjusted so the center text box fits the decided 91 characters per line by 14 lines at the calibrated landscape type size. The step list and My Notes columns narrow to give the center column that width (each keeps a minimum: the step list fits its longest step title, My Notes stays usable). The text box sits below the step title and never overlaps the title or the side columns. Chosen over lowering the line length or shrinking landscape type.",
+  "by": "Chris"
+}

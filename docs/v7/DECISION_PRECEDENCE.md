@@ -10,6 +10,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `account.sign-in.passkey-recovery-codes`
   Accounts use a passkey plus recovery codes; no email for now
 
+### `accounts.signin.gate`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `accounts.gate-covers-feedback-passkey-2026-10-07`
+  Accounts gate also covers feedback: the Sign in / Create account / Continue as guest choice appears before a lesson, My notes, or feedback. Passkey is an offered sign-in and create method alongside Google, email and phone.
+- **Previous** · 2026-10-07 · Owner decision (Chris) · `accounts.gate-and-methods-2026-10-07`
+  ~~Accounts: sign-in gate before starting a course or taking notes (Sign in, Create account, Continue as guest; guest keeps progress and notes on the device only). Sign-in methods: Google, email, phone. Name or username required; email and/or phone plus password for login and security only (reminders and feedback replies possible later). Phone is a unique identifier with a password, no SMS or 2FA. Apple skipped for now. Everything editable on Profile after the creation flow, which is a popover card. Ships after RD on its own branch.~~
+
 ### `arch.duplicate-renderers`
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
@@ -32,11 +39,28 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-26 · Owner decision (Chris) · `content.anchoring.universal-anchoring`
   One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
 
+### `content.lesson-revision`
+
+- **Approval** · 2026-10-06 · Chris · `content.lesson-01-approved-2026-10-06` · scope: Lesson 1 calibration rewrite and step division
+  Lesson 1 (begin) approved as the calibration lesson: 28 steps, stored in docs/v7/content-revision/lesson-01-begin.steps.md with its companion lesson-01-begin.meta.md. It is the reference for voice, depth, check style and step division for the remaining lessons. A check standing alone on its own step uses the full card and is exempt from the 637 limit. Content work resumes after the redesign.
+
+### `content.lesson-shape`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.lesson-shape.v1-2026-10-05`
+  Lesson shape: every lesson reads as one script, the way a lecture, sermon or lesson plan flows: one objective (the lesson's objective field), several points (the authored sections, in order), and details that elaborate each point. The content revision rewrites each lesson as a whole script in the content voice and at that depth, working from the compiled scripts (docs/v7/LESSON_SCRIPTS.md), not by patching sentences.
+
 ### `content.reachability`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `content.reachability.from-precedence-doc`
   content/learner-content-reachability.json (v3) owns UI reachability and llms.txt disposition: embed learner-facing curriculum, reference, editorial, legal, privacy, and safety content; link the BSB corpus rather than duplicating it; exclude the supplemental belief document as a standalone authority and all private learner, account, feedback, and governance material. public/llms.txt is generated and freshness-validated
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
+
+### `content.voice`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.voice.v2-2026-10-05`
+  Content voice reference example (refines content.voice.v1-2026-10-05): 'Gospel is the English translation of the Greek word euangelion, which means "good news" or "good announcement." In Paul's world, it was the word used for announcements of a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale.' followed by a sentence that justifies the claim by explaining how (for example the Priene inscription of 9 BC calling Augustus's birthday the beginning of the good news for the world, set against the Christian announcement that a crucified man God had raised, not Caesar, was Lord), then 'Eventually it became synonymous with the first four books of the New Testament that tell Jesus' story: Matthew, Mark, Luke, and John.' Every claim of this kind is justified with an explanation, not asserted. Greek and Hebrew terms use their standard transliteration (euangelion).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `content.voice.v1-2026-10-05`
+  ~~Content voice standard for lesson text and the glossary, set by Chris's example: 'Gospel was derived from the Greek word euangelion, which means "good news" or "good announcement". In Paul's world, it was the word used for announcements like a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale. Eventually it became synonymous for the first four books of the New Testament that tell Jesus' story - Matthew, Mark, Luke, & John.' Rules drawn from it: write for an educated adult, never a slogan; give a word's source language and literal sense where it matters; place it in its historical setting; when the text makes a claim ("a claim of the same scale"), justify it by explaining how, not by asserting it; then show how later usage developed; plain, confident, complete sentences.~~
 
 ### `curriculum.apparatus`
 
@@ -101,6 +125,15 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).
   *Why:* Makes the owner's no-scroll rule testable instead of a judgment call per lesson
 
+### `curriculum.lesson.pagination`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.sections-divided-2026-10-05`
+  Lessons are generated as their authored sections, each divided into steps (cards): sections stay the boundaries the script was written with, and each section is divided independently. Supersedes the continuous-script rule in curriculum.lesson.card-is-step-script-2026-10-05 (every card is still a step).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.card-is-step-script-2026-10-05`
+  ~~Every card is a step. A lesson is one continuous authored script; the break rule alone decides where each card (step) begins and ends, so authored section boundaries are no longer step boundaries. Each step's title is the heading of the section it begins in; a heading that falls mid-card appears inside the card as a subheading, counts like a new paragraph (+49 plus its characters), and never ends a card. A step that begins exactly at a section keeps that section's id; others take <section>-2, -3. Supersedes 'content never moves between steps' in curriculum.lesson.pagination.build-time-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.pagination.build-time-2026-10-05`
+  ~~Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.~~
+
 ### `curriculum.module1`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
@@ -136,6 +169,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.rewrite.no-loss-no-condense`
   The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
+- **Approval** · 2026-10-05 · Chris · `curriculum.lesson.pagination.revision-pass-2026-10-05` · scope: Step 3 lesson pagination revision pass
+  One-time revision pass for lesson pagination, a scoped exception to curriculum.rewrite.preservation: wording may change only where a part boundary falls badly (an orphaned line, a check separated from its setup, a sentence too long for one part). Every edit is listed before and after in a review document and applied only after Chris approves it. All other lesson text stays word-for-word, checked automatically.
 
 ### `curriculum.structure`
 
@@ -370,8 +405,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `learning.games`
 
-- **Current** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
-  Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
+- **Current** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-lesson-generation-2026-10-05`
+  The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned content, a taught piece and an untaught piece. The same Checkpoints are also available on Review & Practice. Corrects the scope in learning.checkpoint.untaught-piece-2026-10-05, which placed the mix on Review & Practice.
+  *Why:* Owner clarified he means the in-lesson checkpoints
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.untaught-piece-2026-10-05`
+  ~~The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.~~
+  *Why:* Owner added the untaught piece to the Checkpoint mix
+- **Prior** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
+  ~~Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-review-practice-2026-10-05`
+  ~~Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.~~
+  *Why:* Owner stated that checkpoints are also in Review & Practice with randomly generated content
 
 ### `learning.games.direction`
 
@@ -610,6 +654,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
 
+### `redesign.completed-screens`
+
+- **Approval** · 2026-10-07 · Chris · `approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp` · scope: S4, S5a, S5b, S5c, S6
+  Approved the completed S4, S5a, S5b, S5c and S6 implementations.
+
 ### `redesign.implementation.approach`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `redesign.implementation.approach`
@@ -624,6 +673,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Approval** · 2026-10-03 · Chris · `redesign.mockups.confirmed` · scope: docs/v7/mockups-2026-10-03/
   The redesign mockup canvas (docs/v7/mockups-2026-10-03/) is the confirmed visual reference for slices 2a to 2e: Shelf home, Bible reader and lesson (desktop and phone), the docked Theologian (desktop) and centered Theologian (phone), Learning Path (path, module and unit on one page), Study Topics, and Review & Practice. Built pages follow these layouts in the Reading Room theme; other themes restyle the same layouts.
+
+### `redesign.sequence`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `redesign.sequence.content-after-templates-2026-10-05`
+  Sequence: finish the redesign (screens, components and style templates) before revising content. Lesson content and the glossary are revised after the templates are in place; lesson card breaks are reviewed and locked only after that revision, because revised text moves the breaks. Until then the lesson screen renders the build-time divider's cards directly.
 
 ### `redesign.structure`
 
@@ -1082,6 +1136,51 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar
   *Why:* Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered
 
+### `ui.lesson.card`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v3-2026-10-05`
+  Step break rule, final form (Chris): after the lesson copy is rewritten, each section is divided into steps independently. A step holds at most 637 characters, spaces and punctuation included; each new paragraph after the first adds 49; a block does not count its characters but adds 49 plus 49 for each 49-character line of its text; a visual counts as its 9-line height. Break at the last sentence end at or before 637; never split a sentence or a block; each new step starts counting again. Applied to every module, lesson and section. Supersedes ui.lesson.card.break-rule-v2-2026-10-05 (46 per paragraph).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v2-2026-10-05`
+  ~~Step break rule: within a section, count every character on a step (spaces and punctuation included, starting again on each step); each new paragraph after the first adds 46; a block (check, reading, reflection) counts 49 plus 49 for each line of its text, a line being 49 characters; a visual counts as its 9-line height (49 + 49 x 8). Break at the last sentence end at or before 637. Sentences and blocks are never divided. Supersedes ui.lesson.card.break-637-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
+  ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
+  ~~The portrait lesson text box is 4:5 (width:height, 0.80:1), replacing the roughly 3:5 in ui.lesson.card.orientation-2026-10-05. It spans about 89% of the viewport width and 51.5-52% of its height (390x844: ~348x435 pt; 430x932: ~383x480; 375x667: ~334x418). Landscape stays about 5:3. Proposed container: width 100%, aspect-ratio 4/5, max-height calc(100dvh - 380px), overflow-y auto.~~
+  *Why:* Owner specified the portrait text box ratio and dimensions
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.block-max-2026-10-05`
+  ~~A single block of lesson text holds at most 49 characters across and 17 lines down in portrait, and at most 91 characters across in landscape. These replace the 38 and 68 characters per line in ui.lesson.card.orientation-2026-10-05; the 4:5 portrait box stands.~~
+  *Why:* Owner set the maximum text block size after reviewing mockups
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-91x14-2026-10-05`
+  ~~A single block of lesson text holds at most 91 characters across and 14 lines down in landscape. Completes ui.lesson.card.block-max-2026-10-05 (portrait 49 x 17).~~
+  *Why:* Owner stated the landscape line maximum
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-2x1-2026-10-05`
+  ~~The landscape lesson text box is roughly 2:1 (width:height), replacing the about 5:3 in ui.lesson.card.orientation-2026-10-05.~~
+  *Why:* Owner stated the landscape box shape
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.line-height-1-55-2026-10-05`
+  ~~Lesson body text uses a 1.55 line height.~~
+  *Why:* Owner stated the line height used in the mockups
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.char-ceiling-2026-10-05`
+  ~~The absolute maximum for one step of lesson text, counting every space, letter and punctuation mark, is 833 characters as a single block, 784 as two paragraphs and 735 as three paragraphs. These are ceilings, not targets or minimums; shorter is preferred so cards are not overwhelming.~~
+  *Why:* Owner stated the maximum characters per step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-means-screen-2026-10-05`
+  ~~In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a "step" means one screen: everything the learner sees before pressing Continue. It is not an entry in the lesson's step list; the pagination docs call that screen a "part". The 833, 784 and 735 ceilings apply to each screen.~~
+  *Why:* Owner clarified how he uses the word step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.card-is-step-2026-10-05`
+  ~~Every lesson card is a step. There is no separate "part": what the pagination docs call a part is a step, the step list and "Step N of M" count cards, and the character ceilings (833 / 784 / 735) apply to each step. Supersedes ui.lesson.card.step-means-screen-2026-10-05 where it keeps "part" as a separate term.~~
+  *Why:* Owner: every card is a step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-columns-2026-10-05`
+  ~~Landscape lesson columns are adjusted so the center text box fits the decided 91 characters per line by 14 lines at the calibrated landscape type size. The step list and My Notes columns narrow to give the center column that width (each keeps a minimum: the step list fits its longest step title, My Notes stays usable). The text box sits below the step title and never overlaps the title or the side columns. Chosen over lowering the line length or shrinking landscape type.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-body-scope-2026-10-05`
+  ~~The lesson box ratios (4:5 portrait, 2:1 landscape), the line and character counts (49 x 17 portrait, 91 across landscape) and the per-step character ceilings apply only to the step body: the area holding a step's authored body content (prose, Scripture blocks, checks, visuals). Everything else on the lesson screen sits outside that box and is sized separately: the step eyebrow and title, the step progress bar and 'Step N of M' line, the study-tool buttons (Glossary, Questions, Go deeper), the step list and My Notes columns, the edge tabs, and Back and Continue.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-length-2026-10-05`
+  ~~Step body length: hard ceilings per step are 833 characters (1 paragraph), 784 (2) and 735 (3), counting spaces and punctuation. The target is about half the ceiling (roughly 370-420 characters per step); the divider aims for the target and goes longer only when a sentence or block cannot be split without breaking a rule. A step must also fit the portrait step body in the primary layout; whichever limit is tighter applies.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-layout-primary-fallback-2026-10-05`
+  ~~Portrait step body layout: primary is the 4:5 box at 49 characters per line and line height 1.55 (about 17.9px type on an iPhone; about 15 lines fit). Fallback D, used if adjusting the steps runs into trouble: 54 characters x 17 lines at 1.55 in the same 4:5 box (about 16.5px type). A 3:4 box is rejected because it does not use the space an iPhone gives the step body.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.type-16px-2026-10-05`
+  ~~Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. With the shipped Source Sans 3 the 4:5 step body (about 347 x 435) then holds about 54 characters x 17 lines; that is the primary layout. The 49-per-line figure came from the wider mockup font. Ceilings 833 / 784 / 735 stay as content limits. Supersedes the primary/fallback split in ui.lesson.card.portrait-layout-primary-fallback-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-637-2026-10-05`
+  ~~Interim lesson card break rule, used until the content revision: count every character on a card, spaces and punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds 49; break at the last sentence end (period, question mark or exclamation mark) before the count would pass 637. Sentences are never split and content never moves between steps. Checks, readings, reflections and visuals do not count characters; they stay on the card when its lines allow, otherwise they start the next card.~~
+
 ### `ui.lesson.colors`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.lesson.colors.theme-surfaces`
@@ -1091,8 +1190,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.lesson.progress`
 
-- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
-  Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
+  Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.
+- **Previous** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+  ~~Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction~~
 
 ### `ui.lesson.progress.color-map`
 
@@ -1109,12 +1210,20 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.lesson.rails.v1`
   The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
 
+### `ui.lesson.reading`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.reading.inline-or-popover-2026-10-05`
+  Lesson readings (::reading): a passage of one or two sentences or less is quoted on the card as a Scripture block, with extra padding, the Scripture surface color (scriptureBed), the Bible group's color stripe, and the Scripture font. A longer passage appears on the card as a compact Scripture link (reference, version and a one-line preview in the group's colors) that opens the full passage in a popover: centered over a dimmed screen on phones, beside the link on desktop; the passage scrolls inside the popover, which offers Open in the Bible, and closes with its close button, Escape, or a tap on the dimmed area, returning to the same card.
+
 ### `ui.naming`
 
-- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
-  Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.naming.hide-module-unit-labels-2026-10-05`
+  Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear, for example Learning Path > Reading the Bible Well > What the Bible Is > Lesson 1. "Lesson" and "Step" stay visible. The per-unit check keeps its decided name, "Unit N Checkpoint" (ui.naming.unit-check.checkpoint.v2). Module and unit IDs and file structure are unchanged.
+  *Why:* Owner: learners do not need to know a module is a module or a unit a unit
+- **Previous** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
+  ~~Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.~~
   *Why:* Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose
-- **Previous** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+- **Prior** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
   ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
 
@@ -1135,11 +1244,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.naming.unit-check`
 
-- **Current** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
-  The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.
-- **Previous** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.checkpoint.placement-content-and-steps-2026-10-05`
+  Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.
+  *Why:* Owner answered the per-unit or per-lesson question
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.naming.checkpoint-bare-2026-10-05`
+  ~~The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the "Unit 2 Checkpoint" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.~~
+  *Why:* Owner chose Checkpoint from Capstone, Mastery Checkpoint, Retention Check, Checkpoint
+- **Prior** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
   ~~The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.~~
   *Why:* Chris asked Claude to pick a name that fits
+- **Prior** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
+  ~~The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.~~
 
 ### `ui.nav.brand`
 
@@ -1190,6 +1305,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.polish.2026-10-03.late`
   The nav bar is the one place all caps is allowed: primary nav labels are uppercase and letter-spaced; the current page is marked with an underline, not a highlight box. The site wordmark and the Shelf home title use the v1 title typography (Cambria/Caladea bold, 'Shelf' in italic, title on two lines with the intro beside it). Readers can highlight part of a verse (word-level), not only whole verses. The Shelf decoration is a bronze praying-hands statue on a stone pedestal (replaces the oil lamp), seated flat on the plank. Shelf book-name labels appear only on hover or keyboard focus. The Shelf uses a dark walnut plank hung on iron suspension rods with iron bookends. The docked Theologian is the desktop chat window.
 
+### `ui.practice.modes.panes`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `ui.practice.modes.continue-side-panes-2026-10-07`
+  Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: the left rail for moving between modes and the right panel for context, so a learner can move around without going back and forth. The older mode pages currently have no rail, oversized headings, uneven font sizes and large unused space; they are rebuilt into the three-pane layout after Chris has played with them live.
+  *Why:* Chris reviewed screenshots of the current mode pages: font sizes and free space are a mess; he likes continuing the side panes for continuity and organization
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
@@ -1226,6 +1347,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Mobile pages must never scroll horizontally. Vertical scrolling is allowed where needed. The no-scrolling decision applies specifically to primary lesson content in the Learning Path; additional lesson content may scroll.
 - **Previous** · 2026-10-04 · Owner decision (Chris) · `reader-lessons-scroll-2026-10-04`
   ~~The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.~~
+
+### `ui.search.and.library`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `ui.read-first-search-routing-2026-10-07`
+  Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
 
 ### `ui.shelf`
 
@@ -1301,6 +1427,21 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
   Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
+
+### `ui.type.max-size`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `ui.type.max-genesis-2026-10-07`
+  No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). The site title (masthead wordmark and the Home page title) is the only exception.
+
+### `work.s3.q`
+
+- **Approval** · 2026-10-05 · Chris · `work.s3.q.2026-10-05` · scope: S3.Q: Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose
+  S3.Q: Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet
+
+### `work.x1`
+
+- **Approval** · 2026-10-05 · Chris · `work.x1.2026-10-05` · scope: X1: Codex lesson branch committed and pushed (codex/redesign-lesson-path)
+  X1: Codex lesson branch pushed (6f8c2ac)
 
 ## Resolved questions
 

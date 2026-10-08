@@ -116,21 +116,20 @@ async function renderMount(mount) {
     <p class="study-notes__anchor">Note on <strong>${esc(label)}</strong></p>
     <label class="sr-only" for="note-${esc(key)}">Your note on ${esc(label)}</label>
     <textarea id="note-${esc(key)}" rows="5" maxlength="12000" data-note-text placeholder="Write what you notice, what you wonder, or what you want to remember.">${esc(noteText(note))}</textarea>
-    <label class="study-notes__discuss"><input type="checkbox" data-note-discuss ${note.discussLater ? 'checked' : ''}> Bring this up with someone in person</label>
-    <div class="study-notes__row"><small class="study-notes__status" data-note-status role="status" aria-live="polite"></small><button type="button" class="link-button" data-ask="${esc(`About ${label}: `)}">Ask the Theologian about this</button></div>
+    <div class="study-notes__row"><small class="study-notes__status" data-note-status role="status" aria-live="polite"></small></div>
   </div>
   ${related.length ? `<details class="study-notes__related"><summary>Other notes in this chapter (${related.length})</summary><ul>${related.map(([k, v]) => `<li><a href="${esc(noteHref(k))}">${esc(v.label || scriptureLabel(k.slice(10)))}</a><span>${esc(noteText(v).slice(0, 90))}${noteText(v).length > 90 ? '…' : ''}</span></li>`).join('')}</ul></details>` : ''}
   <a class="study-notes__all" href="/profile#notes">All my notes</a>`;
   const text = mount.querySelector('[data-note-text]');
-  const discuss = mount.querySelector('[data-note-discuss]');
   const status = mount.querySelector('[data-note-status]');
-  const base = { label, anchor: key, ...(scripture ? { scripture } : {}) };
+  // The in-person flag and the Ask link are gone (notes.discuss-flag.removed-2026-10-05, ui.bible.ask.notes-link-2026-10-05);
+  // a note flagged before then keeps its flag so it stays readable in the profile.
+  const base = { label, anchor: key, ...(scripture ? { scripture } : {}), ...(note.discussLater ? { discussLater: true } : {}) };
   text.addEventListener('input', () => {
     clearTimeout(timers.get(text));
     status.textContent = 'Saving…';
     timers.set(text, setTimeout(() => save(key, { ...base, text: text.value }, status).catch(() => { status.textContent = 'Could not save; your text is still here.'; }), 600));
   });
-  discuss.addEventListener('change', () => save(key, { ...base, text: text.value, discussLater: discuss.checked }, status).catch(() => {}));
 }
 
 // Multiple notes use unique map keys while retaining their stable Scripture anchor.

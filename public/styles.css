@@ -12,7 +12,7 @@ button{color:inherit}
 main:not(.app-frame){max-width:1200px;margin:auto;padding:clamp(1.25rem,4vw,4rem)}
 .hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(16rem,.75fr);gap:clamp(2rem,6vw,6rem);padding:clamp(2rem,7vw,6rem) 0;border-bottom:1px solid var(--color-border)}
 .eyebrow{font-family:var(--font-label);text-transform:none;letter-spacing:.14em;font-size:.76rem;color:var(--color-action);font-weight:700}
-h1,h2,h3,h4{font-family:var(--font-display);line-height:1.08;margin:.25em 0 .55em}h1{font-size:clamp(2.6rem,7vw,6.3rem);font-weight:500}h2{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:500}h3{font-size:1.28rem}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.08;margin:.25em 0 .55em}h1{font-size:var(--type-max,clamp(2rem,2.8vw,2.5rem));font-weight:500}h2{font-size:min(1.8rem,var(--type-max,clamp(2rem,2.8vw,2.5rem)));font-weight:500}h3{font-size:1.28rem}
 .lede{font-family:var(--font-reading);font-size:clamp(1.15rem,2vw,1.45rem);max-width:55ch}
 .stat{padding:1rem 0;border-top:1px solid var(--color-border)}.stat strong{display:block;font-family:var(--font-reading);font-size:2rem}
 .section{padding:var(--space-7) 0}

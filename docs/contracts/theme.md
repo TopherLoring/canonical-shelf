@@ -11,7 +11,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `shared.typeScale.lead` | length | 1.15rem | — |
 | `shared.typeScale.h3` | length | 1.3rem | — |
 | `shared.typeScale.h2` | length | 1.7rem | — |
-| `shared.typeScale.h1` | length | 2.3rem | — |
+| `shared.typeScale.h1` | length | 2rem | — |
 | `shared.lineHeights.tight` | number | 1.2 | min 1; max 2.4 |
 | `shared.lineHeights.normal` | number | 1.45 | min 1; max 2.4 |
 | `shared.lineHeights.reading` | number | 1.7 | min 1; max 2.4 |
@@ -31,6 +31,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `shared.layers.dimOverlay` | int | 40 | min 0 |
 | `shared.layers.theologian` | int | 50 | min 0 |
 | `shared.measures.measure-reading` | css-value | 72ch | — |
+| `shared.measures.type-max` | css-value | clamp(2rem, 2.8vw, 2.5rem) | — |
 | `shared.measures.home-shelf-height` | css-value | 111px | — |
 | `shared.measures.home-shelf-depth` | css-value | 10px | — |
 | `shared.fonts.serif` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
@@ -163,9 +164,9 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.reading-room.description` | text | Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose. | — |
 | `themes.reading-room.fontImports` | list of string | /fonts/fonts.css | — |
 | `themes.reading-room.style.fontDisplay` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
-| `themes.reading-room.style.fontBody` | font | ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif | — |
+| `themes.reading-room.style.fontBody` | font | 'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif | — |
 | `themes.reading-room.style.fontLabel` | font | ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace | — |
-| `themes.reading-room.style.fontReading` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
+| `themes.reading-room.style.fontReading` | font | Literata,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
 | `themes.reading-room.style.borderWeight` | length | 1px | — |
 | `themes.reading-room.style.borderStyle` | enum | solid | one of solid, double, dashed |
 | `themes.reading-room.style.radiusChip` | css-value | 6px | — |
@@ -280,7 +281,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.reading-room.modes.dark.shelfIron` | color | #1E1E22 | — |
 | `themes.reading-room.modes.dark.shelfIronLight` | color | #55555E | — |
 | `themes.reading-room.modes.dark.shelfIronEdge` | color | #121214 | — |
-| `themes.reading-room.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap | — |
+| `themes.reading-room.fontSources` | list of url | https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Cascadia+Mono:wght@400;600&display=swap, https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap | — |
 | `themes.paper.name` | text | Paper | — |
 | `themes.paper.description` | text | Folded broadsheet and stationery on a drafting table: crisp, archival, analog. | — |
 | `themes.paper.fontImports` | list of string | /fonts/fonts.css | — |

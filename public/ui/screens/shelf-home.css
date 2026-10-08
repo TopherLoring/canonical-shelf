@@ -1,6 +1,355 @@
 @layer tokens, base, layout, components, screens, overrides;
 
-/* Shelf home (Step 4, phase 6). Arrangement only: grids, columns, spacing and positioning of shared components.
-   No colors, fonts or radii here; those come from theme roles and the components. */
 @layer screens {
+  .shelf-home {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 21.25rem);
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+    min-height: calc(100vh - 9rem);
+    padding: var(--space-1) clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);   /* first text sits within the page-top rule (R2) */
+    align-items: start;
+  }
+
+  .shelf-home__library {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vh, 1.5rem);
+    min-width: 0;
+  }
+
+  .shelf-home__intro {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2.25rem);
+  }
+
+  .shelf-home__intro h1 {
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4.3vw, 3.875rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: .98;
+  }
+
+  .shelf-home__intro h1 em {
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  .shelf-home__intro > p {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-reading);
+    font-size: clamp(.95rem, 1.2vw, 1.06rem);
+    line-height: 1.6;
+  }
+
+  .shelf-home__collection {
+    min-width: 0;
+    padding: .25rem .5rem 0;
+  }
+
+  .shelf-home__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .4rem .6rem;
+    margin: -.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .shelf-home__legend .ui-group-chip {
+    font-size: .72rem;
+  }
+
+  .shelf-home-notes {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+  }
+
+  .shelf-home-notes .eyebrow {
+    margin: 0 0 .35rem;
+    color: var(--color-text-muted);
+    font-size: .78rem;
+  }
+
+  .shelf-home-notes h2,
+  .shelf-home-notes__excerpt {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-reading);
+    line-height: 1.45;
+  }
+
+  .shelf-home-notes h2 { font-size: var(--type-h3); }
+
+  .shelf-home-notes > a {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    color: var(--color-action);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .shelf-home-notes > a:hover { text-decoration: underline; }
+
+  .shelf-home-continue {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+  }
+
+  .shelf-home-continue__actions { display: inline-flex; flex: 0 0 auto; gap: .5rem; }
+
+  .shelf-home-continue .eyebrow {
+    margin: 0 0 .25rem;
+    color: var(--color-text-muted);
+    font-size: .78rem;
+  }
+
+  .shelf-home-continue h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .shelf-home-continue .button {
+    flex: 0 0 auto;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    border-radius: var(--radius-control);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .shelf-home-continue .button--primary {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+
+  .shelf-home-continue .button--primary:hover,
+  .shelf-book-panel__resume:hover {
+    background: var(--color-action-hover);
+  }
+
+  .shelf-book-panel {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    min-width: 0;
+    padding: clamp(1rem, 1.6vw, 1.375rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-sunken);
+    color: var(--color-text);
+  }
+
+  .shelf-book-panel__topline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    color: var(--color-text-muted);
+    font-size: .8rem;
+  }
+
+  .shelf-book-panel__heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 2.8vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+
+  .shelf-book-panel__heading p {
+    margin: .35rem 0 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  .shelf-book-panel__summary {
+    margin: 0;
+    font-family: var(--font-reading);
+    line-height: 1.6;
+  }
+
+  .shelf-book-panel__reading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .35rem .75rem;
+    color: var(--color-text-secondary);
+    font-size: .85rem;
+  }
+
+  .shelf-book-panel__progress {
+    height: .375rem;
+    overflow: hidden;
+    border-radius: var(--radius-bar);
+    background: var(--color-border);
+  }
+
+  .shelf-book-panel__progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--color-action);
+  }
+
+  .shelf-book-panel__resume {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: .125rem;
+    padding: .5rem .75rem;
+    border-radius: var(--radius-control);
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .shelf-book-panel__overview {
+    align-self: center;
+    color: var(--color-action);
+    font-size: .9rem;
+  }
+
+  .shelf-book-panel__details {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    margin: .25rem 0 0;
+    padding-top: .9rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .shelf-book-panel__details > div {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  .shelf-book-panel__details dt {
+    color: var(--color-text-muted);
+    font-size: .8rem;
+    font-weight: 600;
+  }
+
+  .shelf-book-panel__details dd {
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .shelf-book-panel__people {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+  }
+
+  .shelf-book-panel__people span {
+    padding: .2rem .55rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-chip);
+    background: var(--color-surface-raised);
+    font-size: .8rem;
+  }
+
+  .shelf-home__announcement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 1050px) {
+    .shelf-home {
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 19rem);
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .shelf-home__intro {
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .shelf-home {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+      padding: 1rem;
+    }
+
+    .shelf-home__intro {
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .shelf-home__intro h1 {
+      font-size: clamp(2.5rem, 12vw, 3.25rem);
+    }
+
+    .shelf-book-panel {
+      grid-row: 2;
+    }
+
+    .shelf-home-notes {
+      flex-direction: column;
+    }
+
+    .shelf-home-notes > a {
+      align-self: flex-start;
+    }
+
+    .shelf-home-continue {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .shelf-home-continue .button {
+      width: 100%;
+    }
+  }
 }

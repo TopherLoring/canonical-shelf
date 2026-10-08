@@ -2,6 +2,20 @@
 // highlights, notes, study panels, keyboard use, addresses that stay on the current Bible page, and phone layout.
 import { test, expect } from '@playwright/test';
 
+// These tests are about reading, notes and highlights, not offline behavior (verify:sw covers the service worker).
+// On first visit the service worker pre-caches about 130 files, which is extra load when many browsers run at once,
+// so it is skipped here to keep the reload-based tests quick and steady.
+test.use({ serviceWorkers: 'block' });
+
+// The app queues its highlight saves, so a reload straight after a click can drop the last one. Wait until the saved
+// ranges for a verse show the expected colours before reloading (what a person sees after a refresh is what was saved).
+async function savedColors(page, osis, expected) {
+  await expect.poll(() => page.evaluate(async key => {
+    const db = await import('/db.js'); const state = await db.getState();
+    return (state.highlights?.[key]?.ranges || []).map(r => r.color);
+  }, osis)).toEqual(expected);
+}
+
 async function selectWords(page, verse, words) {
   await page.locator(`#v${verse}`).evaluate((el, words) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('sup, [data-footnote]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
@@ -28,10 +42,10 @@ test.describe('Bible reader', () => {
     await expect(page.locator('main h1')).toBeVisible();
     await page.locator('nav.primary a[href="/bible"]').click();
     await page.locator('.profile-link').click();
-    await expect(page.locator('#you.profile-section')).toBeVisible();
+    await expect(page.locator('#you.profile-screen__section')).toBeVisible();
     release();
     await page.waitForResponse('**/data/corpus.txt');
-    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
     await expect(page.locator('main [data-reader]')).toHaveCount(0);
     await expect(page).toHaveURL(/\/profile$/);
   });
@@ -59,10 +73,10 @@ test.describe('Bible reader', () => {
     await page.goto('/bible?book=1&chapter=1');
     await request;
     await page.locator('.profile-link').click();
-    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
     const response = page.waitForResponse('**/data/bsb-annotations/1.json');
     release(); await response;
-    await expect(page.locator('#notes.profile-section')).toBeVisible();
+    await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
     await expect(page.locator('main [data-reader]')).toHaveCount(0);
     await expect(page).toHaveURL(/\/profile$/);
   });
@@ -113,12 +127,15 @@ test.describe('Bible reader', () => {
     await expect(page.locator('#v2 [data-mark-underline="true"]')).toHaveText(['formless and void']);
     await page.getByRole('button', { name: 'Highlight green', exact: true }).click();
     await expect(page.locator('#v2 [data-mark-color="green"]')).toHaveText(['formless and void']);
+    await savedColors(page, 'Gen.1.2', ['green']);
     await page.getByRole('button', { name: 'Highlight yellow', exact: true }).click();
+    await savedColors(page, 'Gen.1.2', ['yellow']);
     await page.reload();
     await expect(marks).toHaveText(['formless and void']);
     await selectWords(page, 2, 'formless and void');
     await page.locator('[data-highlight-clear]').click();
     await expect(marks).toHaveCount(0);
+    await savedColors(page, 'Gen.1.2', []);
     await page.reload();
     await expect(marks).toHaveCount(0);
   });
@@ -241,6 +258,8 @@ test.describe('Bible reader', () => {
 
   test('legacy notes remain readable and editable without changing their anchor', async ({ page }) => {
     await page.goto('/bible?book=43&chapter=3&start=4');
+    // Seed only after the reader has mounted: the app's own startup writes would otherwise overwrite the seeded note.
+    await expect(page.locator('[data-reader]')).toBeVisible();
     await page.evaluate(async () => {
       const db = await import('/db.js'); const state = await db.getState();
       state.notes = { 'scripture:John.3.4': { text: 'Existing note', label: 'John 3:4', updatedAt: '2026-10-01T10:00:00Z', discussLater: true } };
@@ -392,9 +411,9 @@ test.describe('Bible reader', () => {
     await page.locator('.reader-steps a[aria-label^="Next chapter"]').click();
     await expect(page).toHaveURL(/book=2&chapter=1/);
     await expect(page.locator('.reader-title-heading')).toHaveText('Exodus 1');
-    await page.locator('.reader-toolbar [data-reader-picker] summary').click();
-    await page.locator('.reader-toolbar [data-reader-book]').selectOption('43');
-    await page.locator('.reader-toolbar [data-reader-chapters] a', { hasText: /^3$/ }).click();
+    await page.locator('.reader-title [data-reader-picker] summary').click();
+    await page.locator('.reader-title [data-reader-book]').selectOption('43');
+    await page.locator('.reader-title [data-reader-chapters] a', { hasText: /^3$/ }).click();
     await expect(page.locator('.reader-title-heading')).toHaveText('John 3');
   });
 
@@ -404,13 +423,13 @@ test.describe('Bible reader', () => {
     await expect(page.locator('#v16')).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('other Bible pages stay on their current views', async ({ page }) => {
+  test('the Timeline and Book overview are their own screen, not the reader', async ({ page }) => {
     await page.goto('/bible?view=timeline');
     await expect(page.locator('[data-reader]')).toHaveCount(0);
-    await expect(page.locator('.bible-timeline')).toBeVisible();
+    await expect(page.locator('.timeline-era').first()).toBeVisible();
     await page.goto('/bible?book=43&profile=1');
     await expect(page.locator('[data-reader]')).toHaveCount(0);
-    await expect(page.locator('[data-book-drawer]')).toBeVisible();
+    await expect(page.locator('[data-book-screen]')).toBeVisible();
   });
 });
 

@@ -28,20 +28,27 @@
 
 export const SCREENS = Object.freeze({
   // Step 4 (phase 6): Shelf home
-  home: null,
+  home: () => import('./shelf-home.js'),
 
   // Step 2 (phase 4): Bible reader
-  bible: () => import('./reader.js'),
+  bible: () => import('./bible.js'),
 
-  // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params)
-  course: null,
+  // Step 3 (phase 5): Learning Path and lesson (one module dispatches on params; the lesson screen handles
+  // ?lesson= addresses, everything else stays on the current view until S3.J)
+  course: () => import('./course.js'),
 
   // Step 5 (phase 7): Study Topics
-  topics: null,
+  topics: () => import('./topics.js'),
 
   // Step 5 (phase 7): Review & Practice
-  practice: null,
+  practice: () => import('./practice.js'),
 
-  // Step 5 (phase 7): Profile
-  profile: null
+  // Step 5 (phase 7): Profile (S5c)
+  profile: () => import('./profile.js'),
+
+  // Step 9: Search results (placeholder until S9 replaces the module)
+  search: () => import('./search.js'),
+
+  // Step 10: About and policies
+  about: () => import('./about.js')
 });

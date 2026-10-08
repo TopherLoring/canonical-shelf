@@ -77,7 +77,7 @@ export function applyTheme(id,{persist=true}={}){
 
   document.querySelectorAll('[data-theme-option],[data-theme-choice]').forEach(button=>{
     const selected=(button.dataset.themeOption||button.dataset.themeChoice)===theme.id;
-    button.toggleAttribute('aria-pressed',selected);
+    button.setAttribute('aria-pressed',String(selected));
     button.classList.toggle('is-selected',selected);
   });
 

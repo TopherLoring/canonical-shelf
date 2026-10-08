@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.naming.checkpoint-bare-2026-10-05",
+  "topic": "ui.naming.unit-check",
+  "date": "2026-10-05",
+  "text": "The check at the end of a unit is called \"Checkpoint\" (no \"Unit N\" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the \"Unit 2 Checkpoint\" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.",
+  "rationale": "Owner chose Checkpoint from Capstone, Mastery Checkpoint, Retention Check, Checkpoint",
+  "by": "Chris"
+}

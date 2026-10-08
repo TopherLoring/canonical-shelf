@@ -17,6 +17,16 @@ import {scriptureResults,searchPage} from './search-engine.js';
 import {ROUTE_ALIASES,LABELS,GROUP_NAMES} from './ui/labels.js';
 import {SCREENS} from './ui/screens/registry.js';
 
+// Static policy redirect stubs enter through index.html on hosts that resolve
+// /about to about.html. Restore the canonical SPA address before rendering.
+const legacyAboutSections=new Map([['/about.html','about'],['/privacy.html','privacy'],['/terms.html','terms'],['/storage.html','storage'],['/data-retention.html','data-retention']]);
+const initialAddress=new URL(location.href),legacyAboutSection=legacyAboutSections.get(initialAddress.pathname);
+if(legacyAboutSection||(initialAddress.pathname==='/index.html'&&initialAddress.searchParams.get('_screen')==='about')){
+  initialAddress.pathname='/about';initialAddress.searchParams.delete('_screen');
+  if(legacyAboutSection&&legacyAboutSection!=='about')initialAddress.searchParams.set('section',legacyAboutSection);
+  history.replaceState(history.state,'',initialAddress.pathname+initialAddress.search+initialAddress.hash);
+}
+
 const getMain=()=>document.querySelector('#main');
 const nav=[...document.querySelectorAll('[data-route]')];
 let data={courses:[],units:[],topics:[],lessons:[],masteryIds:[],activities:[],byUnit:{},byCourse:{},glossary:[]},corpus='',policy=null,statement='',theologySources=[],state=await getState();
@@ -54,14 +64,21 @@ if(location.pathname==='/ui/lab'||location.pathname==='/ui/lab/'){
 }
 
 const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
-const roots=new Set(['home','course','bible','topics','practice','search','profile']);
+const roots=new Set(['home','course','bible','topics','practice','search','profile','about']);
 const routeAliases=new Map(Object.entries(ROUTE_ALIASES).map(([alias,target])=>[alias.replace(/^\/+/,''),target.replace(/^\/+/,'')]));
 const pathRoot=pathname=>String(pathname||'').replace(/^\/+|\/+$/g,'').split('/')[0].replace(/\.html$/,'')||'home';
-const appRouteFromPath=pathname=>{const r=pathRoot(pathname);const target=routeAliases.get(r)||r;return roots.has(target)?target:null};
+const appRouteFromPath=pathname=>{const r=pathRoot(pathname);const target=legacyAboutSections.has(pathname)?'about':routeAliases.get(r)||r;return roots.has(target)?target:null};
 const routeFromPath=pathname=>appRouteFromPath(pathname)||'home';
 const route=()=>routeFromPath(location.pathname);
 const params=()=>new URLSearchParams(location.search);
-const nativeHref=h=>h?.startsWith('#/')?h.slice(1):h;
+const nativeHref=h=>{
+  const value=h?.startsWith('#/')?h.slice(1):h;
+  if(!value)return value;
+  const address=new URL(value,location.href),section=legacyAboutSections.get(address.pathname);
+  if(address.origin!==location.origin||!section)return value;
+  address.pathname='/about';if(section!=='about')address.searchParams.set('section',section);
+  return address.pathname+address.search+address.hash;
+};
 function canonicalizeLinks(root=document){for(const a of root.querySelectorAll('a[href^="#/"]'))a.href=nativeHref(a.getAttribute('href'))}
 function navigate(path,{replace=false}={}){
   const target=new URL(nativeHref(path)||'/home',location.href);

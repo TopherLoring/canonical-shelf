@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.break-rule-v3-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Step break rule, final form (Chris): after the lesson copy is rewritten, each section is divided into steps independently. A step holds at most 637 characters, spaces and punctuation included; each new paragraph after the first adds 49; a block does not count its characters but adds 49 plus 49 for each 49-character line of its text; a visual counts as its 9-line height. Break at the last sentence end at or before 637; never split a sentence or a block; each new step starts counting again. Applied to every module, lesson and section. Supersedes ui.lesson.card.break-rule-v2-2026-10-05 (46 per paragraph).",
+  "supersedes": [
+    "ui.lesson.card.break-rule-v2-2026-10-05"
+  ],
+  "by": "Chris"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.break-637-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Interim lesson card break rule, used until the content revision: count every character on a card, spaces and punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds 49; break at the last sentence end (period, question mark or exclamation mark) before the count would pass 637. Sentences are never split and content never moves between steps. Checks, readings, reflections and visuals do not count characters; they stay on the card when its lines allow, otherwise they start the next card.",
+  "by": "Chris"
+}

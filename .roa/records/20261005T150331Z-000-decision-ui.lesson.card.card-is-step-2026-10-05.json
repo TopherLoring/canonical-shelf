@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.card-is-step-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Every lesson card is a step. There is no separate \"part\": what the pagination docs call a part is a step, the step list and \"Step N of M\" count cards, and the character ceilings (833 / 784 / 735) apply to each step. Supersedes ui.lesson.card.step-means-screen-2026-10-05 where it keeps \"part\" as a separate term.",
+  "rationale": "Owner: every card is a step",
+  "by": "Chris"
+}
