@@ -1410,6 +1410,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.
   *Why:* Artifact comments 4c7400bd and d938b323
 
+### `ui.path.phone.inline-no-objective`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-the-inline-lesson-expansion-`
+  Phone Learning Path: the inline lesson expansion shows the description and Start/Open lesson only; the objective is removed.
+  *Why:* Artifact comment 8b86002c
+
 ### `ui.phone.dock-format-2026-10-08`
 
 - **Current** · 2026-10-08 · Agent default (Claude-agent) · `phone-dock-format-exploration`
