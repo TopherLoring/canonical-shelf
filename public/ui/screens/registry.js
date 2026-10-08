@@ -47,5 +47,8 @@ export const SCREENS = Object.freeze({
   profile: () => import('./profile.js'),
 
   // Step 9: Search results (placeholder until S9 replaces the module)
-  search: () => import('./search.js')
+  search: () => import('./search.js'),
+
+  // Step 10: About and policies
+  about: () => import('./about.js')
 });

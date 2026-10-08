@@ -274,6 +274,8 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `public/ui/screens/practice.js` — Review & Practice overview: due-for-review card, game tiles, stats; review, verse library, games and achievements modes stay on the existing practice view
 - `public/ui/screens/profile.js` — Profile: full screen with account, progress, My Notes, appearance (light/dark and themes), reading, and data & privacy
 - `public/ui/screens/topics.js` — Study Topics: browse groups, search, selected-topic reference panel, full topic page with notes, and the Glossary
+- `public/ui/screens/about.js` — About and policies: two-pane information screen with verbatim policy content
+- `public/ui/screens/about.css` — About and policies screen layout
 - `public/ui/screens/shelf-home.js` — Shelf home: two shelves of 66 books sized by length, group legend, selected-book panel, Continue and My Notes cards
 
 Project status: [docs/STATUS.md](docs/STATUS.md) · Decisions: [docs/v7/DECISION_PRECEDENCE.md](docs/v7/DECISION_PRECEDENCE.md) · Changes: [CHANGELOG.md](CHANGELOG.md)

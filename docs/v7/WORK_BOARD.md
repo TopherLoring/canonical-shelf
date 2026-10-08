@@ -18,13 +18,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ## Ready to start
 
+- **S7** — Step 7: remove legacy stylesheets and render paths; close the guards
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S10` | claimed | Codex | `codex/s10-about` | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
 | `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits |
 | `A2` | waiting |  |  | `A1` | Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
 | `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account |
@@ -41,7 +41,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | ready |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
@@ -79,6 +79,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S6` | done | Codex-S6 | `codex/s6-theologian` | `S3.H` | Step 6: Theologian panel (docked desktop, centered phone, dim overlay) |
 | `S8` | done | Claude | `feature/s8-book-overview` | `S5a` | Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview) |
 | `S9` | done | Claude | `feature/s9-search` | `S5a`, `S8` | Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in |
+| `S10` | done | Codex | `codex/s10-about` | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -427,6 +428,11 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S10 — Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect
 
+- 2026-10-08 (Codex): Final pre-commit verify:fast passed with CI=1: 19 smoke tests passed first attempt and the phone-reader smoke passed its single retry after a load timeout (20 total). Full verify passed 205/205 without retries. No reader or typography test changes in S10.
+- 2026-10-08 (Codex): Ready for review: About and four policies share the Topics layout; original markup preserved verbatim, old addresses and anchors redirect, and cached policies work offline. Full CI-mode verify passed 205/205 with no retries after merging cda5179; work done acceptance passed 10/10. Authorized manifest mappings synced; desktop and phone rendering inspected. Next: draft PR into feature/redesign-p5-lesson-path for Chris; do not merge.
+- 2026-10-08 (Codex): Done; acceptance passed (bunx playwright test tests/redesign/about.spec.js).
+- 2026-10-08 (Codex): Merged latest integration through cda5179, including Chris's 120-second typography test budget. Added only the authorized About screen manifest mappings; original policy markup preserved. Full verification pending.
+- 2026-10-08 (Codex): Implemented the approved Topics-style About and policies screen, default About selection, canonical section links, legacy document redirects, no-script disclosures and offline shell support. Original About and policy markup is preserved byte-for-byte; eight online behavior tests and the offline regression passed. Full CI-mode verify is running; exact about.js/about.css manifest mappings require owner authorization to extend S10 scope.
 - 2026-10-07 (Claude): Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths.
 - 2026-10-08 (Codex): Claimed on codex/s10-about.
 - 2026-10-07 (Claude): Chris 2026-10-07: approved; same two-pane layout as Topics.

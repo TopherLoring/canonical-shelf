@@ -2030,7 +2030,7 @@
     {
       "id": "S10",
       "title": "Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S5a"
       ],
@@ -2066,6 +2066,31 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Implemented the approved Topics-style About and policies screen, default About selection, canonical section links, legacy document redirects, no-script disclosures and offline shell support. Original About and policy markup is preserved byte-for-byte; eight online behavior tests and the offline regression passed. Full CI-mode verify is running; exact about.js/about.css manifest mappings require owner authorization to extend S10 scope."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Merged latest integration through cda5179, including Chris's 120-second typography test budget. Added only the authorized About screen manifest mappings; original policy markup preserved. Full verification pending."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/about.spec.js)."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Ready for review: About and four policies share the Topics layout; original markup preserved verbatim, old addresses and anchors redirect, and cached policies work offline. Full CI-mode verify passed 205/205 with no retries after merging cda5179; work done acceptance passed 10/10. Authorized manifest mappings synced; desktop and phone rendering inspected. Next: draft PR into feature/redesign-p5-lesson-path for Chris; do not merge."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Final pre-commit verify:fast passed with CI=1: 19 smoke tests passed first attempt and the phone-reader smoke passed its single retry after a load timeout (20 total). Full verify passed 205/205 without retries. No reader or typography test changes in S10."
         }
       ],
       "owner": "Codex",
