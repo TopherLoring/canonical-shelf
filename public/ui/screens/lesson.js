@@ -15,6 +15,7 @@ import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
+import { ORIENTATION_LESSON, ORIENTATION_LESSON_ID, ORIENTATION_UNIT_ID, ORIENTATION_START_HREF, markOrientationSeen } from '../../orientation.js';
 
 // Lessons (?lesson=) and Checkpoints (?mastery=). A Checkpoint is a one-step lesson: the same frame, progress, notes and
 // navigation, with the unit's check on the card (decisions ui.naming.checkpoint-bare-2026-10-05 and ui.naming.hide-module-unit-labels).
@@ -66,6 +67,30 @@ export function checkpointAsLesson(data, masteryId) {
   };
 }
 
+/** The Orientation shaped like a lesson: every card is written as one step (see public/orientation.js). */
+export function orientationAsLesson() {
+  const sections = ORIENTATION_LESSON.sections.map(section => ({
+    id: section.id,
+    title: section.title,
+    blocks: [],
+    cards: section.cards.map(card => ({
+      id: card.id,
+      title: section.title,
+      units: [
+        ...(card.p || []).map(text => ({ kind: 'prose', text })),
+        ...(card.list ? [{ kind: 'list', items: card.list }] : []),
+        ...(card.desktop || card.phone ? [{ kind: 'platform', desktop: card.desktop, phone: card.phone }] : []),
+        ...(card.note ? [{ kind: 'note', text: card.note }] : []),
+        ...(card.actions ? [{ kind: 'actions', items: card.actions }] : [])
+      ]
+    }))
+  }));
+  return { id: ORIENTATION_LESSON_ID, activityId: `orientation:${ORIENTATION_LESSON_ID}`, title: ORIENTATION_LESSON.title, unitId: ORIENTATION_UNIT_ID, isOrientation: true, challenges: [], vocab: [], sections };
+}
+
+// **Name** marks a site element's name; it is set in a heavier weight so learners can find it on screen.
+const labelled = (esc, text) => esc(text).replace(/\*\*(.+?)\*\*/g, '<strong class="site-label">$1</strong>');
+
 /** Every step of a lesson in order, with the section it belongs to. */
 export function lessonSteps(lesson) {
   return (lesson?.sections || []).flatMap(section => (section.cards || []).map(card => ({
@@ -97,6 +122,11 @@ function stepBody(step, lesson, ctx) {
     }
     flush();
     if (unit.kind === 'callout') out.push(`<aside class="scene-callout"><p>${esc(unit.text)}</p></aside>`);
+    else if (unit.kind === 'prose') out.push(`<p class="scene-prose">${labelled(esc, unit.text)}</p>`);
+    else if (unit.kind === 'platform') out.push(`<dl class="scene-platform">${unit.desktop ? `<div><dt class="site-label">Desktop</dt><dd>${labelled(esc, unit.desktop)}</dd></div>` : ''}${unit.phone ? `<div><dt class="site-label">Phone</dt><dd>${labelled(esc, unit.phone)}</dd></div>` : ''}</dl>`);
+    else if (unit.kind === 'note') out.push(`<p class="scene-note">${labelled(esc, unit.text)}</p>`);
+    else if (unit.kind === 'list') out.push(`<ul class="scene-list">${unit.items.map(item => `<li>${labelled(esc, item)}</li>`).join('')}</ul>`);
+    else if (unit.kind === 'actions') out.push(`<p class="scene-actions">${unit.items.map(item => `<a class="scene-action${item.primary ? ' is-primary' : ''}" href="${esc(item.href)}">${esc(item.label)}</a>`).join('')}</p>`);
     else if (unit.kind === 'reading') out.push(readingMarkup(unit, i, ctx));
     else if (unit.kind === 'visual') out.push(visualBlock(lesson, esc));
     else if (unit.kind === 'check') {
@@ -165,12 +195,13 @@ export async function mount(container, ctx) {
   const { data, params, esc, navigate } = ctx;
   const masteryId = params.get('mastery');
   const lessonId = masteryId || params.get('lesson');
-  const lesson = masteryId ? checkpointAsLesson(data, masteryId) : lessonFor(data, lessonId);
+  const orientation = !masteryId && lessonId === ORIENTATION_LESSON_ID;
+  const lesson = masteryId ? checkpointAsLesson(data, masteryId) : orientation ? orientationAsLesson() : lessonFor(data, lessonId);
   const steps = lessonSteps(lesson);
   if (!lesson || !steps.length) { container.innerHTML = `<p class="notice">${masteryId ? 'Checkpoint' : 'Lesson'} not found.</p>`; return; }
 
   const checkpoint = Boolean(lesson.isCheckpoint);
-  const activityId = checkpoint ? lesson.activityId : `lesson:${lessonId}`;
+  const activityId = checkpoint || orientation ? lesson.activityId : `lesson:${lessonId}`;
   const activity = activityFor(data, activityId);
   const unitId = params.get('unit') || activity?.unitId || lesson.unitId;
   const unit = data.units?.find(u => u.id === unitId);
@@ -181,9 +212,10 @@ export async function mount(container, ctx) {
   const step = steps[index];
   const base = `/course?unit=${encodeURIComponent(unitId || '')}&${checkpoint ? 'mastery' : 'lesson'}=${encodeURIComponent(lessonId)}`;
   const stepHref = i => `${base}&step=${i + 1}`;
-  const exitHref = `/course?unit=${encodeURIComponent(unitId || '')}`;
-  const next = continuationFor(data, activityId);
+  const exitHref = orientation ? '/course' : `/course?unit=${encodeURIComponent(unitId || '')}`;
+  const next = orientation ? { href: ORIENTATION_START_HREF } : continuationFor(data, activityId);
   const last = index === steps.length - 1;
+  if (orientation && last) markOrientationSeen();
 
   // Sections in order, each with its steps as dots (the rail and the phone's "All steps" sheet).
   const sections = [];
@@ -213,7 +245,7 @@ export async function mount(container, ctx) {
     `<a href="/course">${esc(LABELS.learningPath)}</a>`,
     course ? `<a href="/course?course=${encodeURIComponent(course.id)}" class="lesson-crumb-wide">${esc(course.title)}</a>` : '',
     unit ? `<a href="${esc(exitHref)}" class="lesson-crumb-wide">${esc(unit.title)}</a>` : '',
-    `<span aria-current="page">${checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
+    `<span aria-current="page">${orientation ? 'Orientation' : checkpoint ? esc(lesson.label) : `${esc(LABELS.lesson)} ${lessonNumber}`}</span>`
   ].filter(Boolean).join('<span class="lesson-crumb-sep" aria-hidden="true">›</span>');
 
   const progress = `<div class="lesson-progress">
@@ -222,12 +254,15 @@ export async function mount(container, ctx) {
       <button type="button" class="lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog">All steps</button>
     </div>`;
 
-  const apparatus = checkpoint
+  const apparatus = orientation
+    ? `<details class="deep-reading" open><summary>About the orientation</summary><p>A short tour of how the site works. It is not scored and does not count toward any module.</p></details>
+       <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
+    : checkpoint
     ? `<details class="deep-reading" open><summary>About this ${esc(lesson.label.toLowerCase())}</summary><p>This activity evaluates understanding or reasoning, not whether you personally assent to a theological claim.</p></details>
        <section class="study-notes" data-notes-mount aria-label="${esc(LABELS.myNotes)}"></section>`
     : lessonApparatus(lesson, esc, { title: step.sectionTitle, anchor: step.anchor });
 
-  container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
+  container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint || orientation ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
     <div class="lesson-card">
       <header class="lesson-titlebar">
         <nav class="lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
@@ -246,14 +281,14 @@ export async function mount(container, ctx) {
         </aside>
         <article class="lesson-main">
           <header class="lesson-step-head">
-            ${checkpoint ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
+            ${checkpoint || orientation ? '' : `<p class="lesson-eyebrow">${esc(lesson.title)}</p>`}
             <h1 id="lesson-step-title">${esc(step.sectionTitle)}</h1>
           </header>
           <div class="lesson-phone-tools">${tools}</div>
           <div class="lesson-stage"><div class="lesson-body" data-step-id="${esc(step.id)}" tabindex="0" aria-label="Step text"><div class="lesson-body-text">${stepBody(step, lesson, ctx)}</div></div></div>
           <footer class="lesson-nav">
             <a class="lesson-back" href="${esc(index > 0 ? stepHref(index - 1) : exitHref)}" ${index > 0 ? '' : 'aria-disabled="true"'}>Back</a>
-            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : 'Next lesson') : 'Return to unit'}</a>
+            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : orientation ? 'Begin the Learning Path' : 'Next lesson') : 'Return to unit'}</a>
           </footer>
         </article>
         <aside class="lesson-side" aria-label="${esc(LABELS.myNotes)}">

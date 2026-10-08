@@ -9,12 +9,12 @@
 // everything is reachable in any order (navigation.hierarchy). Progress is counted in lessons.
 //
 // Addresses: /course, /course?course=<id>, /course?unit=<id>. Lessons (?lesson=), Checkpoints (?mastery=), the glossary
-// and the orientation unit stay on their own views.
+// stay on their own views.
 import { renderRail, renderPanel, renderProgressScopeGroup, mountProgressBars } from '../components/index.js';
 import { LABELS } from '../labels.js';
 
 export const handles = params =>
-  !params.has('lesson') && !params.has('mastery') && !params.has('glossary') && params.get('unit') !== 'unit.orientation';
+  !params.has('lesson') && !params.has('mastery') && !params.has('glossary');
 
 const icon = path => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 const CHEVRON = icon('<path d="m6 9 6 6 6-6"/>');
@@ -140,8 +140,7 @@ export async function mount(container, ctx) {
     ]
   });
 
-  const orientation = (data.lessons || []).some(l => l.id === 'orientation')
-    ? `<a class="path-orientation" href="/course?unit=unit.orientation&lesson=orientation">New here? Start with the orientation</a>` : '';
+  const orientation = `<a class="path-orientation" href="/course?unit=unit.orientation&lesson=orientation">New here? Start with the orientation</a>`;
 
   const capstoneRows = capstones.map(a => {
     const unit = m.units.get(a.unitId);

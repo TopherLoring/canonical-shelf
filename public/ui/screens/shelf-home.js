@@ -3,6 +3,9 @@ import { renderBookshelf, mountBookshelf } from '../components/bookshelf.js';
 import { renderGroupChip } from '../components/group-chip.js';
 import { getState } from '../../db.js';
 import { noteHref } from '../../study-notes.js';
+import { markOrientationSeen, orientationSeen } from '../../orientation.js';
+
+const ORIENTATION_HREF = '/course?unit=unit.orientation&lesson=orientation';
 
 // Counts from the bundled BSB corpus; used to scale book widths to their relative length.
 const VERSE_COUNTS = [1533,1213,859,1288,959,658,618,85,810,695,816,719,942,822,280,406,167,1070,2461,915,222,117,1292,1364,154,1273,357,197,73,146,21,48,105,47,56,53,38,211,55,1068,673,1149,878,1003,432,437,257,149,155,104,95,89,47,113,83,46,25,303,108,105,61,105,13,14,25,404];
@@ -52,8 +55,15 @@ function bookPanel(book, reading, esc) {
       '</dt><dd>' + esc(category.blurb) + '</dd></div>' : '') + '</dl>';
 }
 
-function continueCard(data, state, activityHref, esc) {
+function continueCard(data, state, activityHref, esc, reading) {
   const completed = new Set(state?.completed || []);
+  // Someone new (no progress, no saved reading place, orientation not yet seen) is pointed to the Orientation first.
+  if (!completed.size && !reading && !orientationSeen()) {
+    return '<section class="shelf-home-continue" data-orientation-first aria-label="Start here"><div><p class="eyebrow">New here? Start here</p>' +
+      '<h2>Take the short orientation.</h2></div><span class="shelf-home-continue__actions">' +
+      '<button type="button" class="button" data-orientation-skip>Skip</button>' +
+      '<a class="button button--primary" href="' + esc(ORIENTATION_HREF) + '">Begin</a></span></section>';
+  }
   const next = (data.activities || []).find(activity => !completed.has(activity.id));
   if (!next) {
     return '<section class="shelf-home-continue" aria-label="Learning Path"><div><p class="eyebrow">Learning Path</p>' +
@@ -116,15 +126,18 @@ export function mount(container, ctx) {
     { title: 'New Testament', countText: '27 books', fill: 80, books: books.filter(book => book.n >= 40) }
   ];
 
+  // A new visitor's first step goes right under the title, where it is seen before the shelf (on a phone too).
+  const card = continueCard(data, state, activityHref, esc, reading);
+  const first = card.includes('data-orientation-first');
   container.innerHTML = '<section class="shelf-home" aria-labelledby="shelf-home-title">' +
     '<div class="shelf-home__library"><header class="shelf-home__intro">' +
       '<h1 id="shelf-home-title">The Canonical<br><em>Shelf</em></h1>' +
       '<p>Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p>' +
-    '</header><section class="shelf-home__collection" aria-label="Canonical bookshelf">' +
+    '</header>' + (first ? card : '') + '<section class="shelf-home__collection" aria-label="Canonical bookshelf">' +
       renderBookshelf({ rows, className: 'shelf-home-bookshelf' }) + '</section>' +
     '<ul class="shelf-home__legend" aria-label="The nine shelf groups">' +
       CATEGORY_ORDER.map(key => '<li>' + renderGroupChip({ group: key }) + '</li>').join('') + '</ul>' +
-      continueCard(data, state, activityHref, esc) + myNotesCard([], esc) + '</div>' +
+      (first ? '' : card) + myNotesCard([], esc) + '</div>' +
     '<aside class="shelf-book-panel" aria-label="Selected book">' +
       bookPanel(LIBRARY_BOOKS[selectedNumber - 1], reading, esc) + '</aside>' +
     '<p class="shelf-home__announcement" aria-live="polite"></p></section>';
@@ -146,7 +159,14 @@ export function mount(container, ctx) {
     const announcement = container.querySelector('.shelf-home__announcement');
     if (announcement) announcement.textContent = 'Selected ' + book.name + ', book ' + book.n + ' of 66.';
   };
+  const onSkip = event => {
+    if (!event.target.closest?.('[data-orientation-skip]')) return;
+    markOrientationSeen();
+    container.querySelector('[data-orientation-first]')?.remove();
+    container.querySelector('[data-home-notes]')?.insertAdjacentHTML('beforebegin', continueCard(data, state, activityHref, esc, reading));
+  };
+  container.addEventListener('click', onSkip);
   container.addEventListener('click', onSelect);
   loadMyNotes(container, esc);
-  return () => container.removeEventListener('click', onSelect);
+  return () => { container.removeEventListener('click', onSelect); container.removeEventListener('click', onSkip); };
 }
