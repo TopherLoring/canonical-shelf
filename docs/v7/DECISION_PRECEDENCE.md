@@ -1182,6 +1182,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Phone Learning Path is three levels: modules, a module (description, units with progress, objectives), a unit (description, lessons, the selected lesson's description and objective). Sub topic text and objectives in the templates are demonstration content.
   *Why:* Chris described desktop only; phone follows the same levels
 
+### `ui.learning-path.progress-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-progress-in-left-pane`
+  Learning Path: Progress is the second part of the left pane (below the modules, or the units); the right pane holds the selected lesson (unit page) or Up next (module page), then What you'll gain.
+  *Why:* Chris artifact comment: flip progress and what you'll gain, maybe progress is a second part of the left pane
+
 ### `ui.learning-path.right-pane-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-right-pane-what-you-gain`
@@ -1193,6 +1199,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-three-pane-flow`
   Learning Path: modules on the left; the module's description and its units with progress in the middle; next, progress and objectives on the right. Selecting a unit lists the units on the left, the unit's description and lessons in the middle, and the selected lesson's description and objective with progress and next on the right.
   *Why:* Chris, 2026-10-08. Where his statements about the Path conflict, the last idea wins
+
+### `ui.learning-path.template-locked-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-template-locked`
+  The Learning Path desktop templates (module page and unit page) are locked as they stand once the current comments are addressed; they change only on Chris's request.
+  *Why:* Chris artifact comment: 'ok after comments have been addressed lock this'. The comments on the Path are addressed with the Progress move
 
 ### `ui.learning-path.unit-pane-2026-10-08`
 
