@@ -228,6 +228,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.nav.tablet` | Defer tablet-specific layout work and comparisons for now; | Owner decision | undefined |
 | `ui.notes.naming` | The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); | Owner decision | undefined |
 | `ui.path.current-module-2026-10-08` | The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card. | Owner decision | undefined |
+| `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
 | `ui.phone.my-notes` | Phone: | Owner decision | undefined |
 | `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
 | `ui.phone.no-hscroll` | The phone view never scrolls horizontally anywhere; | Owner decision | undefined |
@@ -257,7 +258,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
-| `ui.type.max-genesis-2026-10-07` | No text on any screen is larger than the site title in the top bar (the wordmark); | Owner decision | undefined |
+| `ui.type.max-genesis-2026-10-07` | Type sizes on every screen return to the plan's sizes: | Owner decision | undefined |
 | `ui.type.max-size` | No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). | Owner decision | undefined |
 
 ## Open feedback (adjust, not locked)

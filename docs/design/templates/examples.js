@@ -65,13 +65,36 @@ const continueCards = `<div class="cs-continue">
   <a class="cs-card cs-continue__card" href="?screen=lesson"><span class="cs-caption">Learning Path · Module 1 · Unit 2 · Lesson 1</span><span class="cs-continue__title">Meet the library: nine kinds of books</span><span class="cs-continue__go">Continue the lesson →</span></a>
   <a class="cs-card cs-continue__card" href="?screen=reader"><span class="cs-caption">My Notes · Genesis 1:2</span><span class="cs-continue__note">What does “the deep” mean here? Bring this up on Sunday.</span><span class="cs-continue__go">Open in the Bible →</span></a>
 </div>`;
+// Phone: what to do next sits under the shelves, above the fold; the book panel opens as a sheet when a spine is tapped.
+const startHere = `<section class="cs-start" aria-label="Start here"><span class="cs-caption cs-caption--label">Pick up where you left off</span>
+  <a class="cs-card cs-continue__card" href="?screen=lesson"><span class="cs-caption">Learning Path · Module 1 · Unit 2 · Lesson 1</span><span class="cs-continue__title">Meet the library: nine kinds of books</span><span class="cs-split"><span class="cs-continue__go">Continue the lesson →</span><span class="cs-caption">2 of 13 lessons</span></span>${bar(15, 'Module 1 progress')}</a>
+  <a class="cs-card cs-continue__card" href="?screen=reader"><span class="cs-caption">My Notes · Genesis 1:2</span><span class="cs-continue__note">What does “the deep” mean here? Bring this up on Sunday.</span><span class="cs-continue__go">Open in the Bible →</span></a></section>`;
+const GENESIS = { tagline: 'Origins, and one chosen family', synopsis: 'God makes a world and people break it: a garden, a murder, a flood, a tower. Then he picks one man, Abraham, promises him land and descendants, and follows that family four generations into Egypt.', begin: 'Chapters 1–3 for the beginning, then 37–50 for the Joseph story.', people: ['Adam','Noah','Abraham','Sarah','Jacob','Joseph'], setting: 'Prehistory to roughly 1800–1600 BC' };
+// The book panel as a bottom sheet (phone). Close, Previous book and Next book are always in reach.
+const bookSheet = n => {
+  const [g, name, ch] = BOOKS[n], first = name === 'Genesis';
+  const prev = BOOKS[n - 1], next = BOOKS[n + 1];
+  return `<span class="cs-sheet__grab" aria-hidden="true"></span>
+  <div class="cs-sheet__top"><span class="cs-book__meta">${tag(g)}Book ${n + 1} of 66</span><button type="button" class="cs-icon-button cs-icon-button--small" data-sheet-close aria-label="Close book overview">${i.close}</button></div>
+  <div class="cs-sheet__body">
+    <div class="cs-book__head"><h2 id="sheet-title">${name}</h2>${first ? `<span class="cs-book__tagline">${GENESIS.tagline}</span>` : ''}</div>
+    ${first ? `<p class="cs-book__synopsis">${GENESIS.synopsis}</p>` : `<p class="cs-book__synopsis cs-muted">The app supplies ${name}’s tagline, synopsis and starting points here.</p>`}
+    <div class="cs-split"><span>${chapters(ch)}</span><span>${first ? 'Reading chapter 3' : 'Not started'}</span></div>
+    ${first ? bar(6, 'Genesis reading progress') : ''}
+    <a class="cs-button cs-button--block cs-button--tall" href="?screen=reader">${first ? 'Resume Genesis 3' : `Open ${name}`}</a>
+    <a class="cs-book__overview" href="?screen=reader">Book overview</a>
+    ${first ? `<dl class="cs-book__facts"><div><dt>Where to begin</dt><dd>${GENESIS.begin}</dd></div><div><dt>People</dt><dd class="cs-chips">${GENESIS.people.map(p => `<a href="#">${p}</a>`).join('')}</dd></div><div><dt>Setting</dt><dd>${GENESIS.setting}</dd></div></dl>` : ''}
+  </div>
+  <div class="cs-sheet__nav"><button type="button" class="cs-button cs-button--outline" data-sheet-step="-1"${prev ? '' : ' disabled'}>${i.left}<span>${prev ? prev[1] : 'Previous'}</span></button><button type="button" class="cs-button cs-button--outline" data-sheet-step="1"${next ? '' : ' disabled'}><span>${next ? next[1] : 'Next'}</span>${i.right}</button></div>`;
+};
 const shelfIntro = `<div class="cs-shelf-intro"><h1 class="cs-title">The Canonical<br><em>Shelf</em></h1><p>Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div>`;
 const shelfCase = `<section class="cs-shelf" aria-label="Bookshelf">${shelfRow(0, 39, 'Old Testament · 39 books', 'Genesis')}${shelfRow(39, 66, 'New Testament · 27 books', 'Genesis')}</section>`;
 
 const shelf = {
   frame: 'shelf',
   desktop: () => `<div class="cs-shelf-main">${shelfIntro}${shelfCase}${legend}${continueCards}</div>${bookPanel}`,
-  phone: () => `<div class="cs-scroll">${shelfIntro}${shelfCase}${legend}${bookPanel}${continueCards}</div>`
+  phone: () => `<div class="cs-scroll cs-scroll--shelf">${shelfIntro}${shelfCase}${legend}${startHere}</div>`,
+  sheet: true
 };
 
 /* ---------------- Learning Path ---------------- */
@@ -94,10 +117,20 @@ const pathAside = `<aside class="cs-stack" aria-label="Your progress">
   <section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-kicker cs-kicker--small">Module 1 · Unit 2 · Lesson 1</span><span class="cs-upnext__title">Meet the library: nine kinds of books</span><a class="cs-button cs-button--block" href="?screen=lesson">Start lesson</a></section>
   <section class="cs-card cs-panel cs-progress"><span class="cs-caption cs-caption--label">Progress</span>${progressRow('Unit 2', '0 of 5 lessons', 0)}${progressRow('Module 1', '2 of 13 lessons', 15)}${progressRow('Learning Path', 'Module 1 of 4', 4)}</section>
 </aside>`;
+const moduleStatus = ['Current', 'Up next', 'Not started', 'Not started'];
+const moduleCard = ([k, t, st, p], n) => `<a class="cs-card cs-modcard${n === 0 ? ' is-current' : ''}" href="#" data-view="module"${n === 0 ? ' aria-current="true"' : ''}><span class="cs-split cs-split--center"><span class="cs-module__kicker">${k}</span><span class="cs-modcard__status">${moduleStatus[n]}</span></span><span class="cs-module__title">${t}</span>${p ? `<span class="cs-split"><span class="cs-caption">${st}</span></span>${bar(p, 'Module 1 progress')}` : `<span class="cs-caption">${st}</span>`}</a>`;
+const pathOverview = () => `<div class="cs-scroll"><div class="cs-heading"><span class="cs-kicker">Learning Path</span><h1>Your path</h1><span class="cs-sub">Module 1 of 4 · 2 of 13 lessons</span></div>
+  <section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-kicker cs-kicker--small">Module 1 · Unit 2 · Lesson 1</span><span class="cs-upnext__title">Meet the library: nine kinds of books</span><a class="cs-button cs-button--block" href="?screen=lesson">Start lesson</a></section>
+  <section class="cs-column" aria-label="Modules"><span class="cs-caption cs-caption--label">Modules</span>${modules.map(moduleCard).join('')}
+  <a class="cs-card cs-modcard cs-modcard--plain" href="#">${i.shield}<span class="cs-grow">Capstones across the path</span><span class="cs-count">6</span></a></section>
+  <section class="cs-card cs-panel cs-progress"><span class="cs-caption cs-caption--label">Progress</span>${progressRow('Module 1', '2 of 13 lessons', 15)}${progressRow('Learning Path', 'Module 1 of 4', 4)}</section></div>`;
+const pathModule = () => `<div class="cs-scroll"><button type="button" class="cs-backlink" data-view="overview">${i.left}<span>All modules</span></button>
+  <div class="cs-heading"><span class="cs-kicker">Module 1 of 4</span><h1>Reading the Bible Well: The Library and Its Story</h1><span class="cs-sub">4 units · 13 lessons · 2 of 13 done</span>${bar(15, 'Module 1 progress')}</div>
+  ${unitCard(1, 'Christianity in One View', 'Complete', 'done')}${unitCard(2, 'What the Bible Is', 'In progress · 0 of 5', 'active', true)}${unitCard(3, 'The Biblical Story in One View', '6 lessons')}${unitCard(4, 'Putting the Map Together', 'Review and connect')}</div>`;
 const path = {
   frame: 'well', cols: 'path',
   desktop: () => `${pathRail}${pathMain}${pathAside}`,
-  phone: () => `<div class="cs-scroll"><a class="cs-card cs-module-switch" href="#" aria-label="Change module"><span class="cs-module__kicker">Module 1 · 4 units</span><span class="cs-module__title">Reading the Bible Well: The Library and Its Story</span><span class="cs-split"><span class="cs-caption">2 of 13 lessons</span><span class="cs-link">Change ${i.down}</span></span>${bar(15, 'Module 1 progress')}</a>${pathMain}${pathAside}</div>`
+  phone: view => view === 'module' ? pathModule() : pathOverview()
 };
 
 /* ---------------- Lesson ---------------- */
@@ -120,11 +153,13 @@ const lessonAside = `<aside class="cs-stack" aria-label="Notes and study content
     <dl class="cs-terms"><div><dt>Old Testament</dt><dd>The 39 books of Israel’s scriptures, written mostly in Hebrew, which Christians share with the Jewish tradition.</dd></div><div><dt>New Testament</dt><dd>The 27 books written by the first Christians about Jesus and the early church, written in Greek.</dd></div></dl>
     <a class="cs-panel__foot" href="?screen=topics">All 4 terms in this lesson</a></section>
 </aside>`;
-const lessonTitlebar = full => `<div class="cs-titlebar"><nav class="cs-crumbs" aria-label="Breadcrumb">${full ? '<a href="?screen=path">Learning Path</a><span aria-hidden="true">›</span><a href="?screen=path">Module 1: Reading the Bible Well</a><span aria-hidden="true">›</span><a href="?screen=path">Unit 2: What the Bible Is</a><span aria-hidden="true">›</span><span aria-current="page">Lesson 1</span>' : `<button type="button" class="cs-crumbs__toggle" aria-expanded="false" aria-label="Show full path: Learning Path, Module 1: Reading the Bible Well, Unit 2: What the Bible Is, Lesson 1"><span>Unit 2 · <strong>Lesson 1</strong></span>${i.down}</button>`}</nav><a class="cs-icon-button cs-icon-button--small" href="?screen=path" aria-label="Leave lesson">${i.close}</a></div>`;
+const lessonTitlebar = full => full
+  ? `<div class="cs-titlebar"><nav class="cs-crumbs" aria-label="Breadcrumb"><a href="?screen=path">Learning Path</a><span aria-hidden="true">›</span><a href="?screen=path">Module 1: Reading the Bible Well</a><span aria-hidden="true">›</span><a href="?screen=path">Unit 2: What the Bible Is</a><span aria-hidden="true">›</span><span aria-current="page">Lesson 1</span></nav><a class="cs-icon-button cs-icon-button--small" href="?screen=path" aria-label="Leave lesson">${i.close}</a></div>`
+  : `<div class="cs-titlebar"><nav class="cs-crumbs" aria-label="Breadcrumb"><button type="button" class="cs-crumbs__toggle" aria-expanded="false" aria-label="Show full path: Learning Path, Module 1: Reading the Bible Well, Unit 2: What the Bible Is, Lesson 1"><span class="cs-crumbs__step">Step 1 of 6 · part 1 of 2</span><span class="cs-crumbs__where">Unit 2 · <strong>Lesson 1</strong>${i.down}</span></button></nav><a class="cs-icon-button cs-icon-button--small" href="?screen=path" aria-label="Leave lesson">${i.close}</a></div>`;
 const lesson = {
-  frame: 'window', current: 'path',
+  frame: 'window', current: 'path', focus: true,
   desktop: () => `${lessonTitlebar(true)}<div class="cs-window-well cs-window-well--lesson"><section class="cs-lesson-row" aria-label="Lesson">${lessonNav}${lessonCard}</section>${lessonAside}</div>`,
-  phone: () => `${lessonTitlebar(false)}<button type="button" class="cs-stepbar" aria-expanded="false" aria-label="Step 1 of 6, part 1 of 2: A library, not a book. Show all steps"><span class="cs-split"><span>Step 1 of 6 · part 1 of 2</span><span class="cs-stepbar__all">All steps</span></span><span class="cs-stepbar__segments">${steps.map((_, k) => `<span${k === 0 ? ' class="is-current"' : ''}></span>`).join('')}</span></button>
+  phone: () => `${lessonTitlebar(false)}<button type="button" class="cs-stepbar" aria-expanded="false" aria-label="Step 1 of 6, part 1 of 2: A library, not a book. Show all steps"><span class="cs-dots" aria-hidden="true">${steps.map((_, k) => `<span${k === 0 ? ' class="is-current"' : ''}></span>`).join('')}</span><span class="cs-stepbar__all">All steps</span></button>
   <article class="cs-phone-article"><div class="cs-lesson__head"><span class="cs-sub">Meet the library: nine kinds of books</span><h1>A library, not a book</h1></div>
   <nav class="cs-toolgrid cs-toolgrid--3" aria-label="Study tools for this step"><a href="#">${i.glossary}Glossary · 2</a><a href="#">${i.question}Questions · 3</a><a href="#">${i.deeper}Go deeper</a></nav>
   <p class="cs-phone-prose">The Bible is not one book written in one style. It is a library of 66 books, written over many centuries by many authors, and gathered in two collections: the Old Testament<button type="button" class="cs-footnote" aria-label="Footnote a: glossary, Old Testament">a</button>, Israel’s scriptures, and the New Testament<button type="button" class="cs-footnote" aria-label="Footnote b: glossary, New Testament">b</button>, the writings of the first Christians.</p>
@@ -157,10 +192,10 @@ const readerAside = `<aside class="cs-stack" aria-label="Notes and study content
     <ul class="cs-refs">${refs.map(([g, r, t]) => `<li data-group="${g}"><span class="cs-refs__bar"></span><div class="cs-grow"><div class="cs-refs__head"><a href="#">${r}<span class="cs-visually-hidden">, ${GROUPS[g]}</span></a><button type="button" class="cs-icon-button cs-icon-button--tiny" aria-label="${t ? 'Hide' : 'Show'} ${r}" aria-expanded="${!!t}">${t ? i.up : i.down}</button></div>${t ? `<p>${t}</p>` : ''}</div></li>`).join('')}</ul></section>
 </aside>`;
 const reader = {
-  frame: 'well', cols: 'reader', current: 'reader', surface: 'scripture',
+  frame: 'well', cols: 'reader', current: 'reader', surface: 'scripture', focus: true,
   desktop: () => `${readerRail}${readerPassage}${readerAside}`,
   phone: () => `<article class="cs-phone-article cs-phone-article--reader">
-    <div class="cs-phone-chapter" data-group="law"><span class="cs-chapter__bar"></span><div class="cs-grow"><span class="cs-chapter__group">Law · Berean Standard Bible</span><button type="button" class="cs-chapter-picker" aria-label="Choose book and chapter, currently Genesis 1">Genesis 1${i.down}</button></div><button type="button" class="cs-square-button cs-square-button--large" aria-label="Reading options: text size, translation">${i.more}</button></div>
+    <div class="cs-phone-chapter" data-group="law"><span class="cs-chapter__bar"></span><div class="cs-grow"><span class="cs-chapter__group">Law · Berean Standard Bible</span><button type="button" class="cs-chapter-picker" aria-label="Choose book and chapter, currently Genesis 1">Genesis 1${i.down}</button></div><button type="button" class="cs-square-button cs-square-button--large" aria-label="Reading options: text size, translation">${i.more}</button><a class="cs-square-button cs-square-button--large" href="?screen=shelf" aria-label="Close the Bible and choose a book on the Shelf">${i.close}</a></div>
     <nav class="cs-toolgrid cs-toolgrid--6" aria-label="Study tools for Genesis">${[['overview','Overview'],['timeline','Timeline'],['themes','Themes'],['people','People'],['places','Places'],['maps','Maps']].map(([ic, l]) => `<a href="#">${i[ic]}${l}</a>`).join('')}</nav>
     <p class="cs-scripture cs-scripture--phone"><span class="cs-anchor">${selectionBar.replace('<button type="button" class="cs-selection__action">Copy</button>', '')}</span><span class="cs-verse cs-verse--noted"><sup>1</sup>In the beginning God created the heavens and the earth.</span><button type="button" class="cs-footnote" aria-label="Footnote a: context for Genesis 1">a</button><span class="cs-verse cs-verse--selected"><sup>2</sup>Now the earth was <mark>formless and void</mark>, and darkness was over the surface of the deep. And the Spirit of God was hovering over the surface of the waters.</span><button type="button" class="cs-footnote" aria-label="Footnote b: 3 cross-references for Genesis 1:2">b</button> <sup>3</sup>And God said, “Let there be light,” and there was light. <sup>4</sup>And God saw that the light was good, and He separated the light from the darkness.</p></article>`
 };
@@ -217,3 +252,6 @@ const practice = {
 
 export const screens = { shelf, path, lesson, reader, topics: topicsPage, practice };
 export const topicList = topics;
+
+export const books = BOOKS;
+export { bookSheet };

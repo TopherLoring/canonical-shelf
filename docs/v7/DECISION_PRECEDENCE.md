@@ -1295,6 +1295,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-module-on-the-learning-path-is-highl`
   The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 
+### `ui.phone.learning-path-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-learning-path-overview-first`
+  Phone Learning Path opens on an overview before any module is selected: up next, every module with its status (current, up next, not started) and progress. Selecting a module opens its units as the next page.
+  *Why:* Chris: 'there should be a learning path overview, with current or previous or up next' before anything is selected; the module detail is the next page
+
 ### `ui.phone.my-notes`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
@@ -1467,8 +1473,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.type.max-genesis-2026-10-07`
 
-- **Current** · 2026-10-08 · Owner decision (Chris) · `no-text-on-any-screen-is-larger-than-the-site-ti`
-  No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `type-cap-removed-plan-sizes` · reverts `no-text-on-any-screen-is-larger-than-the-site-ti`
+  Type sizes on every screen return to the plan's sizes: the site-title size cap is removed (page headings 34, lesson title 36, Bible chapter title 44, Shelf book title 40; phone at plan sizes).
+  *Why:* Chris, 2026-10-08 on the Review & Practice plan image: 'I was wrong, this is the correct title/header font size/book name size'
+- **Previous** · 2026-10-08 · Owner decision (Chris) · `no-text-on-any-screen-is-larger-than-the-site-ti`
+  ~~No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.~~
 
 ### `ui.type.max-size`
 

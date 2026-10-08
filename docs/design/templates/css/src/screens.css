@@ -3,7 +3,7 @@
 /* ================= Shelf (Main.dc.html) ================= */
 .cs-shelf-main { display: flex; flex-direction: column; gap: 14u; overflow: auto; }
 .cs-shelf-intro { display: flex; align-items: center; gap: 36u; }
-.cs-title { font-family: var(--f-wordmark); font-size: 62u; /* site title */ font-weight: 700; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+.cs-title { font-family: var(--f-wordmark); font-size: 62u; font-weight: 700; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
 .cs-title em { font-style: italic; color: var(--c-text-2); }
 .cs-shelf-intro p { max-inline-size: 460u; font-family: var(--f-reading); font-size: 17u; line-height: 1.6; color: var(--c-text-2); }
 .cs-shelf { --spine: 1; inline-size: 100%; padding: 4u 8u 0; }
@@ -249,24 +249,40 @@
   .cs-chiprow a[aria-current="true"] span { color: var(--c-accent); }
 
   /* Shelf */
-  .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 10u; }
-  .cs-title { font-size: 44u; /* site title */ }
-  .cs-shelf-intro p { font-size: 15u; }
+  .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 0; }
+  .cs-title { font-size: 34u; }
+  .cs-title br { display: none; }
+  .cs-title em::before { content: ' '; }
+  .cs-shelf-intro p { display: none; }
+  .cs-scroll--shelf { gap: 10u; padding-block-start: 14u; }
+  .cs-start { display: flex; flex-direction: column; gap: 8u; }
+  .cs-start .cs-continue__card { padding: 12u 16u; gap: 4u; }
+  .cs-start .cs-continue__title { font-size: 17u; line-height: 1.25; }
+  .cs-start .cs-continue__note { font-size: 15u; line-height: 1.4; }
+  .cs-start .cs-bar { margin-block-start: 4u; }
   .cs-shelf { --spine: 0.5; padding: 4u 0 0; }
   .cs-shelf-row { padding: 0 4u; }
   .cs-bookend { flex-basis: 5u; margin: 0 2u; }
   .cs-plaque { font-size: 10u; padding: 1u 8u; }
-  .cs-legend { justify-content: flex-start; gap: 6u 12u; }
-  .cs-legend li { font-size: 12u; }
+  .cs-legend { justify-content: flex-start; gap: 4u 10u; }
+  .cs-legend li { font-size: 11u; gap: 5u; }
   .cs-continue { grid-template-columns: minmax(0, 1fr); gap: 12u; }
   .cs-book { overflow: visible; padding: 18u; }
   .cs-book__head h2 { font-size: 34u; }
 
   /* Learning Path */
-  .cs-module-switch { display: flex; flex-direction: column; gap: 6u; padding: 14u 16u; text-decoration: none; background: var(--c-accent-tint); border-color: transparent; }
-  .cs-module-switch .cs-module__kicker { color: var(--c-accent); }
-  .cs-module-switch .cs-bar > span { background: var(--c-accent); }
-  .cs-module-switch .cs-module__title { font-weight: 600; font-size: 16u; }
+  .cs-modcard { display: flex; flex-direction: column; gap: 6u; padding: 14u 16u; text-decoration: none; color: var(--c-text); }
+  .cs-app a.cs-modcard { color: var(--c-text); }
+  .cs-modcard .cs-module__title { font-size: 16u; font-weight: 600; line-height: 1.3; }
+  .cs-modcard__status { font-size: 12u; color: var(--c-muted); }
+  /* The current module reads as a selection, not an alert: a rose edge, label and bar on a white card. */
+  .cs-modcard.is-current { border-inline-start: 4u solid var(--c-accent); }
+  .cs-modcard.is-current .cs-module__kicker, .cs-modcard.is-current .cs-modcard__status { color: var(--c-accent); font-weight: 600; }
+  .cs-modcard.is-current .cs-bar > span { background: var(--c-accent); }
+  .cs-modcard--plain { flex-direction: row; align-items: center; gap: 10u; padding: 12u 16u; font-size: 15u; }
+  .cs-modcard--plain .cs-icon { color: var(--c-muted); }
+  .cs-backlink { align-self: flex-start; display: inline-flex; align-items: center; gap: 4u; min-block-size: 36u; padding: 0 10u 0 4u; border: 0; background: transparent; color: var(--c-action); font-size: 15u; font-weight: 600; }
+  .cs-backlink .cs-icon { inline-size: 16u; block-size: 16u; }
   .cs-cols--path .cs-column { gap: 12u; }
   .cs-unit { padding: 12u 14u; }
   .cs-unit__head { flex-wrap: wrap; gap: 4u 10u; }
@@ -276,17 +292,23 @@
   .cs-unit__lesson { font-size: 15u; }
 
   /* Lesson (PhoneLesson.dc.html) */
-  .cs-frame--window .cs-titlebar { block-size: 44u; padding: 0 6u 0 14u; }
+  .cs-frame--window .cs-titlebar { block-size: 52u; padding: 0 6u 0 14u; }
   .cs-crumbs { flex-grow: 1; }
-  .cs-crumbs__toggle { flex-grow: 1; padding: 0; border: 0; background: transparent; display: flex; align-items: center; gap: 6u; font-size: 14u; color: var(--c-text-2); text-align: start; }
-  .cs-crumbs__toggle strong { color: var(--c-text); }
-  .cs-crumbs__toggle .cs-icon { inline-size: 14u; block-size: 14u; color: var(--c-muted); }
-  .cs-stepbar { flex: none; padding: 10u 14u 8u; border: 0; border-block-end: 1u solid var(--c-row); background: var(--c-raised); display: flex; flex-direction: column; gap: 6u; text-align: start; }
-  .cs-stepbar .cs-split { inline-size: 100%; font-size: 12u; color: var(--c-muted); }
-  .cs-stepbar__all { color: var(--c-action); font-weight: 600; }
-  .cs-stepbar__segments { display: flex; gap: 4u; inline-size: 100%; }
-  .cs-stepbar__segments span { flex: 1 1 0; block-size: 6u; border-radius: 3u; background: var(--c-border); }
-  .cs-stepbar__segments .is-current { background: var(--c-accent); }
+  .cs-crumbs__toggle { flex-grow: 1; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: flex-start; gap: 1u; text-align: start; }
+  .cs-crumbs__step { font-size: 15u; font-weight: 600; color: var(--c-text); }
+  .cs-crumbs__where { display: inline-flex; align-items: center; gap: 4u; font-size: 12u; color: var(--c-muted); }
+  .cs-crumbs__where strong { color: var(--c-text-2); }
+  .cs-crumbs__where .cs-icon { inline-size: 12u; block-size: 12u; }
+  .cs-stepbar { flex: none; padding: 10u 14u; border: 0; border-block-end: 1u solid var(--c-row); background: var(--c-raised); display: flex; align-items: center; gap: 12u; text-align: start; }
+  .cs-stepbar__all { color: var(--c-action); font-size: 12u; font-weight: 600; white-space: nowrap; }
+  /* The step tracker is a chain of dots joined by a line; the current step is the rose dot. */
+  .cs-dots { flex: 1; display: flex; align-items: center; }
+  .cs-dots span { position: relative; flex: none; inline-size: 12u; block-size: 12u; border-radius: 50%; background: var(--c-raised); border: 2u solid var(--c-border); box-sizing: border-box; }
+  .cs-dots span + span { margin-inline-start: 26u; }
+  .cs-dots span + span::before { content: ''; position: absolute; inset-block-start: 3u; inset-inline-end: 100%; inline-size: 26u; block-size: 2u; background: var(--c-border); }
+  .cs-dots .is-current { inline-size: 16u; block-size: 16u; margin-inline: -2u; background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 2u var(--c-accent); }
+  .cs-dots .is-current + span { margin-inline-start: 24u; }
+  .cs-dots .is-current + span::before { inline-size: 24u; inset-block-start: 3u; }
   .cs-phone-article { flex: 1; min-block-size: 0; overflow-y: auto; padding: 16u 16u 12u; display: flex; flex-direction: column; gap: 12u; }
   .cs-phone-article .cs-lesson__head { gap: 2u; }
   .cs-phone-article .cs-lesson__head .cs-sub { font-size: 13u; }
@@ -337,6 +359,22 @@
   .cs-art-rule { grid-template-columns: repeat(3, 18u); }
   .cs-art-rule span { block-size: 18u; }
   .cs-coming { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Book overview sheet (phone Shelf). Sits inside the app, above the bottom bar, with a scrim over the page. */
+.cs-sheet, .cs-scrim { display: none; }
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-scrim:not([hidden]) { display: block; position: absolute; inset: 0; z-index: var(--z-popover); background: var(--c-dim); }
+  .cs-sheet:not([hidden]) { display: flex; flex-direction: column; position: absolute; inset-inline: 0; inset-block-end: 0; max-block-size: 82%; z-index: var(--z-popover); background: var(--c-sunken); border: 1u solid var(--c-border); border-block-end: 0; border-radius: 20u 20u 0 0; box-shadow: var(--sh-tab); box-sizing: border-box; }
+  .cs-app[data-chrome="device"] .cs-sheet { padding-block-end: 26u; }
+  .cs-sheet__grab { align-self: center; inline-size: 40u; block-size: 4u; margin-block: 8u 2u; border-radius: 2u; background: var(--c-strong); }
+  .cs-sheet__top { display: flex; align-items: center; justify-content: space-between; padding: 6u 8u 4u 18u; }
+  .cs-sheet__body { flex: 1; min-block-size: 0; overflow: auto; display: flex; flex-direction: column; gap: 10u; padding: 4u 18u 14u; }
+  .cs-sheet__body .cs-book__head h2 { font-size: 30u; }
+  .cs-sheet__nav { display: flex; gap: 8u; padding: 10u 12u; border-block-start: 1u solid var(--c-hairline); background: var(--c-raised); }
+  .cs-sheet__nav .cs-button { flex: 1 1 0; min-inline-size: 0; justify-content: center; gap: 4u; padding: 0 10u; font-size: 14u; }
+  .cs-sheet__nav .cs-button span { overflow: hidden; text-overflow: ellipsis; }
+  .cs-sheet__nav .cs-icon { inline-size: 16u; block-size: 16u; flex: none; }
 }
 
 /* Board details that differ per screen */

@@ -7,11 +7,7 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const parts = ['tokens.css', 'shell.css', 'screens.css'].map(name => readFileSync(join(here, 'css/src', name), 'utf8'));
 const units = /(^|[^\w.#-])(-?\d*\.?\d+)u(?![\w-])/g;
-// No text is larger than the site title in the top bar (Chris, 2026-10-08): every font size is capped at --type-cap,
-// except a declaration marked /* site title */ (the Shelf's own title is the site title).
-const capped = src => src.split('\n').map(line => line.includes('/* site title */') ? line
-  : line.replace(/font-size:\s*(-?\d*\.?\d+)u/g, (_, n) => `font-size: min(${n}u, var(--type-cap))`)).join('\n');
-const css = capped(parts.join('\n'))
+const css = parts.join('\n')
   .replace("@import url('../fonts/fonts.css');", '')
   .replace(units, (_, lead, n) => `${lead}calc(${n} * var(--u))`);
 writeFileSync(join(here, 'css/canonical-shelf.css'),

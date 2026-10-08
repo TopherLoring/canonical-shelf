@@ -1,6 +1,6 @@
 // Mounts one template screen. The layout follows the shape of the space the app is given, not the device:
 // phone layout when the app is narrower than 761 units or taller than 5:4; desktop otherwise. CSS does the scaling.
-import { screens, topicList } from './examples.js';
+import { screens, topicList, books, bookSheet } from './examples.js';
 import { icons as i } from './icons.js';
 
 const params = new URLSearchParams(location.search);
@@ -8,6 +8,8 @@ const key = Object.hasOwn(screens, params.get('screen')) ? params.get('screen') 
 const screen = screens[key];
 const current = screen.current || key;
 const chrome = params.get('chrome') !== '0';
+let pathView = params.get('view') === 'module' ? 'module' : 'overview';
+let sheetBook = params.get('sheet') === 'open' ? 0 : -1;
 
 const NAV = [
   ['shelf', 'Shelf', 'Shelf'],
@@ -27,7 +29,7 @@ const topBar = phone => `<header class="cs-top">
   <a class="cs-icon-button cs-top__profile" href="#" aria-label="Profile">${i.profile}</a>
 </header>`;
 
-const tabBar = `<nav class="cs-tabbar" aria-label="Primary">${NAV.map(([id, label, short]) => `<a href="?screen=${id}" aria-label="${label}"${cur(id)}>${ICON[id]}<span>${short}</span></a>`).join('')}</nav>`;
+const tabBar = `<nav class="cs-tabbar" aria-label="Primary">${NAV.map(([id, label, short]) => `<a href="?screen=${id}" aria-label="${label}"${cur(id)}>${ICON[id]}<span>${short}</span></a>`).join('')}<button type="button" class="cs-tabbar__extra" aria-label="Search">${i.search}<span>Search</span></button><a href="#" aria-label="Profile and feedback">${i.profile}<span>You</span></a></nav>`;
 
 const statusBar = `<div class="cs-status" aria-hidden="true"><span class="cs-status__time">9:41</span><span class="cs-status__island"></span><span class="cs-status__icons">
   <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect></svg>
@@ -49,10 +51,12 @@ function render(next) {
   const phone = next === 'phone';
   app.dataset.layout = next;
   app.dataset.chrome = phone && chrome ? 'device' : 'none';
+  app.dataset.focus = String(!!screen.focus);
   const frameClass = `cs-frame cs-frame--${screen.frame}${screen.cols ? ` cs-cols--${screen.cols}` : ''}`;
-  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${topBar(phone)}<main class="${frameClass}">${phone ? screen.phone() : screen.desktop()}</main>${phone ? tabBar : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
+  app.innerHTML = `<div class="cs-shell">${phone && chrome ? statusBar : ''}${phone ? '' : topBar(phone)}<main class="${frameClass}">${phone ? screen.phone(pathView) : screen.desktop()}</main>${phone ? (screen.focus ? '<div class="cs-gap"></div>' : tabBar) : ''}${phone && screen.sheet ? '<div class="cs-scrim" hidden></div><section class="cs-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden></section>' : ''}${edgeTabs(phone)}${phone && chrome ? '<span class="cs-home" aria-hidden="true"></span>' : ''}<dialog class="cs-dialog"><div class="cs-dialog__body"></div><form method="dialog"><button class="cs-button">Close</button></form></dialog></div>`;
   app.querySelectorAll('.cs-selection[popover]').forEach(el => el.showPopover());
   wire();
+  if (phone && screen.sheet) paintSheet();
 }
 
 // The same rule as the CSS container query: narrower than 761 units, or taller than 5:4, is the phone layout.
@@ -69,11 +73,30 @@ function show(html) {
   dialog.showModal();
 }
 
+// Shelf (phone): a spine opens the book's overview as a sheet with Close, Previous book and Next book.
+function paintSheet() {
+  const sheet = app.querySelector('.cs-sheet'), scrim = app.querySelector('.cs-scrim');
+  if (!sheet) return;
+  const open = sheetBook >= 0;
+  sheet.hidden = scrim.hidden = !open;
+  if (!open) return;
+  sheet.innerHTML = bookSheet(sheetBook);
+  app.querySelectorAll('.cs-spine').forEach(x => { const on = x.dataset.book === books[sheetBook][1]; x.classList.toggle('is-selected', on); x.setAttribute('aria-pressed', String(on)); });
+  sheet.querySelector('[data-sheet-close]').addEventListener('click', closeSheet);
+  sheet.querySelectorAll('[data-sheet-step]').forEach(b => b.addEventListener('click', () => { sheetBook += Number(b.dataset.sheetStep); paintSheet(); }));
+  sheet.querySelector('.cs-sheet__body').scrollTop = 0;
+}
+function closeSheet() { sheetBook = -1; paintSheet(); }
+app.addEventListener('keydown', event => { if (event.key === 'Escape' && sheetBook >= 0) closeSheet(); });
+
 function wire() {
+  app.querySelectorAll('[data-view]').forEach(a => a.addEventListener('click', event => { event.preventDefault(); pathView = a.dataset.view; layout = ''; render(decide()); }));
+  app.querySelector('.cs-scrim')?.addEventListener('click', closeSheet);
   app.querySelectorAll('[data-guide]').forEach(b => b.addEventListener('click', () => show(b.dataset.guide === 'notes'
     ? '<h2>My Notes</h2><p>Connect this tab to the app’s notes panel. The template saves nothing.</p>'
     : '<h2>Theologian</h2><p>Connect this tab to the app’s Theologian. The template sends nothing.</p>')));
   app.querySelectorAll('.cs-spine').forEach(b => b.addEventListener('click', () => {
+    if (layout === 'phone' && screen.sheet) { sheetBook = books.findIndex(x => x[1] === b.dataset.book); paintSheet(); return; }
     app.querySelectorAll('.cs-spine').forEach(x => { x.classList.toggle('is-selected', x === b); x.setAttribute('aria-pressed', String(x === b)); });
   }));
   app.querySelectorAll('[data-topic]').forEach(a => a.addEventListener('click', event => {

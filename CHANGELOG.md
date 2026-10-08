@@ -16,6 +16,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Desktop Bible reader: the chapter title in the passage (Genesis 1 ▾) is the book and chapter picker, as on the phone; the toolbar has no separate picker button.
 - No text on any screen is larger than the site title in the top bar (the wordmark); the Shelf's own large title is the site title and is the only exception. Supersedes the Genesis-size cap.
 - Bible reader passage card: the chapter title is at the top of the card (no toolbar above it); previous and next chapter buttons are static, centered vertically on the left and right sides of the card; BSB and text size sit at the right of the title row.
+- Type sizes on every screen return to the plan's sizes: the site-title size cap is removed (page headings 34, lesson title 36, Bible chapter title 44, Shelf book title 40; phone at plan sizes). (reverts no-text-on-any-screen-is-larger-than-the-site-ti)
+- Phone Learning Path opens on an overview before any module is selected: up next, every module with its status (current, up next, not started) and progress. Selecting a module opens its units as the next page.
 
 ## 2026-10-07
 
