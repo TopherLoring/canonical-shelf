@@ -278,7 +278,7 @@ const art = {
 };
 const game = (a, t, d, f) => `<a class="cs-card cs-game" href="#">${art[a]}<span class="cs-game__title">${t}</span><span class="cs-game__text">${d}</span><span class="cs-caption">${f}</span></a>`;
 const coming = [['grid','Crossword','Clues that make you think, built from the Glossary.'],['search','Word search','A light warm-up with names, places, and terms.'],['swipe','Swipe sort','Text or interpretation? Swipe to decide. Untimed or beat the clock.'],['hint','Hint reveal','Guess the name from its letter count as new hints appear.']];
-const practiceMain = `<section class="cs-column" aria-label="Review and practice"><div class="cs-heading"><h1>Review &amp; Practice</h1><span class="cs-sub">Review keeps what you’ve learned. Practice is optional and doesn’t count toward lessons.</span></div>
+const practiceMain = (menu = '') => `<section class="cs-column" aria-label="Review and practice"><div class="cs-heading"><h1>Review &amp; Practice</h1><span class="cs-sub">Review keeps what you’ve learned. Practice is optional and doesn’t count toward lessons.</span></div>${menu}
   <section class="cs-card cs-due" aria-label="Due for review"><div class="cs-grow cs-due__copy"><span class="cs-due__kicker">Due for review</span><span class="cs-due__title">3 items from Christianity in One View</span><span class="cs-due__text">About 4 minutes. Spaced so each idea comes back just before you’d forget it.</span></div><a class="cs-button" href="#">Start review</a></section>
   <div class="cs-section-head"><h2>Practice games</h2><span class="cs-caption">More games are on the way</span></div>
   <div class="cs-games">${game('sequence','Sequence Repair','One book is out of order. Find it and put the shelf right.','Book order · 5 rounds')}${game('memory','Memory','Match each book to its shelf group by memory.','Shelf groups · 16 cards')}${game('rule','Rule Discovery','Work out the rule that sorts these books, then test it.','Reasoning · 4 puzzles')}</div>
@@ -290,8 +290,8 @@ const practiceAside = `<aside class="cs-stack" aria-label="Your progress">
 </aside>`;
 const practice = {
   frame: 'well', cols: 'practice', current: 'practice',
-  desktop: () => `${practiceRail}${practiceMain}${practiceAside}`,
-  phone: () => `<div class="cs-scroll">${hscroll('Review and practice', `<a href="#" aria-current="true">${i.refresh}Due for review <span>3</span></a><a href="#">${i.bible}Verse library</a><a href="#">${i.games}Games <span>3</span></a><a href="#">${i.award}Achievements</a>`)}${practiceMain}${practiceAside}</div>`
+  desktop: () => `${practiceRail}${practiceMain()}${practiceAside}`,
+  phone: () => `<div class="cs-scroll">${practiceMain(hscroll('Review and practice', `<a href="#" aria-current="true">${i.refresh}Due for review <span>3</span></a><a href="#">${i.bible}Verse library</a><a href="#">${i.games}Games <span>3</span></a><a href="#">${i.award}Achievements</a>`))}${practiceAside}</div>`
 };
 
 export const screens = { shelf, path, lesson, reader, topics: topicsPage, practice };

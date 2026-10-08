@@ -40,6 +40,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Phone Study Topics: the type menu is a drop-down that replaces the category label above the topic title (no scrollable type bar).
 - Learning Path main content follows the plan's main column: units as cards with serif titles and a status, the current unit open to its lessons with a Start button; a selected unit shows the plan's open unit card.
 - On phones, My Notes is a side tab only in lessons and the Bible reader; the Theologian tab is on every screen.
+- Phone Review & Practice: the scrollable mode menu sits under the page title and description (above the due card).
 
 ## 2026-10-07
 

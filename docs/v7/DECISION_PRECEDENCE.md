@@ -1462,6 +1462,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-fixed-header-2026-10-04`
   Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.
 
+### `ui.review.phone-menu-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `review-phone-menu-under-title`
+  Phone Review & Practice: the scrollable mode menu sits under the page title and description (above the due card).
+  *Why:* Chris artifact comment: move scroll menu beneath the review and practice title (or match the reference direction); first option taken
+
 ### `ui.review.template-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `review-keeps-template`

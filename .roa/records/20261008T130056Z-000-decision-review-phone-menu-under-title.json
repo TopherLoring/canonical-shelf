@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "review-phone-menu-under-title",
+  "topic": "ui.review.phone-menu-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Phone Review & Practice: the scrollable mode menu sits under the page title and description (above the due card).",
+  "rationale": "Chris artifact comment: move scroll menu beneath the review and practice title (or match the reference direction); first option taken",
+  "by": "Chris"
+}
