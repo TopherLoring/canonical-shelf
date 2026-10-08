@@ -1494,6 +1494,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: the left rail for moving between modes and the right panel for context, so a learner can move around without going back and forth. The older mode pages currently have no rail, oversized headings, uneven font sizes and large unused space; they are rebuilt into the three-pane layout after Chris has played with them live.
   *Why:* Chris reviewed screenshots of the current mode pages: font sizes and free space are a mess; he likes continuing the side panes for continuity and organization
 
+### `ui.practice.phone.mode-droplist`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-review-practice-the-mode-menu-is-an-icon-d`
+  Phone Review & Practice: the mode menu is an icon drop list (replaces the scrollable bar), under the title and description.
+  *Why:* Artifact comment 9de9efb2
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`

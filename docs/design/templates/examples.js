@@ -294,7 +294,7 @@ const practiceAside = `<aside class="cs-stack" aria-label="Your progress">
 const practice = {
   frame: 'well', cols: 'practice', current: 'practice',
   desktop: () => `${practiceRail}${practiceMain()}${practiceAside}`,
-  phone: () => `<div class="cs-scroll">${practiceMain(hscroll('Review and practice', `<a href="#" aria-current="true">${i.refresh}Due for review <span>3</span></a><a href="#">${i.bible}Verse library</a><a href="#">${i.games}Games <span>3</span></a><a href="#">${i.award}Achievements</a>`))}${practiceAside}</div>`
+  phone: () => `<div class="cs-scroll">${practiceMain(`<label class="cs-typepicker cs-typepicker--block">${i.refresh}<span class="cs-grow">Due for review <span class="cs-count">3</span></span>${i.down}<select aria-label="Review and practice" data-type-select><option selected>Due for review</option><option>Verse library</option><option>Games</option><option>Achievements</option></select></label>`)}${practiceAside}</div>`
 };
 
 export const screens = { shelf, path, lesson, reader, topics: topicsPage, practice };
