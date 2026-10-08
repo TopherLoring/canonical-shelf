@@ -23,6 +23,8 @@
 .cs-spine__cap--low { inset-block-start: auto; inset-block-end: calc(7u * var(--spine)); }
 .cs-spine__rib { position: absolute; inset-block-start: 26%; inset-inline: 0; block-size: calc(4u * var(--spine)); border-radius: 2u; background: var(--dark); box-shadow: 0 1u 0 var(--shine-20); }
 .cs-spine__rib--low { inset-block-start: 70%; }
+/* Book names show only on hover or keyboard focus (ui.shelf.final). */
+.cs-spine:hover::after, .cs-spine:focus-visible::after { content: attr(data-book); position: absolute; inset-block-end: calc(100% + 6u); inset-inline-start: 50%; translate: -50% 0; padding: 2u 8u; border-radius: 6u; background: var(--c-plaque); color: var(--c-wood-dark); font-size: 12u; white-space: nowrap; box-shadow: 0 1u 2u var(--shade-25); z-index: var(--z-popover); pointer-events: none; }
 .cs-spine.is-selected { transform: translateY(calc(-8u * var(--spine))); box-shadow: 0 12u 18u var(--ink-30), 0 0 0 2u var(--c-surface), 0 0 0 4u var(--c-action); z-index: var(--z-raised); }
 .cs-spine.is-leaning { transform-origin: 0 100%; transform: rotate(-12deg); margin-inline-start: calc(var(--lean) * 1u * var(--spine)); }
 .cs-plank {
@@ -138,11 +140,13 @@
 .cs-passage__where { flex-grow: 1; padding-inline-start: 6u; display: flex; align-items: center; gap: 8u; font-size: 14u; color: var(--c-muted); }
 .cs-text-button { block-size: 40u; padding: 0 12u; border: 0; border-radius: 10u; background: transparent; color: var(--c-text-2); font-size: 14u; }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: 17u; }
-.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 24u 64u 36u; display: flex; justify-content: center; }   /* the chapter title is the top of the card (Chris, 2026-10-08) */
+.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: 24u 64u 36u; display: flex; justify-content: center; align-items: flex-start; }   /* the chapter title is the top of the card (Chris, 2026-10-08) */
 .cs-passage__inner { flex: 1; }
 .cs-chapter > .cs-chapter__tools { display: flex; flex-direction: row; align-items: flex-start; gap: 4u; margin-inline-start: auto; }
 .cs-passage__inner { max-inline-size: 600u; display: flex; flex-direction: column; gap: 18u; }
 .cs-chapter { display: flex; align-items: stretch; gap: 14u; }
+/* The top of the reader stays in view while the verses scroll (Chris, 2026-10-04). */
+.cs-passage__inner > .cs-chapter { position: sticky; inset-block-start: -24u; z-index: var(--z-raised); margin-block: -24u -8u; padding-block: 24u 8u; background: var(--c-scripture); }
 .cs-chapter__bar { flex: 0 0 6u; border-radius: 3u; background: var(--group); }
 .cs-chapter > div { display: flex; flex-direction: column; gap: 2u; }
 .cs-chapter__group { font-size: 14u; font-weight: 600; color: var(--group); }
@@ -171,7 +175,9 @@
 .cs-note-mark { display: inline-flex; color: var(--c-accent); margin-inline-start: 4u; vertical-align: -1u; }
 .cs-note-mark .cs-icon { inline-size: 14u; block-size: 14u; }
 .cs-notes { flex: 0 0 auto; block-size: 268u; padding: 14u 16u 16u; gap: 10u; border-color: var(--c-notes-edge); }
-.cs-saved-note { padding: 8u 12u; border-radius: 10u; background: var(--c-accent-wash); font-size: 15u; line-height: 1.45; }
+.cs-saved-note { padding: 8u 12u; border-radius: 10u; background: var(--c-accent-wash); font-size: 15u; line-height: 1.45; display: flex; align-items: flex-start; gap: 6u; }
+.cs-saved-note p { flex: 1; min-inline-size: 0; }
+.cs-saved-note__actions { display: flex; flex: none; margin-block: -6u; margin-inline-end: -8u; }
 .cs-textarea { flex-grow: 1; min-block-size: 0; padding: 10u 12u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); font-size: 15u; line-height: 1.5; resize: none; }
 .cs-textarea::placeholder { color: var(--c-muted); }
 .cs-cols--reader .cs-fill { padding: 14u 16u 16u; gap: 10u; }
@@ -323,6 +329,9 @@
   .cs-dots span { position: relative; flex: none; inline-size: 12u; block-size: 12u; border-radius: 50%; background: var(--c-raised); border: 2u solid var(--c-border); box-sizing: border-box; }
   .cs-dots span + span { margin-inline-start: 26u; }
   .cs-dots span + span::before { content: ''; position: absolute; inset-block-start: 3u; inset-inline-end: 100%; inline-size: 26u; block-size: 2u; background: var(--c-border); }
+  /* Three states only (ui.lesson.progress.colors.three): completed is filled muted, current is the larger rose dot, new is hollow. */
+  .cs-dots .is-done { background: var(--c-muted); border-color: var(--c-muted); }
+  .cs-dots .is-done::before, .cs-dots .is-current::before { background: var(--c-muted); }
   .cs-dots .is-current { inline-size: 16u; block-size: 16u; margin-inline: -2u; background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 2u var(--c-accent); }
   .cs-dots .is-current + span { margin-inline-start: 24u; }
   .cs-dots .is-current + span::before { inline-size: 24u; inset-block-start: 3u; }

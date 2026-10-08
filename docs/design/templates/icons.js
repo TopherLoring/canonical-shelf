@@ -21,6 +21,7 @@ export const icons = {
   glossary: line('<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h11"></path>'),
   question: line('<circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.4M12 17v.5"></path>'),
   deeper: line('<path d="M12 4v13M6 11l6 6 6-6"></path><path d="M5 20h14"></path>'),
+  trash: line('<path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13M10 11v6M14 11v6"></path>', 1.8),
   pen: line('<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path>', 2),
   context: line('<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path>', 1.8, 'stroke-linecap="round"'),
   links: line('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path>'),

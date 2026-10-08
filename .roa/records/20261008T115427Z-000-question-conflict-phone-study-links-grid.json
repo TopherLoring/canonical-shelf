@@ -1,0 +1,11 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "conflict-phone-study-links-grid",
+  "date": "2026-10-08",
+  "text": "The phone Bible template (from PhoneReader board) shows the six book study links in one row of six. The 2026-10-03 decision says they are a 3-by-2 grid. Which stands?",
+  "request": "Compare all templates with the decision log",
+  "source": "ui.phone.no-hscroll",
+  "sourceText": "rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid)",
+  "owner": "Chris"
+}

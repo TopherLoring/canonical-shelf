@@ -13,6 +13,24 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
+- **Conflict:** Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards? (`conflict-module-unit-labels`, owner: Chris, since 2026-10-08)
+  - Request: Compare all templates with the decision log
+  - Conflicts with `ui.naming.hide-module-unit-labels-2026-10-05`: “Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear”
+- **Conflict:** Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands? (`conflict-step-n-of-m`, owner: Chris, since 2026-10-08)
+  - Request: Compare all templates with the decision log
+  - Conflicts with `ui.lesson.progress.no-step-label-2026-10-05`: “Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.”
+- **Conflict:** The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template? (`conflict-copy-action`, owner: Chris, since 2026-10-08)
+  - Request: Compare all templates with the decision log
+  - Conflicts with `ui.reader.notes`: “Remove Copy from the reader highlight/note actions.”
+- **Conflict:** The Shelf book panel in the template (from the board) labels the starting chapters 'Where to begin'. The decision from 2026-10-08 renames it 'Read first'. Apply 'Read first' to the template? (`conflict-read-first`, owner: Chris, since 2026-10-08)
+  - Request: Compare all templates with the decision log
+  - Conflicts with `ui.read-first-search-routing-2026-10-07`: “Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin').”
+- **Conflict:** The phone Bible template (from PhoneReader board) shows the six book study links in one row of six. The 2026-10-03 decision says they are a 3-by-2 grid. Which stands? (`conflict-phone-study-links-grid`, owner: Chris, since 2026-10-08)
+  - Request: Compare all templates with the decision log
+  - Conflicts with `ui.phone.no-hscroll`: “rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid)”
+- **Conflict:** To fit the phone Shelf above the fold I hid the intro paragraph and set the title on one line. The decisions keep the current intro and the two-line title with the intro beside it. Keep the phone Shelf as I made it, or restore the intro (the cards then fall below the fold)? (`conflict-phone-shelf-intro`, owner: Chris, since 2026-10-08)
+  - Request: Show the bottom of the phone Shelf and the start-here and progress cards before scrolling
+  - Conflicts with `ui.shelf.intro.current`: “Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.”
 
 ## Phases
 

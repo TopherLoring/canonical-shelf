@@ -323,6 +323,8 @@
 .cs-spine__cap--low { inset-block-start: auto; inset-block-end: calc(calc(7 * var(--u)) * var(--spine)); }
 .cs-spine__rib { position: absolute; inset-block-start: 26%; inset-inline: 0; block-size: calc(calc(4 * var(--u)) * var(--spine)); border-radius: calc(2 * var(--u)); background: var(--dark); box-shadow: 0 calc(1 * var(--u)) 0 var(--shine-20); }
 .cs-spine__rib--low { inset-block-start: 70%; }
+/* Book names show only on hover or keyboard focus (ui.shelf.final). */
+.cs-spine:hover::after, .cs-spine:focus-visible::after { content: attr(data-book); position: absolute; inset-block-end: calc(100% + calc(6 * var(--u))); inset-inline-start: 50%; translate: -50% 0; padding: calc(2 * var(--u)) calc(8 * var(--u)); border-radius: calc(6 * var(--u)); background: var(--c-plaque); color: var(--c-wood-dark); font-size: calc(12 * var(--u)); white-space: nowrap; box-shadow: 0 calc(1 * var(--u)) calc(2 * var(--u)) var(--shade-25); z-index: var(--z-popover); pointer-events: none; }
 .cs-spine.is-selected { transform: translateY(calc(calc(-8 * var(--u)) * var(--spine))); box-shadow: 0 calc(12 * var(--u)) calc(18 * var(--u)) var(--ink-30), 0 0 0 calc(2 * var(--u)) var(--c-surface), 0 0 0 calc(4 * var(--u)) var(--c-action); z-index: var(--z-raised); }
 .cs-spine.is-leaning { transform-origin: 0 100%; transform: rotate(-12deg); margin-inline-start: calc(var(--lean) * calc(1 * var(--u)) * var(--spine)); }
 .cs-plank {
@@ -438,11 +440,13 @@
 .cs-passage__where { flex-grow: 1; padding-inline-start: calc(6 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); font-size: calc(14 * var(--u)); color: var(--c-muted); }
 .cs-text-button { block-size: calc(40 * var(--u)); padding: 0 calc(12 * var(--u)); border: 0; border-radius: calc(10 * var(--u)); background: transparent; color: var(--c-text-2); font-size: calc(14 * var(--u)); }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: calc(17 * var(--u)); }
-.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: calc(24 * var(--u)) calc(64 * var(--u)) calc(36 * var(--u)); display: flex; justify-content: center; }   /* the chapter title is the top of the card (Chris, 2026-10-08) */
+.cs-passage__body { flex: 1; min-block-size: 0; overflow: auto; padding: calc(24 * var(--u)) calc(64 * var(--u)) calc(36 * var(--u)); display: flex; justify-content: center; align-items: flex-start; }   /* the chapter title is the top of the card (Chris, 2026-10-08) */
 .cs-passage__inner { flex: 1; }
 .cs-chapter > .cs-chapter__tools { display: flex; flex-direction: row; align-items: flex-start; gap: calc(4 * var(--u)); margin-inline-start: auto; }
 .cs-passage__inner { max-inline-size: calc(600 * var(--u)); display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
 .cs-chapter { display: flex; align-items: stretch; gap: calc(14 * var(--u)); }
+/* The top of the reader stays in view while the verses scroll (Chris, 2026-10-04). */
+.cs-passage__inner > .cs-chapter { position: sticky; inset-block-start: calc(-24 * var(--u)); z-index: var(--z-raised); margin-block: calc(-24 * var(--u)) calc(-8 * var(--u)); padding-block: calc(24 * var(--u)) calc(8 * var(--u)); background: var(--c-scripture); }
 .cs-chapter__bar { flex: 0 0 calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--group); }
 .cs-chapter > div { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
 .cs-chapter__group { font-size: calc(14 * var(--u)); font-weight: 600; color: var(--group); }
@@ -471,7 +475,9 @@
 .cs-note-mark { display: inline-flex; color: var(--c-accent); margin-inline-start: calc(4 * var(--u)); vertical-align: calc(-1 * var(--u)); }
 .cs-note-mark .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
 .cs-notes { flex: 0 0 auto; block-size: calc(268 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); gap: calc(10 * var(--u)); border-color: var(--c-notes-edge); }
-.cs-saved-note { padding: calc(8 * var(--u)) calc(12 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-accent-wash); font-size: calc(15 * var(--u)); line-height: 1.45; }
+.cs-saved-note { padding: calc(8 * var(--u)) calc(12 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-accent-wash); font-size: calc(15 * var(--u)); line-height: 1.45; display: flex; align-items: flex-start; gap: calc(6 * var(--u)); }
+.cs-saved-note p { flex: 1; min-inline-size: 0; }
+.cs-saved-note__actions { display: flex; flex: none; margin-block: calc(-6 * var(--u)); margin-inline-end: calc(-8 * var(--u)); }
 .cs-textarea { flex-grow: 1; min-block-size: 0; padding: calc(10 * var(--u)) calc(12 * var(--u)); border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); font-size: calc(15 * var(--u)); line-height: 1.5; resize: none; }
 .cs-textarea::placeholder { color: var(--c-muted); }
 .cs-cols--reader .cs-fill { padding: calc(14 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); gap: calc(10 * var(--u)); }
@@ -623,6 +629,9 @@
   .cs-dots span { position: relative; flex: none; inline-size: calc(12 * var(--u)); block-size: calc(12 * var(--u)); border-radius: 50%; background: var(--c-raised); border: calc(2 * var(--u)) solid var(--c-border); box-sizing: border-box; }
   .cs-dots span + span { margin-inline-start: calc(26 * var(--u)); }
   .cs-dots span + span::before { content: ''; position: absolute; inset-block-start: calc(3 * var(--u)); inset-inline-end: 100%; inline-size: calc(26 * var(--u)); block-size: calc(2 * var(--u)); background: var(--c-border); }
+  /* Three states only (ui.lesson.progress.colors.three): completed is filled muted, current is the larger rose dot, new is hollow. */
+  .cs-dots .is-done { background: var(--c-muted); border-color: var(--c-muted); }
+  .cs-dots .is-done::before, .cs-dots .is-current::before { background: var(--c-muted); }
   .cs-dots .is-current { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); margin-inline: calc(-2 * var(--u)); background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-accent); }
   .cs-dots .is-current + span { margin-inline-start: calc(24 * var(--u)); }
   .cs-dots .is-current + span::before { inline-size: calc(24 * var(--u)); inset-block-start: calc(3 * var(--u)); }
