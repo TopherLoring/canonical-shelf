@@ -11,7 +11,7 @@ const chrome = params.get('chrome') !== '0';
 const dockShell = params.get('shell') === 'dock';   // the phone's dock format: top bar with search and menu, five labelled tabs; My Notes and Theologian stay on the right edge
 // Screen state: the page a screen is on (view) and what is selected. Links with data-go="key=value;key=value" change it.
 let view = params.get('view') || '';
-const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, mod: Number(params.get('mod')) || 0 };
+const st = { topic: params.has('topic') ? Number(params.get('topic')) : 1, sub: Number(params.get('sub')) || 0, lesson: Number(params.get('lesson')) || 0, unit: params.has('unit') ? Number(params.get('unit')) : 1, mod: Number(params.get('mod')) || 0, open: params.has('open') ? Number(params.get('open')) : 1 };
 let dockBook = 0;
 
 const NAV = [
@@ -43,7 +43,8 @@ const statusBar = `<div class="cs-status" aria-hidden="true"><span class="cs-sta
   <svg viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"></rect><rect x="2" y="2" width="20" height="9" rx="2.2"></rect><path d="M25 4.5v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" opacity=".45"></path></svg>
 </span></div>`;
 
-const edgeTabs = phone => `${phone ? `<button type="button" class="cs-edge cs-edge--notes" data-guide="notes">${i.tab}<span>My Notes</span></button>` : ''}<button type="button" class="cs-edge cs-edge--theologian" data-guide="theologian">${i.tab}<span>Theologian</span></button>`;
+// My Notes is a tab only in lessons and the reader (Chris, 2026-10-08); the Theologian tab is on every screen.
+const edgeTabs = phone => `${phone && (key === 'lesson' || key === 'reader') ? `<button type="button" class="cs-edge cs-edge--notes" data-guide="notes">${i.tab}<span>My Notes</span></button>` : ''}<button type="button" class="cs-edge cs-edge--theologian" data-guide="theologian">${i.tab}<span>Theologian</span></button>`;
 
 const app = document.querySelector('#app');
 app.classList.add('cs-app');

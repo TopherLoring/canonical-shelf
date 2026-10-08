@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "my-notes-tab-lessons-and-reader-only",
+  "topic": "ui.phone.my-notes",
+  "date": "2026-10-08",
+  "text": "On phones, My Notes is a side tab only in lessons and the Bible reader; the Theologian tab is on every screen.",
+  "rationale": "Chris artifact comment: 'my notes is in lessons and reader'. Narrows ui.phone.my-notes.side (every phone screen)",
+  "by": "Chris"
+}

@@ -277,13 +277,6 @@
   .cs-dock__text span { font-family: var(--f-display); font-size: 14u; font-style: italic; color: var(--c-text-2); }
   .cs-dock .cs-button { grid-area: btn; }
   .cs-dock__details { grid-area: det; justify-self: center; font-size: 13u; font-weight: 600; }
-}
-  .cs-toc--phone .cs-toc__title { flex: 1; min-inline-size: 0; }
-  .cs-toc--phone .cs-toc__leader, .cs-toc--phone .cs-toc__lessons .cs-caption { display: none; }
-  .cs-toc--phone .cs-toc__lessons li { flex-wrap: nowrap; align-items: flex-start; min-block-size: 36u; padding-block: 4u; }
-  .cs-toc--phone .cs-toc__ltitle { flex: 1; min-inline-size: 0; }
-  .cs-toc--phone .cs-toc__partmeta .cs-toc__leader { display: block; }
-  .cs-toc--phone .cs-toc__list--nested .cs-toc__state { flex: none; }
   .cs-shelf { --spine: 0.5; padding: 4u 0 0; }
   .cs-shelf-row { padding: 0 4u; }
   .cs-bookend { flex-basis: 5u; margin: 0 2u; }
@@ -394,21 +387,12 @@
 
 /* ---- Learning Path: modules, units, lessons ---- */
 .cs-lede { font-family: var(--f-reading); font-size: 16u; line-height: 1.6; color: var(--c-text-2); }
-.cs-unitcard { display: flex; flex-direction: column; gap: 6u; padding: 14u 18u; color: var(--c-text); text-decoration: none; }
-.cs-app a.cs-unitcard { color: var(--c-text); }
-.cs-unitcard__title { font-family: var(--f-display); font-size: 20u; font-weight: 600; }
-.cs-unitcard__text { font-size: 14u; line-height: 1.45; color: var(--c-muted); }
 .cs-goals { display: flex; flex-direction: column; gap: 8u; }
 .cs-goals li { display: flex; gap: 8u; align-items: flex-start; font-size: 14u; line-height: 1.4; color: var(--c-text-2); }
 .cs-goals .cs-icon { inline-size: 16u; block-size: 16u; margin-block-start: 1u; color: var(--c-accent); }
-.cs-lessonlist { display: flex; flex-direction: column; gap: 8u; }
-.cs-lessonrow { display: flex; align-items: center; gap: 12u; padding: 10u 14u; border-radius: 12u; border: 1u solid var(--c-hairline); background: var(--c-raised); color: var(--c-text); text-decoration: none; }
-.cs-app a.cs-lessonrow { color: var(--c-text); }
-.cs-lessonrow.is-selected { border-color: var(--c-action); box-shadow: 0 0 0 2u var(--c-focus-ring); }
-.cs-lessonrow__text { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 1u; }
-.cs-lessonrow__title { font-size: 15u; }
-.cs-lessonrow.is-current .cs-lessonrow__title { font-weight: 600; }
-.cs-lessonrow--check { border-style: dashed; color: var(--c-muted); }
+.cs-unit__lessons li > .cs-unit__link { flex: 1; display: flex; align-items: center; gap: 12u; min-inline-size: 0; color: inherit; text-decoration: none; }
+.cs-app .cs-unit__lessons a.cs-unit__link { color: inherit; }
+.cs-unit__link.is-selected { background: var(--c-subtle); border-radius: 10u; box-shadow: 0 0 0 6u var(--c-subtle); }
 .cs-lessonpane { gap: 10u; }
 .cs-lessonpane p { font-size: 15u; line-height: 1.5; color: var(--c-text-2); }
 .cs-lessonpane .cs-objective { color: var(--c-text); font-weight: 500; }

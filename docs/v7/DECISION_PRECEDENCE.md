@@ -1170,6 +1170,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-10-08 · Chris · `learning-path-option-b-shelf-disliked`
   I don't like the shelf-native Learning Path option (B: units as volumes on a plank).
 
+### `ui.learning-path.main-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-main-matches-plan`
+  Learning Path main content follows the plan's main column: units as cards with serif titles and a status, the current unit open to its lessons with a Start button; a selected unit shows the plan's open unit card.
+  *Why:* Chris artifact comments: 'main content should be similar to this' and 'match this' on the plan's Learning Path
+
 ### `ui.learning-path.phone-2026-10-08`
 
 - **Current** · 2026-10-08 · Agent default (Claude-agent) · `learning-path-phone-three-levels`
@@ -1373,8 +1379,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.phone.my-notes`
 
-- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
-  Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
+- **Current** · 2026-10-08 · Owner decision (Chris) · `my-notes-tab-lessons-and-reader-only`
+  On phones, My Notes is a side tab only in lessons and the Bible reader; the Theologian tab is on every screen.
+  *Why:* Chris artifact comment: 'my notes is in lessons and reader'. Narrows ui.phone.my-notes.side (every phone screen)
+- **Previous** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
+  ~~Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.~~
 
 ### `ui.phone.nav.bottom-bar-2026-10-08`
 

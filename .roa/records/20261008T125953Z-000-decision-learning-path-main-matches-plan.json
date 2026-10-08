@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "learning-path-main-matches-plan",
+  "topic": "ui.learning-path.main-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Learning Path main content follows the plan's main column: units as cards with serif titles and a status, the current unit open to its lessons with a Start button; a selected unit shows the plan's open unit card.",
+  "rationale": "Chris artifact comments: 'main content should be similar to this' and 'match this' on the plan's Learning Path",
+  "by": "Chris"
+}

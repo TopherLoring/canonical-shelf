@@ -226,6 +226,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.desktop.pane-widths-2026-10-08` | undefined | Agent default | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |
 | `ui.home.kicker` | undefined | Agent default | undefined |
+| `ui.learning-path.main-2026-10-08` | Learning Path main content follows the plan's main column: | Owner decision | undefined |
 | `ui.learning-path.phone-2026-10-08` | undefined | Agent default | undefined |
 | `ui.learning-path.structure-2026-10-08` | Learning Path: | Owner decision | undefined |
 | `ui.lesson-glossary-2026-10-08` | Lesson Glossary card: | Owner decision | undefined |
@@ -252,7 +253,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.dock-format-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.focus-screens-2026-10-08` | Phone lesson hides the top bar; | Owner decision | undefined |
 | `ui.phone.learning-path-2026-10-08` | Phone Learning Path opens on an overview before any module is selected: | Owner decision | undefined |
-| `ui.phone.my-notes` | Phone: | Owner decision | undefined |
+| `ui.phone.my-notes` | On phones, My Notes is a side tab only in lessons and the Bible reader; | Owner decision | undefined |
 | `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
 | `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.no-hscroll` | Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. | Owner decision | undefined |
