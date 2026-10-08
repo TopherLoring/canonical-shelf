@@ -10,13 +10,12 @@
     "1Cor.11.17-22"
   ],
   "glossary": {
-    "Gospel": "Good news. It names the Christian message, and it is also the name for the four books that tell Jesus' story.",
-    "Christ": "Anointed one; the Greek title that corresponds to the Hebrew Messiah. It is a title, not Jesus' surname.",
-    "Resurrection": "Being raised from death to new, bodily life; not a return to the old life, and not coming back in another earthly life.",
-    "Proclamation": "A public announcement of news; here, the message the first Christians handed on.",
-    "Patronage": "Relationships in which assistance and resources could carry expectations of loyalty, honor, and reciprocal obligations."
+    "Gospel": "The English translation of the Greek euangelion, \"good news\" or \"good announcement.\" In the Roman world it announced events of public consequence, a victory or a new emperor; Christians used it to announce that God had raised the crucified Jesus and made him Lord. It later became the name for the four books that tell Jesus' story: Matthew, Mark, Luke, & John.",
+    "Christ": "From the Greek christos, \"anointed one,\" which translates the Hebrew mashiach, Messiah. Israel's kings and priests were anointed with oil when set apart for office, so the title names Jesus as the anointed king Israel expected. It is a title, not a surname.",
+    "Resurrection": "From the Greek anastasis, literally \"standing up again.\" In the New Testament it means being raised from death to a new, embodied life, not a spirit surviving death and not being reborn into another earthly life.",
+    "Patronage": "The Roman social system in which a patron supplied resources, protection, or influence and a client returned loyalty and public honor. Gifts created obligations, which is why the system shaped who held influence in early congregations like the one in Corinth."
   },
-  "deeper": "Paul distinguishes the proclamation from his own role as its messenger. Ask what changes when we read this as a reminder to a community rather than as a modern individual conversion script. Modern individualistic habits may reduce Paul’s letters to “my beliefs” or “my spiritual success.” Ask instead how status, dependence, and public reputation shape a congregation. New Testament scholar Theodore W. Jennings examines patronage—resource relationships shaped by loyalty, honor, and reciprocal obligation—especially in 2 Corinthians 8–9; applying that lens elsewhere is an interpretive proposal, to be checked against each passage. In 1 Corinthians 11, hunger and humiliation are explicit evidence; a precise seating plan or each host’s intention is a reconstruction. Paul’s critique reaches communal conduct, not simply private sincerity.\n\nPaul writes to a community in Roman Corinth, where relationships of patronage traded help for loyalty and public honor. In 1 Corinthians 11:17–22 he rebukes a shared meal at which some go hungry while others have plenty. Reading chapter 15 alongside chapter 11 shows that the message Paul recalls was meant to shape how a community lives together, not only what each person privately believes. How far the patronage lens explains a given passage is an interpretive question to test against each text.",
+  "deeper": "Source: Jennings on patronage (Journal of Greco-Roman Christianity and Judaism, vol. 6). The link is under Sources.",
   "drawers": [
     {
       "title": "Do I have to believe this to keep going?",
@@ -30,141 +29,214 @@
     }
   ],
   "carries": {
-    "p3": "superseded:curriculum.teaching-approach.independent-2026-10-02"
+    "p1": "superseded:content.lesson-01-approved-2026-10-06",
+    "p2": "#retelling",
+    "p3": "#stance",
+    "p4": "#retelling",
+    "p5": "superseded:content.lesson-01-approved-2026-10-06",
+    "simple": "superseded:content.lesson-01-approved-2026-10-06",
+    "deeper": "superseded:content.lesson-01-approved-2026-10-06",
+    "model": "superseded:content.lesson-01-approved-2026-10-06",
+    "check:1": "superseded:content.lesson-01-approved-2026-10-06",
+    "check:2": "superseded:content.lesson-01-approved-2026-10-06",
+    "check:3": "superseded:content.lesson-01-approved-2026-10-06"
   }
 }
 ---
-## Start with a person and a story {#start}
-> Start with a person and a story: Christians proclaim that Jesus died for sins and rose from the dead. You can learn what that claim means before deciding what you believe.
+## A person and a story {#person}
+Christianity does not begin with a list of rules or a system of ideas. It begins with a person and a story: Jesus of Nazareth, his life, his death, and his resurrection. Everything else, from the shape of the Bible to the arguments Christians still have today, connects back to that center.
 
-Christianity begins with a person and a story. You can learn what that story claims before you decide what you believe about it.
+## Two words to get right {#words}
+The Canonical Shelf was designed to allow the free exploration and study of that story, so you can understand exactly what it claims before deciding what you believe about it. Understanding a claim and agreeing with it are two different acts, and an honest reader keeps them separate.
 
-Christianity centers on Jesus of Nazareth: his life, his death, and what his first followers said happened after it. Everything else in this guide, from the shape of the Bible to the arguments Christians still have, connects back to that center. So this path begins there, with the shortest summary of it we have, written by someone who knew the people involved.
+Two words carry the whole story, and both are easy to get wrong.
 
-You do not need to believe it to study it. You only need to read carefully and ask good questions, which is what this lesson will help you do.
+::step
 
-## Read the passage {#read}
-Around twenty years after Jesus' death, Paul wrote a letter to a young church in the Greek city of Corinth. Near the end of that letter he reminded them of the message he had first brought them. Read it slowly, and watch for the things Paul says happened.
+The first is Christ. It is not Jesus' surname. Christ comes from the Greek word christos, which means "anointed one," and christos is the Greek translation of the Hebrew mashiach, the word that comes into English as Messiah. In ancient Israel, when someone was chosen to be king or priest, they literally had oil poured over their head to mark them for the job. That's what the prophet Samuel did to David, years before David ever became king (1 Samuel 16:13).
 
+::step
+
+So when the first Christians said "Jesus Christ," they were not using a first and last name. They were making a claim: Jesus is the Messiah, the anointed king Israel had been waiting for.
+
+::step
+
+The second word is gospel. Gospel is the English translation of the Greek word euangelion, which means "good news" or "good announcement." In Paul's world, it was the word used for announcements regarding a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale.
+
+::step
+
+An inscription set up in 9 BC in the city of Priene, in what is now Turkey, called the birthday of the emperor Augustus "the beginning of the good news for the world," because his reign was said to have brought peace to the whole Mediterranean.
+
+::step
+
+When Christians announced the euangelion of Jesus, they took that same public, political word and used it to say that the news that changes the world is not an emperor's reign, but a crucified man whom God raised from the dead, and that he, not Caesar, is Lord.
+
+Eventually it became synonymous with the first four books of the New Testament that tell Jesus' story: Matthew, Mark, Luke, & John.
+
+## The oldest retelling we have {#retelling}
 ::reading
 
-Notice the four verbs in a row: Christ died, was buried, was raised, and appeared. Paul presents them as events, in an order, with witnesses. He also says he “received” this message and “passed it on,” which tells you it was already a set summary when he wrote it down.
+Around twenty years after Jesus' death, Paul wrote a letter to a young church in the Greek city of Corinth. Near the end of it, he reminded them of the message he had first brought them, and he introduced it with two careful words: he "received" it, and he "passed it on."
 
-```check
-{
-  "kind": "sequence",
-  "title": "Put the proclamation in order",
-  "prompt": "Arrange the four events in the order Paul recalls them.",
-  "items": ["Christ was buried", "Christ appeared to witnesses", "Christ died for sins", "Christ was raised"],
-  "answer": [2, 0, 3, 1],
-  "why": "Paul's summary moves from death to burial to resurrection to appearances. The order matters: the burial confirms the death, and the appearances are offered as evidence for the resurrection."
-}
-```
+::step
 
-## What the words mean {#words}
-Christianity centers on Jesus Christ: his life, death, and resurrection, and the relationship with God made possible through him. Christ is a title meaning anointed one, not Jesus’ surname. Gospel means good news; it can refer to the Christian message or to one of the four Gospel books.
+Those were the technical terms teachers of the time used for handing down a tradition intact, which tells us Paul is not composing something new here.
 
-Three words in this passage carry a lot of weight, and each is easy to misread.
+He is quoting a summary that already existed, one most historians date to within a few years of the crucifixion. That makes it the oldest retelling of the Christian message we have.
 
-Gospel means good news. Paul calls this message “the gospel,” and the same word later became the name for the four books that tell Jesus' story: Matthew, Mark, Luke, and John. Christ is not Jesus' last name. It is a title meaning “anointed one,” the Greek form of the Hebrew word Messiah, the one Israel hoped God would send. Resurrection does not mean coming back as a ghost, returning to the old life, or being reborn as someone else. It means being raised from death to a new, bodily life.
+::step
+
+The summary turns on four verbs. Christ died for our sins. He was buried. He was raised on the third day. And he appeared to witnesses: to Peter, then to the Twelve.
+
+Read those four in order and you have the spine of the Christian proclamation. Death and burial establish that Jesus truly died for us; resurrection and appearances establish the claim that death did not have the last word.
+
+::step
+
+Notice what this passage is, and what it is not.
+
+It is a compact proclamation tucked inside a letter, not a full biography of Jesus.
+
+It tells you what happened and in what order;
+
+it does not explain every question about how salvation works.
+
+::step
+
+Later lessons take those questions one at a time: what Christ accomplished, how a person receives grace through faith and repentance, and how a life is lived in response to that grace. For now, the goal is orientation. Notice what the passage actually says before trying to settle everything it might mean.
+
+::step
 
 ```check
 {
   "kind": "match",
-  "title": "Match the words to their meanings",
-  "prompt": "Match each word to what it means.",
-  "items": ["Gospel", "Christ", "Resurrection"],
-  "options": ["Raised from death to new, bodily life", "Good news", "Anointed one"],
-  "answer": [1, 2, 0],
-  "why": "Gospel is good news, Christ is a title meaning anointed one, and resurrection is being raised to new life, not a return or a rebirth."
-}
-```
-
-## A message inside a letter {#letter}
-Paul’s letter to the Corinthians addresses an existing community with questions and disagreements. Here he recalls a message he received and passed on: Christ died for sins, was buried, was raised, and appeared to witnesses. This is a compact proclamation inside a letter, not a complete biography of Jesus.
-
-Paul was not writing a biography of Jesus. He was writing to people he knew, who were arguing among themselves, and he reminded them of the message they had all started from. That is why this summary is so short: it assumes his readers already know the story and need to remember what matters most about it.
-
-This matters for how you read the rest of the Bible too. Most of it was written to particular people in particular situations. Asking who wrote a passage, to whom, and why is one of the most useful habits you can build, and you will use it on every page from here on.
-
-## The community behind the letter {#community}
-Paul writes to a community in Roman Corinth, not to isolated readers. Patron-client relationships exchanged resources and assistance for loyalty and public honor; gifts could create obligations. That social setting helps us ask who had influence and whose needs went unheard. It does not establish the motive of every Corinthian. Read 1 Corinthians 11:17–22 alongside this opening lesson: the gospel Paul recalls in chapter 15 also concerns the community’s shared life.
-
-```check
-{
-  "kind": "argument-map",
-  "title": "Connect gospel and shared life",
-  "prompt": "Use 1 Corinthians 11:17–22, the additional reading. Build three links from the two observations through the supported interpretation to its application.",
+  "title": "What did Paul \"receive\"?",
+  "prompt": "Paul uses the same verb, received, in two letters to say where his message came from. Match each passage to the sense the verb carries there.",
   "items": [
-    "Observation: some go hungry while others have excess (11:21).",
-    "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-    "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-    "Application: arrange the meal so people with fewer resources are included.",
-    "Alternative interpretation: we know every host’s private motive."
-  ],
-  "answer": [
-    2,
-    2,
-    3
-  ],
-  "hint": "Connect each observation to the claim it supports, then connect that claim to the justified application. Leave unsupported claims unconnected.",
-  "why": "The reported conduct supports a critique of the gathering and a practical response. Patronage raises useful background questions but cannot disclose every individual motive.",
-  "fields": [
-    "Observation: some go hungry while others have excess (11:21).",
-    "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-    "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal."
+    "1 Corinthians 15:3 — \"For what I received I passed on to you as of first importance…\"",
+    "Galatians 1:12 — \"I did not receive it from any man, nor was I taught it; rather, I received it by revelation from Jesus Christ.\""
   ],
   "options": [
-    [
-      "Observation: some go hungry while others have excess (11:21).",
-      "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-      "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-      "Application: arrange the meal so people with fewer resources are included.",
-      "Alternative interpretation: we know every host’s private motive."
-    ],
-    [
-      "Observation: some go hungry while others have excess (11:21).",
-      "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-      "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-      "Application: arrange the meal so people with fewer resources are included.",
-      "Alternative interpretation: we know every host’s private motive."
-    ],
-    [
-      "Observation: some go hungry while others have excess (11:21).",
-      "Observation: Paul rebukes humiliating those who have nothing (11:22).",
-      "Interpretation: this gathering’s inequality contradicts its purpose as a shared meal.",
-      "Application: arrange the meal so people with fewer resources are included.",
-      "Alternative interpretation: we know every host’s private motive."
-    ]
-  ]
+    "A message he accepted and believed for himself",
+    "A tradition handed down to him by those before him",
+    "Something he was paid or given as a reward",
+    "A direct revelation from the risen Jesus"
+  ],
+  "answer": [1, 3],
+  "why": "Context decides the sense. In 1 Corinthians, received is paired with passed on, the language teachers used for handing down a tradition intact. In Galatians, Paul is defending his authority, so he stresses that his calling came straight from Christ, not from other apostles. The two fit together: Paul met the risen Christ himself, and he also learned and passed on the wording the earliest believers already used."
 }
 ```
 
-## How this guide teaches {#stance}
-This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table perspective grounded in its own published Statement of Faith rather than in any denomination. It takes historic Christian teaching seriously and identifies disagreements. You may explore, question, or disagree; challenges assess understanding rather than personal assent.
+## A letter to a community, not to a reader {#community}
+It is easy to read Paul's letters as if they were written to you alone.
+
+They were not.
+
+Paul was writing to a community, a gathering of people in Roman Corinth who already believed, already argued, and already had questions. Read that way, 1 Corinthians 15 is not a modern conversion script. It is a reminder to a church of the message that made them a church in the first place.
+
+::step
+
+The city matters.
+
+Corinth had been destroyed by Rome in 146 BC and refounded by Julius Caesar a century later as a Roman colony, and it ran on Roman social habits. One of the strongest was patronage: wealthier patrons supplied money, protection, or influence, and in return their clients owed loyalty and public honor. A gift was rarely just a gift; it created an obligation.
+
+::step
+
+Having that background helps us ask good questions when we read: who in this congregation had influence, and whose needs went unheard? Ordinarily we see a gift or a dinner invitation as generosity. Within this context, it's also a transaction: the giver gains standing, and the one receiving owes loyalty.
+
+::step
+
+So when a wealthy member opened their home to the church, the hosting itself could quietly reinforce who ranked above whom. What it cannot do is tell us the private motive of every person in the room.
+
+Paul shows why the question matters in 1 Corinthians 11:17–22.
+
+::step
+
+When this church gathered for the Lord's Supper, an actual shared meal back then, people with free time and money most likely arrived early and began eating, while the working class and slaves, coming after a day's work, arrived late and found little left. Some drank too much while others had nothing.
+
+::step
+
+Paul's verdict is blunt: they were humiliating "those who have nothing." So the gospel, the world-changing "good news" Paul recalls in chapter 15, is not only a set of facts to believe. It reaches into how a community eats together, who gets fed, and who gets left out.
+
+::step
 
 ```check
 {
-  "kind": "evidence",
-  "title": "Understanding, not agreement",
-  "prompt": "Choose the two statements that describe how this guide works.",
-  "items": ["You can study what Christians claim before deciding whether you believe it.", "The checks score whether you agree with Christianity.", "Paul's summary is a complete biography of Jesus.", "The guide states its own position openly and shows where Christians disagree."],
-  "answer": [0, 3],
-  "why": "The guide assesses understanding, never agreement, and it is open about its own position while presenting disagreements fairly. Paul's summary is a short reminder, not a biography."
+  "kind": "match",
+  "title": "Stated or reconstructed?",
+  "prompt": "Sort each statement about 1 Corinthians 11:17–22: does the text say it, or is it a reasonable reconstruction?",
+  "items": [
+    "Some went hungry while others got drunk.",
+    "Paul says they humiliated \"those who have nothing.\"",
+    "Paul says what they eat is not really the Lord's Supper.",
+    "Workers and slaves arrived late from their jobs.",
+    "The early arrivals meant to shame the poor.",
+    "Hosts seated their friends in the dining room and everyone else outside."
+  ],
+  "options": [
+    "Stated in the text",
+    "Reconstruction"
+  ],
+  "answer": [0, 0, 0, 1, 1, 1],
+  "why": "Evidence is what the passage actually says. Reconstruction fills the gaps with what was likely true in Roman Corinth. Both are useful, but only one can settle an argument. Notice the late-arrival item: it's a strong, widely held reading, and it's still a reconstruction. Stated: 11:21, 11:22 and 11:20. The late arrival is supported by \"wait for one another\" (11:33) but not stated; the motive and the seating plan are never given."
 }
 ```
 
-## What you now know {#summary}
-The first goal is orientation. Notice what the passage actually says before trying to settle every question about how salvation works. Later lessons distinguish the saving work of Christ, receiving grace through faith and repentance, and living in response to that grace.
+## Going deeper: reading Paul's world carefully {#deeper}
+We tend to read Paul as if he were writing to us one at a time: my beliefs, my faith, my spiritual growth. His first readers didn't live that way. Who you depended on, what you owed, and what people said about you shaped almost everything, including how a church sat down to eat.
 
-You have read the earliest summary of the Christian message: Christ died for sins, was buried, was raised, and appeared to witnesses. You know that gospel means good news, that Christ is a title, and that resurrection means new, bodily life. You know that Paul was reminding a real community of something they already shared.
+::step
 
-Christians have long agreed on this center, and they still debate a great deal around it: what “died for sins” means and how it works, what kind of body the resurrection involves, and how the appearances should be understood. Later lessons take those questions up one at a time. The question to carry forward is simple: if this is the center, how does the rest of the library connect to it?
+A study of patronage in 2 Corinthians 8–9 (in Go deeper), where Paul is raising money for poor believers in Jerusalem, traces that web of money, loyalty, honor, and favors owed. Applying that lens to other passages is an interpretive proposal, and every proposal has to be checked against the text in front of it.
 
-## Reflect {#reflect}
+::step
+
+1 Corinthians 11 is a good test.
+
+The hunger and the humiliation are stated in the text; they are evidence. A precise seating plan, or the exact intention of each host, is reconstruction; it may be plausible, but it is not stated. Holding those two apart is the difference between reading a passage and reading into it.
+
+::step
+
+Either way, Paul's critique lands on how the community behaved together, not simply on whether individuals were privately sincere.
+
+## How this guide teaches {#stance}
+This guide teaches Christianity from an explicitly LGBTQ-affirming, open-table, "God is love" (1 John 4:8) perspective.
+
+It takes historic Christian teaching seriously, and where Christians disagree, it names the disagreement and shows you the evidence on each side.
+
+::step
+
+You are free to explore, to question, and make your own decisions.
+
+The checks along the way measure whether you understand what a passage or tradition claims, never whether you agree with it, and they help shape your personal review.
+
+## Before you move on {#before}
+```check
+{
+  "kind": "match",
+  "title": "What is the word doing?",
+  "prompt": "Each sentence uses \"gospel\" or \"Christ.\" Match each one to what the word means there.",
+  "items": [
+    "The Gospel of Luke was written for someone named Theophilus.",
+    "\"I am not ashamed of the gospel, because it is the power of God for salvation.\" (Romans 1:16)",
+    "An inscription calls Augustus's birthday \"the beginning of the good news for the world.\"",
+    "Peter answered, \"You are the Christ.\" (Mark 8:29)"
+  ],
+  "options": [
+    "The title Messiah, the anointed king",
+    "One of the four books about Jesus",
+    "A public announcement in the Roman world",
+    "The message about Jesus"
+  ],
+  "answer": [1, 3, 2, 0],
+  "why": "The same word can carry different weight depending on where it sits. Peter isn't using a surname; he's naming Jesus as the Messiah. And Paul's \"gospel\" is the announcement itself, long before anyone wrote the books we now call Gospels."
+}
+```
+
+::step
+
 ```reflect
 {
-  "prompt": "What would you need to understand before explaining Christianity’s central claim to someone else?",
-  "modelResponse": "I would separate who Jesus is, what Christians say happened, and why they believe those events matter. A strong answer names Jesus, says what Christians claim happened (he died, was buried, was raised, and appeared to people), and makes clear that this is a claim you can study and weigh. It does not need to say whether you believe it. This reflection is never scored."
+  "prompt": "What would you need to understand before explaining Christianity's central claim to someone else?",
+  "modelResponse": "I would separate three things: who Jesus is, what Christians say happened, and why they believe those events matter."
 }
 ```

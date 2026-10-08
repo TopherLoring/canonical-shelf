@@ -44,7 +44,7 @@ test.describe('Lesson screen', () => {
 
   test('a long reading opens in a popover that scrolls and closes with Escape', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto(lesson(3));
+    await page.goto(lesson(8));
     const link = page.locator('[data-reading-open]').first();
     await expect(link).toBeVisible();
     await link.click();
