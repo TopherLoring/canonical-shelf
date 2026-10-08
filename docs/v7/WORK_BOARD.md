@@ -19,12 +19,13 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 ## Ready to start
 
 - **K1** — project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture
+- **P11** — Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD
+- **S12** — Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later
 
 ## All nodes
 
 | Node | Status | Owner | Branch | Depends on | Title |
 |---|---|---|---|---|---|
-| `S11` | claimed | Claude | `feature/s11-orientation` | `S9` | Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it |
 | `A1` | waiting |  |  | `RD` | Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits |
 | `A2` | waiting |  |  | `A1` | Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile |
 | `A3` | waiting |  |  | `A2` | Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account |
@@ -37,13 +38,17 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `C4` | waiting |  |  | `S7` | Content: rewrite each lesson as one script (one objective, its points in order, details elaborating each) in the content voice and depth, working lesson by lesson from docs/v7/LESSON_SCRIPTS.md; before/after per lesson |
 | `C5` | waiting (Chris) |  |  | `C4` | Content: Chris approves each lesson revision batch |
 | `K1` | ready |  |  |  | project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture |
+| `L1` | waiting |  |  | `RD` | Lexicon data: build static, sharded original-language word data from the Berean BSB translation tables and concordance (aligned Hebrew/Greek word, transliteration, morphology, BSB renderings, per-lemma usage range and occurrences). No Strong's or other dictionary glosses |
+| `L2` | waiting |  |  | `L1` | Lexicon panel: tap a word in the reader to open the original word, transliteration, English renderings used, count and clickable occurrences |
+| `L3` | waiting |  |  | `L2` | Lexicon and Theologian: 'Ask the Theologian about this word' button using the existing [data-ask] prefilled draft (no auto-send); About credit line for the Berean Bible Translation Committee |
 | `P10` | waiting |  |  | `RD` | Themes 2-8: final values per theme (layouts unchanged) |
-| `P11` | waiting |  |  | `S11` | Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD |
+| `P11` | ready |  |  | `S11` | Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD |
 | `RD` | waiting (Chris) |  |  | `S7`, `C3`, `S3.G`, `P11` | Chris approves the redesign |
 | `S3.F` | waiting (Chris) |  |  | `S3.E`, `C5` | Step 3: Chris reviews the report and approves the one-time revision edits |
 | `S3.G` | waiting |  |  | `S3.F` | Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget |
-| `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9`, `S11` | Step 7: remove legacy stylesheets and render paths; close the guards |
+| `S7` | waiting |  |  | `S10`, `S3.I`, `S3.J`, `S4`, `S5a`, `S5b`, `S5c`, `S5d`, `S6`, `S8`, `S9`, `S11`, `S12` | Step 7: remove legacy stylesheets and render paths; close the guards |
 | `S7b` | waiting |  |  | `RD` | Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases) |
+| `S12` | ready |  |  | `S11` | Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later |
 | `F1` | done | Codex | `codex/reader-font-readiness` | `S2` | Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse |
 | `M1` | done | Codex | `codex/roa-manifest-repair` |  | ROA manifest: map the lesson screen and new lesson build scripts for PR 60 |
 | `R1` | done | Codex | `feature/redesign-p5-lesson-path` | `S2` | Reader: "a pending reader mount cannot replace the profile after navigation" fails in the parallel run |
@@ -81,6 +86,7 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 | `S8` | done | Claude | `feature/s8-book-overview` | `S5a` | Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview) |
 | `S9` | done | Claude | `feature/s9-search` | `S5a`, `S8` | Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in |
 | `S10` | done | Codex | `codex/s10-about` | `S5a` | Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect |
+| `S11` | done | Claude | `feature/s11-orientation` | `S9` | Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it |
 | `X1` | done (Chris) |  |  |  | Codex lesson branch committed and pushed (codex/redesign-lesson-path) |
 | `SW1` | dropped |  |  | `S2` | Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight |
 
@@ -440,10 +446,27 @@ Generated from `docs/v7/work-graph.json` by `bun run work`. Do not edit by hand.
 
 ### S11 — Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it
 
+- 2026-10-08 (Claude): Done; acceptance passed (bunx playwright test tests/redesign/orientation.spec.js).
 - 2026-10-08 (Claude): Claimed on feature/s11-orientation.
 - 2026-10-07 (Claude): Chris 2026-10-07: orientation should match the redesign in verbiage and design.
 
 ### P11 — Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD
 
 - 2026-10-07 (Claude): Chris 2026-10-07: add a typography picker and a Small / Normal / Large text size picker to the Appearance settings. Each theme has a default typography group, but any theme's font bucket can be chosen separately; themes control colors, surface textures, lines/borders, and style. Typography is the whole site. Plan to confirm before building: how typography groups are defined in the theme contract (.roa/values/theme.json), which fonts ship, and the text-size scale (root size multiplier).
+
+### S12 — Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later
+
+- 2026-10-08 (Claude): Chris 2026-10-07: the practice page must match the redesign; only the individual practice content is deferred (ui.practice.modes.continue-side-panes-2026-10-07). S7 depends on this so legacy styles can be deleted.
+
+### L1 — Lexicon data: build static, sharded original-language word data from the Berean BSB translation tables and concordance (aligned Hebrew/Greek word, transliteration, morphology, BSB renderings, per-lemma usage range and occurrences). No Strong's or other dictionary glosses
+
+- 2026-10-08 (Claude): Chris 2026-10-08: plan lexicon approved. Use non-standard tools: usage range from the translators' own renderings, not a lexicon. Berean texts are public domain; the tables, concordance and topical index terms are not confirmed, so send the Berean licensing question and read berean.bible/terms.htm before L1 ships.
+
+### L2 — Lexicon panel: tap a word in the reader to open the original word, transliteration, English renderings used, count and clickable occurrences
+
+- 2026-10-08 (Claude): Original-language definitions are not written by us; the panel shows evidence of usage only.
+
+### L3 — Lexicon and Theologian: 'Ask the Theologian about this word' button using the existing [data-ask] prefilled draft (no auto-send); About credit line for the Berean Bible Translation Committee
+
+- 2026-10-08 (Claude): Uses the lexical intent already in the Theologian.
 

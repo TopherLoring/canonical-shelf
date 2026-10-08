@@ -1137,7 +1137,8 @@
         "S6",
         "S8",
         "S9",
-        "S11"
+        "S11",
+        "S12"
       ],
       "owns": [
         "public/ui/legacy.css",
@@ -2101,7 +2102,7 @@
     {
       "id": "S11",
       "title": "Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S9"
       ],
@@ -2124,6 +2125,11 @@
           "date": "2026-10-08",
           "by": "Claude",
           "text": "Claimed on feature/s11-orientation."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/orientation.spec.js)."
         }
       ],
       "owner": "Claude",
@@ -2149,6 +2155,96 @@
           "date": "2026-10-07",
           "by": "Claude",
           "text": "Chris 2026-10-07: add a typography picker and a Small / Normal / Large text size picker to the Appearance settings. Each theme has a default typography group, but any theme's font bucket can be chosen separately; themes control colors, surface textures, lines/borders, and style. Typography is the whole site. Plan to confirm before building: how typography groups are defined in the theme contract (.roa/values/theme.json), which fonts ship, and the text-size scale (root size multiplier)."
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later",
+      "state": "todo",
+      "deps": [
+        "S11"
+      ],
+      "owns": [
+        "public/ui/screens/practice.js",
+        "public/ui/screens/practice.css",
+        "tests/redesign/practice.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/practice.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: the practice page must match the redesign; only the individual practice content is deferred (ui.practice.modes.continue-side-panes-2026-10-07). S7 depends on this so legacy styles can be deleted."
+        }
+      ]
+    },
+    {
+      "id": "L1",
+      "title": "Lexicon data: build static, sharded original-language word data from the Berean BSB translation tables and concordance (aligned Hebrew/Greek word, transliteration, morphology, BSB renderings, per-lemma usage range and occurrences). No Strong's or other dictionary glosses",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "scripts/build-original-language.mjs",
+        "public/data/original-language/"
+      ],
+      "accept": [
+        "bun scripts/build-original-language.mjs --check"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Chris 2026-10-08: plan lexicon approved. Use non-standard tools: usage range from the translators' own renderings, not a lexicon. Berean texts are public domain; the tables, concordance and topical index terms are not confirmed, so send the Berean licensing question and read berean.bible/terms.htm before L1 ships."
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Lexicon panel: tap a word in the reader to open the original word, transliteration, English renderings used, count and clickable occurrences",
+      "state": "todo",
+      "deps": [
+        "L1"
+      ],
+      "owns": [
+        "public/ui/screens/word-panel.js",
+        "public/ui/screens/word-panel.css",
+        "tests/redesign/word-panel.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/word-panel.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Original-language definitions are not written by us; the panel shows evidence of usage only."
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Lexicon and Theologian: 'Ask the Theologian about this word' button using the existing [data-ask] prefilled draft (no auto-send); About credit line for the Berean Bible Translation Committee",
+      "state": "todo",
+      "deps": [
+        "L2"
+      ],
+      "owns": [
+        "public/theologian.js",
+        "public/ui/screens/about.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/word-panel.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Uses the lexical intent already in the Theologian."
         }
       ]
     }
