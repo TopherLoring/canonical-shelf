@@ -14,7 +14,7 @@
 
   /* The page scrolls as a whole (as in Study Topics); the 66-book list stays in view beside it and scrolls on its own. */
   .book-nav-wrap { position: sticky; top: 0; align-self: start; max-height: calc(100dvh - 8rem); min-height: 0; overflow: auto; }
-  .book-title-toggle, .book-chapters-toggle { display: none; }
+  .book-title-toggle { display: none; }
   .book-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px 16px; }
   .book-nav__group { display: flex; flex-direction: column; gap: 2px; }
   .book-nav__label {
@@ -94,12 +94,12 @@
   @media (max-width: 680px) {
     /* Inside the card: room on the left, and on the right enough to clear the Theologian tab. */
     .book-screen { grid-template-columns: minmax(0, 1fr); height: auto; overflow: visible; padding: var(--space-3) var(--space-7) var(--space-4) var(--space-4); }
-    /* Order on a phone: the title (which is also the book selector), the list when open, Read first with Chapters, then the rest. */
+    /* Order on a phone: the title (which is also the book selector), the list when open, the book, then Read first and Chapters. */
     .book-main { display: contents; }
     .book-main > * { order: 4; }
     .book-main > .book-heading { order: 1; }
     .book-nav-wrap { order: 2; position: static; max-height: none; overflow: visible; }
-    .book-screen[data-kind="book"] .book-context { order: 3; }
+    .book-context { order: 5; }
     .book-heading { position: relative; }
     .book-heading h1::after { content: " ▾"; font-size: .6em; color: var(--color-text-muted); }
     .book-title-toggle { display: block; position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
@@ -107,15 +107,6 @@
     .book-nav-wrap[data-open] .book-nav { max-height: 50vh; overflow: auto; border: 1px solid var(--color-border); border-radius: var(--radius-control); }
     .book-stepper > * { flex-basis: 45%; width: 45%; min-width: 0; }
     .book-context { grid-column: auto; position: static; max-height: none; padding: var(--space-3); }
-    .book-chapters-title { display: none; }
-    .book-chapters-toggle {
-      display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); width: 100%; min-height: 40px;
-      padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-control);
-      background: var(--color-surface); color: var(--color-text); font: inherit; font-weight: 600; cursor: pointer;
-    }
-    .book-chapters-toggle > span:first-of-type { margin-left: auto; color: var(--color-text-muted); font-weight: 400; }
-    .book-chapters-wrap { display: grid; gap: var(--space-2); }
-    .book-chapters-wrap:not([data-open]) .book-chapters { display: none; }
     .book-facts > div, .timeline-era { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
   }
 }

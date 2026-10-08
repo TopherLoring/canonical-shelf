@@ -69,11 +69,8 @@ function bookContext(book, esc) {
     <p class="ui-panel-eyebrow">Read first</p>
     <p class="book-context__read">${esc(book.read || `Start with chapter 1 of ${book.name}.`)}</p>
     <a class="book-context__start" href="/bible?book=${book.n}&chapter=1">Read ${esc(book.name)} from chapter 1</a>
-    <div class="book-chapters-wrap" data-book-chapters>
-      <button type="button" class="book-chapters-toggle" data-book-chapters-toggle aria-expanded="false" aria-controls="book-chapters">Chapters <span>${book.ch}</span><span aria-hidden="true">▾</span></button>
-      <h2 class="ui-panel-title book-chapters-title">Chapters</h2>
-      <div class="book-chapters" id="book-chapters">${chapters}</div>
-    </div>
+    <h2 class="ui-panel-title">Chapters</h2>
+    <div class="book-chapters">${chapters}</div>
   </aside>`;
 }
 
@@ -114,16 +111,12 @@ export async function mount(container, ctx) {
   // The list is always open beside the page on a wide screen; on a phone it is a collapsed "choose a book" bar.
   const wrap = container.querySelector('[data-book-nav-wrap]');
   const toggle = container.querySelector('[data-book-nav-toggle]');
-  const chapters = container.querySelector('[data-book-chapters]');
-  const chaptersToggle = container.querySelector('[data-book-chapters-toggle]');
   const wide = window.matchMedia('(min-width: 681px)');
   const setNav = open => { wrap.toggleAttribute('data-open', open); toggle.setAttribute('aria-expanded', String(open)); };
-  const setChapters = open => { chapters?.toggleAttribute('data-open', open); chaptersToggle?.setAttribute('aria-expanded', String(open)); };
-  const sync = () => { setNav(wide.matches); setChapters(wide.matches); };
+  const sync = () => setNav(wide.matches);
   sync();
   wide.addEventListener('change', sync);
   toggle.addEventListener('click', () => setNav(!wrap.hasAttribute('data-open')));
-  chaptersToggle?.addEventListener('click', () => setChapters(!chapters.hasAttribute('data-open')));
   // Bring the current book into view inside the list only (scrollIntoView would also scroll the page).
   const current = container.querySelector('.book-nav [aria-current]');
   if (current && wide.matches) wrap.scrollTop += current.getBoundingClientRect().top - wrap.getBoundingClientRect().top - wrap.clientHeight / 3;

@@ -79,23 +79,16 @@ test.describe('Book overview and Timeline', () => {
     await expect(page.locator('.book-context')).toContainText('Read first');
   });
 
-  test('phone: the book name is the selector, Read first sits under it, and Chapters is collapsible', async ({ page }) => {
+  test('phone: the book name is the selector (shown once); Read first and Chapters stay below the book', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/bible?book=43&profile=1');
     const wrap = page.locator('[data-book-nav-wrap]');
     await expect(page.locator('#book-overview-title')).toBeVisible();
-    // The name appears once: no separate "choose a book" bar above it.
     await expect(page.locator('main :text-is("John"):visible')).toHaveCount(1);
     await expect(wrap).toBeHidden();
-    // Read first is directly under the name, before the facts.
     const top = sel => page.locator(sel).first().evaluate(el => el.getBoundingClientRect().top);
-    expect(await top('.book-context')).toBeLessThan(await top('.book-facts'));
-    expect(await top('#book-overview-title')).toBeLessThan(await top('.book-context'));
-    // Chapters is a collapsed drop-down.
-    await expect(page.locator('.book-chapters')).toBeHidden();
-    await page.locator('[data-book-chapters-toggle]').click();
+    expect(await top('.book-facts')).toBeLessThan(await top('.book-context'));
     await expect(page.locator('.book-chapters a')).toHaveCount(21);
-    // Tapping the name opens the book list.
     await page.locator('[data-book-nav-toggle]').click();
     await expect(wrap.locator('.book-nav')).toBeVisible();
     await wrap.locator('a', { hasText: 'Romans' }).click();
@@ -103,11 +96,10 @@ test.describe('Book overview and Timeline', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
-  test('desktop: no selector button or collapsed chapters; everything is open', async ({ page }) => {
+  test('desktop: no selector button; the list and chapters are open', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/bible?book=43&profile=1');
     await expect(page.locator('[data-book-nav-toggle]')).toBeHidden();
-    await expect(page.locator('[data-book-chapters-toggle]')).toBeHidden();
     await expect(page.locator('.book-chapters a').first()).toBeVisible();
     await expect(page.locator('.book-nav')).toBeVisible();
   });
