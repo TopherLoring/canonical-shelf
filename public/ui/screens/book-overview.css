@@ -51,6 +51,7 @@
   .book-boundary { margin: 0; max-width: var(--measure-reading); font-size: var(--type-small); color: var(--color-text-muted); }
 
   .book-stepper { display: flex; justify-content: space-between; gap: var(--space-3); }
+  .book-stepper > * { flex: 0 0 11rem; width: 11rem; box-sizing: border-box; }
   .book-stepper a { display: grid; gap: 2px; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-text); text-decoration: none; }
   .book-stepper small { color: var(--color-text-muted); }
 
@@ -91,7 +92,8 @@
   }
 
   @media (max-width: 680px) {
-    .book-screen { grid-template-columns: minmax(0, 1fr); height: auto; overflow: visible; }
+    /* Inside the card: room on the left, and on the right enough to clear the Theologian tab. */
+    .book-screen { grid-template-columns: minmax(0, 1fr); height: auto; overflow: visible; padding: var(--space-3) var(--space-7) var(--space-4) var(--space-4); }
     .book-nav-wrap { position: static; max-height: none; overflow: visible; }
     .book-nav-toggle {
       display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px;
@@ -100,7 +102,8 @@
     }
     .book-nav-wrap:not([data-open]) .book-nav { display: none; }
     .book-nav-wrap[data-open] .book-nav { max-height: 50vh; overflow: auto; }
-    .book-main { overflow: visible; padding: 0 2px; }
+    .book-main { overflow: visible; padding: 0; }
+    .book-stepper > * { flex-basis: 45%; width: 45%; min-width: 0; }
     .book-context { grid-column: auto; position: static; max-height: none; }
     .book-facts > div, .timeline-era { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
   }

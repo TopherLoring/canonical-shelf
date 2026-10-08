@@ -1950,7 +1950,7 @@
     {
       "id": "S8",
       "title": "Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview)",
-      "state": "claimed",
+      "state": "done",
       "deps": [
         "S5a"
       ],
@@ -1972,6 +1972,16 @@
           "date": "2026-10-08",
           "by": "Claude",
           "text": "Claimed on feature/s8-book-overview."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Built: public/ui/screens/book-overview.{js,css}, bible.js dispatcher. Library views redirect (view=shelf|books to Home; bare /bible to the saved reading or Genesis 1; ?book=N to chapter 1). Phone: padded clear of the Theologian tab; Previous/Next equal fixed width. Full redesign+contracts 195 passed before the last CSS polish; spec, type-cap and top-gap contract re-run green."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/book-overview.spec.js)."
         }
       ],
       "owner": "Claude",
