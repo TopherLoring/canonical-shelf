@@ -15,6 +15,7 @@ import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
+import { orientationArt } from './orientation-art.js';
 import { ORIENTATION_LESSON, ORIENTATION_LESSON_ID, ORIENTATION_UNIT_ID, ORIENTATION_START_HREF, markOrientationSeen } from '../../orientation.js';
 
 // Lessons (?lesson=) and Checkpoints (?mastery=). A Checkpoint is a one-step lesson: the same frame, progress, notes and
@@ -67,25 +68,30 @@ export function checkpointAsLesson(data, masteryId) {
   };
 }
 
-/** The Orientation shaped like a lesson: each scene is a section, cut at sentence ends into cards (about 380 characters). */
+/** The Orientation shaped like a lesson: every card is written as one step (see public/orientation.js). */
 export function orientationAsLesson() {
-  const sections = ORIENTATION_LESSON.scenes.map(scene => {
-    const cards = [];
-    let current = [], size = 0;
-    const flush = () => { if (current.length) cards.push({ id: `${scene.id}-${cards.length + 1}`, title: scene.title, units: current }); current = []; size = 0; };
-    const add = (unit, length) => { if (current.length && size + length > 380) flush(); current.push(unit); size += length; };
-    (scene.paragraphs || []).forEach(text => {
-      const sentences = String(text).match(/[^.!?]+[.!?]+["”’)]*\s*|[^.!?]+$/g) || [String(text)];
-      sentences.forEach((sentence, i) => add({ kind: 'sentence', text: sentence.trim(), paraStart: i === 0 }, sentence.length));
-    });
-    if (scene.bullets?.length) add({ kind: 'list', items: scene.bullets }, scene.bullets.join('').length);
-    if (scene.callout) add({ kind: 'callout', text: scene.callout }, scene.callout.length);
-    if (scene.actions?.length) add({ kind: 'actions', items: scene.actions }, 0);
-    flush();
-    return { id: scene.id, title: scene.title, blocks: [], cards };
-  });
+  const sections = ORIENTATION_LESSON.sections.map(section => ({
+    id: section.id,
+    title: section.title,
+    blocks: [],
+    cards: section.cards.map(card => ({
+      id: card.id,
+      title: section.title,
+      units: [
+        ...(card.p || []).map(text => ({ kind: 'prose', text })),
+        ...(card.art ? [{ kind: 'art', name: card.art }] : []),
+        ...(card.list ? [{ kind: 'list', items: card.list }] : []),
+        ...(card.desktop || card.phone ? [{ kind: 'platform', desktop: card.desktop, phone: card.phone }] : []),
+        ...(card.note ? [{ kind: 'note', text: card.note }] : []),
+        ...(card.actions ? [{ kind: 'actions', items: card.actions }] : [])
+      ]
+    }))
+  }));
   return { id: ORIENTATION_LESSON_ID, activityId: `orientation:${ORIENTATION_LESSON_ID}`, title: ORIENTATION_LESSON.title, unitId: ORIENTATION_UNIT_ID, isOrientation: true, challenges: [], vocab: [], sections };
 }
+
+// **Name** marks a site element's name; it is set in a heavier weight so learners can find it on screen.
+const labelled = (esc, text) => esc(text).replace(/\*\*(.+?)\*\*/g, '<strong class="site-label">$1</strong>');
 
 /** Every step of a lesson in order, with the section it belongs to. */
 export function lessonSteps(lesson) {
@@ -118,7 +124,11 @@ function stepBody(step, lesson, ctx) {
     }
     flush();
     if (unit.kind === 'callout') out.push(`<aside class="scene-callout"><p>${esc(unit.text)}</p></aside>`);
-    else if (unit.kind === 'list') out.push(`<ul class="scene-list">${unit.items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`);
+    else if (unit.kind === 'prose') out.push(`<p class="scene-prose">${labelled(esc, unit.text)}</p>`);
+    else if (unit.kind === 'art') out.push(orientationArt(unit.name));
+    else if (unit.kind === 'platform') out.push(`<dl class="scene-platform">${unit.desktop ? `<div><dt class="site-label">Desktop</dt><dd>${labelled(esc, unit.desktop)}</dd></div>` : ''}${unit.phone ? `<div><dt class="site-label">Phone</dt><dd>${labelled(esc, unit.phone)}</dd></div>` : ''}</dl>`);
+    else if (unit.kind === 'note') out.push(`<p class="scene-note">${labelled(esc, unit.text)}</p>`);
+    else if (unit.kind === 'list') out.push(`<ul class="scene-list">${unit.items.map(item => `<li>${labelled(esc, item)}</li>`).join('')}</ul>`);
     else if (unit.kind === 'actions') out.push(`<p class="scene-actions">${unit.items.map(item => `<a class="scene-action${item.primary ? ' is-primary' : ''}" href="${esc(item.href)}">${esc(item.label)}</a>`).join('')}</p>`);
     else if (unit.kind === 'reading') out.push(readingMarkup(unit, i, ctx));
     else if (unit.kind === 'visual') out.push(visualBlock(lesson, esc));
@@ -281,7 +291,7 @@ export async function mount(container, ctx) {
           <div class="lesson-stage"><div class="lesson-body" data-step-id="${esc(step.id)}" tabindex="0" aria-label="Step text"><div class="lesson-body-text">${stepBody(step, lesson, ctx)}</div></div></div>
           <footer class="lesson-nav">
             <a class="lesson-back" href="${esc(index > 0 ? stepHref(index - 1) : exitHref)}" ${index > 0 ? '' : 'aria-disabled="true"'}>Back</a>
-            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : 'Next lesson') : 'Return to unit'}</a>
+            <a class="lesson-continue" href="${esc(!last ? stepHref(index + 1) : next?.href || exitHref)}">${!last ? 'Continue' : next ? (checkpoint ? 'Continue' : orientation ? 'Begin the Learning Path' : 'Next lesson') : 'Return to unit'}</a>
           </footer>
         </article>
         <aside class="lesson-side" aria-label="${esc(LABELS.myNotes)}">

@@ -39,6 +39,34 @@ test.describe('Orientation', () => {
     for (const old of ['Pathway', 'Catalog', 'study desk', 'Where to begin', 'mastery activity']) expect(all).not.toContain(old);
   });
 
+  test('names of site elements are set heavier, and each sketch is drawn inside its card', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(ORIENTATION + '&step=3');
+    const weight = await page.locator('.lesson-body .site-label').first().evaluate(el => Number(getComputedStyle(el).fontWeight));
+    expect(weight).toBeGreaterThanOrEqual(700);
+    await page.goto(ORIENTATION + '&step=1');
+    const art = page.locator('.lesson-body .orient-art');
+    await expect(art).toBeVisible();
+    expect(await art.locator('path.arrow').count()).toBeGreaterThanOrEqual(5);
+    // Every arrow starts and ends inside its own picture.
+    const inside = await art.evaluate(svg => { const box = svg.getBoundingClientRect(); return [...svg.querySelectorAll('path.arrow')].every(p => { const r = p.getBoundingClientRect(); return r.left >= box.left - 1 && r.right <= box.right + 1 && r.top >= box.top - 1 && r.bottom <= box.bottom + 1; }); });
+    expect(inside).toBe(true);
+  });
+
+  for (const [name, width, height] of [['landscape', 1280, 720], ['phone', 390, 844], ['small phone', 360, 640]]) {
+    test(`every step fits its card without scrolling (${name})`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      await page.goto(ORIENTATION);
+      const total = Number((await page.locator('[data-lesson-count]').innerText()).split(' of ')[1]);
+      expect(total).toBe(21);
+      for (let i = 0; i < total; i += 1) {
+        const over = await page.locator('.lesson-body').evaluate(el => el.scrollHeight - el.clientHeight);
+        expect(over, `step ${i + 1}`).toBeLessThanOrEqual(1);
+        if (i < total - 1) await page.locator('.lesson-continue').click();
+      }
+    });
+  }
+
   test('the unit address opens the lesson, and the Learning Path page links to it', async ({ page }) => {
     await page.goto('/course?unit=unit.orientation');
     await expect(page).toHaveURL(/lesson=orientation/);
