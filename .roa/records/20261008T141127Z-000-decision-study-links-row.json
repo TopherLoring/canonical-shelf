@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "study-links-row",
+  "topic": "ui.phone.study-links.row",
+  "date": "2026-10-08",
+  "text": "On the phone Bible the six book study links stay in one row of six (1x6). This replaces the 3-by-2 grid in ui.phone.no-hscroll for the study links.",
+  "rationale": "Chris, chat 2026-10-08",
+  "by": "Chris"
+}

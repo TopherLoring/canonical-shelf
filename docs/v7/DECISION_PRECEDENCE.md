@@ -1480,6 +1480,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Approval** · 2026-10-08 · Chris · `phone-shelf-docked-book-bar-approved` · scope: docked selected-book bar proposal for the phone Shelf
   Phone Shelf: the selected book docks above the bottom bar (title, tagline, Resume, Details) instead of a popover; the full overview lives under the Bible's Overview tool.
 
+### `ui.phone.study-links.row`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `study-links-row`
+  On the phone Bible the six book study links stay in one row of six (1x6). This replaces the 3-by-2 grid in ui.phone.no-hscroll for the study links.
+  *Why:* Chris, chat 2026-10-08
+
 ### `ui.phone.tabs`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.tabs.v2`
@@ -1625,11 +1631,23 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
+### `ui.shelf.phone-intro`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-intro-conditional`
+  The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. Tested: with the intro the second Pick up card falls below the fold, so it stays hidden.
+  *Why:* Chris, chat 2026-10-08
+
 ### `ui.shelf.phone-template-locked-2026-10-08`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `shelf-phone-template-locked`
   The Shelf phone template is locked as it stands; it changes only on Chris's request. The open phone Shelf intro question (conflict-phone-shelf-intro) is not answered by the lock.
   *Why:* Chris artifact comment: lock this page
+
+### `ui.shelf.read-first`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `read-first-label`
+  Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). Applied to the Shelf template; no other change to the locked Shelf.
+  *Why:* Chris, chat 2026-10-08
 
 ### `ui.shelf.template-locked-2026-10-08`
 
@@ -1669,6 +1687,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
 
+### `ui.theme.reader-surface-layers`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `reader-surface-layers`
+  Color differences between screens are deliberate: the reader was chosen to look different, and a screen with more or fewer surface layers shows a different amount and type of color. This is the cause of the color-theme inconsistency.
+  *Why:* Chris, chat 2026-10-08
+
 ### `ui.theologian.cited-inline`
 
 - **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-scripture-cited-lists-the-references-`
@@ -1693,6 +1717,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Agent default (Claude-agent) · `templates-build-the-theologian-chat-from-the-app`
   Templates build the Theologian chat from the approved boards and theologian.chat-design.v1: docked right column on desktop, centered card on phone, dim and click-to-close, no edge tab while open. Choosing a Study Topics question opens it with the question loaded in the message box, unsent.
   *Why:* Chris asked to cross-reference the Theologian decisions against the redesign file
+
+### `ui.theologian.undrawn-states-not-now`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `theologian-undrawn-no`
+  Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now.
+  *Why:* Chris, chat 2026-10-08
 
 ### `ui.topbar`
 
@@ -1809,6 +1839,10 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-08: **Decided Theologian behavior with no drawn state: the flag form (six reasons, authored reason mandatory), the ellipsis menu (save transcript, export, share), and Chris's replies as an unread system message. Should I design them for the templates now?** → Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now. (decision `theologian-undrawn-no`)
+- 2026-10-08: **To fit the phone Shelf above the fold I hid the intro paragraph and set the title on one line. The decisions keep the current intro and the two-line title with the intro beside it. Keep the phone Shelf as I made it, or restore the intro (the cards then fall below the fold)?** → The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. Tested: with the intro the second Pick up card falls below the fold, so it stays hidden. (decision `phone-intro-conditional`)
+- 2026-10-08: **The phone Bible template (from PhoneReader board) shows the six book study links in one row of six. The 2026-10-03 decision says they are a 3-by-2 grid. Which stands?** → On the phone Bible the six book study links stay in one row of six (1x6). This replaces the 3-by-2 grid in ui.phone.no-hscroll for the study links. (decision `study-links-row`)
+- 2026-10-08: **The Shelf book panel in the template (from the board) labels the starting chapters 'Where to begin'. The decision from 2026-10-08 renames it 'Read first'. Apply 'Read first' to the template?** → Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). Applied to the Shelf template; no other change to the locked Shelf. (decision `read-first-label`)
 - 2026-10-08: **The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?** → Remove Copy. (decision `selection-bar-no-copy`)
 - 2026-10-08: **Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands?** → Dot chain, labelled '1 of N' (or 'Step 1 of N'). (decision `lesson-progress-dot-chain-one-of-n`)
 - 2026-10-08: **Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards?** → Use names: hide the level words and show the titles. (decision `templates-module-unit-use-names`)

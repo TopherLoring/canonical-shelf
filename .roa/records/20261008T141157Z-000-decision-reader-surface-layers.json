@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "reader-surface-layers",
+  "topic": "ui.theme.reader-surface-layers",
+  "date": "2026-10-08",
+  "text": "Color differences between screens are deliberate: the reader was chosen to look different, and a screen with more or fewer surface layers shows a different amount and type of color. This is the cause of the color-theme inconsistency.",
+  "rationale": "Chris, chat 2026-10-08",
+  "by": "Chris"
+}

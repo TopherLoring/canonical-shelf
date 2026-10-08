@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "conflict-phone-study-links-grid",
+  "date": "2026-10-08",
+  "text": "On the phone Bible the six book study links stay in one row of six (1x6). This replaces the 3-by-2 grid in ui.phone.no-hscroll for the study links.",
+  "decision": "study-links-row"
+}

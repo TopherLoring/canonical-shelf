@@ -63,7 +63,7 @@ const bookPanel = `<aside class="cs-book" aria-label="Selected book">
   <a class="cs-button cs-button--block cs-button--tall" href="?screen=reader">Resume Genesis 3</a>
   <a class="cs-book__overview" href="?screen=reader">Book overview</a>
   <dl class="cs-book__facts">
-    <div><dt>Where to begin</dt><dd>Chapters 1–3 for the beginning, then 37–50 for the Joseph story.</dd></div>
+    <div><dt>Read first</dt><dd>Chapters 1–3 for the beginning, then 37–50 for the Joseph story.</dd></div>
     <div><dt>People</dt><dd class="cs-chips">${['Adam','Noah','Abraham','Sarah','Jacob','Joseph'].map(p => `<a href="#">${p}</a>`).join('')}</dd></div>
     <div><dt>Setting</dt><dd>Prehistory to roughly 1800–1600 BC</dd></div>
   </dl>

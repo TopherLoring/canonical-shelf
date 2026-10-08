@@ -13,16 +13,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Conflict:** The Shelf book panel in the template (from the board) labels the starting chapters 'Where to begin'. The decision from 2026-10-08 renames it 'Read first'. Apply 'Read first' to the template? (`conflict-read-first`, owner: Chris, since 2026-10-08)
-  - Request: Compare all templates with the decision log
-  - Conflicts with `ui.read-first-search-routing-2026-10-07`: “Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin').”
-- **Conflict:** The phone Bible template (from PhoneReader board) shows the six book study links in one row of six. The 2026-10-03 decision says they are a 3-by-2 grid. Which stands? (`conflict-phone-study-links-grid`, owner: Chris, since 2026-10-08)
-  - Request: Compare all templates with the decision log
-  - Conflicts with `ui.phone.no-hscroll`: “rows that do not fit wrap or use an even grid (the six book study links are a 3-by-2 grid)”
-- **Conflict:** To fit the phone Shelf above the fold I hid the intro paragraph and set the title on one line. The decisions keep the current intro and the two-line title with the intro beside it. Keep the phone Shelf as I made it, or restore the intro (the cards then fall below the fold)? (`conflict-phone-shelf-intro`, owner: Chris, since 2026-10-08)
-  - Request: Show the bottom of the phone Shelf and the start-here and progress cards before scrolling
-  - Conflicts with `ui.shelf.intro.current`: “Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.”
-- **Decided Theologian behavior with no drawn state: the flag form (six reasons, authored reason mandatory), the ellipsis menu (save transcript, export, share), and Chris's replies as an unread system message. Should I design them for the templates now?** (`theologian-undrawn-states`, owner: unassigned, since 2026-10-08)
 
 ## Phases
 
@@ -266,6 +256,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.phone.nav.bottom-bar-2026-10-08` | Phone layout: | Owner decision | undefined |
 | `ui.phone.navigation-2026-10-08` | undefined | Agent default | undefined |
 | `ui.phone.no-hscroll` | Phone menu bars in Review & Practice and Study Topics scroll sideways, as a text and/or icon bar with directional arrows that show which way it can scroll. | Owner decision | undefined |
+| `ui.phone.study-links.row` | On the phone Bible the six book study links stay in one row of six (1x6). | Owner decision | undefined |
 | `ui.phone.tabs` | Phone: | Owner decision | undefined |
 | `ui.phone.theologian-position` | In any phone layout the Theologian stays a vertical tab on the right edge (not a docked bar). | Owner decision | undefined |
 | `ui.polish.2026-10-03` | The nav bar is the one place all caps is allowed: | Owner decision | undefined |
@@ -291,16 +282,20 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.shelf.phone-intro` | The phone Shelf intro paragraph shows only if everything can coexist without distorting the shelf. | Owner decision | undefined |
 | `ui.shelf.phone-template-locked-2026-10-08` | The Shelf phone template is locked as it stands; | Owner decision | undefined |
+| `ui.shelf.read-first` | Chris chose 'Read first' for the Shelf book panel label (replaces 'Where to begin'). | Owner decision | undefined |
 | `ui.shelf.template-locked-2026-10-08` | The Shelf desktop template is locked as it stands; | Owner decision | undefined |
 | `ui.sizing.proportional-2026-10-08` | Nothing on desktop or phone has fixed sizes or dimensions; | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
 | `ui.templates.match-plan-2026-10-08` | Fix the template to match the plan (the approved boards); | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
+| `ui.theme.reader-surface-layers` | Color differences between screens are deliberate: | Owner decision | undefined |
 | `ui.theologian.cited-inline` | Theologian 'Scripture cited' lists the references inline separated by commas, not one per line. | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.theologian.templates-build` | undefined | Agent default | undefined |
+| `ui.theologian.undrawn-states-not-now` | Do not design the Theologian flag form, the ellipsis menu contents, or Chris's reply system message now. | Owner decision | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
 | `ui.topbar.layout` | undefined | Agent default | undefined |
 | `ui.topics-2026-10-08` | Study Topics list page uses only the left rail and the main column. | Owner decision | undefined |
