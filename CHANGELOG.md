@@ -13,6 +13,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Fix the template to match the plan (the approved boards); the corrected template is the visual base for the redesign.
 - The current module on the Learning Path is highlighted with the same rose used for the current step on the lesson card.
 - Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint.
+- Desktop Bible reader: the chapter title in the passage (Genesis 1 ▾) is the book and chapter picker, as on the phone; the toolbar has no separate picker button.
 
 ## 2026-10-07
 

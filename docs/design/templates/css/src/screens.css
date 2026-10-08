@@ -141,6 +141,10 @@
 .cs-chapter > div { display: flex; flex-direction: column; gap: 2u; }
 .cs-chapter__group { font-size: 14u; font-weight: 600; color: var(--group); }
 .cs-chapter h1 { font-family: var(--f-display); font-size: 44u; font-weight: 600; letter-spacing: -0.01em; line-height: 1.05; }
+/* The chapter title is the book and chapter picker, as on the phone (Chris, 2026-10-08). */
+.cs-chapter-title { display: inline-flex; align-items: center; gap: 10u; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; line-height: inherit; text-align: start; }
+.cs-chapter-title .cs-icon { inline-size: 24u; block-size: 24u; color: var(--c-muted); }
+.cs-chapter-title:hover .cs-icon { color: var(--c-action); }
 .cs-section-title { margin-block-start: 6u; font-family: var(--f-display); font-size: 20u; font-style: italic; font-weight: 500; color: var(--c-text-2); }
 .cs-scripture { font-family: var(--f-reading); font-size: 19u; line-height: 1.85; }
 .cs-scripture sup { font-family: var(--f-body); font-size: 11u; font-weight: 600; color: var(--c-muted); margin-inline-end: 3u; }

@@ -1098,6 +1098,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-04 · Agent default (Claude) · `ui.bible.phone.board.v1`
   The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target.
 
+### `ui.bible.picker.title-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `desktop-bible-reader-the-chapter-title-in-the-pa`
+  Desktop Bible reader: the chapter title in the passage (Genesis 1 ▾) is the book and chapter picker, as on the phone; the toolbar has no separate picker button.
+  *Why:* Chris offered: title as the selector, or a wider toolbar picker with a smaller chapter title; title chosen to match the phone and keep the plan's title size
+
 ### `ui.bible.rails`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`

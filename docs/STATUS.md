@@ -204,6 +204,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.notes-panel` | undefined | Agent default | undefined |
 | `ui.bible.phone` | Phone Bible reader: | Owner decision | undefined |
 | `ui.bible.phone.board` | undefined | Agent default | undefined |
+| `ui.bible.picker.title-2026-10-08` | Desktop Bible reader: | Owner decision | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
