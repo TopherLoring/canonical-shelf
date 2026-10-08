@@ -1258,6 +1258,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
 
+### `ui.lesson.notes-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-my-notes-collapsible-open`
+  My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).
+  *Why:* Chris artifact comment: my notes collapsible but open by default
+
 ### `ui.lesson.progress`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
@@ -1464,6 +1470,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`
   Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. The chapter title has a category-colored bar at its left, small category above, and translation below. Chapter continuation buttons belong before the footnotes.
 
+### `ui.reader.copy-2026-10-08`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `selection-bar-no-copy`
+  Copy is removed from the reader's selection bar (highlight colors and + Note only).
+  *Why:* Chris artifact comment: remove copy
+
 ### `ui.reader.notes`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-notes-drawer-2026-10-04`
@@ -1641,6 +1653,7 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-08: **The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?** → Remove Copy. (decision `selection-bar-no-copy`)
 - 2026-10-08: **Templates show 'Steps · 1 of 6' (desktop lesson rail) and 'Step 1 of 6 · part 1 of 2' (phone lesson title bar, which you asked for on 2026-10-08). The 2026-10-05 decision says never 'Step N of M'. Which stands?** → Dot chain, labelled '1 of N' (or 'Step 1 of N'). (decision `lesson-progress-dot-chain-one-of-n`)
 - 2026-10-08: **Templates and the approved boards show the level names 'Module' and 'Unit' (Module 1 · 4 units, Unit 2 · Lesson 1, breadcrumb 'Module 1: Reading the Bible Well'). Do you want them hidden as decided on 2026-10-05, or kept as on the boards?** → Use names: hide the level words and show the titles. (decision `templates-module-unit-use-names`)
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch

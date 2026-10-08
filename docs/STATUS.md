@@ -13,9 +13,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Conflict:** The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template? (`conflict-copy-action`, owner: Chris, since 2026-10-08)
-  - Request: Compare all templates with the decision log
-  - Conflicts with `ui.reader.notes`: “Remove Copy from the reader highlight/note actions.”
 - **Conflict:** The Shelf book panel in the template (from the board) labels the starting chapters 'Where to begin'. The decision from 2026-10-08 renames it 'Read first'. Apply 'Read first' to the template? (`conflict-read-first`, owner: Chris, since 2026-10-08)
   - Request: Compare all templates with the decision log
   - Conflicts with `ui.read-first-search-routing-2026-10-07`: “Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin').”
@@ -234,6 +231,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson-glossary-2026-10-08` | Lesson Glossary card: | Owner decision | undefined |
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
+| `ui.lesson.notes-2026-10-08` | My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1). | Owner decision | undefined |
 | `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |
@@ -266,6 +264,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.rail.current-item-2026-10-08` | Every left pane on every screen highlights its current item with the lesson's current-step rose (rose tint behind the item), not the blue tint. | Owner decision | undefined |
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
+| `ui.reader.copy-2026-10-08` | Copy is removed from the reader's selection bar (highlight colors and + Note only). | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
 | `ui.review.phone-menu-2026-10-08` | Phone Review & Practice: | Owner decision | undefined |

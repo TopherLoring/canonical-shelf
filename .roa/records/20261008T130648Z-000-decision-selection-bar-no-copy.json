@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "selection-bar-no-copy",
+  "topic": "ui.reader.copy-2026-10-08",
+  "date": "2026-10-08",
+  "text": "Copy is removed from the reader's selection bar (highlight colors and + Note only).",
+  "rationale": "Chris artifact comment: remove copy",
+  "by": "Chris"
+}

@@ -175,6 +175,12 @@
 .cs-note-mark { display: inline-flex; color: var(--c-accent); margin-inline-start: 4u; vertical-align: -1u; }
 .cs-note-mark .cs-icon { inline-size: 14u; block-size: 14u; }
 .cs-notes { flex: 0 0 auto; block-size: 268u; padding: 14u 16u 16u; gap: 10u; border-color: var(--c-notes-edge); }
+.cs-notes--lesson { flex: none; min-block-size: 0; }
+.cs-notes--lesson .cs-panel__title { display: flex; align-items: center; gap: 8u; }
+.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-accent); }
+.cs-notes__body { display: flex; flex-direction: column; gap: 10u; }
+.cs-notes__body[hidden] { display: none; }
+.cs-icon-button[aria-expanded="false"] .cs-icon { rotate: 180deg; }
 .cs-saved-note { padding: 8u 12u; border-radius: 10u; background: var(--c-accent-wash); font-size: 15u; line-height: 1.45; display: flex; align-items: flex-start; gap: 6u; }
 .cs-saved-note p { flex: 1; min-inline-size: 0; }
 .cs-saved-note__actions { display: flex; flex: none; margin-block: -6u; margin-inline-end: -8u; }

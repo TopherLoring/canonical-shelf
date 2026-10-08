@@ -107,6 +107,11 @@ function wire() {
   })));
   // The topic title is its own drop-down (phone).
   app.querySelector('[data-topic-select]')?.addEventListener('change', event => { st.topic = Number(event.target.value); st.sub = 0; layout = ''; render(decide()); });
+  // Collapsible panels (My Notes): open by default, the chevron folds the body away.
+  app.querySelectorAll('[data-collapse]').forEach(b => b.addEventListener('click', () => {
+    const body = app.querySelector(`[data-collapse-body="${b.dataset.collapse}"]`); if (!body) return;
+    body.hidden = !body.hidden; b.setAttribute('aria-expanded', String(!body.hidden));
+  }));
   // Footnote letters open and close their note in place.
   app.querySelectorAll('[data-fn-toggle]').forEach(b => b.addEventListener('click', () => {
     const note = app.querySelector(`.cs-fn[data-fn="${b.dataset.fnToggle}"]`); if (!note) return;

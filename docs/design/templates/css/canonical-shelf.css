@@ -488,6 +488,12 @@
 .cs-note-mark { display: inline-flex; color: var(--c-accent); margin-inline-start: calc(4 * var(--u)); vertical-align: calc(-1 * var(--u)); }
 .cs-note-mark .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
 .cs-notes { flex: 0 0 auto; block-size: calc(268 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); gap: calc(10 * var(--u)); border-color: var(--c-notes-edge); }
+.cs-notes--lesson { flex: none; min-block-size: 0; }
+.cs-notes--lesson .cs-panel__title { display: flex; align-items: center; gap: calc(8 * var(--u)); }
+.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-accent); }
+.cs-notes__body { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+.cs-notes__body[hidden] { display: none; }
+.cs-icon-button[aria-expanded="false"] .cs-icon { rotate: 180deg; }
 .cs-saved-note { padding: calc(8 * var(--u)) calc(12 * var(--u)); border-radius: calc(10 * var(--u)); background: var(--c-accent-wash); font-size: calc(15 * var(--u)); line-height: 1.45; display: flex; align-items: flex-start; gap: calc(6 * var(--u)); }
 .cs-saved-note p { flex: 1; min-inline-size: 0; }
 .cs-saved-note__actions { display: flex; flex: none; margin-block: calc(-6 * var(--u)); margin-inline-end: calc(-8 * var(--u)); }

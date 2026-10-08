@@ -44,6 +44,9 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Learning Path right pane keeps a 'What you'll gain' card of objectives for the current section: the module on the module page, the unit on the unit page (with the selected lesson's description and objective, progress and Next).
 - Phone Study Topics is structured like the reference image: title and description, search, a type drop-down, then the topic cards with the selected card offering Open topic; Open topic leads to the topic page (title drop-down, sub topic menu, content).
 - Learning Path unit page: no Up next / Next block in the right pane.
+- Copy is removed from the reader's selection bar (highlight colors and + Note only).
+- Resolved "The desktop Bible selection bar in the template has Copy (as on the Reader board). The 2026-10-04 decision removes Copy from the reader highlight and note actions. Remove it from the template?": Remove Copy.
+- My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).
 
 ## 2026-10-07
 
