@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-lesson-progress-dots-move-into-the-title-b",
+  "topic": "ui.lesson.phone.titlebar-dots",
+  "date": "2026-10-08",
+  "text": "Phone lesson: progress dots move into the title bar (the separate step bar is removed); the lesson title is restored above the section title.",
+  "rationale": "Artifact comment 13a23662",
+  "by": "Chris"
+}

@@ -234,6 +234,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.lesson.card` | Step break rule, final form (Chris): | Owner decision | undefined |
 | `ui.lesson.colors` | undefined | Agent default | undefined |
 | `ui.lesson.notes-2026-10-08` | My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1). | Owner decision | undefined |
+| `ui.lesson.phone.titlebar-dots` | Phone lesson: | Owner decision | undefined |
 | `ui.lesson.progress` | Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; | Owner decision | undefined |
 | `ui.lesson.progress.color-map` | undefined | Agent default | undefined |
 | `ui.lesson.progress.colors` | Lesson progress dots use exactly three colors: | Owner decision | undefined |

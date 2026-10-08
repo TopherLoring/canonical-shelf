@@ -1279,6 +1279,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   My Notes in lessons is a card that collapses, open by default (supersedes closed by default in ui.lesson.rails.v1).
   *Why:* Chris artifact comment: my notes collapsible but open by default
 
+### `ui.lesson.phone.titlebar-dots`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-lesson-progress-dots-move-into-the-title-b`
+  Phone lesson: progress dots move into the title bar (the separate step bar is removed); the lesson title is restored above the section title.
+  *Why:* Artifact comment 13a23662
+
 ### `ui.lesson.progress`
 
 - **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`

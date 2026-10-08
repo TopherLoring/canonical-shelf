@@ -62,6 +62,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Study Topics right pane keeps the overview and the sub topic list/selection as separate cards, then the selected sub topic's content, sources and other views.
 - Phone Learning Path: What you'll gain opens a bubble over the tapped area showing only the objectives (no title); lesson overview and objective expand inline.
 - Phone Study Topics: choosing a question is a drop menu; its sub topics appear as expandable content.
+- Phone lesson: progress dots move into the title bar (the separate step bar is removed); the lesson title is restored above the section title.
 
 ## 2026-10-07
 
