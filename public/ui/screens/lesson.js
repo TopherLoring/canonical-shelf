@@ -15,7 +15,6 @@ import { renderScriptureBlock, renderEdgeTab } from '../components/index.js';
 import { GROUPS, parseReference } from '../../bible-books.js';
 import { LABELS } from '../labels.js';
 import { enhanceLearningVisuals } from '../../learning-visuals.js';
-import { orientationArt } from './orientation-art.js';
 import { ORIENTATION_LESSON, ORIENTATION_LESSON_ID, ORIENTATION_UNIT_ID, ORIENTATION_START_HREF, markOrientationSeen } from '../../orientation.js';
 
 // Lessons (?lesson=) and Checkpoints (?mastery=). A Checkpoint is a one-step lesson: the same frame, progress, notes and
@@ -79,7 +78,6 @@ export function orientationAsLesson() {
       title: section.title,
       units: [
         ...(card.p || []).map(text => ({ kind: 'prose', text })),
-        ...(card.art ? [{ kind: 'art', name: card.art }] : []),
         ...(card.list ? [{ kind: 'list', items: card.list }] : []),
         ...(card.desktop || card.phone ? [{ kind: 'platform', desktop: card.desktop, phone: card.phone }] : []),
         ...(card.note ? [{ kind: 'note', text: card.note }] : []),
@@ -125,7 +123,6 @@ function stepBody(step, lesson, ctx) {
     flush();
     if (unit.kind === 'callout') out.push(`<aside class="scene-callout"><p>${esc(unit.text)}</p></aside>`);
     else if (unit.kind === 'prose') out.push(`<p class="scene-prose">${labelled(esc, unit.text)}</p>`);
-    else if (unit.kind === 'art') out.push(orientationArt(unit.name));
     else if (unit.kind === 'platform') out.push(`<dl class="scene-platform">${unit.desktop ? `<div><dt class="site-label">Desktop</dt><dd>${labelled(esc, unit.desktop)}</dd></div>` : ''}${unit.phone ? `<div><dt class="site-label">Phone</dt><dd>${labelled(esc, unit.phone)}</dd></div>` : ''}</dl>`);
     else if (unit.kind === 'note') out.push(`<p class="scene-note">${labelled(esc, unit.text)}</p>`);
     else if (unit.kind === 'list') out.push(`<ul class="scene-list">${unit.items.map(item => `<li>${labelled(esc, item)}</li>`).join('')}</ul>`);
