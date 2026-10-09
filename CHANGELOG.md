@@ -18,6 +18,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Bible Reader ported to the template: well frame with study rail, passage card (floating chapter arrows, chapter title as the picker), My notes and Cross-references cards, phone article with 6-tool grid; styles move to public/ui/src/reader.src.css; reader note button reads Save note; My Notes edge tab is phone-only
 - Shelf ported to the template: banded spines with gilt caps and ribs, planks with plaque pills, dot legend, continue cards, book panel and phone dock; the Orientation moves to the Learning Path as a card for someone new; the My Notes card becomes a Continue-reading bookmark or a Passage of the day (curated list, BSB text); the Reader now saves the reading place and a chapter excerpt; the intro paragraph stays on a phone
 - Shelf: Passage of the day card (address, Explore in the Reader, Continue in the Reader), curated list of 412 passages, selected-book name popup; phone frame margins equal with content clear of edge tabs
+- Shelf: site title on two lines on phone
 
 ## 2026-10-08
 

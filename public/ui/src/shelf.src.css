@@ -86,9 +86,7 @@
   .shelf-home .shelf-desktop-only { display: none; }
   .cs-shelf-main { flex: 1; overflow: auto; }
   .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 0; }
-  .cs-title { font-size: 34u; }
-  .cs-title br { display: none; }
-  .cs-title em::before { content: ' '; }
+  .cs-title { font-size: 40u; }
   .cs-shelf-intro p { margin-block-start: 6u; font-size: 15u; line-height: 1.5; }
   .cs-scroll--shelf { gap: 10u; padding-block-start: 14u; }
   .cs-continue { grid-template-columns: minmax(0, 1fr); gap: 12u; }

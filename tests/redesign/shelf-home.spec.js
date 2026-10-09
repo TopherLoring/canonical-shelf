@@ -172,6 +172,8 @@ test.describe('Shelf home', () => {
     await expect(page.locator('.shelf-book-panel')).toBeHidden();
     await expect(page.locator('.shelf-book-dock')).toContainText('Genesis');
     await expect(page.locator('.cs-shelf-intro p'), 'the intro paragraph stays on a phone').toBeVisible();
+    const lines = await page.evaluate(() => { const h = document.querySelector('.cs-title'); return Math.round(h.getBoundingClientRect().height / parseFloat(getComputedStyle(h).lineHeight || getComputedStyle(h).fontSize)); });
+    expect(lines, 'the site title is on two lines on a phone').toBe(2);
     expect(await widthOf(page, 19), 'books keep their relative widths on a phone').toBeGreaterThan(await widthOf(page, 31));
   });
 });

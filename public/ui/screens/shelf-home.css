@@ -88,9 +88,7 @@
   .shelf-home .shelf-desktop-only { display: none; }
   .cs-shelf-main { flex: 1; overflow: auto; }
   .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 0; }
-  .cs-title { font-size: calc(34 * var(--u)); }
-  .cs-title br { display: none; }
-  .cs-title em::before { content: ' '; }
+  .cs-title { font-size: calc(40 * var(--u)); }
   .cs-shelf-intro p { margin-block-start: calc(6 * var(--u)); font-size: calc(15 * var(--u)); line-height: 1.5; }
   .cs-scroll--shelf { gap: calc(10 * var(--u)); padding-block-start: calc(14 * var(--u)); }
   .cs-continue { grid-template-columns: minmax(0, 1fr); gap: calc(12 * var(--u)); }
