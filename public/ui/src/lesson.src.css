@@ -51,7 +51,7 @@
 .cs-lesson-row > * { min-block-size: 0; }
 
 /* ---- Steps rail ---- */
-.cs-rail--lesson { inline-size: 300u; flex: none; overflow: auto; }
+.cs-rail--lesson { inline-size: 288u; flex: none; overflow: auto; }
 .cs-steps { display: flex; flex-direction: column; gap: 2u; margin: 0; padding: 0; list-style: none; }
 .cs-steps a { display: flex; align-items: center; gap: 10u; min-block-size: 40u; padding: 4u 10u; border-radius: 10u; color: var(--c-text-2); font-size: 14u; text-decoration: none; }
 .cs-steps a:hover { color: var(--c-text); }

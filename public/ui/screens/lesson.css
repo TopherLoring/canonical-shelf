@@ -53,7 +53,7 @@
 .cs-lesson-row > * { min-block-size: 0; }
 
 /* ---- Steps rail ---- */
-.cs-rail--lesson { inline-size: calc(300 * var(--u)); flex: none; overflow: auto; }
+.cs-rail--lesson { inline-size: calc(288 * var(--u)); flex: none; overflow: auto; }
 .cs-steps { display: flex; flex-direction: column; gap: calc(2 * var(--u)); margin: 0; padding: 0; list-style: none; }
 .cs-steps a { display: flex; align-items: center; gap: calc(10 * var(--u)); min-block-size: calc(40 * var(--u)); padding: calc(4 * var(--u)) calc(10 * var(--u)); border-radius: calc(10 * var(--u)); color: var(--c-text-2); font-size: calc(14 * var(--u)); text-decoration: none; }
 .cs-steps a:hover { color: var(--c-text); }
