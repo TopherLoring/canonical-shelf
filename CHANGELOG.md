@@ -12,6 +12,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Changed
 
 - Study Topics ported to the template: rail, card grid and item pane in the well frame, question page, glossary, My Notes sheet, phone drop-downs and accordions.
+- Learning Path ported to the template: module view, unit page with lesson pane (?view=unit), capstones page (?view=capstones), phone picker and inline lesson overviews.
 
 ## 2026-10-08
 

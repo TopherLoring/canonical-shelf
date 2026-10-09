@@ -51,9 +51,10 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   expect(moduleHref).toBeTruthy();
   await page.locator('#path-modules a[href^="/course?course="]').nth(1).click();
   await expect(page.locator('[data-path-unit]')).not.toHaveCount(0);
-  const lessonLink=page.locator('[data-path-unit][open] a[data-activity-link^="lesson:"]').first();
-  expect(await lessonLink.getAttribute('href')).toMatch(/lesson=/);
+  const lessonLink=page.locator('[data-path-unit][open] a.path-desktop-only[data-activity-link^="lesson:"]').first();
+  expect(await lessonLink.getAttribute('href')).toMatch(/view=unit&pick=/);
   await lessonLink.click();
+  await page.locator('[data-path-lesson-pane] [data-path-start]').click();
   await expect(page.locator('[data-lesson-screen]')).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -184,8 +185,8 @@ test('authored lessons: sections may span several steps, checks render inline, S
 
 test('lesson objectives describe lessons on the unit overview and never appear inside the lesson',async({page})=>{
   const objective='Put the proclamation Paul recalls';
-  await page.goto('/course?unit=c1.christianity');
-  await expect(page.locator('.unit-lesson-objective').first()).toContainText(objective);
+  await page.goto('/course?unit=c1.christianity&view=unit');
+  await expect(page.locator('[data-path-lesson-pane] .cs-objective')).toContainText(objective);
   await page.goto('/course?unit=c1.christianity&lesson=begin&step=1');
   const total=Number((await page.locator('[data-lesson-count]').textContent()).match(/of (\d+)/)[1]);
   for(const step of [1,2,3,total]){
