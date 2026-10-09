@@ -9,6 +9,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.
 
+### Changed
+
+- Study Topics ported to the template: rail, card grid and item pane in the well frame, question page, glossary, My Notes sheet, phone drop-downs and accordions.
+
 ## 2026-10-08
 
 ### Decided

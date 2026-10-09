@@ -1,72 +1,107 @@
-// Study Topics (S5a): browse groups, search, selected-topic panel, full topic page, Glossary, legacy links.
+// Study Topics (template port): rail | card grid | item pane in the well frame; questions open a question page; Glossary; My Notes sheet; legacy links; phone drop-downs.
 import { test, expect } from '@playwright/test';
 
 test.use({ serviceWorkers: 'block' });
 
-const screen = page => page.locator('[data-topics-screen]');
+const main = page => page.locator('main.cs-frame--well');
+const noSideways = page => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
 
 test.describe('Study Topics', () => {
-  test('desktop: groups with counts, question cards, a selected-topic panel; no CSP errors', { tag: '@smoke' }, async ({ page }) => {
+  test('desktop: the rail lists the four groups and the Glossary; Questions opens as a wide card list; no CSP errors', { tag: '@smoke' }, async ({ page }) => {
     const errors = [];
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/topics');
-    await expect(screen(page)).toBeVisible();
-    await expect(page.locator('.topics-screen h1')).toHaveText('Study Topics');
-    await expect(page.locator('.topics-groups a')).toHaveCount(6);
-    expect(await page.locator('.topics-card').count()).toBeGreaterThan(0);
-    await expect(page.locator('.topics-context h3').first()).toBeVisible();
+    await expect(main(page).locator('h1.topics-h1')).toHaveText('Questions');
+    await expect(page.locator('.topics-rail a')).toHaveCount(6);
+    await expect(page.locator('.topics-rail a[aria-current="page"]')).toHaveText(/Questions/);
+    expect(await page.locator('.cs-topic').count()).toBeGreaterThan(5);
+    await expect(page.locator('main.cs-cols--topics-list')).toBeVisible();
     expect(errors.filter(e => /Content Security Policy/.test(e))).toEqual([]);
   });
 
-  test('choosing a card selects it; Open topic shows the full page with Reference Desk and notes', async ({ page }) => {
+  test('a question card opens the question page with its Learning Path touchpoints, and Back returns to the list', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/topics');
-    const second = page.locator('.topics-card').nth(1);
-    const title = (await second.locator('strong').textContent()).trim();
-    await second.click();
-    await expect(page.locator('.topics-card.is-selected strong')).toHaveText(title);
-    await expect(page.locator('.topics-context h3').first()).toHaveText(title);
-    await page.locator('.topics-context a.button--primary').click();
-    await expect(page.locator('.topics-detail h1')).toHaveText(title);
-    await expect(page.locator('.topics-context .ui-panel-title')).toHaveText('Reference Desk');
-    await expect(page.locator('.topics-context [data-notes-mount]')).toBeAttached();
-    expect(await page.locator('.topics-context__actions').count(), 'Ask the Theologian appears once').toBe(1);
+    const title = (await page.locator('.cs-topic .cs-topic__title').first().textContent()).trim();
+    await page.locator('.cs-topic').first().click();
+    await expect(page.locator('main h1').first()).toHaveText(title);
+    await expect(page.locator('.cs-touch li:visible').first()).toBeVisible();
+    expect(await page.locator('[data-ask]:visible').count(), 'Ask the Theologian appears once').toBe(1);
+    await page.locator('.cs-backlink').click();
+    await expect(main(page).locator('h1.topics-h1')).toHaveText('Questions');
   });
 
-  test('a theology topic shows its Scripture connections once, and a legacy /topics?topic= link opens its full page', async ({ page }) => {
+  test('a curated group selects its first topic; a card, a sub topic and Sources change the item pane', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/topics?mode=theology');
-    const card = page.locator('.topics-card').first();
-    const href = await card.getAttribute('href');
-    const id = new URL(href, 'http://x').searchParams.get('topic');
-    await page.goto(`/topics?topic=${encodeURIComponent(id)}`);
-    await expect(page.locator('.topics-detail h1')).toBeVisible();
-    expect(await page.locator('.topics-context__section h3', { hasText: 'Scripture connections' }).count(), 'one Scripture connections section').toBeLessThanOrEqual(1);
-    expect(await page.locator('.topics-context__section h3', { hasText: 'Studied in the Learning Path' }).count()).toBeLessThanOrEqual(1);
+    await expect(page.locator('main.cs-cols--topics')).toBeVisible();
+    const pane = page.locator('aside[aria-label="Selected topic"]');
+    const first = (await page.locator('.cs-topic .cs-topic__title').first().textContent()).trim();
+    await expect(pane.locator('h2')).toHaveText(first);
+    await expect(page.locator('.cs-topic[aria-current="true"] .cs-topic__title')).toHaveText(first);
+    const second = (await page.locator('.cs-topic .cs-topic__title').nth(1).textContent()).trim();
+    await page.locator('.cs-topic').nth(1).click();
+    await expect(pane.locator('h2')).toHaveText(second);
+    await expect(page).toHaveURL(/sub=0/);
+    const subs = pane.locator('.cs-sublist a');
+    expect(await subs.count()).toBeGreaterThan(1);
+    await subs.nth(1).click();
+    await expect(page).toHaveURL(/sub=1/);
+    await expect(pane.locator('.cs-sublist a[aria-current="true"]')).toHaveCount(1);
+    await expect(pane.locator('.cs-refs')).toBeVisible();
   });
 
-  test('search from the page filters, and the Glossary lists terms with a working search', async ({ page }) => {
+  test('a legacy /topics?topic= link selects the topic (question ids open the question page)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/topics?mode=theology');
+    const id = new URL(await page.locator('.cs-topic').nth(1).getAttribute('href'), 'http://x').searchParams.get('topic');
+    await page.goto(`/topics?topic=${encodeURIComponent(id)}`);
+    await expect(page.locator('main.cs-cols--topics')).toBeVisible();
+    await expect(page.locator('.cs-topic[aria-current="true"]')).toHaveCount(1);
+    await page.goto('/topics?topic=q.god-christ');
+    await expect(page.locator('.cs-backlink')).toBeVisible();
+  });
+
+  test('search filters across topics and questions, and the Glossary lists terms with a working search', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/topics');
     await page.locator('#topic-query').fill('covenant');
-    await page.locator('#topic-search button[type=submit]').click();
+    await page.locator('#topic-query').press('Enter');
     await expect(page).toHaveURL(/q=covenant/);
+    await expect(page.locator('main h1').first()).toContainText('covenant');
     await page.goto('/topics?mode=glossary');
     await expect(page.locator('.topics-glossary__card').first()).toBeVisible();
     const before = await page.locator('.topics-glossary__card').count();
     await page.locator('#topic-query').fill('covenant');
-    await page.locator('#topic-search button[type=submit]').click();
+    await page.locator('#topic-query').press('Enter');
     await expect(page).toHaveURL(/mode=glossary/);
-    expect(await page.locator('.topics-glossary__card').count()).toBeLessThanOrEqual(before);
+    expect(await page.locator('.topics-glossary__card').count()).toBeLessThan(before);
   });
 
-  test('phone: no horizontal scroll', async ({ page }) => {
+  test('My Notes opens from its edge tab as a sheet with the notes editor and closes again', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/topics?mode=theology');
+    await page.locator('[data-edge-tab="notes"]').click();
+    const sheet = page.locator('#topics-notes-sheet');
+    await expect(sheet).toBeVisible();
+    await expect(sheet.locator('[data-notes-mount]')).toBeAttached();
+    await sheet.locator('[data-dialog-close]').click();
+    await expect(sheet).toBeHidden();
+  });
+
+  test('phone: a drop-down replaces the rail; topics and sub topics are accordions; no sideways scroll in any mode', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/topics');
-    await expect(screen(page)).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    await page.goto('/topics?mode=glossary');
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    for (const url of ['/topics', '/topics?mode=theology', '/topics?mode=glossary', '/topics?mode=questions&topic=q.god-christ&view=read', '/topics?q=covenant']) {
+      await page.goto(url);
+      await expect(main(page).first()).toBeVisible();
+      expect(await noSideways(page), url).toBe(true);
+    }
+    await page.goto('/topics?mode=theology');
+    await expect(page.locator('.topics-rail')).toBeHidden();
+    await expect(page.locator('.topics-picker')).toBeVisible();
+    await expect(page.locator('.cs-subacc details').first()).toBeVisible();
+    await page.locator('.topics-picker select').selectOption({ label: 'Glossary' });
+    await expect(page).toHaveURL(/mode=glossary/);
   });
 });
