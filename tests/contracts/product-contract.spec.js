@@ -115,7 +115,7 @@ test('cross-references follow the selected verse, even when the verse is chosen 
   const links=panel.locator('.ui-scripture-ref-link');
   await expect(links.first()).toBeVisible({timeout:5000});
   await expect(panel).not.toContainText('Citation');
-  await expect(page.locator('#reader-rail-xrefs .ui-rail-count')).toHaveText(/^\d+$/);
+  await expect(page.locator('#reader-rail-xrefs .cs-count')).toHaveText(/^\d+$/);
   // Expanding a reference shows its verse text from the local Bible.
   await panel.locator('[data-ref-toggle]').first().click();
   await expect(panel.locator('.ui-scripture-ref-text').first()).toBeVisible();
@@ -276,7 +276,7 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await expect(page.locator('[data-notes-title]')).toHaveText('My notes on 3:16');
   await mount.locator('[data-note-text]').fill('God so loved the world: ask about "world".');
   await expect(mount.locator('[data-note-discuss]')).toHaveCount(0);
-  await mount.getByRole('button',{name:'Add a note',exact:true}).click();
+  await mount.getByRole('button',{name:'Save note',exact:true}).click();
   await expect(mount.locator('[data-note-status]')).toContainText('Saved',{timeout:5000});
   // The selected verse is kept in the address, so a reload returns to the same verse and note.
   await expect(page).toHaveURL(/[?&]start=16(&|$)/);

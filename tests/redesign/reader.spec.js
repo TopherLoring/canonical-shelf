@@ -234,7 +234,7 @@ test.describe('Bible reader', () => {
     const mount = page.locator('[data-reader-notes]');
     const add = async text => {
       await mount.locator('[data-note-text]').fill(text);
-      await mount.getByRole('button', { name: 'Add a note', exact: true }).click();
+      await mount.getByRole('button', { name: 'Save note', exact: true }).click();
       await expect(mount.locator('[data-note-status]')).toHaveText('Saved');
     };
     await add('First note on verse sixteen');
@@ -358,7 +358,7 @@ test.describe('Bible reader', () => {
     await page.locator('#v2').click();
     await page.locator('[data-reader-actions] [data-color="green"]').click();
     await expect(page.locator('#v2')).toHaveClass(/ui-highlight-green/);
-    await expect(page.locator('#reader-rail-highlights .ui-rail-count')).toHaveText('1');
+    await expect(page.locator('#reader-rail-highlights .cs-count')).toHaveText('1');
     await page.reload();
     await expect(page.locator('#v2')).toHaveClass(/ui-highlight-green/);
     await page.locator('[data-highlight-clear]').click();
@@ -415,7 +415,7 @@ test.describe('Bible reader', () => {
 
   test('chapter steps and the book picker move between chapters', async ({ page }) => {
     await page.goto('/bible?book=1&chapter=50');
-    await page.locator('.reader-steps a[aria-label^="Next chapter"]').click();
+    await page.locator('a.cs-chapter-nav--next').click();
     await expect(page).toHaveURL(/book=2&chapter=1/);
     await expect(page.locator('.reader-title-heading')).toHaveText('Exodus 1');
     await page.locator('.reader-title [data-reader-picker] summary').click();
@@ -494,7 +494,7 @@ test.describe('Bible reader on a phone', () => {
     await page.goto('/bible?book=19&chapter=119&start=105');
     await expect(page.locator('#v105')).toHaveAttribute('aria-pressed', 'true');
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-    await expect(page.locator('.reader-phone-tools')).toBeInViewport();
+    // The phone article scrolls as one, as in the template: the chapter header and tool row move with it.
     await expect(page.locator('#v105')).toBeInViewport();
     expect(await page.locator('[data-reader-scroll]').evaluate(el => el.scrollTop)).toBeGreaterThan(0);
   });

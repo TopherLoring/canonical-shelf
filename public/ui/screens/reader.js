@@ -10,8 +10,8 @@ import { OSIS, parseCorpus, parseReference } from '../../bible-books.js';
 import { renderMounts } from '../../study-notes.js';
 import { chapterHighlights, setHighlights, setTextMarks, HIGHLIGHT_COLORS } from '../../highlights.js';
 import {
-  renderRail, renderGroupChip, renderScriptureRef, mountScriptureRef,
-  renderVerseSpan, renderVerseActions, renderFootnoteBadge, renderEdgeTab
+  renderScriptureRef, mountScriptureRef,
+  renderVerseSpan, renderVerseActions, renderFootnoteBadge, renderEdgeTab, setFrameVariant
 } from '../components/index.js';
 
 const SIZE_KEY = 'cs-reader-size';
@@ -177,22 +177,24 @@ function renderChapter({ rows, annotations, highlights, selected, esc }) {
   return { text: blocks.join(''), footnotes: footnoteList };
 }
 
-const ICONS = {
-  context: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
-  xrefs: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
-  highlights: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 4 6 6-9 9H5v-6z"/><path d="M4 21h16"/></svg>',
-  people: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>',
-  places: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>',
-  maps: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',
-  overview: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/></svg>',
-  timeline: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h18"/><circle cx="7" cy="12" r="2"/><circle cx="17" cy="12" r="2"/></svg>',
-  themes: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg>',
-  chevronLeft: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>',
-  chevronRight: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>',
-  chevronDown: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
-  more: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>',
-  close: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'
-};
+const ic = body => `<svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+const ICONS = Object.fromEntries(Object.entries({
+  context: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+  xrefs: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+  highlights: '<path d="m14 4 6 6-9 9H5v-6z"/><path d="M4 21h16"/>',
+  people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',
+  places: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
+  maps: '<path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  overview: '<path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/>',
+  timeline: '<path d="M3 12h18"/><circle cx="7" cy="12" r="2"/><circle cx="17" cy="12" r="2"/>',
+  themes: '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+  chevronLeft: '<path d="m15 6-6 6 6 6"/>',
+  chevronRight: '<path d="m9 6 6 6-6 6"/>',
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  up: '<path d="m6 15 6-6 6 6"/>',
+  more: '<circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/>',
+  close: '<path d="M6 6l12 12M18 6 6 18"/>'
+}).map(([name, body]) => [name, ic(body)]));
 
 function scriptureNodes(verse) {
   const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT, {
@@ -309,62 +311,74 @@ export async function mount(container, ctx) {
       { href: '#themes', label: 'Themes', icon: ICONS.themes, id: 'reader-rail-themes' }
     ] }
   ];
+  const railItem = ({ href, label, icon, id }) => `<a class="cs-rail__item" data-rail-link href="${esc(href)}" id="${id}">${icon}<span class="cs-grow">${esc(label)}</span></a>`;
+  const railMarkup = sections => sections.map((section, n) => `<span class="${n ? 'cs-rail__section' : 'cs-rail__label'}"${n ? '' : ' data-rail-title'}>${esc(section.title)}</span>${section.items.map(railItem).join('')}`).join('');
 
-  const prevLink = prev ? `<a class="reader-step" href="${chapterHref(...prev)}" aria-label="Previous chapter: ${esc(bookByNumber(prev[0]).name)} ${prev[1]}">${ICONS.chevronLeft}</a>` : `<span class="reader-step" aria-disabled="true">${ICONS.chevronLeft}</span>`;
-  const nextLink = next ? `<a class="reader-step" href="${chapterHref(...next)}" aria-label="Next chapter: ${esc(bookByNumber(next[0]).name)} ${next[1]}">${ICONS.chevronRight}</a>` : `<span class="reader-step" aria-disabled="true">${ICONS.chevronRight}</span>`;
+  const arrow = (target, dir) => {
+    const side = dir === 'prev' ? 'prev' : 'next';
+    const icon = dir === 'prev' ? ICONS.chevronLeft : ICONS.chevronRight;
+    const cls = `cs-square-button cs-chapter-nav cs-chapter-nav--${side} reader-step`;
+    return target
+      ? `<a class="${cls}" href="${chapterHref(...target)}" aria-label="${dir === 'prev' ? 'Previous' : 'Next'} chapter: ${esc(bookByNumber(target[0]).name)} ${target[1]}">${icon}</a>`
+      : `<span class="${cls}" aria-disabled="true">${icon}</span>`;
+  };
   const phoneTools = [['context', 'Overview', ICONS.overview], ['timeline', 'Timeline', ICONS.timeline], ['themes', 'Themes', ICONS.themes], ['people', 'People', ICONS.people], ['places', 'Places', ICONS.places], ['maps', 'Maps', ICONS.maps]];
 
   const chapterContent = renderChapter({ rows, annotations, highlights, selected, esc });
+  const main = document.querySelector('main#main');
+  const restoreFrame = setFrameVariant('well');
+  main?.classList.add('cs-cols--reader');
   container.innerHTML = `<section class="reader-screen" data-reader data-book="${book}" data-chapter="${chapter}" data-selected-verse="${selected?.start || ''}" data-selected-end="${selected?.end || ''}" data-size="${size}" aria-label="${esc(name)} ${chapter}">
-    <div class="reader-rail-wrap" data-reader-rail>${renderRail({ sections: railSections(selected), ariaLabel: 'Study tools', id: 'reader-rail' })}</div>
-    <article class="reader-card" data-reader-card>
-      <header class="reader-toolbar">
-        <div class="reader-steps">${prevLink}${nextLink}</div>
-        <div class="reader-meta">${renderGroupChip({ group: meta.cat })}<span class="reader-meta-count">Chapter ${chapter} of ${meta.ch}</span></div>
-        <div class="reader-toolbar-end">
-          <abbr class="reader-version" title="Berean Standard Bible">BSB</abbr>
-          <button type="button" class="reader-size" data-reader-size aria-label="Text size: ${size}">Aa</button>
-        </div>
-      </header>
-      <header class="reader-phone-head">
-        <div class="reader-phone-title" data-group="${meta.cat}">
-          <p class="reader-eyebrow">${esc(groupLabel)}</p>
-          ${pickerMarkup(book, chapter, esc).replace('id="reader-book-select"', 'id="reader-book-select-phone"').replace('for="reader-book-select"', 'for="reader-book-select-phone"').replace('id="reader-chapter-label"', 'id="reader-chapter-label-phone"').replace('aria-labelledby="reader-chapter-label"', 'aria-labelledby="reader-chapter-label-phone"')}
-          <p class="reader-title-version">Berean Standard Bible</p>
-        </div>
-        <a class="reader-close" href="/home" aria-label="Close Bible"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
-        <details class="reader-more" data-reader-more>
-          <summary class="reader-more-button" aria-label="More reading options">${ICONS.more}</summary>
-          <div class="reader-more-popup">
-            ${prev ? `<a class="reader-more-item" href="${chapterHref(...prev)}">Previous chapter</a>` : ''}
-            ${next ? `<a class="reader-more-item" href="${chapterHref(...next)}">Next chapter</a>` : ''}
-            <button type="button" class="reader-more-item" data-reader-size>Text size</button>
-            <a class="reader-more-item" href="/bible?book=${book}&profile=1">Book overview</a>
+    <nav id="reader-rail" class="cs-card cs-rail cs-rail--reader reader-rail-wrap" data-reader-rail aria-label="Study tools">${railMarkup(railSections(selected))}</nav>
+    <article class="cs-card cs-passage reader-card" data-reader-card>
+      <nav class="reader-chapter-arrows" aria-label="Chapters">${arrow(prev, 'prev')}${arrow(next, 'next')}</nav>
+      <div class="cs-passage__body reader-scroll" data-reader-scroll>
+        <div class="cs-passage__inner">
+          <header class="cs-chapter reader-title" data-group="${meta.cat}">
+            <span class="cs-chapter__bar" aria-hidden="true"></span>
+            <div class="cs-grow reader-title-block">
+              <span class="cs-chapter__group reader-title-group">${esc(groupLabel)}</span>
+              <h1 class="reader-title-heading">${esc(name)} ${chapter}${ICONS.chevronDown}</h1>
+              ${pickerMarkup(book, chapter, esc)}
+              <span class="cs-sub reader-title-version">Berean Standard Bible</span>
+            </div>
+            <div class="cs-chapter__tools">
+              <abbr class="cs-text-button reader-version" title="Berean Standard Bible">BSB</abbr>
+              <button type="button" class="cs-text-button cs-text-button--aa reader-size" data-reader-size aria-label="Text size: ${size}">Aa</button>
+            </div>
+          </header>
+          <div class="cs-phone-chapter reader-phone-head" data-group="${meta.cat}">
+            <span class="cs-chapter__bar" aria-hidden="true"></span>
+            <div class="cs-grow reader-phone-title">
+              <span class="cs-chapter__group reader-eyebrow">${esc(groupLabel)} · Berean Standard Bible</span>
+              ${pickerMarkup(book, chapter, esc).replace('id="reader-book-select"', 'id="reader-book-select-phone"').replace('for="reader-book-select"', 'for="reader-book-select-phone"').replace('id="reader-chapter-label"', 'id="reader-chapter-label-phone"').replace('aria-labelledby="reader-chapter-label"', 'aria-labelledby="reader-chapter-label-phone"')}
+            </div>
+            <details class="reader-more" data-reader-more>
+              <summary class="cs-square-button cs-square-button--large reader-more-button" aria-label="More reading options">${ICONS.more}</summary>
+              <div class="reader-more-popup">
+                ${prev ? `<a class="reader-more-item" href="${chapterHref(...prev)}">Previous chapter</a>` : ''}
+                ${next ? `<a class="reader-more-item" href="${chapterHref(...next)}">Next chapter</a>` : ''}
+                <button type="button" class="reader-more-item" data-reader-size>Text size</button>
+                <a class="reader-more-item" href="/bible?book=${book}&profile=1">Book overview</a>
+              </div>
+            </details>
+            <a class="cs-square-button cs-square-button--large reader-close" href="/home" aria-label="Close Bible">${ICONS.close}</a>
           </div>
-        </details>
-      </header>
-      <nav class="reader-phone-tools" aria-label="Study tools">${phoneTools.map(([id, name, icon]) => `<button type="button" class="reader-phone-tool" data-phone-tool="${id}">${icon}<span>${name}</span></button>`).join('')}</nav>
-        <header class="reader-title" data-group="${meta.cat}">
-          <p class="reader-title-group">${esc(groupLabel)}</p>
-          <h1 class="reader-title-heading">${esc(name)} ${chapter}</h1>
-          ${pickerMarkup(book, chapter, esc)}
-          <p class="reader-title-version">Berean Standard Bible</p>
-        </header>
-      <div class="reader-scroll" data-reader-scroll>
-        <div class="reader-text ui-verse-passage" data-reader-text>${chapterContent.text}</div>
-        <nav class="reader-chapter-nav" aria-label="Chapters">${prev ? `<a class="reader-chapter-nav-link" href="${chapterHref(...prev)}">${ICONS.chevronLeft}<span>${esc(bookByNumber(prev[0]).name)} ${prev[1]}</span></a>` : '<span></span>'}${next ? `<a class="reader-chapter-nav-link" href="${chapterHref(...next)}"><span>${esc(bookByNumber(next[0]).name)} ${next[1]}</span>${ICONS.chevronRight}</a>` : '<span></span>'}</nav>
-        ${chapterContent.footnotes}
+          <nav class="cs-toolgrid cs-toolgrid--6 reader-phone-tools" aria-label="Study tools">${phoneTools.map(([id, label, icon]) => `<button type="button" class="reader-phone-tool" data-phone-tool="${id}">${icon}<span>${label}</span></button>`).join('')}</nav>
+          <div class="cs-scripture reader-text ui-verse-passage" data-reader-text>${chapterContent.text}</div>
+          ${chapterContent.footnotes}
+        </div>
       </div>
       <div class="reader-actions" data-reader-actions hidden>${renderVerseActions({ verseReference: label(selected), colors: HIGHLIGHT_COLORS, showCopy: false, showUnderline: true })}<button type="button" class="reader-actions-clear" data-highlight-clear hidden>Remove highlight</button></div>
       <div class="reader-fn-pop" data-reader-fn-pop role="note" hidden></div>
     </article>
-    <aside class="reader-aside" data-reader-aside data-sheet="none" aria-label="My Notes and study tools">
+    <aside class="cs-stack reader-aside" data-reader-aside data-sheet="none" aria-label="My Notes and study tools">
       <div class="reader-sheet-head"><span class="reader-sheet-title" data-sheet-title>My Notes</span><button type="button" class="reader-sheet-close" data-sheet-close aria-label="Close">${ICONS.close}</button></div>
-      <section class="reader-notes-card" data-reader-notes aria-labelledby="reader-notes-title">
-        <h2 class="reader-notes-title" id="reader-notes-title" data-notes-title>My notes on ${esc(short(selected))}</h2>
-        <section class="study-notes" data-notes-mount aria-label="My Notes"></section>
+      <section class="cs-card cs-panel cs-notes reader-notes-card" data-reader-notes aria-labelledby="reader-notes-title">
+        <div class="cs-split cs-split--center"><h2 class="cs-panel__title reader-notes-title" id="reader-notes-title" data-notes-title>My notes on ${esc(short(selected))}</h2><button type="button" class="cs-icon-button cs-icon-button--small" data-collapse="reader-notes" aria-label="Collapse My Notes" aria-expanded="true">${ICONS.up}</button></div>
+        <div class="cs-notes__body" data-collapse-body="reader-notes"><section class="study-notes" data-notes-mount aria-label="My Notes"></section></div>
       </section>
-      <section class="reader-panel-card" data-reader-panel aria-live="polite"></section>
+      <section class="cs-card cs-panel cs-fill reader-panel-card" data-reader-panel aria-live="polite"></section>
     </aside>
     ${renderEdgeTab({ type: 'notes', targetId: 'reader-notes', ariaLabel: 'Open My Notes', id: 'reader-notes-tab', className: 'reader-notes-tab' })}
   </section>`;
@@ -378,7 +392,7 @@ export async function mount(container, ctx) {
   const notesTitle = root.querySelector('[data-notes-title]');
   const fnPop = root.querySelector('[data-reader-fn-pop]');
   const card = root.querySelector('[data-reader-card]');
-  const phone = () => matchMedia('(max-width: 1099px)').matches;
+  const phone = () => matchMedia('(max-width: 760px), (max-aspect-ratio: 4/5)').matches;
   let wordSelection = null;
   let markingVersion = 0;
   let mounted = true;
@@ -484,20 +498,20 @@ export async function mount(container, ctx) {
     for (const [id, count] of [['reader-rail-xrefs', xrefCount], ['reader-rail-highlights', highlightCount]]) {
       const link = root.querySelector(`#${id}`);
       if (!link) continue;
-      link.querySelector('.ui-rail-count')?.remove();
-      if (count) link.insertAdjacentHTML('beforeend', `<span class="ui-rail-count">${count}</span>`);
+      link.querySelector('.cs-count')?.remove();
+      if (count) link.insertAdjacentHTML('beforeend', `<span class="cs-count">${count}</span>`);
     }
-    const title = root.querySelector('#reader-rail .ui-rail-section-title');
+    const title = root.querySelector('[data-rail-title]');
     if (title) title.textContent = `For ${name} ${selected ? short(selected) : chapter}`;
   }
   function panelBody(which) {
-    const head = (eyebrow, title) => `<header class="reader-panel-head"><p class="reader-panel-eyebrow">${esc(eyebrow)}</p><h2 class="reader-panel-title">${esc(title)}</h2></header>`;
+    const head = (eyebrow, title) => `<header class="reader-panel-head"><p class="reader-panel-eyebrow">${esc(eyebrow)}</p><h2 class="cs-panel__title reader-panel-title">${esc(title)}</h2></header>`;
     if (which === 'xrefs') {
       if (!selected) return `${head('Cross-references', `${name} ${chapter}`)}<p class="reader-panel-hint">Select a verse to see where else Scripture says something related.</p>`;
       const refs = crossrefsFor(selected);
       if (!chapterXrefs) return `${head('Cross-references', label(selected))}<p class="reader-panel-hint">${xrefsSettled ? 'Cross-references are unavailable offline.' : 'Loading cross-references…'}</p>`;
       if (!refs.length) return `${head('Cross-references', label(selected))}<p class="reader-panel-hint">No cross-references are listed for this verse.</p>`;
-      return `${head('Cross-references', label(selected))}<ul class="reader-xref-list" data-xref-list>${refs.slice(0, 40).map(ref => `<li>${renderScriptureRef({ reference: refLabel(ref), group: bookByNumber(ref[0])?.cat || 'law', text: refText(corpus, ref), href: refHref(ref), className: 'reader-xref' })}</li>`).join('')}</ul>${refs.length > 40 ? `<p class="reader-panel-hint">Showing 40 of ${refs.length}.</p>` : ''}<p class="reader-panel-source">Cross-references: OpenBible.info</p>`;
+      return `${head('Cross-references', label(selected))}<ul class="cs-refs reader-xref-list" data-xref-list>${refs.slice(0, 40).map(ref => `<li>${renderScriptureRef({ reference: refLabel(ref), group: bookByNumber(ref[0])?.cat || 'law', text: refText(corpus, ref), href: refHref(ref), className: 'reader-xref' })}</li>`).join('')}</ul>${refs.length > 40 ? `<p class="reader-panel-hint">Showing 40 of ${refs.length}.</p>` : ''}<p class="reader-panel-source">Cross-references: OpenBible.info</p>`;
     }
     if (which === 'context') {
       return `${head('Context', meta.name)}<p class="reader-panel-hook">${esc(meta.hook || '')}</p><p class="reader-panel-text">${esc(meta.syn || '')}</p>
@@ -535,10 +549,10 @@ export async function mount(container, ctx) {
     panelCard.innerHTML = panelBody(panel);
     panelCard.dataset.panel = panel;
     mountScriptureRef(panelCard);
-    for (const link of root.querySelectorAll('#reader-rail .ui-rail-link')) {
+    for (const link of root.querySelectorAll('#reader-rail [data-rail-link]')) {
       const id = link.getAttribute('href')?.startsWith('#') ? link.getAttribute('href').slice(1) : null;
       const current = id === panel;
-      link.classList.toggle('is-active', current);
+      link.classList.toggle('is-current', current);
       if (current) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current');
     }
   }
@@ -661,7 +675,7 @@ export async function mount(container, ctx) {
     }
     if (t.closest('[data-reader-actions] [data-action="underline"]') && selected) { markWords({ underline: !covered(selectedEntries(), 'underline', true) }).catch(() => {}); return; }
     if (t.closest('[data-reader-actions] [data-action="note"]')) {
-      openSheet('notes');
+      if (phone()) openSheet('notes');
       aside.querySelector('[data-note-text]')?.focus();
       return;
     }
@@ -683,9 +697,17 @@ export async function mount(container, ctx) {
       placeActions();
       return;
     }
+    const collapse = t.closest('[data-collapse]');
+    if (collapse) {
+      const body = root.querySelector(`[data-collapse-body="${CSS.escape(collapse.dataset.collapse)}"]`);
+      const open = collapse.getAttribute('aria-expanded') !== 'true';
+      collapse.setAttribute('aria-expanded', String(open));
+      if (body) body.hidden = !open;
+      return;
+    }
     const goto = t.closest('[data-goto-verse]');
     if (goto) { const n = Number(goto.dataset.gotoVerse); select(n); revealVerse(root, n); if (phone()) closeSheet(); return; }
-    const railLink = t.closest('#reader-rail .ui-rail-link');
+    const railLink = t.closest('#reader-rail [data-rail-link]');
     if (railLink && railLink.getAttribute('href')?.startsWith('#')) {
       event.preventDefault();
       panel = railLink.getAttribute('href').slice(1);
@@ -762,5 +784,7 @@ export async function mount(container, ctx) {
     mounted = false;
     removeEventListener('resize', onResize);
     document.removeEventListener('selectionchange', captureWords);
+    main?.classList.remove('cs-cols--reader');
+    restoreFrame();
   };
 }

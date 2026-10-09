@@ -159,7 +159,7 @@ async function renderReaderNotes(mount) {
     <p class="study-notes__anchor">Note on <strong>${esc(target.label)}</strong></p>
     <label for="reader-note-text" data-reader-note-label>${draft.editKey ? 'Edit note' : `Add a note on ${esc(target.label)}`}</label>
     <textarea id="reader-note-text" rows="8" maxlength="12000" data-note-text placeholder="Write what you notice, what you wonder, or what you want to remember.">${esc(draft.text)}</textarea>
-    <div class="reader-note-actions"><small data-note-status role="status" aria-live="polite"></small><button type="button" data-note-cancel ${draft.editKey ? '' : 'hidden'}>Cancel edit</button><button type="submit" data-save-note>${draft.editKey ? 'Save changes' : 'Add a note'}</button></div>
+    <div class="reader-note-actions"><small data-note-status role="status" aria-live="polite"></small><button type="button" data-note-cancel ${draft.editKey ? '' : 'hidden'}>Cancel edit</button><button type="submit" data-save-note>${draft.editKey ? 'Save changes' : 'Save note'}</button></div>
   </form><a class="study-notes__all" href="/profile#notes">All my notes</a>`;
   const input = mount.querySelector('[data-note-text]');
   const status = mount.querySelector('[data-note-status]');

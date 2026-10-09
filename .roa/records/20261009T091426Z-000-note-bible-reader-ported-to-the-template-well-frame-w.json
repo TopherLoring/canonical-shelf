@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-09",
+  "text": "Bible Reader ported to the template: well frame with study rail, passage card (floating chapter arrows, chapter title as the picker), My notes and Cross-references cards, phone article with 6-tool grid; styles move to public/ui/src/reader.src.css; reader note button reads Save note; My Notes edge tab is phone-only"
+}
