@@ -1,0 +1,10 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "phone-frame-right-edge",
+  "date": "2026-10-09",
+  "text": "Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly?",
+  "request": "i wanted the card surface on mobile to extend an equal distance from the right edge as it does on the left and only create a boundary for the text content to not hide behind the theologian tab, but the theologian is allowed to minimally overlap the surface on mobile view",
+  "source": "edge-tabs-sit-in-a-reserved-strip-at-the-app-edg",
+  "sourceText": "Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size"
+}

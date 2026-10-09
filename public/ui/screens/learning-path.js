@@ -172,11 +172,10 @@ export async function mount(container, ctx) {
     <span class="cs-rail__section">Progress</span><div class="cs-rail__progress">${progressRow(esc(unit.title), lessonsText(t, esc), t.done, t.total)}${progressRow(esc(course.shortTitle || course.title), lessonsText(moduleTotals, esc), moduleTotals.done, moduleTotals.total)}${progressRow(esc(LABELS.learningPath), `${pathTotals.done} of ${pathTotals.total}`, pathTotals.done, pathTotals.total)}</div></nav>`; };
 
   // ---- Right pane ----
-  // The Orientation is offered to someone new (no progress, no saved reading place, not yet seen or skipped): a card above
+  // The Orientation is offered to someone new (no completed lesson, not yet seen or skipped): a card above
   // "Up next" on a desktop and above the module picker on a phone. It is a prompt, never a gate. Everyone else gets the small link.
   const ORIENTATION_HREF = '/course?unit=unit.orientation&lesson=orientation';
-  const hasReadingPlace = () => { try { return Number(JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1') || '{}').lastBook) > 0; } catch { return false; } };
-  const orientationDue = () => !m.completed.size && !hasReadingPlace() && !orientationSeen();
+  const orientationDue = () => !m.completed.size && !orientationSeen();
   const orientationCard = where => `<section class="cs-card cs-panel path-orient path-${where}-only" data-path-orientation aria-label="Start here"><span class="cs-caption cs-caption--label">New here? Start here</span><span class="cs-upnext__title">Take the short orientation</span><p class="path-up-meta">A few minutes on how this course teaches, before your first lesson. You can skip it and come back any time.</p><div class="path-orient__actions"><a class="cs-button cs-button--small" href="${ORIENTATION_HREF}">Begin</a><button type="button" class="cs-button cs-button--outline cs-button--small" data-orientation-skip>Skip</button></div></section>`;
   const orientation = () => orientationDue() ? '' : `<a class="path-orientation" href="${ORIENTATION_HREF}">New here? Start with the orientation</a>`;
   const upNextCard = scopeUnit => {

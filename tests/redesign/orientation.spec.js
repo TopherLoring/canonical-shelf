@@ -125,11 +125,11 @@ test.describe('Orientation', () => {
     await expect(page.locator('[data-orientation-first], [data-orientation-skip]')).toHaveCount(0);
   });
 
-  test('someone with a saved reading place is not sent to the Orientation', async ({ page }) => {
+  test('a saved reading place does not hide the Orientation card; it only goes once the Orientation is seen, skipped or a lesson is done', async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })));
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/course');
-    await expect(page.locator('.cs-upnext').first()).toBeVisible();
-    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
+    await expect(page.locator('[data-path-orientation]:visible')).toHaveCount(1);
   });
 
   test('finishing the Orientation ends the suggestion', async ({ page }) => {
