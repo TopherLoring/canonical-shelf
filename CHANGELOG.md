@@ -14,6 +14,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Study Topics ported to the template: rail, card grid and item pane in the well frame, question page, glossary, My Notes sheet, phone drop-downs and accordions.
 - Learning Path ported to the template: module view, unit page with lesson pane (?view=unit), capstones page (?view=capstones), phone picker and inline lesson overviews.
 - Bible Reader ported to the template: well frame with study rail, passage card (floating chapter arrows, chapter title as the picker), My notes and Cross-references cards, phone article with 6-tool grid; styles move to public/ui/src/reader.src.css; reader note button reads Save note; My Notes edge tab is phone-only
+- Shelf ported to the template: banded spines with gilt caps and ribs, planks with plaque pills, dot legend, continue cards, book panel and phone dock; the Orientation moves to the Learning Path as a card for someone new; the My Notes card becomes a Continue-reading bookmark or a Passage of the day (curated list, BSB text); the Reader now saves the reading place and a chapter excerpt; the intro paragraph stays on a phone
 
 ## 2026-10-08
 

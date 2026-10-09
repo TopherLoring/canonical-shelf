@@ -1,11 +1,7 @@
 import { LIBRARY_BOOKS, CATEGORY_ORDER } from '../../library-data.js';
 import { GROUP_NAMES } from '../labels.js';
 import { setFrameVariant } from '../components/index.js';
-import { getState } from '../../db.js';
-import { noteHref } from '../../study-notes.js';
-import { markOrientationSeen, orientationSeen } from '../../orientation.js';
-
-const ORIENTATION_HREF = '/course?unit=unit.orientation&lesson=orientation';
+import { PASSAGES } from '../../passages-of-the-day.js';
 
 // Counts from the bundled BSB corpus; used to scale book widths to their relative length.
 const VERSE_COUNTS = [1533,1213,859,1288,959,658,618,85,810,695,816,719,942,822,280,406,167,1070,2461,915,222,117,1292,1364,154,1273,357,197,73,146,21,48,105,47,56,53,38,211,55,1068,673,1149,878,1003,432,437,257,149,155,104,95,89,47,113,83,46,25,303,108,105,61,105,13,14,25,404];
@@ -65,7 +61,7 @@ function savedReading() {
     const state = JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1') || '{}');
     const book = Number(state.lastBook) || 0;
     const chapter = Number(state.lastChapter);
-    return book >= 1 && book <= 66 ? { book, chapter: Number.isInteger(chapter) && chapter > 0 ? chapter : null } : null;
+    return book >= 1 && book <= 66 ? { book, chapter: Number.isInteger(chapter) && chapter > 0 ? chapter : null, excerpt: String(state.excerpt || '') } : null;
   } catch {
     return null;
   }
@@ -118,15 +114,8 @@ function lessonContext(data, state, next) {
   return { caption: [course?.title, unit?.title].filter(Boolean).join(' · '), done, total: lessons.length };
 }
 
-function continueCard(data, state, activityHref, esc, reading) {
+function continueCard(data, state, activityHref, esc) {
   const completed = new Set(state?.completed || []);
-  // Someone new (no progress, no saved reading place, orientation not yet seen) is pointed to the Orientation first.
-  if (!completed.size && !reading && !orientationSeen()) {
-    return '<section class="cs-card cs-continue__card shelf-home-orient" data-orientation-first aria-label="Start here"><div><span class="cs-caption">New here? Start here</span>' +
-      '<span class="cs-continue__title">Take the short orientation.</span></div><span class="shelf-home-orient__actions">' +
-      '<button type="button" class="cs-button cs-button--outline cs-button--small" data-orientation-skip>Skip</button>' +
-      '<a class="cs-button cs-button--small shelf-home-orient__begin" href="' + esc(ORIENTATION_HREF) + '">Begin</a></span></section>';
-  }
   const next = (data.activities || []).find(activity => !completed.has(activity.id));
   if (!next) {
     return '<a class="cs-card cs-continue__card shelf-home-continue" href="/course" aria-label="Learning Path"><span class="cs-caption">Learning Path</span>' +
@@ -142,37 +131,29 @@ function continueCard(data, state, activityHref, esc, reading) {
     (ctx.total ? '<div class="cs-bar shelf-phone-only" role="progressbar" aria-label="Course progress" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><span data-pct="' + pct + '"></span></div>' : '') + '</a>';
 }
 
-function noteText(note) {
-  return typeof note === 'string' ? note : String(note?.text || '');
+const bookLabel = n => (n === 19 ? 'Psalm' : LIBRARY_BOOKS[n - 1]?.name || 'Book ' + n);
+const verseSpan = (start, end) => start + (end > start ? '–' + end : '');
+
+// One passage a day, the same all day and for everyone: the curated list in order, by local calendar date.
+export function passageOfTheDay(date = new Date()) {
+  const day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+  const [book, chapter, start, end, text] = PASSAGES[((day % PASSAGES.length) + PASSAGES.length) % PASSAGES.length];
+  return { book, chapter, start, end, text, label: bookLabel(book) + ' ' + chapter + ':' + verseSpan(start, end) };
 }
 
-function myNotesCard(entries, esc) {
-  const recent = entries.find(([, note]) => noteText(note).trim());
-  if (!recent) {
-    return '<a class="cs-card cs-continue__card" data-home-notes href="/profile#notes" aria-label="My Notes"><span class="cs-caption">My Notes</span>' +
-      '<span class="cs-continue__note">Keep what you notice close. Notes you write in the Bible, a lesson, or a Topic appear here.</span><span class="cs-continue__go">Open My Notes →</span></a>';
+// One card, two states: a bookmark back into the Reader when there is a saved reading place, otherwise the Passage of the day.
+function readingCard(reading, esc, date) {
+  if (reading?.chapter) {
+    const label = bookLabel(reading.book) + ' ' + reading.chapter;
+    const text = reading.excerpt ? reading.excerpt + '…' : 'Pick up where you stopped.';
+    return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="bookmark" href="/bible?book=' + reading.book + '&chapter=' + reading.chapter +
+      '"><span class="cs-caption">Continue reading · ' + esc(label) + '</span><span class="cs-continue__note shelf-home-reading__text">' + esc(text) +
+      '</span><span class="cs-continue__go">Resume ' + esc(label) + ' →</span></a>';
   }
-  const [key, note] = recent;
-  const text = noteText(note).trim();
-  const label = note.label || key;
-  const isScripture = key.startsWith('scripture:');
-  return '<a class="cs-card cs-continue__card" data-home-notes href="' + esc(noteHref(key)) + '" aria-label="My Notes"><span class="cs-caption">My Notes · ' + esc(label) +
-    '</span><span class="cs-continue__note">' + esc(text.slice(0, 220)) + (text.length > 220 ? '…' : '') + '</span><span class="cs-continue__go">' +
-    (isScripture ? 'Open in the Bible' : 'Open note') + ' →</span></a>';
-}
-
-async function loadMyNotes(container, esc) {
-  const card = container.querySelector('[data-home-notes]');
-  if (!card) return;
-  try {
-    const state = await getState();
-    if (!card.isConnected) return;
-    const entries = Object.entries(state.notes || {}).sort(([, a], [, b]) =>
-      String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
-    card.outerHTML = myNotesCard(entries, esc);
-  } catch {
-    if (card.isConnected) card.outerHTML = '<a class="cs-card cs-continue__card" data-home-notes href="/profile#notes"><span class="cs-caption">My Notes</span><span class="cs-continue__note">My Notes are unavailable right now.</span><span class="cs-continue__go">Open My Notes →</span></a>';
-  }
+  const passage = passageOfTheDay(date);
+  return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage" href="/bible?book=' + passage.book + '&chapter=' + passage.chapter +
+    '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '"><span class="cs-caption">Passage of the day · ' + esc(passage.label) +
+    '</span><span class="cs-continue__note shelf-home-reading__text">' + esc(passage.text) + '</span><span class="cs-continue__go">Open in the Bible →</span></a>';
 }
 
 export function mount(container, ctx) {
@@ -180,23 +161,19 @@ export function mount(container, ctx) {
   const reading = savedReading();
   let selectedNumber = reading?.book || 1;
   const restoreFrame = setFrameVariant('shelf');
-  const card = continueCard(data, state, activityHref, esc, reading);
-  const first = card.includes('data-orientation-first');
   const selected = LIBRARY_BOOKS[selectedNumber - 1];
   const legend = '<ul class="cs-legend shelf-home__legend" aria-label="The nine shelf groups">' +
     CATEGORY_ORDER.map(key => '<li><span class="cs-swatch" data-group="' + groupKey(key) + '"></span>' + esc(GROUP_NAMES[key]) + '</li>').join('') + '</ul>';
 
-  // A new visitor's first step goes right under the title, where it is seen before the shelf (on a phone too).
   container.innerHTML = '<section class="shelf-home" aria-labelledby="shelf-home-title">' +
     '<div class="cs-shelf-main cs-scroll cs-scroll--shelf shelf-home__library">' +
       '<div class="cs-shelf-intro shelf-home__intro"><h1 id="shelf-home-title" class="cs-title">The Canonical<br><em>Shelf</em></h1>' +
         '<p>Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.</p></div>' +
-      (first ? card : '') +
       '<section class="cs-shelf" aria-label="Canonical bookshelf">' +
         shelfRow(0, 39, 'Old Testament · 39 books', selectedNumber, esc) + shelfRow(39, 66, 'New Testament · 27 books', selectedNumber, esc) + '</section>' +
       legend +
       '<section class="cs-continue cs-start shelf-home__continue" aria-label="Continue"><span class="cs-caption cs-caption--label shelf-phone-only">Pick up where you left off</span>' +
-        (first ? '' : card) + myNotesCard([], esc) + '</section>' +
+        continueCard(data, state, activityHref, esc) + readingCard(reading, esc) + '</section>' +
       '<p class="cs-visually-hidden shelf-home__announcement" aria-live="polite"></p></div>' +
     '<aside class="cs-book shelf-book-panel shelf-desktop-only" aria-label="Selected book">' + bookPanel(selected, reading, esc) + '</aside>' +
     '<aside class="cs-dock shelf-phone-only shelf-book-dock" aria-label="Selected book">' + bookDock(selected, reading, esc) + '</aside></section>';
@@ -221,16 +198,6 @@ export function mount(container, ctx) {
     const announcement = container.querySelector('.shelf-home__announcement');
     if (announcement) announcement.textContent = 'Selected ' + book.name + ', book ' + book.n + ' of 66.';
   };
-  const onSkip = event => {
-    if (!event.target.closest?.('[data-orientation-skip]')) return;
-    markOrientationSeen();
-    container.querySelector('[data-orientation-first]')?.remove();
-    const row = container.querySelector('.shelf-home__continue');
-    row?.insertAdjacentHTML('afterbegin', continueCard(data, state, activityHref, esc, reading));
-    paint(row);
-  };
-  container.addEventListener('click', onSkip);
   container.addEventListener('click', onSelect);
-  loadMyNotes(container, esc);
-  return () => { container.removeEventListener('click', onSelect); container.removeEventListener('click', onSkip); restoreFrame(); };
+  return () => { container.removeEventListener('click', onSelect); restoreFrame(); };
 }

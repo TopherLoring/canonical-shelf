@@ -66,11 +66,13 @@ test.describe('Orientation', () => {
     });
   }
 
-  test('the unit address opens the lesson, and the Learning Path page links to it', async ({ page }) => {
+  test('the unit address opens the lesson, and the Learning Path page links to it once the card is gone', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('canonical-shelf-orientation-seen', '1'));
     await page.goto('/course?unit=unit.orientation');
     await expect(page).toHaveURL(/lesson=orientation/);
     await expect(page.locator('[data-lesson-screen]')).toBeVisible();
     await page.goto('/course');
+    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
     await page.locator('.path-orientation').click();
     await expect(page.locator('[data-lesson-screen]')).toBeVisible();
   });
@@ -83,23 +85,51 @@ test.describe('Orientation', () => {
     expect(await overflowOf(page)).toBeLessThanOrEqual(1);
   });
 
-  test('the Shelf suggests the Orientation to someone new, and stops once it is seen or skipped', async ({ page }) => {
+  test('the Learning Path offers the Orientation to someone new, above Up next, and stops once it is skipped', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/course');
+    const card = page.locator('[data-path-orientation]:visible');
+    await expect(card).toHaveCount(1);
+    await expect(card.getByRole('link', { name: 'Begin' })).toHaveAttribute('href', /lesson=orientation/);
+    const above = await page.evaluate(() => {
+      const c = [...document.querySelectorAll('[data-path-orientation]')].find(el => el.offsetParent)?.getBoundingClientRect();
+      return c.bottom <= document.querySelector('[data-path-up-next]').getBoundingClientRect().top + 1;
+    });
+    expect(above, 'the card sits above Up next').toBe(true);
+    await card.getByRole('button', { name: 'Skip' }).click();
+    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
+    await expect(page.locator('.path-orientation')).toBeVisible();
+    await page.reload();
+    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
+  });
+
+  test('phone: the card sits above the module picker and Begin starts the Orientation', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/course');
+    const card = page.locator('[data-path-orientation]:visible');
+    await expect(card).toHaveCount(1);
+    const order = await page.evaluate(() => {
+      const c = [...document.querySelectorAll('[data-path-orientation]')].find(el => el.offsetParent).getBoundingClientRect();
+      return c.bottom <= document.querySelector('.cs-modpick').getBoundingClientRect().top + 1;
+    });
+    expect(order, 'the card sits above the module picker').toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await card.getByRole('link', { name: 'Begin' }).click();
+    await expect(page.locator('[data-lesson-screen]')).toBeVisible();
+  });
+
+  test('the Shelf no longer carries an Orientation card', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
-    const card = page.locator('[data-orientation-first]');
-    await expect(card).toBeVisible();
-    await expect(card.locator('a')).toHaveAttribute('href', /lesson=orientation/);
-    await card.getByRole('button', { name: 'Skip' }).click();
-    await expect(card).toHaveCount(0);
-    await page.reload();
-    await expect(page.locator('[data-orientation-first]')).toHaveCount(0);
+    await expect(page.locator('.shelf-home')).toBeVisible();
+    await expect(page.locator('[data-orientation-first], [data-orientation-skip]')).toHaveCount(0);
   });
 
   test('someone with a saved reading place is not sent to the Orientation', async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })));
-    await page.goto('/home');
-    await expect(page.locator('.shelf-home-continue')).toBeVisible();
-    await expect(page.locator('[data-orientation-first]')).toHaveCount(0);
+    await page.goto('/course');
+    await expect(page.locator('.cs-upnext').first()).toBeVisible();
+    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
   });
 
   test('finishing the Orientation ends the suggestion', async ({ page }) => {
@@ -107,7 +137,9 @@ test.describe('Orientation', () => {
     await page.goto(ORIENTATION);
     const total = Number((await page.locator('[data-lesson-count]').innerText()).split(' of ')[1]);
     await page.goto(ORIENTATION + `&step=${total}`);
-    await page.goto('/home');
-    await expect(page.locator('[data-orientation-first]')).toHaveCount(0);
+    await expect(page.locator('[data-lesson-count]')).toContainText(`${total} of ${total}`);
+    await page.goto('/course');
+    await expect(page.locator('.cs-upnext').first()).toBeVisible();
+    await expect(page.locator('[data-path-orientation]')).toHaveCount(0);
   });
 });

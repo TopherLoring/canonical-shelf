@@ -12,6 +12,7 @@
 // stay on their own views.
 import { renderProgressBar, mountProgressBars, setFrameVariant } from '../components/index.js';
 import { LABELS } from '../labels.js';
+import { markOrientationSeen, orientationSeen } from '../../orientation.js';
 
 export const handles = params =>
   !params.has('lesson') && !params.has('mastery') && !params.has('glossary');
@@ -171,14 +172,21 @@ export async function mount(container, ctx) {
     <span class="cs-rail__section">Progress</span><div class="cs-rail__progress">${progressRow(esc(unit.title), lessonsText(t, esc), t.done, t.total)}${progressRow(esc(course.shortTitle || course.title), lessonsText(moduleTotals, esc), moduleTotals.done, moduleTotals.total)}${progressRow(esc(LABELS.learningPath), `${pathTotals.done} of ${pathTotals.total}`, pathTotals.done, pathTotals.total)}</div></nav>`; };
 
   // ---- Right pane ----
-  const orientation = '<a class="path-orientation" href="/course?unit=unit.orientation&lesson=orientation">New here? Start with the orientation</a>';
+  // The Orientation is offered to someone new (no progress, no saved reading place, not yet seen or skipped): a card above
+  // "Up next" on a desktop and above the module picker on a phone. It is a prompt, never a gate. Everyone else gets the small link.
+  const ORIENTATION_HREF = '/course?unit=unit.orientation&lesson=orientation';
+  const hasReadingPlace = () => { try { return Number(JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1') || '{}').lastBook) > 0; } catch { return false; } };
+  const orientationDue = () => !m.completed.size && !hasReadingPlace() && !orientationSeen();
+  const orientationCard = where => `<section class="cs-card cs-panel path-orient path-${where}-only" data-path-orientation aria-label="Start here"><span class="cs-caption cs-caption--label">New here? Start here</span><span class="cs-upnext__title">Take the short orientation</span><p class="path-up-meta">A few minutes on how this course teaches, before your first lesson. You can skip it and come back any time.</p><div class="path-orient__actions"><a class="cs-button cs-button--small" href="${ORIENTATION_HREF}">Begin</a><button type="button" class="cs-button cs-button--outline cs-button--small" data-orientation-skip>Skip</button></div></section>`;
+  const orientation = () => orientationDue() ? '' : `<a class="path-orientation" href="${ORIENTATION_HREF}">New here? Start with the orientation</a>`;
   const upNextCard = scopeUnit => {
     const next = (scopeUnit && m.nextIn(scopeUnit)) || courseUnitsNext(course) || overallNext;
-    if (!next) return `<section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-upnext__title">You are all caught up</span><p class="path-up-meta">Every lesson here is complete.</p><a class="cs-button cs-button--block" href="/practice">Review &amp; Practice</a>${orientation}</section>`;
+    if (!next) return `<section class="cs-card cs-panel cs-upnext"><span class="cs-caption cs-caption--label">Up next</span><span class="cs-upnext__title">You are all caught up</span><p class="path-up-meta">Every lesson here is complete.</p><a class="cs-button cs-button--block" href="/practice">Review &amp; Practice</a>${orientation()}</section>`;
     const nextUnit = m.units.get(next.unitId);
     const title = next.masteryType === 'unit-mastery' ? `${LABELS.unitCheck} · ${nextUnit.title}` : (m.lessons.get(next.sourceId)?.title || next.title);
-    return `<section class="cs-card cs-panel cs-upnext" data-path-up-next><span class="cs-caption cs-caption--label">Up next</span><span class="cs-kicker cs-kicker--small">${esc(nextUnit?.title || '')}</span><span class="cs-upnext__title">${esc(title)}</span><a class="cs-button cs-button--block" href="${esc(activityHref(next.id))}" data-path-start>${next.type === 'lesson' ? 'Start lesson' : `Start ${esc(LABELS.unitCheck)}`}</a>${orientation}</section>`;
+    return `<section class="cs-card cs-panel cs-upnext" data-path-up-next><span class="cs-caption cs-caption--label">Up next</span><span class="cs-kicker cs-kicker--small">${esc(nextUnit?.title || '')}</span><span class="cs-upnext__title">${esc(title)}</span><a class="cs-button cs-button--block" href="${esc(activityHref(next.id))}" data-path-start>${next.type === 'lesson' ? 'Start lesson' : `Start ${esc(LABELS.unitCheck)}`}</a>${orientation()}</section>`;
   };
+  const asideCards = scopeUnit => `${orientationDue() ? orientationCard('desktop') : ''}${upNextCard(scopeUnit)}${goalsCard('What you’ll gain', [course.outcome || course.scope || ''].filter(Boolean), esc)}`;
   const lessonPane = (unit, pickedId) => {
     const p = m.partsOf(unit);
     const next = m.nextIn(unit);
@@ -220,13 +228,13 @@ export async function mount(container, ctx) {
   } else {
     const kicker = kickerFor(course);
     html = `${moduleRail(false)}<section class="cs-column" aria-label="${esc(course.title)}" data-learning-path data-path-view="module">
-      <label class="cs-modpick path-phone-only"><span class="cs-modpick__text"><span class="cs-kicker cs-kicker--small">${esc(kicker)}</span><span class="cs-modpick__title">${esc(course.title)}</span></span>${I.down}<select aria-label="Choose a section of the Learning Path" data-path-picker>${courses.map(c => `<option value="${esc(c.id)}"${c.id === course.id ? ' selected' : ''}>${esc(c.title)}</option>`).join('')}</select></label>
+      ${orientationDue() ? orientationCard('phone') : ''}<label class="cs-modpick path-phone-only"><span class="cs-modpick__text"><span class="cs-kicker cs-kicker--small">${esc(kicker)}</span><span class="cs-modpick__title">${esc(course.title)}</span></span>${I.down}<select aria-label="Choose a section of the Learning Path" data-path-picker>${courses.map(c => `<option value="${esc(c.id)}"${c.id === course.id ? ' selected' : ''}>${esc(c.title)}</option>`).join('')}</select></label>
       <div class="cs-heading path-heading"><span class="cs-kicker">${esc(kicker)}</span><h1 id="path-title">${esc(course.title)}</h1><span class="cs-sub">${plural(moduleTotals.total, 'lesson')} · ${moduleTotals.done ? `${moduleTotals.done} done` : 'not started'}</span></div>
       <div class="cs-split path-phone-only"><span class="cs-caption">${plural(moduleTotals.total, 'lesson')}</span><span class="cs-caption">${moduleTotals.done ? `${moduleTotals.done} of ${moduleTotals.total} lessons` : 'Not started'}</span></div>
       <p class="cs-lede path-desktop-only">${esc(course.outcome || course.scope || '')}</p>${bar(moduleTotals.done, moduleTotals.total, `${course.title} progress`)}
       <div class="path-units" data-path-units>${courseUnits.map(u => unitCard(m, esc, activityHref, u, u.id === selected?.id)).join('')}</div>
       <a class="cs-card cs-modcard cs-modcard--plain path-phone-only" href="/course?view=capstones">${I.shield}<span class="cs-grow">Capstones across the path</span><span class="cs-count">${capstones.length}</span></a>
-    </section><aside class="cs-stack path-aside" aria-label="Next and objectives" data-path-aside>${upNextCard(selected)}${goalsCard('What you’ll gain', [course.outcome || course.scope || ''].filter(Boolean), esc)}</aside>`;
+    </section><aside class="cs-stack path-aside" aria-label="Next and objectives" data-path-aside>${asideCards(selected)}</aside>`;
   }
 
   const main = document.querySelector('main#main');
@@ -249,11 +257,18 @@ export async function mount(container, ctx) {
       address.searchParams.delete('course');
       history.replaceState(history.state, '', address);
       const aside = container.querySelector('[data-path-aside]');
-      if (aside) { aside.innerHTML = `${upNextCard(selected)}${goalsCard('What you’ll gain', [course.outcome || course.scope || ''].filter(Boolean), esc)}`; mountProgressBars(aside); }
+      if (aside) { aside.innerHTML = asideCards(selected); mountProgressBars(aside); }
     }
   };
   const onPick = event => { if (event.target.matches('[data-path-picker]')) navigate(`/course?course=${encodeURIComponent(event.target.value)}`); };
   const onClick = event => {
+    if (event.target.closest('[data-orientation-skip]')) {
+      markOrientationSeen();
+      container.querySelectorAll('[data-path-orientation]').forEach(card => card.remove());
+      const aside = container.querySelector('[data-path-aside]');
+      if (aside) { aside.innerHTML = asideCards(selected); mountProgressBars(aside); }
+      return;
+    }
     const toggle = event.target.closest('[data-lesson-toggle]');
     if (!toggle) return;
     const panel = container.querySelector(`[data-lesson-open="${CSS.escape(toggle.dataset.lessonToggle)}"]`);

@@ -72,10 +72,8 @@
 .cs-chips { display: flex; flex-wrap: wrap; gap: 6u; line-height: normal; }
 .cs-app .cs-chips :is(a, span) { padding: 3u 10u; border-radius: 8u; background: var(--c-raised); border: 1u solid var(--c-hairline); font-size: 13u; color: var(--c-text-2); text-decoration: none; }
 
-/* app: a first-time visitor's orientation prompt sits where the template has nothing (moves to the Learning Path in the next step). */
-.shelf-home-orient { flex-direction: row; align-items: center; justify-content: space-between; gap: 16u; }
-.shelf-home-orient__actions { display: flex; gap: 8u; }
-.cs-app a.cs-button.shelf-home-orient__begin { color: var(--c-on-action); }
+/* app: the passage / bookmark card shows its text in the reading face. */
+.shelf-home-reading__text { font-family: var(--f-reading); }
 
 /* ---- Phone ---- */
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
@@ -89,7 +87,7 @@
   .cs-title { font-size: 34u; }
   .cs-title br { display: none; }
   .cs-title em::before { content: ' '; }
-  .cs-shelf-intro p { display: none; }
+  .cs-shelf-intro p { margin-block-start: 6u; font-size: 15u; line-height: 1.5; }
   .cs-scroll--shelf { gap: 10u; padding-block-start: 14u; }
   .cs-continue { grid-template-columns: minmax(0, 1fr); gap: 12u; }
   .cs-start { display: flex; flex-direction: column; gap: 8u; }

@@ -8,6 +8,7 @@
 import { LIBRARY_BOOKS, CATEGORIES, THREADS } from '../../library-data.js';
 import { OSIS, parseCorpus, parseReference } from '../../bible-books.js';
 import { renderMounts } from '../../study-notes.js';
+import { rememberBibleBook } from '../../bible-state.js';
 import { chapterHighlights, setHighlights, setTextMarks, HIGHLIGHT_COLORS } from '../../highlights.js';
 import {
   renderScriptureRef, mountScriptureRef,
@@ -268,6 +269,16 @@ function revealVerse(root, verse) {
   }
 }
 
+// The opening of a chapter, whole verses until it is about a sentence or two long, for the Shelf's bookmark card.
+function chapterExcerpt(rows) {
+  let text = '';
+  for (const row of rows) {
+    text += (text ? ' ' : '') + row.text;
+    if (text.length >= 150) break;
+  }
+  return text.length > 220 ? text.slice(0, 220).replace(/\s+\S*$/, '') : text;
+}
+
 export async function mount(container, ctx) {
   const { esc, corpus } = ctx;
   const address = addressFrom(ctx.params);
@@ -295,6 +306,9 @@ export async function mount(container, ctx) {
     container.innerHTML = `<section class="reader-screen reader-screen--empty"><p class="reader-empty">${esc(name)} ${chapter} is not in the local Bible text. <a href="${chapterHref(1, 1)}">Open Genesis 1</a>.</p></section>`;
     return () => {};
   }
+
+  // Remember where the reader is, with the chapter's opening words, so the Shelf can offer to continue here.
+  rememberBibleBook(book, chapter, chapterExcerpt(rows));
 
   const railSections = sel => [
     { title: `For ${name} ${sel ? short(sel) : chapter}`, items: [

@@ -38,6 +38,9 @@ details.cs-unit[open] > .cs-unit__head .cs-unit__chev { rotate: 180deg; }
 .cs-upnext__title { font-family: var(--f-display); font-size: 22u; font-weight: 600; line-height: 1.2; }
 .path-up-meta { font-size: 14u; color: var(--c-muted); }
 .path-orientation { font-size: 13u; color: var(--c-action); }
+.path-orient { gap: 10u; }
+.path-orient__actions { display: flex; gap: 10u; }
+.path-orient p { margin: 0; }
 .cs-goals { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8u; }
 .cs-goals li { display: flex; gap: 8u; align-items: flex-start; font-size: 14u; line-height: 1.4; color: var(--c-text-2); }
 .cs-goals .cs-icon { inline-size: 16u; block-size: 16u; flex: none; margin-block-start: 1u; color: var(--c-action); }

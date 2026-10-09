@@ -65,18 +65,81 @@ test.describe('Shelf home', () => {
     await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin/);
   });
 
-  test('My Notes shows the newest note and opens it', async ({ page }) => {
+  test('with no saved reading place the card is the Passage of the day, and it opens on those verses', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
-    await expect(page.locator('[data-home-notes]')).toBeVisible();
-    await page.evaluate(async () => {
-      const db = await import('/db.js'); const state = await db.getState();
-      state.notes = { 'scripture:John.3.4': { text: 'Born again, but how?', label: 'John 3:4', updatedAt: '2026-10-01T10:00:00Z' } };
-      await db.putState(state);
+    const card = page.locator('[data-home-reading="passage"]');
+    await expect(card).toBeVisible();
+    await expect(card).toContainText('Passage of the day');
+    await expect(card).toContainText(/[A-Z0-9][A-Za-z0-9 ]+ \d+:\d+/);
+    expect((await card.locator('.shelf-home-reading__text').innerText()).length).toBeGreaterThan(20);
+    await expect(card).toContainText('Open in the Bible');
+    const href = await card.getAttribute('href');
+    expect(href).toMatch(/^\/bible\?book=\d+&chapter=\d+&start=\d+/);
+    await card.click();
+    await expect(page.locator('[data-reader]')).toBeVisible();
+    await expect(page.locator('[data-reader]')).toHaveAttribute('data-selected-verse', /\d+/);
+  });
+
+  test('the passage is the same all day and moves to the next one the next day', async ({ page }) => {
+    await page.goto('/home');
+    const picks = await page.evaluate(async () => {
+      const { passageOfTheDay } = await import('/ui/screens/shelf-home.js');
+      const { PASSAGES } = await import('/passages-of-the-day.js');
+      const morning = passageOfTheDay(new Date(2026, 9, 9, 0, 5)), night = passageOfTheDay(new Date(2026, 9, 9, 23, 55));
+      const next = passageOfTheDay(new Date(2026, 9, 10, 8));
+      const week = new Set(Array.from({ length: 7 }, (_, i) => passageOfTheDay(new Date(2026, 9, 9 + i, 12)).label));
+      return { same: morning.label === night.label, moved: next.label !== morning.label, week: week.size, count: PASSAGES.length };
     });
-    await page.reload();
-    await expect(page.locator('[data-home-notes]')).toContainText('Born again, but how?');
-    await expect(page.locator('a[data-home-notes]')).toHaveAttribute('href', /\/bible\?/);
+    expect(picks.same, 'one passage per day').toBe(true);
+    expect(picks.moved, 'a new passage the next day').toBe(true);
+    expect(picks.week).toBe(7);
+    expect(picks.count, 'the curated list is about a hundred passages').toBeGreaterThanOrEqual(100);
+  });
+
+  test('every curated passage is the Berean Standard Bible text at its address', async ({ page }) => {
+    await page.goto('/home');
+    const problems = await page.evaluate(async () => {
+      const { PASSAGES } = await import('/passages-of-the-day.js');
+      const corpus = await (await fetch('/data/corpus.txt')).text();
+      const verses = new Map();
+      for (const line of corpus.split('\n')) { const [b, c, v, ...rest] = line.split('\t'); if (rest.length) verses.set(`${b}.${c}.${v}`, rest.join('\t').trim()); }
+      const seen = new Set(), bad = [];
+      for (const [book, chapter, start, end, text] of PASSAGES) {
+        const address = `${book}.${chapter}.${start}-${end}`;
+        if (seen.has(address)) bad.push('duplicate ' + address);
+        seen.add(address);
+        const expected = []; for (let v = start; v <= end; v++) expected.push(verses.get(`${book}.${chapter}.${v}`));
+        if (expected.some(t => !t) || expected.join(' ') !== text) bad.push('text differs at ' + address);
+        if (end - start > 3 || text.length > 300) bad.push('too long at ' + address);
+      }
+      return bad;
+    });
+    expect(problems).toEqual([]);
+  });
+
+  test('with a saved reading place the card is a bookmark that resumes in the Reader', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3, excerpt: 'Now there was a man of the Pharisees named Nicodemus' })));
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/home');
+    const card = page.locator('[data-home-reading="bookmark"]');
+    await expect(card).toContainText('Continue reading · John 3');
+    await expect(card).toContainText('Nicodemus');
+    await expect(page.locator('[data-home-reading="passage"]')).toHaveCount(0);
+    await card.click();
+    await expect(page.locator('[data-reader]')).toHaveAttribute('data-book', '43');
+    await expect(page.locator('[data-reader]')).toHaveAttribute('data-chapter', '3');
+  });
+
+  test('opening a chapter in the Reader makes the Shelf offer to continue it, with the chapter opening as the excerpt', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/bible?book=43&chapter=3');
+    await expect(page.locator('[data-reader]')).toBeVisible();
+    await page.goto('/home');
+    const card = page.locator('[data-home-reading="bookmark"]');
+    await expect(card).toContainText('Continue reading · John 3');
+    await expect(card.locator('.shelf-home-reading__text')).toContainText('Nicodemus');
+    await expect(page.locator('#shelf-selected-title')).toHaveText('John');
   });
 
   test('phone: the whole shelf fits without sideways scroll, with the panel below it', async ({ page }) => {
@@ -88,6 +151,7 @@ test.describe('Shelf home', () => {
     expect(tops.panel, 'the selected book docks below the shelf').toBeGreaterThan(tops.shelf);
     await expect(page.locator('.shelf-book-panel')).toBeHidden();
     await expect(page.locator('.shelf-book-dock')).toContainText('Genesis');
+    await expect(page.locator('.cs-shelf-intro p'), 'the intro paragraph stays on a phone').toBeVisible();
     expect(await widthOf(page, 19), 'books keep their relative widths on a phone').toBeGreaterThan(await widthOf(page, 31));
   });
 });
