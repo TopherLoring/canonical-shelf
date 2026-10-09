@@ -102,7 +102,7 @@ function refreshProgressPanel(){}
 let unmountScreen=null,renderGeneration=0;
 const screenDb=Object.freeze({getState,recordResult,recordReview,dueReviews,exportState,importState});
 function screenContext(r,p,isCurrent){
-  return Object.freeze({route:r,params:p,data,corpus,state,setState:next=>{state=next},esc,labels:LABELS,groupNames:GROUP_NAMES,navigate,activityHref,db:screenDb,isCurrent});
+  return Object.freeze({route:r,params:p,data,corpus,loadCorpus:ensureCorpus,state,setState:next=>{state=next},esc,labels:LABELS,groupNames:GROUP_NAMES,navigate,activityHref,db:screenDb,isCurrent});
 }
 function releaseScreen(){
   if(!unmountScreen)return;

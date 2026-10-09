@@ -13,6 +13,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Shelf cards: the Learning Path resume card is the only way into the Orientation for someone new (no lesson done, Orientation not seen); there is no separate Orientation card on the Shelf or the Learning Path. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line.
 - Home/Shelf only: the Learning Path resume card is the way into the Orientation for someone new (no lesson done, Orientation not seen), and the Shelf has no separate Orientation block. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line. The Learning Path's own Orientation card is unchanged. (supersedes shelf-cards-resume-orientation-passage)
 
+### Added
+
+- Lesson (phone): full step chain with seen/current/unseen dots, edge fades, centred current step, Step n of x on tap or hover. Reader: category above the book name, translation below, three colours. Shelf: passage text (2 lines) on the Passage of the day card
+
 ### Changed
 
 - Study Topics ported to the template: rail, card grid and item pane in the well frame, question page, glossary, My Notes sheet, phone drop-downs and accordions.

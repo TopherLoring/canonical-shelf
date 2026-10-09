@@ -192,6 +192,34 @@ function mountCheckPager(root) {
   });
 }
 
+// The phone step chain: scroll so the current dot sits where it belongs (left at the start, centred in the middle, right at the
+// end), fade the edge that has more beyond it, and show "Step n of x" for a moment on a tap.
+let lastChain = { key: '', left: 0 };
+function mountChain(container, key) {
+  const chain = container.querySelector('[data-chain]');
+  if (!chain) return () => {};
+  const wrap = chain.parentElement;
+  const fade = () => {
+    const max = chain.scrollWidth - chain.clientWidth;
+    const more = { start: chain.scrollLeft > 1, end: chain.scrollLeft < max - 1 };
+    chain.dataset.fade = more.start && more.end ? 'both' : more.start ? 'start' : more.end ? 'end' : 'none';
+  };
+  const current = chain.querySelector('.is-current');
+  const max = Math.max(0, chain.scrollWidth - chain.clientWidth);
+  const want = current ? Math.min(max, Math.max(0, current.offsetLeft + current.offsetWidth / 2 - chain.clientWidth / 2)) : 0;
+  if (lastChain.key === key && !matchMedia('(prefers-reduced-motion: reduce)').matches && chain.clientWidth) {
+    chain.scrollLeft = Math.min(max, lastChain.left);
+    chain.scrollTo({ left: want, behavior: 'smooth' });
+  } else chain.scrollLeft = want;
+  lastChain = { key, left: want };
+  fade();
+  let timer = 0;
+  const onTap = () => { wrap.dataset.open = '1'; clearTimeout(timer); timer = setTimeout(() => { delete wrap.dataset.open; }, 2400); };
+  chain.addEventListener('scroll', fade, { passive: true });
+  chain.addEventListener('click', onTap);
+  return () => { clearTimeout(timer); chain.removeEventListener('scroll', fade); chain.removeEventListener('click', onTap); };
+}
+
 export async function mount(container, ctx) {
   const { data, params, esc, navigate } = ctx;
   const masteryId = params.get('mastery');
@@ -270,7 +298,6 @@ export async function mount(container, ctx) {
   ].filter(Boolean).join('<span class="lesson-crumb-sep" aria-hidden="true">›</span>');
 
   const where = `Step ${index + 1} of ${steps.length}`;
-  const dotSteps = sections.find(s => s.steps.includes(index))?.steps || [index];
 
   const apparatus = orientation
     ? `<details class="deep-reading" open><summary>About the orientation</summary><p>A short tour of how the site works. It is not scored and does not count toward any module.</p></details>
@@ -297,11 +324,11 @@ export async function mount(container, ctx) {
   container.innerHTML = `<section class="lesson-screen" data-lesson-screen ${checkpoint || orientation ? 'data-checkpoint' : ''} data-study-focus aria-labelledby="lesson-step-title">
     <header class="cs-titlebar lesson-titlebar">
       <nav class="cs-crumbs lesson-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
-      <button type="button" class="cs-crumbs__toggle lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog" aria-label="${esc(where)}. Show all steps and the full path">
-        <span class="cs-crumbs__step" data-lesson-count-phone>${esc(where)}</span>
-        <span class="cs-dots${dotSteps.length > 7 ? ' cs-dots--tight' : dotSteps.length > 5 ? ' cs-dots--dense' : ''}" aria-hidden="true">${dotSteps.map(i => `<span class="${i === index ? 'is-current' : i < index ? 'is-done' : ''}"></span>`).join('')}</span>
-        <span class="cs-crumbs__where">${ic(ICONS.down)}</span>
-      </button>
+      <div class="lesson-progress">
+        <div class="cs-chain" data-chain role="group" tabindex="0" aria-label="${esc(where)}"><span class="cs-dots cs-dots--chain" aria-hidden="true">${steps.map((_, i) => `<span class="${i === index ? 'is-current' : i < index ? 'is-done' : ''}"></span>`).join('')}</span></div>
+        <span class="cs-chain__label" data-lesson-count-phone role="status">${esc(where)}</span>
+      </div>
+      <button type="button" class="cs-crumbs__toggle lesson-all-steps" data-sheet-open="lesson-steps-sheet" aria-haspopup="dialog" aria-label="${esc(where)}. Show all steps and the full path">${ic(ICONS.down)}</button>
       <a href="${esc(exitHref)}" class="cs-icon-button cs-icon-button--small lesson-close" aria-label="Leave lesson">${ic(ICONS.close)}</a>
     </header>
     <div class="cs-window-well cs-window-well--lesson">
@@ -395,9 +422,11 @@ export async function mount(container, ctx) {
     if (event.key === 'ArrowLeft' && index > 0) navigate(stepHref(index - 1));
   }
   mountCheckPager(container);
+  const unmountChain = mountChain(container, lesson.id || lesson.title || '');
   container.addEventListener('click', onClick);
   document.addEventListener('keydown', onKey);
   return () => {
+    unmountChain();
     container.removeEventListener('click', onClick);
     document.removeEventListener('keydown', onKey);
     phone.removeEventListener('change', placeNotes);

@@ -59,8 +59,11 @@
 .cs-continue .shelf-home-reading { order: -1; }
 .cs-continue .cs-continue__card { min-block-size: 112u; }
 .cs-continue .cs-continue__card > .cs-continue__title { flex: 1 1 auto; display: flex; align-items: center; }
-.cs-continue .cs-continue__card > .cs-continue__title:has(+ .cs-continue__note) { flex: none; margin-block-start: auto; }
+.cs-continue .cs-continue__card > .cs-continue__title:has(+ .cs-continue__note) { flex: none; }
 .cs-continue .cs-continue__card > .cs-continue__note { margin-block-end: auto; }
+/* app: the passage's opening lines, in the reading face, at most two (the Reader has the rest). */
+.shelf-home-reading__text { font-family: var(--f-reading); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin: 0; }
+.shelf-home-reading__text:empty { display: none; }
 .cs-continue .cs-continue__card > .cs-continue__go { margin-block-start: auto; }
 .cs-continue__note { font-size: 16u; line-height: 1.45; }
 .cs-continue__go { font-size: 15u; color: var(--c-action); }

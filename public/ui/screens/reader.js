@@ -354,8 +354,9 @@ export async function mount(container, ctx) {
           <div class="cs-phone-chapter reader-phone-head" data-group="${meta.cat}">
             <span class="cs-chapter__bar" aria-hidden="true"></span>
             <div class="cs-grow reader-phone-title">
-              <span class="cs-chapter__group reader-eyebrow">${esc(groupLabel)} · Berean Standard Bible</span>
+              <span class="cs-chapter__group reader-eyebrow">${esc(groupLabel)}</span>
               ${pickerMarkup(book, chapter, esc).replace('id="reader-book-select"', 'id="reader-book-select-phone"').replace('for="reader-book-select"', 'for="reader-book-select-phone"').replace('id="reader-chapter-label"', 'id="reader-chapter-label-phone"').replace('aria-labelledby="reader-chapter-label"', 'aria-labelledby="reader-chapter-label-phone"')}
+              <span class="cs-sub reader-phone-version">Berean Standard Bible</span>
             </div>
             <details class="reader-more" data-reader-more>
               <summary class="cs-square-button cs-square-button--large reader-more-button" aria-label="More reading options">${ICONS.more}</summary>

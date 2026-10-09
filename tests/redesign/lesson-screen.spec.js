@@ -57,6 +57,30 @@ test.describe('Lesson screen', () => {
     await expect(page.locator('[data-lesson-count]')).toHaveText(/^2 of \d+$/);
   });
 
+  test('phone: the title bar shows one dot per step in a scrolling chain with three colours; "Step n of m" shows on a tap', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(lesson(1));
+    const total = Number((await page.locator('[data-lesson-count-phone]').textContent()).split(' of ')[1]);
+    await expect(page.locator('.lesson-titlebar .cs-dots span')).toHaveCount(total);
+    const chain = page.locator('[data-chain]');
+    expect(await chain.evaluate(el => el.scrollWidth > el.clientWidth), 'a long chain scrolls sideways').toBe(true);
+    await expect(chain, 'at the start only the right edge fades').toHaveAttribute('data-fade', 'end');
+    await expect(page.locator('[data-lesson-count-phone]'), 'the count is not shown until asked for').toBeHidden();
+    await chain.click();
+    await expect(page.locator('[data-lesson-count-phone]')).toBeVisible();
+    await page.goto(lesson(5));
+    await expect(page.locator('.cs-dots--chain span.is-current')).toHaveCount(1);
+    await expect(page.locator('.cs-dots--chain span.is-done')).toHaveCount(4);
+    const colours = await page.evaluate(() => { const bg = el => getComputedStyle(el).backgroundColor; const d = document.querySelectorAll('.cs-dots--chain span'); return new Set([bg(document.querySelector('.cs-dots--chain .is-done')), bg(document.querySelector('.cs-dots--chain .is-current')), bg(d[d.length - 1])]).size; });
+    expect(colours, 'seen, current and unseen are three colours').toBe(3);
+    await page.goto(lesson(14));
+    await expect(page.locator('[data-chain]'), 'in the middle both edges fade').toHaveAttribute('data-fade', 'both');
+    const centred = await page.evaluate(() => { const c = document.querySelector('[data-chain]'), d = c.querySelector('.is-current'); const cr = c.getBoundingClientRect(), dr = d.getBoundingClientRect(); return Math.abs((dr.left + dr.width / 2) - (cr.left + cr.width / 2)); });
+    expect(centred, 'the current dot stays in the centre').toBeLessThan(6);
+    await page.goto(lesson(total));
+    await expect(page.locator('[data-chain]'), 'at the end only the left edge fades').toHaveAttribute('data-fade', 'start');
+  });
+
   test('phone: the title bar opens all steps and the full path; My Notes opens from its edge tab', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(lesson(2));

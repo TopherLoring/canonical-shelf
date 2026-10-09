@@ -153,7 +153,18 @@ function readingCard(esc, date) {
   const passage = passageOfTheDay(date);
   const href = '/bible?book=' + passage.book + '&chapter=' + passage.chapter + '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '&explore=1';
   return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage" href="' + href + '" aria-label="Passage of the day: ' + esc(passage.label) + '. Explore in the Reader">' +
-    '<span class="cs-caption">Passage of the day</span><span class="cs-continue__title">' + esc(passage.label) + '</span><span class="cs-continue__go">Explore in the Reader →</span></a>';
+    '<span class="cs-caption">Passage of the day</span><span class="cs-continue__title">' + esc(passage.label) + '</span><span class="cs-continue__note shelf-home-reading__text" data-passage-text></span><span class="cs-continue__go">Explore in the Reader →</span></a>';
+}
+
+// The passage's verses, read from the corpus lines ("book<TAB>chapter<TAB>verse<TAB>text").
+function passageText(corpus, passage) {
+  const prefix = passage.book + '\t' + passage.chapter + '\t', verses = [];
+  for (const line of corpus.split('\n')) {
+    if (!line.startsWith(prefix)) continue;
+    const [, , verse, ...rest] = line.split('\t');
+    if (Number(verse) >= passage.start && Number(verse) <= passage.end) verses.push(rest.join('\t').trim());
+  }
+  return verses.join(' ');
 }
 
 export function mount(container, ctx) {
@@ -179,6 +190,13 @@ export function mount(container, ctx) {
     '<aside class="cs-dock shelf-phone-only shelf-book-dock" aria-label="Selected book">' + bookDock(selected, reading, esc) + '</aside></section>';
 
   paint(container);
+  // The card shows the opening lines of the passage once the Bible text has loaded (the Shelf does not wait for it).
+  let alive = true;
+  const textEl = container.querySelector('[data-passage-text]');
+  if (textEl) {
+    const passage = passageOfTheDay();
+    Promise.resolve(ctx.corpus || ctx.loadCorpus?.()).then(corpus => { if (alive && corpus) textEl.textContent = passageText(corpus, passage); }).catch(() => {});
+  }
   const onSelect = event => {
     const button = event.target.closest?.('[data-book-select]');
     if (!button || !container.contains(button)) return;
@@ -199,5 +217,5 @@ export function mount(container, ctx) {
     if (announcement) announcement.textContent = 'Selected ' + book.name + ', book ' + book.n + ' of 66.';
   };
   container.addEventListener('click', onSelect);
-  return () => { container.removeEventListener('click', onSelect); restoreFrame(); };
+  return () => { alive = false; container.removeEventListener('click', onSelect); restoreFrame(); };
 }

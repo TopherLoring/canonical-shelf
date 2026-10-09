@@ -209,6 +209,7 @@ body:has([data-reader]) > .cs-footer { display: none; }
   .cs-phone-chapter .cs-chapter__bar { align-self: stretch; }
   .cs-phone-chapter .cs-grow { display: flex; flex-direction: column; gap: 1u; }
   .cs-phone-chapter .cs-chapter__group { font-size: 13u; }
+  .cs-phone-chapter .reader-phone-version { font-size: 13u; }
   .cs-phone-chapter { position: relative; }
   .cs-phone-chapter .reader-picker { position: static; }
   .cs-phone-chapter .reader-picker-popup { inset-inline: 0; inline-size: auto; }

@@ -21,7 +21,7 @@
 .cs-app .cs-crumbs a:hover { color: var(--c-text); text-decoration: underline; }
 .cs-crumbs [aria-current="page"] { color: var(--c-text); font-weight: 600; }
 .lesson-close { flex: none; }
-.cs-crumbs__toggle, .lesson-phone-tools { display: none; }
+.cs-crumbs__toggle, .lesson-progress, .lesson-phone-tools { display: none; }
 .cs-dots { display: flex; align-items: center; }
 .cs-dots span { position: relative; flex: none; inline-size: calc(12 * var(--u)); block-size: calc(12 * var(--u)); border-radius: 50%; background: var(--c-raised); border: calc(2 * var(--u)) solid var(--c-border); box-sizing: border-box; }
 .cs-dots span + span { margin-inline-start: calc(26 * var(--u)); }
@@ -199,12 +199,26 @@ button.lesson-link:hover { text-decoration: underline; }
   .lesson-screen .cs-titlebar { block-size: calc(52 * var(--u)); padding: 0 calc(6 * var(--u)) 0 calc(14 * var(--u)); }
   .lesson-crumbs { display: none; }
   .lesson-sheet-path { display: flex; }
-  .cs-crumbs__toggle { flex-grow: 1; padding: 0; border: 0; background: transparent; display: flex; flex-direction: row; align-items: center; gap: calc(12 * var(--u)); min-inline-size: 0; text-align: start; color: var(--c-text); font-family: inherit; cursor: pointer; }
-  .cs-crumbs__step { flex: none; font-size: calc(15 * var(--u)); font-weight: 600; color: var(--c-text); white-space: nowrap; }
-  .cs-crumbs__where { display: inline-flex; align-items: center; color: var(--c-muted); }
-  .cs-crumbs__where .cs-icon { inline-size: calc(12 * var(--u)); block-size: calc(12 * var(--u)); }
-  .cs-titlebar .cs-dots { flex: none; }
-  .cs-crumbs__toggle { overflow: hidden; }
+  .lesson-screen .cs-titlebar { position: relative; }
+  .cs-crumbs__toggle { flex: none; display: inline-flex; align-items: center; justify-content: center; inline-size: calc(32 * var(--u)); block-size: calc(32 * var(--u)); padding: 0; border: 0; border-radius: calc(8 * var(--u)); background: transparent; color: var(--c-muted); font-family: inherit; cursor: pointer; }
+  .cs-crumbs__toggle .cs-icon { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); }
+  /* The step chain: every step of the lesson as a dot (seen, current, not yet seen). It scrolls sideways, fading at whichever
+     edge has more beyond it; the current step stays centred once it passes the middle, until the end of the chain is in view. */
+  .lesson-progress { display: flex; align-items: center; flex: 1; min-inline-size: 0; }
+  .cs-chain { position: relative; flex: 1; min-inline-size: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; padding: calc(10 * var(--u)) calc(6 * var(--u)); }
+  .cs-chain::-webkit-scrollbar { display: none; }
+  .cs-chain[data-fade='start'] { -webkit-mask-image: linear-gradient(to right, transparent 0, black calc(28 * var(--u)), black 100%); mask-image: linear-gradient(to right, transparent 0, black calc(28 * var(--u)), black 100%); }
+  .cs-chain[data-fade='end'] { -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - calc(28 * var(--u))), transparent 100%); mask-image: linear-gradient(to right, black 0, black calc(100% - calc(28 * var(--u))), transparent 100%); }
+  .cs-chain[data-fade='both'] { -webkit-mask-image: linear-gradient(to right, transparent 0, black calc(28 * var(--u)), black calc(100% - calc(28 * var(--u))), transparent 100%); mask-image: linear-gradient(to right, transparent 0, black calc(28 * var(--u)), black calc(100% - calc(28 * var(--u))), transparent 100%); }
+  .cs-dots--chain { inline-size: max-content; }
+  .cs-dots--chain span { inline-size: calc(10 * var(--u)); block-size: calc(10 * var(--u)); }
+  .cs-dots--chain span + span, .cs-dots--chain span + .is-current, .cs-dots--chain .is-current + span { margin-inline-start: calc(14 * var(--u)); }
+  .cs-dots--chain span + span::before, .cs-dots--chain .is-current + span::before { inline-size: calc(14 * var(--u)); inset-block-start: calc(3 * var(--u)); }
+  .cs-dots--chain .is-current { inline-size: calc(14 * var(--u)); block-size: calc(14 * var(--u)); margin-inline-end: calc(-2 * var(--u)); }
+  .cs-dots--chain .is-current::before { inset-block-start: calc(5 * var(--u)); }
+  /* "Step n of x" is a label that appears on hover, focus or a tap (not inline with the dots). */
+  .cs-chain__label { position: absolute; inset-block-start: calc(100% - calc(6 * var(--u))); inset-inline-start: calc(14 * var(--u)); padding: calc(3 * var(--u)) calc(10 * var(--u)); border-radius: calc(6 * var(--u)); background: var(--c-plaque); color: var(--c-wood-dark); font-size: calc(13 * var(--u)); font-weight: 600; white-space: nowrap; box-shadow: 0 calc(1 * var(--u)) calc(2 * var(--u)) var(--shade-25); z-index: var(--z-popover); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s; }
+  .lesson-progress:hover .cs-chain__label, .lesson-progress:focus-within .cs-chain__label, .lesson-progress[data-open] .cs-chain__label { opacity: 1; visibility: visible; }
 
   .cs-window-well { display: flex; flex-direction: column; padding: 0; gap: 0; background: var(--c-raised); }
   .cs-lesson-row { flex: 1; min-block-size: 0; gap: 0; }

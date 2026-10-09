@@ -65,7 +65,7 @@ test.describe('Shelf home', () => {
     await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin/);
   });
 
-  test('the card is titled Passage of the day, shows the address only, and an Explore line that opens those verses', async ({ page }) => {
+  test('the card is titled Passage of the day, shows the address, up to two lines of the passage, and an Explore line that opens those verses', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
     const card = page.locator('[data-home-reading="passage"]');
@@ -73,7 +73,10 @@ test.describe('Shelf home', () => {
     await expect(card.locator('.cs-caption')).toHaveText('Passage of the day');
     await expect(card.locator('.cs-continue__title')).toHaveText(/^[A-Z0-9][A-Za-z0-9 ]+ \d+:\d+(–\d+)?$/);
     await expect(card.locator('.cs-continue__go')).toContainText('Explore in the Reader');
-    await expect(card, 'no verse text on the card').not.toContainText(/\bthe\b.*\bthe\b.*\bthe\b/);
+    const text = card.locator('[data-passage-text]');
+    await expect(text, 'the passage text fills in from the Bible').not.toBeEmpty();
+    const lines = await text.evaluate(el => Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)));
+    expect(lines).toBeLessThanOrEqual(2);
     await expect(card).toHaveAttribute('href', /^\/bible\?book=\d+&chapter=\d+&start=\d+.*explore=1/);
     await card.click();
     await expect(page.locator('[data-reader]')).toBeVisible();
