@@ -1139,6 +1139,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.course-shelf.feedback-2026-09-25`
   Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between
 
+### `ui.current-item`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `current-item-not-rose-2026-10-09`
+  The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.
+  *Why:* Chris 2026-10-09: rose triggers an error/failure emotional response; supersedes the rose current-item rule
+
 ### `ui.current-values`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `ui.current-values.from-precedence-doc`

@@ -211,6 +211,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.bible.phone.board` | undefined | Agent default | undefined |
 | `ui.bible.rails` | Bible reader rails: | Owner decision | undefined |
 | `ui.bible.verse-actions` | undefined | Agent default | undefined |
+| `ui.current-item` | The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); | Owner decision | undefined |
 | `ui.current-values` | undefined | Agent default | undefined |
 | `ui.fonts.selection` | Fonts: | Owner decision | undefined |
 | `ui.frame.phone` | Phones also use the framed layout: | Owner decision | undefined |

@@ -137,7 +137,7 @@
 .cs-shell {
   --u: calc(min(100cqw / 1440, 100cqh / 900) * var(--text-size-factor, 1));
   position: relative; inline-size: 100%; block-size: 100%;
-  display: grid; grid-template-rows: calc(64 * var(--u)) minmax(0, 1fr);
+  display: grid; grid-template-rows: calc(64 * var(--u)) minmax(0, 1fr) auto;
   background-color: var(--c-page);
   background-image: radial-gradient(var(--c-page-dot) calc(1 * var(--u)), transparent calc(1 * var(--u)));
   background-size: calc(5 * var(--u)) calc(5 * var(--u));
@@ -161,18 +161,22 @@
 .cs-icon-button--small .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); }
 .cs-icon-button--tiny { inline-size: calc(36 * var(--u)); block-size: calc(36 * var(--u)); border-radius: calc(8 * var(--u)); color: var(--c-muted); }
 .cs-icon-button--tiny .cs-icon { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); }
-.cs-feedback { block-size: calc(36 * var(--u)); padding: 0 calc(16 * var(--u)); border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(10 * var(--u)); background: var(--c-raised); color: var(--c-text-2); font-size: calc(14 * var(--u)); }
+/* Feedback: a discreet monochrome link in the strip under the frame (Chris, 2026-10-09). Phones: Profile. */
+.cs-underbar { padding: calc(6 * var(--u)) calc(36 * var(--u)) calc(10 * var(--u)); min-block-size: calc(28 * var(--u)); display: flex; align-items: center; }
+.cs-feedback-link { padding: 0; border: 0; background: transparent; color: var(--c-muted); font: inherit; font-size: calc(13 * var(--u)); cursor: pointer; text-decoration: none; }
+.cs-feedback-link:hover { color: var(--c-text); text-decoration: underline; text-underline-offset: calc(3 * var(--u)); }
+.cs-feedback-link:focus-visible { outline: calc(2 * var(--u)) solid var(--c-action); outline-offset: calc(2 * var(--u)); }
 
 /* ---- Frame ---- */
-.cs-frame { margin: calc(28 * var(--u)); min-block-size: 0; min-inline-size: 0; border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(16 * var(--u)); box-shadow: var(--sh-frame); overflow: hidden; }
+.cs-frame { margin: calc(28 * var(--u)) calc(28 * var(--u)) 0; min-block-size: 0; min-inline-size: 0; border: calc(1 * var(--u)) solid var(--c-border); border-radius: calc(16 * var(--u)); box-shadow: var(--sh-frame); overflow: hidden; }
 .cs-frame--well { display: grid; gap: calc(16 * var(--u)); padding: calc(16 * var(--u)); background: var(--c-sunken); }
 .cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) calc(340 * var(--u)); gap: calc(28 * var(--u)); padding: calc(20 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)) calc(32 * var(--u)); background: var(--c-surface); }
 .cs-frame--window { display: flex; flex-direction: column; padding: 0; background: var(--c-raised); }
-.cs-cols--path { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
-.cs-cols--reader { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
-.cs-cols--topics { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
-.cs-cols--topics-list { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr); }
-.cs-cols--practice { grid-template-columns: calc(240 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--path { grid-template-columns: calc(300 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--reader { grid-template-columns: calc(300 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--topics { grid-template-columns: calc(300 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--topics-list { grid-template-columns: calc(300 * var(--u)) minmax(0, 1fr); }
+.cs-cols--practice { grid-template-columns: calc(300 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
 .cs-frame--page { display: block; overflow: auto; overscroll-behavior: contain; background: var(--c-surface); }
 .cs-frame > * { min-inline-size: 0; min-block-size: 0; }
 .cs-frame--well > * { overflow: auto; }
@@ -213,16 +217,16 @@
 .cs-rail--reader .cs-rail__item { gap: calc(12 * var(--u)); }
 .cs-rail--lesson .cs-rail__item { min-block-size: calc(38 * var(--u)); padding: 0 calc(10 * var(--u)); font-size: calc(14 * var(--u)); }
 .cs-rail--lesson .cs-rail__item .cs-icon { inline-size: calc(17 * var(--u)); block-size: calc(17 * var(--u)); }
-/* The current item in every left pane uses the lesson's current-step rose (Chris, 2026-10-08). */
-.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-accent-tint); }
-.cs-rail__item.is-current .cs-icon { color: var(--c-accent); }
+/* The current item in every left pane uses the action blue; rose reads as an error (Chris, 2026-10-09). */
+.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-action-subtle); }
+.cs-rail__item.is-current .cs-icon { color: var(--c-action); }
 .cs-count { font-size: calc(13 * var(--u)); font-weight: 400; color: var(--c-muted); }
-.cs-rail__item.is-current .cs-count { color: var(--c-accent); }
+.cs-rail__item.is-current .cs-count { color: var(--c-action); }
 
 
 /* ---- Markers, tags, bars, chips ---- */
 .cs-marker { inline-size: calc(24 * var(--u)); block-size: calc(24 * var(--u)); flex: none; display: inline-flex; align-items: center; justify-content: center; border: calc(2 * var(--u)) solid var(--c-strong); border-radius: calc(7 * var(--u)); font-size: calc(12 * var(--u)); color: var(--c-muted); }
-.cs-marker--current { border: 0; background: var(--c-accent); color: var(--c-on-action); font-weight: 600; }
+.cs-marker--current { border: 0; background: var(--c-action); color: var(--c-on-action); font-weight: 600; }
 .cs-marker--locked { border-style: dashed; }
 .cs-marker--locked .cs-icon { inline-size: calc(13 * var(--u)); block-size: calc(13 * var(--u)); }
 .cs-tag { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); block-size: calc(22 * var(--u)); padding: 0 calc(8 * var(--u)); border-radius: calc(6 * var(--u)); background: color-mix(in srgb, var(--group) 12%, transparent); color: var(--c-text); font-size: calc(12 * var(--u)); font-weight: 600; line-height: 1; white-space: nowrap; }
@@ -251,7 +255,7 @@
 /* ---- Phone layout ---- */
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: calc(16 * var(--u)); }
-  .cs-top { display: none; }
+  .cs-top, .cs-underbar { display: none; }
   .cs-frame { margin: calc(10 * var(--u)) var(--edge-tab-w) calc(10 * var(--u)) calc(10 * var(--u)); }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }
@@ -286,7 +290,7 @@
 .cs-search[data-open="true"] input { inline-size: calc(240 * var(--u)); opacity: 1; pointer-events: auto; z-index: var(--z-raised); }
 .cs-search[data-open="true"] .cs-top__search { position: relative; z-index: var(--z-popover); }
 .cs-icon-button[aria-current], .cs-icon-button.is-active { color: var(--c-action); }
-.cs-feedback:hover, .cs-icon-button:hover { color: var(--c-text); }
+.cs-icon-button:hover { color: var(--c-text); }
 
 
 /* ---- Footer: the legal and About links, just below the app's first screen ---- */

@@ -194,12 +194,16 @@ test('lesson objectives describe lessons on the unit overview and never appear i
   }
 });
 
-test('top bar: logo mark, tabs, search, Feedback, profile; the profile is a full screen with appearance',async({page})=>{
+test('top bar: logo mark, tabs, search, profile (Feedback sits under the frame); the profile is a full screen with appearance',async({page})=>{
   await page.goto('/home');
   const bar=page.locator('header.masthead');
   await expect(bar.locator('.cs-wordmark'),'Home shows the logo mark only').toBeHidden();
   await expect(bar.locator(':scope > *')).toHaveCount(3);
-  await expect(bar.locator('.masthead-tools > *')).toHaveCount(3);
+  await expect(bar.locator('.masthead-tools > *')).toHaveCount(2);
+  await expect(bar.locator('[data-feedback-open]'),'Feedback is not in the nav bar').toHaveCount(0);
+  const fb=await page.locator('.cs-underbar [data-feedback-open]').boundingBox(),fr=await page.locator('main#main').boundingBox();
+  expect(fb.y,'Feedback link sits below the content frame').toBeGreaterThanOrEqual(fr.y+fr.height-1);
+  expect(fb.x,'Feedback link sits at the frame left').toBeLessThan(fr.x+80);
   await page.goto('/bible');
   await expect(page.locator('header.masthead .brand')).toContainText('The Canonical Shelf');
   await page.goto('/home');

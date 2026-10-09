@@ -31,7 +31,7 @@
 /* Three states only (ui.lesson.progress.colors.three): completed is filled muted, current is the larger rose dot, new is hollow. */
 .cs-dots .is-done { background: var(--c-muted); border-color: var(--c-muted); }
 .cs-dots .is-done::before, .cs-dots .is-current::before { background: var(--c-muted); }
-.cs-dots .is-current { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); margin-inline: calc(-2 * var(--u)); background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-accent); }
+.cs-dots .is-current { inline-size: calc(16 * var(--u)); block-size: calc(16 * var(--u)); margin-inline: calc(-2 * var(--u)); background: var(--c-action); border-color: var(--c-action-subtle); box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-action); }
 .cs-dots .is-current + span { margin-inline-start: calc(24 * var(--u)); }
 .cs-dots .is-current + span::before { inline-size: calc(24 * var(--u)); inset-block-start: calc(3 * var(--u)); }
 .cs-dots span + .is-current { margin-inline-start: calc(24 * var(--u)); }
@@ -53,11 +53,11 @@
 .cs-lesson-row > * { min-block-size: 0; }
 
 /* ---- Steps rail ---- */
-.cs-rail--lesson { inline-size: calc(236 * var(--u)); flex: none; overflow: auto; }
+.cs-rail--lesson { inline-size: calc(300 * var(--u)); flex: none; overflow: auto; }
 .cs-steps { display: flex; flex-direction: column; gap: calc(2 * var(--u)); margin: 0; padding: 0; list-style: none; }
 .cs-steps a { display: flex; align-items: center; gap: calc(10 * var(--u)); min-block-size: calc(40 * var(--u)); padding: calc(4 * var(--u)) calc(10 * var(--u)); border-radius: calc(10 * var(--u)); color: var(--c-text-2); font-size: calc(14 * var(--u)); text-decoration: none; }
 .cs-steps a:hover { color: var(--c-text); }
-.cs-steps a[aria-current="step"] { background: var(--c-accent-tint); color: var(--c-text); font-weight: 600; }
+.cs-steps a[aria-current="step"] { background: var(--c-action-subtle); color: var(--c-text); font-weight: 600; }
 .cs-steps .cs-marker { inline-size: calc(26 * var(--u)); block-size: calc(26 * var(--u)); border-radius: calc(8 * var(--u)); font-size: calc(13 * var(--u)); }
 .cs-steps .is-done .cs-marker { border-color: var(--c-muted); color: var(--c-muted); }
 .lesson-section-text { display: flex; flex-direction: column; gap: calc(5 * var(--u)); min-inline-size: 0; }
@@ -65,11 +65,11 @@
 .lesson-section-dots { display: flex; flex-wrap: wrap; gap: calc(4 * var(--u)); }
 .lesson-section-dots span { inline-size: calc(6 * var(--u)); block-size: calc(6 * var(--u)); border-radius: 50%; background: var(--c-border); }
 .lesson-section-dots .is-done { background: var(--c-muted); }
-.lesson-section-dots .is-current { background: var(--c-accent); }
+.lesson-section-dots .is-current { background: var(--c-action); }
 button.cs-rail__item { inline-size: 100%; border: 0; background: transparent; text-align: start; font-family: inherit; cursor: pointer; }
 button.cs-rail__item:hover:not(:disabled) { color: var(--c-text); }
 button.cs-rail__item:disabled { color: var(--c-disabled); cursor: default; }
-button.cs-rail__item.is-current { background: var(--c-accent-tint); }
+button.cs-rail__item.is-current { background: var(--c-action-subtle); }
 
 /* ---- Lesson card ---- */
 .cs-lesson-card { flex-grow: 1; min-inline-size: 0; padding: calc(32 * var(--u)) calc(36 * var(--u)); display: flex; justify-content: center; overflow: auto; }
@@ -160,7 +160,7 @@ button.cs-rail__item.is-current { background: var(--c-accent-tint); }
 .cs-notes--lesson { flex: none; min-block-size: 0; }
 .cs-notes--lesson:has(> [data-collapse-body][hidden]) { block-size: auto; }
 .cs-notes--lesson .cs-panel__title { display: flex; align-items: center; gap: calc(8 * var(--u)); }
-.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-accent); }
+.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-action); }
 .cs-notes__body { flex: 1; min-block-size: 0; display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
 .cs-notes__body[hidden] { display: none; }
 .cs-notes__body [data-notes-mount] { flex: 1; min-block-size: 0; display: flex; flex-direction: column; }

@@ -29,7 +29,7 @@
 /* Three states only (ui.lesson.progress.colors.three): completed is filled muted, current is the larger rose dot, new is hollow. */
 .cs-dots .is-done { background: var(--c-muted); border-color: var(--c-muted); }
 .cs-dots .is-done::before, .cs-dots .is-current::before { background: var(--c-muted); }
-.cs-dots .is-current { inline-size: 16u; block-size: 16u; margin-inline: -2u; background: var(--c-accent); border-color: var(--c-accent-tint); box-shadow: 0 0 0 2u var(--c-accent); }
+.cs-dots .is-current { inline-size: 16u; block-size: 16u; margin-inline: -2u; background: var(--c-action); border-color: var(--c-action-subtle); box-shadow: 0 0 0 2u var(--c-action); }
 .cs-dots .is-current + span { margin-inline-start: 24u; }
 .cs-dots .is-current + span::before { inline-size: 24u; inset-block-start: 3u; }
 .cs-dots span + .is-current { margin-inline-start: 24u; }
@@ -51,11 +51,11 @@
 .cs-lesson-row > * { min-block-size: 0; }
 
 /* ---- Steps rail ---- */
-.cs-rail--lesson { inline-size: 236u; flex: none; overflow: auto; }
+.cs-rail--lesson { inline-size: 300u; flex: none; overflow: auto; }
 .cs-steps { display: flex; flex-direction: column; gap: 2u; margin: 0; padding: 0; list-style: none; }
 .cs-steps a { display: flex; align-items: center; gap: 10u; min-block-size: 40u; padding: 4u 10u; border-radius: 10u; color: var(--c-text-2); font-size: 14u; text-decoration: none; }
 .cs-steps a:hover { color: var(--c-text); }
-.cs-steps a[aria-current="step"] { background: var(--c-accent-tint); color: var(--c-text); font-weight: 600; }
+.cs-steps a[aria-current="step"] { background: var(--c-action-subtle); color: var(--c-text); font-weight: 600; }
 .cs-steps .cs-marker { inline-size: 26u; block-size: 26u; border-radius: 8u; font-size: 13u; }
 .cs-steps .is-done .cs-marker { border-color: var(--c-muted); color: var(--c-muted); }
 .lesson-section-text { display: flex; flex-direction: column; gap: 5u; min-inline-size: 0; }
@@ -63,11 +63,11 @@
 .lesson-section-dots { display: flex; flex-wrap: wrap; gap: 4u; }
 .lesson-section-dots span { inline-size: 6u; block-size: 6u; border-radius: 50%; background: var(--c-border); }
 .lesson-section-dots .is-done { background: var(--c-muted); }
-.lesson-section-dots .is-current { background: var(--c-accent); }
+.lesson-section-dots .is-current { background: var(--c-action); }
 button.cs-rail__item { inline-size: 100%; border: 0; background: transparent; text-align: start; font-family: inherit; cursor: pointer; }
 button.cs-rail__item:hover:not(:disabled) { color: var(--c-text); }
 button.cs-rail__item:disabled { color: var(--c-disabled); cursor: default; }
-button.cs-rail__item.is-current { background: var(--c-accent-tint); }
+button.cs-rail__item.is-current { background: var(--c-action-subtle); }
 
 /* ---- Lesson card ---- */
 .cs-lesson-card { flex-grow: 1; min-inline-size: 0; padding: 32u 36u; display: flex; justify-content: center; overflow: auto; }
@@ -158,7 +158,7 @@ button.cs-rail__item.is-current { background: var(--c-accent-tint); }
 .cs-notes--lesson { flex: none; min-block-size: 0; }
 .cs-notes--lesson:has(> [data-collapse-body][hidden]) { block-size: auto; }
 .cs-notes--lesson .cs-panel__title { display: flex; align-items: center; gap: 8u; }
-.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-accent); }
+.cs-notes--lesson .cs-panel__title .cs-icon { color: var(--c-action); }
 .cs-notes__body { flex: 1; min-block-size: 0; display: flex; flex-direction: column; gap: 10u; }
 .cs-notes__body[hidden] { display: none; }
 .cs-notes__body [data-notes-mount] { flex: 1; min-block-size: 0; display: flex; flex-direction: column; }

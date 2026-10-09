@@ -20,7 +20,7 @@
 .cs-shell {
   --u: calc(min(100cqw / 1440, 100cqh / 900) * var(--text-size-factor, 1));
   position: relative; inline-size: 100%; block-size: 100%;
-  display: grid; grid-template-rows: 64u minmax(0, 1fr);
+  display: grid; grid-template-rows: 64u minmax(0, 1fr) auto;
   background-color: var(--c-page);
   background-image: radial-gradient(var(--c-page-dot) 1u, transparent 1u);
   background-size: 5u 5u;
@@ -44,18 +44,22 @@
 .cs-icon-button--small .cs-icon { inline-size: 16u; block-size: 16u; }
 .cs-icon-button--tiny { inline-size: 36u; block-size: 36u; border-radius: 8u; color: var(--c-muted); }
 .cs-icon-button--tiny .cs-icon { inline-size: 16u; block-size: 16u; }
-.cs-feedback { block-size: 36u; padding: 0 16u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); color: var(--c-text-2); font-size: 14u; }
+/* Feedback: a discreet monochrome link in the strip under the frame (Chris, 2026-10-09). Phones: Profile. */
+.cs-underbar { padding: 6u 36u 10u; min-block-size: 28u; display: flex; align-items: center; }
+.cs-feedback-link { padding: 0; border: 0; background: transparent; color: var(--c-muted); font: inherit; font-size: 13u; cursor: pointer; text-decoration: none; }
+.cs-feedback-link:hover { color: var(--c-text); text-decoration: underline; text-underline-offset: 3u; }
+.cs-feedback-link:focus-visible { outline: 2u solid var(--c-action); outline-offset: 2u; }
 
 /* ---- Frame ---- */
-.cs-frame { margin: 28u; min-block-size: 0; min-inline-size: 0; border: 1u solid var(--c-border); border-radius: 16u; box-shadow: var(--sh-frame); overflow: hidden; }
+.cs-frame { margin: 28u 28u 0; min-block-size: 0; min-inline-size: 0; border: 1u solid var(--c-border); border-radius: 16u; box-shadow: var(--sh-frame); overflow: hidden; }
 .cs-frame--well { display: grid; gap: 16u; padding: 16u; background: var(--c-sunken); }
 .cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) 340u; gap: 28u; padding: 20u 24u 20u 32u; background: var(--c-surface); }
 .cs-frame--window { display: flex; flex-direction: column; padding: 0; background: var(--c-raised); }
-.cs-cols--path { grid-template-columns: 240u minmax(0, 1fr) 340u; }
-.cs-cols--reader { grid-template-columns: 240u minmax(0, 1fr) 340u; }
-.cs-cols--topics { grid-template-columns: 240u minmax(0, 1fr) 340u; }
-.cs-cols--topics-list { grid-template-columns: 240u minmax(0, 1fr); }
-.cs-cols--practice { grid-template-columns: 240u minmax(0, 1fr) 340u; }
+.cs-cols--path { grid-template-columns: 300u minmax(0, 1fr) 340u; }
+.cs-cols--reader { grid-template-columns: 300u minmax(0, 1fr) 340u; }
+.cs-cols--topics { grid-template-columns: 300u minmax(0, 1fr) 340u; }
+.cs-cols--topics-list { grid-template-columns: 300u minmax(0, 1fr); }
+.cs-cols--practice { grid-template-columns: 300u minmax(0, 1fr) 340u; }
 .cs-frame--page { display: block; overflow: auto; overscroll-behavior: contain; background: var(--c-surface); }
 .cs-frame > * { min-inline-size: 0; min-block-size: 0; }
 .cs-frame--well > * { overflow: auto; }
@@ -96,16 +100,16 @@
 .cs-rail--reader .cs-rail__item { gap: 12u; }
 .cs-rail--lesson .cs-rail__item { min-block-size: 38u; padding: 0 10u; font-size: 14u; }
 .cs-rail--lesson .cs-rail__item .cs-icon { inline-size: 17u; block-size: 17u; }
-/* The current item in every left pane uses the lesson's current-step rose (Chris, 2026-10-08). */
-.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-accent-tint); }
-.cs-rail__item.is-current .cs-icon { color: var(--c-accent); }
+/* The current item in every left pane uses the action blue; rose reads as an error (Chris, 2026-10-09). */
+.cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-action-subtle); }
+.cs-rail__item.is-current .cs-icon { color: var(--c-action); }
 .cs-count { font-size: 13u; font-weight: 400; color: var(--c-muted); }
-.cs-rail__item.is-current .cs-count { color: var(--c-accent); }
+.cs-rail__item.is-current .cs-count { color: var(--c-action); }
 
 
 /* ---- Markers, tags, bars, chips ---- */
 .cs-marker { inline-size: 24u; block-size: 24u; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 2u solid var(--c-strong); border-radius: 7u; font-size: 12u; color: var(--c-muted); }
-.cs-marker--current { border: 0; background: var(--c-accent); color: var(--c-on-action); font-weight: 600; }
+.cs-marker--current { border: 0; background: var(--c-action); color: var(--c-on-action); font-weight: 600; }
 .cs-marker--locked { border-style: dashed; }
 .cs-marker--locked .cs-icon { inline-size: 13u; block-size: 13u; }
 .cs-tag { display: inline-flex; align-items: center; gap: 6u; block-size: 22u; padding: 0 8u; border-radius: 6u; background: color-mix(in srgb, var(--group) 12%, transparent); color: var(--c-text); font-size: 12u; font-weight: 600; line-height: 1; white-space: nowrap; }
@@ -134,7 +138,7 @@
 /* ---- Phone layout ---- */
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: 16u; }
-  .cs-top { display: none; }
+  .cs-top, .cs-underbar { display: none; }
   .cs-frame { margin: 10u var(--edge-tab-w) 10u 10u; }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }
@@ -169,7 +173,7 @@
 .cs-search[data-open="true"] input { inline-size: 240u; opacity: 1; pointer-events: auto; z-index: var(--z-raised); }
 .cs-search[data-open="true"] .cs-top__search { position: relative; z-index: var(--z-popover); }
 .cs-icon-button[aria-current], .cs-icon-button.is-active { color: var(--c-action); }
-.cs-feedback:hover, .cs-icon-button:hover { color: var(--c-text); }
+.cs-icon-button:hover { color: var(--c-text); }
 
 
 /* ---- Footer: the legal and About links, just below the app's first screen ---- */

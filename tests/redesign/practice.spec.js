@@ -92,7 +92,7 @@ test.describe('Review & Practice', () => {
     }
   });
 
-  test('desktop: the current rail item wears the rose, and the frame is the template well with the three columns', async ({ page }) => {
+  test('desktop: the current rail item wears the action blue (not rose), and the frame is the template well with the three columns', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/practice');
     const frame = page.locator('main#main');
