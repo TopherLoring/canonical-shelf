@@ -47,7 +47,7 @@
 .cs-dots--tight .is-current + span::before { inline-size: calc(6 * var(--u)); }
 
 /* ---- Window well ---- */
-.cs-window-well { flex: 1; min-block-size: 0; padding: calc(16 * var(--u)); gap: calc(16 * var(--u)); background: var(--c-sunken); display: grid; grid-template-columns: minmax(0, 1fr) calc(364 * var(--u)); }
+.cs-window-well { flex: 1; min-block-size: 0; padding: calc(16 * var(--u)); gap: calc(16 * var(--u)); background: var(--c-sunken); display: grid; grid-template-columns: minmax(0, 1fr) calc(370 * var(--u)); }
 .cs-window-well > * { min-inline-size: 0; min-block-size: 0; }
 .cs-lesson-row { display: flex; gap: calc(16 * var(--u)); }
 .cs-lesson-row > * { min-block-size: 0; }

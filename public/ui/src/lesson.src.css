@@ -45,7 +45,7 @@
 .cs-dots--tight .is-current + span::before { inline-size: 6u; }
 
 /* ---- Window well ---- */
-.cs-window-well { flex: 1; min-block-size: 0; padding: 16u; gap: 16u; background: var(--c-sunken); display: grid; grid-template-columns: minmax(0, 1fr) 364u; }
+.cs-window-well { flex: 1; min-block-size: 0; padding: 16u; gap: 16u; background: var(--c-sunken); display: grid; grid-template-columns: minmax(0, 1fr) 370u; }
 .cs-window-well > * { min-inline-size: 0; min-block-size: 0; }
 .cs-lesson-row { display: flex; gap: 16u; }
 .cs-lesson-row > * { min-block-size: 0; }

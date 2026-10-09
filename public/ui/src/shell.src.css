@@ -55,11 +55,11 @@
 .cs-frame--well { display: grid; gap: 16u; padding: 16u; background: var(--c-sunken); }
 .cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) 340u; gap: 28u; padding: 20u 24u 20u 32u; background: var(--c-surface); }
 .cs-frame--window { display: flex; flex-direction: column; padding: 0; background: var(--c-raised); }
-.cs-cols--path { grid-template-columns: 288u minmax(0, 1fr) 340u; }
-.cs-cols--reader { grid-template-columns: 288u minmax(0, 1fr) 340u; }
-.cs-cols--topics { grid-template-columns: 288u minmax(0, 1fr) 340u; }
+.cs-cols--path { grid-template-columns: 288u minmax(0, 1fr) 370u; }
+.cs-cols--reader { grid-template-columns: 288u minmax(0, 1fr) 370u; }
+.cs-cols--topics { grid-template-columns: 288u minmax(0, 1fr) 370u; }
 .cs-cols--topics-list { grid-template-columns: 288u minmax(0, 1fr); }
-.cs-cols--practice { grid-template-columns: 288u minmax(0, 1fr) 340u; }
+.cs-cols--practice { grid-template-columns: 288u minmax(0, 1fr) 370u; }
 .cs-frame--page { display: block; overflow: auto; overscroll-behavior: contain; background: var(--c-surface); }
 .cs-frame > * { min-inline-size: 0; min-block-size: 0; }
 .cs-frame--well > * { overflow: auto; }

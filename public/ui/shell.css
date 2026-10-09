@@ -172,11 +172,11 @@
 .cs-frame--well { display: grid; gap: calc(16 * var(--u)); padding: calc(16 * var(--u)); background: var(--c-sunken); }
 .cs-frame--shelf { display: grid; grid-template-columns: minmax(0, 1fr) calc(340 * var(--u)); gap: calc(28 * var(--u)); padding: calc(20 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)) calc(32 * var(--u)); background: var(--c-surface); }
 .cs-frame--window { display: flex; flex-direction: column; padding: 0; background: var(--c-raised); }
-.cs-cols--path { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
-.cs-cols--reader { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
-.cs-cols--topics { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--path { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(370 * var(--u)); }
+.cs-cols--reader { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(370 * var(--u)); }
+.cs-cols--topics { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(370 * var(--u)); }
 .cs-cols--topics-list { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr); }
-.cs-cols--practice { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(340 * var(--u)); }
+.cs-cols--practice { grid-template-columns: calc(288 * var(--u)) minmax(0, 1fr) calc(370 * var(--u)); }
 .cs-frame--page { display: block; overflow: auto; overscroll-behavior: contain; background: var(--c-surface); }
 .cs-frame > * { min-inline-size: 0; min-block-size: 0; }
 .cs-frame--well > * { overflow: auto; }
