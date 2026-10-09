@@ -94,7 +94,7 @@ test.describe('Shelf home', () => {
     expect(picks.same, 'one passage per day').toBe(true);
     expect(picks.moved, 'a new passage the next day').toBe(true);
     expect(picks.week).toBe(7);
-    expect(picks.count, 'the curated list is about a hundred passages').toBeGreaterThanOrEqual(100);
+    expect(picks.count, 'at least one passage for every day of the year').toBeGreaterThanOrEqual(365);
   });
 
   test('every curated passage is the Berean Standard Bible text at its address', async ({ page }) => {
@@ -111,7 +111,7 @@ test.describe('Shelf home', () => {
         seen.add(address);
         const expected = []; for (let v = start; v <= end; v++) expected.push(verses.get(`${book}.${chapter}.${v}`));
         if (expected.some(t => !t) || expected.join(' ') !== text) bad.push('text differs at ' + address);
-        if (end - start > 3 || text.length > 300) bad.push('too long at ' + address);
+        if (end - start < 1 || end - start > 14) bad.push('must be 2 to 15 verses at ' + address);
       }
       return bad;
     });

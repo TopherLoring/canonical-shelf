@@ -72,8 +72,8 @@
 .cs-chips { display: flex; flex-wrap: wrap; gap: 6u; line-height: normal; }
 .cs-app .cs-chips :is(a, span) { padding: 3u 10u; border-radius: 8u; background: var(--c-raised); border: 1u solid var(--c-hairline); font-size: 13u; color: var(--c-text-2); text-decoration: none; }
 
-/* app: the passage / bookmark card shows its text in the reading face. */
-.shelf-home-reading__text { font-family: var(--f-reading); }
+/* app: the passage / bookmark card shows its text in the reading face, at most five lines (a long passage is read in full in the Bible). */
+.shelf-home-reading__text { font-family: var(--f-reading); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; }
 
 /* ---- Phone ---- */
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {

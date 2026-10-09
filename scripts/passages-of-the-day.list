@@ -1,104 +1,384 @@
-# Passage of the day: the curated list (one address per line; "#" starts a comment). Short, well-known passages.
-# The Shelf shows one a day, in this order, starting over at the end. Text comes from the bundled BSB corpus:
-# after editing, run `bun scripts/build-passages.mjs` to regenerate public/passages-of-the-day.js.
-Genesis 1:1-3
-Genesis 12:2-3
-Genesis 50:19-20
-Exodus 3:14
-Exodus 14:13-14
-Exodus 34:6
-Leviticus 19:18
-Deuteronomy 6:4-5
-Deuteronomy 31:6
-Joshua 1:9
-Ruth 1:16
-1 Samuel 16:7
-1 Kings 19:12
-2 Chronicles 7:14
-Job 19:25-27
-Psalm 1:1-2
-Psalm 8:3-5
-Psalm 19:1-2
-Psalm 23:1-3
-Psalm 23:4
-Psalm 27:1
-Psalm 34:8
-Psalm 42:1-2
-Psalm 46:1-3
-Psalm 90:12
-Psalm 91:1-2
-Psalm 100:1-3
-Psalm 103:1-2
-Psalm 119:105
-Psalm 121:1-2
-Psalm 139:13-14
-Proverbs 3:5-6
-Proverbs 9:10
-Proverbs 16:3
-Ecclesiastes 3:1-3
-Song of Solomon 8:6
-Isaiah 6:8
-Isaiah 9:6
-Isaiah 40:30-31
-Isaiah 41:10
-Isaiah 43:1
-Isaiah 53:5
-Jeremiah 29:11-12
-Jeremiah 31:33
-Lamentations 3:22-24
-Ezekiel 36:26
-Micah 6:8
-Matthew 5:3-6
-Matthew 5:14-15
-Matthew 6:9-10
-Matthew 6:25
-Matthew 7:7-8
-Matthew 11:28-30
-Matthew 22:37-39
-Matthew 28:19-20
-Mark 10:45
-Luke 2:10-11
-Luke 10:27
-Luke 15:20
-John 1:1-3
-John 1:14
-John 3:16-17
-John 8:12
-John 10:10-11
-John 11:25-26
-John 13:34-35
-John 14:1-2
-John 14:6
-John 14:27
-John 15:5
-Acts 1:8
-Acts 17:27-28
-Romans 1:16
-Romans 3:23-24
-Romans 5:1-2
-Romans 5:8
-Romans 6:23
-Romans 8:1
-Romans 8:28
-Romans 8:38-39
-Romans 12:2
-1 Corinthians 13:4-5
-1 Corinthians 13:13
-2 Corinthians 4:16-17
-2 Corinthians 12:9
-Galatians 2:20
-Galatians 5:22-23
-Ephesians 2:8-10
-Philippians 2:5-7
-Philippians 4:6-7
-Philippians 4:8
-1 Thessalonians 5:16-18
-2 Timothy 3:16-17
-Hebrews 4:12
-Hebrews 11:1
-Hebrews 12:1
-James 1:2-4
-1 Peter 5:7
-1 John 1:9
-1 John 4:7-8
-Revelation 21:4
+# Passage of the day: the curated list (one address per line; "#" starts a comment). 2 to 15 verses each; at least 365.
+# Canonical order here. The generated file deals them out in a fixed, evenly spread order (see scripts/build-passages.mjs) so
+# neighbouring days are from different parts of the Bible. Text comes from the bundled BSB corpus.
+# After editing, run `bun scripts/build-passages.mjs` to regenerate public/passages-of-the-day.js.
+Genesis 1:1-5
+Genesis 1:26-31
+Genesis 2:18-24
+Genesis 3:8-15
+Genesis 4:1-10
+Genesis 6:5-8
+Genesis 8:20-22
+Genesis 9:8-17
+Genesis 11:1-9
+Genesis 12:1-4
+Genesis 15:1-6
+Genesis 17:1-8
+Genesis 18:1-8
+Genesis 21:1-7
+Genesis 22:1-14
+Genesis 28:10-17
+Genesis 32:22-30
+Genesis 45:1-8
+Genesis 50:15-21
+Exodus 2:1-10
+Exodus 3:1-12
+Exodus 3:13-15
+Exodus 4:10-12
+Exodus 12:1-13
+Exodus 14:10-14
+Exodus 14:21-31
+Exodus 17:8-13
+Exodus 20:1-11
+Exodus 20:12-17
+Exodus 33:12-17
+Leviticus 19:9-18
+Leviticus 19:33-34
+Numbers 6:22-27
+Numbers 14:6-9
+Numbers 21:4-9
+Deuteronomy 4:1-9
+Deuteronomy 6:1-9
+Deuteronomy 6:20-25
+Deuteronomy 8:1-10
+Deuteronomy 10:12-19
+Deuteronomy 18:15-19
+Deuteronomy 26:1-11
+Deuteronomy 30:11-20
+Deuteronomy 31:1-8
+Deuteronomy 32:1-4
+Deuteronomy 34:1-8
+Joshua 1:1-9
+Joshua 3:14-17
+Joshua 24:14-18
+Judges 6:11-16
+Ruth 1:8-18
+Ruth 2:8-12
+Ruth 4:13-17
+1 Samuel 1:9-20
+1 Samuel 3:1-10
+1 Samuel 16:1-7
+1 Samuel 17:32-37
+1 Samuel 17:45-50
+2 Samuel 7:8-16
+2 Samuel 12:1-9
+1 Kings 3:5-14
+1 Kings 8:22-30
+1 Kings 17:8-16
+1 Kings 19:9-13
+2 Kings 5:1-14
+2 Kings 6:15-17
+1 Chronicles 16:23-34
+1 Chronicles 29:10-13
+2 Chronicles 7:12-16
+Nehemiah 1:4-11
+Nehemiah 8:1-12
+Esther 4:10-16
+Job 1:20-22
+Job 19:23-27
+Job 28:12-23
+Job 38:1-11
+Job 42:1-6
+Psalm 1:1-6
+Psalm 2:7-12
+Psalm 8:1-9
+Psalm 13:1-6
+Psalm 16:5-11
+Psalm 19:7-14
+Psalm 23:1-6
+Psalm 25:1-7
+Psalm 27:1-6
+Psalm 27:7-14
+Psalm 30:1-5
+Psalm 32:1-5
+Psalm 34:1-10
+Psalm 37:1-6
+Psalm 40:1-5
+Psalm 42:1-5
+Psalm 46:1-11
+Psalm 51:1-12
+Psalm 62:1-8
+Psalm 63:1-8
+Psalm 67:1-7
+Psalm 73:21-28
+Psalm 84:1-12
+Psalm 90:1-12
+Psalm 91:1-8
+Psalm 95:1-7
+Psalm 96:1-9
+Psalm 98:1-9
+Psalm 100:1-5
+Psalm 103:1-13
+Psalm 107:1-9
+Psalm 111:1-10
+Psalm 118:19-29
+Psalm 119:1-8
+Psalm 119:105-112
+Psalm 121:1-8
+Psalm 130:1-8
+Psalm 133:1-3
+Psalm 139:1-12
+Psalm 139:13-18
+Psalm 139:23-24
+Psalm 145:1-13
+Psalm 150:1-6
+Proverbs 2:1-8
+Proverbs 3:1-12
+Proverbs 3:13-18
+Proverbs 6:6-11
+Proverbs 8:1-11
+Proverbs 8:22-31
+Proverbs 15:1-4
+Proverbs 16:1-9
+Proverbs 22:1-9
+Proverbs 31:10-20
+Proverbs 31:26-31
+Ecclesiastes 3:1-8
+Ecclesiastes 3:9-14
+Ecclesiastes 12:1-8
+Ecclesiastes 12:9-14
+Song of Solomon 8:6-7
+Isaiah 5:1-7
+Isaiah 6:1-8
+Isaiah 7:10-14
+Isaiah 9:1-7
+Isaiah 11:1-9
+Isaiah 26:3-4
+Isaiah 30:15-21
+Isaiah 35:1-10
+Isaiah 40:1-11
+Isaiah 40:25-31
+Isaiah 41:8-13
+Isaiah 42:1-9
+Isaiah 43:1-7
+Isaiah 43:16-21
+Isaiah 52:7-10
+Isaiah 53:1-9
+Isaiah 53:10-12
+Isaiah 55:1-9
+Isaiah 55:10-13
+Isaiah 58:6-12
+Isaiah 61:1-4
+Isaiah 61:10-11
+Isaiah 65:17-25
+Jeremiah 1:4-10
+Jeremiah 17:5-10
+Jeremiah 23:1-6
+Jeremiah 29:4-14
+Jeremiah 31:31-34
+Lamentations 3:19-33
+Ezekiel 34:11-16
+Ezekiel 36:24-28
+Ezekiel 37:1-14
+Daniel 3:16-28
+Daniel 6:10-23
+Daniel 7:9-14
+Hosea 2:14-20
+Hosea 11:1-9
+Joel 2:12-17
+Amos 5:14-24
+Jonah 2:1-10
+Jonah 3:1-10
+Jonah 4:1-11
+Micah 4:1-5
+Micah 6:6-8
+Micah 7:7-9
+Micah 7:18-20
+Habakkuk 3:17-19
+Zephaniah 3:14-20
+Zechariah 9:9-12
+Malachi 4:1-6
+Matthew 2:1-12
+Matthew 3:13-17
+Matthew 4:1-11
+Matthew 4:18-22
+Matthew 5:1-12
+Matthew 5:13-16
+Matthew 5:38-48
+Matthew 6:9-15
+Matthew 6:25-34
+Matthew 7:7-12
+Matthew 7:24-29
+Matthew 8:23-27
+Matthew 9:9-13
+Matthew 11:25-30
+Matthew 13:1-9
+Matthew 13:18-23
+Matthew 14:13-21
+Matthew 14:22-33
+Matthew 16:13-20
+Matthew 16:24-28
+Matthew 18:12-14
+Matthew 18:15-20
+Matthew 19:16-26
+Matthew 20:1-15
+Matthew 20:25-28
+Matthew 21:1-11
+Matthew 22:34-40
+Matthew 25:1-13
+Matthew 25:14-28
+Matthew 25:31-40
+Matthew 26:36-46
+Matthew 27:45-54
+Matthew 28:1-10
+Matthew 28:16-20
+Mark 1:9-15
+Mark 2:1-12
+Mark 4:35-41
+Mark 6:30-44
+Mark 8:27-35
+Mark 10:13-16
+Mark 10:17-27
+Mark 12:28-34
+Mark 15:33-39
+Mark 16:1-8
+Luke 1:26-38
+Luke 2:1-14
+Luke 4:16-21
+Luke 5:1-11
+Luke 6:27-36
+Luke 7:36-50
+Luke 8:4-15
+Luke 10:25-37
+Luke 10:38-42
+Luke 11:1-13
+Luke 12:13-21
+Luke 12:22-34
+Luke 15:1-7
+Luke 15:11-24
+Luke 16:19-31
+Luke 18:1-8
+Luke 18:9-14
+Luke 19:1-10
+Luke 22:14-20
+Luke 22:39-46
+Luke 23:32-43
+Luke 24:13-27
+Luke 24:36-49
+John 1:1-14
+John 3:1-8
+John 3:14-21
+John 4:7-15
+John 6:1-14
+John 6:35-40
+John 8:1-11
+John 9:1-12
+John 10:1-10
+John 10:11-18
+John 11:17-27
+John 11:32-44
+John 13:1-15
+John 13:31-35
+John 14:1-7
+John 14:15-21
+John 15:1-11
+John 15:12-17
+John 17:20-23
+John 20:11-18
+John 20:24-29
+John 21:15-19
+Acts 1:6-11
+Acts 2:1-13
+Acts 2:36-42
+Acts 4:8-12
+Acts 7:54-60
+Acts 8:26-36
+Acts 9:10-19
+Acts 10:34-43
+Acts 11:19-26
+Acts 16:25-34
+Acts 17:22-31
+Romans 3:21-26
+Romans 5:1-11
+Romans 5:15-21
+Romans 6:1-11
+Romans 7:15-25
+Romans 8:1-11
+Romans 8:18-25
+Romans 8:26-30
+Romans 8:31-39
+Romans 10:5-13
+Romans 11:33-36
+Romans 12:1-8
+Romans 12:9-21
+Romans 13:8-10
+1 Corinthians 1:18-25
+1 Corinthians 11:23-26
+1 Corinthians 12:4-13
+1 Corinthians 12:14-27
+1 Corinthians 13:1-13
+1 Corinthians 15:1-11
+1 Corinthians 15:50-58
+2 Corinthians 4:5-12
+2 Corinthians 4:13-18
+2 Corinthians 5:14-21
+2 Corinthians 12:7-10
+Galatians 2:15-21
+Galatians 3:23-29
+Galatians 5:19-26
+Galatians 6:1-10
+Ephesians 1:3-14
+Ephesians 1:15-23
+Ephesians 2:1-10
+Ephesians 2:11-22
+Ephesians 3:14-21
+Ephesians 4:1-6
+Ephesians 6:10-18
+Philippians 1:3-11
+Philippians 2:1-11
+Philippians 3:7-14
+Philippians 4:4-9
+Colossians 1:9-14
+Colossians 1:15-20
+Colossians 3:1-4
+Colossians 3:12-17
+1 Thessalonians 4:13-18
+1 Thessalonians 5:1-11
+1 Timothy 1:12-17
+1 Timothy 6:6-12
+2 Timothy 1:6-14
+2 Timothy 2:8-13
+2 Timothy 3:14-17
+2 Timothy 4:6-8
+Titus 2:11-14
+Hebrews 1:1-4
+Hebrews 4:12-16
+Hebrews 10:19-25
+Hebrews 11:4-16
+Hebrews 12:1-11
+Hebrews 12:25-29
+Hebrews 13:1-8
+Hebrews 13:20-21
+James 1:2-8
+James 1:19-27
+James 2:14-26
+James 3:1-12
+James 4:1-10
+James 5:7-11
+James 5:13-18
+1 Peter 1:3-9
+1 Peter 1:13-21
+1 Peter 2:1-10
+1 Peter 4:7-11
+1 Peter 4:12-19
+1 Peter 5:1-7
+2 Peter 1:2-11
+2 Peter 1:16-21
+1 John 1:1-4
+1 John 1:5-10
+1 John 2:1-6
+1 John 3:1-3
+1 John 3:11-18
+1 John 3:19-24
+1 John 4:7-12
+1 John 4:13-21
+1 John 5:11-15
+Jude 1:20-25
+Revelation 1:4-8
+Revelation 3:14-22
+Revelation 5:1-14
+Revelation 7:9-17
+Revelation 21:1-8
+Revelation 21:22-27
+Revelation 22:1-7
+Revelation 22:12-17
