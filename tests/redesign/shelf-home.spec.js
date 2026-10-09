@@ -20,10 +20,13 @@ test.describe('Shelf home', () => {
 
     const [psalms, genesis, obadiah] = [await widthOf(page, 19), await widthOf(page, 1), await widthOf(page, 31)];
     expect(psalms, 'Psalms (2,461 verses) is wider than Genesis').toBeGreaterThan(genesis);
-    expect(genesis, 'Genesis is wider than Obadiah (21 verses)').toBeGreaterThan(obadiah * 3);
-    const runs = await page.evaluate(() => [...document.querySelectorAll('.ui-bookshelf-book-run')].map(r => r.getBoundingClientRect().width));
-    expect(runs[1] / runs[0], 'the New Testament fills 80% of its shelf').toBeGreaterThan(0.78);
-    expect(runs[1] / runs[0]).toBeLessThan(0.82);
+    expect(genesis, 'Genesis is wider than Obadiah (21 verses); the template scales width by the square root of length').toBeGreaterThan(obadiah * 2);
+    const runs = await page.evaluate(() => [...document.querySelectorAll('.cs-shelf-row')].map(row => {
+      const spines = [...row.querySelectorAll('.cs-spine')];
+      return spines.at(-1).getBoundingClientRect().right - spines[0].getBoundingClientRect().left;
+    }));
+    expect(runs[1] / runs[0], 'the New Testament fills about 80% of its shelf').toBeGreaterThan(0.74);
+    expect(runs[1] / runs[0]).toBeLessThan(0.84);
 
     expect(await page.evaluate(() => new Set([...document.querySelectorAll('[data-book-select]')].map(b => b.dataset.group)).size), 'books carry nine group colours').toBe(9);
     await expect(page.locator('.shelf-home__legend li')).toContainText(GROUPS);
@@ -59,7 +62,7 @@ test.describe('Shelf home', () => {
     });
     expect(fill, 'chapter 3 of 21 is about 14%').toBeGreaterThan(0.1);
     expect(fill).toBeLessThan(0.2);
-    await expect(page.locator('.shelf-home-continue a')).toHaveAttribute('href', /lesson=begin/);
+    await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin/);
   });
 
   test('My Notes shows the newest note and opens it', async ({ page }) => {
@@ -73,7 +76,7 @@ test.describe('Shelf home', () => {
     });
     await page.reload();
     await expect(page.locator('[data-home-notes]')).toContainText('Born again, but how?');
-    await expect(page.locator('[data-home-notes] a')).toHaveAttribute('href', /\/bible\?/);
+    await expect(page.locator('a[data-home-notes]')).toHaveAttribute('href', /\/bible\?/);
   });
 
   test('phone: the whole shelf fits without sideways scroll, with the panel below it', async ({ page }) => {
@@ -81,8 +84,10 @@ test.describe('Shelf home', () => {
     await page.goto('/home');
     await expect(home(page)).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
-    const tops = await page.evaluate(() => ({ shelf: document.querySelector('.ui-bookshelf').getBoundingClientRect().top, panel: document.querySelector('.shelf-book-panel').getBoundingClientRect().top }));
-    expect(tops.panel).toBeGreaterThan(tops.shelf);
+    const tops = await page.evaluate(() => ({ shelf: document.querySelector('.cs-shelf').getBoundingClientRect().top, panel: document.querySelector('.shelf-book-dock').getBoundingClientRect().top }));
+    expect(tops.panel, 'the selected book docks below the shelf').toBeGreaterThan(tops.shelf);
+    await expect(page.locator('.shelf-book-panel')).toBeHidden();
+    await expect(page.locator('.shelf-book-dock')).toContainText('Genesis');
     expect(await widthOf(page, 19), 'books keep their relative widths on a phone').toBeGreaterThan(await widthOf(page, 31));
   });
 });

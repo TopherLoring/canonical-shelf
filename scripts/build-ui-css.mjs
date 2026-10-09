@@ -16,7 +16,8 @@ const OUTPUTS = {
   'public/ui/screens/practice.css': { layer: 'screens', parts: ['practice.src.css'] },
   'public/ui/screens/topics.css': { layer: 'screens', parts: ['topics.src.css'] },
   'public/ui/screens/learning-path.css': { layer: 'screens', parts: ['path.src.css'] },
-  'public/ui/screens/reader.css': { layer: 'screens', parts: ['reader.src.css'] }
+  'public/ui/screens/reader.css': { layer: 'screens', parts: ['reader.src.css'] },
+  'public/ui/screens/shelf-home.css': { layer: 'screens', parts: ['shelf.src.css'] }
 };
 const units = /(^|[^\w.#-])(-?\d*\.?\d+)u(?![\w-])/g;
 const check = process.argv.includes('--check');

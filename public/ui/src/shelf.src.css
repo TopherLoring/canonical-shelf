@@ -1,0 +1,114 @@
+/* Shelf (template: Main.dc.html, shelf screen). Lengths are in board units (u). Ported from docs/design/templates
+   css/src/screens.css; the rules marked "app" are the few things the app adds around the template's structure. */
+
+/* app: the screen's wrapper joins the frame's two columns (desktop) or stacks its parts (phone). */
+.cs-frame--shelf { grid-template-rows: minmax(0, 1fr); }
+.cs-frame--shelf > .shelf-home { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; min-block-size: 0; min-inline-size: 0; }
+.shelf-home > * { min-block-size: 0; min-inline-size: 0; }
+.shelf-home :where(h1, h2, p, dl, ul, dd) { margin: 0; }
+.shelf-home :where(ul) { padding: 0; list-style: none; }
+.shelf-home .shelf-phone-only { display: none; }
+
+.cs-shelf-main { display: flex; flex-direction: column; gap: 14u; overflow: auto; }
+.cs-shelf-intro { display: flex; align-items: center; gap: 36u; }
+.cs-title { font-family: var(--f-wordmark); font-size: 62u; font-weight: 700; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+.cs-title em { font-style: italic; color: var(--c-text-2); }
+.cs-shelf-intro p { max-inline-size: 460u; font-family: var(--f-reading); font-size: 17u; line-height: 1.6; color: var(--c-text-2); }
+.cs-shelf { --spine: 1; inline-size: 100%; padding: 4u 8u 0; }
+.cs-shelf-row { block-size: calc(140u * var(--spine)); padding: 0 12u; display: flex; align-items: flex-end; }
+.cs-bookend { flex: 0 0 7u; block-size: calc(70u * var(--spine)); margin: 0 4u; border-radius: 3u 3u 0 0; background: linear-gradient(90deg, var(--c-iron) 0%, var(--c-iron-light) 50%, var(--c-iron) 100%); box-shadow: 0 0 0 1u var(--c-iron-edge), 2u 0 4u var(--shade-20); }
+.cs-shelf-room { flex: var(--w) 1 0; }
+.cs-spine {
+  --dark: color-mix(in srgb, var(--group) 58%, black);
+  --dark-edge: color-mix(in srgb, var(--group) 64%, black);
+  --light: color-mix(in srgb, var(--group) 84%, white);
+  position: relative; flex: var(--w) 1 0; min-inline-size: 0; block-size: calc(var(--h) * 1u * var(--spine));
+  padding: 0; border: 0; border-radius: 3u 3u 2u 2u;
+  background: repeating-linear-gradient(0deg, var(--shine-3) 0, var(--shine-3) 1u, transparent 1u, transparent 3u), linear-gradient(90deg, var(--dark) 0%, var(--group) 14%, var(--light) 44%, var(--group) 78%, var(--dark-edge) 100%);
+  box-shadow: inset 0 1u 0 var(--shine-25), 1u 0 0 var(--ink-20);
+}
+.cs-spine__cap { box-sizing: content-box; position: absolute; inset-block-start: calc(7u * var(--spine)); inset-inline: 2u; block-size: calc(5u * var(--spine)); border-block: 1u solid var(--c-gilt); opacity: 0.8; }
+.cs-spine__cap--low { inset-block-start: auto; inset-block-end: calc(7u * var(--spine)); }
+.cs-spine__rib { position: absolute; inset-block-start: 26%; inset-inline: 0; block-size: calc(4u * var(--spine)); border-radius: 2u; background: var(--dark); box-shadow: 0 1u 0 var(--shine-20); }
+.cs-spine__rib--low { inset-block-start: 70%; }
+/* Book names show only on hover or keyboard focus (ui.shelf.final). */
+.cs-spine:hover::after, .cs-spine:focus-visible::after { content: attr(data-book); position: absolute; inset-block-end: calc(100% + 6u); inset-inline-start: 50%; translate: -50% 0; padding: 2u 8u; border-radius: 6u; background: var(--c-plaque); color: var(--c-wood-dark); font-size: 12u; white-space: nowrap; box-shadow: 0 1u 2u var(--shade-25); z-index: var(--z-popover); pointer-events: none; }
+.cs-spine.is-selected { transform: translateY(calc(-8u * var(--spine))); box-shadow: 0 12u 18u var(--ink-30), 0 0 0 2u var(--c-surface), 0 0 0 4u var(--c-action); z-index: var(--z-raised); }
+.cs-spine.is-leaning { transform-origin: 0 100%; transform: rotate(-12deg); margin-inline-start: calc(var(--lean) * 1u * var(--spine)); }
+.cs-plank {
+  box-sizing: content-box; position: relative; block-size: calc(18u * var(--spine)); margin: 0 0 calc(26u * var(--spine)); border-radius: 6u;
+  background:
+    repeating-linear-gradient(90deg, transparent 0, transparent 37u, var(--shine-6) 38u, transparent 40u, var(--shade-8) 71u, transparent 73u, transparent 113u),
+    repeating-linear-gradient(178deg, transparent 0, var(--shine-4) 2u, var(--shade-7) 4u, transparent 6u),
+    linear-gradient(180deg, var(--c-wood-light) 0%, var(--c-wood) 55%, var(--c-wood-dark) 100%);
+  border: 1u solid var(--c-wood-edge);
+  box-shadow: inset 0 1u 0 var(--c-wood-shine), 0 10u 14u var(--ink-22), 0 2u 3u var(--ink-20);
+}
+.cs-plank__foot { position: absolute; inset-block-start: 100%; inset-inline-start: 8%; inline-size: 12u; block-size: calc(10u * var(--spine)); border-radius: 0 0 5u 5u; background: linear-gradient(90deg, var(--c-wood-dark), var(--c-wood-light)); box-shadow: 0 4u 6u var(--ink-15); }
+.cs-plank__foot--end { inset-inline-start: auto; inset-inline-end: 8%; }
+.cs-plaque { position: absolute; inset-inline-start: 50%; inset-block-start: 50%; translate: -50% -50%; padding: 1u 12u; border-radius: 6u; background: var(--c-plaque); color: var(--c-wood-dark); font-size: 12u; box-shadow: 0 1u 2u var(--shade-25); white-space: nowrap; }
+.cs-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6u 16u; margin: 0; padding: 0; list-style: none; }
+.cs-legend li { display: flex; align-items: center; gap: 6u; font-size: 13u; color: var(--c-text-2); }
+.cs-swatch { inline-size: 12u; block-size: 12u; border-radius: 3u; background: var(--group); }
+.cs-continue { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16u; }
+.cs-continue__card { display: flex; flex-direction: column; gap: 3u; padding: 14u 18u; color: var(--c-text); text-decoration: none; }
+.cs-app a.cs-continue__card { color: var(--c-text); }
+.cs-continue__card .cs-caption { font-size: 13u; }
+.cs-continue__title { font-family: var(--f-display); font-size: 19u; font-weight: 600; }
+.cs-continue__note { font-size: 16u; line-height: 1.45; }
+.cs-continue__go { font-size: 15u; color: var(--c-action); }
+.cs-book { padding: 22u; display: flex; flex-direction: column; gap: 12u; border-radius: 14u; background: var(--c-sunken); border: 1u solid var(--c-hairline); overflow: auto; }
+.cs-book__meta { display: flex; align-items: center; gap: 8u; font-size: 13u; color: var(--c-muted); }
+.cs-book__head { display: flex; flex-direction: column; gap: 2u; }
+.cs-book__head h2 { font-family: var(--f-display); font-size: min(40u, var(--type-max)); font-weight: 600; line-height: 1.05; }
+.cs-book__tagline { font-family: var(--f-display); font-size: 18u; font-style: italic; color: var(--c-text-2); }
+.cs-book__synopsis { font-family: var(--f-reading); font-size: 16u; line-height: 1.6; }
+.cs-book .cs-split { color: var(--c-text-2); }
+.cs-book__overview { font-size: 15u; text-align: center; }
+.cs-book__facts { margin-block-start: 6u; padding-block-start: 14u; display: flex; flex-direction: column; gap: 12u; border-block-start: 1u solid var(--c-hairline); }
+.cs-book__facts > div { display: flex; flex-direction: column; gap: 2u; }
+.cs-book__facts dt { font-size: 13u; color: var(--c-muted); }
+.cs-book__facts dd { font-size: 15u; line-height: 1.45; margin: 0; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 6u; line-height: normal; }
+.cs-app .cs-chips :is(a, span) { padding: 3u 10u; border-radius: 8u; background: var(--c-raised); border: 1u solid var(--c-hairline); font-size: 13u; color: var(--c-text-2); text-decoration: none; }
+
+/* app: a first-time visitor's orientation prompt sits where the template has nothing (moves to the Learning Path in the next step). */
+.shelf-home-orient { flex-direction: row; align-items: center; justify-content: space-between; gap: 16u; }
+.shelf-home-orient__actions { display: flex; gap: 8u; }
+.cs-app a.cs-button.shelf-home-orient__begin { color: var(--c-on-action); }
+
+/* ---- Phone ---- */
+@container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
+  .cs-frame--shelf > .shelf-home { display: flex; flex-direction: column; flex: 1; grid-column: auto; }
+  .shelf-home .shelf-phone-only { display: block; }
+  .shelf-home .cs-dock.shelf-phone-only { display: flex; }
+  .shelf-home .cs-split.shelf-phone-only { display: flex; }
+  .shelf-home .shelf-desktop-only { display: none; }
+  .cs-shelf-main { flex: 1; overflow: auto; }
+  .cs-shelf-intro { flex-direction: column; align-items: flex-start; gap: 0; }
+  .cs-title { font-size: 34u; }
+  .cs-title br { display: none; }
+  .cs-title em::before { content: ' '; }
+  .cs-shelf-intro p { display: none; }
+  .cs-scroll--shelf { gap: 10u; padding-block-start: 14u; }
+  .cs-continue { grid-template-columns: minmax(0, 1fr); gap: 12u; }
+  .cs-start { display: flex; flex-direction: column; gap: 8u; }
+  .cs-start .cs-continue__card { padding: 12u 16u; gap: 4u; }
+  .cs-start .cs-continue__title { font-size: 17u; line-height: 1.25; }
+  .cs-start .cs-continue__note { font-size: 15u; line-height: 1.4; }
+  .cs-start .cs-bar { margin-block-start: 4u; }
+  .cs-dock { flex: none; display: flex; flex-direction: column; gap: 6u; padding: 10u 14u 12u; background: var(--c-sunken); border-block-start: 1u solid var(--c-border); }
+  .cs-dock__meta { display: flex; align-items: center; gap: 8u; font-size: 12u; color: var(--c-muted); }
+  .cs-dock__main { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'text btn' 'text det'; column-gap: 12u; row-gap: 2u; align-items: center; }
+  .cs-dock__text { grid-area: text; display: flex; flex-direction: column; gap: 1u; min-inline-size: 0; }
+  .cs-dock__text strong { font-family: var(--f-display); font-size: 24u; font-weight: 600; line-height: 1.1; }
+  .cs-dock__text span { font-family: var(--f-display); font-size: 14u; font-style: italic; color: var(--c-text-2); }
+  .cs-dock .cs-button { grid-area: btn; }
+  .cs-dock__details { grid-area: det; justify-self: center; font-size: 13u; font-weight: 600; }
+  .cs-shelf { --spine: 0.5; padding: 4u 0 0; }
+  .cs-shelf-row { padding: 0 4u; }
+  .cs-bookend { flex-basis: 5u; margin: 0 2u; }
+  .cs-plaque { font-size: 10u; padding: 1u 8u; }
+  .cs-legend { justify-content: flex-start; gap: 4u 10u; }
+  .cs-legend li { font-size: 11u; gap: 5u; }
+}
