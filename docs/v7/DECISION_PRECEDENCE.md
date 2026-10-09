@@ -717,8 +717,7 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `shell.edge-tabs`
 
-- **Current** · 2026-10-08 · Owner decision (Chris) · `edge-tabs-sit-in-a-reserved-strip-at-the-app-edg`
-  Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size
+
 
 ### `shell.footer`
 
@@ -1470,6 +1469,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
 
+### `ui.shell.phone-frame`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `phone-frame-equal-margins`
+  On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip.
+  *Why:* Owner clarified 2026-10-09: bind the content area, not the tab edge
+
 ### `ui.tablet.responsive-options`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
@@ -1537,6 +1542,7 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ## Resolved questions
 
+- 2026-10-09: **Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly?** → Phone frame margins equal both sides; content padding clears the tabs; tab may overlap the surface slightly. (decision `phone-frame-equal-margins`)
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch
 - 2026-10-04: **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** → Checkpoint (picked by Claude at Chris's request) (decision `ui.naming.unit-check.checkpoint`)
 - 2026-10-04: **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** → Approved: Reading the Bible Well: The Library and Its Story (decision `curriculum.module1.title.v2`)

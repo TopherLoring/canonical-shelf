@@ -139,9 +139,12 @@
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: 16u; }
   .cs-top, .cs-underbar { display: none; }
-  .cs-frame { margin: 10u var(--edge-tab-w) 10u 10u; }
+  .cs-frame { margin: 10u; }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }
+  /* The card surface runs the same distance from the right edge as from the left. Only its content keeps clear of the edge tabs,
+     which may overlap the surface slightly (the tab strip is wider than the 10u margin). */
+  .cs-frame, .cs-frame--well, .cs-frame--shelf, .cs-frame--window, .cs-frame--page { padding-inline-end: var(--tab-clear); }
   .cs-frame--well.cs-cols--reader { background: var(--c-surface); }
   .cs-scroll { flex: 1; min-block-size: 0; overflow: auto; display: flex; flex-direction: column; gap: 14u; padding: 16u 24u 24u 16u; }
   .cs-heading { padding: 0; }

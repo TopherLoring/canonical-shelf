@@ -5,7 +5,8 @@
 
 /* Defined on the shell, where --u exists, so the scaled shadows resolve. */
 .cs-shell {
-  --edge-tab-w: calc(28 * var(--u)); /* edge tabs sit in this strip; the frame never extends into it */
+  --edge-tab-w: calc(28 * var(--u)); /* edge tabs sit in this strip at the right edge */
+  --tab-clear: calc(var(--edge-tab-w) - calc(10 * var(--u)) + calc(4 * var(--u))); /* phone: how far a frame's content stays from its right edge so no text sits under a tab */
   --c-page: var(--color-page);
   --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
   --c-surface: var(--color-surface);
@@ -256,9 +257,12 @@
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-shell { --u: calc(min(100cqw / 390, 100cqh / 844) * var(--text-size-factor, 1)); grid-template-rows: minmax(0, 1fr) auto; font-size: calc(16 * var(--u)); }
   .cs-top, .cs-underbar { display: none; }
-  .cs-frame { margin: calc(10 * var(--u)) var(--edge-tab-w) calc(10 * var(--u)) calc(10 * var(--u)); }
+  .cs-frame { margin: calc(10 * var(--u)); }
   .cs-frame--well, .cs-frame--shelf { display: flex; flex-direction: column; padding: 0; gap: 0; }
   .cs-frame--shelf { background: var(--c-surface); }
+  /* The card surface runs the same distance from the right edge as from the left. Only its content keeps clear of the edge tabs,
+     which may overlap the surface slightly (the tab strip is wider than the calc(10 * var(--u)) margin). */
+  .cs-frame, .cs-frame--well, .cs-frame--shelf, .cs-frame--window, .cs-frame--page { padding-inline-end: var(--tab-clear); }
   .cs-frame--well.cs-cols--reader { background: var(--c-surface); }
   .cs-scroll { flex: 1; min-block-size: 0; overflow: auto; display: flex; flex-direction: column; gap: calc(14 * var(--u)); padding: calc(16 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)) calc(16 * var(--u)); }
   .cs-heading { padding: 0; }

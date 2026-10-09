@@ -61,7 +61,7 @@ function savedReading() {
     const state = JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1') || '{}');
     const book = Number(state.lastBook) || 0;
     const chapter = Number(state.lastChapter);
-    return book >= 1 && book <= 66 ? { book, chapter: Number.isInteger(chapter) && chapter > 0 ? chapter : null, excerpt: String(state.excerpt || '') } : null;
+    return book >= 1 && book <= 66 ? { book, chapter: Number.isInteger(chapter) && chapter > 0 ? chapter : null } : null;
   } catch {
     return null;
   }
@@ -141,19 +141,16 @@ export function passageOfTheDay(date = new Date()) {
   return { book, chapter, start, end, text, label: bookLabel(book) + ' ' + chapter + ':' + verseSpan(start, end) };
 }
 
-// One card, two states: a bookmark back into the Reader when there is a saved reading place, otherwise the Passage of the day.
+// The Passage of the day card: the passage, its address, and a line to explore it in the Reader, plus (once there is a saved
+// reading place) a line to continue where the reader stopped. Exploring never moves the saved place (explore=1).
 function readingCard(reading, esc, date) {
-  if (reading?.chapter) {
-    const label = bookLabel(reading.book) + ' ' + reading.chapter;
-    const text = reading.excerpt ? reading.excerpt + '…' : 'Pick up where you stopped.';
-    return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="bookmark" href="/bible?book=' + reading.book + '&chapter=' + reading.chapter +
-      '"><span class="cs-caption">Continue reading · ' + esc(label) + '</span><span class="cs-continue__note shelf-home-reading__text">' + esc(text) +
-      '</span><span class="cs-continue__go">Resume ' + esc(label) + ' →</span></a>';
-  }
   const passage = passageOfTheDay(date);
-  return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage" href="/bible?book=' + passage.book + '&chapter=' + passage.chapter +
-    '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '"><span class="cs-caption">Passage of the day · ' + esc(passage.label) +
-    '</span><span class="cs-continue__note shelf-home-reading__text">' + esc(passage.text) + '</span><span class="cs-continue__go">Open in the Bible →</span></a>';
+  const explore = '/bible?book=' + passage.book + '&chapter=' + passage.chapter + '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '&explore=1';
+  const resume = reading?.chapter
+    ? '<a class="cs-continue__go" data-home-continue href="/bible?book=' + reading.book + '&chapter=' + reading.chapter + '">Continue in the Reader · ' + esc(bookLabel(reading.book) + ' ' + reading.chapter) + ' →</a>' : '';
+  return '<div class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage"><span class="cs-caption">Passage of the day · ' + esc(passage.label) +
+    '</span><p class="cs-continue__note shelf-home-reading__text">' + esc(passage.text) + '</p><div class="shelf-home-reading__actions">' +
+    '<a class="cs-continue__go" data-home-explore href="' + explore + '">Explore in the Reader →</a>' + resume + '</div></div>';
 }
 
 export function mount(container, ctx) {

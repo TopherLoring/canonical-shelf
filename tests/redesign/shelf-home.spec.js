@@ -65,7 +65,7 @@ test.describe('Shelf home', () => {
     await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin/);
   });
 
-  test('with no saved reading place the card is the Passage of the day, and it opens on those verses', async ({ page }) => {
+  test('the card is the Passage of the day with its address and an Explore line that opens those verses', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
     const card = page.locator('[data-home-reading="passage"]');
@@ -73,10 +73,10 @@ test.describe('Shelf home', () => {
     await expect(card).toContainText('Passage of the day');
     await expect(card).toContainText(/[A-Z0-9][A-Za-z0-9 ]+ \d+:\d+/);
     expect((await card.locator('.shelf-home-reading__text').innerText()).length).toBeGreaterThan(20);
-    await expect(card).toContainText('Open in the Bible');
-    const href = await card.getAttribute('href');
-    expect(href).toMatch(/^\/bible\?book=\d+&chapter=\d+&start=\d+/);
-    await card.click();
+    await expect(card.locator('[data-home-continue]'), 'no Continue line before anything has been read').toHaveCount(0);
+    await expect(card.locator('[data-home-explore]')).toContainText('Explore in the Reader');
+    await expect(card.locator('[data-home-explore]')).toHaveAttribute('href', /^\/bible\?book=\d+&chapter=\d+&start=\d+/);
+    await card.locator('[data-home-explore]').click();
     await expect(page.locator('[data-reader]')).toBeVisible();
     await expect(page.locator('[data-reader]')).toHaveAttribute('data-selected-verse', /\d+/);
   });
@@ -118,28 +118,48 @@ test.describe('Shelf home', () => {
     expect(problems).toEqual([]);
   });
 
-  test('with a saved reading place the card is a bookmark that resumes in the Reader', async ({ page }) => {
-    await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3, excerpt: 'Now there was a man of the Pharisees named Nicodemus' })));
+  test('with a saved reading place the card also offers to continue in the Reader, beside the passage', async ({ page }) => {
+    await page.addInitScript(() => { if (!localStorage.getItem('canonical-shelf-bible-state-v1')) localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })); });
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
-    const card = page.locator('[data-home-reading="bookmark"]');
-    await expect(card).toContainText('Continue reading · John 3');
-    await expect(card).toContainText('Nicodemus');
-    await expect(page.locator('[data-home-reading="passage"]')).toHaveCount(0);
-    await card.click();
+    const card = page.locator('[data-home-reading="passage"]');
+    await expect(card).toContainText('Passage of the day');
+    await expect(card.locator('[data-home-continue]')).toContainText('Continue in the Reader · John 3');
+    await card.locator('[data-home-continue]').click();
     await expect(page.locator('[data-reader]')).toHaveAttribute('data-book', '43');
     await expect(page.locator('[data-reader]')).toHaveAttribute('data-chapter', '3');
   });
 
-  test('opening a chapter in the Reader makes the Shelf offer to continue it, with the chapter opening as the excerpt', async ({ page }) => {
+  test('opening a chapter in the Reader makes the Shelf offer to continue it', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/bible?book=43&chapter=3');
     await expect(page.locator('[data-reader]')).toBeVisible();
     await page.goto('/home');
-    const card = page.locator('[data-home-reading="bookmark"]');
-    await expect(card).toContainText('Continue reading · John 3');
-    await expect(card.locator('.shelf-home-reading__text')).toContainText('Nicodemus');
+    await expect(page.locator('[data-home-continue]')).toContainText('Continue in the Reader · John 3');
     await expect(page.locator('#shelf-selected-title')).toHaveText('John');
+  });
+
+  test('exploring the passage of the day does not move the saved reading place', async ({ page }) => {
+    await page.addInitScript(() => { if (!localStorage.getItem('canonical-shelf-bible-state-v1')) localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })); });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/home');
+    await page.locator('[data-home-explore]').click();
+    await expect(page.locator('[data-reader]')).toBeVisible();
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1')));
+    expect(saved.lastBook).toBe(43);
+    expect(saved.lastChapter).toBe(3);
+    await page.goto('/home');
+    await expect(page.locator('[data-home-continue]')).toContainText('John 3');
+  });
+
+  test('the selected book shows its name above the spine, on a tap as well as on hover', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/home');
+    const shown = sel => page.evaluate(s => getComputedStyle(document.querySelector(s), '::after').content, sel);
+    await page.locator('[data-book-select="19"]').click();
+    expect(await shown('[data-book-select="19"]')).toContain('Psalm');
+    await page.locator('[data-book-select="1"]').hover();
+    expect(await shown('[data-book-select="1"]')).toContain('Genesis');
   });
 
   test('phone: the whole shelf fits without sideways scroll, with the panel below it', async ({ page }) => {

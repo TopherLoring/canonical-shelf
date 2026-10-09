@@ -13,9 +13,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
-- **Conflict:** Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly? (`phone-frame-right-edge`, owner: unassigned, since 2026-10-09)
-  - Request: i wanted the card surface on mobile to extend an equal distance from the right edge as it does on the left and only create a boundary for the text content to not hide behind the theologian tab, but the theologian is allowed to minimally overlap the surface on mobile view
-  - Conflicts with `edge-tabs-sit-in-a-reserved-strip-at-the-app-edg`: “Edge tabs sit in a reserved strip at the app edge; the page frame never extends into it, and a test asserts no overlap at every size”
 
 ## Phases
 
@@ -144,7 +141,6 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `release.gates` | undefined | Agent default | undefined |
 | `release.human-gates` | undefined | Agent default | undefined |
 | `safety.crisis` | undefined | Agent default | undefined |
-| `shell.edge-tabs` | Edge tabs sit in a reserved strip at the app edge; | Owner decision | undefined |
 | `shell.footer` | Footer stays below the first screen; | Owner decision | undefined |
 | `shell.offline-notice` | The offline/update line moves into Profile (Data & privacy); | Owner decision | undefined |
 | `shell.phone-nav` | Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button | Owner decision | undefined |
@@ -263,6 +259,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
+| `ui.shell.phone-frame` | On phone, the card surface extends the same distance from the right edge as from the left. | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theme.template-roles` | Default theme follows the template: | Owner decision | undefined |

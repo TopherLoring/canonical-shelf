@@ -1,0 +1,7 @@
+{
+  "type": "resolution",
+  "question": "phone-frame-right-edge",
+  "date": "2026-10-09",
+  "text": "Phone frame margins equal both sides; content padding clears the tabs; tab may overlap the surface slightly.",
+  "decision": "phone-frame-equal-margins"
+}

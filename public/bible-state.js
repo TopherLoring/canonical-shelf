@@ -8,15 +8,14 @@ const safeJson=(raw,fallback)=>{try{return JSON.parse(raw)}catch{return fallback
 export function getBibleState(){
   try{
     const state=safeJson(localStorage.getItem(KEY)||'{}',{});
-    return {lastBook:Number(state.lastBook||0),lastChapter:Number(state.lastChapter||0),excerpt:String(state.excerpt||''),updatedAt:state.updatedAt||null};
-  }catch{return{lastBook:0,lastChapter:0,excerpt:'',updatedAt:null}}
+    return {lastBook:Number(state.lastBook||0),lastChapter:Number(state.lastChapter||0),updatedAt:state.updatedAt||null};
+  }catch{return{lastBook:0,lastChapter:0,updatedAt:null}}
 }
 
-// The reading place, with a short excerpt of the chapter so the Shelf can show a bookmark ("Continue reading · Genesis 3").
-export function rememberBibleBook(book,chapter=0,excerpt=''){
+// The reading place ("Continue in the Reader · Genesis 3" on the Shelf).
+export function rememberBibleBook(book,chapter=0){
   const bn=Number(book||0),cn=Number(chapter||0);if(!bn||bn<1||bn>66)return getBibleState();
-  const before=getBibleState(),same=before.lastBook===bn&&before.lastChapter===(cn>0?cn:0);
-  const state={lastBook:bn,lastChapter:cn>0?cn:0,excerpt:String(excerpt||(same?before.excerpt:'')).slice(0,240),updatedAt:new Date().toISOString()};
+  const state={lastBook:bn,lastChapter:cn>0?cn:0,updatedAt:new Date().toISOString()};
   try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}
   return state;
 }

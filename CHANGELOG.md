@@ -8,6 +8,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 ### Decided
 
 - The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.
+- On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip. (supersedes edge-tabs-sit-in-a-reserved-strip-at-the-app-edg)
+- Resolved "Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly?": Phone frame margins equal both sides; content padding clears the tabs; tab may overlap the surface slightly.
 
 ### Changed
 
@@ -15,6 +17,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Learning Path ported to the template: module view, unit page with lesson pane (?view=unit), capstones page (?view=capstones), phone picker and inline lesson overviews.
 - Bible Reader ported to the template: well frame with study rail, passage card (floating chapter arrows, chapter title as the picker), My notes and Cross-references cards, phone article with 6-tool grid; styles move to public/ui/src/reader.src.css; reader note button reads Save note; My Notes edge tab is phone-only
 - Shelf ported to the template: banded spines with gilt caps and ribs, planks with plaque pills, dot legend, continue cards, book panel and phone dock; the Orientation moves to the Learning Path as a card for someone new; the My Notes card becomes a Continue-reading bookmark or a Passage of the day (curated list, BSB text); the Reader now saves the reading place and a chapter excerpt; the intro paragraph stays on a phone
+- Shelf: Passage of the day card (address, Explore in the Reader, Continue in the Reader), curated list of 412 passages, selected-book name popup; phone frame margins equal with content clear of edge tabs
 
 ## 2026-10-08
 

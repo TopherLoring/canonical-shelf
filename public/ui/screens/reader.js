@@ -269,16 +269,6 @@ function revealVerse(root, verse) {
   }
 }
 
-// The opening of a chapter, whole verses until it is about a sentence or two long, for the Shelf's bookmark card.
-function chapterExcerpt(rows) {
-  let text = '';
-  for (const row of rows) {
-    text += (text ? ' ' : '') + row.text;
-    if (text.length >= 150) break;
-  }
-  return text.length > 220 ? text.slice(0, 220).replace(/\s+\S*$/, '') : text;
-}
-
 export async function mount(container, ctx) {
   const { esc, corpus } = ctx;
   const address = addressFrom(ctx.params);
@@ -307,8 +297,8 @@ export async function mount(container, ctx) {
     return () => {};
   }
 
-  // Remember where the reader is, with the chapter's opening words, so the Shelf can offer to continue here.
-  rememberBibleBook(book, chapter, chapterExcerpt(rows));
+  // Remember where the reader is so the Shelf can offer to continue here. Exploring a passage of the day (explore=1) leaves the saved place alone.
+  if (!ctx.params.has('explore')) rememberBibleBook(book, chapter);
 
   const railSections = sel => [
     { title: `For ${name} ${sel ? short(sel) : chapter}`, items: [

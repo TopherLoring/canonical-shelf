@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "phone-frame-equal-margins",
+  "topic": "ui.shell.phone-frame",
+  "date": "2026-10-09",
+  "text": "On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip.",
+  "rationale": "Owner clarified 2026-10-09: bind the content area, not the tab edge",
+  "supersedes": [
+    "edge-tabs-sit-in-a-reserved-strip-at-the-app-edg"
+  ],
+  "by": "Chris"
+}
