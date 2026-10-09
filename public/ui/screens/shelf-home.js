@@ -2,6 +2,7 @@ import { LIBRARY_BOOKS, CATEGORY_ORDER } from '../../library-data.js';
 import { GROUP_NAMES } from '../labels.js';
 import { setFrameVariant } from '../components/index.js';
 import { PASSAGES } from '../../passages-of-the-day.js';
+import { orientationSeen } from '../../orientation.js';
 
 // Counts from the bundled BSB corpus; used to scale book widths to their relative length.
 const VERSE_COUNTS = [1533,1213,859,1288,959,658,618,85,810,695,816,719,942,822,280,406,167,1070,2461,915,222,117,1292,1364,154,1273,357,197,73,146,21,48,105,47,56,53,38,211,55,1068,673,1149,878,1003,432,437,257,149,155,104,95,89,47,113,83,46,25,303,108,105,61,105,13,14,25,404];
@@ -87,7 +88,7 @@ function bookPanel(book, reading, esc) {
       ' reading position" aria-valuenow="' + progress + '" aria-valuemin="0" aria-valuemax="100"><span data-pct="' + progress + '"></span></div>' : '') +
     '<a class="cs-button cs-button--block cs-button--tall shelf-book-panel__resume" href="/bible?book=' + book.n + '&chapter=' + openChapter + '">' +
       (chapter ? 'Resume ' + esc(book.name) + ' ' + openChapter : 'Open ' + esc(book.name) + ' in the Bible') + '</a>' +
-    '<a class="cs-book__overview shelf-book-panel__overview" href="/bible?book=' + book.n + '&profile=1">Book overview</a>' +
+    '<a class="cs-book__overview shelf-book-panel__overview" href="/bible?book=' + book.n + '&profile=1">Book details</a>' +
     '<dl class="cs-book__facts"><div><dt>Read first</dt><dd>' + esc(book.read || 'Start with chapter 1 of ' + book.name + '.') + '</dd></div>' +
     (people.length ? '<div><dt>People</dt><dd class="cs-chips shelf-book-panel__people">' + people.map(person => '<span>' + esc(person) + '</span>').join('') + '</dd></div>' : '') +
     '<div><dt>Setting</dt><dd>' + esc(book.when || '') + '</dd></div></dl>';
@@ -116,6 +117,11 @@ function lessonContext(data, state, next) {
 
 function continueCard(data, state, activityHref, esc) {
   const completed = new Set(state?.completed || []);
+  // Someone new (no lesson done, Orientation not yet seen) is offered the Orientation here, in place of a separate card.
+  if (!completed.size && !orientationSeen()) {
+    return '<a class="cs-card cs-continue__card shelf-home-continue" data-home-orientation href="/course?unit=unit.orientation&lesson=orientation" aria-label="Start with the orientation"><span class="cs-caption">Learning Path</span>' +
+      '<span class="cs-continue__title">New here? Start with the orientation.</span><span class="cs-continue__note">A few minutes on how the course teaches, before your first lesson.</span><span class="cs-continue__go">Begin the orientation →</span></a>';
+  }
   const next = (data.activities || []).find(activity => !completed.has(activity.id));
   if (!next) {
     return '<a class="cs-card cs-continue__card shelf-home-continue" href="/course" aria-label="Learning Path"><span class="cs-caption">Learning Path</span>' +
@@ -137,20 +143,17 @@ const verseSpan = (start, end) => start + (end > start ? '–' + end : '');
 // One passage a day, the same all day and for everyone: the curated list in order, by local calendar date.
 export function passageOfTheDay(date = new Date()) {
   const day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
-  const [book, chapter, start, end, text] = PASSAGES[((day % PASSAGES.length) + PASSAGES.length) % PASSAGES.length];
-  return { book, chapter, start, end, text, label: bookLabel(book) + ' ' + chapter + ':' + verseSpan(start, end) };
+  const [book, chapter, start, end] = PASSAGES[((day % PASSAGES.length) + PASSAGES.length) % PASSAGES.length];
+  return { book, chapter, start, end, label: bookLabel(book) + ' ' + chapter + ':' + verseSpan(start, end) };
 }
 
-// The Passage of the day card: the passage, its address, and a line to explore it in the Reader, plus (once there is a saved
-// reading place) a line to continue where the reader stopped. Exploring never moves the saved place (explore=1).
-function readingCard(reading, esc, date) {
+// The Passage of the day card: the title, the passage's address, and a line to explore it in the Reader.
+// Exploring never moves the saved reading place (explore=1).
+function readingCard(esc, date) {
   const passage = passageOfTheDay(date);
-  const explore = '/bible?book=' + passage.book + '&chapter=' + passage.chapter + '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '&explore=1';
-  const resume = reading?.chapter
-    ? '<a class="cs-continue__go" data-home-continue href="/bible?book=' + reading.book + '&chapter=' + reading.chapter + '">Continue in the Reader · ' + esc(bookLabel(reading.book) + ' ' + reading.chapter) + ' →</a>' : '';
-  return '<div class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage"><span class="cs-caption">Passage of the day · ' + esc(passage.label) +
-    '</span><p class="cs-continue__note shelf-home-reading__text">' + esc(passage.text) + '</p><div class="shelf-home-reading__actions">' +
-    '<a class="cs-continue__go" data-home-explore href="' + explore + '">Explore in the Reader →</a>' + resume + '</div></div>';
+  const href = '/bible?book=' + passage.book + '&chapter=' + passage.chapter + '&start=' + passage.start + (passage.end > passage.start ? '&end=' + passage.end : '') + '&explore=1';
+  return '<a class="cs-card cs-continue__card shelf-home-reading" data-home-reading="passage" href="' + href + '" aria-label="Passage of the day: ' + esc(passage.label) + '. Explore in the Reader">' +
+    '<span class="cs-caption">Passage of the day</span><span class="cs-continue__title">' + esc(passage.label) + '</span><span class="cs-continue__go">Explore in the Reader →</span></a>';
 }
 
 export function mount(container, ctx) {
@@ -170,7 +173,7 @@ export function mount(container, ctx) {
         shelfRow(0, 39, 'Old Testament · 39 books', selectedNumber, esc) + shelfRow(39, 66, 'New Testament · 27 books', selectedNumber, esc) + '</section>' +
       legend +
       '<section class="cs-continue cs-start shelf-home__continue" aria-label="Continue"><span class="cs-caption cs-caption--label shelf-phone-only">Pick up where you left off</span>' +
-        continueCard(data, state, activityHref, esc) + readingCard(reading, esc) + '</section>' +
+        continueCard(data, state, activityHref, esc) + readingCard(esc) + '</section>' +
       '<p class="cs-visually-hidden shelf-home__announcement" aria-live="polite"></p></div>' +
     '<aside class="cs-book shelf-book-panel shelf-desktop-only" aria-label="Selected book">' + bookPanel(selected, reading, esc) + '</aside>' +
     '<aside class="cs-dock shelf-phone-only shelf-book-dock" aria-label="Selected book">' + bookDock(selected, reading, esc) + '</aside></section>';

@@ -10,6 +10,8 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.
 - On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip. (supersedes edge-tabs-sit-in-a-reserved-strip-at-the-app-edg)
 - Resolved "Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly?": Phone frame margins equal both sides; content padding clears the tabs; tab may overlap the surface slightly.
+- Shelf cards: the Learning Path resume card is the only way into the Orientation for someone new (no lesson done, Orientation not seen); there is no separate Orientation card on the Shelf or the Learning Path. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line.
+- Home/Shelf only: the Learning Path resume card is the way into the Orientation for someone new (no lesson done, Orientation not seen), and the Shelf has no separate Orientation block. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line. The Learning Path's own Orientation card is unchanged. (supersedes shelf-cards-resume-orientation-passage)
 
 ### Changed
 
@@ -19,6 +21,14 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Shelf ported to the template: banded spines with gilt caps and ribs, planks with plaque pills, dot legend, continue cards, book panel and phone dock; the Orientation moves to the Learning Path as a card for someone new; the My Notes card becomes a Continue-reading bookmark or a Passage of the day (curated list, BSB text); the Reader now saves the reading place and a chapter excerpt; the intro paragraph stays on a phone
 - Shelf: Passage of the day card (address, Explore in the Reader, Continue in the Reader), curated list of 412 passages, selected-book name popup; phone frame margins equal with content clear of edge tabs
 - Shelf: site title on two lines on phone
+- Shelf: resume card leads a new learner to the Orientation; Learning Path orientation card removed; Passage of the day card shows title, address and an Explore line only
+- Shelf: Passage of the day card first on desktop; card titles centred with the action line at the bottom; Book overview label on phone and desktop
+- Shelf: Passage of the day card first on desktop; card titles centred with the action line at the bottom; Book overview label on phone and desktop
+- Shelf: Passage of the day card first on desktop; card titles centred with the action line at the bottom
+
+### Fixed
+
+- Correction: the Learning Path Orientation card was not removed; the earlier Shelf note's Path wording is withdrawn
 
 ## 2026-10-08
 

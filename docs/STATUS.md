@@ -255,6 +255,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.scrolling.reader-lessons` | Mobile pages must never scroll horizontally. | Owner decision | undefined |
 | `ui.search.and.library` | Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). | Owner decision | undefined |
 | `ui.shelf.bookshelf` | Shelf home bookshelf: | Owner decision | undefined |
+| `ui.shelf.cards` | Home/Shelf only: | Owner decision | undefined |
 | `ui.shelf.final` | Shelf home, confirmed final: | Owner decision | undefined |
 | `ui.shelf.intro` | Keep the current Shelf home intro ('Learn the Bible as a connected library: | Owner decision | undefined |
 | `ui.shelf.lamp` | The empty end of the New Testament shelf holds one decorative clay oil lamp (styled per theme). | Owner decision | undefined |

@@ -50,7 +50,7 @@ test.describe('Shelf home', () => {
   });
 
   test('Continue learning goes to the first lesson; a saved reading position selects its book and draws its progress', async ({ page }) => {
-    await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })));
+    await page.addInitScript(() => { localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })); localStorage.setItem('canonical-shelf-orientation-seen', '1'); });
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
     await expect(page.locator('#shelf-selected-title')).toHaveText('John');
@@ -65,18 +65,17 @@ test.describe('Shelf home', () => {
     await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin/);
   });
 
-  test('the card is the Passage of the day with its address and an Explore line that opens those verses', async ({ page }) => {
+  test('the card is titled Passage of the day, shows the address only, and an Explore line that opens those verses', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
     const card = page.locator('[data-home-reading="passage"]');
     await expect(card).toBeVisible();
-    await expect(card).toContainText('Passage of the day');
-    await expect(card).toContainText(/[A-Z0-9][A-Za-z0-9 ]+ \d+:\d+/);
-    expect((await card.locator('.shelf-home-reading__text').innerText()).length).toBeGreaterThan(20);
-    await expect(card.locator('[data-home-continue]'), 'no Continue line before anything has been read').toHaveCount(0);
-    await expect(card.locator('[data-home-explore]')).toContainText('Explore in the Reader');
-    await expect(card.locator('[data-home-explore]')).toHaveAttribute('href', /^\/bible\?book=\d+&chapter=\d+&start=\d+/);
-    await card.locator('[data-home-explore]').click();
+    await expect(card.locator('.cs-caption')).toHaveText('Passage of the day');
+    await expect(card.locator('.cs-continue__title')).toHaveText(/^[A-Z0-9][A-Za-z0-9 ]+ \d+:\d+(–\d+)?$/);
+    await expect(card.locator('.cs-continue__go')).toContainText('Explore in the Reader');
+    await expect(card, 'no verse text on the card').not.toContainText(/\bthe\b.*\bthe\b.*\bthe\b/);
+    await expect(card).toHaveAttribute('href', /^\/bible\?book=\d+&chapter=\d+&start=\d+.*explore=1/);
+    await card.click();
     await expect(page.locator('[data-reader]')).toBeVisible();
     await expect(page.locator('[data-reader]')).toHaveAttribute('data-selected-verse', /\d+/);
   });
@@ -97,7 +96,7 @@ test.describe('Shelf home', () => {
     expect(picks.count, 'at least one passage for every day of the year').toBeGreaterThanOrEqual(365);
   });
 
-  test('every curated passage is the Berean Standard Bible text at its address', async ({ page }) => {
+  test('every curated passage is 2 to 15 verses that exist in the Berean Standard Bible, with no duplicates', async ({ page }) => {
     await page.goto('/home');
     const problems = await page.evaluate(async () => {
       const { PASSAGES } = await import('/passages-of-the-day.js');
@@ -105,12 +104,11 @@ test.describe('Shelf home', () => {
       const verses = new Map();
       for (const line of corpus.split('\n')) { const [b, c, v, ...rest] = line.split('\t'); if (rest.length) verses.set(`${b}.${c}.${v}`, rest.join('\t').trim()); }
       const seen = new Set(), bad = [];
-      for (const [book, chapter, start, end, text] of PASSAGES) {
+      for (const [book, chapter, start, end] of PASSAGES) {
         const address = `${book}.${chapter}.${start}-${end}`;
         if (seen.has(address)) bad.push('duplicate ' + address);
         seen.add(address);
-        const expected = []; for (let v = start; v <= end; v++) expected.push(verses.get(`${book}.${chapter}.${v}`));
-        if (expected.some(t => !t) || expected.join(' ') !== text) bad.push('text differs at ' + address);
+        for (let v = start; v <= end; v++) if (!verses.get(`${book}.${chapter}.${v}`)) bad.push('missing verse at ' + address + ':' + v);
         if (end - start < 1 || end - start > 14) bad.push('must be 2 to 15 verses at ' + address);
       }
       return bad;
@@ -118,38 +116,48 @@ test.describe('Shelf home', () => {
     expect(problems).toEqual([]);
   });
 
-  test('with a saved reading place the card also offers to continue in the Reader, beside the passage', async ({ page }) => {
-    await page.addInitScript(() => { if (!localStorage.getItem('canonical-shelf-bible-state-v1')) localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })); });
+  test('the Passage of the day card has no Continue line, with or without a saved reading place', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })));
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
-    const card = page.locator('[data-home-reading="passage"]');
-    await expect(card).toContainText('Passage of the day');
-    await expect(card.locator('[data-home-continue]')).toContainText('Continue in the Reader · John 3');
-    await card.locator('[data-home-continue]').click();
-    await expect(page.locator('[data-reader]')).toHaveAttribute('data-book', '43');
-    await expect(page.locator('[data-reader]')).toHaveAttribute('data-chapter', '3');
+    await expect(page.locator('[data-home-reading="passage"]')).toBeVisible();
+    await expect(page.getByText('Continue in the Reader')).toHaveCount(0);
+    await expect(page.locator('#shelf-selected-title')).toHaveText('John');
   });
 
-  test('opening a chapter in the Reader makes the Shelf offer to continue it', async ({ page }) => {
+  test('someone new gets the Orientation from the Learning Path resume card; after the Orientation or a lesson it resumes the next lesson', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/home');
+    const resume = page.locator('a.shelf-home-continue');
+    await expect(resume).toHaveAttribute('href', /lesson=orientation/);
+    await expect(resume).toContainText('Begin the orientation');
+    await expect(page.locator('[data-orientation-first], [data-orientation-skip], [data-path-orientation]')).toHaveCount(0);
+    await page.evaluate(() => localStorage.setItem('canonical-shelf-orientation-seen', '1'));
+    await page.reload();
+    await expect(page.locator('a.shelf-home-continue')).toHaveAttribute('href', /lesson=begin|lesson=/);
+    await expect(page.locator('a.shelf-home-continue')).not.toHaveAttribute('href', /lesson=orientation/);
+  });
+
+  test('opening a chapter in the Reader makes the Shelf select that book and offer to resume it', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/bible?book=43&chapter=3');
     await expect(page.locator('[data-reader]')).toBeVisible();
     await page.goto('/home');
-    await expect(page.locator('[data-home-continue]')).toContainText('Continue in the Reader · John 3');
     await expect(page.locator('#shelf-selected-title')).toHaveText('John');
+    await expect(page.locator('.shelf-book-panel__resume')).toHaveText('Resume John 3');
   });
 
   test('exploring the passage of the day does not move the saved reading place', async ({ page }) => {
     await page.addInitScript(() => { if (!localStorage.getItem('canonical-shelf-bible-state-v1')) localStorage.setItem('canonical-shelf-bible-state-v1', JSON.stringify({ lastBook: 43, lastChapter: 3 })); });
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/home');
-    await page.locator('[data-home-explore]').click();
+    await page.locator('[data-home-reading="passage"]').click();
     await expect(page.locator('[data-reader]')).toBeVisible();
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('canonical-shelf-bible-state-v1')));
     expect(saved.lastBook).toBe(43);
     expect(saved.lastChapter).toBe(3);
     await page.goto('/home');
-    await expect(page.locator('[data-home-continue]')).toContainText('John 3');
+    await expect(page.locator('.shelf-book-panel__resume')).toHaveText('Resume John 3');
   });
 
   test('the selected book shows its name above the spine, on a tap as well as on hover', async ({ page }) => {

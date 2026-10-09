@@ -1449,6 +1449,15 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
   Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 
+### `ui.shelf.cards`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `shelf-cards-home-only`
+  Home/Shelf only: the Learning Path resume card is the way into the Orientation for someone new (no lesson done, Orientation not seen), and the Shelf has no separate Orientation block. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line. The Learning Path's own Orientation card is unchanged.
+  *Why:* Owner clarified 2026-10-09 18:29: the five items applied to the home/shelf screen only
+- **Previous** · 2026-10-09 · Owner decision (Chris) · `shelf-cards-resume-orientation-passage`
+  ~~Shelf cards: the Learning Path resume card is the only way into the Orientation for someone new (no lesson done, Orientation not seen); there is no separate Orientation card on the Shelf or the Learning Path. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line.~~
+  *Why:* Owner message 2026-10-09 18:26
+
 ### `ui.shelf.final`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.final.2026-10-03`

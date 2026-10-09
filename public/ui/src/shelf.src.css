@@ -55,6 +55,13 @@
 .cs-app a.cs-continue__card { color: var(--c-text); }
 .cs-continue__card .cs-caption { font-size: 13u; }
 .cs-continue__title { font-family: var(--f-display); font-size: 19u; font-weight: 600; }
+/* app: on desktop the Passage of the day card comes first; in both cards the title or address sits in the middle and the action line at the bottom. */
+.cs-continue .shelf-home-reading { order: -1; }
+.cs-continue .cs-continue__card { min-block-size: 112u; }
+.cs-continue .cs-continue__card > .cs-continue__title { flex: 1 1 auto; display: flex; align-items: center; }
+.cs-continue .cs-continue__card > .cs-continue__title:has(+ .cs-continue__note) { flex: none; margin-block-start: auto; }
+.cs-continue .cs-continue__card > .cs-continue__note { margin-block-end: auto; }
+.cs-continue .cs-continue__card > .cs-continue__go { margin-block-start: auto; }
 .cs-continue__note { font-size: 16u; line-height: 1.45; }
 .cs-continue__go { font-size: 15u; color: var(--c-action); }
 .cs-book { padding: 22u; display: flex; flex-direction: column; gap: 12u; border-radius: 14u; background: var(--c-sunken); border: 1u solid var(--c-hairline); overflow: auto; }
@@ -72,11 +79,6 @@
 .cs-chips { display: flex; flex-wrap: wrap; gap: 6u; line-height: normal; }
 .cs-app .cs-chips :is(a, span) { padding: 3u 10u; border-radius: 8u; background: var(--c-raised); border: 1u solid var(--c-hairline); font-size: 13u; color: var(--c-text-2); text-decoration: none; }
 
-/* app: the Passage of the day card shows its text in the reading face, at most five lines (a long passage is read in full in the Bible). */
-.shelf-home-reading__text { font-family: var(--f-reading); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; margin: 0; }
-.shelf-home-reading__actions { display: flex; flex-wrap: wrap; gap: 4u 18u; }
-.shelf-home-reading__actions a { text-decoration: none; }
-
 /* ---- Phone ---- */
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-frame--shelf > .shelf-home { display: flex; flex-direction: column; flex: 1; grid-column: auto; }
@@ -91,6 +93,9 @@
   .cs-scroll--shelf { gap: 10u; padding-block-start: 14u; }
   .cs-continue { grid-template-columns: minmax(0, 1fr); gap: 12u; }
   .cs-start { display: flex; flex-direction: column; gap: 8u; }
+  .cs-continue .shelf-home-reading { order: 0; }
+  .cs-continue .cs-continue__card { min-block-size: 0; }
+  .cs-continue .cs-continue__card > .cs-continue__title { flex: none; display: block; }
   .cs-start .cs-continue__card { padding: 12u 16u; gap: 4u; }
   .cs-start .cs-continue__title { font-size: 17u; line-height: 1.25; }
   .cs-start .cs-continue__note { font-size: 15u; line-height: 1.4; }
