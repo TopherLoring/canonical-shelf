@@ -16,7 +16,7 @@
 .profile-progress { min-inline-size: 0; }
 
 /* Light/dark and text size: a segmented radio group */
-.profile-card .mode-toggle-group { display: flex; gap: 4u; padding: 4u; border: 1u solid var(--c-hairline); border-radius: 12u; background: var(--c-sunken); max-inline-size: 560u; }
+.profile-card .mode-toggle-group { margin: 0; display: flex; gap: 4u; padding: 4u; border: 1u solid var(--c-hairline); border-radius: 12u; background: var(--c-sunken); max-inline-size: 560u; }
 .profile-card .mode-toggle-btn { flex: 1 1 0; min-inline-size: 0; min-block-size: 44u; padding: 6u 10u; border: 0; border-radius: 9u; background: transparent; color: var(--c-text); font-family: inherit; font-size: 15u; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1u; box-shadow: none; }
 .profile-card .mode-toggle-btn small { font-size: 12u; font-weight: 400; opacity: 0.85; }
 .profile-card .mode-toggle-btn:hover:not(.is-selected) { background: var(--c-raised); }
@@ -134,8 +134,10 @@
 .profile-controls-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12u; }
 .profile-controls-row .profile-field { flex: 1 1 150u; max-inline-size: none; min-inline-size: 0; font-size: 13u; font-weight: 600; color: var(--c-text-2); }
 .profile-controls-row .profile-field--sizes { flex: 0 0 auto; }
-.profile-field--sizes .mode-toggle-group { max-inline-size: none; }
-.profile-seg--sizes .mode-toggle-btn { flex: 0 0 44u; min-block-size: 44u; padding: 0; }
+.profile-field--sizes .mode-toggle-group { max-inline-size: none; padding: 0; gap: 0; block-size: 44u; box-sizing: border-box; align-items: stretch; }
+.profile-seg--sizes .mode-toggle-btn { flex: 0 0 44u; min-block-size: 0; padding: 0; border-radius: 0; }
+.profile-seg--sizes .mode-toggle-btn:first-child { border-start-start-radius: 9u; border-end-start-radius: 9u; }
+.profile-seg--sizes .mode-toggle-btn:last-child { border-start-end-radius: 9u; border-end-end-radius: 9u; }
 .profile-sizeglyph { font-family: var(--f-display); font-weight: 600; line-height: 1; }
 .profile-sizeglyph--1 { font-size: 12u; }
 .profile-sizeglyph--2 { font-size: 15u; }

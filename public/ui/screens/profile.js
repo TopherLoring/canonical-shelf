@@ -85,7 +85,7 @@ function appearancePane(draft, esc) {
         <span class="pv-kicker">Genesis 1</span>
         <h3 class="pv-title">In the beginning</h3>
         <p class="pv-text">In the beginning, God created the heavens and the earth.</p>
-        <p class="pv-note">Notes, highlights, and menus use the interface font.</p>
+        <p class="pv-note" data-preview-name><strong>${esc(theme.name)}.</strong> <span data-preview-desc>${esc(theme.summary || '')}</span></p>
         <span class="pv-actions"><span class="pv-btn pv-btn--primary">Continue</span><span class="pv-btn">My Notes</span></span>
       </div></div></div>`;
   const row = `<div class="profile-controls-row">
@@ -94,8 +94,7 @@ function appearancePane(draft, esc) {
       ${fontField('interface', 'Interface font', draft.interface, esc)}
       <div class="profile-field profile-field--sizes"><span>Text size</span>${sizeRadio(draft.size)}</div>
     </div>`;
-  const notes = `<p class="cs-sub" data-preview-name><strong>${esc(theme.name)}.</strong> <span data-preview-desc>${esc(theme.summary || '')}</span></p>
-      <p class="cs-sub">The preview shows your choices without applying them; Save to use them across the site. Reading font covers Scripture, lessons, and headings; Interface font covers menus, buttons, and labels. The Reader’s own Aa control sets Scripture text size separately.</p>`;
+  const notes = `<p class="cs-sub">The preview shows your choices without applying them; Save to use them across the site. Reading font covers Scripture, lessons, and headings; Interface font covers menus, buttons, and labels. The Reader’s own Aa control sets Scripture text size separately.</p>`;
   return `${card('', `${head}${preview}${row}${notes}`, 'profile-appearance-card')}
     ${card('Accessibility', `<div class="profile-a11y"><div><span class="cs-caption">Motion</span>${radio('data-motion-choice', MOTION_CHOICES.map(m => [m.id, m.name]), draft.motion, 'Motion')}</div><div><span class="cs-caption">Contrast</span>${radio('data-contrast-choice', CONTRAST_CHOICES.map(c => [c.id, c.name]), draft.contrast, 'Contrast')}</div></div>`)}
     ${card('', `<button type="button" class="profile-action" data-reset-defaults>Reset appearance to defaults</button>`)}`;

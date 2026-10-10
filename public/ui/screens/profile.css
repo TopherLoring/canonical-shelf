@@ -18,7 +18,7 @@
 .profile-progress { min-inline-size: 0; }
 
 /* Light/dark and text size: a segmented radio group */
-.profile-card .mode-toggle-group { display: flex; gap: calc(4 * var(--u)); padding: calc(4 * var(--u)); border: calc(1 * var(--u)) solid var(--c-hairline); border-radius: calc(12 * var(--u)); background: var(--c-sunken); max-inline-size: calc(560 * var(--u)); }
+.profile-card .mode-toggle-group { margin: 0; display: flex; gap: calc(4 * var(--u)); padding: calc(4 * var(--u)); border: calc(1 * var(--u)) solid var(--c-hairline); border-radius: calc(12 * var(--u)); background: var(--c-sunken); max-inline-size: calc(560 * var(--u)); }
 .profile-card .mode-toggle-btn { flex: 1 1 0; min-inline-size: 0; min-block-size: calc(44 * var(--u)); padding: calc(6 * var(--u)) calc(10 * var(--u)); border: 0; border-radius: calc(9 * var(--u)); background: transparent; color: var(--c-text); font-family: inherit; font-size: calc(15 * var(--u)); font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(1 * var(--u)); box-shadow: none; }
 .profile-card .mode-toggle-btn small { font-size: calc(12 * var(--u)); font-weight: 400; opacity: 0.85; }
 .profile-card .mode-toggle-btn:hover:not(.is-selected) { background: var(--c-raised); }
@@ -136,8 +136,10 @@
 .profile-controls-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: calc(12 * var(--u)); }
 .profile-controls-row .profile-field { flex: 1 1 calc(150 * var(--u)); max-inline-size: none; min-inline-size: 0; font-size: calc(13 * var(--u)); font-weight: 600; color: var(--c-text-2); }
 .profile-controls-row .profile-field--sizes { flex: 0 0 auto; }
-.profile-field--sizes .mode-toggle-group { max-inline-size: none; }
-.profile-seg--sizes .mode-toggle-btn { flex: 0 0 calc(44 * var(--u)); min-block-size: calc(44 * var(--u)); padding: 0; }
+.profile-field--sizes .mode-toggle-group { max-inline-size: none; padding: 0; gap: 0; block-size: calc(44 * var(--u)); box-sizing: border-box; align-items: stretch; }
+.profile-seg--sizes .mode-toggle-btn { flex: 0 0 calc(44 * var(--u)); min-block-size: 0; padding: 0; border-radius: 0; }
+.profile-seg--sizes .mode-toggle-btn:first-child { border-start-start-radius: calc(9 * var(--u)); border-end-start-radius: calc(9 * var(--u)); }
+.profile-seg--sizes .mode-toggle-btn:last-child { border-start-end-radius: calc(9 * var(--u)); border-end-end-radius: calc(9 * var(--u)); }
 .profile-sizeglyph { font-family: var(--f-display); font-weight: 600; line-height: 1; }
 .profile-sizeglyph--1 { font-size: calc(12 * var(--u)); }
 .profile-sizeglyph--2 { font-size: calc(15 * var(--u)); }
