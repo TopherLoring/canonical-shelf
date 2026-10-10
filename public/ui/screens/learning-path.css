@@ -9,6 +9,7 @@
 .cs-module__title { font-size: calc(14 * var(--u)); line-height: 1.35; color: var(--c-text); }
 .cs-module.is-current { background: var(--c-action-subtle); }
 .cs-module.is-current .cs-module__title { font-weight: 600; }
+.cs-module.is-current :where(.cs-muted, .cs-caption, .cs-module__meta) { color: var(--c-text-2); }
 .cs-unit { padding: calc(14 * var(--u)) calc(18 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
 .cs-unit__head { display: flex; align-items: center; gap: calc(12 * var(--u)); padding: 0; border: 0; background: transparent; text-align: start; color: var(--c-muted); cursor: pointer; list-style: none; }
 .cs-unit__head::-webkit-details-marker { display: none; }
@@ -34,7 +35,7 @@ details.cs-unit[open] > .cs-unit__head .cs-unit__chev { rotate: 180deg; }
 .path-row-status { font-size: calc(13 * var(--u)); font-weight: 600; color: var(--c-action); white-space: nowrap; }
 .path-row[data-state="done"] .path-row-status { color: var(--c-correct); }
 .path-row[data-state="open"] .path-row-status { color: var(--c-muted); font-weight: 400; }
-.path-row-eyebrow { display: block; font-size: calc(12 * var(--u)); color: var(--c-muted); }
+.path-row-eyebrow { display: block; font-size: calc(12 * var(--u)); font-weight: 600; color: var(--c-accent); }
 .cs-unit .path-practice { margin-block-start: calc(4 * var(--u)); }
 .cs-upnext { gap: calc(10 * var(--u)); }
 .cs-upnext__title { font-family: var(--f-display); font-size: calc(22 * var(--u)); font-weight: 600; line-height: 1.2; }
@@ -54,7 +55,7 @@ details.cs-unit[open] > .cs-unit__head .cs-unit__chev { rotate: 180deg; }
 .cs-rail__progress .cs-split { flex-direction: column; gap: calc(1 * var(--u)); }
 .cs-rail__progress .cs-split .cs-muted { font-size: calc(12 * var(--u)); }
 .cs-cols--path .ui-progress-bar { block-size: calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--c-hairline); overflow: hidden; }
-.cs-cols--path .ui-progress-bar-fill { border-radius: calc(3 * var(--u)); background: var(--c-action); }
+.cs-cols--path .ui-progress-bar-fill { border-radius: calc(3 * var(--u)); background: var(--c-accent); }
 .cs-modpick { position: relative; display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)); border-radius: calc(14 * var(--u)); background: var(--c-action-subtle); color: var(--c-text); }
 .cs-modpick__text { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: calc(3 * var(--u)); }
 .cs-modpick__title { font-family: var(--f-display); font-size: calc(20 * var(--u)); font-weight: 600; line-height: 1.2; }

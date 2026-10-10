@@ -188,7 +188,7 @@
 .profile-doc ul, .profile-doc ol { padding-inline-start: calc(22 * var(--u)); }
 .profile-doc strong { color: var(--c-text); }
 .profile-doc a { color: var(--c-action); }
-.profile-doc .eyebrow { font-family: var(--f-body); font-size: calc(12 * var(--u)); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-muted); }
+.profile-doc .eyebrow { font-family: var(--f-body); font-size: calc(12 * var(--u)); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-accent); }
 .profile-doc .meta { font-family: var(--f-body); font-size: calc(13 * var(--u)); color: var(--c-muted); }
 .profile-doc .about-page__section, .profile-doc .about-page__hero { padding-block-end: calc(8 * var(--u)); }
 .profile-doc .lede { font-size: calc(17 * var(--u)); line-height: 1.5; color: var(--c-text); }

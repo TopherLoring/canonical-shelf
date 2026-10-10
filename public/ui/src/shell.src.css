@@ -74,7 +74,8 @@
 .cs-column { display: flex; flex-direction: column; gap: 14u; }
 .cs-heading { display: flex; flex-direction: column; gap: 4u; padding: 6u 4u 0; }
 .cs-heading h1 { font-family: var(--f-display); font-size: 34u; font-weight: 600; }
-.cs-kicker { font-size: 13u; font-weight: 600; color: var(--c-action); }
+/* Rose is the accent role: kickers, counts, number chips, progress. Never the current item (action blue). */
+.cs-kicker { font-size: 13u; font-weight: 600; color: var(--c-accent); }
 .cs-kicker--small { font-size: 12u; }
 .cs-sub { font-size: 14u; color: var(--c-muted); }
 .cs-caption { font-size: 12u; color: var(--c-muted); }
@@ -103,7 +104,7 @@
 /* The current item in every left pane uses the action blue; rose reads as an error (Chris, 2026-10-09). */
 .cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-action-subtle); }
 .cs-rail__item.is-current .cs-icon { color: var(--c-action); }
-.cs-count { font-size: 13u; font-weight: 400; color: var(--c-muted); }
+.cs-count { font-size: 13u; font-weight: 600; color: var(--c-accent); }
 .cs-rail__item.is-current .cs-count { color: var(--c-action); }
 
 

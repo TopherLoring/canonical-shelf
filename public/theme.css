@@ -104,11 +104,11 @@ html[data-theme='scholarly-graphite'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -164,11 +164,11 @@ html[data-theme='scholarly-graphite'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -248,11 +248,11 @@ html:not([data-theme]) {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -309,11 +309,11 @@ html:not([data-theme])[data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -392,11 +392,11 @@ html[data-theme='paper'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -452,11 +452,11 @@ html[data-theme='paper'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -535,11 +535,11 @@ html[data-theme='library'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -595,11 +595,11 @@ html[data-theme='library'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -678,11 +678,11 @@ html[data-theme='collegiate'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -738,11 +738,11 @@ html[data-theme='collegiate'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -821,11 +821,11 @@ html[data-theme='stained-glass'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -881,11 +881,11 @@ html[data-theme='stained-glass'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -964,11 +964,11 @@ html[data-theme='fun'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -1024,11 +1024,11 @@ html[data-theme='fun'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -1107,11 +1107,11 @@ html[data-theme='watercolor'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -1167,11 +1167,11 @@ html[data-theme='watercolor'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -1250,11 +1250,11 @@ html[data-theme='illustrated'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -1310,11 +1310,11 @@ html[data-theme='illustrated'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -1393,11 +1393,11 @@ html[data-theme='midnight-study'] {
   --color-text-muted: #5F6778;
   --color-action: #1F3A6E;
   --color-on-action: #FFFFFF;
-  --color-accent: #A04E68;
+  --color-accent: #9B4A70;
   --color-on-accent: #FFFFFF;
-  --color-note-marker: #A04E68;
+  --color-note-marker: #9B4A70;
   --color-correct: #2F6B4F;
-  --color-incorrect: #A3283B;
+  --color-incorrect: #BF3A22;
   --color-edge-theologian: #1B2338;
   --color-edge-notes: #7A3A52;
   --color-chat-surface: #FCFCFB;
@@ -1453,11 +1453,11 @@ html[data-theme='midnight-study'][data-mode='dark'] {
   --color-text-muted: #949CAE;
   --color-action: #A9C1EC;
   --color-on-action: #0D1321;
-  --color-accent: #E2A3B5;
+  --color-accent: #E3A1C0;
   --color-on-accent: #0D1321;
-  --color-note-marker: #E2A3B5;
+  --color-note-marker: #E3A1C0;
   --color-correct: #86C79A;
-  --color-incorrect: #F08A9A;
+  --color-incorrect: #FF9A85;
   --color-edge-theologian: #252E45;
   --color-edge-notes: #9B4D68;
   --color-chat-surface: #141B2D;
@@ -1506,7 +1506,7 @@ html[data-theme='midnight-study'][data-mode='dark'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Baseline (migration only) — swatch, dark */
@@ -1515,7 +1515,7 @@ html[data-mode='dark'] [data-theme-swatch='scholarly-graphite'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Reading Room — swatch */
@@ -1524,7 +1524,7 @@ html[data-mode='dark'] [data-theme-swatch='scholarly-graphite'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Reading Room — swatch, dark */
@@ -1533,7 +1533,7 @@ html[data-mode='dark'] [data-theme-swatch='reading-room'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Paper — swatch */
@@ -1542,7 +1542,7 @@ html[data-mode='dark'] [data-theme-swatch='reading-room'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Paper — swatch, dark */
@@ -1551,7 +1551,7 @@ html[data-mode='dark'] [data-theme-swatch='paper'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Library — swatch */
@@ -1560,7 +1560,7 @@ html[data-mode='dark'] [data-theme-swatch='paper'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Library — swatch, dark */
@@ -1569,7 +1569,7 @@ html[data-mode='dark'] [data-theme-swatch='library'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Collegiate — swatch */
@@ -1578,7 +1578,7 @@ html[data-mode='dark'] [data-theme-swatch='library'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Collegiate — swatch, dark */
@@ -1587,7 +1587,7 @@ html[data-mode='dark'] [data-theme-swatch='collegiate'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Stained Glass — swatch */
@@ -1596,7 +1596,7 @@ html[data-mode='dark'] [data-theme-swatch='collegiate'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Stained Glass — swatch, dark */
@@ -1605,7 +1605,7 @@ html[data-mode='dark'] [data-theme-swatch='stained-glass'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Fun — swatch */
@@ -1614,7 +1614,7 @@ html[data-mode='dark'] [data-theme-swatch='stained-glass'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Fun — swatch, dark */
@@ -1623,7 +1623,7 @@ html[data-mode='dark'] [data-theme-swatch='fun'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Watercolor — swatch */
@@ -1632,7 +1632,7 @@ html[data-mode='dark'] [data-theme-swatch='fun'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Watercolor — swatch, dark */
@@ -1641,7 +1641,7 @@ html[data-mode='dark'] [data-theme-swatch='watercolor'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Sketch Book — swatch */
@@ -1650,7 +1650,7 @@ html[data-mode='dark'] [data-theme-swatch='watercolor'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Sketch Book — swatch, dark */
@@ -1659,7 +1659,7 @@ html[data-mode='dark'] [data-theme-swatch='illustrated'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }
 
 /* Midnight Study — swatch */
@@ -1668,7 +1668,7 @@ html[data-mode='dark'] [data-theme-swatch='illustrated'] {
   --swatch-surface: #FCFCFB;
   --swatch-text: #141B2D;
   --swatch-action: #1F3A6E;
-  --swatch-accent: #A04E68;
+  --swatch-accent: #9B4A70;
 }
 
 /* Midnight Study — swatch, dark */
@@ -1677,5 +1677,5 @@ html[data-mode='dark'] [data-theme-swatch='midnight-study'] {
   --swatch-surface: #141B2D;
   --swatch-text: #EEF0F4;
   --swatch-action: #A9C1EC;
-  --swatch-accent: #E2A3B5;
+  --swatch-accent: #E3A1C0;
 }

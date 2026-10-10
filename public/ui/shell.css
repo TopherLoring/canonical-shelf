@@ -197,7 +197,8 @@ html[data-reduce-motion="on"] :where(*, *::before, *::after) { animation: none; 
 .cs-column { display: flex; flex-direction: column; gap: calc(14 * var(--u)); }
 .cs-heading { display: flex; flex-direction: column; gap: calc(4 * var(--u)); padding: calc(6 * var(--u)) calc(4 * var(--u)) 0; }
 .cs-heading h1 { font-family: var(--f-display); font-size: calc(34 * var(--u)); font-weight: 600; }
-.cs-kicker { font-size: calc(13 * var(--u)); font-weight: 600; color: var(--c-action); }
+/* Rose is the accent role: kickers, counts, number chips, progress. Never the current item (action blue). */
+.cs-kicker { font-size: calc(13 * var(--u)); font-weight: 600; color: var(--c-accent); }
 .cs-kicker--small { font-size: calc(12 * var(--u)); }
 .cs-sub { font-size: calc(14 * var(--u)); color: var(--c-muted); }
 .cs-caption { font-size: calc(12 * var(--u)); color: var(--c-muted); }
@@ -226,7 +227,7 @@ html[data-reduce-motion="on"] :where(*, *::before, *::after) { animation: none; 
 /* The current item in every left pane uses the action blue; rose reads as an error (Chris, 2026-10-09). */
 .cs-rail__item.is-current { font-weight: 600; color: var(--c-text); background: var(--c-action-subtle); }
 .cs-rail__item.is-current .cs-icon { color: var(--c-action); }
-.cs-count { font-size: calc(13 * var(--u)); font-weight: 400; color: var(--c-muted); }
+.cs-count { font-size: calc(13 * var(--u)); font-weight: 600; color: var(--c-accent); }
 .cs-rail__item.is-current .cs-count { color: var(--c-action); }
 
 
