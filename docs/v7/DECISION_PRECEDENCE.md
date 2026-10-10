@@ -1558,6 +1558,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-08 · Owner decision (Chris) · `default-theme-follows-the-template-the-template-`
   Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.
 
+### `ui.themes.set`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `theme-set-v2-directions`
+  Theme set direction (replaces the ten-theme list; character tokens, not just colors): Reading Room (current look with more depth, grey paired with rose and navy); Midnight Study (dark: leather grain, navy, deep colors, brass, lamp pulls); Library (dark or light, brass, bookplate, moody, flat faded colors, beige surface with typewriter fonts, graphite pencil elements); Notebook (college-ruled, spirals, hole punches, sticky notes for side content, folder tabs, highlighters and handwritten marker words, Sharpie category markers); Sketchbook (per Chris's earlier mockup: grid paper, pencil borders, brush strokes); Scroll (calligraphy, ink, tea-stained paper surfaces or edges, wax-seal markers); Stained Glass (thick lead between bold jewel surfaces, glowing elements, seamless with text surfaces); Fun (color blocks, hard edges, square corners, illustrated or hand-drawn shapes). Watercolor is not part of this project's set.
+  *Why:* Chris, 2026-10-10 brainstorm; palette roles (action, current, accent, danger) approved to be drafted.
+
 ### `ui.theologian.contrast`
 
 - **Current** · 2026-09-27 · Owner decision (Chris) · `ui.theologian.contrast.keep`

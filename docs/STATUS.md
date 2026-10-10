@@ -271,6 +271,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.text-size` | Text size has two settings: | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theme.template-roles` | Default theme follows the template: | Owner decision | undefined |
+| `ui.themes.set` | Theme set direction (replaces the ten-theme list; | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
 | `ui.theologian.tab-color` | undefined | Agent default | undefined |
 | `ui.topbar` | Redesign the top navigation bar and replace the name-based 'Canonical Shelf' logo | Owner decision | undefined |
