@@ -13,7 +13,7 @@ body:has([data-reader]) > .cs-footer { display: none; }
 .cs-text-button { block-size: calc(40 * var(--u)); padding: 0 calc(12 * var(--u)); display: inline-flex; align-items: center; border: 0; border-radius: calc(10 * var(--u)); background: transparent; color: var(--c-text-2); font-family: inherit; font-size: calc(14 * var(--u)); text-decoration: none; cursor: pointer; }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: calc(17 * var(--u)); }
 .cs-text-button:hover { background: var(--c-action-subtle); }
-.cs-icon-button[aria-expanded="false"] .cs-icon { rotate: 180deg; }
+.cs-icon-button[data-collapse][aria-expanded="false"] .cs-icon { rotate: 180deg; }
 .cs-toolgrid--6 { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: calc(5 * var(--u)); }
 
 /* ---- Frame: the three panes ---- */

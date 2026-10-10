@@ -11,7 +11,7 @@ body:has([data-reader]) > .cs-footer { display: none; }
 .cs-text-button { block-size: 40u; padding: 0 12u; display: inline-flex; align-items: center; border: 0; border-radius: 10u; background: transparent; color: var(--c-text-2); font-family: inherit; font-size: 14u; text-decoration: none; cursor: pointer; }
 .cs-text-button--aa { font-family: var(--f-reading); font-size: 17u; }
 .cs-text-button:hover { background: var(--c-action-subtle); }
-.cs-icon-button[aria-expanded="false"] .cs-icon { rotate: 180deg; }
+.cs-icon-button[data-collapse][aria-expanded="false"] .cs-icon { rotate: 180deg; }
 .cs-toolgrid--6 { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5u; }
 
 /* ---- Frame: the three panes ---- */

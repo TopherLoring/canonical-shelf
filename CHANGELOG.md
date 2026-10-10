@@ -25,6 +25,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Fonts: Newsreader and the optical-size Literata self-hosted (public/fonts/local); Reading Room display face is Newsreader, as on the design boards
 - Font choices use --user-font-reading/display/body (set by script); every stylesheet reads var(--user-font-X, var(--font-X)) so the theme contract keeps owning the theme fonts.
 
+### Fixed
+
+- Top-bar search icon rendered upside down: the Reader collapse-chevron rule rotated every collapsed icon button; scoped it to [data-collapse] buttons.
+
 ## 2026-10-09
 
 ### Decided
