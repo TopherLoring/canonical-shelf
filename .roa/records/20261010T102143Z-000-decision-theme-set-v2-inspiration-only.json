@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "feedback",
+  "id": "theme-set-v2-inspiration-only",
+  "topic": "ui.themes.set",
+  "date": "2026-10-10",
+  "text": "The theme-set v2 terms (Notebook spirals and sticky notes, Library typewriter and graphite, Scroll wax seals, Midnight leather and lamp pulls, and so on) are inspiration, not strict specifications; each theme's exact elements are proposed and approved per theme. Watercolor is for a different project.",
+  "rationale": "Chris, 2026-10-10: these are just inspiration terms, not meant to be strict decisions.",
+  "by": "Chris"
+}

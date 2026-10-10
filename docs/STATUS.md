@@ -13,6 +13,9 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - **For the 8 themes: (1) what is the 8th, and are 'Fun' and 'Fun and Illustrated' separate? (2) light and dark for every theme, or some dark-only? (3) themes change look only (colors, type, shape, texture), or layout too?** (`themes-three-questions`, owner: Chris, since 2026-09-28)
 - **Approve the glossary review (keep 164 of 273 terms; remove 109 with reasons) in glossary-review.md, or mark changes** (`approve-glossary-review`, owner: Chris, since 2026-10-02)
 - **Which free-practice game should be prototyped first once the modules are written?** (`games-first-prototype`, owner: Chris, since 2026-10-03)
+- **Conflict:** Layout-vs-look scope: the recorded decision says layout structure is the same in every theme and themes may change lines, colors, and typography. The v2 theme inspiration adds textures, shapes, and decorative elements (spiral edge, hole punches, sticky-note side cards, folder-tab rail items, brush strokes, wax seals, lead lines). Widen the rule to: layout structure (positions, columns, sizes of content) stays the same; themes may change colors, type, lines, textures, shapes, and decorative elements that do not move or resize content? (`themes-scope-decoration`, owner: unassigned, since 2026-10-10)
+  - Request: Notebook: spirals, hole punches, sticky notes where side content exists, folder tabs; Sketchbook brush strokes; Scroll wax seals
+  - Conflicts with `design.themes.scope.look-not-layout`: “Layout structure is the same in every theme; themes may change lines, colors, and typography”
 
 ## Phases
 
@@ -285,6 +288,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 - `ui.bible`: Bible page: remove the Bible cover from the reader and redesign the page logic and layout as a whole (undefined)
 - `ui.theme.palettes`: The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign (undefined)
 - `ui.course-shelf`: Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between (undefined)
+- `ui.themes.set`: The theme-set v2 terms (Notebook spirals and sticky notes, Library typewriter and graphite, Scroll wax seals, Midnight leather and lamp pulls, and so on) are inspiration, not strict specifications;... (undefined)
 
 Full history: [decision log](v7/DECISION_PRECEDENCE.md) · [changelog](../CHANGELOG.md)
 
