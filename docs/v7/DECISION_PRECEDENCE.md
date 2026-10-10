@@ -34,6 +34,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Single-page app implementation: public/index.html is the only application document; clean path URLs with History API state; Back/Forward re-render through popstate; direct entry and refresh use SPA fallback; views use native <template> elements. Architecture reference: docs/v7/SPA_ARCHITECTURE_2026-09-24.md
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Implements owner decision arch.routing
 
+### `brand.entity.ministries`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `tlm-subsidiary`
+  TopherLoring Ministries (TLM) is a subsidiary of TopherLoring Industries (TLI), kept separate from site operation so it can expand (e.g. publishing); About and Statement of Faith copy is written for TLM.
+  *Why:* Chris, 2026-10-10 07:07
+
 ### `content.anchoring`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `content.anchoring.universal-anchoring`
@@ -1434,8 +1440,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `ui.profile.sections`
 
-- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-tabs-v2`
-  Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-sections-v3`
+  Profile sections are: Account, Customization (Appearance, Reader incl. translation, Accessibility with toggle switches), My Study (My Notes, Goals as a self-written accountability note, Books incl. mark-as-read, Path and Topics, Practice, Review, an understanding heatmap of retention/comprehension), Privacy & Policies (data tools plus Privacy, Cookie/storage, What is stored and shared, Data retention, Terms of Use, all rendered in-pane), About Canonical Shelf (Introduction to TopherLoring Ministries and the app, Statement of Faith, Theologian, FAQs), Contact Us. Profile uses a drill-down left pane: Back link at top, sub-sections beneath, each sub-section its own screen; no content links out of Profile.
+  *Why:* Chris, 2026-10-10 07:07: section names list; policies, terms, statement shown in-pane; Profile follows option A (drill-down).
+- **Previous** · 2026-10-10 · Owner decision (Chris) · `profile-tabs-v2`
+  ~~Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.~~
   *Why:* Chris, 2026-10-10 notes; supersedes profile-uses-topics-layout section list (layout stays Topics-style; phone uses list then detail with Back).
 
 ### `ui.reader.apparatus`

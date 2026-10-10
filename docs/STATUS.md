@@ -54,6 +54,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `arch.duplicate-renderers` | undefined | Agent default | undefined |
 | `arch.routing` | The app is a single-page application: | Owner decision | undefined |
 | `arch.spa-implementation` | undefined | Agent default | undefined |
+| `brand.entity.ministries` | TopherLoring Ministries (TLM) is a subsidiary of TopherLoring Industries (TLI), kept separate from site operation so it can expand (e.g. | Owner decision | undefined |
 | `content.anchoring` | One anchoring model for all content: | Owner decision | undefined |
 | `content.lesson-shape` | Lesson shape: | Owner decision | undefined |
 | `content.reachability` | undefined | Agent default | undefined |
@@ -254,7 +255,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.profile.layout` | The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; | Owner decision | undefined |
 | `ui.profile.legal-links` | Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored. | Owner decision | undefined |
-| `ui.profile.sections` | Profile is reorganized into six tabs: | Owner decision | undefined |
+| `ui.profile.sections` | Profile sections are: | Owner decision | undefined |
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |
