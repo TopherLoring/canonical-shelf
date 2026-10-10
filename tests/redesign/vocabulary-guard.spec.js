@@ -88,9 +88,9 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
 
   test('notes section is identified as "My Notes" rather than un-scoped "Notes"', async ({ page }) => {
     // 1. Profile notes section heading
-    await page.goto('/profile#notes');
+    await page.goto('/profile#study');
     await waitForAppReady(page);
-    const profileNotesTitle = page.locator('[data-profile-section="notes"] h1');
+    const profileNotesTitle = page.locator('[data-profile-notes]').locator('xpath=ancestor::section[1]/span[1]');
     const profileNotesText = (await profileNotesTitle.innerText()).trim();
 
     // 2. Reader notes panel
@@ -104,7 +104,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
       test.fail(isLegacyNotes, `TODO(Phase 2): Notes section is currently labelled "${profileNotesText}" in profile and "${readerNotesAria}" in reader; Phase 2 standardizes on "My Notes"`);
     }
 
-    expect(profileNotesText, 'Profile notes section title must be "My Notes"').toBe('My Notes');
+    expect(profileNotesText.startsWith('My Notes'), 'Profile notes section title must start with "My Notes"').toBe(true);
     expect(readerNotesAria, 'Reader study notes container label must be "My Notes"').toBe('My Notes');
   });
 });

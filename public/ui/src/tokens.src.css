@@ -113,3 +113,8 @@
   --f-reading: var(--user-font-reading, var(--font-reading));
   --f-body: var(--user-font-body, var(--font-body));
 }
+
+/* Accessibility settings (Profile > Appearance). High contrast makes muted text and borders full strength;
+   Reduce motion removes transitions and animation. The theme's own colors are untouched. */
+html[data-contrast="high"] .cs-shell { --c-muted: var(--c-text); --c-text-2: var(--c-text); --c-border: var(--c-strong); --c-hairline: var(--c-strong); }
+html[data-reduce-motion="on"] :where(*, *::before, *::after) { animation: none; transition: none; scroll-behavior: auto; }

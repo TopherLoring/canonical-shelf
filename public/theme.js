@@ -155,11 +155,42 @@ export function applyTextSize(id,{persist=true}={}){
   return size.id;
 }
 
+// Accessibility display settings: reduce motion (follow the device, or always) and high contrast.
+const STORAGE_A11Y_KEY='canonical-shelf-accessibility-v1';
+export const MOTION_CHOICES=Object.freeze([{id:'device',name:'Match my device'},{id:'reduce',name:'Reduce motion'}]);
+export const CONTRAST_CHOICES=Object.freeze([{id:'standard',name:'Standard'},{id:'high',name:'High contrast'}]);
+export function currentAccessibility(){
+  const root=document.documentElement.dataset;
+  return {motion:root.reduceMotion==='on'?'reduce':'device',contrast:root.contrast==='high'?'high':'standard'};
+}
+export function applyAccessibility(next,{persist=true}={}){
+  const now=currentAccessibility();
+  const value={motion:next?.motion==='reduce'||(next?.motion===undefined&&now.motion==='reduce')?'reduce':'device',contrast:next?.contrast==='high'||(next?.contrast===undefined&&now.contrast==='high')?'high':'standard'};
+  const root=document.documentElement;
+  if(value.motion==='reduce')root.dataset.reduceMotion='on';else delete root.dataset.reduceMotion;
+  if(value.contrast==='high')root.dataset.contrast='high';else delete root.dataset.contrast;
+  if(persist){try{localStorage.setItem(STORAGE_A11Y_KEY,JSON.stringify(value))}catch{}}
+  document.dispatchEvent(new CustomEvent('canonical-accessibility-changed',{detail:value}));
+  return value;
+}
+
+// Everything Appearance can change, back to the shipped defaults (the saved choices are cleared).
+export function resetDisplayPreferences(){
+  applyFonts({reading:'default',interface:'default'});
+  applyTextSize(DEFAULT_TEXT_SIZE);
+  applyAccessibility({motion:'device',contrast:'standard'});
+  applyTheme(DEFAULT_THEME_ID);
+  applyMode(DEFAULT_MODE);
+}
+
 function initDisplayPreferences(){
   applyFonts(readFonts(),{persist:false});
   let size=DEFAULT_TEXT_SIZE;
   try{size=localStorage.getItem(STORAGE_TEXT_SIZE_KEY)||size}catch{}
   applyTextSize(size,{persist:false});
+  let a11y={};
+  try{a11y=JSON.parse(localStorage.getItem(STORAGE_A11Y_KEY)||'{}')||{}}catch{}
+  applyAccessibility(a11y,{persist:false});
 }
 
 function panelMarkup(){

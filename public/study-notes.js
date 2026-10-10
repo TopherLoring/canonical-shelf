@@ -119,7 +119,7 @@ async function renderMount(mount) {
     <div class="study-notes__row"><small class="study-notes__status" data-note-status role="status" aria-live="polite"></small></div>
   </div>
   ${related.length ? `<details class="study-notes__related"><summary>Other notes in this chapter (${related.length})</summary><ul>${related.map(([k, v]) => `<li><a href="${esc(noteHref(k))}">${esc(v.label || scriptureLabel(k.slice(10)))}</a><span>${esc(noteText(v).slice(0, 90))}${noteText(v).length > 90 ? '…' : ''}</span></li>`).join('')}</ul></details>` : ''}
-  <a class="study-notes__all" href="/profile#notes">All my notes</a>`;
+  <a class="study-notes__all" href="/profile#study">All my notes</a>`;
   const text = mount.querySelector('[data-note-text]');
   const status = mount.querySelector('[data-note-status]');
   // The in-person flag and the Ask link are gone (notes.discuss-flag.removed-2026-10-05, ui.bible.ask.notes-link-2026-10-05);
@@ -160,7 +160,7 @@ async function renderReaderNotes(mount) {
     <label for="reader-note-text" data-reader-note-label>${draft.editKey ? 'Edit note' : `Add a note on ${esc(target.label)}`}</label>
     <textarea id="reader-note-text" rows="8" maxlength="12000" data-note-text placeholder="Write what you notice, what you wonder, or what you want to remember.">${esc(draft.text)}</textarea>
     <div class="reader-note-actions"><small data-note-status role="status" aria-live="polite"></small><button type="button" data-note-cancel ${draft.editKey ? '' : 'hidden'}>Cancel edit</button><button type="submit" data-save-note>${draft.editKey ? 'Save changes' : 'Save note'}</button></div>
-  </form><a class="study-notes__all" href="/profile#notes">All my notes</a>`;
+  </form><a class="study-notes__all" href="/profile#study">All my notes</a>`;
   const input = mount.querySelector('[data-note-text]');
   const status = mount.querySelector('[data-note-status]');
   const form = mount.querySelector('form');

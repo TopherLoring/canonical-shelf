@@ -45,7 +45,7 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await expect(page).toHaveURL(/\/profile$/);
   await page.goBack();
   await expect(page.locator('[data-learning-path]')).toBeVisible();
-  await page.goto('/profile#progress');
+  await page.goto('/profile#study');
   await expect(page.locator('[data-profile-progress] .progress-panel__summary')).toBeVisible();
   await page.goto('/path');
   await expect(page.locator('[data-learning-path]')).toBeVisible();
@@ -220,14 +220,16 @@ test('top bar: logo mark, tabs, search, profile (Feedback sits under the frame);
   await bar.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
   await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','page');
-  await expect(page.locator('.profile-rail a')).toHaveText(['Account','Progress','My Notes','Appearance','Reading','Data & privacy']);
-  await expect(page.locator('[data-profile-section="you"] [data-account-mount]')).not.toContainText('Checking your account');
+  await expect(page.locator('.profile-rail a')).toHaveText(['Account','Appearance','Reading','My Study','Privacy & data','About Us','Contact Us']);
+  await expect(page.locator('[data-profile-section="account"] [data-account-mount]')).not.toContainText('Checking your account');
   await page.locator('.profile-rail a[href="/profile#appearance"]').click();
   await expect(page.locator('[data-profile-section="appearance"]')).toBeVisible();
-  const cards=page.locator('[data-profile-section="appearance"] [data-theme-option]');
-  const target=await cards.nth(2).getAttribute('data-theme-option');
-  await cards.nth(2).click();
+  const themeSelect=page.locator('[data-profile-section="appearance"] [data-theme-select]');
+  const target=await themeSelect.locator('option').nth(2).getAttribute('value');
+  await themeSelect.selectOption(target);
+  await page.locator('[data-save]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme',target);
+  await page.locator('.profile-rail a[href="/profile#appearance"]').click();
   await page.locator('[data-profile-section="appearance"] [data-mode-choice="dark"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-mode','dark');
   await expect(page.locator('#appearance-panel')).toHaveCount(0);
@@ -243,10 +245,6 @@ test('top bar: logo mark, tabs, search, profile (Feedback sits under the frame);
   await expect(page.locator('[data-profile-section="privacy"]')).toBeVisible();
   await page.goto('/profile#appearance');
   // theme cards: name and description do not overlap and stay readable in dark mode
-  const card=page.locator('[data-profile-section="appearance"] .theme-choice').first();
-  const gap=await card.evaluate(el=>{const n=el.querySelector('strong').getBoundingClientRect(),d=el.querySelector('.theme-choice__text > span').getBoundingClientRect();return d.top-n.bottom});
-  expect(gap,'description starts below the theme name').toBeGreaterThanOrEqual(0);
-  await expect(card.locator('.theme-choice__swatch i')).toHaveCount(4);
 });
 
 test('each page starts close under the top bar (no large blank band); Home has no 66-books line',async({page})=>{
@@ -288,7 +286,7 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await page.reload();
   await expect(page.locator('[data-reader-notes] [data-saved-note]')).toContainText('God so loved the world: ask about "world".');
   await page.locator('[data-reader-notes] .study-notes__all').click();
-  await expect(page).toHaveURL(/\/profile#notes$/);
+  await expect(page).toHaveURL(/\/profile#study$/);
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 

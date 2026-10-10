@@ -10,14 +10,14 @@
 .ui-edge-tab:hover { transform: translateX(-2u); }
 .ui-edge-tab:focus-visible { outline: 2u solid var(--focus-ring); outline-offset: 2u; }
 .ui-edge-tab.is-hidden, .ui-edge-tab[aria-expanded="true"] { display: none; }
-.ui-edge-tab--theologian { z-index: var(--layer-theologian); inset-block-end: 120u; block-size: 132u; background-color: var(--color-edge-theologian); color: var(--color-edge-theologian-ink); }
-.ui-edge-tab--notes { inset-block-end: 260u; block-size: 132u; background-color: var(--color-edge-notes); color: white; border-color: var(--color-edge-notes-line); }
+.ui-edge-tab--theologian { z-index: var(--layer-theologian); inset-block-end: 120u; block-size: 144u; background-color: var(--color-edge-theologian); color: var(--color-edge-theologian-ink); }
+.ui-edge-tab--notes { inset-block-end: 276u; block-size: 144u; background-color: var(--color-edge-notes); color: white; border-color: var(--color-edge-notes-line); }
 .ui-edge-tab--theologian[aria-expanded="true"] { display: flex; }
 .ui-edge-tab-chevron { inline-size: 12u; block-size: 12u; flex: none; color: inherit; }
-.ui-edge-tab-label { display: block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 13u; font-weight: 400; letter-spacing: 0.02em; color: inherit; white-space: nowrap; }
+.ui-edge-tab-label { display: block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 15u; font-weight: 500; letter-spacing: 0.02em; color: inherit; white-space: nowrap; }
 #guide.guide { z-index: var(--layer-theologian); }
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
-  .ui-edge-tab--theologian { inset-block-end: 168u; block-size: 118u; border-color: var(--color-edge-theologian-line); }
-  .ui-edge-tab--notes { inset-block-end: 298u; block-size: 104u; }
-  .ui-edge-tab-label { font-weight: 600; letter-spacing: 0; }
+  .ui-edge-tab--theologian { inset-block-end: 168u; block-size: 132u; border-color: var(--color-edge-theologian-line); }
+  .ui-edge-tab--notes { inset-block-end: 314u; block-size: 112u; }
+  .ui-edge-tab-label { font-weight: 600; letter-spacing: 0; font-size: 15u; }
 }
