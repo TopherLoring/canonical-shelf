@@ -163,7 +163,7 @@ Every themeable value. Shared values (type scale, line heights, spacing, motion,
 | `themes.reading-room.name` | text | Reading Room | — |
 | `themes.reading-room.description` | text | Paper white and pale grey on a quiet library table: deep navy ink with a touch of rose. | — |
 | `themes.reading-room.fontImports` | list of string | /fonts/fonts.css | — |
-| `themes.reading-room.style.fontDisplay` | font | Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
+| `themes.reading-room.style.fontDisplay` | font | Newsreader,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |
 | `themes.reading-room.style.fontBody` | font | 'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif | — |
 | `themes.reading-room.style.fontLabel` | font | ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace | — |
 | `themes.reading-room.style.fontReading` | font | Literata,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif | — |

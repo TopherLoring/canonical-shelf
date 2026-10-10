@@ -214,7 +214,7 @@ html[data-theme='scholarly-graphite'][data-mode='dark'] {
 /* Reading Room — style and light palette */
 html[data-theme='reading-room'],
 html:not([data-theme]) {
-  --font-display: Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
+  --font-display: Newsreader,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif;
   --font-body: 'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --font-label: ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace;
   --radius-chip: 6px;

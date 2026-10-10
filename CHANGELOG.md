@@ -10,6 +10,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
 - Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.
 
+### Changed
+
+- Fonts: Newsreader and the optical-size Literata self-hosted (public/fonts/local); Reading Room display face is Newsreader, as on the design boards
+
 ## 2026-10-09
 
 ### Decided

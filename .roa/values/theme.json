@@ -226,9 +226,7 @@
         "https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       ],
       "style": {
-        "fontDisplay": {
-          "$ref": "shared.fonts.serif"
-        },
+        "fontDisplay": "Newsreader,Cambria,Caladea,Charter,Georgia,'Times New Roman',serif",
         "fontBody": "'Source Sans 3',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif",
         "fontLabel": {
           "$ref": "shared.fonts.mono"
