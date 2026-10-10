@@ -653,11 +653,29 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Approval** · 2026-10-04 · Chris · `reader-manifest-registration-approved-2026-10-04` · scope: reader-recovery-three-map-entries
   Approved adding three descriptive manifest.map entries for public/highlights.js, public/ui/screens/reader.js, and public/ui/legacy.css, with the checker and guards unchanged.
 
+### `product.accounts`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `accounts-age-passkey-google-recovery`
+  Accounts: age is a 13+ attestation, not a stored age; password is dropped (passkeys, plus Google sign-in); a solid account recovery workflow that does not rely on users keeping recovery codes (Google or verified email) is needed soon.
+  *Why:* Chris, 2026-10-10.
+
 ### `product.audience`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `product.audience.audience`
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
+
+### `product.progress-privacy`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `groups-invariant-amended`
+  Invariant amended: no streaks, public leaderboards, or comparison with strangers, with a future opt-in exception for groups (Bible study, team, class): comparison with group total or anonymous group data and optional group leaderboards, private by default.
+  *Why:* Chris, 2026-10-10: invariant should be revised to include the future group exception.
+
+### `product.translations`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `translations-local-reader-topics`
+  Translations: user-added translations are local-only, uploaded as .xlsx or .json, converted in the browser; BSB is always the default; a chosen translation applies to Reader and Topics only, not lessons or Practice. Failed uploads link to Contact Us.
+  *Why:* Chris, 2026-10-10.
 
 ### `redesign.completed-screens`
 
@@ -1413,6 +1431,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Approval** · 2026-10-10 · Chris · `profile-plan-approved` · scope: profile-port-plan
   Approved the Profile port plan as proposed (P0 to P6): Newsreader self-hosted, Reading font and Interface font pickers (Theme default, Newsreader, Literata, Caladea, Source Sans 3, System), site text size steps 90/100/115/130%, Profile on the Topics layout. The Reader's Aa text size stays separate from the site text size.
+
+### `ui.profile.sections`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-tabs-v2`
+  Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.
+  *Why:* Chris, 2026-10-10 notes; supersedes profile-uses-topics-layout section list (layout stays Topics-style; phone uses list then detail with Back).
 
 ### `ui.reader.apparatus`
 

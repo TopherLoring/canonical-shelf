@@ -10,6 +10,10 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
 - Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.
 - Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored.
+- Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.
+- Translations: user-added translations are local-only, uploaded as .xlsx or .json, converted in the browser; BSB is always the default; a chosen translation applies to Reader and Topics only, not lessons or Practice. Failed uploads link to Contact Us.
+- Accounts: age is a 13+ attestation, not a stored age; password is dropped (passkeys, plus Google sign-in); a solid account recovery workflow that does not rely on users keeping recovery codes (Google or verified email) is needed soon.
+- Invariant amended: no streaks, public leaderboards, or comparison with strangers, with a future opt-in exception for groups (Bible study, team, class): comparison with group total or anonymous group data and optional group leaderboards, private by default.
 
 ### Added
 

@@ -134,7 +134,10 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `process.kit.starter` | Add a starter template to project-roa-kit so new projects begin with the theme and layout contracts and a base stylesheet that uses only roles, with guards o... | Owner decision | undefined |
 | `process.project-state` | Project state is managed with project-roa-kit: | Owner decision | undefined |
 | `process.pull-requests` | undefined | Agent default | undefined |
+| `product.accounts` | Accounts: | Owner decision | undefined |
 | `product.audience` | Primary learner is a graduate-level adult who recently came to faith; | Owner decision | undefined |
+| `product.progress-privacy` | Invariant amended: | Owner decision | undefined |
+| `product.translations` | Translations: | Owner decision | undefined |
 | `redesign.implementation.approach` | Implement the redesign properly across the whole project, not by adding override layers or quick fixes: | Owner decision | undefined |
 | `redesign.sequence` | Sequence: | Owner decision | undefined |
 | `release.deployment` | undefined | Agent default | undefined |
@@ -248,6 +251,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.profile` | The user profile becomes a full screen instead of a popup; | Owner decision | undefined |
 | `ui.profile.layout` | The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; | Owner decision | undefined |
 | `ui.profile.legal-links` | Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored. | Owner decision | undefined |
+| `ui.profile.sections` | Profile is reorganized into six tabs: | Owner decision | undefined |
 | `ui.reader.apparatus` | Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. | Owner decision | undefined |
 | `ui.reader.notes` | My Notes opens saved notes with edit and delete icons and an add-note button or input. | Owner decision | undefined |
 | `ui.reader.viewport` | Keep the top of the reader in view while the verses scroll. | Owner decision | undefined |

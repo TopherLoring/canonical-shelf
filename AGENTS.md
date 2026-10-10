@@ -36,7 +36,7 @@
 - Single-document SPA: public/index.html is the only application document
 - The design-tokens and layout contracts are the visual authority; public/canonical-shelf.css consumes their generated output
 - Pastoral and crisis-adjacent content routes through the Theologian crisis policy
-- No streaks, public leaderboards, or peer comparison
+- No streaks, public leaderboards, or comparison with strangers. Exception (future, opt-in): a learner may join a group (Bible study, team, class); inside that group, progress and results may be compared with the group total or anonymous group data, and the group may turn on a leaderboard. Private by default, never public, never across groups
 
 ## Agent rules
 
