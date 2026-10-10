@@ -159,8 +159,11 @@
   .cs-tabbar { display: flex; padding: 0 2u; background: var(--c-surface); border-block-start: 1u solid var(--c-border); }
   .cs-tabbar :where(a, button) { flex: 1 1 0; min-inline-size: 0; block-size: 56u; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3u; color: var(--c-text-2); font-family: inherit; font-size: 9.5u; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; box-sizing: border-box; }
   .cs-tabbar .cs-icon { inline-size: 21u; block-size: 21u; }
-  .cs-tabbar a[aria-current="page"] { color: var(--c-action); font-weight: 600; box-shadow: inset 0 2u 0 var(--c-action); }
-  .cs-tabbar__extra { border-inline-start: 1u solid var(--c-hairline); }
+  .cs-tabbar :where(a, button) { position: relative; margin-block: 4u; block-size: 48u; border: 1u solid transparent; border-radius: 12u; }
+  .cs-tabbar > :where(a, button) + :where(a, button)::before { content: ""; position: absolute; inset-inline-start: 0; inset-block-start: 50%; inline-size: 1u; block-size: 26u; transform: translateY(-50%); background: var(--c-hairline); }
+  .cs-tabbar a[aria-current="page"] { color: var(--c-action); font-weight: 600; background: var(--c-raised); border: 1u solid var(--c-border); box-shadow: var(--sh-card), inset 0 2u 0 var(--c-action); }
+  .cs-tabbar a[aria-current="page"]::before, .cs-tabbar a[aria-current="page"] + :where(a, button)::before { content: none; }
+
   /* The Bible is a focus screen on the phone: no bar, a close button in the reader header. */
   body[data-current-route="bible"] .cs-tabbar { display: none; }
   body[data-current-route="bible"] .cs-shell { grid-template-rows: minmax(0, 1fr); }
@@ -171,10 +174,11 @@
 .cs-top__tools { display: flex; align-items: center; gap: 12u; margin-inline-start: auto; flex: none; }
 .cs-top__tools .cs-top__search, .cs-top__tools .cs-top__profile { position: relative; }
 .cs-top__tools { margin-inline-end: 0; }
-.cs-search { position: relative; display: flex; align-items: center; }
-.cs-search input { position: absolute; inset-inline-end: 0; inline-size: 0; opacity: 0; pointer-events: none; block-size: 36u; padding: 0 12u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-surface); color: var(--c-text); font-size: 14u; transition: inline-size var(--motion-base) var(--motion-easing), opacity var(--motion-base) var(--motion-easing); }
-.cs-search[data-open="true"] input { inline-size: 240u; opacity: 1; pointer-events: auto; z-index: var(--z-raised); }
-.cs-search[data-open="true"] .cs-top__search { position: relative; z-index: var(--z-popover); }
+.cs-search { position: relative; display: flex; align-items: center; inline-size: 280u; border: 1u solid var(--c-border); border-radius: 10u; background: var(--c-raised); }
+.cs-search:focus-within { border-color: var(--c-action); }
+.cs-search input { order: -1; flex: 1; min-inline-size: 0; block-size: 36u; padding: 0 4u 0 12u; border: 0; outline: 0; background: transparent; color: var(--c-text); font-family: inherit; font-size: 14u; }
+.cs-search input::placeholder { color: var(--c-muted); }
+.cs-search .cs-top__search { inline-size: 36u; block-size: 36u; flex: none; }
 .cs-icon-button[aria-current], .cs-icon-button.is-active { color: var(--c-action); }
 .cs-icon-button:hover { color: var(--c-text); }
 

@@ -42,10 +42,10 @@ test.describe('Bible reader', () => {
     await expect(page.locator('main h1')).toBeVisible();
     await page.locator('nav.primary a[href="/bible"]').click();
     await page.locator('.profile-link').click();
-    await expect(page.locator('[data-profile-section="account"]')).toBeVisible();
+    await expect(page.locator('[data-profile-section="list"]')).toBeVisible();
     release();
     await page.waitForResponse('**/data/corpus.txt');
-    await expect(page.locator('[data-profile-section="account"]')).toBeVisible();
+    await expect(page.locator('[data-profile-section="list"]')).toBeVisible();
     await expect(page.locator('main [data-reader]')).toHaveCount(0);
     await expect(page).toHaveURL(/\/profile$/);
   });
@@ -73,10 +73,10 @@ test.describe('Bible reader', () => {
     await page.goto('/bible?book=1&chapter=1');
     await request;
     await page.locator('.profile-link').click();
-    await expect(page.locator('[data-profile-section="account"]')).toBeVisible();
+    await expect(page.locator('[data-profile-section="list"]')).toBeVisible();
     const response = page.waitForResponse('**/data/bsb-annotations/1.json');
     release(); await response;
-    await expect(page.locator('[data-profile-section="account"]')).toBeVisible();
+    await expect(page.locator('[data-profile-section="list"]')).toBeVisible();
     await expect(page.locator('main [data-reader]')).toHaveCount(0);
     await expect(page).toHaveURL(/\/profile$/);
   });

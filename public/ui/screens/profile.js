@@ -1,37 +1,52 @@
-// Profile (Phase A): the Topics layout. A card list of tabs beside a pane for the selected one. On a phone the list is the
-// Profile screen and each tab opens as a detail page with a Back button. The tab is in the address (/profile#appearance).
-// Tabs with choices (Appearance, Reading) hold a draft: a sticky Save / Cancel bar appears only when something changed.
-import { THEMES, currentTheme, currentMode, applyMode, applyTheme, applyFonts, applyTextSize, applyAccessibility, currentFonts, currentTextSize, currentAccessibility, resetDisplayPreferences, FONT_CHOICES, TEXT_SIZES, MOTION_CHOICES, CONTRAST_CHOICES } from '../../theme.js';
+// Profile: a drill-down. The left pane lists the sections; choosing one replaces it with a Back link and that section's sub-sections,
+// each its own screen. On a phone the same steps are full screens: sections, then sub-sections, then the page, each with Back.
+// The address holds the place (/profile#customization/appearance). Customization holds a draft (a sticky Save / Cancel bar appears only
+// when something changed) that survives moving between its sub-sections. Nothing here links out of Profile: policies, terms, and the
+// Statement of Faith are shown in the pane.
+import { THEMES, currentTheme, currentMode, applyMode, applyTheme, applyFonts, applyTextSize, applyAccessibility, currentFonts, currentTextSize, currentAccessibility, resetDisplayPreferences, FONT_CHOICES, TEXT_SIZES } from '../../theme.js';
 import { progressPanelView } from '../../progress-experience.js';
 import { setFrameVariant } from '../components/index.js';
 import { sendFeedback, forgetFeedbackLink } from '../../feedback.js';
 import { screenContext } from '../../screen-context.js';
+import { ABOUT_SECTIONS, markdownToHtml } from '../../about-page.js';
 import { resetPathProgress, resetPracticeProgress, eraseNotes, eraseHighlights, clearHistory, eraseEverythingOnThisDevice, exportStudy, exportProgress, exportEverything } from '../../profile-data.js';
 
-const CHEVRON = '<svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg>';
-const LEFT = '<svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 6-6 6 6 6"></path></svg>';
+const svg = body => `<svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+const CHEVRON = svg('<path d="m9 6 6 6-6 6"></path>');
+const LEFT = svg('<path d="m15 6-6 6 6 6"></path>');
 
-// id, label, heading, blurb
-const TABS = [
-  ['account', 'Account', 'Account', 'Sign in, sync across devices, and manage this device.'],
-  ['appearance', 'Appearance', 'Appearance', 'Theme, text, and accessibility, with a preview before you save.'],
-  ['reading', 'Reading', 'Reading', 'The translation used in the Reader and Topics.'],
-  ['study', 'My Study', 'My Study', 'Your progress, notes, highlights, and history.'],
-  ['privacy', 'Privacy & data', 'Privacy & data', 'Export or erase what is stored, and see how it is kept.'],
-  ['about', 'About Us', 'About Us', 'Who we are, what we believe, and the terms and policies.'],
-  ['contact', 'Contact Us', 'Contact Us', 'Ask a question or tell us what you found.']
+// Sections: id, label, blurb, and sub-sections as [id, label, heading, blurb].
+const SECTIONS = [
+  { id: 'account', label: 'Account', blurb: 'Sign in, sync across devices, and manage this device.', subs: [
+    ['signin', 'Sign-in & sync', 'Sign-in & sync', 'Passkeys, syncing, and deleting your account.']] },
+  { id: 'customization', label: 'Customization', blurb: 'Theme, Reader, and accessibility, with a preview before you save.', subs: [
+    ['appearance', 'Appearance', 'Appearance', 'Theme, light or dark, fonts, and text size.'],
+    ['reader', 'Reader', 'Reader', 'The translation used in the Reader and Topics.'],
+    ['accessibility', 'Accessibility', 'Accessibility', 'Motion and contrast.']] },
+  { id: 'study', label: 'My Study', blurb: 'Your progress, notes, highlights, and history.', subs: [
+    ['progress', 'Progress', 'Progress', 'Learning Path and Practice progress.'],
+    ['notes', 'My Notes', 'My Notes', 'Your notes and highlights.'],
+    ['history', 'History', 'History', 'Recently viewed items and your reading place.']] },
+  { id: 'privacy', label: 'Privacy & Policies', blurb: 'Export or erase what is stored, and read how it is handled.', subs: [
+    ['data', 'Your data', 'Your data', 'Back up, export, or erase what is stored.'],
+    ['privacy-policy', 'Privacy Policy', 'Privacy Policy', 'What we collect, why, and the choices you have.'],
+    ['storage', 'Cookies & storage', 'Cookies & storage', 'The cookies and browser storage Canonical Shelf uses.'],
+    ['retention', 'Data retention', 'Data retention', 'How long data is kept.'],
+    ['terms', 'Terms of Use', 'Terms of Use', 'The terms for using Canonical Shelf.']] },
+  { id: 'about', label: 'About Canonical Shelf', blurb: 'What this is, and what we believe.', subs: [
+    ['introduction', 'About', 'About Canonical Shelf', 'How Canonical Shelf works, its sources, and its approach to Scripture.'],
+    ['faith', 'Statement of Faith', 'Statement of Faith', 'The convictions behind Canonical Shelf’s own doctrinal claims. You are never asked to agree.']] },
+  { id: 'contact', label: 'Contact Us', blurb: 'Ask a question or tell us what you found.', subs: [
+    ['message', 'Send a message', 'Contact Us', 'Ask a question or tell us what you found.']] }
 ];
-const ALIASES = { you: 'account', progress: 'study', notes: 'study' };
+const ALIASES = {
+  you: 'account', policies: 'privacy', appearance: 'customization/appearance', reading: 'customization/reader', accessibility: 'customization/accessibility',
+  progress: 'study/progress', notes: 'study/notes', history: 'study/history', terms: 'privacy/terms', 'data-retention': 'privacy/retention', storage: 'privacy/storage', faith: 'about/faith'
+};
+const DOCS = { 'privacy-policy': 'privacy', storage: 'storage', retention: 'data-retention', terms: 'terms' };
+// Where a link in a policy document goes: another place inside Profile.
+const DOC_LINKS = { '/privacy.html': 'privacy/privacy-policy', '/terms.html': 'privacy/terms', '/data-retention.html': 'privacy/retention', '/storage.html': 'privacy/storage', '/about.html': 'about/introduction', '/about.html#faith': 'about/faith' };
 const PHONE = '(max-width: 760px), (max-aspect-ratio: 4/5)';
-
-const LEGAL = [
-  ['/about.html#faith', 'Statement of Faith', 'The convictions behind Canonical Shelf’s own doctrinal claims. You are never asked to agree.'],
-  ['/about.html', 'About', 'How Canonical Shelf works, its sources, and its approach to Scripture.'],
-  ['/terms.html', 'Terms', 'The terms for using Canonical Shelf.'],
-  ['/privacy.html', 'Privacy', 'What we collect, why, and the choices you have.'],
-  ['/data-retention.html', 'Data retention', 'How long data is kept.'],
-  ['/storage.html', 'What is stored', 'The cookies and browser storage Canonical Shelf uses.']
-];
 
 const CONFIRMS = {
   'reset-path': { title: 'Reset Learning Path progress?', body: 'Completed lessons, scores, and scheduled reviews on this device are cleared. Notes and highlights stay.', go: 'Reset Path progress', run: resetPathProgress, exporter: exportProgress, done: 'Learning Path progress was reset.' },
@@ -43,28 +58,49 @@ const CONFIRMS = {
 };
 
 let pendingStatus = '';
+// The unsaved Customization draft, kept while moving between its sub-sections.
+let held = null;
 
-const tabFromHash = () => {
-  let id = '';
-  try { id = decodeURIComponent(location.hash.slice(1)); } catch { /* ignore a malformed address */ }
-  id = ALIASES[id] || id;
-  return TABS.some(([key]) => key === id) ? id : '';
-};
-const hrefFor = id => `/profile#${id}`;
+const hrefFor = (section, sub) => `/profile#${section}${sub ? `/${sub}` : ''}`;
 
-function rail(current, esc) {
-  return `<nav class="cs-card cs-rail profile-rail" aria-label="Profile"><span class="cs-rail__label">Profile</span>
-    ${TABS.map(([id, label]) => `<a class="cs-rail__item${id === current ? ' is-current' : ''}" href="${esc(hrefFor(id))}"${id === current ? ' aria-current="page"' : ''}><span class="cs-grow">${esc(label)}</span></a>`).join('')}</nav>`;
+function routeFromHash() {
+  let raw = '';
+  try { raw = decodeURIComponent(location.hash.slice(1)); } catch { /* ignore a malformed address */ }
+  const [sectionId, subId] = (ALIASES[raw] || raw).split('/');
+  const section = SECTIONS.find(item => item.id === sectionId) || null;
+  const sub = section?.subs.find(([id]) => id === subId)?.[0] || '';
+  return { section, sub };
 }
 
-function phoneList(esc) {
-  return `<nav class="profile-list" aria-label="Profile">${TABS.map(([id, label, , blurb]) => `<a class="cs-card profile-list__item" href="${esc(hrefFor(id))}"><span class="profile-list__text"><strong>${esc(label)}</strong><span>${esc(blurb)}</span></span>${CHEVRON}</a>`).join('')}</nav>`;
+function rail(route, level, esc) {
+  const { section, sub } = route;
+  if (!section) {
+    return `<nav class="cs-card cs-rail profile-rail" aria-label="Profile"><span class="cs-rail__label">Profile</span>
+      ${SECTIONS.map(item => `<a class="cs-rail__item" href="${esc(hrefFor(item.id))}"><span class="cs-grow">${esc(item.label)}</span>${CHEVRON}</a>`).join('')}</nav>`;
+  }
+  const current = sub || section.subs[0][0];
+  return `<nav class="cs-card cs-rail profile-rail" aria-label="${esc(section.label)}"><a class="cs-rail__item profile-rail__back" href="/profile">${LEFT}<span class="cs-grow">Profile</span></a>
+    <span class="cs-rail__label">${esc(section.label)}</span>
+    ${section.subs.map(([id, label]) => `<a class="cs-rail__item${id === current && level === 'detail' ? ' is-current' : ''}" href="${esc(hrefFor(section.id, id))}"${id === current && level === 'detail' ? ' aria-current="page"' : ''}><span class="cs-grow">${esc(label)}</span></a>`).join('')}</nav>`;
 }
+
+const listCards = (items, esc) => `<nav class="profile-list" aria-label="Profile">${items.map(([href, label, blurb]) => `<a class="cs-card profile-list__item" href="${esc(href)}"><span class="profile-list__text"><strong>${esc(label)}</strong><span>${esc(blurb)}</span></span>${CHEVRON}</a>`).join('')}</nav>`;
 
 const card = (title, body, extra = '') => `<section class="cs-card cs-panel profile-card${extra ? ` ${extra}` : ''}">${title ? `<span class="cs-caption cs-caption--label">${title}</span>` : ''}${body}</section>`;
 
 function radio(attr, items, selectedId, label) {
   return `<div class="mode-toggle-group profile-seg" role="radiogroup" aria-label="${label}">${items.map(([id, text, small]) => `<button class="mode-toggle-btn ${id === selectedId ? 'is-selected' : ''}" type="button" role="radio" ${attr}="${id}" aria-checked="${id === selectedId}" tabindex="${id === selectedId ? 0 : -1}">${text}${small ? `<small>${small}</small>` : ''}</button>`).join('')}</div>`;
+}
+
+const MODE_ICONS = {
+  light: svg('<circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path>'),
+  dark: svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path>'),
+  system: svg('<rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path>')
+};
+// Light, dark, or the device's setting: standard sun, moon, and monitor icons (labelled for screen readers).
+function modeRadio(selected) {
+  const items = [['light', 'Light'], ['dark', 'Dark'], ['system', 'Match my device']];
+  return `<div class="mode-toggle-group profile-seg profile-seg--icons" role="radiogroup" aria-label="Light or dark">${items.map(([id, name]) => `<button class="mode-toggle-btn ${id === selected ? 'is-selected' : ''}" type="button" role="radio" data-mode-choice="${id}" aria-checked="${id === selected}" aria-label="${name}" title="${name}" tabindex="${id === selected ? 0 : -1}">${MODE_ICONS[id]}</button>`).join('')}</div>`;
 }
 
 function fontField(kind, label, selected, esc) {
@@ -77,54 +113,80 @@ function sizeRadio(selected) {
   return `<div class="mode-toggle-group profile-seg profile-seg--sizes" role="radiogroup" aria-label="Site text size">${TEXT_SIZES.map((size, n) => `<button class="mode-toggle-btn ${size.id === selected ? 'is-selected' : ''}" type="button" role="radio" data-text-size-choice="${size.id}" aria-checked="${size.id === selected}" aria-label="${size.name}, ${size.percent}%" title="${size.name}, ${size.percent}%" tabindex="${size.id === selected ? 0 : -1}"><span class="profile-sizeglyph profile-sizeglyph--${n + 1}" aria-hidden="true">A</span></button>`).join('')}</div>`;
 }
 
+function switchRow(attr, label, note, on) {
+  return `<label class="profile-switch"><span class="profile-switch__text"><strong>${label}</strong><span>${note}</span></span><input type="checkbox" role="switch" ${attr}${on ? ' checked' : ''}><span class="profile-switch__track" aria-hidden="true"></span></label>`;
+}
+
 function appearancePane(draft, esc) {
   const theme = THEMES.find(t => t.id === draft.theme) || THEMES[0];
-  const head = `<div class="profile-cardhead"><span class="cs-caption cs-caption--label">Theme</span>${radio('data-mode-choice', [['light', 'Light'], ['dark', 'Dark'], ['system', 'Match my device']], currentMode(), 'Light or dark')}</div>`;
-  const preview = `<div class="profile-preview" data-preview data-theme-swatch="${esc(theme.id)}" aria-label="Preview of the selected theme and type">
+  const head = `<div class="profile-cardhead"><span class="cs-caption cs-caption--label">Theme</span>${modeRadio(currentMode())}</div>`;
+  const preview = `<div class="profile-previewwrap"><div class="profile-preview" data-preview data-theme-swatch="${esc(theme.id)}" aria-label="Preview of the selected theme and type">
       <div class="pv-page"><div class="pv-card">
         <span class="pv-kicker">Genesis 1</span>
         <h3 class="pv-title">In the beginning</h3>
         <p class="pv-text">In the beginning, God created the heavens and the earth.</p>
-        <p class="pv-note" data-preview-name><strong>${esc(theme.name)}.</strong> <span data-preview-desc>${esc(theme.summary || '')}</span></p>
         <span class="pv-actions"><span class="pv-btn pv-btn--primary">Continue</span><span class="pv-btn">My Notes</span></span>
-      </div></div></div>`;
+      </div></div></div>
+      <div class="profile-sizemenu"><button type="button" class="profile-sizebtn" data-size-trigger aria-haspopup="true" aria-expanded="false" aria-label="Text size" title="Text size"><span aria-hidden="true">A<small>a</small></span></button><div class="profile-sizepop" data-size-pop hidden>${sizeRadio(draft.size)}</div></div></div>`;
   const row = `<div class="profile-controls-row">
       <label class="profile-field">Theme<select data-theme-select>${THEMES.map(t => `<option value="${esc(t.id)}"${t.id === draft.theme ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>
       ${fontField('reading', 'Reading font', draft.reading, esc)}
       ${fontField('interface', 'Interface font', draft.interface, esc)}
-      <div class="profile-field profile-field--sizes"><span>Text size</span>${sizeRadio(draft.size)}</div>
+      <button type="button" class="profile-action profile-action--reset" data-reset-defaults>Reset to defaults</button>
     </div>`;
-  const notes = `<p class="cs-sub">The preview shows your choices without applying them; Save to use them across the site. Reading font covers Scripture, lessons, and headings; Interface font covers menus, buttons, and labels. The Reader’s own Aa control sets Scripture text size separately.</p>`;
-  return `${card('', `${head}${preview}${row}${notes}`, 'profile-appearance-card')}
-    ${card('Accessibility', `<div class="profile-a11y"><div><span class="cs-caption">Motion</span>${radio('data-motion-choice', MOTION_CHOICES.map(m => [m.id, m.name]), draft.motion, 'Motion')}</div><div><span class="cs-caption">Contrast</span>${radio('data-contrast-choice', CONTRAST_CHOICES.map(c => [c.id, c.name]), draft.contrast, 'Contrast')}</div></div>`)}
-    ${card('', `<button type="button" class="profile-action" data-reset-defaults>Reset appearance to defaults</button>`)}`;
+  return card('', `${head}<div class="profile-appearance-body">${preview}${row}</div>`, 'profile-appearance-card');
 }
 
-function readingPane(translation, esc) {
+function accessibilityPane(draft) {
+  return card('', `<div class="profile-switches">${switchRow('data-motion-switch', 'Reduce motion', 'Turns off animation and smooth scrolling.', draft.motion === 'reduce')}${switchRow('data-contrast-switch', 'High contrast', 'Stronger text and border contrast.', draft.contrast === 'high')}</div>`, 'profile-a11y-card');
+}
+
+function readerPane(translation) {
   return `${card('Bible translation', `<label class="profile-field">Translation used in the Reader and Topics
       <select data-translation-choice><option value="bsb" ${translation === 'bsb' ? 'selected' : ''}>Berean Standard Bible (BSB)</option></select></label>
       <p class="cs-sub">The Berean Standard Bible is the default. Lessons and Practice always quote it. More translations may be added later.</p>`)}
-    ${card('Reader text size', `<p class="cs-sub">The Reader has its own Aa control for the size of Scripture text. It is separate from the site text size in Appearance.</p><a class="profile-action" href="/profile#appearance">Open Appearance</a>`)}`;
+    ${card('Reader text size', '<p class="cs-sub">The Reader has its own Aa control for the size of Scripture text. It is separate from the site text size in Appearance.</p>')}`;
 }
 
-function studyPane() {
-  const row = (key, label) => `<button type="button" class="button button--danger" data-study-action="${key}">${label}</button>`;
-  return `${card('Progress', `<div class="profile-progress" data-profile-progress></div><div class="profile-buttons"><button type="button" class="button" data-study-export="progress">Export progress</button>${row('reset-path', 'Reset Path progress')}${row('reset-practice', 'Reset Practice progress')}</div>`)}
-    ${card('My Notes and highlights', `<div data-profile-notes><p class="cs-sub">Loading your notes…</p></div><div class="profile-buttons"><button type="button" class="button" data-study-export="study">Export notes and highlights</button>${row('erase-notes', 'Erase notes')}${row('erase-highlights', 'Erase highlights')}</div>`)}
-    ${card('History', `<p class="cs-sub">Recently viewed items and your saved reading place in the Reader and Topics.</p><div class="profile-buttons">${row('clear-history', 'Clear history')}</div>`)}`;
+const dangerButton = (key, label) => `<button type="button" class="button button--danger" data-study-action="${key}">${label}</button>`;
+
+function studyPane(sub) {
+  if (sub === 'progress') return card('Progress', `<div class="profile-progress" data-profile-progress></div><div class="profile-buttons"><button type="button" class="button" data-study-export="progress">Export progress</button>${dangerButton('reset-path', 'Reset Path progress')}${dangerButton('reset-practice', 'Reset Practice progress')}</div>`, 'profile-card--fill');
+  if (sub === 'notes') return card('My Notes and highlights', `<div data-profile-notes><p class="cs-sub">Loading your notes…</p></div><div class="profile-buttons"><button type="button" class="button" data-study-export="study">Export notes and highlights</button>${dangerButton('erase-notes', 'Erase notes')}${dangerButton('erase-highlights', 'Erase highlights')}</div>`, 'profile-card--fill');
+  return card('History', `<p class="cs-sub">Recently viewed items and your saved reading place in the Reader and Topics.</p><div class="profile-buttons">${dangerButton('clear-history', 'Clear history')}</div>`);
 }
 
-function privacyPane(esc) {
+function dataPane(esc) {
   const status = window.canonPwaStatus;
   return `${card('Back up or restore progress', `<div class="profile-backup" id="backup" role="group" aria-label="Back up or restore progress"><span class="cs-sub">Export a copy of your progress, or restore one on this device.</span><span class="profile-backup__actions"><button class="button" type="button" id="export">Export</button><button class="button" type="button" id="import">Restore…</button></span></div><div class="profile-buttons"><button type="button" class="button" data-study-export="everything">Export everything</button></div>`)}
-    ${card('Erase from this device', `<p class="cs-sub">Deletes progress, Practice, notes, highlights, and history stored in this browser. You can export first.</p><div class="profile-buttons"><button type="button" class="button button--danger" data-study-action="erase-all">Erase everything on this device</button></div>`)}
-    ${card('Delete account', `<p class="cs-sub">Deleting your account and its synced copy is done in Account. What is saved on this device stays unless you erase it above.</p><a class="profile-action" href="/profile#account">Go to Account</a>`)}
-    ${card('Offline access', `<p class="cs-sub" role="status"><span id="pwa-status" data-state="${esc(status?.state || '')}">${esc(status?.text || 'Online. Saved content is available offline.')}</span></p>`)}
-    ${card('Policies', `<p class="cs-sub">How your data is handled is in the <a href="/privacy.html">Privacy policy</a>. All terms and policies are under About Us.</p>`)}`;
+    <div class="profile-pair">${card('Erase from this device', `<p class="cs-sub">Deletes progress, Practice, notes, highlights, and history stored in this browser. You can export first.</p><div class="profile-buttons">${dangerButton('erase-all', 'Erase everything on this device')}</div>`)}
+    ${card('Delete account', `<p class="cs-sub">Deleting your account and its synced copy is done in Account. What is saved on this device stays unless you erase it here.</p><a class="profile-action" href="${esc(hrefFor('account'))}">Go to Account</a>`)}</div>
+    ${card('Offline access', `<p class="cs-sub" role="status"><span id="pwa-status" data-state="${esc(status?.state || '')}">${esc(status?.text || 'Online. Saved content is available offline.')}</span></p>`)}`;
 }
 
-function aboutPane(esc) {
-  return card('Terms, policies, and what we believe', `<ul class="profile-links">${LEGAL.map(([href, label, note]) => `<li><a href="${esc(href)}"><strong>${esc(label)}</strong><span>${esc(note)}</span></a></li>`).join('')}</ul>`);
+// A document from the About bundle, shown in the pane: the first-party HTML with its page nav and outbound links taken out.
+function documentHtml(id, which) {
+  const source = ABOUT_SECTIONS.find(item => item.id === id)?.html || '<p>This document is not available.</p>';
+  const template = document.createElement('template');
+  template.innerHTML = source;
+  const root = template.content;
+  root.querySelector('.about-page__nav')?.remove();
+  // The screen heading already names a policy page, so its own title and label are dropped; About keeps its title.
+  if (which !== 'introduction') root.querySelectorAll('.about-page__hero h1').forEach(h1 => h1.remove());
+  root.querySelectorAll('.about-page__hero .eyebrow').forEach(label => label.remove());
+  root.querySelectorAll('h1').forEach(h1 => { const h2 = document.createElement('h2'); h2.innerHTML = h1.innerHTML; h1.replaceWith(h2); });
+  const faith = root.querySelector('#faith');
+  if (which === 'faith') faith?.querySelector('h2')?.remove();
+  if (which === 'faith') { const only = document.createElement('div'); if (faith) only.append(faith); return only.innerHTML; }
+  if (which === 'introduction') faith?.remove();
+  const holder = document.createElement('div');
+  holder.append(root);
+  return holder.innerHTML;
+}
+
+function docPane(sub) {
+  const id = DOCS[sub] || 'about';
+  return `<section class="cs-card profile-doc" data-doc="${sub}" tabindex="0" aria-label="Document">${documentHtml(id, sub)}</section>`;
 }
 
 function contactPane() {
@@ -134,16 +196,15 @@ function contactPane() {
       <label class="profile-field">Contact information <small>optional</small><input name="contact" type="text" maxlength="320" autocomplete="email" placeholder="Email, if you want a reply by email too"></label>
       <p class="cs-sub">Replies come back to this browser as a message on the Theologian tab, without identifying you. The server keeps only a one-way hash of a random browser code, never your IP address.</p>
       <div class="profile-buttons"><button class="button button--primary" type="submit">Send</button><button type="button" class="profile-action" data-forget-feedback>Forget this browser’s feedback link</button></div>
-    </form>`);
+    </form>`, 'profile-card--narrow');
 }
 
-function pane(id, ctx, draft, translation) {
-  if (id === 'account') return card('Sign-in and sync', '<div data-account-mount><p class="cs-sub">Checking your account…</p></div>');
-  if (id === 'appearance') return appearancePane(draft, ctx.esc);
-  if (id === 'reading') return readingPane(translation, ctx.esc);
-  if (id === 'study') return studyPane();
-  if (id === 'privacy') return privacyPane(ctx.esc);
-  if (id === 'about') return aboutPane(ctx.esc);
+function pane(section, sub, ctx, draft, translation) {
+  if (section === 'account') return card('Sign-in and sync', '<div data-account-mount><p class="cs-sub">Checking your account…</p></div>');
+  if (section === 'customization') return sub === 'appearance' ? appearancePane(draft, ctx.esc) : sub === 'accessibility' ? accessibilityPane(draft) : readerPane(translation);
+  if (section === 'study') return studyPane(sub);
+  if (section === 'privacy') return sub === 'data' ? dataPane(ctx.esc) : docPane(sub);
+  if (section === 'about') return docPane(sub);
   return contactPane();
 }
 
@@ -152,28 +213,41 @@ export const handles = () => true;
 export function mount(container, ctx) {
   const { data, state, esc } = ctx;
   const phone = window.matchMedia(PHONE);
-  const requested = tabFromHash();
-  const listView = !requested && phone.matches;
-  const id = requested || 'account';
-  const [, , title, blurb] = TABS.find(([key]) => key === id);
+  const route = routeFromHash();
+  const { section } = route;
+  const multi = Boolean(section && section.subs.length > 1);
+  const level = !section ? 'home' : (route.sub || !multi || !phone.matches ? 'detail' : 'subs');
+  const sub = section ? (route.sub || section.subs[0][0]) : '';
+  const customizing = section?.id === 'customization';
+
   let storedTranslation = 'bsb';
   try { storedTranslation = localStorage.getItem('canon.translation') || 'bsb'; } catch { /* storage unavailable */ }
   const applied = () => ({ theme: currentTheme(), size: currentTextSize(), ...currentFonts(), ...currentAccessibility() });
-  const draft = applied();
-  let translation = storedTranslation;
-  const modeAtOpen = currentMode();
+  // Leaving Customization drops its draft; light or dark applies as it is picked, so put it back.
+  if (held && !customizing) { if (currentMode() !== held.modeAtOpen) applyMode(held.modeAtOpen); held = null; }
+  if (customizing && !held) held = { draft: applied(), translation: storedTranslation, modeAtOpen: currentMode() };
+  const draft = held?.draft || applied();
+  const modeAtOpen = held?.modeAtOpen || currentMode();
+  const translationNow = () => held?.translation ?? storedTranslation;
 
   const main = document.querySelector('main#main');
   const restoreFrame = setFrameVariant('well');
   main?.classList.add('cs-cols--profile');
 
-  const heading = listView ? 'Profile' : title;
-  const sub = listView ? 'Your account, preferences, and study.' : blurb;
-  container.innerHTML = `${rail(id, esc)}
-    <section class="cs-column profile-screen${listView ? ' is-list' : ''}" aria-label="${esc(heading)}" data-profile-screen data-profile-section="${listView ? 'list' : esc(id)}">
-      ${listView ? '' : `<a class="cs-backlink profile-back" href="/profile">${LEFT}<span>Profile</span></a>`}
-      <div class="cs-heading"><span class="cs-kicker profile-kicker">Profile</span><h1 class="profile-h1">${esc(heading)}</h1><span class="cs-sub">${esc(sub)}</span></div>
-      ${listView ? phoneList(esc) : `<div class="profile-status cs-sub" role="status" aria-live="polite" data-profile-status>${esc(pendingStatus)}</div><div class="profile-panes" data-profile-pane="${esc(id)}">${pane(id, ctx, draft, translation)}</div>${id === 'appearance' || id === 'reading' ? saveBar : ''}`}
+  const subRow = section?.subs.find(([id]) => id === sub);
+  const heading = level === 'home' ? 'Profile' : level === 'subs' ? section.label : subRow[2];
+  const blurb = level === 'home' ? 'Your account, preferences, and study.' : level === 'subs' ? section.blurb : subRow[3];
+  const backHref = level === 'subs' || (level === 'detail' && !multi) ? '/profile' : hrefFor(section?.id || '');
+  const backLabel = level === 'detail' && multi ? section.label : 'Profile';
+  let body = '';
+  if (level === 'home') body = listCards(SECTIONS.map(item => [hrefFor(item.id), item.label, item.blurb]), esc);
+  else if (level === 'subs') body = listCards(section.subs.map(([id, label, , note]) => [hrefFor(section.id, id), label, note]), esc);
+  else body = `<div class="profile-status cs-sub" role="status" aria-live="polite" data-profile-status>${esc(pendingStatus)}</div><div class="profile-panes" data-profile-pane="${esc(sub)}">${pane(section.id, sub, ctx, draft, translationNow())}</div>${customizing ? saveBar : ''}`;
+  container.innerHTML = `${rail(route, level, esc)}
+    <section class="cs-column profile-screen${level === 'home' ? ' is-list' : ''}${level === 'detail' && (DOCS[sub] || (section?.id === 'about')) ? ' has-doc' : ''}" aria-label="${esc(heading)}" data-profile-screen data-profile-section="${level === 'home' ? 'list' : esc(section.id)}" data-profile-sub="${esc(level === 'detail' ? sub : '')}">
+      ${level === 'home' ? '' : `<a class="cs-backlink profile-back" href="${esc(backHref)}">${LEFT}<span>${esc(backLabel)}</span></a>`}
+      <div class="cs-heading"><span class="cs-kicker profile-kicker">${esc(section?.label || 'Profile')}</span><h1 class="profile-h1">${esc(heading)}</h1><span class="cs-sub">${esc(blurb)}</span></div>
+      ${body}
     </section>
     <dialog class="profile-confirm" aria-labelledby="profile-confirm-title"><h2 id="profile-confirm-title"></h2><p data-confirm-body></p><div class="profile-buttons"><button type="button" class="button" data-confirm-export hidden>Export first</button><button type="button" class="button button--danger" data-confirm-go></button><button type="button" class="button" data-confirm-cancel>Cancel</button></div></dialog>`;
   pendingStatus = '';
@@ -185,11 +259,26 @@ export function mount(container, ctx) {
   const progress = q('[data-profile-progress]');
   if (progress) progress.append(progressPanelView({ data, state, esc }));
 
+  // ---- Documents shown in the pane: links stay inside Profile; the Statement of Faith loads in place ----
+  const controller = new AbortController();
+  container.querySelectorAll('.profile-doc a[href]').forEach(link => {
+    const target = DOC_LINKS[link.getAttribute('href')];
+    if (target) { const [a, b] = target.split('/'); link.setAttribute('href', hrefFor(a, b)); return; }
+    link.replaceWith(...link.childNodes);
+  });
+  const statement = q('#statement-content');
+  if (statement) {
+    fetch('/data/statement-of-faith.md', { signal: controller.signal })
+      .then(response => { if (!response.ok) throw new Error('Statement unavailable'); return response.text(); })
+      .then(markdown => { if (statement.isConnected) statement.innerHTML = markdownToHtml(markdown) || '<p>The Statement of Faith is currently unavailable.</p>'; })
+      .catch(error => { if (error.name !== 'AbortError' && statement.isConnected) statement.textContent = 'The Statement of Faith could not be loaded right now.'; });
+  }
+
   // ---- Draft, preview, and the Save / Cancel bar ----
   const dirty = () => {
-    if (id === 'appearance') { const now = applied(); return Object.keys(now).some(key => now[key] !== draft[key]) || currentMode() !== modeAtOpen; }
-    if (id === 'reading') return translation !== storedTranslation;
-    return false;
+    if (!customizing) return false;
+    const now = applied();
+    return Object.keys(now).some(key => now[key] !== draft[key]) || currentMode() !== modeAtOpen || translationNow() !== storedTranslation;
   };
   const preview = q('[data-preview]');
   const paintPreview = () => {
@@ -203,8 +292,6 @@ export function mount(container, ctx) {
     setVar('--pv-reading', reading);
     setVar('--pv-ui', ui);
     setVar('--pv-factor', String(factor));
-    const name = q('[data-preview-name]');
-    if (name) name.innerHTML = `<strong>${esc(theme.name)}.</strong> <span data-preview-desc>${esc(theme.summary || '')}</span>`;
     const select = q('[data-theme-select]');
     if (select) select.value = draft.theme;
   };
@@ -219,21 +306,24 @@ export function mount(container, ctx) {
     });
   };
   paintPreview();
+  refresh();
 
   const save = () => {
-    if (id === 'appearance') {
-      applyTheme(draft.theme);
-      applyTextSize(draft.size);
-      applyFonts({ reading: draft.reading, interface: draft.interface });
-      applyAccessibility({ motion: draft.motion, contrast: draft.contrast });
-      applyMode(currentMode());
-    } else if (id === 'reading') {
-      storedTranslation = translation;
-      try { localStorage.setItem('canon.translation', translation); } catch { /* storage unavailable */ }
-    }
+    applyTheme(draft.theme);
+    applyTextSize(draft.size);
+    applyFonts({ reading: draft.reading, interface: draft.interface });
+    applyAccessibility({ motion: draft.motion, contrast: draft.contrast });
+    applyMode(currentMode());
+    storedTranslation = translationNow();
+    try { localStorage.setItem('canon.translation', storedTranslation); } catch { /* storage unavailable */ }
+    held = null;
     reload('Saved.');
   };
-  const cancel = () => { if (currentMode() !== modeAtOpen) applyMode(modeAtOpen); reload(''); };
+  const cancel = () => { if (currentMode() !== modeAtOpen) applyMode(modeAtOpen); held = null; reload(''); };
+
+  const sizePop = q('[data-size-pop]');
+  const sizeTrigger = q('[data-size-trigger]');
+  const setSizePop = open => { if (!sizePop) return; sizePop.hidden = !open; sizeTrigger?.setAttribute('aria-expanded', String(open)); };
 
   // ---- Confirmation dialog for resets and erases ----
   const dialog = q('dialog.profile-confirm');
@@ -251,12 +341,12 @@ export function mount(container, ctx) {
 
   const onClick = async event => {
     const target = event.target;
+    if (target.closest?.('[data-size-trigger]')) { setSizePop(sizePop?.hidden); return; }
+    if (sizePop && !sizePop.hidden && !target.closest?.('[data-size-pop]')) setSizePop(false);
     const radioButton = target.closest?.('[role="radio"]');
     if (radioButton && container.contains(radioButton)) {
       mark(radioButton);
-      if (radioButton.dataset.textSizeChoice) draft.size = radioButton.dataset.textSizeChoice;
-      if (radioButton.dataset.motionChoice) draft.motion = radioButton.dataset.motionChoice;
-      if (radioButton.dataset.contrastChoice) draft.contrast = radioButton.dataset.contrastChoice;
+      if (radioButton.dataset.textSizeChoice) { draft.size = radioButton.dataset.textSizeChoice; setSizePop(false); sizeTrigger?.focus({ preventScroll: true }); }
       paintPreview();
       refresh();
       // Light or dark applies as it is picked (the theme script handles that after this); check again once it has.
@@ -268,6 +358,7 @@ export function mount(container, ctx) {
     if (target.closest?.('[data-reset-defaults]')) {
       if (!window.confirm('Reset appearance to defaults?')) return;
       resetDisplayPreferences();
+      held = null;
       reload('Appearance was reset to defaults.');
       return;
     }
@@ -297,10 +388,15 @@ export function mount(container, ctx) {
     if (themeSelect) { draft.theme = themeSelect.value; paintPreview(); refresh(); return; }
     const font = event.target.closest?.('[data-font-choice]');
     if (font) { draft[font.dataset.fontChoice] = font.value; paintPreview(); refresh(); return; }
+    const motion = event.target.closest?.('[data-motion-switch]');
+    if (motion) { draft.motion = motion.checked ? 'reduce' : 'device'; refresh(); return; }
+    const contrast = event.target.closest?.('[data-contrast-switch]');
+    if (contrast) { draft.contrast = contrast.checked ? 'high' : 'standard'; refresh(); return; }
     const choice = event.target.closest?.('[data-translation-choice]');
-    if (choice) { translation = choice.value; refresh(); }
+    if (choice && held) { held.translation = choice.value; refresh(); }
   };
   const onKeydown = event => {
+    if (event.key === 'Escape' && sizePop && !sizePop.hidden) { setSizePop(false); sizeTrigger?.focus({ preventScroll: true }); return; }
     const radioButton = event.target.closest?.('[role="radio"]');
     const buttons = radioButton ? [...radioButton.closest('[role="radiogroup"]').querySelectorAll('[role="radio"]')] : [];
     const index = buttons.indexOf(radioButton);
@@ -331,16 +427,17 @@ export function mount(container, ctx) {
   };
   const onDialogCancel = event => { event.preventDefault(); closeDialog(false); };
 
-  // Leaving with unsaved changes asks first; a changed light/dark choice (which applies as you pick it) is put back.
+  // Leaving with unsaved changes asks first (moving between Customization's own pages does not); a changed light/dark choice is put back.
   const guard = event => {
     if (!dirty()) return;
     const link = event.target.closest?.('a[href]');
-    if (!link || link.target === '_blank' || link.getAttribute('href').startsWith('#')) return;
+    if (!link || link.target === '_blank' || link.getAttribute('href').startsWith('#') || link.getAttribute('href').startsWith('/profile#customization')) return;
     if (!window.confirm('You have unsaved changes. Leave without saving?')) { event.preventDefault(); event.stopImmediatePropagation(); return; }
     if (currentMode() !== modeAtOpen) applyMode(modeAtOpen);
+    held = null;
   };
   const beforeUnload = event => { if (dirty()) { event.preventDefault(); event.returnValue = ''; } };
-  const onPhoneChange = () => { if (!requested) reload(''); };
+  const onPhoneChange = () => reload('');
 
   container.addEventListener('click', onClick);
   container.addEventListener('change', onChange);
@@ -352,6 +449,7 @@ export function mount(container, ctx) {
   phone.addEventListener('change', onPhoneChange);
 
   return () => {
+    controller.abort();
     container.removeEventListener('click', onClick);
     container.removeEventListener('change', onChange);
     container.removeEventListener('keydown', onKeydown);

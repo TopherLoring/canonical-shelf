@@ -42,29 +42,17 @@ function initSearchControls(header) {
   const toggle = form.querySelector('.search-toggle');
   const input = form.querySelector('#q');
 
-  const setOpen = open => {
-    form.dataset.open = String(open);
-    toggle?.setAttribute('aria-expanded', String(open));
-    if (open) input?.focus({ preventScroll: true });
-  };
-
+  // The desktop field is always visible; the icon submits a typed search or focuses the field.
   toggle?.addEventListener('click', () => {
-    if (form.dataset.open === 'true' && input?.value.trim()) form.requestSubmit();
-    else setOpen(form.dataset.open !== 'true');
+    if (input?.value.trim()) form.requestSubmit();
+    else input?.focus({ preventScroll: true });
   });
 
   input?.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       input.value = '';
-      setOpen(false);
-      toggle?.focus();
+      input.blur();
     }
-  });
-
-  input?.addEventListener('blur', () => {
-    setTimeout(() => {
-      if (!input.value.trim() && !form.contains(document.activeElement)) setOpen(false);
-    }, 120);
   });
 }
 

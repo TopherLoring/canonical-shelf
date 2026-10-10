@@ -88,7 +88,7 @@ test.describe('Phase 0: Vocabulary guard for decided learner-facing terminology'
 
   test('notes section is identified as "My Notes" rather than un-scoped "Notes"', async ({ page }) => {
     // 1. Profile notes section heading
-    await page.goto('/profile#study');
+    await page.goto('/profile#study/notes');
     await waitForAppReady(page);
     const profileNotesTitle = page.locator('[data-profile-notes]').locator('xpath=ancestor::section[1]/span[1]');
     const profileNotesText = (await profileNotesTitle.innerText()).trim();

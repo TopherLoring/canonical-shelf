@@ -17,6 +17,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Theme set direction (replaces the ten-theme list; character tokens, not just colors): Reading Room (current look with more depth, grey paired with rose and navy); Midnight Study (dark: leather grain, navy, deep colors, brass, lamp pulls); Library (dark or light, brass, bookplate, moody, flat faded colors, beige surface with typewriter fonts, graphite pencil elements); Notebook (college-ruled, spirals, hole punches, sticky notes for side content, folder tabs, highlighters and handwritten marker words, Sharpie category markers); Sketchbook (per Chris's earlier mockup: grid paper, pencil borders, brush strokes); Scroll (calligraphy, ink, tea-stained paper surfaces or edges, wax-seal markers); Stained Glass (thick lead between bold jewel surfaces, glowing elements, seamless with text surfaces); Fun (color blocks, hard edges, square corners, illustrated or hand-drawn shapes). Watercolor is not part of this project's set.
 - Profile sections are: Account, Customization (Appearance, Reader incl. translation, Accessibility with toggle switches), My Study (My Notes, Goals as a self-written accountability note, Books incl. mark-as-read, Path and Topics, Practice, Review, an understanding heatmap of retention/comprehension), Privacy & Policies (data tools plus Privacy, Cookie/storage, What is stored and shared, Data retention, Terms of Use, all rendered in-pane), About Canonical Shelf (Introduction to TopherLoring Ministries and the app, Statement of Faith, Theologian, FAQs), Contact Us. Profile uses a drill-down left pane: Back link at top, sub-sections beneath, each sub-section its own screen; no content links out of Profile.
 - TopherLoring Ministries (TLM) is a subsidiary of TopherLoring Industries (TLI), kept separate from site operation so it can expand (e.g. publishing); About and Statement of Faith copy is written for TLM.
+- Desktop top bar shows a permanent search field next to the icon; phone bottom nav gets mini dividers between tabs and an edged, raised active tab. Deliberate deviation from the template, which draws only the icon.
 
 ### Added
 
@@ -26,6 +27,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - Fonts: Newsreader and the optical-size Literata self-hosted (public/fonts/local); Reading Room display face is Newsreader, as on the design boards
 - Font choices use --user-font-reading/display/body (set by script); every stylesheet reads var(--user-font-X, var(--font-X)) so the theme contract keeps owning the theme fonts.
+- Profile is a drill-down (sections, then sub-sections, each a screen) with policies and the Statement of Faith shown in-pane; light/dark use sun, moon, and monitor icons; Accessibility uses switches; desktop top bar has a permanent search field; phone bottom bar has dividers and an edged active tab.
 
 ### Fixed
 

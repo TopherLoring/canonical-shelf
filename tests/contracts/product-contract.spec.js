@@ -220,26 +220,28 @@ test('top bar: logo mark, tabs, search, profile (Feedback sits under the frame);
   await bar.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
   await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','page');
-  await expect(page.locator('.profile-rail a')).toHaveText(['Account','Appearance','Reading','My Study','Privacy & data','About Us','Contact Us']);
+  await expect(page.locator('.profile-rail a')).toHaveText(['Account','Customization','My Study','Privacy & Policies','About Canonical Shelf','Contact Us']);
+  await page.locator('.profile-rail a[href="/profile#account"]').click();
   await expect(page.locator('[data-profile-section="account"] [data-account-mount]')).not.toContainText('Checking your account');
-  await page.locator('.profile-rail a[href="/profile#appearance"]').click();
-  await expect(page.locator('[data-profile-section="appearance"]')).toBeVisible();
-  const themeSelect=page.locator('[data-profile-section="appearance"] [data-theme-select]');
+  await page.locator('.profile-rail__back').click();
+  await page.locator('.profile-rail a[href="/profile#customization"]').click();
+  await expect(page.locator('[data-profile-section="customization"]')).toBeVisible();
+  const themeSelect=page.locator('[data-profile-section="customization"] [data-theme-select]');
   const target=await themeSelect.locator('option').nth(2).getAttribute('value');
   await themeSelect.selectOption(target);
   await page.locator('[data-save]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme',target);
-  await page.locator('.profile-rail a[href="/profile#appearance"]').click();
-  await page.locator('[data-profile-section="appearance"] [data-mode-choice="dark"]').click();
+  await page.locator('[data-profile-section="customization"] [data-mode-choice="dark"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-mode','dark');
   await expect(page.locator('#appearance-panel')).toHaveCount(0);
-  // the selected mode button is readable (text on the action color)
-  const sel=page.locator('[data-profile-section="appearance"] [data-mode-choice].is-selected');
+  // the selected light/dark button is readable (text on the action color)
+  const sel=page.locator('[data-profile-section="customization"] [data-mode-choice].is-selected');
   const ratio=await sel.evaluate(el=>{const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);const L=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);const f=L(rgb(getComputedStyle(el).color)),b=L(rgb(getComputedStyle(el).backgroundColor));return (Math.max(f,b)+.05)/(Math.min(f,b)+.05)});
   expect(ratio,'selected light/dark button text contrast').toBeGreaterThanOrEqual(4.5);
-  // arriving with a section in the address opens that section; the list switches sections
+  // arriving with a section in the address opens it; Back returns to the section list
   await page.goto('/profile#appearance');
-  await expect(page.locator('[data-profile-section="appearance"]')).toBeVisible();
+  await expect(page.locator('[data-profile-section="customization"]')).toBeVisible();
+  await page.locator('.profile-rail__back').click();
   await page.locator('.profile-rail a[href="/profile#privacy"]').click();
   await expect(page).toHaveURL(/\/profile#privacy$/);
   await expect(page.locator('[data-profile-section="privacy"]')).toBeVisible();
@@ -286,7 +288,7 @@ test('notes are built into the Bible side panel, follow the selected verse, and 
   await page.reload();
   await expect(page.locator('[data-reader-notes] [data-saved-note]')).toContainText('God so loved the world: ask about "world".');
   await page.locator('[data-reader-notes] .study-notes__all').click();
-  await expect(page).toHaveURL(/\/profile#study$/);
+  await expect(page).toHaveURL(/\/profile#study\/notes$/);
   await expect(page.locator('[data-my-notes]')).toContainText('John 3:16');
 });
 

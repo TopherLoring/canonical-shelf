@@ -1534,6 +1534,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip.
   *Why:* Owner clarified 2026-10-09: bind the content area, not the tab edge
 
+### `ui.shell.search-and-tabbar`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `desktop-search-field-tabbar-edges`
+  Desktop top bar shows a permanent search field next to the icon; phone bottom nav gets mini dividers between tabs and an edged, raised active tab. Deliberate deviation from the template, which draws only the icon.
+  *Why:* Chris, 2026-10-10 07:11
+
 ### `ui.tablet.responsive-options`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
