@@ -1403,6 +1403,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
   *Why:* Owner reply 2026-10-09 23:35 to the Profile plan's layout question
 
+### `ui.profile.plan`
+
+- **Approval** · 2026-10-10 · Chris · `profile-plan-approved` · scope: profile-port-plan
+  Approved the Profile port plan as proposed (P0 to P6): Newsreader self-hosted, Reading font and Interface font pickers (Theme default, Newsreader, Literata, Caladea, Source Sans 3, System), site text size steps 90/100/115/130%, Profile on the Topics layout. The Reader's Aa text size stays separate from the site text size.
+
 ### `ui.reader.apparatus`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`
@@ -1494,6 +1499,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
   For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
+
+### `ui.text-size`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `text-size-reader-separate`
+  Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.
+  *Why:* Owner reply 2026-10-10 00:12
 
 ### `ui.theme.default`
 

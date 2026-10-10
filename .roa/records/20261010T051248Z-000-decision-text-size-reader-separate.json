@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "text-size-reader-separate",
+  "topic": "ui.text-size",
+  "date": "2026-10-10",
+  "text": "Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.",
+  "rationale": "Owner reply 2026-10-10 00:12",
+  "by": "Chris"
+}

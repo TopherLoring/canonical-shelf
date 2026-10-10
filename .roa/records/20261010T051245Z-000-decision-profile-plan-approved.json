@@ -1,0 +1,11 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "profile-plan-approved",
+  "topic": "ui.profile.plan",
+  "date": "2026-10-10",
+  "text": "Approved the Profile port plan as proposed (P0 to P6): Newsreader self-hosted, Reading font and Interface font pickers (Theme default, Newsreader, Literata, Caladea, Source Sans 3, System), site text size steps 90/100/115/130%, Profile on the Topics layout. The Reader's Aa text size stays separate from the site text size.",
+  "rationale": "Owner reply 2026-10-10 00:12",
+  "scope": "profile-port-plan",
+  "by": "Chris"
+}

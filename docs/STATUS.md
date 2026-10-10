@@ -263,6 +263,7 @@ A guided Bible-learning library: full BSB reader, questions-first courses, topic
 | `ui.shelf.nt-fill` | New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range). | Owner decision | undefined |
 | `ui.shell.phone-frame` | On phone, the card surface extends the same distance from the right edge as from the left. | Owner decision | undefined |
 | `ui.tablet.responsive-options` | For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. | Owner decision | undefined |
+| `ui.text-size` | Text size has two settings: | Owner decision | undefined |
 | `ui.theme.default` | Reading Room is the default theme (decided 2026-10-01; | Owner decision | undefined |
 | `ui.theme.template-roles` | Default theme follows the template: | Owner decision | undefined |
 | `ui.theologian.contrast` | Keep the Theologian's current contrast | Owner decision | undefined |
