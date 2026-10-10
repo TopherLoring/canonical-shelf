@@ -1397,6 +1397,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
+### `ui.profile.layout`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-uses-topics-layout`
+  The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
+  *Why:* Owner reply 2026-10-09 23:35 to the Profile plan's layout question
+
 ### `ui.reader.apparatus`
 
 - **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`

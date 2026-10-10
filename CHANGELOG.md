@@ -3,6 +3,12 @@
 
 All notable changes to The Canonical Shelf, newest first. Entries come from `.roa/records`.
 
+## 2026-10-10
+
+### Decided
+
+- The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
+
 ## 2026-10-09
 
 ### Decided

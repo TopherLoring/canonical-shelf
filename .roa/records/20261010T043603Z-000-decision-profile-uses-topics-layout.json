@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "profile-uses-topics-layout",
+  "topic": "ui.profile.layout",
+  "date": "2026-10-10",
+  "text": "The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).",
+  "rationale": "Owner reply 2026-10-09 23:35 to the Profile plan's layout question",
+  "by": "Chris"
+}
