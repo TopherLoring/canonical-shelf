@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "shelf-cards-resume-orientation-passage",
+  "topic": "ui.shelf.cards",
+  "date": "2026-10-09",
+  "text": "Shelf cards: the Learning Path resume card is the only way into the Orientation for someone new (no lesson done, Orientation not seen); there is no separate Orientation card on the Shelf or the Learning Path. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line.",
+  "rationale": "Owner message 2026-10-09 18:26",
+  "by": "Chris"
+}

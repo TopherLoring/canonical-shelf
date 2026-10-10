@@ -1,0 +1,2265 @@
+{
+  "about": "Shared work graph for the redesign. Every agent reads this before starting, claims a node before editing, and updates its notes at every commit. docs/v7/WORK_BOARD.md is generated from this file.",
+  "updated": "2026-10-08",
+  "rules": [
+    "Read the board, the node you will work on, and the decisions it cites before editing anything.",
+    "Claim before you edit: `bun run work claim <id> --agent <name> --branch <branch>`, then commit the graph change first. One owner per node; a node can be claimed only when its dependencies are done.",
+    "Before claiming, `bun run work claim` reads the shared board on GitHub (integrationBranch) and refuses if the node is already taken there or your branch is behind it. Start every node's branch from the latest integration branch.",
+    "Edit only the paths your node owns. Anything outside them is a new node (add it, commit it) or a question for Chris, never a side edit.",
+    "Two agents never hold nodes that own the same paths at the same time; `bun run work check` fails if they do.",
+    "Decisions live only in `.roa/records` (`node .roa-kit/roa.mjs decide ...`). When decisions conflict, the decision made with Claude stands unless Chris explicitly overrides it. Chris's latest explicit decision on a topic is the baseline; never restore a superseded one.",
+    "One node, one branch, one draft PR. Nothing merges without Chris's approval.",
+    "A node is done only through `bun run work done <id>`, which runs its acceptance commands. Chris-gate nodes close only through `bun run work approve <id> --record <record id>` citing his recorded decision.",
+    "Leave the node handoff-ready at every commit: `bun run work note <id> \"what changed, what is next\"`. If you stop, `bun run work release <id>` keeps your notes for the next agent.",
+    "Run `bun run verify:fast` before every commit and `bun run verify` before marking a node done.",
+    "Shared generated files: any node may add the manifest lines (.roa/manifest.json) for the new governed files it creates, and regenerate .roa/state.json and README.md with `bun .roa-kit/roa.mjs sync` after merging the latest integration branch. Never hand-edit the generated files, never reformat or reorder manifest lines, never touch another node's lines. These paths are never listed in a node's owns."
+  ],
+  "nodes": [
+    {
+      "id": "S2",
+      "title": "Step 2: Bible reader",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [
+        "bun run test:smoke"
+      ],
+      "owner": "Codex + Claude",
+      "branch": "feature/redesign-p4-reader",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Codex rebuilt the reader from Claude's work (codex/resume-reader); Claude added the 2026-10-05 decisions and two-speed verification. Full run on Chris's laptop: 165 passed, 4 failed (see R1, R2, S3.I)."
+        }
+      ]
+    },
+    {
+      "id": "R1",
+      "title": "Reader: \"a pending reader mount cannot replace the profile after navigation\" fails in the parallel run",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/reader.js",
+        "tests/redesign/reader.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/reader.spec.js --grep \"pending reader mount\" --repeat-each=10",
+        "bun run verify:fast"
+      ],
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Released from feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Investigation: existing ctx.isCurrent guard passes 10 isolated repetitions and the parallel full-suite R1 case. Temporarily removing the guard fails the profile assertion in all 3 mutation runs; reader restored unchanged. Initial full gate: 137 passed, 4 other reader failures (legacy notes, highlighted range, shared passage context, study links); study-links trace reports ERR_NETWORK_IO_SUSPENDED for library-books modules. Full verification with configured CI worker limit is in progress."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Existing fix confirmed: c58c433 already added the navigation-generation guard. No runtime or test change is needed. Full bun run verify passed with CI=1 (configured 2 workers; 141/141 browser tests, no retries reported). R1 also passed in the default 6-worker full run and 10 isolated repetitions; removing the guard failed 3/3 mutation runs. Earlier default full run had four other reader failures; one trace identified Chromium ERR_NETWORK_IO_SUSPENDED. Next: run node acceptance, close through work done, commit and push the board-only verification handoff to the existing draft PR #60."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/reader.spec.js --grep \"pending reader mount\" --repeat-each=10; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through bun run work done R1: 10/10 race repetitions and verify:fast (12/12 smoke) passed with CI=1. Full verify previously passed 141/141 with the same configuration. Board-only investigation; existing guard retained unchanged. Handoff: default six-worker network-suspension failures remain recorded above for future suite reliability work; no other node changed. Ready for Chris's review in draft PR #60."
+        }
+      ],
+      "owner": "Codex"
+    },
+    {
+      "id": "R2",
+      "title": "Every page starts close under the top bar: contract test fails on the lesson branch",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/components/frame.css",
+        "public/ui/layout.css"
+      ],
+      "accept": [
+        "bunx playwright test tests/contracts/product-contract.spec.js --grep \"starts close under the top bar\"",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Seen on Chris's run of codex/redesign-lesson-path; reproduce on that branch first to confirm whether the lesson screen or the frame causes it."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/r2-top-bar-spacing."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed from the latest feature/redesign-p5-lesson-path at Chris's request. Scope is public/ui/components/frame.css and public/ui/layout.css. No implementation changed. Next: reproduce the top-bar spacing contract failure on the lesson branch, then fix only the owned frame/layout paths; preserve Claude's lesson work."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Historical reproduction confirmed on codex/redesign-lesson-path (6f8c2ac) in an ignored archive snapshot: /course first-text gap is 62px, failing the 48px contract on both initial run and retry. That branch mounts learning-path.js, whose screen CSS adds 28px frame margin-top plus internal padding. Current integration leaves course registry null and removes that unfinished screen; the same contract passes. Frame/layout are not the source, so no CSS change is warranted. Next: repeated current-branch contract check and full verify; hand the historical spacing issue to S3.J when its new screen is implemented."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Current integration verified: 10/10 repeated spacing contract runs and full bun run verify with CI=1 (144/144 browser tests; no retries reported; build/BSB/contracts/core passed). Historical failure reproduced twice at 62px on /course in 6f8c2ac; screen-owned learning-path.css causes it, not the frame/layout. Existing integration has removed that unfinished renderer. Next: close via work done, commit this board-only investigation, and present its draft PR for review; S3.J should rerun this contract when introducing the replacement screen."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/contracts/product-contract.spec.js --grep \"starts close under the top bar\"; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through bun run work done R2: spacing contract and verify:fast passed (12 smoke) with CI=1; full verify passed 144/144 and targeted spacing passed 10 repetitions. Board-only investigation; current runtime left unchanged. Next: publish codex/r2-top-bar-spacing as a draft PR into feature/redesign-p5-lesson-path for Chris's review. S3.J must check the replacement Learning Path screen's own top spacing; historical 62px gap was reproduced in the old screen, not shared frame/layout. No other node changed."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "PR #66 merged into feature/redesign-p5-lesson-path after #65 merged into #64 and #64 merged into integration. Git merged the graph correctly but left its generated board stale; regenerating the board from the combined graph. All three nodes remain done; no source content changes. Next: finish the lesson templates before content revision and final break review. Main and production were not touched."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/r2-top-bar-spacing"
+    },
+    {
+      "id": "X1",
+      "title": "Codex lesson branch committed and pushed (codex/redesign-lesson-path)",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Needed by S3.H and S3.J. Close with a record such as process.codex-lesson-branch-pushed once pushed."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: work.x1.2026-10-05 (Codex lesson branch pushed (6f8c2ac))."
+        }
+      ],
+      "record": "work.x1.2026-10-05"
+    },
+    {
+      "id": "S3.A",
+      "title": "Step 3: decisions and handoff doc",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [
+        "node .roa-kit/roa.mjs verify"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.A2",
+      "title": "Step 3: handoff doc brought current (decisions, vocabulary, open questions)",
+      "state": "done",
+      "deps": [
+        "S3.A"
+      ],
+      "owns": [
+        "docs/v7/STEP3_HANDOFF.md"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Handoff doc rewritten: current decisions, vocabulary (card = step), calibration result, open questions."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.B",
+      "title": "Step 3: type calibration (reading-font character widths; portrait and landscape line and character budgets)",
+      "state": "done",
+      "deps": [
+        "S3.A"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Calibrated Caladea (regular/bold/italic/boldItalic) widths from the shipped WOFF2 files into content/pathway/lesson-type.json (200 chars each, font units, 1000/em). Budgets: portrait 38/line x 15 lines = 524 chars, landscape 68/line x 9 lines = 563 chars; portrait governs, so one part holds at most 15 lines / 524 chars (lineHeight 1.7, 3% width safety, 92% fill). widthEm() is exported from scripts/calibrate-lesson-type.mjs for S3.D to wrap-simulate. Kerning is not modelled; the margins cover it. S3.C and S3.D are next."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.B2",
+      "title": "Step 3: recalibrate the portrait text box to 4:5 (decision ui.lesson.card.portrait-4x5-2026-10-05)",
+      "state": "done",
+      "deps": [
+        "S3.B"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Portrait text box now 4:5 per ui.lesson.card.portrait-4x5-2026-10-05. Budget: portrait 38/line x 11 lines = 384 chars governs; landscape 9 lines = 563 chars (landscape has spare room; same-capacity check removed). For S3.C: aspect-ratio 4/5 plus max-height calc(100dvh - 380px) breaks the ratio on short phones (SE 375x667 gives 287pt vs 418pt): size the box by min(width, 0.8 x available height) and scale type with it, so a part never needs to scroll."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.B3",
+      "title": "Step 3: recalibrate line budgets to the block maximums (49 across x 17 down portrait, 91 across landscape)",
+      "state": "done",
+      "deps": [
+        "S3.B2"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Block maximums per ui.lesson.card.block-max-2026-10-05: portrait 49 across x 17 lines (766 chars, governs), landscape 91 across x 15 lines (1255 chars, derived from the 5:3 box). Line height 1.45 (--leading-normal); with Caladea that yields exactly 17 lines in the 4:5 box at 49 per line. Font size = box width / (49 x 0.406) portrait, / (91 x 0.406) landscape. Still Caladea: rerun after S3.Q fonts ship."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.B4",
+      "title": "Step 3: landscape line maximum 14 (ui.lesson.card.landscape-91x14-2026-10-05)",
+      "state": "done",
+      "deps": [
+        "S3.B3"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Landscape capped at 14 lines (91 across) per ui.lesson.card.landscape-91x14-2026-10-05; the derived 15 is now a cap. Landscape holds 1172 chars; portrait 17 x 49 = 766 still governs the part budget."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Landscape: 91 across, 14-line cap (landscape-91x14), box 2:1 (landscape-2x1). At 2:1 and 1.45 leading the box holds 12 lines, under the 14 cap; 14 lines would need about 1.32 leading. Landscape holds 1004 chars; portrait 17 x 49 = 766 still governs the part budget."
+        }
+      ]
+    },
+    {
+      "id": "S3.B5",
+      "title": "Step 3: line height 1.55; decided line counts (17 portrait, 14 landscape) are authoritative, box aspect follows",
+      "state": "done",
+      "deps": [
+        "S3.B4"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Line height 1.55. Line counts are now authoritative (portrait 17, landscape 14) instead of derived from the box aspect; with Caladea the implied boxes are about 0.76 (portrait) and 1.7 (landscape) width/height, not exactly 4:5 and 2:1 because the final font sets the average character width. Portrait 17 x 49 = 766 chars governs the part budget; landscape holds 1172. Rerun after S3.Q fonts ship."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.B6",
+      "title": "Step 3: character ceilings per step (833 / 784 / 735 by paragraph count)",
+      "state": "done",
+      "deps": [
+        "S3.B5"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ceilings per ui.lesson.card.char-ceiling-2026-10-05: 833 / 784 / 735 chars for 1 / 2 / 3 paragraphs (each paragraph break costs one 49-char line; 4 paragraphs = 686). Hard maximums, not targets. Interpreted as per card (one screen of a step), the same unit as the 17 x 49 portrait block; if Chris means the whole step, the divider (S3.D) would have no parts to cut. Replaced the 92% fill budget. Landscape ceilings are higher (1274 for one block), so portrait governs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.Q",
+      "title": "Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose",
+      "state": "done",
+      "deps": [],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Not blocking: S3.B calibrates the shipped reading font (Cambria/Caladea metrics, identical on every device). Choosing the theme-sheet fonts means shipping them site-wide and rerunning S3.B."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: work.s3.q.2026-10-05 (Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet)."
+        }
+      ],
+      "record": "work.s3.q.2026-10-05"
+    },
+    {
+      "id": "S3.C",
+      "title": "Step 3: lesson card CSS (portrait = phone layout, landscape = desktop layout; type in container units with min/max clamps)",
+      "state": "done",
+      "deps": [
+        "S3.B",
+        "S3.B7",
+        "S3.R"
+      ],
+      "owns": [
+        "public/ui/screens/lesson.css",
+        "public/ui/components/lesson-window.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Landscape columns follow ui.lesson.card.landscape-columns-2026-10-05: the center text box must fit 91 characters by 14 lines at the calibrated landscape type size; the step list and My Notes columns narrow to make room (each keeps a usable minimum). In Chris's landscape mockup the box ran about 10% past the center column into My Notes and over the title line; neither may happen."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Primary portrait layout: 4:5 step body, 49 characters per line, 1.55 line height (ui.lesson.card.portrait-layout-primary-fallback-2026-10-05). Size the type so 49 characters fill the box width; keep fallback D (54 x 17) switchable by one setting."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Portrait = phone layout (4:5 step body; type = box width / 21.7em, clamped 16-20px; at the reference iPhone box 348x435 it is 16.04px). Landscape (orientation landscape and width >= 700px) = desktop layout: sections rail | step | My Notes; 2:1 step body; type = box width / 36em (about 91 chars), clamped 15-22px. Box sized by container query units on .lesson-stage. Enlarged text scrolls inside the box."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.D",
+      "title": "Step 3: build-time divider (sentence-safe, step-isolated parts that fit both shapes) with Node unit tests",
+      "state": "done",
+      "deps": [
+        "S3.B",
+        "S3.R"
+      ],
+      "owns": [
+        "scripts/lesson-divider.mjs",
+        "scripts/test-lesson-divider.mjs",
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Pack to the target of about half the ceiling (about 370-420 characters; ui.lesson.card.step-length-2026-10-05), never above 833/784/735 by paragraph count, and never more lines than fit the primary portrait box (about 15 at 49 per line). Report every step that only fits under fallback D."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "WIP: scripts/lib/lesson-parse.mjs (parser shared with compile-pathway, no behavior change) and scripts/lesson-divider.mjs. Geometry from 16px / 1.55 / 347x435 box (54 x 17). Result: 642 steps -> 1088 cards, median 278 chars, max 419; checks all fit; 100 primary readings overflow (need Chris: split by verse, scroll, or open in reader); 5 orphans are 'As you read X, notice...' after a reading. Remaining: reading rule, then scripts/test-lesson-divider.mjs unit tests."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Divider complete except readings: 642 steps -> 1078 cards, median 286 chars, max 475; sentences intact, content unchanged and in order, ids <step>, <step>-2...; runs of text cards re-split evenly; short last cards merged back only up to ~480 chars, else flagged orphan (6). 74 checks/blocks sit on their own card after their setup (informational). 100 primary readings overflow: rule pending S3.S, implemented in S3.D2. Suggest S3.I add scripts/test-lesson-divider.mjs to test:core."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.E",
+      "title": "Step 3: review report of every lesson's proposed parts with weak breaks flagged (docs/v7/LESSON_PAGINATION_REVIEW.md)",
+      "state": "done",
+      "deps": [
+        "S3.D",
+        "S3.B7",
+        "S3.D2"
+      ],
+      "owns": [
+        "docs/v7/LESSON_PAGINATION_REVIEW.md",
+        "scripts/lesson-pagination-report.mjs"
+      ],
+      "accept": [
+        "bun scripts/lesson-pagination-report.mjs --check",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "The report must simulate wrapping with the shipped Source Sans 3 widths (S3.B7), not Caladea."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "List steps that exceed the primary layout but fit fallback D; many such steps is the trigger to switch to D."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "docs/v7/LESSON_PAGINATION_REVIEW.md (generated; --check keeps it current). Section 1: 2 short last cards and 29 seams that open mid-paragraph with a word leaning on the previous card (It, This, They, But, So...). Section 2: 72 blocks (mostly checks) opening their own card. Section 3: every lesson in Learning Path order with every break shown as last sentence before / first sentence after. Next: Chris's review (S3.F)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/lesson-pagination-report.mjs --check; bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.F",
+      "title": "Step 3: Chris reviews the report and approves the one-time revision edits",
+      "state": "todo",
+      "deps": [
+        "S3.E",
+        "C5"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Deferred until the lesson content is revised (C5): reviewing breaks on text about to change is wasted work. Regenerate the report (S3.E) first."
+        }
+      ]
+    },
+    {
+      "id": "S3.G",
+      "title": "Step 3: lock approved parts into content/pathway/lessons; build fails if any part exceeds the budget",
+      "state": "todo",
+      "deps": [
+        "S3.F"
+      ],
+      "owns": [
+        "content/pathway/lessons/",
+        "content/pathway/legacy-ledger.json"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "S3.H",
+      "title": "Step 3: lesson screen renders locked parts (adapt Codex's lesson screen)",
+      "state": "done",
+      "deps": [
+        "S3.C",
+        "X1",
+        "S3.D3"
+      ],
+      "owns": [
+        "public/ui/screens/lesson.js",
+        "public/ui/screens/registry.js",
+        "public/learning.js",
+        "public/ui/labels.js",
+        "tests/redesign/lesson-screen.spec.js",
+        "public/study-notes.js"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Build the reading popover per ui.lesson.reading.inline-or-popover-2026-10-05: centered over a dimmed screen on phones, beside the link on desktop; passage scrolls inside; Open in the Bible; closes with close button, Escape, or the dimmed area; focus returns to the link. Inline readings use the ScriptureBlock look with extra padding, scriptureBed surface and the group stripe."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Render the cards the build emits (S3.D3), not locked sources: card breaks are reviewed only after the content revision (redesign.sequence.content-after-templates-2026-10-05)."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "public/ui/screens/lesson.js renders catalog cards (lesson.sections[].cards) as steps; /course?unit=&lesson=&step=n; checkpoints (?mastery=) still use the current view. Sections rail with step dots; progress 'n of m' plus segmented bar; tools open a study sheet (apparatus) on portrait, rail buttons on landscape; Questions jumps to the first step with a check; readings inline (ScriptureBlock) or link + native dialog popover with Open in the Bible; one My Notes editor moved between side column (landscape) and sheet (portrait); arrow keys page. Notes editor everywhere drops the in-person flag and Ask link (decisions), keeping existing flags. Not yet: Theologian tab behaviour (S6), Checkpoint screen, rotate hint."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.I",
+      "title": "Step 3: tests: sampled browser test of the fullest parts in both shapes; retire the render-every-lesson test",
+      "state": "done",
+      "deps": [
+        "S3.H"
+      ],
+      "owns": [
+        "tests/redesign/lesson.spec.js",
+        "tests/redesign/lesson-screen.spec.js",
+        "tests/contracts/product-contract.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/lesson-screen.spec.js tests/contracts/product-contract.spec.js",
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Contract tests that assumed the old scene-based lesson (one step per section, .scene-rail dots, Study Desk) are rewritten for the redesigned lesson screen: sections list with per-step dots, sections spanning several steps, inline checks, Scripture contrast in light and dark for both the quoted block and the popover, objectives never inside the lesson, My Notes separate from the apparatus. tests/redesign/lesson-screen.spec.js covers the step body shapes, 'n of m', the popover and the notes editor. Lesson screen also gained the titlebar Feedback button (study focus hides the masthead) and escapes quoted Scripture. The old render-every-lesson test was never merged here (it lived on Codex's branch), so there is nothing to retire; the build-time divider tests cover every lesson without a browser."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Acceptance corrected: it named tests/redesign/lesson.spec.js, which only exists on codex/redesign-lesson-path (never merged). It now runs the lesson-screen spec, the contract spec, the divider unit tests and verify:fast."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/lesson-screen.spec.js tests/contracts/product-contract.spec.js; bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "S3.J",
+      "title": "Step 3: Learning Path page (path, module and unit on one page)",
+      "state": "done",
+      "deps": [
+        "X1"
+      ],
+      "owns": [
+        "public/ui/screens/learning-path.js",
+        "public/ui/screens/learning-path.css",
+        "public/ui/screens/course.js",
+        "public/ui/screens/registry.js",
+        "public/ui/components/rail.js",
+        "public/ui/components/rail.css",
+        "tests/redesign/learning-path.spec.js",
+        "tests/contracts/product-contract.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/learning-path.spec.js --workers=1",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Per ui.naming.hide-module-unit-labels-2026-10-05: do not show the words Module or Unit to learners (titles only); Lesson and Step stay; keep 'Unit N Checkpoint'. Check tests/redesign/vocabulary-guard.spec.js for terms to adjust."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Checkpoint is named plain 'Checkpoint' with the unit title (ui.naming.checkpoint-bare-2026-10-05). Open question for Chris: one Checkpoint per unit or per lesson."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "Checkpoint placement depends on content and number of steps, not one per unit or lesson (curriculum.checkpoint.placement-content-and-steps-2026-10-05). The Learning Path page must render checkpoints wherever the content places them; the exact rule is still to be given by Chris."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Learning Path page built to the confirmed mockup (docs/v7/mockups-2026-10-03/LearningPath.dc.html): modules rail with 'n of m lessons' and Capstones; the open module with units as accordions (one open at a time, address follows ?unit=); each unit lists numbered lessons with their objectives, its Checkpoint ('Checkpoint · <unit title>', never locked) and any older practice; Up next (first unfinished lesson, then the Checkpoint) and three progress bars (unit, module, path) counted in lessons. The words Module and Unit never appear (ui.naming.hide-module-unit-labels). Phone: one column, Up next first, picker instead of the rail, Progress last. /course now dispatches through ui/screens/course.js: ?lesson= -> lesson screen, ?mastery=, ?glossary= and unit.orientation stay on the old view until their steps. Rail component gained the optional sublabel line it already accepted. Old course/unit contract assertions rewritten for this page. Step counts are not shown on lesson rows (Chris has not decided; the copy rewrite will change them)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "RECONCILED with Codex's parallel build (codex/s3j-learning-path, 4 files, source only, registry untouched, never wired or browser-tested). Claude's version is the one of record: wired into the registry through ui/screens/course.js (so Codex's separate S3.J2 \"registry activation\" is done for this screen), mockup-faithful (modules rail with lesson counts, Capstones, phone picker), 6 browser specs. Taken from Codex's branch: painting progress-bar widths from script because the CSP ignores inline widths (Claude's page drew every bar full; fixed in the shared component as mountProgressBars), and the isCurrent guard. Not taken: progress counted as \"scored activities\" (the mockup counts lessons), unit scope paragraph. Still open from Codex's notes: a 320px-wide check. Why this happened twice: Claude's claim was committed locally but never reached GitHub, so the shared-board check could not see it. Claims must be pushed before work starts."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/learning-path.spec.js --workers=1; bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S4",
+      "title": "Step 4: Shelf home (bookshelf, two-line title, selected-book panel)",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/shelf-home.js",
+        "public/ui/screens/shelf-home.css",
+        "public/ui/components/bookshelf.js",
+        "public/ui/components/bookshelf.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Codex",
+      "branch": "codex/s4-shelf-home",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Claimed on codex/s4-shelf-home."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Implemented the Shelf home screen and proportional Bookshelf component; build, contract, BSB, service-worker, ROA, verify:fast and full verify passed (149/149). S5d owns registry activation; S4 stays claimed pending review. No push or PR."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Full verify passed (149/149) after verify:fast; S5d separately owns registry activation. S4 implementation is ready for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S4",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Reopened after independent review found saved-chapter, My Notes card, and bookshelf support placement issues; fix within existing S4-owned paths, then repeat serialized full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s4-shelf-home at 5226ada; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "INTEGRATED: codex/s4-shelf-home merged (source only) and wired into the registry (home -> shelf-home.js). Review found three defects that Codex's isolated probe could not see once the screen was live, all fixed: (1) the page security policy (style-src 'self') blocks inline style attributes, so every book was the same width (Psalms = Obadiah = Genesis = 21px) and the New Testament row did not fill 80%; the component now emits data-book-weight / data-books-fill and a new mountBookshelf() applies them through the CSSOM; the reading-position bar uses the same approach (data-progress); (2) the screen passed each book's cat but the component reads group, so all 66 books were the Law colour; (3) the notes card heading was oversized and the top padding broke the page-top rule (R2). Contract tests that counted 66 Bible links on Home now count the 66 shelf books; tests/redesign/shelf-home.spec.js (5 tests) added. 83 of 85 affected specs passed first run; the 2 failures were the padding and a legend assertion, both fixed. Same CSP pitfall applies to any component that renders style= in an HTML string (S5a/S5b/S5c/S6 to be checked)."
+        }
+      ]
+    },
+    {
+      "id": "S5a",
+      "title": "Step 5: Study Topics",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/topics.js",
+        "public/ui/screens/topics.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Codex-S5a",
+      "branch": "codex/s5a-study-topics",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Claimed on codex/s5a-study-topics."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Built the Study Topics browse, search, selected-topic detail, glossary, Scripture references, Learning Path links, and topic-anchored notes in topics.js/topics.css. Targeted JS bundle and diff checks pass; next run verify:fast, then Chris runs full verify on laptop before S5a closes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "CI=1 bun run verify:fast passed, including 13/13 smoke tests at 2 workers. The S5a screen module is implemented and bundled but remains inactive because registry.js is outside this node’s owned paths; coordinate that integration separately. Chris’s full verify is still required before S5a closes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Full CI=1 bun run verify passed: 149 tests with 2 workers. bun run work done S5a also passed verify:fast (13/13 smoke), so S5a is done. Registry activation remains assigned to S5d."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5a-study-topics at 87219ea; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5a",
+          "text": "Integrated: registry.topics wired. Fixed Codex's side panel (Scripture connections and Learning Path sections rendered twice from a triple-duplicated template). Legacy /topics?topic=<id> links (search results, related links) open the full topic page; mode=ask maps to questions; any topic id selects even outside the current group. Card links always carry the mode. Top spacing for the R2 rule. vocabulary-guard selector updated for Profile (also missed in S5c). tests/redesign/topics.spec.js (5). No inline style=."
+        }
+      ]
+    },
+    {
+      "id": "S5b",
+      "title": "Step 5: Review & Practice",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/practice.js",
+        "public/ui/screens/practice.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Codex-S5b",
+      "branch": "codex/s5b-review-practice",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Claimed on codex/s5b-review-practice."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Self-contained Review & Practice overview is implemented in the owned practice.js/practice.css files: due-review entry, optional game tiles, future-game list, and personal progress summary; module build and CI=1 verify:fast passed (13/13 smoke). Activation remains deferred to separate S5d because the practice screen registry path is outside S5b ownership. Keep this node claimed and pending Chris's full verification on laptop; do not mark done yet."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5b-review-practice at 82cf8f1; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5b",
+          "text": "Integrated: registry.practice wired (owns plain /practice only; ?mode=, ?arcade=, ?play= still render through practice-experience.js, so S7 cannot delete that file). Shared progress-bar no longer emits style= (CSP logged an error on every bar): width comes from data-fill via mountProgressBars, now also called by the lab. Rail top padding and screen padding for the R2 page-top rule. Found: /practice#backup never existed and no Export/Restore UI existed anywhere (handlers on #export/#import are in app.js); Profile now has the real buttons. tests/redesign/practice.spec.js (5) + Profile backup test. Flaky candidate: reader.spec 'Notes and Theologian share tab sizing' failed once under load in a 175-test serial run, passes alone (hit-test while the chat panel animates)."
+        }
+      ]
+    },
+    {
+      "id": "S5c",
+      "title": "Step 5: Profile",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/ui/screens/profile.css"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "owner": "Codex-S5c",
+      "branch": "codex/s5c-profile",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Claimed on codex/s5c-profile."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Implemented the full-screen Profile module and structural layout in the owned files; account, progress, notes, appearance, reading, and privacy controls are retained. Route activation is separate S5d. Static checks pass; waiting for the coordinated CI=1 verify:fast run."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Post-edit CI=1 bun run verify:fast passed, including smoke 13/13 (2 workers). Profile module is ready for S5d route activation; full bun run verify remains for Chris's laptop. Node stays claimed for review."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Accessibility fix: Light/Dark/System radio group now has roving tabindex, wrapping arrow-key selection, and Home/End support. Static checks passed; post-fix CI=1 verify:fast and full CI=1 bun run verify passed (149/149, 2 workers). Focused keyboard browser regression test remains a separate test-path node/S5d scope."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s5c-profile at 8b763b6; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S5c",
+          "text": "Integrated into feature/redesign-p5-lesson-path: registry.profile wired; theme-card and mode-toggle styles moved into profile.css (they lived only in legacy canonical-shelf.css, which S7 deletes); theme.js aria-pressed now a real true/false (was an empty attribute); page-top spacing for the R2 rule; contract/reader/font-readiness selectors updated; tests/redesign/profile.spec.js (4). No inline style= in the screen. Chris's full verify: 160/160 at 2 workers."
+        }
+      ]
+    },
+    {
+      "id": "S5d",
+      "title": "Step 5: Activate redesigned Home, Study Topics, Review & Practice, and Profile routes in the screen registry",
+      "state": "done",
+      "deps": [
+        "S4",
+        "S5a",
+        "S5b",
+        "S5c"
+      ],
+      "owns": [
+        "public/ui/screens/registry.js"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Chris",
+          "text": "Chris authorized a separate node because registry.js is outside the individual screen nodes. Register the completed Home, Topics, Practice, and Profile screens here; do not change their modules or other paths."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "claude",
+          "text": "Registry entries for home, topics, practice, profile were activated screen by screen during S4/S5a/S5b/S5c/S6 integration (each with its own tests); this node's acceptance (verify:fast: build, BSB, contracts, service worker, core, roa verify, work check, 19 smoke tests) passed. Also took codex/pr60-work-offline-fix (WORK_OFFLINE=1 now actually overrides the shared-board check) and added optional PW_CHROMIUM_PATH to playwright.config.js for machines whose Chromium build differs."
+        }
+      ],
+      "owner": "claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S6",
+      "title": "Step 6: Theologian panel (docked desktop, centered phone, dim overlay)",
+      "state": "done",
+      "deps": [
+        "S3.H"
+      ],
+      "owns": [
+        "public/theologian-chat.js",
+        "public/ui/components/theologian-panel.js",
+        "public/ui/components/theologian-panel.css"
+      ],
+      "accept": [
+        "bun run test:theologian",
+        "bun run verify:fast"
+      ],
+      "owner": "Codex-S6",
+      "branch": "codex/s6-theologian",
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Claimed on codex/s6-theologian."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Implemented the panel shell in the three owned paths; build:app and test:theologian pass. Next: run serialized verify:fast and full verify, then work done S6 if both pass."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Full verify passed 148/149; preserve the existing phone contract that the Theologian tab remains visible while open. Removed the hide rule. Next: rerun fast and full verification."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Fast gate passes after preserving Theologian tab visibility and loading component CSS from body; 13/13 smoke tests. Next: full bun run verify, then work done S6 if acceptance passes."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Done; acceptance passed (bun run test:theologian; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Imported existing done record from codex/s6-theologian at f63cf9c; acceptance and full verification were completed on that branch. Implementation remains on its source branch and is not merged by this board update."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Chris",
+          "text": "Implementation approved by Chris; record: approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp (scope: S4, S5a, S5b, S5c, S6)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex-S6",
+          "text": "Integrated (source only changed public/theologian-chat.js open/close wiring; engine, policies, crisis paths, cloud calls untouched; test:theologian passes). Fixes: stylesheet was injected from JS into body (late, uncached): now a static link in index.html; theologian-panel.css/js added to the service worker shell list (without that the chat module import would fail offline) and sw stamp refreshed; manifest entry. Deviation to note for RD: desktop is a floating fixed panel at the right edge, not a column inside the reader (decision text says 'docked in the right column'); phone is the centered card with dim, inert background, focus trap, backdrop click closes. Not done: Scripture-cited section open by default, suggestions-inside-conversation and removable passage chip are the chat's own render and were left as they are. tests/redesign/theologian-panel.spec.js (3)."
+        }
+      ]
+    },
+    {
+      "id": "S7",
+      "title": "Step 7: remove legacy stylesheets and render paths; close the guards",
+      "state": "todo",
+      "deps": [
+        "S10",
+        "S3.I",
+        "S3.J",
+        "S4",
+        "S5a",
+        "S5b",
+        "S5c",
+        "S5d",
+        "S6",
+        "S8",
+        "S9",
+        "S11",
+        "S12"
+      ],
+      "owns": [
+        "public/ui/legacy.css",
+        "public/index.html",
+        "public/sw.js",
+        ".roa/guard-baseline.json"
+      ],
+      "accept": [
+        "bun run verify"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "unknown",
+          "text": "Chris 2026-10-07: leave the practice modes (review, verse library, arcade, achievements) until he has played with them live; their rebuild must continue the rail and side panels (ui.practice.modes.continue-side-panes-2026-10-07). Checkpoints and Capstones now render on the lesson screen (one intro step and one check step; older practice keeps its own title); S7 may delete the old mastery view in learning.js after the contract tests pass. Unit check content wording fixed at source: title 'Checkpoint · <unit>' and 'This Checkpoint combines…' (was 'Unit Mastery' / 'This mastery check')."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "unknown",
+          "text": "Chris decision ui.type.max-genesis-2026-10-07: --type-max (Genesis size) caps all text; site title only exception. Guard: tests/redesign/type-cap.spec.js (15+ routes x phone/desktop/1920). Checkpoints now render on the lesson screen (?mastery=). Full redesign+contracts: 185 passed."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "unknown",
+          "text": "Checkpoint fit: all 119 Checkpoint, Capstone and older practice items fit their card with no scrolling at 390x844 and 1280x720 (multi-question checks page one question at a time; long reorder lists use two columns; long introductions split across cards). Full redesign+contracts: 186 passed."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Experiment branch experiment/drop-legacy: with every legacy stylesheet removed all 186 tests pass, but the Bible library/Timeline/book profile, Search, Glossary, Orientation, practice modes and the static pages render unstyled. S8-S10 replace all but the practice modes (deferred by Chris). S7 deletes the legacy layer after them. Legacy files archived in canonical-shelf-legacy-2026-10-07.zip."
+        }
+      ]
+    },
+    {
+      "id": "RD",
+      "title": "Chris approves the redesign",
+      "state": "todo",
+      "deps": [
+        "S7",
+        "C3",
+        "S3.G",
+        "P11"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Chris approves the redesign after the content track (glossary and lesson revision) and locked card breaks are in place."
+        }
+      ]
+    },
+    {
+      "id": "S7b",
+      "title": "Prune redesign scaffolding tests (screenshot baselines, layout conformance, Component Lab checks, overlapping reader cases)",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "tests/redesign/"
+      ],
+      "accept": [
+        "bun run verify"
+      ]
+    },
+    {
+      "id": "P10",
+      "title": "Themes 2-8: final values per theme (layouts unchanged)",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        ".roa/values/theme.json"
+      ],
+      "accept": [
+        "bun run verify"
+      ]
+    },
+    {
+      "id": "K1",
+      "title": "project-roa-kit 1.2.0: upstream theme contract v11, views.mjs and roa.mjs from this repo; update the kit test fixture",
+      "state": "todo",
+      "deps": [],
+      "owns": [
+        "../project-roa-kit/"
+      ],
+      "accept": [
+        "node ../project-roa-kit/test/all.mjs"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Separate repository (C:/dev/project-roa-kit). Until done, never re-copy the upstream kit into .roa-kit/: it would pin a contract version the kit does not have."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "unknown",
+          "text": "When upgrading the kit, consider named shared font slots (body, reading, display) so themes reference fonts instead of setting stacks; S3.Q2 set Reading Room's body and Scripture fonts as theme-level stacks because the v11 contract only has serif/sans/mono."
+        }
+      ]
+    },
+    {
+      "id": "S3.Q2",
+      "title": "Ship Source Sans 3 (body) and Literata (Scripture) from the site, per S3.Q; wire them into the Reading Room theme values",
+      "state": "done",
+      "deps": [
+        "S3.Q"
+      ],
+      "owns": [
+        "public/fonts/",
+        ".roa/values/theme.json"
+      ],
+      "accept": [
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Decided under S3.Q but no node shipped them. Self-host the woff2 files through the existing fontSources mechanism (open license, no cost). Fonts must load before lesson text renders or wrapping will differ from the calibration."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Reading Room: fontBody = Source Sans 3, fontReading (Scripture) = Literata, self-hosted Latin subsets via fontSources (24 faces, 16 files; all fonts 544 KB total, loaded only when used). Display/title stays Cambria/Caladea. Other themes unchanged until P10. Set as theme-level font stacks rather than new shared slots: the contract's shared fonts are fixed to serif/sans/mono, and adding slots means contract v12 (fold into K1). Verified in a browser: both families load and render on the reader. Lesson text must wait for document.fonts.ready before first paint (S3.H) so wrapping matches calibration."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/ship-reading-room-fonts."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed the approved font shipment: keep existing fontSources generation, ship Source Sans 3 body faces and Literata Scripture faces, and update only Reading Room values. Existing themes keep their fonts. First commit is the claim; next fetch licensed assets, regenerate theme output, verify the actual browser font faces and run the required gates."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Shipped 8 new Latin/Latin-ext woff2 assets and upstream OFL notices through fontSources; Reading Room fontBody is Source Sans 3 and fontReading is Literata. Generated theme CSS/docs/tests regenerated by roa; other theme values and display/label stacks unchanged. Chromium loads all 12 regular/semibold/bold normal/italic combinations and confirms custom-font glyphs for both roles, with zero third-party browser requests. S3.B7 can recalibrate against these faces; S3.H must await selected-theme document.fonts.load before rendering locked parts, as the existing Q2 handoff requires (lesson runtime is outside this node's owned paths). Next: full verify, node acceptance, final review and commit."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Full verify exposed a font-dependent reader deep-link regression: 140 passed, Psalm 119:105 phone visibility failed on both attempts. Added F1 as a dependency under the board's path-ownership rule. Assets and theme values are ready; F1 will wait for reading fonts before mount, preserve navigation cancellation, and handle failed downloads. Commit the font shipment and graph now after verify:fast; F1 gets its own branch and draft PR, with Q2 closure awaiting integration approval."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Combined stack now passes full verify (CI=1, 144/144). Font shipment depends on F1's font-safe reader mount; keep the separate draft PRs stacked and do not merge the parent without including F1. S3.B7 gets the shipped fonts; S3.H still owns waiting for its selected theme fonts before locked-part lesson rendering. Next: close both nodes through work done on the verified combined stack, commit the handoff, and publish draft PRs for review."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done on the tested combined stack: verify:fast passed (12 smoke) with CI=1; full combined runtime verify passed 144 browser tests. Source Sans 3/Literata assets and licenses are committed on the parent branch. Completion status is carried by the dependent F1 child PR; include F1 before merging the font shipment. S3.B7 is ready on the combined stack, and S3.H owns font readiness for locked lesson parts. No Claude-owned node changed."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Shipped twice in parallel (Claude on feature/redesign-p5-lesson-path, Codex in PR #62) because each read the board from its local copy. Reconciled on the lesson branch: Codex's shipment is the one of record (400/600/700 with italics, OFL notices, full-suite verification that found F1); Reading Room keeps its Caladea/Cascadia Mono source so its title and label fonts do not depend on other themes. Calibration rerun against the static weight files."
+        }
+      ],
+      "owner": "Claude + Codex",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.B7",
+      "title": "Recalibrate lesson type size against Source Sans 3 so it hits Chris's decided counts (49x17 portrait, 91x14 landscape)",
+      "state": "done",
+      "deps": [
+        "S3.Q2"
+      ],
+      "owns": [
+        "scripts/calibrate-lesson-type.mjs",
+        "content/pathway/lesson-type.json"
+      ],
+      "accept": [
+        "bun scripts/calibrate-lesson-type.mjs --check",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "The counts and the 833/784/735 ceilings are Chris's design targets, measured from his approved portrait and landscape mockups; they do not change. Only the type size that produces them changes with the font. S3.B through S3.B6 measured Caladea."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Ratios, counts and ceilings apply to the step body only (ui.lesson.card.step-body-scope-2026-10-05): title, progress, study-tool buttons, side columns, edge tabs and Back/Continue are outside the box."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Recalibrated to the shipped fonts: Source Sans 3 (prose; avg 0.395 em/char) and Literata at 1.15x (Scripture blocks). Variable-font bold widths scaled by 1.07 (one width table per file). widthEm(type, text, face, role) now takes a role ('prose' or 'scripture'). Result exposed a conflict between 4:5, 49x17 and 1.55: see S3.R."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/calibrate-lesson-type.mjs --check; bun run verify:fast)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "S3.R",
+      "title": "Portrait step body: the decided 4:5 box, 49x17 and 1.55 line height cannot all hold with Source Sans 3 (only 15.6 lines fit). Choose: A) 15 lines, B) line height 1.42, C) 3:4 box",
+      "state": "done",
+      "deps": [
+        "S3.B7"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Measured (S3.B7): Source Sans 3 averages 0.395 em per character on lesson prose. At 49 per line the line is 19.36 em; a 4:5 box is then 24.2 em tall = 15.6 lines at 1.55. Claude recommends C (3:4 box keeps 49x17, the 833/784/735 ceilings and 1.55 spacing). Landscape 2:1 at 91 per line fits 11.6 lines; not binding because portrait governs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: ui.lesson.card.portrait-layout-primary-fallback-2026-10-05."
+        }
+      ],
+      "record": "ui.lesson.card.portrait-layout-primary-fallback-2026-10-05"
+    },
+    {
+      "id": "S3.S",
+      "title": "Scripture readings longer than one card (100 of 116): A) split at verse boundaries across cards, B) scroll inside the card, C) open in the Bible reader, or A up to 3 cards and C beyond (Claude recommends)",
+      "state": "done",
+      "deps": [
+        "S3.D"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris",
+      "record": "ui.lesson.reading.inline-or-popover-2026-10-05",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Chris",
+          "text": "Decided: ui.lesson.reading.inline-or-popover-2026-10-05."
+        }
+      ]
+    },
+    {
+      "id": "S3.D2",
+      "title": "Divider: implement the Scripture reading rule from S3.S; attach \"As you read X, notice...\" to the reading's last card",
+      "state": "done",
+      "deps": [
+        "S3.S"
+      ],
+      "owns": [
+        "scripts/lesson-divider.mjs",
+        "scripts/test-lesson-divider.mjs"
+      ],
+      "accept": [
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path",
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Reading rule implemented (ui.lesson.reading.inline-or-popover-2026-10-05): inline when two sentences or fewer AND at most 300 characters (Luke 24:44-45, Nehemiah 8:8, Proverbs 26:4-5); the other 113 readings are a 4-line link that opens a scrollable popover. The 300-character limit keeps out single Scripture sentences that run many verses (Ephesians 4:1-6, Ecclesiastes 3:1-8). Result: 1042 cards, no overflow; 2 orphans and 72 check-alone cards for the review report. The popover itself is lesson-screen work (S3.H)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
+        }
+      ]
+    },
+    {
+      "id": "F1",
+      "title": "Reader: wait for the selected theme fonts before mounting and revealing a deep-linked verse",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/ui/screens/reader.js",
+        "tests/redesign/font-readiness.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/font-readiness.spec.js",
+        "bunx playwright test tests/redesign/reader.spec.js --grep \"opening a distant verse\" --repeat-each=10",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "S3.Q2 font shipment exposes this: full CI-configured verify has 140 passed and the Psalm 119:105 phone deep-link test fails twice because the reader reveals the verse before Literata settles. Reader paths are outside Q2 scope, so this node owns the fix; preserve navigation-generation cancellation and graceful missing-font fallback."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/reader-font-readiness."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed the font-readiness regression fix on a branch stacked on codex/ship-reading-room-fonts. First commit is this claim; next add behavior tests with a real delayed font, wait before reader layout/reveal, and retain cancellation and missing-font fallback. Font shipment node remains open until this separately reviewed dependency is integrated."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "The new delayed-font test failed before the fix (readerFontAtMount false), then all 3 tests passed with the fix. The reader now waits for selected body/reading fonts (400/600/700 normal and italic, Latin and Latin-ext) in parallel with annotations/highlights; the existing isCurrent guard follows the whole wait. Missing fonts are allowed to fall back. Original Psalm 119:105 test repeated 10/10 successfully. Next: full verification, node acceptance, commit, and two draft PRs for Chris's integration review."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Full bun run verify passed with CI=1: 144/144 browser tests, no retries reported, plus build/BSB/contracts/core checks. Self-review: readiness runs in parallel with data, all layout writes remain after isCurrent, failed font downloads fall back, and tests use an arbitrary bundled real font instead of freezing a family choice. Next: node acceptance and commit the F1 fix; draft PR is stacked on the font shipment, with merge reserved for Chris."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/font-readiness.spec.js; bunx playwright test tests/redesign/reader.spec.js --grep \"opening a distant verse\" --repeat-each=10; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done: final fixture uses intercepted theme CSS instead of forbidden DOM/style observers; three regression tests, ten distant-verse repetitions, and verify:fast (12 smoke) passed with CI=1. Full combined runtime verify passed 144 browser tests before the fixture-only guard correction. Commit the reader fix and both completion handoffs on the child branch; keep the two draft PRs stacked for Chris's approval."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/reader-font-readiness"
+    },
+    {
+      "id": "S3.D3",
+      "title": "Build emits the divider's cards into the catalog (each lesson step's cards, with ids and reading modes) so the lesson screen renders them; nothing is locked into the sources",
+      "state": "done",
+      "deps": [
+        "S3.D2"
+      ],
+      "owns": [
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Per redesign.sequence.content-after-templates-2026-10-05: the screen renders live divider output until the content revision is done; S3.G later locks reviewed cards."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/lesson-catalog-cards."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Continuing Chris's requested sequence: finish redesign templates before content/glossary revision and final break review. Emit provisional divider output in the catalog for the lesson renderer; preserve authored sections, source files, stable section/activity IDs, and current content. The pasted 637/46 counting changes are not published on the shared branch, so this node will expose current divider output without treating it as locked final pagination. No Claude-owned node changes. Next: verify and commit the claim, then wire the existing divider into compile-pathway."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Implemented the approved provisional handoff: compile-pathway loads the existing divider context once and adds its complete cards to each authored section in the catalog. Source sections, blocks, anchors, lesson/activity IDs and challenge ordering stay intact; the source files and divider rules are unchanged. Consumer probe was red for missing cards, now passes across 119 lessons and 1042 cards; divider unit tests pass. Next: full verify, node acceptance, commit, then lesson CSS/renderer work. The 637/46 content rule and final break review remain deferred pending recovery/content revision."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run compile:pathway; bun scripts/test-lesson-divider.mjs; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done: compile:pathway, divider tests, and verify:fast (12 smoke) passed; full verify passed 144/144 with CI=1 and no retries reported. Complete catalog consumer probe passes for all 119 lessons/1042 cards. Source-only change; generated llms.txt is owned by dependent S3.D3a and must accompany this change. New untracked docs/content-revisions files appeared independently and are excluded. Next: commit the source node and regenerate/document its dependent output before draft review."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Claude claimed S3.D3 locally but did not push the claim, so the shared-board check could not see it; Codex's S3.D3 is the one of record. Claude then changed the divider to break rule v2 (sections divided independently; divideLesson returns a flat list of steps tagged with section), and adapted compile-pathway to group them by section."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/lesson-catalog-cards"
+    },
+    {
+      "id": "C1",
+      "title": "Content: one glossary, one definition per term (single file lessons reference; optional per-lesson \"in this lesson\" notes); resolves the 59 terms defined differently across lessons",
+      "state": "todo",
+      "deps": [
+        "S7"
+      ],
+      "owns": [
+        "content/pathway/glossary.json",
+        "scripts/compile-pathway.mjs"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "C2",
+      "title": "Content: rewrite all glossary definitions to the voice standard (content.voice.v1-2026-10-05), drafted in batches by module",
+      "state": "todo",
+      "deps": [
+        "C1"
+      ],
+      "owns": [
+        "content/pathway/glossary.json",
+        "docs/v7/GLOSSARY_REVISION.md"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun run verify:fast"
+      ]
+    },
+    {
+      "id": "C3",
+      "title": "Content: Chris approves each glossary batch (old and new side by side)",
+      "state": "todo",
+      "deps": [
+        "C2"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "C4",
+      "title": "Content: rewrite each lesson as one script (one objective, its points in order, details elaborating each) in the content voice and depth, working lesson by lesson from docs/v7/LESSON_SCRIPTS.md; before/after per lesson",
+      "state": "todo",
+      "deps": [
+        "S7"
+      ],
+      "owns": [
+        "content/pathway/lessons/",
+        "docs/v7/LESSON_REVISION.md"
+      ],
+      "accept": [
+        "bun run compile:pathway",
+        "bun scripts/test-lesson-divider.mjs",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Claude",
+          "text": "Governed by content.lesson-shape.v1-2026-10-05 and content.voice.v2-2026-10-05. Regenerate the compiled scripts with bun scripts/lesson-scripts-export.mjs; after rewriting, rerun the divider and its tests and regenerate LESSON_CARDS.md, then the pagination review (S3.E) before S3.F."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Lesson 1 (begin) done and approved as the calibration lesson (content.lesson-01-approved-2026-10-06): docs/v7/content-revision/lesson-01-begin.steps.md + .meta.md. Source for rewrites is the pre-Codex text in content/pathway/legacy-ledger.json, not the current lesson files. Process: script in Chris voice -> Claude Doc review with comments -> divide by break rule v3 -> Chris adjusts -> approve. Paused until the redesign is done (Chris, 2026-10-06)."
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "title": "Content: Chris approves each lesson revision batch",
+      "state": "todo",
+      "deps": [
+        "C4"
+      ],
+      "owns": [],
+      "accept": [],
+      "gate": "chris"
+    },
+    {
+      "id": "S3.D3a",
+      "title": "Regenerate the published catalog documentation for provisional lesson cards",
+      "state": "done",
+      "deps": [
+        "S3.D3"
+      ],
+      "owns": [
+        "public/llms.txt"
+      ],
+      "accept": [
+        "bun run generate:llms",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "S3.D3 adds provisional cards to the catalog; generate:llms embeds that catalog and regenerates the tracked public/llms.txt. This dependent output node keeps the generated update within declared ownership; no hand edits or content revisions."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed on codex/lesson-card-catalog-docs."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Claimed after the source node passed full verify (144/144), divider unit tests and complete catalog consumer checks. Only generated public/llms.txt is owned; regenerate from the catalog without changing curriculum text. Next: commit this claim, close acceptance and commit the generated output. New docs/content-revisions files remain untouched."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bun run generate:llms; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-05",
+          "by": "Codex",
+          "text": "Closed through work done: generation and verify:fast (12 smoke) passed with CI=1. Combined catalog source and documentation already passed full verify 144/144, divider unit tests and all 119 lesson/1042 card consumer checks. Only generated llms.txt and this node's handoff are committed here. Next: review the stacked source/output drafts together before merging. Independently created content-revision files are left untouched."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/lesson-card-catalog-docs"
+    },
+    {
+      "id": "R3",
+      "title": "Reader spec: seed the database only after the reader mounts, wait for queued highlight saves before reloading, and skip the service worker precache these tests do not need",
+      "state": "done",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "tests/redesign/reader.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/reader.spec.js --repeat-each=2",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Found from Chris's full run (148/149). Not caused by the notes-editor change: it fails identically with the old study-notes.js. The app renders the seeded note correctly when given time; the test needs to wait for [data-reader] before seeding."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Claimed on feature/redesign-p5-lesson-path."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Corrected: the failures reproduced here only because this sandbox has one CPU (see SW1). The edits are still right on their own: (1) seeding right after goto could race the app's startup write; (2) a reload straight after clicking a highlight colour can drop the queued save, so the spec now waits until the saved ranges show the colour; (3) the service worker pre-caches about 130 files on first visit, which is extra load when many browsers run at once and is irrelevant to these tests (verify:sw covers it). Chris's 12-core run failed 1 of 149 on the legacy-notes test; unconfirmed whether these edits remove it."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/reader.spec.js --repeat-each=2; bun run verify:fast)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris measured the full verify on his 12-core laptop: it fails at the default 6 workers and passes with $env:CI=1 (2 workers AND one retry). That supports load-sensitivity (not product bugs) but does not separate workers from the retry. playwright.config.js now defaults to 2 workers everywhere (PW_WORKERS overrides) and keeps the retry CI-only; next measurement: plain `bun run verify` (2 workers, no retry), and `CI=1 bun run verify` to list the tests reported \"flaky\"."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/redesign-p5-lesson-path"
+    },
+    {
+      "id": "SW1",
+      "title": "Service worker: after a reload under parallel load the page's own fetches (annotations, fonts, corpus, module imports) sit pending behind the worker while the worker has nothing in flight",
+      "state": "dropped",
+      "deps": [
+        "S2"
+      ],
+      "owns": [
+        "public/sw.js",
+        "public/bootstrap.js"
+      ],
+      "accept": [
+        "bun run verify:sw",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "Found while chasing reader.spec \"legacy notes remain readable\" (148/149 on Chris's run). Reproduces only with the service worker allowed, 3+ browsers on one test server, and a reload right after the first visit: 0 of 6 pass at 3 workers, 6 of 6 with serviceWorkers blocked or 1 worker. After the reload the router starts one render and stalls in a fetch; /data/bsb-annotations/<n>.json (and sometimes font files) stay pending while the worker has no requests of its own in flight. NOT the cause: the notes-editor change (fails identically with the old file), waiting for the worker to control the page, waiting for its six-file data precache. Suspects to check: the /data/ cache-first handler awaits cache.put(response.clone()) before returning the response (a large body plus a tee can stall the page until the put completes); 129-file install precache; HTTP/1.1 six-connection limit on the test server. Likely harmless on HTTP/2 production, but a stalled first reload would be a real defect. Tests meanwhile: reader.spec.js blocks the service worker (R3)."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Claude",
+          "text": "RETRACTED. The sandbox where this was measured has ONE CPU: a reload takes 1.2 s alone and about 9.8 s with six browsers at once, which exceeds the 7 s expect timeout. Every \"fails under parallel load\" result (legacy notes, highlights) came from that starvation; the service worker only added install work. There is no evidence of a service-worker defect. If it ever shows up on a many-core machine with an idle CPU, reopen with a real reproduction."
+        }
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "ROA manifest: map the lesson screen and new lesson build scripts for PR 60",
+      "state": "done",
+      "deps": [],
+      "owns": [
+        ".roa/manifest.json",
+        ".roa/state.json",
+        ".roa/guard-baseline.json",
+        "CHANGELOG.md",
+        "docs/STATUS.md",
+        "docs/DECISIONS.md",
+        "SECURITY.md",
+        ".gitattributes",
+        "tests/contracts/roa/",
+        "README.md"
+      ],
+      "accept": [
+        "node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader",
+        "bun run verify:fast"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "PR 60 base-aware ROA check reports newly added governed lesson UI and lesson build scripts without exact manifest mappings. Map every reported file and its purpose, regenerate ROA outputs, then verify against PR 60 P4 base and the fast suite."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Claimed on codex/roa-manifest-repair."
+        },
+        {
+          "date": "2026-10-06",
+          "by": "Codex",
+          "text": "Mapped the lesson screen and all eight new lesson script paths with specific manifest descriptions; ROA sync regenerated the project state and README. Next run the PR 60 base-aware check, fast and full verification, then close the node."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Added the exact Learning Path screen mapping after S3.J’s base-aware ROA check exposed it; generated state and README are synced. Next run the node acceptance and close M1."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Codex",
+          "text": "Done; acceptance passed (node .roa-kit/roa.mjs verify --base origin/feature/redesign-p4-reader; bun run verify:fast)."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/roa-manifest-repair"
+    },
+    {
+      "id": "A1",
+      "title": "Accounts: server. Better Auth email+password, username, phone number as a unique login identifier (password, no SMS or code), Google; keep guest (anonymous) and passkey as a first-class method; migration 0001; rate limits",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "worker/auth.ts",
+        "worker/migrations/",
+        "worker/index.ts"
+      ],
+      "accept": [
+        "bun run test:worker"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Own branch feature/accounts, started after Chris approves RD. Chris 2026-10-07: phone is only a unique identifier, no 2FA or verification; Apple skipped for now; name or username required; email and/or phone plus password. Supersedes the passkey-only account decision (passkey stays as an optional extra)."
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "Sign-in gate: before a lesson, notes, or feedback, show Sign in / Create account / Continue as guest. Guest choice is remembered on the device (progress and notes stay local) and can be changed in Profile",
+      "state": "todo",
+      "deps": [
+        "A1"
+      ],
+      "owns": [
+        "public/ui/components/auth-gate.js",
+        "public/ui/components/auth-gate.css"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/auth-gate.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "One shared popover card; no per-screen copies. Not shown again after a choice."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: the gate also covers feedback (lessons, My notes, feedback). Passkey is an offered sign-in and create method."
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Create-account flow as a popover card: method (Google, email, phone, or passkey), then name or username, then email and/or phone plus password where the method needs one. Existing local progress and notes merge into the new account",
+      "state": "todo",
+      "deps": [
+        "A2"
+      ],
+      "owns": [
+        "public/ui/components/auth-flow.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/auth-flow.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Phone-only accounts have no password recovery without email; A5 decides the recovery path (recovery codes, per the earlier decision)."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Passkey is a first-class method alongside Google, email and phone; a passkey account still needs a name or username."
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Profile 'You' section: edit name or username, email, phone, password; sign out; delete account; guest upgrade",
+      "state": "todo",
+      "deps": [
+        "A3"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/account-ui.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/profile.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Everything entered in the creation flow must be editable here (Chris 2026-10-07)."
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "title": "Security pass: password rules, enumeration-safe errors, lockout, recovery codes, CSP and cookie flags, delete-account data removal",
+      "state": "todo",
+      "deps": [
+        "A1"
+      ],
+      "owns": [
+        "worker/"
+      ],
+      "accept": [
+        "bun run test:worker"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Review before any real user signs up."
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "title": "Accounts: end-to-end tests (guest, email, phone, Google with a stub) and docs; Chris sign-off on the live flow",
+      "state": "todo",
+      "deps": [
+        "A4",
+        "A5"
+      ],
+      "owns": [
+        "tests/"
+      ],
+      "accept": [
+        "bun run verify"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Google needs a Google Cloud OAuth client id and secret from Chris; email sender (free tier) needs a key; both go in Worker secrets, never the repo."
+        }
+      ],
+      "gate": "chris"
+    },
+    {
+      "id": "S8",
+      "title": "Step 8: Bible library goes away (it duplicates the Shelf: /bible and the old library addresses redirect to Home); Book overview and Timeline become one screen in the Topics layout (left: sections or eras, right: selected item, default overview)",
+      "state": "done",
+      "deps": [
+        "S5a"
+      ],
+      "owns": [
+        "public/ui/screens/book-overview.js",
+        "public/ui/screens/book-overview.css",
+        "public/ui/screens/bible.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/book-overview.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: approved. Maps (already disabled) is dropped. The Shelf book panel keeps its Book overview link."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s8-book-overview."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Built: public/ui/screens/book-overview.{js,css}, bible.js dispatcher. Library views redirect (view=shelf|books to Home; bare /bible to the saved reading or Genesis 1; ?book=N to chapter 1). Phone: padded clear of the Theologian tab; Previous/Next equal fixed width. Full redesign+contracts 195 passed before the last CSS polish; spec, type-cap and top-gap contract re-run green."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/book-overview.spec.js)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/s8-book-overview"
+    },
+    {
+      "id": "S9",
+      "title": "Step 9: Search on the Topics layout. A reference goes to the reader; any other query shows grouped instant results (Topics, Glossary, Learning Path lessons, Scripture words) with the selected result on the right; a Scripture word hit opens the reader at that verse. Question-shaped queries also get an 'Ask the Theologian' row that opens the panel with the question filled in (never sent automatically). The glossary and Orientation fold in",
+      "state": "done",
+      "deps": [
+        "S5a",
+        "S8"
+      ],
+      "owns": [
+        "public/ui/screens/search.js",
+        "public/ui/screens/search.css"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/search.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: approved. Glossary links (?glossary=) redirect into Study Topics glossary mode. Check whether the Orientation unit is a normal Learning Path unit."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s9-search."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Search screen built on the Topics layout; questions searched by content words; /bible?q= and /course?glossary= redirect"
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/search.spec.js)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/s9-search"
+    },
+    {
+      "id": "S10",
+      "title": "Step 10: About and policies as one screen at /about: left list (About, Privacy, Terms, Storage, Data retention), the right side loads general About content by default and a clicked item replaces it; the old /privacy.html etc. addresses redirect",
+      "state": "done",
+      "deps": [
+        "S5a"
+      ],
+      "owns": [
+        "public/about-page.js",
+        "public/about.html",
+        "public/app.js",
+        "public/data-retention.html",
+        "public/privacy.html",
+        "public/storage.html",
+        "public/sw.js",
+        "public/terms.html",
+        "public/ui/screens/about.css",
+        "public/ui/screens/about.js",
+        "public/ui/screens/registry.js",
+        "tests/redesign/about.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/about.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: approved; same two-pane layout as Topics."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Claimed on codex/s10-about."
+        },
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07 (answering Codex): authorized. S10 may add its own manifest mappings for about.js and about.css and regenerate .roa/state.json and README.md via roa sync (see the new shared-generated-files rule). Nothing else outside S10's owned paths."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Implemented the approved Topics-style About and policies screen, default About selection, canonical section links, legacy document redirects, no-script disclosures and offline shell support. Original About and policy markup is preserved byte-for-byte; eight online behavior tests and the offline regression passed. Full CI-mode verify is running; exact about.js/about.css manifest mappings require owner authorization to extend S10 scope."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Merged latest integration through cda5179, including Chris's 120-second typography test budget. Added only the authorized About screen manifest mappings; original policy markup preserved. Full verification pending."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/about.spec.js)."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Ready for review: About and four policies share the Topics layout; original markup preserved verbatim, old addresses and anchors redirect, and cached policies work offline. Full CI-mode verify passed 205/205 with no retries after merging cda5179; work done acceptance passed 10/10. Authorized manifest mappings synced; desktop and phone rendering inspected. Next: draft PR into feature/redesign-p5-lesson-path for Chris; do not merge."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Codex",
+          "text": "Final pre-commit verify:fast passed with CI=1: 19 smoke tests passed first attempt and the phone-reader smoke passed its single retry after a load timeout (20 total). Full verify passed 205/205 without retries. No reader or typography test changes in S10."
+        }
+      ],
+      "owner": "Codex",
+      "branch": "codex/s10-about"
+    },
+    {
+      "id": "S11",
+      "title": "Step 11: Orientation on the redesigned lesson screen, rewritten in the current names (Shelf, Learning Path, Bible, Study Topics, Review & Practice, Theologian, Read first, Checkpoint); no scored progress, no theme demo (Profile link instead). Replaces the old orientation view so S7 can delete it",
+      "state": "done",
+      "deps": [
+        "S9"
+      ],
+      "owns": [
+        "public/orientation.js",
+        "public/ui/screens/lesson.js",
+        "public/ui/screens/lesson.css",
+        "tests/redesign/orientation.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/orientation.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: orientation should match the redesign in verbiage and design."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s11-orientation."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/orientation.spec.js)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/s11-orientation"
+    },
+    {
+      "id": "P11",
+      "title": "Appearance: typography and text size. Typography is chosen for the whole site, separately from the theme (each theme has a default typography group, but any theme's typography can be selected on its own); text size is Small, Normal or Large. Themes control only colors, surface textures, lines and borders, and style. The Orientation's Profile step already describes this, so it must ship before RD",
+      "state": "todo",
+      "deps": [
+        "S11"
+      ],
+      "owns": [
+        "public/ui/screens/profile.js",
+        "public/ui/screens/profile.css",
+        "public/theme.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/profile.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-07",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: add a typography picker and a Small / Normal / Large text size picker to the Appearance settings. Each theme has a default typography group, but any theme's font bucket can be chosen separately; themes control colors, surface textures, lines/borders, and style. Typography is the whole site. Plan to confirm before building: how typography groups are defined in the theme contract (.roa/values/theme.json), which fonts ship, and the text-size scale (root size multiplier)."
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Step 12: Review & Practice mode frames. Review, Verse library, Games and Achievements open inside the redesigned screen (rail, side panes, top bar, type scale, buttons); the individual practice content (cards, games, verse drills) is unchanged and rebuilt later",
+      "state": "done",
+      "deps": [
+        "S11"
+      ],
+      "owns": [
+        "public/ui/screens/practice.js",
+        "public/ui/screens/practice.css",
+        "tests/redesign/practice.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/practice.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Chris 2026-10-07: the practice page must match the redesign; only the individual practice content is deferred (ui.practice.modes.continue-side-panes-2026-10-07). S7 depends on this so legacy styles can be deleted."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Claimed on feature/s12-practice-frames."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Done; acceptance passed (bunx playwright test tests/redesign/practice.spec.js)."
+        }
+      ],
+      "owner": "Claude",
+      "branch": "feature/s12-practice-frames"
+    },
+    {
+      "id": "L1",
+      "title": "Lexicon data: build static, sharded original-language word data from the Berean BSB translation tables and concordance (aligned Hebrew/Greek word, transliteration, morphology, BSB renderings, per-lemma usage range and occurrences). No Strong's or other dictionary glosses",
+      "state": "todo",
+      "deps": [
+        "RD"
+      ],
+      "owns": [
+        "scripts/build-original-language.mjs",
+        "public/data/original-language/"
+      ],
+      "accept": [
+        "bun scripts/build-original-language.mjs --check"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Chris 2026-10-08: plan lexicon approved. Use non-standard tools: usage range from the translators' own renderings, not a lexicon. Berean texts are public domain; the tables, concordance and topical index terms are not confirmed, so send the Berean licensing question and read berean.bible/terms.htm before L1 ships."
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Lexicon panel: tap a word in the reader to open the original word, transliteration, English renderings used, count and clickable occurrences",
+      "state": "todo",
+      "deps": [
+        "L1"
+      ],
+      "owns": [
+        "public/ui/screens/word-panel.js",
+        "public/ui/screens/word-panel.css",
+        "tests/redesign/word-panel.spec.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/word-panel.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Original-language definitions are not written by us; the panel shows evidence of usage only."
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Lexicon and Theologian: 'Ask the Theologian about this word' button using the existing [data-ask] prefilled draft (no auto-send); About credit line for the Berean Bible Translation Committee",
+      "state": "todo",
+      "deps": [
+        "L2"
+      ],
+      "owns": [
+        "public/theologian.js",
+        "public/ui/screens/about.js"
+      ],
+      "accept": [
+        "bunx playwright test tests/redesign/word-panel.spec.js"
+      ],
+      "notes": [
+        {
+          "date": "2026-10-08",
+          "by": "Claude",
+          "text": "Uses the lexical intent already in the Theologian."
+        }
+      ]
+    }
+  ],
+  "integrationBranch": "feature/redesign-p5-lesson-path"
+}

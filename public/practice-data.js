@@ -1,4 +1,5 @@
 import {VERSE_COUNT} from './verse-data.js';
+import {GROUP_NAMES} from './ui/labels.js';
 
 export const PRACTICE_RANKS=[
   {xp:0,name:'Visitor'},
@@ -87,14 +88,14 @@ export const PRACTICE_SCOPES=[
   {id:'all',name:'Whole canon',scope:{all:true}},
   {id:'ot',name:'Old Testament',scope:{from:1,to:39}},
   {id:'nt',name:'New Testament',scope:{from:40,to:66}},
-  {id:'law',name:'Law / Pentateuch',scope:{cat:'law'}},
-  {id:'history',name:'Historical Books',scope:{cat:'othist'}},
-  {id:'wisdom',name:'Poetry & Wisdom',scope:{cat:'wisdom'}},
-  {id:'major',name:'Major Prophets',scope:{cat:'major'}},
-  {id:'minor',name:'Minor Prophets',scope:{cat:'minor'}},
-  {id:'gospels',name:'Gospels & Acts',scope:{cat:'gospel'}},
-  {id:'paul',name:'Pauline Letters',scope:{cat:'paul'}},
-  {id:'general',name:'General Letters',scope:{cat:'general'}}
+  {id:'law',name:GROUP_NAMES.law,scope:{cat:'law'}},
+  {id:'history',name:GROUP_NAMES.othist,scope:{cat:'othist'}},
+  {id:'wisdom',name:GROUP_NAMES.wisdom,scope:{cat:'wisdom'}},
+  {id:'major',name:GROUP_NAMES.major,scope:{cat:'major'}},
+  {id:'minor',name:GROUP_NAMES.minor,scope:{cat:'minor'}},
+  {id:'gospels',name:GROUP_NAMES.gospel,scope:{cat:'gospel'}},
+  {id:'paul',name:GROUP_NAMES.paul,scope:{cat:'paul'}},
+  {id:'general',name:GROUP_NAMES.general,scope:{cat:'general'}}
 ];
 
 export function practiceRank(xp=0){let rank=PRACTICE_RANKS[0];for(const candidate of PRACTICE_RANKS)if(xp>=candidate.xp)rank=candidate;return rank}

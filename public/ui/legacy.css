@@ -1,0 +1,17 @@
+/* Pre-redesign stylesheets, loaded as one cascade layer.
+
+   Unlayered styles outrank every layered one, so while these sheets were linked directly they overrode the new
+   layout, components and screens. Here they sit in the "legacy" layer: above base (so screens that have not moved
+   yet keep their current look) and below layout, components and screens (so redesigned screens and the shared
+   components win). The import order is the order they used to load in. Each sheet is deleted, and its line here
+   removed, when the screen that needs it is replaced (Step 7 deletes this file). */
+@layer tokens, base, legacy, layout, components, screens, overrides;
+
+@import url('/styles.css') layer(legacy);
+@import url('/learning.css') layer(legacy);
+@import url('/library.css') layer(legacy);
+@import url('/utility-panels.css') layer(legacy);
+@import url('/theologian-chat.css') layer(legacy);
+@import url('/experience.css') layer(legacy);
+@import url('/footer.css') layer(legacy);
+@import url('/canonical-shelf.css') layer(legacy);

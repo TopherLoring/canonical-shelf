@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.step-length-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Step body length: hard ceilings per step are 833 characters (1 paragraph), 784 (2) and 735 (3), counting spaces and punctuation. The target is about half the ceiling (roughly 370-420 characters per step); the divider aims for the target and goes longer only when a sentence or block cannot be split without breaking a rule. A step must also fit the portrait step body in the primary layout; whichever limit is tighter applies.",
+  "by": "Chris"
+}

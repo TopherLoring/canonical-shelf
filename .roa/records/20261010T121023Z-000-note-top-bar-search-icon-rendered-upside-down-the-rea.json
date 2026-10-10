@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-10",
+  "text": "Top-bar search icon rendered upside down: the Reader collapse-chevron rule rotated every collapsed icon button; scoped it to [data-collapse] buttons."
+}

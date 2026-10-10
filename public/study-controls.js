@@ -1,6 +1,6 @@
 function syncStudyChrome(){
   const active=document.body.classList.contains('study-focus-active');
-  for(const node of document.querySelectorAll('.masthead,.primary,#pwa-status'))node.toggleAttribute('inert',active);
+  for(const node of document.querySelectorAll('.cs-top,.cs-tabbar'))node.toggleAttribute('inert',active);
 }
 
 document.addEventListener('canonical-route-rendered',syncStudyChrome);

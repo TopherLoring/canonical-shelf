@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "reader-notes-drawer-2026-10-04",
+  "topic": "ui.reader.notes",
+  "date": "2026-10-04",
+  "text": "My Notes opens saved notes with edit and delete icons and an add-note button or input. Sort notes by verse, then date/time. Remove the in-person discussion checkbox and Ask the Theologian action from the reader notes editor, extending the input downward. Notes and Theologian slide in from the right. The notes card remains below the Theologian tab; the Theologian tab and chat stay above other visible panels. Remove Copy from the reader highlight/note actions.",
+  "by": "Chris"
+}

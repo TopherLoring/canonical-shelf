@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "content.voice.v1-2026-10-05",
+  "topic": "content.voice",
+  "date": "2026-10-05",
+  "text": "Content voice standard for lesson text and the glossary, set by Chris's example: 'Gospel was derived from the Greek word euangelion, which means \"good news\" or \"good announcement\". In Paul's world, it was the word used for announcements like a military victory or a new emperor's accession. Calling the message about Jesus \"the gospel\" was a claim of the same scale. Eventually it became synonymous for the first four books of the New Testament that tell Jesus' story - Matthew, Mark, Luke, & John.' Rules drawn from it: write for an educated adult, never a slogan; give a word's source language and literal sense where it matters; place it in its historical setting; when the text makes a claim (\"a claim of the same scale\"), justify it by explaining how, not by asserting it; then show how later usage developed; plain, confident, complete sentences.",
+  "by": "Chris"
+}

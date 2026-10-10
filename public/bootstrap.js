@@ -1,13 +1,21 @@
 import {migrateLegacy} from './db.js';
 import {initTheme} from './theme.js';
+import {mountAppShell} from './ui/components/app-shell.js';
+import {mountFrame} from './ui/components/frame.js';
 import './study-controls.js';
 import './feedback.js';
 import './study-notes.js';
 
-const status=document.querySelector('#pwa-status');
-const setStatus=(text,state)=>{if(!status)return;status.textContent=text;status.dataset.state=state||''};
+// The offline line lives in Profile (Data & privacy). The latest status is kept on window so Profile can show it when it opens.
+const setStatus=(text,state)=>{
+  window.canonPwaStatus={text,state:state||''};
+  const status=document.querySelector('#pwa-status');
+  if(status){status.textContent=text||'Online. Saved content is available offline.';status.dataset.state=state||''}
+};
 
 initTheme();
+mountAppShell();
+mountFrame();
 
 if(location.hash.startsWith('#/'))history.replaceState({},'',location.hash.slice(1));
 try{

@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "reader-manifest-registration-approved-2026-10-04",
+  "topic": "process.roa.reader-registration",
+  "date": "2026-10-04",
+  "text": "Approved adding three descriptive manifest.map entries for public/highlights.js, public/ui/screens/reader.js, and public/ui/legacy.css, with the checker and guards unchanged.",
+  "scope": "reader-recovery-three-map-entries",
+  "by": "Chris"
+}

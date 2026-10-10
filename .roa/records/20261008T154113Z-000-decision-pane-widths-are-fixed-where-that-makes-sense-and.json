@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "pane-widths-are-fixed-where-that-makes-sense-and",
+  "topic": "ui.panes.widths",
+  "date": "2026-10-08",
+  "text": "Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values.",
+  "by": "Chris"
+}

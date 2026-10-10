@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "curriculum.checkpoint.placement-content-and-steps-2026-10-05",
+  "topic": "ui.naming.unit-check",
+  "date": "2026-10-05",
+  "text": "Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.",
+  "rationale": "Owner answered the per-unit or per-lesson question",
+  "by": "Chris"
+}

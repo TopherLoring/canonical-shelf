@@ -1,89 +1,160 @@
+// The Orientation lesson: how the site works, in the names the site uses now. The lesson screen shows it
+// (public/ui/screens/lesson.js, orientationAsLesson); it is not scored and does not count toward any module.
+//
+// Every step is written as one card, so each break is chosen, not measured: one idea per step. Text marks the names of
+// site elements with **double asterisks**; the lesson screen sets them in a heavier weight. `desktop` and `phone`
+// describe how an element differs by device. There are no pictures: the steps are text.
 export const ORIENTATION_UNIT_ID='unit.orientation';
 export const ORIENTATION_LESSON_ID='orientation';
+export const ORIENTATION_START_HREF='/course?unit=c1.christianity&lesson=begin';
 
 export const ORIENTATION_LESSON={
   id:ORIENTATION_LESSON_ID,
   unitId:ORIENTATION_UNIT_ID,
-  unitSequence:0,
   unitTitle:'Orientation',
-  lessonSequence:1,
   title:'How Canonical Shelf works',
-  objective:'Learn how to use the site, what kinds of material it holds, and why the Pathway is ordered the way it is.',
+  objective:'Learn how to use the site, what kinds of material it holds, and why the Learning Path is ordered the way it is.',
   scored:false,
-  scenes:[
+  sections:[
     {
-      role:'Navigate',
+      id:'places',
       title:'Five places and a guide',
-      paragraphs:[
-        'Everything on the site lives in five places, named along the top of every screen. The Theologian tab on the right edge goes with you to all of them.'
-      ],
-      bullets:[
-        'Shelf: all 66 books at a glance, and where you left off.',
-        'Pathway: the guided course, in four modules.',
-        'Bible: the full text, chapter by chapter, with a profile for every book.',
-        'Catalog: reference topics, the glossary, and book profiles you can search.',
-        'Practice: games and review that keep what you learned from fading.',
-        'Theologian: a chat you can open from any screen to ask about what is in front of you.'
+      cards:[
+        {
+          id:'places',
+          p:['Everything on the site lives in five places, named along the top of every screen.'],
+          phone:'The same five places appear as icons in the bar at the top.',
+          note:'This tour is designed for landscape: a laptop, a desktop, or a tablet turned sideways. On a phone held upright it has the same content, arranged to fit.'
+        },
+        {
+          id:'places-list',
+          list:[
+            '**Shelf:** all 66 books at a glance, and where you left off.',
+            '**Learning Path:** the guided course, one lesson at a time.',
+            '**Bible:** the full text, chapter by chapter.',
+            '**Study Topics:** questions, doctrines and a glossary you can search.',
+            '**Review & Practice:** games and review that keep what you learned from fading.'
+          ]
+        },
+        {
+          id:'guide',
+          p:['The **Theologian** tab sits on the right edge of every screen. Open it from any lesson, chapter or topic to ask about what is in front of you.'],
+          desktop:'It opens as a panel beside the page.',
+          phone:'It opens centered over a dimmed page.'
+        }
       ]
     },
     {
-      role:'Navigate',
+      id:'bible',
       title:'Reading the Bible here',
-      paragraphs:[
-        'The Bible reader shows one chapter at a time. Pick a book from the shelf or search for a reference like John 3:16. Each book has a profile that tells you what it is before you start reading.',
-        'The study desk beside the text holds your notes for the verse or lesson you are on, plus optional help: word meanings, background, and sources. You can change the translation in your profile.'
-      ],
-      actions:[{label:'Open the Bible',href:'/bible'}]
+      cards:[
+        {
+          id:'reader',
+          p:['The Bible reader shows one chapter at a time. Search a reference like John 3:16 and it opens right there. The book name at the top is also the book selector.']
+        },
+        {
+          id:'notes',
+          p:['**My Notes** sits beside the text for the verse you are on, with optional help: word meanings, background, and sources. For the Hebrew or Greek behind a word, ask the **Theologian**: it sets out the original-language evidence and what that evidence can and cannot settle. You can change the translation in your **Profile**.'],
+          desktop:'My Notes is a pane beside the text.',
+          phone:'My Notes is the tab on the right edge; it opens a sheet.',
+          actions:[{label:'Open the Bible',href:'/bible'}]
+        }
+      ]
     },
     {
-      role:'Navigate',
+      id:'lessons',
       title:'How a lesson works',
-      paragraphs:[
-        'A lesson teaches one idea and then checks it right away with a short activity, before moving to the next idea. The dots down the side show where you are.',
-        'Checks ask whether you understood, never whether you agree. Each unit ends with a mastery activity, and capstones ask you to use a whole stretch of the course at once. Your progress is saved in this browser, and in your account if you sign in.'
+      cards:[
+        {
+          id:'lesson',
+          p:['A lesson teaches one idea at a time in short steps, and checks it before moving on. The bar at the top shows where you are, and **All steps** lists every step.'],
+          desktop:'The list of sections stays at the left.',
+          phone:'All steps opens that list.'
+        },
+        {
+          id:'checks',
+          p:['Checks ask whether you understood, never whether you agree. Your progress is saved in this browser, and in your account if you sign in.',
+            'Each unit ends with a **Checkpoint**. A **Capstone** ends each module and asks you to use a whole stretch of the course at once.']
+        }
       ]
     },
     {
-      role:'Understand',
+      id:'material',
       title:'What kind of material is here',
-      paragraphs:[
-        'The site keeps different kinds of material separate, so you always know what you are reading.'
-      ],
-      bullets:[
-        'The Bible text itself: the Berean Standard Bible by default.',
-        'Book profiles: four separate facts about each book, where it sits on the shelf, what kind of writing it is, when its events happen, and when it was written. These often differ: many prophets lived during events told in Kings, though their books sit later on the shelf.',
-        'Lessons and Catalog topics: explanation written for this site. Where Christians disagree, they say so and show the main readings.',
-        'Sources: named scholarly and historical works, so claims can be traced.',
-        'Texts that are not in the Bible, such as other ancient gospels, appear only where they help, and are always labeled as outside the canon.'
-      ],
-      callout:'Text, context, and interpretation are kept apart on every page.'
+      cards:[
+        {
+          id:'material',
+          p:['The site keeps different kinds of material separate, so you always know what you are reading. The Bible text itself is the Berean Standard Bible by default. Text, context, and interpretation are kept apart on every page.']
+        },
+        {
+          id:'overview',
+          p:['Every book has an overview with four separate facts: where it sits on the shelf, what kind of writing it is, when its events happen, and when it was written. They often differ: many prophets lived during events told in Kings, though their books sit later on the shelf.']
+        },
+        {
+          id:'else',
+          list:[
+            '**Lessons and Study Topics:** explanation written for this site. Where Christians disagree, they say so and show the main readings.',
+            '**Sources:** named scholarly and historical works, so claims can be traced.',
+            '**Texts outside the Bible,** such as other ancient gospels, appear only where they help, and are always labeled as outside the canon.'
+          ]
+        }
+      ]
     },
     {
-      role:'Understand',
+      id:'theologian',
       title:'What the Theologian draws on',
-      paragraphs:[
-        'The Theologian answers from the Bible text, the material on this site, the published Statement of Faith, and a set of vetted sources. It can explain positions the site does not hold, but it labels them as positions, not as the site’s teaching.',
-        'During a scored check it will help you reason but will not pick the answer. If the service cannot be reached, it says so and gives a shorter answer from the site’s own material. Your notes, feedback, and account details are never sent to it.'
+      cards:[
+        {
+          id:'draws',
+          p:['The **Theologian** answers from the Bible text, the material on this site, the published Statement of Faith, and a set of vetted sources.',
+            'It can explain positions the site does not hold, but it labels them as positions, not as the site’s teaching. During a scored check it will not pick the answer: it explains terms, points you to the evidence, and helps you test the reasoning behind each option.']
+        },
+        {
+          id:'privacy',
+          p:['If a search looks like a question, the search page offers to ask the **Theologian** for you; nothing is sent until you send it. Your notes, feedback, and account details are never sent to it.']
+        }
       ]
     },
     {
-      role:'Understand',
-      title:'Why the Pathway goes in this order',
-      paragraphs:[
-        'Module 1 starts with the center: the earliest summary of what Christians proclaimed, so everything after has something to connect to. Then it takes the questions that worry new readers, shows the Bible as a library of different kinds of writing, and starts the story at Genesis.',
-        'Module 2 reads Israel’s Scriptures, because Jesus and the New Testament speak in their words: covenant, law, temple, exile, hope. Module 3 enters the world Jesus lived in, then the Gospels and Paul’s letters, which make sense once that world is familiar. Module 4 comes last because it brings back questions you met earlier, now with the evidence to weigh them.',
-        'Hard questions appear early on purpose, with honest first answers and fuller ones later. The order is a recommendation, not a lock: you can open any unit, read anywhere in the Bible, and come back.'
+      id:'order',
+      title:'Why the Learning Path goes in this order',
+      cards:[
+        {
+          id:'module-1',
+          p:['The first module, **Reading the Bible Well**, starts with the center: the earliest summary of what Christians proclaimed. Then it takes the questions that worry new readers, shows the Bible as a library of different kinds of writing, and starts the story at Genesis.']
+        },
+        {
+          id:'module-2',
+          p:['The second, **The Hebrew Scriptures**, reads Israel’s Scriptures, because Jesus and the New Testament speak in their words: covenant, law, temple, exile, hope.',
+            'The third, **Second Temple Judaism & the Christ Event**, enters the world Jesus lived in, then the Gospels and Paul’s letters, which make sense once that world is familiar.']
+        },
+        {
+          id:'module-4',
+          p:['The fourth, **Systematic Synthesis**, comes last because it brings back questions you met earlier, now with the evidence to weigh them.',
+            'Hard questions appear early on purpose, with honest first answers and fuller ones later. The order is a recommendation, not a lock: you can open any lesson, read anywhere in the Bible, and come back.']
+        }
       ]
     },
     {
-      role:'Continue',
-      title:'Practice, review, and your settings',
-      paragraphs:[
-        'Practice brings back what you have already learned, at growing intervals, so finishing something and still remembering it later are tracked separately. Games there never change your Pathway progress.',
-        'You can change the look of the site at any time in your profile. The order and meaning of everything stay the same whichever look you choose.'
-      ],
-      themeDemo:true,
-      actions:[{label:'Begin Module 1',href:'/course?unit=c1.christianity&lesson=begin'}]
+      id:'continue',
+      title:'Review, practice, and your settings',
+      cards:[
+        {
+          id:'review',
+          p:['**Review & Practice** uses spaced repetition. What you finish in scored work comes back after growing gaps: 1, 3, 7, 14, 30, then 60 days. Pass a review and the next gap is longer; miss it and the gap starts over at one day. Games there never change your Learning Path progress.']
+        },
+        {
+          id:'profile',
+          p:['Your **Profile** holds the look of the site (its theme, its typography, and the text size: small, normal or large), your translation, and your account. The order and meaning of everything stay the same whichever look you choose.'],
+          actions:[{label:'Open your Profile',href:'/profile'},{label:'Begin the Learning Path',href:ORIENTATION_START_HREF,primary:true}]
+        }
+      ]
     }
   ]
 };
+
+// Whether this device has seen the Orientation through to the end (or skipped it). The Shelf suggests it first until then,
+// but only to someone with no progress and no saved reading place.
+const SEEN_KEY='canonical-shelf-orientation-seen';
+export function orientationSeen(){try{return localStorage.getItem(SEEN_KEY)==='1'}catch{return false}}
+export function markOrientationSeen(){try{localStorage.setItem(SEEN_KEY,'1')}catch{/* storage unavailable */}}

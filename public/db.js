@@ -96,6 +96,32 @@ export async function putState(state,{notify=true}={}){
   });
 }
 
+// Read and mutate in one transaction so independent personal-study writers
+// cannot replace one another's notes or highlights with a stale state snapshot.
+export async function updateState(mutator,{notify=true}={}){
+  const db=await open();
+  return new Promise((resolve,reject)=>{
+    const transaction=db.transaction(STORE,'readwrite'),store=transaction.objectStore(STORE);
+    const request=store.get('learner');
+    let state,failure;
+    request.onsuccess=()=>{
+      try{
+        state=normalizeLearnerState(request.result||{});
+        mutator(state);
+        state=normalizeLearnerState(state);
+        state.updatedAt=new Date().toISOString();
+        store.put(state,'learner');
+      }catch(error){failure=error;transaction.abort();}
+    };
+    transaction.oncomplete=()=>{
+      db.close();
+      if(notify&&typeof window!=='undefined')window.dispatchEvent(new CustomEvent('canonical-state-changed'));
+      resolve(state);
+    };
+    transaction.onabort=()=>{db.close();reject(failure||transaction.error);};
+  });
+}
+
 const addDays=(days,base=Date.now())=>new Date(base+days*86400000).toISOString();
 function schedule(state,id,stage=0,base=Date.now()){
   const index=Math.min(Math.max(stage,0),REVIEW_DAYS.length-1);

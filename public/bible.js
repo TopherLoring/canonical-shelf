@@ -1,40 +1,7 @@
 import {LIBRARY_BOOKS,CATEGORIES,CATEGORY_ORDER,ERAS,TIMELINE_ANCHORS,THREADS,STORY_ARC,searchLibraryBooks} from './library-data.js';
 
-export const BOOKS=LIBRARY_BOOKS.map(book=>book.name);
-export const GROUPS=CATEGORY_ORDER.map(key=>{
-  const members=LIBRARY_BOOKS.filter(book=>book.cat===key);
-  return [CATEGORIES[key].name,members[0].n,members[members.length-1].n,key];
-});
-
-const aliases=new Map();
-BOOKS.forEach((book,index)=>{
-  const n=index+1;
-  for(const alias of [book,book.replace('Song of Solomon','Song'),book.replace('Psalms','Psalm')])aliases.set(alias.toLowerCase(),n);
-});
-Object.entries({gen:1,ex:2,exod:2,lev:3,num:4,deut:5,josh:6,judg:7,ps:19,psalm:19,prov:20,eccl:21,song:22,isa:23,jer:24,ezek:26,dan:27,matt:40,mk:41,mark:41,lk:42,luke:42,jn:43,john:43,acts:44,rom:45,gal:48,eph:49,phil:50,col:51,heb:58,jas:59,james:59,rev:66}).forEach(([alias,n])=>aliases.set(alias,n));
-
-let parsedFrom=null;
-let rows=[];
-export function parseCorpus(text){
-  if(text===parsedFrom)return rows;
-  parsedFrom=text;
-  rows=[];
-  for(const line of String(text||'').split('\n')){
-    const [b,c,v,...rest]=line.split('\t');
-    const bn=Number(b),chapter=Number(c),verse=Number(v);
-    if(bn&&chapter&&verse&&rest.length)rows.push({bn,chapter,verse,text:rest.join('\t')});
-  }
-  return rows;
-}
-export function parseReference(q){
-  const s=String(q||'').trim().replace(/\s+/g,' ');
-  if(!s)return null;
-  const m=s.match(/^(.+?)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?$/);
-  if(!m)return null;
-  const bn=aliases.get(m[1].toLowerCase());
-  if(!bn)return null;
-  return{bn,chapter:Number(m[2]),start:m[3]?Number(m[3]):null,end:m[4]?Number(m[4]):m[3]?Number(m[3]):null};
-}
+export {BOOKS,GROUPS,parseCorpus,parseReference} from './bible-books.js';
+import {BOOKS,parseCorpus,parseReference} from './bible-books.js';
 
 const bookByNumber=n=>LIBRARY_BOOKS[n-1]||null;
 const chapterRows=(text,bn,chapter)=>parseCorpus(text).filter(row=>row.bn===bn&&row.chapter===chapter);
@@ -78,7 +45,7 @@ function profileDrawer(text,bn,params,esc){
 function bookNotes(book,chapter,esc){
   const category=CATEGORIES[book.cat],era=ERAS.find(item=>item.k===book.era),themes=(book.threads||[]).map(thread=>THREADS[thread]||thread);
   const module=(title,body,open=false)=>`<details ${open?'open':''}><summary>${esc(title)}</summary><div>${body}</div></details>`;
-  return `<aside class="library-reader-panel" aria-label="Reading Desk"><header><p class="eyebrow">Reading context</p><h2>Reading Desk</h2><p class="session-context-note">Select a verse to attach a note to it; without a selection, notes attach to the chapter.</p><section class="study-notes" data-notes-mount aria-label="Your notes"></section></header>${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}<details class="reader-crossrefs"><summary data-xref-summary>Cross-references</summary><div><div id="v5-crossref-panel" class="reader-crossref-panel"><p class="session-context-note" style="margin:0 0 0.5rem;">Select a verse to see where else Scripture connects to it.</p><div id="v5-crossref-list"></div><p class="session-context-note">Cross-references courtesy of <a href="https://www.openbible.info/labs/cross-references/" rel="noopener">OpenBible.info</a> (CC-BY).</p></div></div></details></aside>`;
+  return `<aside class="library-reader-panel" aria-label="Reading Desk"><header><p class="eyebrow">Reading context</p><h2>Reading Desk</h2><p class="session-context-note">Select a verse to attach a note to it; without a selection, notes attach to the chapter.</p><section class="study-notes" data-notes-mount aria-label="My Notes"></section></header>${module('At a glance',`<p><strong>${esc(book.name)}</strong> · ${book.ch} chapter${book.ch===1?'':'s'}</p><p>${esc(book.syn||book.hook||'')}</p>`,true)}${module('People & setting',`<p>${esc((book.people||[]).join(' · ')||'People and setting vary across the book.')}</p><p>${esc(era?.name||book.era||'Broad historical setting')} · ${esc(range(book.setA,book.setB))}</p>`)}${module('Group & themes',`<p><strong>${esc(category.name)}</strong></p><p>${esc(category.blurb)}</p>${themes.length?`<ul>${themes.map(theme=>`<li>${esc(theme)}</li>`).join('')}</ul>`:''}`)}${module('Reader links',`<p><a href="/bible?book=${book.n}&profile=1">Full book profile</a></p><p><a href="/bible?view=shelf">Expanded bookshelf</a></p>`)}<details class="reader-crossrefs"><summary data-xref-summary>Cross-references</summary><div><div id="v5-crossref-panel" class="reader-crossref-panel"><p class="session-context-note" style="margin:0 0 0.5rem;">Select a verse to see where else Scripture connects to it.</p><div id="v5-crossref-list"></div><p class="session-context-note">Cross-references courtesy of <a href="https://www.openbible.info/labs/cross-references/" rel="noopener">OpenBible.info</a> (CC-BY).</p></div></div></details></aside>`;
 }
 
 function compactReaderShelf(esc){

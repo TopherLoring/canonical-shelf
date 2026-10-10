@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "profile-tabs-v2",
+  "topic": "ui.profile.sections",
+  "date": "2026-10-10",
+  "text": "Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.",
+  "rationale": "Chris, 2026-10-10 notes; supersedes profile-uses-topics-layout section list (layout stays Topics-style; phone uses list then detail with Back).",
+  "by": "Chris"
+}

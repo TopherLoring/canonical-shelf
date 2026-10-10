@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.char-ceiling-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "The absolute maximum for one step of lesson text, counting every space, letter and punctuation mark, is 833 characters as a single block, 784 as two paragraphs and 735 as three paragraphs. These are ceilings, not targets or minimums; shorter is preferred so cards are not overwhelming.",
+  "rationale": "Owner stated the maximum characters per step",
+  "by": "Chris"
+}

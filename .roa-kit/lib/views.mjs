@@ -53,6 +53,7 @@ export const VIEWS = {
     for (const [k, v] of Object.entries(sh.lineHeights || {})) shared.push({ name: `--leading-${kebab(k)}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.spacing || {})) shared.push({ name: `--space-${kebab(k).replace(/^s/, '')}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.motion || {})) shared.push({ name: `--motion-${kebab(k)}`, value: String(v) });
+    for (const [k, v] of Object.entries(sh.layers || {})) shared.push({ name: `--layer-${kebab(k)}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.bibleCategories || {})) shared.push({ name: `--bible-${k}`, value: String(v) });
     for (const [k, v] of Object.entries(sh.fonts || {})) shared.push({ name: `--font-${k}`, value: String(v) });
     // Layout measurements shared by every theme (until the layout contract owns them).
@@ -67,7 +68,32 @@ export const VIEWS = {
       ['--color-inverse', 'var(--color-text)'],
       ['--color-inverse-2', 'color-mix(in srgb, var(--color-text) 88%, var(--color-page))'],
       ['--color-on-inverse', 'var(--color-page)'],
-      ['--color-on-inverse-muted', 'color-mix(in srgb, var(--color-page) 74%, var(--color-text))']
+      ['--color-on-inverse-muted', 'color-mix(in srgb, var(--color-page) 74%, var(--color-text))'],
+      // Template roles (docs/design/templates/css/src/tokens.css): blends of theme roles, so every theme changes them together.
+      ['--color-surface-subtle', 'color-mix(in srgb, var(--color-surface-raised) 94%, var(--color-action))'],
+      ['--color-disabled-ink', 'color-mix(in srgb, var(--color-border) 72%, var(--color-text-secondary))'],
+      ['--color-accent-tint', 'color-mix(in srgb, var(--color-surface-raised) 88%, var(--color-accent))'],
+      ['--color-accent-wash', 'color-mix(in srgb, var(--color-surface-raised) 95%, var(--color-accent))'],
+      ['--color-accent-mark', 'color-mix(in srgb, var(--color-surface-raised) 86%, var(--color-accent))'],
+      ['--color-accent-ink', 'color-mix(in srgb, var(--color-accent) 31%, var(--color-edge-notes))'],
+      ['--color-notes-edge', 'color-mix(in srgb, var(--color-surface-raised) 84%, var(--color-accent))'],
+      ['--color-hairline', 'color-mix(in srgb, var(--color-page) 95%, var(--color-action))'],
+      ['--color-row', 'color-mix(in srgb, var(--color-surface-raised) 17%, var(--color-page))'],
+      ['--color-border-strong', 'color-mix(in srgb, var(--color-border) 85%, var(--color-text-muted))'],
+      ['--color-focus-halo', 'color-mix(in srgb, var(--color-action) 20%, transparent)'],
+      ['--color-edge-theologian-line', 'color-mix(in srgb, var(--color-edge-theologian) 80%, var(--color-text-muted))'],
+      ['--color-edge-theologian-ink', 'color-mix(in srgb, var(--color-surface-raised) 61%, var(--color-border))'],
+      ['--color-edge-notes-line', 'color-mix(in srgb, var(--color-text) 45%, var(--bible-gospel))'],
+      ['--color-plaque', 'color-mix(in srgb, var(--color-surface-raised) 78%, var(--bible-minor))'],
+      ['--color-gilt', 'color-mix(in srgb, var(--color-surface-raised) 43%, var(--bible-minor))'],
+      ['--color-art-paper', 'color-mix(in srgb, var(--color-surface) 88%, var(--bible-minor))'],
+      ['--color-art-blue', 'color-mix(in srgb, var(--color-surface-raised) 93%, var(--color-action))'],
+      ['--color-art-green', 'color-mix(in srgb, var(--color-surface-raised) 91%, var(--bible-wisdom))'],
+      ['--bible-history-ot', 'var(--bible-othist)'],
+      ['--bible-major-prophets', 'var(--bible-major)'],
+      ['--bible-minor-prophets', 'var(--bible-minor)'],
+      ['--bible-apocalypse', 'var(--bible-apoc)'],
+      ['--bible-history-nt', 'var(--bible-gospel)']
     ].map(([name, value]) => ({ name, value }));
     const aliases = Object.entries(resolved.aliases || {}).map(([k, v]) => ({ name: `--${k}`, value: String(v) }));
     const imports = [...new Set(Object.values(resolved.themes || {}).flatMap(t => t.fontImports || []))].map(url => ({ url }));
@@ -79,7 +105,24 @@ export const VIEWS = {
       // Palette roles become --color-*; optional per-mode shadows override the style's shadows.
       const colors = mode => {
         const m = theme.modes[mode];
-        const vars = Object.entries(m).filter(([k]) => k !== 'ornaments').map(([k, v]) => ({ name: k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`, value: String(v) }));
+        const vars = [];
+        for (const [k, v] of Object.entries(m)) {
+          if (k === 'ornaments') continue;
+          if (k === 'highlight') {
+            for (const [hk, hv] of Object.entries(v)) {
+              vars.push({ name: `--color-highlight-${kebab(hk)}`, value: String(hv) });
+              vars.push({ name: `--highlight-${kebab(hk)}`, value: String(hv) });
+            }
+            continue;
+          }
+          if (k === 'bibleCategories') {
+            for (const [bk, bv] of Object.entries(v)) {
+              vars.push({ name: `--bible-${kebab(bk)}`, value: String(bv) });
+            }
+            continue;
+          }
+          vars.push({ name: k.startsWith('shadow') ? `--${kebab(k)}` : `--color-${kebab(k)}`, value: String(v) });
+        }
         // Ornaments: six decorative slots; a theme with fewer repeats them, one with none falls back to action/accent.
         const orn = (m.ornaments && m.ornaments.length ? m.ornaments : [m.action, m.accent || m.action]).map(String);
         for (let i = 0; i < 6; i++) vars.push({ name: `--ornament-${i + 1}`, value: orn[i % orn.length] });

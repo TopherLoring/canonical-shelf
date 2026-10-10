@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.shelf.intro.current",
+  "topic": "ui.shelf.intro",
+  "date": "2026-10-03",
+  "text": "Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.",
+  "by": "Chris"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "shelf-cards-home-only",
+  "topic": "ui.shelf.cards",
+  "date": "2026-10-09",
+  "text": "Home/Shelf only: the Learning Path resume card is the way into the Orientation for someone new (no lesson done, Orientation not seen), and the Shelf has no separate Orientation block. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line. The Learning Path's own Orientation card is unchanged.",
+  "rationale": "Owner clarified 2026-10-09 18:29: the five items applied to the home/shelf screen only",
+  "supersedes": [
+    "shelf-cards-resume-orientation-passage"
+  ],
+  "by": "Chris"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "question",
+  "kind": "conflict",
+  "id": "themes-scope-decoration",
+  "date": "2026-10-10",
+  "text": "Layout-vs-look scope: the recorded decision says layout structure is the same in every theme and themes may change lines, colors, and typography. The v2 theme inspiration adds textures, shapes, and decorative elements (spiral edge, hole punches, sticky-note side cards, folder-tab rail items, brush strokes, wax seals, lead lines). Widen the rule to: layout structure (positions, columns, sizes of content) stays the same; themes may change colors, type, lines, textures, shapes, and decorative elements that do not move or resize content?",
+  "request": "Notebook: spirals, hole punches, sticky notes where side content exists, folder tabs; Sketchbook brush strokes; Scroll wax seals",
+  "source": "design.themes.scope.look-not-layout",
+  "sourceText": "Layout structure is the same in every theme; themes may change lines, colors, and typography"
+}

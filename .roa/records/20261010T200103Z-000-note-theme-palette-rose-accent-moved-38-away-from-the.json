@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-10",
+  "text": "Theme palette: rose accent moved ~38° away from the incorrect color in every theme/mode (accent #9B4A70/#E3A1C0, incorrect #BF3A22/#FF9A85); rose now marks kickers, counts, number chips, progress fill, and section eyebrows; current item stays action blue. Added accent-hue guard spec."
+}

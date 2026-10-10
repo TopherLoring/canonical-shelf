@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "tablet-full-navigation-2026-10-04",
+  "topic": "ui.nav.tablet",
+  "date": "2026-10-04",
+  "text": "Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.",
+  "by": "Chris"
+}

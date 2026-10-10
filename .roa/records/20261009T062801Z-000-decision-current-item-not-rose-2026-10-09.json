@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "current-item-not-rose-2026-10-09",
+  "topic": "ui.current-item",
+  "date": "2026-10-09",
+  "text": "The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.",
+  "rationale": "Chris 2026-10-09: rose triggers an error/failure emotional response; supersedes the rose current-item rule",
+  "by": "Chris"
+}

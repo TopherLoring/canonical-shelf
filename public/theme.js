@@ -77,12 +77,120 @@ export function applyTheme(id,{persist=true}={}){
 
   document.querySelectorAll('[data-theme-option],[data-theme-choice]').forEach(button=>{
     const selected=(button.dataset.themeOption||button.dataset.themeChoice)===theme.id;
-    button.toggleAttribute('aria-pressed',selected);
+    button.setAttribute('aria-pressed',String(selected));
     button.classList.toggle('is-selected',selected);
   });
 
   document.dispatchEvent(new CustomEvent('canonical-theme-changed',{detail:{theme:theme.id}}));
   return theme.id;
+}
+
+// ---- Reading font, Interface font, and site text size (Profile > Appearance / Reading) ----
+// Each is a per-device preference applied to the document root through the CSSOM (the CSP blocks inline style
+// attributes in markup). "Theme default" removes the override so the active theme's own fonts apply. The Reader's
+// Aa text size is a separate control and is not affected by the site text size here.
+const STORAGE_FONTS_KEY='canonical-shelf-fonts-v1';
+const STORAGE_TEXT_SIZE_KEY='canonical-shelf-text-size-v1';
+export const FONT_CHOICES=Object.freeze([
+  {id:'default',name:'Theme default',reading:null,interface:null},
+  {id:'newsreader',name:'Newsreader',reading:'Newsreader,Georgia,serif',interface:'Newsreader,Georgia,serif'},
+  {id:'literata',name:'Literata',reading:'Literata,Georgia,serif',interface:'Literata,Georgia,serif'},
+  {id:'caladea',name:'Caladea',reading:'Caladea,Cambria,Georgia,serif',interface:'Caladea,Cambria,Georgia,serif'},
+  {id:'source-sans',name:'Source Sans 3',reading:"'Source Sans 3',ui-sans-serif,system-ui,sans-serif",interface:"'Source Sans 3',ui-sans-serif,system-ui,sans-serif"},
+  {id:'system',name:'System',reading:"Georgia,'Times New Roman',serif",interface:"ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif"}
+]);
+export const TEXT_SIZES=Object.freeze([
+  {id:'90',name:'Smaller',percent:90,factor:0.9},
+  {id:'100',name:'Standard',percent:100,factor:1},
+  {id:'115',name:'Larger',percent:115,factor:1.15},
+  {id:'130',name:'Largest',percent:130,factor:1.3}
+]);
+export const DEFAULT_TEXT_SIZE='100';
+const fontIds=new Set(FONT_CHOICES.map(font=>font.id));
+const sizeIds=new Set(TEXT_SIZES.map(size=>size.id));
+
+function readFonts(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE_FONTS_KEY)||'null');
+    return {reading:fontIds.has(saved?.reading)?saved.reading:'default',interface:fontIds.has(saved?.interface)?saved.interface:'default'};
+  }catch{return {reading:'default',interface:'default'}}
+}
+
+export function currentFonts(){
+  const root=document.documentElement.dataset;
+  return {reading:fontIds.has(root.readingFont)?root.readingFont:'default',interface:fontIds.has(root.interfaceFont)?root.interfaceFont:'default'};
+}
+
+export function currentTextSize(){
+  const id=document.documentElement.dataset.textSize;
+  return sizeIds.has(id)?id:DEFAULT_TEXT_SIZE;
+}
+
+export function applyFonts(next,{persist=true}={}){
+  const now=currentFonts();
+  const fonts={reading:fontIds.has(next?.reading)?next.reading:now.reading,interface:fontIds.has(next?.interface)?next.interface:now.interface};
+  const root=document.documentElement;
+  const reading=FONT_CHOICES.find(font=>font.id===fonts.reading),ui=FONT_CHOICES.find(font=>font.id===fonts.interface);
+  // The theme contract owns --font-display, --font-reading, and --font-body. The learner's choice goes in separate
+  // --user-font-* properties that every stylesheet reads first: var(--user-font-reading, var(--font-reading)).
+  // The Reading font covers running text and headings (display); the Interface font covers controls and labels.
+  const set=(property,value)=>{if(value)root.style.setProperty(property,value);else root.style.removeProperty(property)};
+  set('--user-font-reading',reading.reading);
+  set('--user-font-display',reading.reading);
+  set('--user-font-body',ui.interface);
+  root.dataset.readingFont=fonts.reading;
+  root.dataset.interfaceFont=fonts.interface;
+  if(persist){try{localStorage.setItem(STORAGE_FONTS_KEY,JSON.stringify(fonts))}catch{}}
+  document.dispatchEvent(new CustomEvent('canonical-fonts-changed',{detail:fonts}));
+  return fonts;
+}
+
+export function applyTextSize(id,{persist=true}={}){
+  const size=TEXT_SIZES.find(item=>item.id===String(id))||TEXT_SIZES.find(item=>item.id===DEFAULT_TEXT_SIZE);
+  const root=document.documentElement;
+  if(size.factor===1)root.style.removeProperty('--text-size-factor');else root.style.setProperty('--text-size-factor',String(size.factor));
+  root.dataset.textSize=size.id;
+  if(persist){try{localStorage.setItem(STORAGE_TEXT_SIZE_KEY,size.id)}catch{}}
+  document.dispatchEvent(new CustomEvent('canonical-text-size-changed',{detail:{size:size.id,factor:size.factor}}));
+  return size.id;
+}
+
+// Accessibility display settings: reduce motion (follow the device, or always) and high contrast.
+const STORAGE_A11Y_KEY='canonical-shelf-accessibility-v1';
+export const MOTION_CHOICES=Object.freeze([{id:'device',name:'Match my device'},{id:'reduce',name:'Reduce motion'}]);
+export const CONTRAST_CHOICES=Object.freeze([{id:'standard',name:'Standard'},{id:'high',name:'High contrast'}]);
+export function currentAccessibility(){
+  const root=document.documentElement.dataset;
+  return {motion:root.reduceMotion==='on'?'reduce':'device',contrast:root.contrast==='high'?'high':'standard'};
+}
+export function applyAccessibility(next,{persist=true}={}){
+  const now=currentAccessibility();
+  const value={motion:next?.motion==='reduce'||(next?.motion===undefined&&now.motion==='reduce')?'reduce':'device',contrast:next?.contrast==='high'||(next?.contrast===undefined&&now.contrast==='high')?'high':'standard'};
+  const root=document.documentElement;
+  if(value.motion==='reduce')root.dataset.reduceMotion='on';else delete root.dataset.reduceMotion;
+  if(value.contrast==='high')root.dataset.contrast='high';else delete root.dataset.contrast;
+  if(persist){try{localStorage.setItem(STORAGE_A11Y_KEY,JSON.stringify(value))}catch{}}
+  document.dispatchEvent(new CustomEvent('canonical-accessibility-changed',{detail:value}));
+  return value;
+}
+
+// Everything Appearance can change, back to the shipped defaults (the saved choices are cleared).
+export function resetDisplayPreferences(){
+  applyFonts({reading:'default',interface:'default'});
+  applyTextSize(DEFAULT_TEXT_SIZE);
+  applyAccessibility({motion:'device',contrast:'standard'});
+  applyTheme(DEFAULT_THEME_ID);
+  applyMode(DEFAULT_MODE);
+}
+
+function initDisplayPreferences(){
+  applyFonts(readFonts(),{persist:false});
+  let size=DEFAULT_TEXT_SIZE;
+  try{size=localStorage.getItem(STORAGE_TEXT_SIZE_KEY)||size}catch{}
+  applyTextSize(size,{persist:false});
+  let a11y={};
+  try{a11y=JSON.parse(localStorage.getItem(STORAGE_A11Y_KEY)||'{}')||{}}catch{}
+  applyAccessibility(a11y,{persist:false});
 }
 
 function panelMarkup(){
@@ -142,6 +250,7 @@ export function initTheme(){
 
   applyTheme(themeIds.has(savedTheme)?savedTheme:DEFAULT_THEME_ID,{persist:false});
   applyMode(savedMode,{persist:false});
+  initDisplayPreferences();
 
   ensureControls();
   applyTheme(currentTheme(),{persist:false});

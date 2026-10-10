@@ -3,13 +3,7 @@ import {getPracticeState} from './practice-state.js';
 const KEY='canonical-shelf-bible-state-v1';
 const safeJson=(raw,fallback)=>{try{return JSON.parse(raw)}catch{return fallback}};
 
-if(typeof document!=='undefined'&&!document.querySelector('link[data-canonical-bible-state]')){
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='/bible-state.css';
-  link.dataset.canonicalBibleState='';
-  document.head.append(link);
-}
+// Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
 
 export function getBibleState(){
   try{
@@ -18,6 +12,7 @@ export function getBibleState(){
   }catch{return{lastBook:0,lastChapter:0,updatedAt:null}}
 }
 
+// The reading place ("Continue in the Reader · Genesis 3" on the Shelf).
 export function rememberBibleBook(book,chapter=0){
   const bn=Number(book||0),cn=Number(chapter||0);if(!bn||bn<1||bn>66)return getBibleState();
   const state={lastBook:bn,lastChapter:cn>0?cn:0,updatedAt:new Date().toISOString()};

@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.break-rule-v2-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Step break rule: within a section, count every character on a step (spaces and punctuation included, starting again on each step); each new paragraph after the first adds 46; a block (check, reading, reflection) counts 49 plus 49 for each line of its text, a line being 49 characters; a visual counts as its 9-line height (49 + 49 x 8). Break at the last sentence end at or before 637. Sentences and blocks are never divided. Supersedes ui.lesson.card.break-637-2026-10-05.",
+  "supersedes": [
+    "ui.lesson.card.break-637-2026-10-05"
+  ],
+  "by": "Chris"
+}

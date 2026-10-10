@@ -10,6 +10,7 @@ import {requestCloudTheologian,cancelCloudTheologian} from './theologian-cloud.j
 import {buildTheologianResponse} from './theologian.js';
 import {screenContext,currentPassage} from './screen-context.js';
 import {sendFeedback,fetchReplies} from './feedback.js';
+import {mountTheologianPanel} from './ui/components/theologian-panel.js';
 
 const panel=document.querySelector('#guide');
 const body=document.querySelector('#guide-body');
@@ -17,6 +18,7 @@ const openButton=document.querySelector('#guide-open');
 const closeButton=document.querySelector('#guide-close');
 const menuButton=document.querySelector('#guide-menu-button');
 const menu=document.querySelector('#guide-menu');
+const panelController=mountTheologianPanel({panel,openButton,onClose:()=>closeChat()});
 if(!panel||!body||!openButton||!closeButton)throw new Error('Theologian shell unavailable');
 
 const STORAGE_KEY='canonical-shelf-theologian-chat-v1';
@@ -272,13 +274,13 @@ function updateBadge(){
 }
 async function refreshReplies(){try{replies=await fetchReplies()}catch{replies=[]}updateBadge();if(!panel.hidden)render()}
 function markRepliesRead(){for(const r of replies)seenReplies.add(r.id);try{localStorage.setItem(SEEN_KEY,JSON.stringify([...seenReplies]))}catch{}updateBadge();render()}
-function showPanel(){panel.hidden=false;requestAnimationFrame(()=>{panel.dataset.open='true'});openButton.setAttribute('aria-expanded','true')}
+function showPanel(){panelController.open()}
 function openChat(trigger=openButton,{draft=''}={}){
   lastTrigger=trigger||openButton;render({scroll:'answer'});showPanel();
   const input=body.querySelector('#guide-q');if(input){input.value=draft;input.focus({preventScroll:true})}
   void refreshReplies();
 }
-function closeChat(){cancelCloudTheologian();setMenu(false);panel.dataset.open='false';openButton.setAttribute('aria-expanded','false');setTimeout(()=>{if(panel.dataset.open==='false')panel.hidden=true},220);(lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true})}
+function closeChat(){cancelCloudTheologian();setMenu(false);panelController.close();setTimeout(()=>{if(panel.dataset.open==='false'){panel.hidden=true;(lastTrigger?.isConnected?lastTrigger:openButton)?.focus({preventScroll:true})}},220)}
 function newChat(){cancelCloudTheologian();messages=[];flagOpen=null;saveMessages(messages);sending=false;setMenu(false);render();body.querySelector('#guide-q')?.focus({preventScroll:true})}
 
 document.addEventListener('click',event=>{

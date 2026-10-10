@@ -71,7 +71,7 @@ for(const unit of units){
   const id=`unit-${unit.id.replace(/\./g,'-')}-mastery`;
   const challenge=specs[unit.id];
   if(!challenge)throw new Error(`missing unit mastery spec for ${unit.id}`);
-  unitMastery[id]={id,type:'unit-mastery',unitId:unit.id,courseId:unit.courseId,title:`${unit.title} · Unit Mastery`,dek:'Synthesize the unit before moving forward.',body:['This mastery check combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent.'],challenge};
+  unitMastery[id]={id,type:'unit-mastery',unitId:unit.id,courseId:unit.courseId,title:`Checkpoint · ${unit.title}`,dek:'Synthesize the unit before moving forward.',body:['This Checkpoint combines distinctions and relationships from across the unit. It evaluates understanding and reasoning, not theological assent.'],challenge};
   placement[unit.id]=[id];
 }
 

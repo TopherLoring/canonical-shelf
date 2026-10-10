@@ -53,7 +53,7 @@
   "modules": [
     {
       "id": "m1",
-      "title": "Hermeneutics & Canon — through the story",
+      "title": "Reading the Bible Well: The Library and Its Story",
       "units": [
         {
           "unitId": "c1.christianity",
@@ -76,20 +76,18 @@
                 "m1.o3"
               ],
               "sections": [
-                "start",
-                "read",
+                "person",
                 "words",
-                "letter",
+                "retelling",
                 "community",
+                "deeper",
                 "stance",
-                "summary",
-                "reflect"
+                "before"
               ],
               "checks": [
-                "order the four events Paul recalls",
-                "match gospel, Christ, and resurrection to their meanings",
-                "connect the gospel Paul recalls to the community's shared life (1 Corinthians 11)",
-                "separate understanding from agreement"
+                "match the sense of \"received\" in 1 Corinthians 15:3 and Galatians 1:12",
+                "sort statements about 1 Corinthians 11:17–22 into stated and reconstructed",
+                "match what \"gospel\" or \"Christ\" means in four sentences"
               ]
             },
             {

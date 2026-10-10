@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "reader-lessons-scroll-2026-10-04",
+  "topic": "ui.scrolling.reader-lessons",
+  "date": "2026-10-04",
+  "text": "The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.",
+  "by": "Chris"
+}

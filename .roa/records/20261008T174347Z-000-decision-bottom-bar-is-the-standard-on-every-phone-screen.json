@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "bottom-bar-is-the-standard-on-every-phone-screen",
+  "topic": "shell.phone-nav",
+  "date": "2026-10-08",
+  "text": "Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button",
+  "by": "Chris"
+}

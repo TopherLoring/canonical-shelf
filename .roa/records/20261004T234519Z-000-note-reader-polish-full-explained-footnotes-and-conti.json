@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-04",
+  "text": "Reader polish: full explained footnotes and continuation before the notes; fixed chapter header and contained viewport; matching edge tabs with Theologian above right-side notes drawer; verse/time ordered note collection with add/edit/delete and preserved existing anchors; transactional note/highlight writes; removed redundant reader actions and footer brand; fluid single-row navigation switches to icons at narrow widths."
+}

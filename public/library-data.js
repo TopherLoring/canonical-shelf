@@ -1,16 +1,17 @@
 import {OT_BOOKS} from './library-books-ot.js';
 import {NT_BOOKS} from './library-books-nt.js';
+import {GROUP_NAMES} from './ui/labels.js';
 
 export const CATEGORIES={
-  law:{name:'Law / Pentateuch',sub:'Torah · Pentateuch',testament:'OT',blurb:'Origins and the covenant: how a family becomes a nation and receives its law.'},
-  othist:{name:'Historical Books',sub:'Joshua → Esther',testament:'OT',blurb:'Land, kings, collapse, exile and return — roughly 800 years of national story.'},
-  wisdom:{name:'Poetry & Wisdom',sub:'Job → Song of Solomon',testament:'OT',blurb:'Not story at all — songs, sayings, and arguments about suffering, meaning and desire.'},
-  major:{name:'Major Prophets',sub:'Isaiah → Daniel',testament:'OT',blurb:'Long books of warning before the exile and comfort during it. Major means long.'},
-  minor:{name:'Minor Prophets',sub:'Hosea → Malachi · The Twelve',testament:'OT',blurb:'Twelve short books. Minor means brief — several are under five pages.'},
-  gospel:{name:'Gospels & History',sub:'Matthew → Acts',testament:'NT',blurb:'Four accounts of the same life, then the one book on what happened next.'},
-  paul:{name:'Pauline Epistles',sub:'Romans → Philemon',testament:'NT',blurb:'Thirteen letters from Paul — arranged by length, not by date.'},
-  general:{name:'General Epistles',sub:'Hebrews → Jude',testament:'NT',blurb:'Eight letters from other leaders, mostly to scattered readers rather than one city.'},
-  apoc:{name:'Prophecy',sub:'Revelation',testament:'NT',blurb:'One book of visions about judgement, empire, and a world remade.'}
+  law:{name:GROUP_NAMES.law,sub:'Torah · Pentateuch',testament:'OT',blurb:'Origins and the covenant: how a family becomes a nation and receives its law.'},
+  othist:{name:GROUP_NAMES.othist,sub:'Joshua → Esther',testament:'OT',blurb:'Land, kings, collapse, exile and return — roughly 800 years of national story.'},
+  wisdom:{name:GROUP_NAMES.wisdom,sub:'Job → Song of Solomon',testament:'OT',blurb:'Not story at all — songs, sayings, and arguments about suffering, meaning and desire.'},
+  major:{name:GROUP_NAMES.major,sub:'Isaiah → Daniel',testament:'OT',blurb:'Long books of warning before the exile and comfort during it. Major means long.'},
+  minor:{name:GROUP_NAMES.minor,sub:'Hosea → Malachi · The Twelve',testament:'OT',blurb:'Twelve short books. Minor means brief — several are under five pages.'},
+  gospel:{name:GROUP_NAMES.gospel,sub:'Matthew → Acts',testament:'NT',blurb:'Four accounts of the same life, then the one book on what happened next.'},
+  paul:{name:GROUP_NAMES.paul,sub:'Romans → Philemon',testament:'NT',blurb:'Thirteen letters from Paul — arranged by length, not by date.'},
+  general:{name:GROUP_NAMES.general,sub:'Hebrews → Jude',testament:'NT',blurb:'Eight letters from other leaders, mostly to scattered readers rather than one city.'},
+  apoc:{name:GROUP_NAMES.apoc,sub:'Revelation',testament:'NT',blurb:'One book of visions about judgement, empire, and a world remade.'}
 };
 export const CATEGORY_ORDER=['law','othist','wisdom','major','minor','gospel','paul','general','apoc'];
 export const LIBRARY_BOOKS=[...OT_BOOKS,...NT_BOOKS];

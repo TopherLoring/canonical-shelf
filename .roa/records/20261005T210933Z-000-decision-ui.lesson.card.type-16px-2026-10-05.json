@@ -1,0 +1,12 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "ui.lesson.card.type-16px-2026-10-05",
+  "topic": "ui.lesson.card",
+  "date": "2026-10-05",
+  "text": "Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. With the shipped Source Sans 3 the 4:5 step body (about 347 x 435) then holds about 54 characters x 17 lines; that is the primary layout. The 49-per-line figure came from the wider mockup font. Ceilings 833 / 784 / 735 stay as content limits. Supersedes the primary/fallback split in ui.lesson.card.portrait-layout-primary-fallback-2026-10-05.",
+  "supersedes": [
+    "ui.lesson.card.portrait-layout-primary-fallback-2026-10-05"
+  ],
+  "by": "Chris"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "my-notes-edge-tab-appears-on-lesson-and-bible-pl",
+  "topic": "ui.notes.edge-tab",
+  "date": "2026-10-08",
+  "text": "My Notes edge tab appears on Lesson and Bible, plus any other screen where it is useful, not on every screen. Supersedes the 2026-10-03 every-phone-screen decision.",
+  "by": "Chris"
+}

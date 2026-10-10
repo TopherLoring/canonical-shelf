@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "translations-local-reader-topics",
+  "topic": "product.translations",
+  "date": "2026-10-10",
+  "text": "Translations: user-added translations are local-only, uploaded as .xlsx or .json, converted in the browser; BSB is always the default; a chosen translation applies to Reader and Topics only, not lessons or Practice. Failed uploads link to Contact Us.",
+  "rationale": "Chris, 2026-10-10.",
+  "by": "Chris"
+}

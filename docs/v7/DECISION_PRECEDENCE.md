@@ -10,6 +10,13 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Owner decision (Chris) · `account.sign-in.passkey-recovery-codes`
   Accounts use a passkey plus recovery codes; no email for now
 
+### `accounts.signin.gate`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `accounts.gate-covers-feedback-passkey-2026-10-07`
+  Accounts gate also covers feedback: the Sign in / Create account / Continue as guest choice appears before a lesson, My notes, or feedback. Passkey is an offered sign-in and create method alongside Google, email and phone.
+- **Previous** · 2026-10-07 · Owner decision (Chris) · `accounts.gate-and-methods-2026-10-07`
+  ~~Accounts: sign-in gate before starting a course or taking notes (Sign in, Create account, Continue as guest; guest keeps progress and notes on the device only). Sign-in methods: Google, email, phone. Name or username required; email and/or phone plus password for login and security only (reminders and feedback replies possible later). Phone is a unique identifier with a password, no SMS or 2FA. Apple skipped for now. Everything editable on Profile after the creation flow, which is a popover card. Ships after RD on its own branch.~~
+
 ### `arch.duplicate-renderers`
 
 - **Current** · 2026-09-28 · Agent default (Claude) · `arch.duplicate-renderers.unit-list`
@@ -27,16 +34,39 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Single-page app implementation: public/index.html is the only application document; clean path URLs with History API state; Back/Forward re-render through popstate; direct entry and refresh use SPA fallback; views use native <template> elements. Architecture reference: docs/v7/SPA_ARCHITECTURE_2026-09-24.md
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Implements owner decision arch.routing
 
+### `brand.entity.ministries`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `tlm-subsidiary`
+  TopherLoring Ministries (TLM) is a subsidiary of TopherLoring Industries (TLI), kept separate from site operation so it can expand (e.g. publishing); About and Statement of Faith copy is written for TLM.
+  *Why:* Chris, 2026-10-10 07:07
+
 ### `content.anchoring`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `content.anchoring.universal-anchoring`
   One anchoring model for all content: lessons, lesson sections, footnote/deeper entries, topics, glossary terms, and learner notes are anchored both to outline anchors and to Scripture references. The same model extends everything into the Bible reader, so each verse shows the lessons, notes, footnotes, topics, and cross-references tied to it, and each item links back
+
+### `content.lesson-revision`
+
+- **Approval** · 2026-10-06 · Chris · `content.lesson-01-approved-2026-10-06` · scope: Lesson 1 calibration rewrite and step division
+  Lesson 1 (begin) approved as the calibration lesson: 28 steps, stored in docs/v7/content-revision/lesson-01-begin.steps.md with its companion lesson-01-begin.meta.md. It is the reference for voice, depth, check style and step division for the remaining lessons. A check standing alone on its own step uses the full card and is exempt from the 637 limit. Content work resumes after the redesign.
+
+### `content.lesson-shape`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.lesson-shape.v1-2026-10-05`
+  Lesson shape: every lesson reads as one script, the way a lecture, sermon or lesson plan flows: one objective (the lesson's objective field), several points (the authored sections, in order), and details that elaborate each point. The content revision rewrites each lesson as a whole script in the content voice and at that depth, working from the compiled scripts (docs/v7/LESSON_SCRIPTS.md), not by patching sentences.
 
 ### `content.reachability`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `content.reachability.from-precedence-doc`
   content/learner-content-reachability.json (v3) owns UI reachability and llms.txt disposition: embed learner-facing curriculum, reference, editorial, legal, privacy, and safety content; link the BSB corpus rather than duplicating it; exclude the supplemental belief document as a standalone authority and all private learner, account, feedback, and governance material. public/llms.txt is generated and freshness-validated
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
+
+### `content.voice`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `content.voice.v2-2026-10-05`
+  Content voice reference example (refines content.voice.v1-2026-10-05): 'Gospel is the English translation of the Greek word euangelion, which means "good news" or "good announcement." In Paul's world, it was the word used for announcements of a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale.' followed by a sentence that justifies the claim by explaining how (for example the Priene inscription of 9 BC calling Augustus's birthday the beginning of the good news for the world, set against the Christian announcement that a crucified man God had raised, not Caesar, was Lord), then 'Eventually it became synonymous with the first four books of the New Testament that tell Jesus' story: Matthew, Mark, Luke, and John.' Every claim of this kind is justified with an explanation, not asserted. Greek and Hebrew terms use their standard transliteration (euangelion).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `content.voice.v1-2026-10-05`
+  ~~Content voice standard for lesson text and the glossary, set by Chris's example: 'Gospel was derived from the Greek word euangelion, which means "good news" or "good announcement". In Paul's world, it was the word used for announcements like a military victory or a new emperor's accession. Calling the message about Jesus "the gospel" was a claim of the same scale. Eventually it became synonymous for the first four books of the New Testament that tell Jesus' story - Matthew, Mark, Luke, & John.' Rules drawn from it: write for an educated adult, never a slogan; give a word's source language and literal sense where it matters; place it in its historical setting; when the text makes a claim ("a claim of the same scale"), justify it by explaining how, not by asserting it; then show how later usage developed; plain, confident, complete sentences.~~
 
 ### `curriculum.apparatus`
 
@@ -101,6 +131,15 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Enforcement: an automated check renders every lesson screen in the framed phone layout (390 by 844, default text size) and fails the build if any screen overflows. Screens are measured at the phone size because it is the tightest. If a reader enlarges text, the screen may scroll as an accessibility fallback, never clip. Progress shows the step plus its part (Step 1 of 6, part 1 of 2).
   *Why:* Makes the owner's no-scroll rule testable instead of a judgment call per lesson
 
+### `curriculum.lesson.pagination`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.sections-divided-2026-10-05`
+  Lessons are generated as their authored sections, each divided into steps (cards): sections stay the boundaries the script was written with, and each section is divided independently. Supersedes the continuous-script rule in curriculum.lesson.card-is-step-script-2026-10-05 (every card is still a step).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.card-is-step-script-2026-10-05`
+  ~~Every card is a step. A lesson is one continuous authored script; the break rule alone decides where each card (step) begins and ends, so authored section boundaries are no longer step boundaries. Each step's title is the heading of the section it begins in; a heading that falls mid-card appears inside the card as a subheading, counts like a new paragraph (+49 plus its characters), and never ends a card. A step that begins exactly at a section keeps that section's id; others take <section>-2, -3. Supersedes 'content never moves between steps' in curriculum.lesson.pagination.build-time-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `curriculum.lesson.pagination.build-time-2026-10-05`
+  ~~Lesson pagination is decided at build time. Each step's authored content is divided into parts that fit the lesson text box; a sentence is never split across parts and content never moves between steps. Parts are locked into the lesson sources and rendered by the build; the lesson screen does no measuring. If a learner enlarges text beyond the default, the part scrolls inside its box rather than clipping.~~
+
 ### `curriculum.module1`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `curriculum.module1.module1-opening`
@@ -110,6 +149,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Approval** · 2026-10-01 · Chris · `module1-outcomes-approved` · scope: content/pathway/outline.json goals and outcomes (drafted 2026-09-28)
   Approved the Module 1 goals and outcomes
+
+### `curriculum.module1.title`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `curriculum.module1.title.v2`
+  Module 1 is titled 'Reading the Bible Well: The Library and Its Story' (short title 'Reading the Bible Well'), replacing 'Hermeneutics & Canon: Through the Story'.
 
 ### `curriculum.objective-display`
 
@@ -131,6 +175,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-02 · Owner decision (Chris) · `curriculum.rewrite.no-loss-no-condense`
   The curriculum rewrite must not lose content and must not condense or summarize it: every existing paragraph, check, drawer, reflection, and deeper-reading note is accounted for, and rewritten lessons keep at least the original amount of teaching text
+- **Approval** · 2026-10-05 · Chris · `curriculum.lesson.pagination.revision-pass-2026-10-05` · scope: Step 3 lesson pagination revision pass
+  One-time revision pass for lesson pagination, a scoped exception to curriculum.rewrite.preservation: wording may change only where a part boundary falls badly (an orphaned line, a check separated from its setup, a sentence too long for one part). Every edit is listed before and after in a review document and applied only after Chris approves it. All other lesson text stays word-for-word, checked automatically.
 
 ### `curriculum.structure`
 
@@ -302,10 +348,14 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-30 · Owner decision (Chris) · `design.themes.spec.2026-09-30`
   The eight themes follow the moods, palettes, and geometry described in Chris's theme specification (2026-09-30), translated into the theme contract; values that fail contrast are lifted to pass, and filters that blur text are not used
 
+### `design.typography.caps`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `design.typography.caps.unset-2026-10-05`
+  No capitalization rule is enforced while the redesign is built: the 'no all caps anywhere' guard and test are removed, and the nav-caps requirement is not applied. Capitalization is a style question to revisit when the redesign is done.
+
 ### `design.typography.no-all-caps`
 
-- **Current** · 2026-09-30 · Owner decision (Chris) · `design.typography.no-all-caps`
-  No all caps anywhere: no text styled or written in capitals (acronyms such as BSB stay as they are)
+
 
 ### `doctrine.difficult-texts`
 
@@ -353,6 +403,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Feedback and review snapshots never automatically attach Journal writing, private reflections, lesson notes, profile or account data, inferred beliefs, or unrelated chat history. Anonymous reply routing uses a random browser-scoped identifier; the server stores only a one-way SHA-256 routing key; IP addresses are never feedback identity; the learner may forget the link at any time. Account deletion de-identifies retained feedback
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification. Snapshot contents and the reason requirement follow owner decision theologian.review
 
+### `fonts.profile`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `per-theme-fonts-the-separate-font-choice-and-tex`
+  Per-theme fonts, the separate font choice and text size are built with the Profile screen port
+
 ### `launch.readiness`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `launch.readiness.polish-before-launch`
@@ -361,8 +416,17 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 ### `learning.games`
 
-- **Current** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
-  Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games
+- **Current** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-lesson-generation-2026-10-05`
+  The in-lesson Checkpoints are the ones whose content is generated at random when the lesson loads in the browser, from current learned content, prior learned content, a taught piece and an untaught piece. The same Checkpoints are also available on Review & Practice. Corrects the scope in learning.checkpoint.untaught-piece-2026-10-05, which placed the mix on Review & Practice.
+  *Why:* Owner clarified he means the in-lesson checkpoints
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.untaught-piece-2026-10-05`
+  ~~The randomly generated Checkpoint content on Review & Practice also includes an untaught piece, alongside current learned content, prior learned content, and a taught piece.~~
+  *Why:* Owner added the untaught piece to the Checkpoint mix
+- **Prior** · 2026-09-26 · Owner decision (Chris) · `learning.games.learning-games`
+  ~~Confirmed ledger D013: Rule Discovery (apply, distinguish, rule, transfer), Sequence Repair (diagnose, repair, explain, transfer), learnedBooks status, Course mastery authoritative with Practice as reinforcement; implement the new memory game and other games~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `learning.checkpoint.in-review-practice-2026-10-05`
+  ~~Every Checkpoint is also available on the Review & Practice page. Its content is generated at random when the lesson is loaded in the browser, based on current and prior learned content and a taught piece.~~
+  *Why:* Owner stated that checkpoints are also in Review & Practice with randomly generated content
 
 ### `learning.games.direction`
 
@@ -509,6 +573,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Two context-aware text features built into the layout, never floating: an in-context input on Bible and Topics (may merge with the Theologian), and private notes including reminder thoughts or questions to discuss with people in person (no in-app sharing). Both are tied to the specific verse, topic, or lesson and viewable/editable from the lesson, Bible, or profile
   *Why:* Supersedes the floating Journal launcher
 
+### `notes.discuss-flag`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `notes.discuss-flag.removed-2026-10-05`
+  The in-person discussion flag on notes was a reason notes exist, not an intended feature; the reader's My Notes editor has no 'Bring this up with someone in person' checkbox. Existing flagged notes stay readable.
+
 ### `notes.lesson-hidden`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `notes.lesson-hidden.v1`
@@ -585,11 +654,39 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   Do not merge stale pull requests wholesale; PRs #20, #22, #23 were superseded, #24 was merged and later superseded by the single-page app. Carry forward only named outcomes
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it
 
+### `process.roa.reader-registration`
+
+- **Approval** · 2026-10-04 · Chris · `reader-manifest-registration-approved-2026-10-04` · scope: reader-recovery-three-map-entries
+  Approved adding three descriptive manifest.map entries for public/highlights.js, public/ui/screens/reader.js, and public/ui/legacy.css, with the checker and guards unchanged.
+
+### `product.accounts`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `accounts-age-passkey-google-recovery`
+  Accounts: age is a 13+ attestation, not a stored age; password is dropped (passkeys, plus Google sign-in); a solid account recovery workflow that does not rely on users keeping recovery codes (Google or verified email) is needed soon.
+  *Why:* Chris, 2026-10-10.
+
 ### `product.audience`
 
 - **Current** · 2026-09-26 · Owner decision (Chris) · `product.audience.audience`
   Primary learner is a graduate-level adult who recently came to faith; also casual adults and existing Christians or study groups
   *Why:* The tool is built for a specific person he knows, and people like him
+
+### `product.progress-privacy`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `groups-invariant-amended`
+  Invariant amended: no streaks, public leaderboards, or comparison with strangers, with a future opt-in exception for groups (Bible study, team, class): comparison with group total or anonymous group data and optional group leaderboards, private by default.
+  *Why:* Chris, 2026-10-10: invariant should be revised to include the future group exception.
+
+### `product.translations`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `translations-local-reader-topics`
+  Translations: user-added translations are local-only, uploaded as .xlsx or .json, converted in the browser; BSB is always the default; a chosen translation applies to Reader and Topics only, not lessons or Practice. Failed uploads link to Contact Us.
+  *Why:* Chris, 2026-10-10.
+
+### `redesign.completed-screens`
+
+- **Approval** · 2026-10-07 · Chris · `approved-the-completed-s4-s5a-s5b-s5c-and-s6-imp` · scope: S4, S5a, S5b, S5c, S6
+  Approved the completed S4, S5a, S5b, S5c and S6 implementations.
 
 ### `redesign.implementation.approach`
 
@@ -605,6 +702,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Approval** · 2026-10-03 · Chris · `redesign.mockups.confirmed` · scope: docs/v7/mockups-2026-10-03/
   The redesign mockup canvas (docs/v7/mockups-2026-10-03/) is the confirmed visual reference for slices 2a to 2e: Shelf home, Bible reader and lesson (desktop and phone), the docked Theologian (desktop) and centered Theologian (phone), Learning Path (path, module and unit on one page), Study Topics, and Review & Practice. Built pages follow these layouts in the Reading Room theme; other themes restyle the same layouts.
+
+### `redesign.sequence`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `redesign.sequence.content-after-templates-2026-10-05`
+  Sequence: finish the redesign (screens, components and style templates) before revising content. Lesson content and the glossary are revised after the templates are in place; lesson card breaks are reviewed and locked only after that revision, because revised text moves the breaks. Until then the lesson screen renders the build-time divider's cards directly.
 
 ### `redesign.structure`
 
@@ -636,6 +738,25 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-24 · Agent default (Claude) · `safety.crisis.from-precedence-doc`
   content/theology/crisis-policy.json is the crisis-safety policy. A deterministic crisis layer runs before normal generation for credible first-person suicide or self-harm indicators: immediate danger goes to 911/emergency services; U.S. crisis offers call or text 988; encourage a trusted person present and distance from means; stay conversational. Pastoral response (God's love and presence, prayer alongside human help, referral to trusted clergy, praying on request) is expected, but prayer never replaces or delays urgent help. Prohibited: shame, threats of hell or punishment, implying weak faith, prayer-alone advice, promised healing, silent third-party contact, IP-based identity, permanent risk labels, converting crisis chat into feedback
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. HIGH-STAKES: awaiting owner ratification
+
+### `shell.edge-tabs`
+
+
+
+### `shell.footer`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `footer-stays-below-the-first-screen-the-template`
+  Footer stays below the first screen; the template has none
+
+### `shell.offline-notice`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-offline-update-line-moves-into-profile-data-`
+  The offline/update line moves into Profile (Data & privacy); no notice strip under the top bar
+
+### `shell.phone-nav`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `bottom-bar-is-the-standard-on-every-phone-screen`
+  Bottom bar is the standard on every phone screen except Lesson and Bible, which are focus screens with a close button
 
 ### `theme.default`
 
@@ -1000,6 +1121,8 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.ask.v1`
   The Bible reader toolbar has no Ask button. The Theologian tab opens already holding the current passage (narrowed to the selected verse when one is selected), and the Reading Desk offers 'Ask about [verse]' for the selected verse.
+- **Overridden default** · 2026-10-05 · Agent default (Claude) · `ui.bible.ask.notes-link-2026-10-05`
+  ~~The reader's My Notes editor has no 'Ask the Theologian about this' link. The Theologian edge tab is on every screen and opens already holding the current passage, narrowed to the selected verse, so a second entry point inside notes is redundant; discoverability comes from the always-visible tab. Supersedes the 'Ask about [verse]' notes-panel link in ui.bible.ask.v1; the rest of that decision (no Ask button in the toolbar, context-aware Theologian) stands.~~
 
 ### `ui.bible.crossrefs`
 
@@ -1018,6 +1141,11 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.phone.v1`
   Phone Bible reader: no bottom sheet. Book-level study links (Overview, Timeline, Themes, People, Places, Maps) sit as small buttons at the top of the reader under the book title; the title is the book/chapter picker. Verse-level extra content appears as footnotes marked with inline superscript letters; tapping a marker opens the footnote inline below the verse. Tapping a verse pops up Highlight and Note (no Ask). Notes and Theologian are tabs on the bottom edge that open upward, with clearance above the home indicator so text is never hidden.
 
+### `ui.bible.phone.board`
+
+- **Current** · 2026-10-04 · Agent default (Claude) · `ui.bible.phone.board.v1`
+  The phone Bible reader is built from PhoneReader.dc.html: My Notes and Theologian as stacked right-edge tabs at 298px and 168px from the bottom (ui.phone.my-notes.side, ui.phone.theologian-position.v2). The PhoneReaderB board on the live canvas is a superseded draft, not a build target.
+
 ### `ui.bible.rails`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.bible.rails.v1`
@@ -1034,11 +1162,22 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-26 · Chris · `ui.course-shelf.feedback-2026-09-25`
   Course shelf may be removed; if kept, 4 or 6 horizontally stacked books on the left and right with clickable introduction, progress, and course data in the space between
 
+### `ui.current-item`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `current-item-not-rose-2026-10-09`
+  The current step or item in a left pane, step list or dot chain uses a theme colour other than rose (the action blue); rose reads as an error or failure.
+  *Why:* Chris 2026-10-09: rose triggers an error/failure emotional response; supersedes the rose current-item rule
+
 ### `ui.current-values`
 
 - **Current** · 2026-09-24 · Agent default (Claude) · `ui.current-values.from-precedence-doc`
   Current visual values (non-binding, open to adjustment): serif display and reading type with restrained sans UI and mono metadata; 15px primary radius; gilt #ffc800; secondary chrome #3e4551; reader paper #ffffff; reader ink #303136; Bible category colors are semantic and theme-independent. Current layouts: Home is a graphite, shelf-first page without the global navigation bar, with Old/New Testament shelves; Course landing is a volume shelf; lessons use Study Focus with a side apparatus and the term Glossary; Bible is reader-first with compact shelf and Books/Timeline/Maps/Search tools; Topics uses an editorial dossier; Practice uses a due-first dashboard
   *Why:* Carried over from docs/v7/DECISION_PRECEDENCE.md (agent-written); enforced as a default until Chris ratifies or changes it. Values now live in the design-tokens contract; layout items are open to Chris's redesign feedback
+
+### `ui.fonts.selection`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `fonts-each-theme-has-its-own-font-family-fonts-a`
+  Fonts: each theme has its own font family; fonts are also selectable separately from the theme in Profile settings; text size can be changed in the reader and in site settings; board units (--u) multiply by the user text-size factor.
 
 ### `ui.frame.phone`
 
@@ -1056,6 +1195,51 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The "66 books · full Bible reader · guided learning" line is removed from Home; every page's first text sits one consistent space (about 24 px) below the top bar
   *Why:* Chris: move it to the top bar or remove it; removed to keep the top bar uncluttered
 
+### `ui.lesson.card`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v3-2026-10-05`
+  Step break rule, final form (Chris): after the lesson copy is rewritten, each section is divided into steps independently. A step holds at most 637 characters, spaces and punctuation included; each new paragraph after the first adds 49; a block does not count its characters but adds 49 plus 49 for each 49-character line of its text; a visual counts as its 9-line height. Break at the last sentence end at or before 637; never split a sentence or a block; each new step starts counting again. Applied to every module, lesson and section. Supersedes ui.lesson.card.break-rule-v2-2026-10-05 (46 per paragraph).
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-rule-v2-2026-10-05`
+  ~~Step break rule: within a section, count every character on a step (spaces and punctuation included, starting again on each step); each new paragraph after the first adds 46; a block (check, reading, reflection) counts 49 plus 49 for each line of its text, a line being 49 characters; a visual counts as its 9-line height (49 + 49 x 8). Break at the last sentence end at or before 637. Sentences and blocks are never divided. Supersedes ui.lesson.card.break-637-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.orientation-2026-10-05`
+  ~~The lesson card has two layouts chosen by the screen's shape, not the device: portrait (taller than wide) uses the phone layout decisions; landscape uses the desktop layout decisions (step list and study tools beside the text). The text box is roughly 3:5 in portrait and 5:3 in landscape. Type scales with the text box (within readable minimum and maximum sizes) so both shapes hold the same amount of text: about 38 characters per line in portrait and about 68 in landscape. One set of parts fits both shapes, so rotating never changes what is on screen. Theme font sizes are normalized so every theme wraps the same text the same way.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-4x5-2026-10-05`
+  ~~The portrait lesson text box is 4:5 (width:height, 0.80:1), replacing the roughly 3:5 in ui.lesson.card.orientation-2026-10-05. It spans about 89% of the viewport width and 51.5-52% of its height (390x844: ~348x435 pt; 430x932: ~383x480; 375x667: ~334x418). Landscape stays about 5:3. Proposed container: width 100%, aspect-ratio 4/5, max-height calc(100dvh - 380px), overflow-y auto.~~
+  *Why:* Owner specified the portrait text box ratio and dimensions
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.block-max-2026-10-05`
+  ~~A single block of lesson text holds at most 49 characters across and 17 lines down in portrait, and at most 91 characters across in landscape. These replace the 38 and 68 characters per line in ui.lesson.card.orientation-2026-10-05; the 4:5 portrait box stands.~~
+  *Why:* Owner set the maximum text block size after reviewing mockups
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-91x14-2026-10-05`
+  ~~A single block of lesson text holds at most 91 characters across and 14 lines down in landscape. Completes ui.lesson.card.block-max-2026-10-05 (portrait 49 x 17).~~
+  *Why:* Owner stated the landscape line maximum
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-2x1-2026-10-05`
+  ~~The landscape lesson text box is roughly 2:1 (width:height), replacing the about 5:3 in ui.lesson.card.orientation-2026-10-05.~~
+  *Why:* Owner stated the landscape box shape
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.line-height-1-55-2026-10-05`
+  ~~Lesson body text uses a 1.55 line height.~~
+  *Why:* Owner stated the line height used in the mockups
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.char-ceiling-2026-10-05`
+  ~~The absolute maximum for one step of lesson text, counting every space, letter and punctuation mark, is 833 characters as a single block, 784 as two paragraphs and 735 as three paragraphs. These are ceilings, not targets or minimums; shorter is preferred so cards are not overwhelming.~~
+  *Why:* Owner stated the maximum characters per step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-means-screen-2026-10-05`
+  ~~In the character ceilings (ui.lesson.card.char-ceiling-2026-10-05), a "step" means one screen: everything the learner sees before pressing Continue. It is not an entry in the lesson's step list; the pagination docs call that screen a "part". The 833, 784 and 735 ceilings apply to each screen.~~
+  *Why:* Owner clarified how he uses the word step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.card-is-step-2026-10-05`
+  ~~Every lesson card is a step. There is no separate "part": what the pagination docs call a part is a step, the step list and "Step N of M" count cards, and the character ceilings (833 / 784 / 735) apply to each step. Supersedes ui.lesson.card.step-means-screen-2026-10-05 where it keeps "part" as a separate term.~~
+  *Why:* Owner: every card is a step
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.landscape-columns-2026-10-05`
+  ~~Landscape lesson columns are adjusted so the center text box fits the decided 91 characters per line by 14 lines at the calibrated landscape type size. The step list and My Notes columns narrow to give the center column that width (each keeps a minimum: the step list fits its longest step title, My Notes stays usable). The text box sits below the step title and never overlaps the title or the side columns. Chosen over lowering the line length or shrinking landscape type.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-body-scope-2026-10-05`
+  ~~The lesson box ratios (4:5 portrait, 2:1 landscape), the line and character counts (49 x 17 portrait, 91 across landscape) and the per-step character ceilings apply only to the step body: the area holding a step's authored body content (prose, Scripture blocks, checks, visuals). Everything else on the lesson screen sits outside that box and is sized separately: the step eyebrow and title, the step progress bar and 'Step N of M' line, the study-tool buttons (Glossary, Questions, Go deeper), the step list and My Notes columns, the edge tabs, and Back and Continue.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.step-length-2026-10-05`
+  ~~Step body length: hard ceilings per step are 833 characters (1 paragraph), 784 (2) and 735 (3), counting spaces and punctuation. The target is about half the ceiling (roughly 370-420 characters per step); the divider aims for the target and goes longer only when a sentence or block cannot be split without breaking a rule. A step must also fit the portrait step body in the primary layout; whichever limit is tighter applies.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.portrait-layout-primary-fallback-2026-10-05`
+  ~~Portrait step body layout: primary is the 4:5 box at 49 characters per line and line height 1.55 (about 17.9px type on an iPhone; about 15 lines fit). Fallback D, used if adjusting the steps runs into trouble: 54 characters x 17 lines at 1.55 in the same 4:5 box (about 16.5px type). A 3:4 box is rejected because it does not use the space an iPhone gives the step body.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.type-16px-2026-10-05`
+  ~~Lesson step body type is 16px at line height 1.55 on the reference iPhone (390 x 844), the basis of Chris's 49 x 17 calculation. With the shipped Source Sans 3 the 4:5 step body (about 347 x 435) then holds about 54 characters x 17 lines; that is the primary layout. The 49-per-line figure came from the wider mockup font. Ceilings 833 / 784 / 735 stay as content limits. Supersedes the primary/fallback split in ui.lesson.card.portrait-layout-primary-fallback-2026-10-05.~~
+- **Prior** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.card.break-637-2026-10-05`
+  ~~Interim lesson card break rule, used until the content revision: count every character on a card, spaces and punctuation included, starting again at 1 on each new card; each new paragraph after the first on a card adds 49; break at the last sentence end (period, question mark or exclamation mark) before the count would pass 637. Sentences are never split and content never moves between steps. Checks, readings, reflections and visuals do not count characters; they stay on the card when its lines allow, otherwise they start the next card.~~
+
 ### `ui.lesson.colors`
 
 - **Current** · 2026-09-27 · Agent default (Claude) · `ui.lesson.colors.theme-surfaces`
@@ -1063,10 +1247,20 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Feedback** · 2026-09-27 · Chris · `ui.lesson.colors.feedback-2026-09-26`
   Dislikes the lesson color scheme in the mobile screenshot (dark graphite header and Study Desk)
 
+### `ui.lesson.current-step-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `the-current-step-in-the-lesson-s-section-list-is`
+  The current step in the lesson's section list is shown by highlighting the whole row in rose, not by a separate marker.
+
 ### `ui.lesson.progress`
 
-- **Current** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
-  Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-progress-step-x-of-y-2026-10-08`
+  Lesson progress follows the template: on the phone the title bar shows 'Step x of y' with a dot chain. This replaces the earlier rule that progress is shown as 'N of M' without a 'Step' label.
+  *Why:* Chris 2026-10-08, already stated in the phone navigation decision (ui.phone.navigation): the lesson shows 'Step x of y' plus a dot chain
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.progress.no-step-label-2026-10-05`
+  ~~Lesson progress is shown as 'N of M' (for example 3 of 14), a percentage complete, or a plain progress bar; never 'Step N of M'.~~
+- **Prior** · 2026-09-28 · Owner decision (Chris) · `ui.lesson.progress.dots`
+  ~~Lesson progress is a thin line of dots with distinct upcoming, current, and completed states: vertical at the top left on desktop, horizontal and centered along the bottom on narrow screens; no visible step words except on hover on desktop; clicking a dot goes to that step from any step, in either direction~~
 
 ### `ui.lesson.progress.color-map`
 
@@ -1083,14 +1277,32 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.lesson.rails.v1`
   The lesson layout mirrors the Bible reader: the left side (inside the lesson card) holds links, the lesson steps and then the step's study tools (Glossary, Questions, Go deeper); the right rail holds the selected tool's content for the current step, with the same notes component on top, closed by default in lessons. The lesson card keeps its breadcrumb title bar and Back/Continue. The Study Desk tab 'Words' is named Glossary.
 
+### `ui.lesson.reading`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.lesson.reading.inline-or-popover-2026-10-05`
+  Lesson readings (::reading): a passage of one or two sentences or less is quoted on the card as a Scripture block, with extra padding, the Scripture surface color (scriptureBed), the Bible group's color stripe, and the Scripture font. A longer passage appears on the card as a compact Scripture link (reference, version and a one-line preview in the group's colors) that opens the full passage in a popover: centered over a dimmed screen on phones, beside the link on desktop; the passage scrolls inside the popover, which offers Open in the Bible, and closes with its close button, Escape, or a tap on the dimmed area, returning to the same card.
+
+### `ui.lesson.step-shape`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `lesson-step-shape-lesson-content-is-authored-or-`
+  Lesson step shape: lesson content is authored or generated to a length budget, so the fixed 2:1 / 4:5 step box is not needed. The lesson body flows inside the window frame, as in the template. The content-length cap stays as a content guard (type-cap.spec.js), not as a layout box.
+
 ### `ui.naming`
 
-- **Current** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
-  Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.
+- **Current** · 2026-10-05 · Owner decision (Chris) · `ui.naming.hide-module-unit-labels-2026-10-05`
+  Learners are not shown the level names "Module" and "Unit"; only their titles (and numbers where needed) appear, for example Learning Path > Reading the Bible Well > What the Bible Is > Lesson 1. "Lesson" and "Step" stay visible. The per-unit check keeps its decided name, "Unit N Checkpoint" (ui.naming.unit-check.checkpoint.v2). Module and unit IDs and file structure are unchanged.
+  *Why:* Owner: learners do not need to know a module is a module or a unit a unit
+- **Previous** · 2026-10-03 · Agent default (Claude) · `ui.naming.tabs-2026-10-03`
+  ~~Primary tabs read Shelf, Learning Path, Bible, Study Topics, Review & Practice; side panels keep Reading Desk (Bible), Study Desk (lessons), Reference Desk (Study Topics). Learning Path as the tab label follows ui.naming.levels; Shelf, Bible, and the desk names carry over from ui.naming.library-labels.~~
   *Why:* Applies the 2026-10-03 owner naming decisions to the tab bar without inventing names he did not choose
-- **Previous** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
+- **Prior** · 2026-09-27 · Agent default (Claude) · `ui.naming.library-labels`
   ~~Tabs and panels follow a library naming convention: tabs Shelf (Home), Pathway (Course), Bible, Catalog (Topics), Practice; side panels Reading Desk (Bible), Study Desk (lessons), Reference Desk (Topics)~~
   *Why:* Chris asked for tabs aligned to the new naming convention; the level names (Pathway/Volume/Focus/Lesson/Step) are still his open choice
+
+### `ui.naming.groups`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `ui.naming.groups.v1`
+  The nine shelf groups are named Law, History, Wisdom and Poetry, Major Prophets, Minor Prophets, Gospels and Acts, Paul's Letters, General Letters, and Revelation, everywhere they are named (shelf, legend, chips, lessons). The ninth group is Revelation, not Prophecy, because 'Prophecy' would also cover the Prophets. 'Letters' is used in the group names; the term 'epistle' is taught in Module 1 where the groups are introduced.
 
 ### `ui.naming.levels`
 
@@ -1102,20 +1314,79 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.naming.sections.v1`
   Study Topics replaces Catalog/Topics; Review & Practice replaces Practice; Profile keeps its name.
 
+### `ui.naming.unit-check`
+
+- **Current** · 2026-10-05 · Owner decision (Chris) · `curriculum.checkpoint.placement-content-and-steps-2026-10-05`
+  Where Checkpoints appear is not fixed per unit or per lesson; it depends on the content and the number of steps.
+  *Why:* Owner answered the per-unit or per-lesson question
+- **Previous** · 2026-10-05 · Owner decision (Chris) · `ui.naming.checkpoint-bare-2026-10-05`
+  ~~The check at the end of a unit is called "Checkpoint" (no "Unit N" prefix), shown with its unit's title, for example Checkpoint · What the Bible Is. Supersedes the "Unit 2 Checkpoint" wording in ui.naming.unit-check.checkpoint.v2 and the exception in ui.naming.hide-module-unit-labels-2026-10-05.~~
+  *Why:* Owner chose Checkpoint from Capstone, Mastery Checkpoint, Retention Check, Checkpoint
+- **Prior** · 2026-10-03 · Agent default (Claude) · `ui.naming.unit-check.checkpoint`
+  ~~The per-unit scored check is named 'Checkpoint' (shown as 'Unit 2 Checkpoint' in lists). It fits the Learning Path metaphor: checkpoints along the path, a Capstone at the end. It avoids 'Review', which belongs to Review & Practice, and 'Mastery', which was dropped.~~
+  *Why:* Chris asked Claude to pick a name that fits
+- **Prior** · 2026-10-04 · Owner decision (Chris) · `ui.naming.unit-check.checkpoint.v2`
+  ~~The per-unit scored check is named Checkpoint (shown as 'Unit 2 Checkpoint' in lists): checkpoints along the Learning Path, a Capstone at the end. Confirms the ui.naming.unit-check.checkpoint default as an owner decision.~~
+
 ### `ui.nav.brand`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.nav.brand.v1`
   Shelf home header: the large two-line v1 title (The Canonical / Shelf) with the intro to its right is the only place the site name appears on the home page; the home nav bar shows only the logo mark. Every page reserves the same fixed brand width in the nav so the nav items never move between pages.
+
+### `ui.nav.responsive`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `fluid-nav-icons-2026-10-04`
+  The navigation remains one row. Its items adjust size as the available width decreases or increases, switching to icons with short labels when too narrow, as shown in the supplied desktop and phone references.
+
+### `ui.nav.tablet`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-work-deferred-2026-10-04`
+  Defer tablet-specific layout work and comparisons for now; finish the current recovery on desktop and phone.
+- **Previous** · 2026-10-04 · Owner decision (Chris) · `tablet-full-navigation-2026-10-04`
+  ~~Tablet widths should accommodate the full navigation rather than switching to compact icon-only navigation.~~
+
+### `ui.notes.edge-tab`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `my-notes-edge-tab-appears-on-lesson-and-bible-pl`
+  My Notes edge tab appears on Lesson and Bible, plus any other screen where it is useful, not on every screen. Supersedes the 2026-10-03 every-phone-screen decision.
 
 ### `ui.notes.naming`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.notes.naming.v1`
   The reader's own notes are called My Notes everywhere (bottom tab, reader and lesson panels, Profile, home card); the add action reads 'Add a note' and the verse popup button reads '+ Note'. Phone study links wrap onto multiple lines instead of scrolling sideways.
 
+### `ui.panes.cards-on-well-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `every-redesigned-screen-uses-the-same-card-treat`
+  Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.
+  *Why:* Chris 2026-10-07: practice card was all one card with shadows only around the main card; lesson and Study Topics were wrong; all redesign work should already follow his stated preferences
+- **Overridden default** · 2026-10-08 · Agent default (Claude) · `correction-to-ui-panes-cards-on-well-2026-10-07-`
+  ~~Correction to ui.panes.cards-on-well-2026-10-07: per the approved boards (docs/v7/mockups-2026-10-03), the frame itself is the light-grey well and each pane is a white card with its own shadow; there is no second well nested inside the frame. The boards are the visual authority; delivery must match them.~~
+
+### `ui.panes.spacing-2026-10-07`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `leave-generous-room-between-the-main-content-and`
+  Leave generous room between the main content and the side panes and between panes and the frame edges and top; nothing is packed against the sides or top.
+
+### `ui.panes.widths`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `pane-widths-are-fixed-where-that-makes-sense-and`
+  Pane widths are fixed where that makes sense and otherwise scale with the viewport in board units, using the template values.
+
+### `ui.path.overview`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `learning-path-overview-exists-in-the-template-th`
+  Learning Path overview exists in the template: the module overview is the default view (rail, module main, Up next, objectives).
+
 ### `ui.phone.my-notes`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.phone.my-notes.side`
   Phone: My Notes is a vertical edge tab on the right, 12px above the Theologian tab (option B), on every phone screen; there is no My Notes button in the header. Supersedes the header placement in ui.phone.tabs.v2 and the pending choice in ui.phone.theologian-position.
+
+### `ui.phone.navigation`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `phone-navigation-follows-the-template-status-bar`
+  Phone navigation follows the template: status bar and camera island appear in the preview only, never in the app; no top bar on phone; one bottom bar on every screen (Shelf, Path, Bible, Topics, Review, Search, You). Lesson and Bible are focus screens with a close button; the lesson shows 'Step x of y' plus a chain of dots; the Shelf's selected book docks above the bar. Chris may veto after seeing it.
 
 ### `ui.phone.no-hscroll`
 
@@ -1139,15 +1410,84 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.polish.2026-10-03.late`
   The nav bar is the one place all caps is allowed: primary nav labels are uppercase and letter-spaced; the current page is marked with an underline, not a highlight box. The site wordmark and the Shelf home title use the v1 title typography (Cambria/Caladea bold, 'Shelf' in italic, title on two lines with the intro beside it). Readers can highlight part of a verse (word-level), not only whole verses. The Shelf decoration is a bronze praying-hands statue on a stone pedestal (replaces the oil lamp), seated flat on the plank. Shelf book-name labels appear only on hover or keyboard focus. The Shelf uses a dark walnut plank hung on iron suspension rods with iron bookends. The docked Theologian is the desktop chat window.
 
+### `ui.practice.modes.panes`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `ui.practice.modes.continue-side-panes-2026-10-07`
+  Every Review & Practice mode (review, verse library, games, achievements) keeps the same side panes as the other screens: the left rail for moving between modes and the right panel for context, so a learner can move around without going back and forth. The older mode pages currently have no rail, oversized headings, uneven font sizes and large unused space; they are rebuilt into the three-pane layout after Chris has played with them live.
+  *Why:* Chris reviewed screenshots of the current mode pages: font sizes and free space are a mess; he likes continuing the side panes for continuity and organization
+
 ### `ui.profile`
 
 - **Current** · 2026-09-28 · Owner decision (Chris) · `ui.profile.full-screen`
   The user profile becomes a full screen instead of a popup; theme selection lives there (among other settings); account creation needs to be built out
 
+### `ui.profile.layout`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-uses-topics-layout`
+  The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
+  *Why:* Owner reply 2026-10-09 23:35 to the Profile plan's layout question
+
+### `ui.profile.legal-links`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-legal-links`
+  Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored.
+  *Why:* Chris, 2026-10-10: put About/Terms/Statement of Faith in Profile (the footer sits below the frame).
+
+### `ui.profile.plan`
+
+- **Approval** · 2026-10-10 · Chris · `profile-plan-approved` · scope: profile-port-plan
+  Approved the Profile port plan as proposed (P0 to P6): Newsreader self-hosted, Reading font and Interface font pickers (Theme default, Newsreader, Literata, Caladea, Source Sans 3, System), site text size steps 90/100/115/130%, Profile on the Topics layout. The Reader's Aa text size stays separate from the site text size.
+
+### `ui.profile.sections`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-sections-v3`
+  Profile sections are: Account, Customization (Appearance, Reader incl. translation, Accessibility with toggle switches), My Study (My Notes, Goals as a self-written accountability note, Books incl. mark-as-read, Path and Topics, Practice, Review, an understanding heatmap of retention/comprehension), Privacy & Policies (data tools plus Privacy, Cookie/storage, What is stored and shared, Data retention, Terms of Use, all rendered in-pane), About Canonical Shelf (Introduction to TopherLoring Ministries and the app, Statement of Faith, Theologian, FAQs), Contact Us. Profile uses a drill-down left pane: Back link at top, sub-sections beneath, each sub-section its own screen; no content links out of Profile.
+  *Why:* Chris, 2026-10-10 07:07: section names list; policies, terms, statement shown in-pane; Profile follows option A (drill-down).
+- **Previous** · 2026-10-10 · Owner decision (Chris) · `profile-tabs-v2`
+  ~~Profile is reorganized into six tabs: Account (identity, sign-in methods incl. passkeys and Google, devices, recovery), Appearance (theme, typography, accessibility, reset), Reading (translations, Reader defaults), My Study (progress, notes, highlights, history), Privacy & data, About Us (statement, Terms, policies); plus Contact Us as its own tab. Each tab with choices has Save/Cancel. Replaces the six-section list.~~
+  *Why:* Chris, 2026-10-10 notes; supersedes profile-uses-topics-layout section list (layout stays Topics-style; phone uses list then detail with Back).
+
+### `ui.reader.apparatus`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-apparatus-polish-2026-10-04`
+  Reader footnotes must remain complete, expand unfamiliar source abbreviations, and explain quotation-boundary notes for new readers. The chapter title has a category-colored bar at its left, small category above, and translation below. Chapter continuation buttons belong before the footnotes.
+
+### `ui.reader.notes`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-notes-drawer-2026-10-04`
+  My Notes opens saved notes with edit and delete icons and an add-note button or input. Sort notes by verse, then date/time. Remove the in-person discussion checkbox and Ask the Theologian action from the reader notes editor, extending the input downward. Notes and Theologian slide in from the right. The notes card remains below the Theologian tab; the Theologian tab and chat stay above other visible panels. Remove Copy from the reader highlight/note actions.
+
+### `ui.reader.viewport`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `reader-fixed-header-2026-10-04`
+  Keep the top of the reader in view while the verses scroll. The page itself should not scroll when the reader scrolls. Remove the redundant Canonical Shelf footer brand/tagline and the excessive gap under the reader.
+
 ### `ui.scripture.group-color`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.scripture.group-color.v1`
   Every Bible book and verse reference (reader, lessons, Study Topics, Shelf panel) carries its shelf-group color. Scripture blocks and cross-references use a group-color bar to the left of the address and no colored tint behind verse text. Cross-references start collapsed as addresses: clicking the address opens that chapter in the reader; an expand control shows the verse text in place.
+
+### `ui.scrolling.container-width`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `dynamic-width-content-scroll-2026-10-04`
+  Layout width should adapt dynamically to available screen width. Where scrolling is needed and should not move the whole page, it should occur within the content container.
+
+### `ui.scrolling.no-hscroll`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `no-horizontal-scrolling-anywhere-menus-are-drop-`
+  No horizontal scrolling anywhere; menus are drop-downs, so the no-hscroll exception is moot.
+
+### `ui.scrolling.reader-lessons`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `learning-path-primary-content-scroll-2026-10-04`
+  Mobile pages must never scroll horizontally. Vertical scrolling is allowed where needed. The no-scrolling decision applies specifically to primary lesson content in the Learning Path; additional lesson content may scroll.
+- **Previous** · 2026-10-04 · Owner decision (Chris) · `reader-lessons-scroll-2026-10-04`
+  ~~The mobile reader may scroll vertically if needed. Lessons should not scroll at all except for additional content.~~
+
+### `ui.search.and.library`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `ui.read-first-search-routing-2026-10-07`
+  Shelf book panel and reader book facts label the recommended starting chapters 'Read first' (was 'Where to begin'). Search routes: a reference goes to the reader, other queries show instant results on the Topics layout, question-shaped queries add an 'Ask the Theologian' row that opens the panel prefilled and never sends automatically. The Bible library screen is replaced by the Shelf. About and policies become one two-pane screen.
 
 ### `ui.shelf`
 
@@ -1159,10 +1499,24 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.bookshelf.2026-10-03`
   Shelf home bookshelf: a wall-mounted shelf, not a bookcase; no stacked books; no dark center panels on spines; all books share a similar height; Old Testament books fill their shelf width, distributed by chapter count; New Testament books fill 65-75% of the bottom shelf; Revelation leans on the preceding book; the shelf's own color must stand apart from the page.
 
+### `ui.shelf.cards`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `shelf-cards-home-only`
+  Home/Shelf only: the Learning Path resume card is the way into the Orientation for someone new (no lesson done, Orientation not seen), and the Shelf has no separate Orientation block. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line. The Learning Path's own Orientation card is unchanged.
+  *Why:* Owner clarified 2026-10-09 18:29: the five items applied to the home/shelf screen only
+- **Previous** · 2026-10-09 · Owner decision (Chris) · `shelf-cards-resume-orientation-passage`
+  ~~Shelf cards: the Learning Path resume card is the only way into the Orientation for someone new (no lesson done, Orientation not seen); there is no separate Orientation card on the Shelf or the Learning Path. The Passage of the day card is titled 'Passage of the day', then the reference address only (no verse text), then an Explore in the Reader line; no Continue in the Reader line.~~
+  *Why:* Owner message 2026-10-09 18:26
+
 ### `ui.shelf.final`
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.final.2026-10-03`
   Shelf home, confirmed final: wall shelves of dark walnut with visible grain, held by two small walnut support blocks under each plank (10px tall, 8% in from each end), no suspension rods; dark iron bookends; books flush, left-aligned, sized by verse count, uniform height family about 12% shorter than before so labels have room above; Old Testament fills its shelf, New Testament fills 80%; Revelation leans on Jude; no stacked books; no decorative object on the shelf (lamp and praying-hands statue removed); book names only on hover or keyboard focus. Supersedes the suspension mounts in ui.polish.2026-10-03.late and the lamp/statue in ui.shelf.lamp.
+
+### `ui.shelf.intro`
+
+- **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.intro.current`
+  Keep the current Shelf home intro ('Learn the Bible as a connected library: read in context, follow the story, ask hard questions, and build durable understanding without collapsing evidence, interpretation, and doctrine into one thing.') for now.
 
 ### `ui.shelf.lamp`
 
@@ -1173,6 +1527,29 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Current** · 2026-10-03 · Owner decision (Chris) · `ui.shelf.nt-fill.80`
   New Testament books fill 80% of the bottom shelf (supersedes the 65-75% range).
+
+### `ui.shell.phone-frame`
+
+- **Current** · 2026-10-09 · Owner decision (Chris) · `phone-frame-equal-margins`
+  On phone, the card surface extends the same distance from the right edge as from the left. It only bounds the text content so nothing hides behind the Theologian tab; the tab may overlap the surface slightly. Desktop keeps the reserved strip.
+  *Why:* Owner clarified 2026-10-09: bind the content area, not the tab edge
+
+### `ui.shell.search-and-tabbar`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `desktop-search-field-tabbar-edges`
+  Desktop top bar shows a permanent search field next to the icon; phone bottom nav gets mini dividers between tabs and an edged, raised active tab. Deliberate deviation from the template, which draws only the icon.
+  *Why:* Chris, 2026-10-10 07:11
+
+### `ui.tablet.responsive-options`
+
+- **Current** · 2026-10-04 · Owner decision (Chris) · `tablet-scroll-toolbar-drawers-2026-10-04`
+  For tablets, the toolbar may scroll with its scrollbar hidden if the user can tell it is scrollable. Side panels may act as drawers when necessary. Tablet layout work remains deferred.
+
+### `ui.text-size`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `text-size-reader-separate`
+  Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.
+  *Why:* Owner reply 2026-10-10 00:12
 
 ### `ui.theme.default`
 
@@ -1190,6 +1567,19 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 
 - **Feedback** · 2026-09-26 · Chris · `ui.theme.palettes.feedback-2026-09-25`
   The current five themes and light/dark modes (commit ad97f21) came from misinformed execution; adjust in the redesign
+
+### `ui.theme.template-roles`
+
+- **Current** · 2026-10-08 · Owner decision (Chris) · `default-theme-follows-the-template-the-template-`
+  Default theme follows the template: the template's tokens map to the app's default theme roles in public/theme.css, and the template's blended roles go into the theme contract so every theme changes them. Surface layers per screen follow the template README section Surface layers per screen.
+
+### `ui.themes.set`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `theme-set-v2-directions`
+  Theme set direction (replaces the ten-theme list; character tokens, not just colors): Reading Room (current look with more depth, grey paired with rose and navy); Midnight Study (dark: leather grain, navy, deep colors, brass, lamp pulls); Library (dark or light, brass, bookplate, moody, flat faded colors, beige surface with typewriter fonts, graphite pencil elements); Notebook (college-ruled, spirals, hole punches, sticky notes for side content, folder tabs, highlighters and handwritten marker words, Sharpie category markers); Sketchbook (per Chris's earlier mockup: grid paper, pencil borders, brush strokes); Scroll (calligraphy, ink, tea-stained paper surfaces or edges, wax-seal markers); Stained Glass (thick lead between bold jewel surfaces, glowing elements, seamless with text surfaces); Fun (color blocks, hard edges, square corners, illustrated or hand-drawn shapes). Watercolor is not part of this project's set.
+  *Why:* Chris, 2026-10-10 brainstorm; palette roles (action, current, accent, danger) approved to be drafted.
+- **Feedback** · 2026-10-10 · Chris · `theme-set-v2-inspiration-only`
+  The theme-set v2 terms (Notebook spirals and sticky notes, Library typewriter and graphite, Scroll wax seals, Midnight leather and lamp pulls, and so on) are inspiration, not strict specifications; each theme's exact elements are proposed and approved per theme. Watercolor is for a different project.
 
 ### `ui.theologian.contrast`
 
@@ -1214,9 +1604,27 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
 - **Current** · 2026-09-28 · Agent default (Claude) · `ui.topbar.layout.four-controls`
   Top bar: logo mark (placeholder three-spine mark until Chris picks a logo), five tabs, then search icon, Feedback, and profile; Progress, Appearance, Account, and Translation moved to the full-screen profile at /profile
 
+### `ui.type.max-size`
+
+- **Current** · 2026-10-07 · Owner decision (Chris) · `ui.type.max-genesis-2026-10-07`
+  No text or title anywhere in the site is larger than the Genesis book title on the Shelf home page (--type-max, clamp(2rem, 2.8vw, 2.5rem)). The site title (masthead wordmark and the Home page title) is the only exception.
+
+### `work.s3.q`
+
+- **Approval** · 2026-10-05 · Chris · `work.s3.q.2026-10-05` · scope: S3.Q: Lesson fonts: ship Source Sans 3 and Literata per the Reading Room theme sheet, or keep the shipped reading font for lesson prose
+  S3.Q: Adapt fonts to match selected theme font, use Source Sans 3 / Literata per the Reading Room theme sheet
+
+### `work.x1`
+
+- **Approval** · 2026-10-05 · Chris · `work.x1.2026-10-05` · scope: X1: Codex lesson branch committed and pushed (codex/redesign-lesson-path)
+  X1: Codex lesson branch pushed (6f8c2ac)
+
 ## Resolved questions
 
+- 2026-10-09: **Phone frame: should the card surface run the same distance from the right edge as from the left (10u), with only the text kept clear of the Theologian tab and the tab allowed to overlap the surface slightly?** → Phone frame margins equal both sides; content padding clears the tabs; tab may overlap the surface slightly. (decision `phone-frame-equal-margins`)
 - 2026-10-04: **Approve the implementation plan graph in docs/v7/PLAN_IMPLEMENTATION_2026-10-03.md (phases 0-10) so execution can start with phase 0.** → Approved by Chris; executing 1 slice per branch
+- 2026-10-04: **Each Unit ends with a scored 'Unit mastery' activity (separate from the six cumulative Capstones). With 'Mastery Check' dropped, what should it be called: Unit Check, Unit Challenge, or something else?** → Checkpoint (picked by Claude at Chris's request) (decision `ui.naming.unit-check.checkpoint`)
+- 2026-10-04: **Module 1 title: 'Hermeneutics' is too advanced for the first module title. Pick a plain-language replacement (proposed: Reading the Bible Well: The Library and Its Story).** → Approved: Reading the Bible Well: The Library and Its Story (decision `curriculum.module1.title.v2`)
 - 2026-10-01: **Approve or change the Module 1 goals and outcomes drafted in content/pathway/outline.json (3 goals, 6 outcomes)** → Approved by Chris 2026-10-01 (decision `module1-outcomes-approved`)
 - 2026-10-01: **Approve docs/v7/curriculum-design.proposal.json as the curriculum design (four modules plus extra-credit, unit pattern, apparatus placements, migration sequence)?** → Approved by Chris 2026-10-01 (decision `curriculum-design-approved`)
 - 2026-09-26: **BSB source files (tables TSV, concordance, topical index): commit directly or host as a release asset?** → Fetched from bereanbible.com with pinned hashes; nothing committed (decision `bsb-source-hosting-fetch`)

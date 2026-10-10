@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "fixed",
+  "date": "2026-10-04",
+  "text": "Recovered the Step 2 Bible reader edits from the Claude handoff: legacy stylesheets now load through a cascade layer; reader selection, notes, highlights, footnotes, and background cross-references are verified. Fixed phone notes-tab visibility, distant-verse scrolling within the chapter, Hebrew acrostic headings, and lesson focus-frame sizing. Full bun run verify passed with 120 browser tests; remaining redesign steps are still pending."
+}

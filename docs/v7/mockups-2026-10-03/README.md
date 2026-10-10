@@ -16,6 +16,7 @@ All screens use the Reading Room theme. Other themes restyle these same layouts 
 | `PhoneReader.dc.html` | Bible reader, phone |
 | `PhoneLesson.dc.html` | Lesson, phone |
 | `PhoneTheo.dc.html` | Theologian open, phone |
+| `ThemeSheet.dc.html` | Reading Room theme sheet: typography, color roles, lines and borders, corners and elevation (the target values for theme contract v10) |
 
 `canvas.json` is the canvas layout. The `.dc.html` files are design-canvas artboards: open them through the artifact link above, or read them as markup for exact values (spacing, colors, radii, shadows).
 
@@ -23,6 +24,4 @@ These are reference designs, not production code. Build each screen in the app a
 
 ## Open items
 
-- `unit-check-label`: the name for the per-unit scored check.
-- `module1-title`: a plain-language replacement for "Hermeneutics & Canon: Through the Story."
 - `visual-direction`: final values for the other seven themes (slice 2e).

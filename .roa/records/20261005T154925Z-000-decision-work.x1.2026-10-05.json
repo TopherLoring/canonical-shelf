@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "approval",
+  "id": "work.x1.2026-10-05",
+  "topic": "work.x1",
+  "date": "2026-10-05",
+  "text": "X1: Codex lesson branch pushed (6f8c2ac)",
+  "scope": "X1: Codex lesson branch committed and pushed (codex/redesign-lesson-path)",
+  "by": "Chris"
+}

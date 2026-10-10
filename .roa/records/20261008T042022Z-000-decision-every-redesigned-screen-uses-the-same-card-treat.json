@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "every-redesigned-screen-uses-the-same-card-treat",
+  "topic": "ui.panes.cards-on-well-2026-10-07",
+  "date": "2026-10-08",
+  "text": "Every redesigned screen uses the same card treatment: the frame is the surface, inside it is a recessed well (surface-sunken), and every pane and content card is its own card with a border and shadow. Panes are never flat areas inside one big card.",
+  "rationale": "Chris 2026-10-07: practice card was all one card with shadows only around the main card; lesson and Study Topics were wrong; all redesign work should already follow his stated preferences",
+  "by": "Chris"
+}

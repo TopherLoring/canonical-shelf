@@ -3,13 +3,7 @@ import {topicsView} from './topics-experience.js';
 const RECENT_KEY='canonical-shelf-recent-v1';
 const safeJson=(raw,fallback)=>{try{return JSON.parse(raw)}catch{return fallback}};
 
-if(typeof document!=='undefined'&&!document.querySelector('link[data-canonical-topics]')){
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='/topics-experience.css';
-  link.dataset.canonicalTopics='';
-  document.head.append(link);
-}
+// Its stylesheet loads through /ui/legacy.css (the legacy cascade layer).
 
 export {topicsView};
 

@@ -1,0 +1,120 @@
+/* Template roles, from docs/design/templates/css/src/tokens.css. Colors come from the generated theme (public/theme.css);
+   the blended roles are generated there too, so every theme changes them together. Built by scripts/build-ui-css.mjs. */
+
+/* Defined on the shell, where --u exists, so the scaled shadows resolve. */
+.cs-shell {
+  --edge-tab-w: 28u; /* edge tabs sit in this strip at the right edge */
+  --tab-clear: calc(var(--edge-tab-w) - 10u + 4u); /* phone: how far a frame's content stays from its right edge so no text sits under a tab */
+  --c-page: var(--color-page);
+  --c-page-dot: color-mix(in srgb, var(--color-text) 5%, transparent);
+  --c-surface: var(--color-surface);
+  --c-raised: var(--color-surface-raised);
+  --c-sunken: var(--color-surface-sunken);
+  --c-subtle: var(--color-surface-subtle);
+  --c-scripture: var(--color-scripture-bed);
+
+  --c-text: var(--color-text);
+  --c-text-2: var(--color-text-secondary);
+  --c-muted: var(--color-text-muted);
+  --c-disabled: var(--color-disabled-ink);
+
+  --c-action: var(--color-action);
+  --c-action-subtle: var(--color-action-subtle);
+  --c-on-action: var(--color-on-action);
+  --c-accent: var(--color-accent);
+  --c-accent-tint: var(--color-accent-tint);
+  --c-accent-wash: var(--color-accent-wash);
+  --c-accent-mark: var(--color-accent-mark);
+  --c-accent-ink: var(--color-accent-ink);
+  --c-notes-edge: var(--color-notes-edge);
+  --c-correct: var(--color-correct);
+  --c-gold: var(--bible-minor);
+
+  --c-hairline: var(--color-hairline);
+  --c-row: var(--color-row);
+  --c-border: var(--color-border);
+  --c-strong: var(--color-border-strong);
+  --c-selection: var(--color-selection);
+  --c-focus-ring: var(--color-focus-halo);
+
+  --c-tab-theologian: var(--color-edge-theologian);
+  --c-tab-theologian-edge: var(--color-edge-theologian-line);
+  --c-tab-theologian-ink: var(--color-edge-theologian-ink);
+  --c-tab-notes: var(--color-edge-notes);
+  --c-tab-notes-edge: var(--color-edge-notes-line);
+
+  --c-hl-yellow: var(--color-highlight-yellow);
+  --c-hl-green: var(--color-highlight-green);
+  --c-hl-blue: var(--color-highlight-blue);
+  --c-hl-rose: var(--color-highlight-rose);
+  --c-popover: var(--color-text);
+  --c-popover-line: color-mix(in srgb, white 20%, transparent);
+  --c-dim: var(--color-dim-overlay);
+
+  --g-law: var(--bible-law);
+  --g-history: var(--bible-othist);
+  --g-wisdom: var(--bible-wisdom);
+  --g-major: var(--bible-major);
+  --g-minor: var(--bible-minor);
+  --g-gospels: var(--bible-gospel);
+  --g-paul: var(--bible-paul);
+  --g-general: var(--bible-general);
+  --g-revelation: var(--bible-apoc);
+
+  --c-wood-light: var(--color-shelf-wood-light);
+  --c-wood: var(--color-shelf-wood);
+  --c-wood-dark: var(--color-shelf-wood-dark);
+  --c-wood-edge: var(--color-shelf-wood-edge);
+  --c-wood-shine: var(--color-shelf-wood-highlight);
+  --c-plaque: var(--color-plaque);
+  --c-iron: var(--color-shelf-iron);
+  --c-iron-light: var(--color-shelf-iron-light);
+  --c-iron-edge: var(--color-shelf-iron-edge);
+  --c-gilt: var(--color-gilt);
+
+  --c-art-paper: var(--color-art-paper);
+  --c-art-blue: var(--color-art-blue);
+  --c-art-green: var(--color-art-green);
+
+  /* Shadow and light tints, as transparent mixes of the text color and white */
+  --ink-8: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --ink-9: color-mix(in srgb, var(--color-text) 9%, transparent);
+  --ink-12: color-mix(in srgb, var(--color-text) 12%, transparent);
+  --ink-15: color-mix(in srgb, var(--color-text) 15%, transparent);
+  --ink-18: color-mix(in srgb, var(--color-text) 18%, transparent);
+  --ink-20: color-mix(in srgb, var(--color-text) 20%, transparent);
+  --ink-22: color-mix(in srgb, var(--color-text) 22%, transparent);
+  --ink-25: color-mix(in srgb, var(--color-text) 25%, transparent);
+  --ink-30: color-mix(in srgb, var(--color-text) 30%, transparent);
+  --shine-3: color-mix(in srgb, white 3%, transparent);
+  --shine-4: color-mix(in srgb, white 4%, transparent);
+  --shine-6: color-mix(in srgb, white 6%, transparent);
+  --shine-20: color-mix(in srgb, white 20%, transparent);
+  --shine-25: color-mix(in srgb, white 25%, transparent);
+  --shade-7: color-mix(in srgb, black 7%, transparent);
+  --shade-8: color-mix(in srgb, black 8%, transparent);
+  --shade-20: color-mix(in srgb, black 20%, transparent);
+  --shade-25: color-mix(in srgb, black 25%, transparent);
+
+  /* Elevation (lengths scale with --u) */
+  --sh-card: 0 calc(1 * var(--u)) calc(3 * var(--u)) var(--ink-8), 0 calc(8 * var(--u)) calc(20 * var(--u)) var(--ink-12);
+  --sh-frame: 0 calc(2 * var(--u)) calc(6 * var(--u)) var(--ink-9), 0 calc(16 * var(--u)) calc(40 * var(--u)) var(--ink-18);
+  --sh-popover: 0 calc(8 * var(--u)) calc(20 * var(--u)) var(--ink-25);
+  --sh-tab: calc(-3 * var(--u)) 0 calc(8 * var(--u)) var(--ink-12);
+
+  /* Layers come from the theme */
+  --z-raised: var(--layer-nav);
+  --z-tabs: var(--layer-edge-tabs);
+  --z-popover: var(--layer-popups);
+
+  /* Type families */
+  --f-wordmark: Caladea, Cambria, Charter, Georgia, serif;
+  --f-display: var(--user-font-display, var(--font-display));
+  --f-reading: var(--user-font-reading, var(--font-reading));
+  --f-body: var(--user-font-body, var(--font-body));
+}
+
+/* Accessibility settings (Profile > Appearance). High contrast makes muted text and borders full strength;
+   Reduce motion removes transitions and animation. The theme's own colors are untouched. */
+html[data-contrast="high"] .cs-shell { --c-muted: var(--c-text); --c-text-2: var(--c-text); --c-border: var(--c-strong); --c-hairline: var(--c-strong); }
+html[data-reduce-motion="on"] :where(*, *::before, *::after) { animation: none; transition: none; scroll-behavior: auto; }

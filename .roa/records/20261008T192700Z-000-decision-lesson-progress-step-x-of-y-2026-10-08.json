@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-progress-step-x-of-y-2026-10-08",
+  "topic": "ui.lesson.progress",
+  "date": "2026-10-08",
+  "text": "Lesson progress follows the template: on the phone the title bar shows 'Step x of y' with a dot chain. This replaces the earlier rule that progress is shown as 'N of M' without a 'Step' label.",
+  "rationale": "Chris 2026-10-08, already stated in the phone navigation decision (ui.phone.navigation): the lesson shows 'Step x of y' plus a dot chain",
+  "by": "Chris"
+}

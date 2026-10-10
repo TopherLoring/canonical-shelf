@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "profile-sections-v3",
+  "topic": "ui.profile.sections",
+  "date": "2026-10-10",
+  "text": "Profile sections are: Account, Customization (Appearance, Reader incl. translation, Accessibility with toggle switches), My Study (My Notes, Goals as a self-written accountability note, Books incl. mark-as-read, Path and Topics, Practice, Review, an understanding heatmap of retention/comprehension), Privacy & Policies (data tools plus Privacy, Cookie/storage, What is stored and shared, Data retention, Terms of Use, all rendered in-pane), About Canonical Shelf (Introduction to TopherLoring Ministries and the app, Statement of Faith, Theologian, FAQs), Contact Us. Profile uses a drill-down left pane: Back link at top, sub-sections beneath, each sub-section its own screen; no content links out of Profile.",
+  "rationale": "Chris, 2026-10-10 07:07: section names list; policies, terms, statement shown in-pane; Profile follows option A (drill-down).",
+  "by": "Chris"
+}

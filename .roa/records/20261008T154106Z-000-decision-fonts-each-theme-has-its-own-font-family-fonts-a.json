@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "fonts-each-theme-has-its-own-font-family-fonts-a",
+  "topic": "ui.fonts.selection",
+  "date": "2026-10-08",
+  "text": "Fonts: each theme has its own font family; fonts are also selectable separately from the theme in Profile settings; text size can be changed in the reader and in site settings; board units (--u) multiply by the user text-size factor.",
+  "by": "Chris"
+}

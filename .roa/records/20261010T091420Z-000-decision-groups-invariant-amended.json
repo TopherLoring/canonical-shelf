@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "groups-invariant-amended",
+  "topic": "product.progress-privacy",
+  "date": "2026-10-10",
+  "text": "Invariant amended: no streaks, public leaderboards, or comparison with strangers, with a future opt-in exception for groups (Bible study, team, class): comparison with group total or anonymous group data and optional group leaderboards, private by default.",
+  "rationale": "Chris, 2026-10-10: invariant should be revised to include the future group exception.",
+  "by": "Chris"
+}

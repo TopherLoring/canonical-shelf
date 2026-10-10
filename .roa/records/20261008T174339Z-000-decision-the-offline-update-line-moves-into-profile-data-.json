@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "the-offline-update-line-moves-into-profile-data-",
+  "topic": "shell.offline-notice",
+  "date": "2026-10-08",
+  "text": "The offline/update line moves into Profile (Data & privacy); no notice strip under the top bar",
+  "by": "Chris"
+}

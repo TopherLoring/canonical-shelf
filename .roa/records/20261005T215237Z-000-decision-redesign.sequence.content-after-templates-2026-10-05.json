@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "redesign.sequence.content-after-templates-2026-10-05",
+  "topic": "redesign.sequence",
+  "date": "2026-10-05",
+  "text": "Sequence: finish the redesign (screens, components and style templates) before revising content. Lesson content and the glossary are revised after the templates are in place; lesson card breaks are reviewed and locked only after that revision, because revised text moves the breaks. Until then the lesson screen renders the build-time divider's cards directly.",
+  "by": "Chris"
+}

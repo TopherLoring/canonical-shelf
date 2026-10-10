@@ -1,0 +1,78 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+/* Topics layout with one navigation column and one reading pane.
+   Theme roles and shared rail components supply the visual styling. */
+@layer screens {
+  .about-screen {
+    display: grid;
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(12px, 1.4vw, 20px);
+    min-width: 0;
+  }
+
+  .about-screen__list {
+    min-width: 0;
+  }
+
+  .about-screen__content {
+    min-width: 0;
+    max-width: 80ch;
+    padding: 6px 4px 20px;
+    overflow-wrap: anywhere;
+  }
+
+  .about-screen__content .about-page__hero,
+  .about-screen__content .about-page__section {
+    display: grid;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .about-screen__content .about-page__section {
+    padding-top: 20px;
+    border-top: var(--border-weight) solid var(--color-border);
+    scroll-margin-top: 90px;
+  }
+
+  .about-screen__content .about-page__hero > *,
+  .about-screen__content .about-page__section > * {
+    margin: 0;
+  }
+
+  .about-screen__content .about-page__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding-bottom: 20px;
+  }
+
+  .about-screen__content ul,
+  .about-screen__content ol {
+    padding-left: 24px;
+  }
+
+  .about-screen__content li + li {
+    margin-top: 8px;
+  }
+
+  .about-screen__content .statement-content > * + * {
+    margin-top: 12px;
+  }
+
+  @media (max-width: 680px) {
+    .about-screen {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about-screen__list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 8px;
+    }
+
+    .about-screen__list > p {
+      grid-column: 1 / -1;
+    }
+  }
+}

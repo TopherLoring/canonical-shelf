@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "accounts-age-passkey-google-recovery",
+  "topic": "product.accounts",
+  "date": "2026-10-10",
+  "text": "Accounts: age is a 13+ attestation, not a stored age; password is dropped (passkeys, plus Google sign-in); a solid account recovery workflow that does not rely on users keeping recovery codes (Google or verified email) is needed soon.",
+  "rationale": "Chris, 2026-10-10.",
+  "by": "Chris"
+}

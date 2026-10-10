@@ -177,7 +177,7 @@
       "phase": "2",
       "type": "system_shell",
       "title": "Cascade Layer System & Universal App Shell",
-      "status": "planned",
+      "status": "completed",
       "dependsOn": [
         "P1.THEME_CONTRACT"
       ],

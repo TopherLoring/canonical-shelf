@@ -1,0 +1,70 @@
+@layer tokens, base, layout, components, screens, overrides;
+
+@layer layout {
+  /* Stacking layer contract classes */
+  .layer-nav {
+    z-index: var(--layer-nav);
+  }
+  .layer-edge-tabs {
+    z-index: var(--layer-edge-tabs);
+  }
+  .layer-popups {
+    z-index: var(--layer-popups);
+  }
+  .layer-dim-overlay {
+    z-index: var(--layer-dim-overlay);
+  }
+  .layer-theologian {
+    z-index: var(--layer-theologian);
+  }
+
+  /* Root layout container */
+  .app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* App shell header placement */
+  .cs-top {
+    position: relative;
+    z-index: var(--layer-nav);
+  }
+
+  /* Phone edge-tabs dock */
+  .edge-tabs-dock, #guide-open.theologian-tab {
+    z-index: var(--layer-edge-tabs);
+  }
+
+  /* Popups and dialogs */
+  .utility-panel, dialog, [role="dialog"] {
+    z-index: var(--layer-popups);
+  }
+
+  /* Dim overlay */
+  .dim-overlay, [data-dim-overlay] {
+    z-index: var(--layer-dim-overlay);
+  }
+
+  /* Theologian panel */
+  #guide.guide, .theologian-dock {
+    z-index: var(--layer-theologian);
+  }
+
+  /* Zero horizontal scroll guard on phone across all viewports */
+  @media (max-width: 640px) {
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    .app-layout {
+      max-width: 390px;
+      overflow-x: hidden;
+    }
+  }
+}

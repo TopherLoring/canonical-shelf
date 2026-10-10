@@ -1,0 +1,847 @@
+{
+  "summary": {
+    "date": "2026-10-05",
+    "lessons": 119,
+    "sections": 642,
+    "proposedSteps": 1054,
+    "fittingSteps": 880,
+    "oversizedIndivisibleUnits": 174,
+    "visualsUsingExistingAllowance": 8,
+    "checks": "Arithmetic boundaries, source hashes, sentence/paragraph reconstruction, atomic block order, section boundaries, maximum allowances, and last-fit division verified."
+  },
+  "lessons": [
+    {
+      "module": "module-1",
+      "lesson": "begin",
+      "sections": 8,
+      "proposedSteps": 21,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-1",
+      "lesson": "c1-questions-first",
+      "sections": 6,
+      "proposedSteps": 13,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-1",
+      "lesson": "c1-library-groups",
+      "sections": 6,
+      "proposedSteps": 15,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-1",
+      "lesson": "c1-reading-kinds",
+      "sections": 9,
+      "proposedSteps": 17,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-1",
+      "lesson": "library",
+      "sections": 7,
+      "proposedSteps": 15,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-1",
+      "lesson": "genre",
+      "sections": 6,
+      "proposedSteps": 14,
+      "requiresRevision": 3
+    },
+    {
+      "module": "module-1",
+      "lesson": "shelf-skills",
+      "sections": 6,
+      "proposedSteps": 12,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-1",
+      "lesson": "story",
+      "sections": 7,
+      "proposedSteps": 14,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-1",
+      "lesson": "creation",
+      "sections": 8,
+      "proposedSteps": 14,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-1",
+      "lesson": "garden-trust",
+      "sections": 7,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-1",
+      "lesson": "sin-mortality",
+      "sections": 8,
+      "proposedSteps": 12,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-1",
+      "lesson": "creation-care",
+      "sections": 7,
+      "proposedSteps": 11,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-1",
+      "lesson": "abraham-blessing",
+      "sections": 7,
+      "proposedSteps": 11,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "exodus-call",
+      "sections": 7,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-passover",
+      "sections": 6,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-sea-wilderness",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "covenant",
+      "sections": 8,
+      "proposedSteps": 11,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-sinai-covenant",
+      "sections": 6,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-golden-calf",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "torah-neighbor",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-tabernacle",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-ark",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-priesthood-sacrifice",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-day-atonement",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-sacred-calendar",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "land-judges",
+      "sections": 7,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "kings-accountability",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-davidic-covenant",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-temple-presence",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "kingdom-exile",
+      "sections": 8,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c5-hebrew-poetry",
+      "sections": 6,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "wisdom",
+      "sections": 8,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "psalms-lament",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "proverbs-discernment",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "job-listening",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "wisdom-time-love",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "amos-worship",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "micah-mercy",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-exile-temple-loss",
+      "sections": 6,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "exile-lament",
+      "sections": 7,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-restoration-temple",
+      "sections": 4,
+      "proposedSteps": 6,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-new-covenant",
+      "sections": 4,
+      "proposedSteps": 6,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-2",
+      "lesson": "c2-prophetic-hope",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "prophets",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "return-rebuilding",
+      "sections": 5,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-2",
+      "lesson": "jeremiah-hope",
+      "sections": 5,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-persian-judea",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-torah-public-life",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-alexander-hellenization",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-antiochus-maccabees",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-hasmoneans",
+      "sections": 3,
+      "proposedSteps": 6,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-rome-judea",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-herod",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-temple-priesthood",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-synagogue-diaspora",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-pharisees-sadducees",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-essenes-qumran",
+      "sections": 3,
+      "proposedSteps": 6,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-revolutionary-currents",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-apocalyptic-resurrection",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-messianic-diversity",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c3-enter-gospels",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "gospel-comparison",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "jesus-world",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c1-bible-languages",
+      "sections": 6,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "translation",
+      "sections": 6,
+      "proposedSteps": 12,
+      "requiresRevision": 3
+    },
+    {
+      "module": "module-3",
+      "lesson": "c5-equivalence",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "parables-welcome",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c4-sermon-mount",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "prayer-practice",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c4-scripture-fulfillment",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "kingdom-following",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c4-passion-passover",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "communion-table",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c4-ascension",
+      "sections": 4,
+      "proposedSteps": 6,
+      "requiresRevision": 0
+    },
+    {
+      "module": "module-3",
+      "lesson": "practices",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c4-pentecost",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "context",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "audience",
+      "sections": 6,
+      "proposedSteps": 10,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "application",
+      "sections": 6,
+      "proposedSteps": 11,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "acts-discernment",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "early-church",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "body-belonging",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "letters-favoritism",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c5-typology-allusion",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "project-interpret",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-3",
+      "lesson": "c5-synoptic-problem",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-3",
+      "lesson": "c5-authorship-composition",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "c1-theology-map",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-4",
+      "lesson": "trinity-language",
+      "sections": 5,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "spirit-discernment",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "atonement-images",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "receiving-grace",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "grace-repair",
+      "sections": 5,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "cross-grace",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-4",
+      "lesson": "providence-freedom",
+      "sections": 5,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "doctrine",
+      "sections": 5,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "incarnation-humanity",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "c1-practice-map",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "baptism-belonging",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "neighbor",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "c1-traditions-map",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "traditions-welcome",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "c6-covenant-frameworks",
+      "sections": 4,
+      "proposedSteps": 7,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-4",
+      "lesson": "traditions",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "creeds-reading",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "authority-unity",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "ethical-texts",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "hard-questions",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "inclusion-reading",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "jewish-roots",
+      "sections": 5,
+      "proposedSteps": 10,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "suffering-discernment",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "independent",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "project-observe",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-4",
+      "lesson": "project-apply",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 1
+    },
+    {
+      "module": "module-4",
+      "lesson": "apocalypse-hope",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "c6-end-times-frameworks",
+      "sections": 4,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "final-hope",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "resurrection-body",
+      "sections": 5,
+      "proposedSteps": 8,
+      "requiresRevision": 2
+    },
+    {
+      "module": "module-4",
+      "lesson": "judgment-mercy",
+      "sections": 5,
+      "proposedSteps": 9,
+      "requiresRevision": 2
+    }
+  ]
+}

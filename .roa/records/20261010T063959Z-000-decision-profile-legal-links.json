@@ -1,0 +1,10 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "profile-legal-links",
+  "topic": "ui.profile.legal-links",
+  "date": "2026-10-10",
+  "text": "Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored.",
+  "rationale": "Chris, 2026-10-10: put About/Terms/Statement of Faith in Profile (the footer sits below the frame).",
+  "by": "Chris"
+}

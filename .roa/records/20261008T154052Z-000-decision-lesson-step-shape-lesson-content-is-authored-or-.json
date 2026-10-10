@@ -1,0 +1,9 @@
+{
+  "type": "decision",
+  "kind": "decision",
+  "id": "lesson-step-shape-lesson-content-is-authored-or-",
+  "topic": "ui.lesson.step-shape",
+  "date": "2026-10-08",
+  "text": "Lesson step shape: lesson content is authored or generated to a length budget, so the fixed 2:1 / 4:5 step box is not needed. The lesson body flows inside the window frame, as in the template. The content-length cap stays as a content guard (type-cap.spec.js), not as a layout box.",
+  "by": "Chris"
+}
