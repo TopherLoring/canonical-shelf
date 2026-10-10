@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "changed",
+  "date": "2026-10-10",
+  "text": "Font choices use --user-font-reading/display/body (set by script); every stylesheet reads var(--user-font-X, var(--font-X)) so the theme contract keeps owning the theme fonts."
+}

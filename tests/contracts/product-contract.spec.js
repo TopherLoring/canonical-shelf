@@ -43,8 +43,11 @@ test('DOM template bank drives home, progress, course, and unit views',async({pa
   await expect(page.locator('[data-learning-path]')).toBeVisible();
   await page.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
-  await expect(page.locator('[data-profile-progress] .progress-panel__summary')).toBeVisible();
   await page.goBack();
+  await expect(page.locator('[data-learning-path]')).toBeVisible();
+  await page.goto('/profile#progress');
+  await expect(page.locator('[data-profile-progress] .progress-panel__summary')).toBeVisible();
+  await page.goto('/path');
   await expect(page.locator('[data-learning-path]')).toBeVisible();
   // Learning Path (redesigned, S3.J): a module in the rail, a unit's lessons, then the lesson itself.
   const moduleHref=await page.locator('#path-modules a[href^="/course?course="]').nth(1).getAttribute('href');
@@ -217,28 +220,30 @@ test('top bar: logo mark, tabs, search, profile (Feedback sits under the frame);
   await bar.locator('.profile-link').click();
   await expect(page).toHaveURL(/\/profile$/);
   await expect(bar.locator('.profile-link')).toHaveAttribute('aria-current','page');
-  for(const id of ['you','progress','notes','appearance','reading','privacy'])await expect(page.locator(`#${id}.profile-screen__section`)).toBeVisible();
-  await expect(page.locator('#you [data-account-mount]')).not.toContainText('Checking your account');
-  const cards=page.locator('#appearance [data-theme-option]');
+  await expect(page.locator('.profile-rail a')).toHaveText(['Account','Progress','My Notes','Appearance','Reading','Data & privacy']);
+  await expect(page.locator('[data-profile-section="you"] [data-account-mount]')).not.toContainText('Checking your account');
+  await page.locator('.profile-rail a[href="/profile#appearance"]').click();
+  await expect(page.locator('[data-profile-section="appearance"]')).toBeVisible();
+  const cards=page.locator('[data-profile-section="appearance"] [data-theme-option]');
   const target=await cards.nth(2).getAttribute('data-theme-option');
   await cards.nth(2).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme',target);
-  await page.locator('#appearance [data-mode-choice="dark"]').click();
+  await page.locator('[data-profile-section="appearance"] [data-mode-choice="dark"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-mode','dark');
   await expect(page.locator('#appearance-panel')).toHaveCount(0);
   // the selected mode button is readable (text on the action color)
-  const sel=page.locator('#appearance .mode-toggle-btn.is-selected');
+  const sel=page.locator('[data-profile-section="appearance"] [data-mode-choice].is-selected');
   const ratio=await sel.evaluate(el=>{const rgb=c=>c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number);const L=([r,g,b])=>[r,g,b].map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);const f=L(rgb(getComputedStyle(el).color)),b=L(rgb(getComputedStyle(el).backgroundColor));return (Math.max(f,b)+.05)/(Math.min(f,b)+.05)});
   expect(ratio,'selected light/dark button text contrast').toBeGreaterThanOrEqual(4.5);
-  // arriving with a section in the address scrolls to it
+  // arriving with a section in the address opens that section; the list switches sections
   await page.goto('/profile#appearance');
-  await expect(page.locator('#appearance')).toBeInViewport();
-  // section links scroll to the section instead of re-rendering the page
-  await page.locator('.profile-screen__nav a[href="#privacy"]').click();
+  await expect(page.locator('[data-profile-section="appearance"]')).toBeVisible();
+  await page.locator('.profile-rail a[href="/profile#privacy"]').click();
   await expect(page).toHaveURL(/\/profile#privacy$/);
-  await expect(page.locator('#privacy')).toBeInViewport();
+  await expect(page.locator('[data-profile-section="privacy"]')).toBeVisible();
+  await page.goto('/profile#appearance');
   // theme cards: name and description do not overlap and stay readable in dark mode
-  const card=page.locator('#appearance .theme-choice').first();
+  const card=page.locator('[data-profile-section="appearance"] .theme-choice').first();
   const gap=await card.evaluate(el=>{const n=el.querySelector('strong').getBoundingClientRect(),d=el.querySelector('.theme-choice__text > span').getBoundingClientRect();return d.top-n.bottom});
   expect(gap,'description starts below the theme name').toBeGreaterThanOrEqual(0);
   await expect(card.locator('.theme-choice__swatch i')).toHaveCount(4);

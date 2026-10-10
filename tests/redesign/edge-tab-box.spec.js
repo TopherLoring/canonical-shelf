@@ -66,6 +66,6 @@ test('Bible is a focus screen on the phone: close button, no bottom bar; every o
 test('the offline line lives in Profile, not under the top bar', async ({ page }) => {
   await page.goto('/home');
   await expect(page.locator('.cs-notice')).toHaveCount(0);
-  await page.goto('/profile');
-  await expect(page.locator('#privacy #pwa-status')).toBeVisible();
+  await page.goto('/profile#privacy');
+  await expect(page.locator('[data-profile-section="privacy"] #pwa-status')).toBeVisible();
 });

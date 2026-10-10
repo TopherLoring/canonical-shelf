@@ -37,7 +37,7 @@
   .book-main { min-width: 0; min-height: 0; overflow: auto; padding: 2px var(--space-1) var(--space-5); display: grid; align-content: start; gap: var(--space-3); }
   .book-heading { display: grid; justify-items: start; gap: var(--space-1); padding-top: var(--space-1); }
   .book-heading .eyebrow, .book-heading h1 { margin: 0; }
-  .book-hook { margin: 0; font-family: var(--font-display); font-size: var(--type-lead); line-height: var(--leading-tight); color: var(--color-text); }
+  .book-hook { margin: 0; font-family: var(--user-font-display, var(--font-display)); font-size: var(--type-lead); line-height: var(--leading-tight); color: var(--color-text); }
   .book-synopsis { margin: 0; max-width: var(--measure-reading); line-height: var(--leading-reading); color: var(--color-text-secondary); }
   .book-length { display: grid; gap: var(--space-1); max-width: 28rem; font-size: var(--type-small); color: var(--color-text-secondary); }
 

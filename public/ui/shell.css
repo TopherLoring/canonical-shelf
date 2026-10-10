@@ -111,9 +111,9 @@
 
   /* Type families */
   --f-wordmark: Caladea, Cambria, Charter, Georgia, serif;
-  --f-display: var(--font-display);
-  --f-reading: var(--font-reading);
-  --f-body: var(--font-body);
+  --f-display: var(--user-font-display, var(--font-display));
+  --f-reading: var(--user-font-reading, var(--font-reading));
+  --f-body: var(--user-font-body, var(--font-body));
 }
 
 /* Shell: backdrop, top bar, frame, cards, rails, buttons, edge tabs, phone tab bar and device chrome.

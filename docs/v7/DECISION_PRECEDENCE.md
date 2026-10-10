@@ -1403,6 +1403,12 @@ One section per topic: **Current** is in force; **Previous** and **Prior** are h
   The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
   *Why:* Owner reply 2026-10-09 23:35 to the Profile plan's layout question
 
+### `ui.profile.legal-links`
+
+- **Current** · 2026-10-10 · Owner decision (Chris) · `profile-legal-links`
+  Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored.
+  *Why:* Chris, 2026-10-10: put About/Terms/Statement of Faith in Profile (the footer sits below the frame).
+
 ### `ui.profile.plan`
 
 - **Approval** · 2026-10-10 · Chris · `profile-plan-approved` · scope: profile-port-plan

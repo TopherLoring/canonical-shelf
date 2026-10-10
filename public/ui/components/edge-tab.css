@@ -6,7 +6,7 @@
   position: fixed; inset-inline-end: 0; inline-size: calc(28 * var(--u)); z-index: var(--layer-edge-tabs); padding: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(6 * var(--u));
   border: calc(1 * var(--u)) solid var(--color-border); border-inline-end: 0; border-radius: calc(12 * var(--u)) 0 0 calc(12 * var(--u)); box-sizing: border-box;
-  cursor: pointer; box-shadow: var(--sh-tab); font-family: var(--font-body);
+  cursor: pointer; box-shadow: var(--sh-tab); font-family: var(--user-font-body, var(--font-body));
   transition: transform var(--motion-fast) var(--motion-easing), opacity var(--motion-fast) var(--motion-easing);
 }
 .ui-edge-tab:hover { transform: translateX(calc(-2 * var(--u))); }

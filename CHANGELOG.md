@@ -9,10 +9,16 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 
 - The Profile screen uses the Topics screen layout (a list of section cards beside a pane that shows the selected section; the phone follows Topics' phone layout).
 - Text size has two settings: a site text size (Profile) and the Reader's own Aa size, which stays separate.
+- Profile Data & privacy also links About, Terms, and the Statement of Faith, alongside Privacy, Data retention, and What is stored.
+
+### Added
+
+- Profile on the Topics layout: a section list beside a pane (Account, Progress, My Notes, Appearance, Reading, Data & privacy); the section is in the address (/profile#notes). Adds site text size (90/100/115/130%) and Reading and Interface font pickers, stored on the device and applied at start; the Reader's Aa size stays separate. Data & privacy links About, Terms, Statement of Faith, and the policies; Feedback is a link there on phones.
 
 ### Changed
 
 - Fonts: Newsreader and the optical-size Literata self-hosted (public/fonts/local); Reading Room display face is Newsreader, as on the design boards
+- Font choices use --user-font-reading/display/body (set by script); every stylesheet reads var(--user-font-X, var(--font-X)) so the theme contract keeps owning the theme fonts.
 
 ## 2026-10-09
 

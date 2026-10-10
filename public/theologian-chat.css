@@ -8,7 +8,7 @@
 .theologian-chat__new:hover{background:#ffffff10}
 .theologian-chat__messages{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:1rem .15rem 1.25rem;display:flex;flex-direction:column;gap:1rem;scrollbar-gutter:stable;scroll-behavior:smooth}
 .theologian-chat__empty{margin:auto;padding:2rem 1rem;text-align:center;max-width:28rem}
-.theologian-chat__empty h3{font-family:var(--font-display);font-size:1.75rem;margin:0 0 .6rem}
+.theologian-chat__empty h3{font-family:var(--user-font-display, var(--font-display));font-size:1.75rem;margin:0 0 .6rem}
 .theologian-chat__empty p{color:#c8ccd0}
 .theologian-chat__suggestions{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:1rem}
 .theologian-chat__suggestions button{border:1px solid #737a81;background:#24272d;color:#f7f5ef;border-radius:999px;padding:.48rem .72rem;cursor:pointer}

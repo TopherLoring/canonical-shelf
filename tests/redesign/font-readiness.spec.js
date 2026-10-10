@@ -54,14 +54,14 @@ test('a reader waiting for its font cannot replace a newer profile destination',
     await page.goto('/bible?book=19&chapter=119&start=105', { waitUntil: 'domcontentloaded' });
     await pending.requested;
     // The Bible is a focus screen on the phone (no bottom bar), so follow an in-app link to the profile.
-    await page.evaluate(() => { const a = document.createElement('a'); a.href = '/profile'; document.body.append(a); a.click(); a.remove(); });
-    await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
+    await page.evaluate(() => { const a = document.createElement('a'); a.href = '/profile#notes'; document.body.append(a); a.click(); a.remove(); });
+    await expect(page.locator('[data-profile-section="notes"]')).toBeVisible();
     pending.release();
     await page.evaluate(() => document.fonts.load('400 16px "Reader Test"'));
     await page.evaluate(() => document.fonts.ready.then(() => true));
-    await expect(page.locator('#notes.profile-screen__section')).toBeVisible();
+    await expect(page.locator('[data-profile-section="notes"]')).toBeVisible();
     await expect(page.locator('main [data-reader]')).toHaveCount(0);
-    await expect(page).toHaveURL(/\/profile$/);
+    await expect(page).toHaveURL(/\/profile#notes$/);
   } finally {
     pending.release();
   }

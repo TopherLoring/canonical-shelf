@@ -1,0 +1,6 @@
+{
+  "type": "note",
+  "kind": "added",
+  "date": "2026-10-10",
+  "text": "Profile on the Topics layout: a section list beside a pane (Account, Progress, My Notes, Appearance, Reading, Data & privacy); the section is in the address (/profile#notes). Adds site text size (90/100/115/130%) and Reading and Interface font pickers, stored on the device and applied at start; the Reader's Aa size stays separate. Data & privacy links About, Terms, Statement of Faith, and the policies; Feedback is a link there on phones."
+}
