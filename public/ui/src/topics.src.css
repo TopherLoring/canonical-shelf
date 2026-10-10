@@ -82,11 +82,17 @@ button.cs-topic { text-align: start; font: inherit; cursor: pointer; }
 .topics-glossary summary { cursor: pointer; font-weight: 600; color: var(--c-action); }
 .cs-topicstatus { padding: 0 4u; font-size: 13u; color: var(--c-muted); }
 .cs-typepicker.topics-picker { display: none; }
+/* A chosen topic: sections and sub topics stack in the left pane */
+.topics-left { display: flex; flex-direction: column; gap: 14u; min-block-size: 0; }
+.topics-left .topics-rail { flex: none; }
+.topics-left .topics-subrail { flex: 1 1 auto; min-block-size: 0; overflow: auto; }
+.topics-subrail .cs-sublist__num { background: var(--c-row); }
+.topics-subrail .is-current .cs-sublist__num { background: var(--c-action-subtle); color: var(--c-action); }
 
 @container app (max-width: 760px) or (max-aspect-ratio: 4/5) {
   .cs-frame--well.cs-cols--topics, .cs-frame--well.cs-cols--topics-list { background: var(--c-surface); overflow: auto; overscroll-behavior: contain; gap: 14u; padding: 16u 24u 24u 16u; }
   .cs-frame--well.cs-cols--topics > *, .cs-frame--well.cs-cols--topics-list > * { overflow: visible; flex: none; }
-  .cs-frame--well.cs-cols--topics > .topics-rail, .cs-frame--well.cs-cols--topics-list > .topics-rail { display: none; }
+  .cs-frame--well.cs-cols--topics > .topics-rail, .cs-frame--well.cs-cols--topics-list > .topics-rail, .cs-frame--well.cs-cols--topics > .topics-left { display: none; }
   .cs-typepicker.topics-picker { display: inline-flex; }
   .topics-kicker, .topics-desktop-only { display: none; }
   .topics-h1 { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

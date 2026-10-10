@@ -90,7 +90,7 @@ function resolve(data, params) {
   if (!GROUPS.some(([id]) => id === mode) && mode !== 'glossary') mode = 'questions';
   const list = visibleTopics(data, mode, query);
   const open = wanted?.source === 'question' ? wanted : null;
-  const selected = open ? null : (wanted && mode !== 'questions' ? wanted : (mode === 'questions' || mode === 'glossary' ? null : list[0] || null));
+  const selected = open ? null : (wanted && mode !== 'questions' && mode !== 'glossary' ? wanted : null);
   const sub = Math.max(0, Number.parseInt(params.get('sub') || '0', 10) || 0);
   return { mode, query, list, open, selected, sub, subGiven: params.has('sub'), searching: Boolean(query) };
 }
@@ -103,6 +103,15 @@ function rail(data, state, esc) {
   return `<nav class="cs-card cs-rail topics-rail" aria-label="Topic groups"><span class="cs-rail__label">Browse</span>
     ${GROUPS.map(([id, label]) => item(id, label, '', countFor(data, id), active === id)).join('')}
     <span class="cs-rail__section">Look up a word</span>${item('glossary', 'Glossary', ICONS.glossary, (data.glossary || []).length, active === 'glossary')}</nav>`;
+}
+
+function subRail(state, esc) {
+  const topic = state.selected;
+  const subs = (topic.sections || []).map(sectionPair);
+  if (!subs.length) return '';
+  const index = Math.min(state.sub, subs.length - 1);
+  return `<nav class="cs-card cs-rail topics-subrail" aria-label="Sub topics"><span class="cs-rail__label">Sub topics</span>
+    ${subs.map(([title], n) => `<a class="cs-rail__item${n === index ? ' is-current' : ''}" href="${esc(link(topicMode(topic), { topic: topic.id, sub: n }))}"${n === index ? ' aria-current="page"' : ''}><span class="cs-sublist__num">${n + 1}</span><span class="cs-grow">${esc(title)}</span></a>`).join('')}</nav>`;
 }
 
 function picker(data, state, esc) {
@@ -151,19 +160,29 @@ function topicCards(list, state, esc, kind) {
   return `<div class="cs-topic-grid">${cards || '<p class="cs-muted">No Topics match that search.</p>'}</div><span class="cs-result-count" aria-live="polite">Showing ${shown} of ${list.length} ${kind}</span>`;
 }
 
-function itemPane(data, state, esc) {
+function topicMiddle(data, state, esc) {
   const topic = state.selected;
-  if (!topic) return '<aside class="cs-stack" aria-label="Selected topic"><section class="cs-card cs-panel"><span class="cs-caption cs-caption--label">Overview</span><p class="cs-muted">Choose a topic to read its overview, sub topics, and sources.</p></section></aside>';
+  const group = groupFor(state.mode);
+  const extra = (Array.isArray(topic.body) ? topic.body : []).map(text => `<p>${esc(text)}</p>`).join('');
+  const units = withModules(data, relatedUnits(data, topic)).slice(0, 3);
+  return `<section class="cs-column" aria-label="${esc(topic.title)}" data-topics-screen data-topic-id="${esc(topic.id)}">
+      <div class="topics-phone-head">${heading(state.mode, esc, '', true)}${searchBox(state, esc)}${picker(data, state, esc)}</div>
+      <a class="cs-backlink topics-desktop-only" href="${esc(link(state.mode))}">${ICONS.left}<span>Back to ${esc(group[1])}</span></a>
+      <div class="cs-heading topics-desktop-only"><span class="cs-kicker">${esc(group[1])}</span><h1>${esc(topic.title)}</h1></div>
+      <p class="cs-lede topics-desktop-only">${esc(summary(topic))}</p>
+      ${extra ? `<section class="cs-card cs-panel cs-topic-detail topics-desktop-only"><span class="cs-caption cs-caption--label">Overview</span>${extra}</section>` : ''}
+      <div class="topics-desktop-only cs-stack">${studiedCard(units, esc)}${askCard(topic.title, esc)}</div>
+      <div class="topics-phone-item">${phoneItem(data, state, esc)}</div>
+    </section>`;
+}
+
+function subPane(state, esc) {
+  const topic = state.selected;
   const subs = (topic.sections || []).map(sectionPair);
   const index = Math.min(state.sub, Math.max(0, subs.length - 1));
   const [subTitle, subText] = subs[index] || [];
-  const extra = (Array.isArray(topic.body) ? topic.body : []).map(text => `<p>${esc(text)}</p>`).join('');
-  const units = withModules(data, relatedUnits(data, topic)).slice(0, 3);
-  return `<aside class="cs-stack" aria-label="Selected topic" data-topic-id="${esc(topic.id)}">
-    <section class="cs-card cs-panel cs-topic-detail"><span class="cs-caption cs-caption--label">Overview</span><h2>${esc(topic.title)}</h2><p>${esc(summary(topic))}</p>${extra}</section>
-    ${subs.length ? `<section class="cs-card cs-panel"><span class="cs-caption cs-caption--label">Sub topics</span><nav class="cs-sublist" aria-label="Sub topics">${subs.map(([title], n) => `<a href="${esc(link(topicMode(topic), { topic: topic.id, sub: n }))}"${n === index ? ' aria-current="true"' : ''}><span class="cs-sublist__num">${n + 1}</span>${esc(title)}</a>`).join('')}</nav></section>
-    <section class="cs-card cs-panel cs-subbody"><span class="cs-caption cs-caption--label">${esc(subTitle)}</span><p>${esc(subText)}</p><span class="cs-caption cs-caption--label">Sources</span>${refList(topic.refs || [], esc)}</section>` : `<section class="cs-card cs-panel cs-subbody"><span class="cs-caption cs-caption--label">Sources</span>${refList(topic.refs || [], esc)}</section>`}
-    ${studiedCard(units, esc)}${askCard(topic.title, esc)}</aside>`;
+  return `<aside class="cs-stack topics-desktop-only" aria-label="Selected sub topic" data-topic-id="${esc(topic.id)}">
+    <section class="cs-card cs-panel cs-subbody">${subs.length ? `<span class="cs-caption cs-caption--label">${esc(subTitle)}</span><p>${esc(subText)}</p>` : ''}<span class="cs-caption cs-caption--label">Sources</span>${refList(topic.refs || [], esc)}</section></aside>`;
 }
 
 function guidesFor(data, question) {
@@ -227,16 +246,15 @@ function notesSheet() {
 }
 
 function render(data, state, esc) {
-  const phoneBody = state.mode === 'glossary' || state.mode === 'questions' || state.searching ? '' : phoneItem(data, state, esc);
   if (state.open) return `${rail(data, state, esc)}${questionPage(data, state, state.open, esc)}${notesSheet()}`;
   if (state.mode === 'glossary') {
     return `${rail(data, state, esc)}<section class="cs-column cs-column--wide" aria-label="Glossary" data-topics-screen>${heading('glossary', esc)}${searchBox(state, esc)}${picker(data, state, esc)}${glossaryCards(data, state, esc)}</section>${notesSheet()}`;
   }
-  if (state.mode === 'questions' || state.searching) {
+  if (!state.selected) {
     const label = state.searching ? `Results for “${state.query}”` : '';
-    return `${rail(data, state, esc)}<section class="cs-column cs-column--wide" aria-label="${esc(label || 'Questions')}" data-topics-screen>${heading(state.mode, esc, label)}${searchBox(state, esc)}${picker(data, state, esc)}${topicCards(state.list, state, esc, state.searching ? 'results' : 'questions')}</section>${notesSheet()}`;
+    return `${rail(data, state, esc)}<section class="cs-column cs-column--wide" aria-label="${esc(label || groupFor(state.mode)[1])}" data-topics-screen>${heading(state.mode, esc, label)}${searchBox(state, esc)}${picker(data, state, esc)}${topicCards(state.list, state, esc, state.searching ? 'results' : state.mode === 'questions' ? 'questions' : 'topics')}</section>${notesSheet()}`;
   }
-  return `${rail(data, state, esc)}<section class="cs-column" aria-label="${esc(groupFor(state.mode)[1])}" data-topics-screen>${heading(state.mode, esc)}${searchBox(state, esc)}${picker(data, state, esc)}${topicCards(state.list, state, esc, 'topics')}<div class="topics-phone-item">${phoneBody}</div></section>${itemPane(data, state, esc)}${notesSheet()}`;
+  return `<div class="topics-left">${rail(data, state, esc)}${subRail(state, esc)}</div>${topicMiddle(data, state, esc)}${subPane(state, esc)}${notesSheet()}`;
 }
 
 export const handles = () => true;
@@ -245,7 +263,7 @@ export async function mount(container, ctx) {
   const { data, params, esc } = ctx;
   const state = resolve(data, params);
   const main = document.querySelector('main#main');
-  const wide = state.mode === 'glossary' || state.searching || (state.mode === 'questions' && !state.open);
+  const wide = state.mode === 'glossary' || state.searching || (!state.open && !state.selected);
   const cols = wide ? 'cs-cols--topics-list' : 'cs-cols--topics';
   const restoreFrame = setFrameVariant('well');
   main?.classList.add(cols);

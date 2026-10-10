@@ -28,6 +28,7 @@ All notable changes to The Canonical Shelf, newest first. Entries come from `.ro
 - Fonts: Newsreader and the optical-size Literata self-hosted (public/fonts/local); Reading Room display face is Newsreader, as on the design boards
 - Font choices use --user-font-reading/display/body (set by script); every stylesheet reads var(--user-font-X, var(--font-X)) so the theme contract keeps owning the theme fonts.
 - Profile is a drill-down (sections, then sub-sections, each a screen) with policies and the Statement of Faith shown in-pane; light/dark use sun, moon, and monitor icons; Accessibility uses switches; desktop top bar has a permanent search field; phone bottom bar has dividers and an edged active tab.
+- Study Topics: a group opens its topic list; choosing a topic shows three panes (sections and sub topics on the left, the topic in the middle, the selected sub topic on the right).
 
 ### Fixed
 

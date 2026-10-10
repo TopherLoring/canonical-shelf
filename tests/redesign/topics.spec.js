@@ -32,24 +32,28 @@ test.describe('Study Topics', () => {
     await expect(main(page).locator('h1.topics-h1')).toHaveText('Questions');
   });
 
-  test('a curated group selects its first topic; a card, a sub topic and Sources change the item pane', async ({ page }) => {
+  test('a group opens its topic list; choosing a topic shows three panes: sections and sub topics, the topic, the selected sub topic', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/topics?mode=theology');
-    await expect(page.locator('main.cs-cols--topics')).toBeVisible();
-    const pane = page.locator('aside[aria-label="Selected topic"]');
+    await expect(page.locator('main.cs-cols--topics-list')).toBeVisible();
+    await expect(page.locator('.topics-subrail'), 'no sub topics before a topic is chosen').toHaveCount(0);
     const first = (await page.locator('.cs-topic .cs-topic__title').first().textContent()).trim();
-    await expect(pane.locator('h2')).toHaveText(first);
-    await expect(page.locator('.cs-topic[aria-current="true"] .cs-topic__title')).toHaveText(first);
-    const second = (await page.locator('.cs-topic .cs-topic__title').nth(1).textContent()).trim();
-    await page.locator('.cs-topic').nth(1).click();
-    await expect(pane.locator('h2')).toHaveText(second);
+    await page.locator('.cs-topic').first().click();
+    await expect(page.locator('main.cs-cols--topics')).toBeVisible();
+    await expect(page.locator('.topics-left .topics-rail')).toBeVisible();
+    await expect(page.locator('main h1').first()).toHaveText(first);
     await expect(page).toHaveURL(/sub=0/);
-    const subs = pane.locator('.cs-sublist a');
+    const subs = page.locator('.topics-subrail a');
     expect(await subs.count()).toBeGreaterThan(1);
+    const pane = page.locator('aside[aria-label="Selected sub topic"]');
+    const firstText = await pane.locator('.cs-subbody > p').textContent();
     await subs.nth(1).click();
     await expect(page).toHaveURL(/sub=1/);
-    await expect(pane.locator('.cs-sublist a[aria-current="true"]')).toHaveCount(1);
+    await expect(page.locator('.topics-subrail a[aria-current="page"]')).toHaveCount(1);
+    expect(await pane.locator('.cs-subbody > p').textContent()).not.toBe(firstText);
     await expect(pane.locator('.cs-refs')).toBeVisible();
+    await page.locator('.cs-backlink').click();
+    await expect(page.locator('main.cs-cols--topics-list')).toBeVisible();
   });
 
   test('a legacy /topics?topic= link selects the topic (question ids open the question page)', async ({ page }) => {
@@ -58,7 +62,7 @@ test.describe('Study Topics', () => {
     const id = new URL(await page.locator('.cs-topic').nth(1).getAttribute('href'), 'http://x').searchParams.get('topic');
     await page.goto(`/topics?topic=${encodeURIComponent(id)}`);
     await expect(page.locator('main.cs-cols--topics')).toBeVisible();
-    await expect(page.locator('.cs-topic[aria-current="true"]')).toHaveCount(1);
+    await expect(page.locator('[data-topic-id]').first()).toHaveAttribute('data-topic-id', id);
     await page.goto('/topics?topic=q.god-christ');
     await expect(page.locator('.cs-backlink')).toBeVisible();
   });
@@ -100,7 +104,10 @@ test.describe('Study Topics', () => {
     await page.goto('/topics?mode=theology');
     await expect(page.locator('.topics-rail')).toBeHidden();
     await expect(page.locator('.topics-picker')).toBeVisible();
+    await page.locator('.cs-topic').first().click();
+    await expect(page.locator('.topics-left')).toBeHidden();
     await expect(page.locator('.cs-subacc details').first()).toBeVisible();
+    await page.goBack();
     await page.locator('.topics-picker select').selectOption({ label: 'Glossary' });
     await expect(page).toHaveURL(/mode=glossary/);
   });
